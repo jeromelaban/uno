@@ -3,6 +3,11 @@ parameters:
 
 steps:
 
+  - script: >
+      compress /c '/s:${{ parameters.nugetPackages }}'
+
+    condition: and(succeeded(), eq( variables['Agent.OS'], 'Linux' ))
+
   - task: CacheBeta@0
     condition: eq(variables['enable_package_cache'], 'true')
     inputs:
