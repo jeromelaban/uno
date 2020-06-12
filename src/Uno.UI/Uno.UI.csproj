@@ -348,6 +348,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <UpToDateCheckInput Remove="UI\Xaml\GeneratedDependencyPropertyAttribute.cs" />
 	  <UpToDateCheckInput Remove="UI\Xaml\LaunchActivatedEventArgs.cs" />
 	</ItemGroup>
 

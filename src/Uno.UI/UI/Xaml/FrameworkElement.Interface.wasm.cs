@@ -74,12 +74,21 @@ namespace Windows.UI.Xaml
 
 		public TransitionCollection Transitions
 		{
-			get { return (TransitionCollection)this.GetValue(TransitionsProperty); }
+			get => _transitionsPropertyBackingField;
 			set { this.SetValue(TransitionsProperty, value); }
 		}
 
 		public static readonly DependencyProperty TransitionsProperty =
-			DependencyProperty.Register("Transitions", typeof(TransitionCollection), typeof(FrameworkElement), new PropertyMetadata(null, OnTransitionsChanged));
+			DependencyProperty.Register(
+				name: "Transitions",
+				propertyType: typeof(TransitionCollection),
+				ownerType: typeof(FrameworkElement),
+				typeMetadata: new PropertyMetadata(
+					defaultValue: null,
+					propertyChangedCallback: OnTransitionsChanged,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._transitionsPropertyBackingField = (TransitionCollection)newValue));
+
+		private TransitionCollection _transitionsPropertyBackingField = null;
 
 		private static void OnTransitionsChanged(object dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
@@ -105,14 +114,23 @@ namespace Windows.UI.Xaml
 
 		public Brush Background
 		{
-			get => (Brush)GetValue(BackgroundProperty);
+			get => _backgroundPropertyBackingField;
 			set => SetValue(BackgroundProperty, value);
 		}
 
-		// Using a DependencyProperty as the backing store for Background.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty BackgroundProperty =
-			DependencyProperty.Register("Background", typeof(Brush), typeof(FrameworkElement), new PropertyMetadata(null, (s, e) => ((FrameworkElement)s)?.OnBackgroundChanged(e)));
+			DependencyProperty.Register(
+				name: "Background",
+				propertyType: typeof(Brush),
+				ownerType: typeof(FrameworkElement),
+				typeMetadata: new PropertyMetadata(
+					defaultValue: null,
+					propertyChangedCallback: (s, e) => ((FrameworkElement)s)?.OnBackgroundChanged(e),
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._backgroundPropertyBackingField = (Brush)newValue
+				)
+			);
 
+		private Brush _backgroundPropertyBackingField = null;
 
 		protected virtual void OnBackgroundChanged(DependencyPropertyChangedEventArgs e)
 		{
@@ -206,7 +224,12 @@ namespace Windows.UI.Xaml
 
 		public bool IsEnabled
 		{
-			get { return (bool)GetValue(IsEnabledProperty); }
+			get
+			{
+				Console.WriteLine($"{GetHashCode():X8} Get cached IsEnabled: {_isEnabledPropertyBackingField}");
+				return _isEnabledPropertyBackingField;
+			}
+
 			set { SetValue(IsEnabledProperty, value); }
 		}
 
@@ -220,13 +243,22 @@ namespace Windows.UI.Xaml
 					options: FrameworkPropertyMetadataOptions.Inherits,
 					propertyChangedCallback: (s, e) =>
 					{
+						Console.WriteLine($"{((FrameworkElement)s).GetHashCode():X8} property changed IsEnabled: {e.NewValue}");
+
 						var elt = (FrameworkElement)s;
 						elt?.OnIsEnabledChanged((bool)e.OldValue, (bool)e.NewValue);
 						elt?.IsEnabledChanged?.Invoke(s, e);
 					},
-					coerceValueCallback: (s, v) => (s as FrameworkElement)?.CoerceIsEnabled(v)
-				)
+					coerceValueCallback: (s, v) => (s as FrameworkElement)?.CoerceIsEnabled(v),
+					backingFieldUpdateCallback: (s, newValue) =>
+					{
+						Console.WriteLine($"{((FrameworkElement)s).GetHashCode():X8} update cached IsEnabled: {newValue}");
+
+						((FrameworkElement)s)._isEnabledPropertyBackingField = (bool)newValue;
+					})
 		);
+
+		private bool _isEnabledPropertyBackingField = true;
 
 		protected virtual void OnIsEnabledChanged(bool oldValue, bool newValue)
 		{

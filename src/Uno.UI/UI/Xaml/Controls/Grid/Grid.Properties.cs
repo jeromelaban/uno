@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.UI;
+using Uno.UI.Xaml;
 
 #if XAMARIN_ANDROID
 using View = Android.Views.View;
@@ -27,59 +28,22 @@ namespace Windows.UI.Xaml.Controls
 	public partial class Grid
 	{
 		#region Row Property
-		public static readonly DependencyProperty RowProperty =
-			DependencyProperty.RegisterAttached(
-				"Row",
-				typeof(int),
-				typeof(Grid),
-				new PropertyMetadata(0, OnGenericPropertyChanged)
-			);
+		[GeneratedDependencyProperty(DefaultValue = 0, AttachedBackingFieldOwner = typeof(UIElement), ChangedCallbackName = nameof(OnGenericPropertyChanged))]
+		public static int GetRow(View view) => GetRowValue(view);
 
-		public static int GetRow(View view)
-		{
-			return (int)DependencyObjectExtensions.GetValue(view, RowProperty);
-		}
-
-		public static void SetRow(View view, int row)
-		{
-			DependencyObjectExtensions.SetValue(view, RowProperty, row);
-		}
+		public static void SetRow(View view, int row) => SetRowValue(view, row);
 		#endregion
 
 		#region Column Property
-		public static readonly DependencyProperty ColumnProperty =
-			DependencyProperty.RegisterAttached(
-				"Column",
-				typeof(int),
-				typeof(Grid),
-				new PropertyMetadata(0, OnGenericPropertyChanged)
-			);
+		[GeneratedDependencyProperty(DefaultValue = 0, AttachedBackingFieldOwner = typeof(UIElement), ChangedCallbackName = nameof(OnGenericPropertyChanged))]
+		public static int GetColumn(View view) => GetColumnValue(view);
 
-		public static int GetColumn(View view)
-		{
-			return (int)DependencyObjectExtensions.GetValue(view, ColumnProperty);
-		}
-
-		public static void SetColumn(View view, int column)
-		{
-			DependencyObjectExtensions.SetValue(view, ColumnProperty, column);
-		}
+		public static void SetColumn(View view, int column) => SetColumnValue(view, column);
 		#endregion
 
 		#region RowSpan Property
-
-		public static readonly DependencyProperty RowSpanProperty =
-			DependencyProperty.RegisterAttached(
-				"RowSpan",
-				typeof(int),
-				typeof(Grid),
-				new PropertyMetadata(1, OnGenericPropertyChanged)
-			);
-
-		public static int GetRowSpan(View view)
-		{
-			return (int)DependencyObjectExtensions.GetValue(view, RowSpanProperty);
-		}
+		[GeneratedDependencyProperty(DefaultValue = 1, AttachedBackingFieldOwner = typeof(UIElement), ChangedCallbackName = nameof(OnGenericPropertyChanged))]
+		public static int GetRowSpan(View view) => GetRowSpanValue(view);
 
 		public static void SetRowSpan(View view, int rowSpan)
 		{
@@ -88,24 +52,13 @@ namespace Windows.UI.Xaml.Controls
 				throw new ArgumentException("The value must be above zero", nameof(rowSpan));
 			}
 
-			DependencyObjectExtensions.SetValue(view, RowSpanProperty, rowSpan);
+			SetRowSpanValue(view, rowSpan);
 		}
 		#endregion
 
 		#region ColumnSpan Property
-
-		public static readonly DependencyProperty ColumnSpanProperty =
-			DependencyProperty.RegisterAttached(
-				"ColumnSpan",
-				typeof(int),
-				typeof(Grid),
-				new PropertyMetadata(1, OnGenericPropertyChanged)
-			);
-
-		public static int GetColumnSpan(View view)
-		{
-			return (int)DependencyObjectExtensions.GetValue(view, ColumnSpanProperty);
-		}
+		[GeneratedDependencyProperty(DefaultValue = 1, AttachedBackingFieldOwner = typeof(UIElement), ChangedCallbackName = nameof(OnGenericPropertyChanged))]
+		public static int GetColumnSpan(View view) => GetColumnSpanValue(view);
 
 		public static void SetColumnSpan(View view, int columnSpan)
 		{
@@ -114,10 +67,10 @@ namespace Windows.UI.Xaml.Controls
 				throw new ArgumentException("The value must be above zero", nameof(columnSpan));
 			}
 
-			DependencyObjectExtensions.SetValue(view, ColumnSpanProperty, columnSpan);
+			SetColumnSpanValue(view, columnSpan);
 		}
 		#endregion
-		
+
 		public double RowSpacing
 		{
 			get

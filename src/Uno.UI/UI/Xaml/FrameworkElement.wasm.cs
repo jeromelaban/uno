@@ -181,7 +181,7 @@ namespace Windows.UI.Xaml
 		private protected virtual double GetActualWidth() => _actualSize.Width;
 		private protected virtual double GetActualHeight() => _actualSize.Height;
 
-		static partial void OnGenericPropertyUpdatedPartial(object dependencyObject, DependencyPropertyChangedEventArgs args);
+		partial void OnGenericPropertyUpdatedPartial(DependencyPropertyChangedEventArgs args);
 
 		private event RoutedEventHandler _loading;
 		public event RoutedEventHandler Loading
@@ -338,7 +338,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: Thickness.Empty,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._marginPropertyBackingField = (Thickness)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -346,9 +347,11 @@ namespace Windows.UI.Xaml
 				)
 		);
 
+		private Thickness _marginPropertyBackingField = Thickness.Empty;
+
 		public virtual Thickness Margin
 		{
-			get { return (Thickness)this.GetValue(MarginProperty); }
+			get => _marginPropertyBackingField;
 			set { this.SetValue(MarginProperty, value); }
 		}
 		#endregion
@@ -362,7 +365,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: Xaml.HorizontalAlignment.Stretch,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._horizontalAlignmentPropertyBackingField = (HorizontalAlignment)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -370,9 +374,11 @@ namespace Windows.UI.Xaml
 				)
 			);
 
+		private HorizontalAlignment _horizontalAlignmentPropertyBackingField = HorizontalAlignment.Stretch;
+
 		public HorizontalAlignment HorizontalAlignment
 		{
-			get { return (HorizontalAlignment)this.GetValue(HorizontalAlignmentProperty); }
+			get => _horizontalAlignmentPropertyBackingField;
 			set { this.SetValue(HorizontalAlignmentProperty, value); }
 		}
 		#endregion
@@ -386,7 +392,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: Xaml.VerticalAlignment.Stretch,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._verticalAlignmentPropertyBackingField = (VerticalAlignment)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -394,9 +401,11 @@ namespace Windows.UI.Xaml
 				)
 			);
 
+		private VerticalAlignment _verticalAlignmentPropertyBackingField = VerticalAlignment.Stretch;
+
 		public VerticalAlignment VerticalAlignment
 		{
-			get { return (VerticalAlignment)this.GetValue(VerticalAlignmentProperty); }
+			get => _verticalAlignmentPropertyBackingField;
 			set { this.SetValue(VerticalAlignmentProperty, value); }
 		}
 		#endregion
@@ -410,7 +419,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: double.NaN,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._widthPropertyBackingField = (double)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -418,9 +428,11 @@ namespace Windows.UI.Xaml
 				)
 			);
 
+		private double _widthPropertyBackingField = double.NaN;
+
 		public double Width
 		{
-			get { return (double)this.GetValue(WidthProperty); }
+			get => _widthPropertyBackingField;
 			set { this.SetValue(WidthProperty, value); }
 		}
 		#endregion
@@ -434,7 +446,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: double.NaN,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._heightPropertyBackingField = (double)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -442,9 +455,11 @@ namespace Windows.UI.Xaml
 				)
 			);
 
+		private double _heightPropertyBackingField = double.NaN;
+
 		public double Height
 		{
-			get { return (double)this.GetValue(HeightProperty); }
+			get => _heightPropertyBackingField;
 			set { this.SetValue(HeightProperty, value); }
 		}
 		#endregion
@@ -458,7 +473,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: 0.0d,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._minWidthPropertyBackingField = (double)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -466,9 +482,11 @@ namespace Windows.UI.Xaml
 				)
 			);
 
+		private double _minWidthPropertyBackingField = 0.0d;
+
 		public double MinWidth
 		{
-			get { return (double)this.GetValue(MinWidthProperty); }
+			get => _minWidthPropertyBackingField;
 			set { this.SetValue(MinWidthProperty, value); }
 		}
 		#endregion
@@ -482,7 +500,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: 0.0d,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._minHeightPropertyBackingField = (double)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -490,9 +509,11 @@ namespace Windows.UI.Xaml
 					)
 			);
 
+		private double _minHeightPropertyBackingField = 0.0d;
+
 		public double MinHeight
 		{
-			get { return (double)this.GetValue(MinHeightProperty); }
+			get => _minHeightPropertyBackingField;
 			set { this.SetValue(MinHeightProperty, value); }
 		}
 		#endregion
@@ -506,7 +527,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: double.PositiveInfinity,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._maxWidthPropertyBackingField = (double)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -514,9 +536,11 @@ namespace Windows.UI.Xaml
 					)
 			);
 
+		private double _maxWidthPropertyBackingField = double.PositiveInfinity;
+
 		public double MaxWidth
 		{
-			get { return (double)this.GetValue(MaxWidthProperty); }
+			get => _maxWidthPropertyBackingField;
 			set { this.SetValue(MaxWidthProperty, value); }
 		}
 		#endregion
@@ -530,7 +554,8 @@ namespace Windows.UI.Xaml
 				typeof(FrameworkElement),
 				new FrameworkPropertyMetadata(
 					defaultValue: double.PositiveInfinity,
-					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure
+					options: FrameworkPropertyMetadataOptions.AutoConvert | FrameworkPropertyMetadataOptions.AffectsMeasure,
+					backingFieldUpdateCallback: (s, newValue) => ((FrameworkElement)s)._maxHeightPropertyBackingField = (double)newValue
 #if DEBUG
 					,
 					propertyChangedCallback: OnGenericPropertyUpdated
@@ -538,9 +563,11 @@ namespace Windows.UI.Xaml
 					)
 			);
 
+		private double _maxHeightPropertyBackingField = double.PositiveInfinity;
+
 		public double MaxHeight
 		{
-			get { return (double)this.GetValue(MaxHeightProperty); }
+			get => _maxHeightPropertyBackingField;
 			set { this.SetValue(MaxHeightProperty, value); }
 		}
 		#endregion

@@ -14,7 +14,7 @@ namespace Windows.UI.Xaml.Shapes
 
 		// Using a DependencyProperty as the backing store for RadiusY.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty RadiusYProperty =
-			DependencyProperty.Register("RadiusY", typeof(double), typeof(Rectangle), new PropertyMetadata(0.0, (s,e)=>
+			DependencyProperty.Register("RadiusY", typeof(double), typeof(Rectangle), new PropertyMetadata(defaultValue: 0.0, propertyChangedCallback: (s,e)=>
 			 ((Rectangle)s).OnRadiusYChangedPartial()));
 
 
@@ -26,7 +26,7 @@ namespace Windows.UI.Xaml.Shapes
 
 		// Using a DependencyProperty as the backing store for RadiusX.  This enables animation, styling, binding, etc...
 		public static readonly DependencyProperty RadiusXProperty =
-			DependencyProperty.Register("RadiusX", typeof(double), typeof(Rectangle), new PropertyMetadata(0.0, (s, e) =>
+			DependencyProperty.Register("RadiusX", typeof(double), typeof(Rectangle), new PropertyMetadata(defaultValue: 0.0, propertyChangedCallback: (s, e) =>
 			 ((Rectangle)s).OnRadiusXChangedPartial()));
 
 		partial void OnRadiusXChangedPartial();
