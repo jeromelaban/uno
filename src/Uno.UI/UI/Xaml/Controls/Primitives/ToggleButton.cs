@@ -61,7 +61,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 				)
 			);
 
-		protected virtual void OnIsCheckedChanged(bool? oldValue, bool? newValue)
+		private protected virtual void OnIsCheckedChanged(bool? oldValue, bool? newValue)
 		{
 			if (IsChecked == null)
 			{
@@ -80,7 +80,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 			}
 		}
 
-		public void OnTemplateRecycled()
+		void IFrameworkTemplatePoolAware.OnTemplateRecycled()
 		{
 			IsChecked = false;
 		}
