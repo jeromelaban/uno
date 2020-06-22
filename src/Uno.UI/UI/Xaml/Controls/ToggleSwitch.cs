@@ -120,7 +120,7 @@ namespace Windows.UI.Xaml.Controls
 			set => SetValue(IsOnProperty, value);
 		}
 
-		public static readonly DependencyProperty IsOnProperty =
+		public static DependencyProperty IsOnProperty { get ; } =
 			DependencyProperty.Register("IsOn", typeof(bool), typeof(ToggleSwitch), new PropertyMetadata(false, propertyChangedCallback: (s, e) => ((ToggleSwitch)s).OnIsOnChanged(e)));
 		#endregion
 
@@ -131,7 +131,7 @@ namespace Windows.UI.Xaml.Controls
 			set => SetValue(OnContentTemplateProperty, value);
 		}
 
-		public static readonly DependencyProperty OnContentTemplateProperty =
+		public static DependencyProperty OnContentTemplateProperty { get ; } =
 			DependencyProperty.Register("OnContentTemplate", typeof(DataTemplate), typeof(ToggleSwitch), new PropertyMetadata(null));
 		#endregion
 
@@ -142,7 +142,7 @@ namespace Windows.UI.Xaml.Controls
 			set => SetValue(OffContentTemplateProperty, value);
 		}
 
-		public static readonly DependencyProperty OffContentTemplateProperty =
+		public static DependencyProperty OffContentTemplateProperty { get ; } =
 			DependencyProperty.Register("OffContentTemplate", typeof(DataTemplate), typeof(ToggleSwitch), new PropertyMetadata(null));
 		#endregion
 
@@ -153,7 +153,7 @@ namespace Windows.UI.Xaml.Controls
 			set => SetValue(HeaderTemplateProperty, value);
 		}
 
-		public static readonly DependencyProperty HeaderTemplateProperty =
+		public static DependencyProperty HeaderTemplateProperty { get ; } =
 			DependencyProperty.Register("HeaderTemplate", typeof(DataTemplate), typeof(ToggleSwitch), new PropertyMetadata(null));
 		#endregion
 
@@ -164,7 +164,7 @@ namespace Windows.UI.Xaml.Controls
 			set => SetValue(OnContentProperty, value);
 		}
 
-		public static readonly DependencyProperty OnContentProperty =
+		public static DependencyProperty OnContentProperty { get ; } =
 			DependencyProperty.Register("OnContent", typeof(object), typeof(ToggleSwitch), new PropertyMetadata(null));
 		#endregion
 
@@ -175,7 +175,7 @@ namespace Windows.UI.Xaml.Controls
 			set => SetValue(OffContentProperty, value);
 		}
 
-		public static readonly DependencyProperty OffContentProperty =
+		public static DependencyProperty OffContentProperty { get ; } =
 			DependencyProperty.Register("OffContent", typeof(object), typeof(ToggleSwitch), new PropertyMetadata(null));
 		#endregion
 
@@ -186,7 +186,7 @@ namespace Windows.UI.Xaml.Controls
 			set => SetValue(HeaderProperty, value);
 		}
 
-		public static readonly DependencyProperty HeaderProperty =
+		public static DependencyProperty HeaderProperty { get ; } =
 			DependencyProperty.Register("Header", typeof(object), typeof(ToggleSwitch), new PropertyMetadata(null)); 
 		#endregion
 
