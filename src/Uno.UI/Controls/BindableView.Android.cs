@@ -21,7 +21,6 @@ namespace Uno.UI.Controls
 	/// </summary>
 	public partial class BindableView :
 		UnoViewGroup,
-		INotifyPropertyChanged,
 		DependencyObject,
 		IShadowChildrenProvider
 	{
@@ -286,13 +285,6 @@ namespace Uno.UI.Controls
 		/// </summary>
 		public int LayoutId { get; private set; }
 
-		protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			if (PropertyChanged != null)
-			{
-				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
 
 		/// <summary>
 		/// Resets the dependency object parent for non BindableView views, but that implement IDependencyObject provider.
