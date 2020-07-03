@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Documents
 {
-	#if false || false || false || false || false
+	#if false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class InlineCollection : global::System.Collections.Generic.IList<global::Windows.UI.Xaml.Documents.Inline>,global::System.Collections.Generic.IEnumerable<global::Windows.UI.Xaml.Documents.Inline>
 	{
-		#if false || false || false || __WASM__ || false
+		#if false || false || false || __WASM__ || false || false
 		[global::Uno.NotImplemented]
 		public  uint Size
 		{

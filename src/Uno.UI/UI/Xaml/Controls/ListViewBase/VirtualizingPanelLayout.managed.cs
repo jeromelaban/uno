@@ -874,6 +874,8 @@ namespace Windows.UI.Xaml.Controls
 
 #if __WASM__
 		private static Point GetRelativePosition(FrameworkElement child) => child.RelativePosition;
+#elif __NETSTD_REFERENCE__
+		private static Point GetRelativePosition(FrameworkElement child) => throw new NotSupportedException();
 #elif __MACOS__ || __IOS__
 		private static Point GetRelativePosition(FrameworkElement child) => child.Frame.Location;
 #elif __ANDROID__

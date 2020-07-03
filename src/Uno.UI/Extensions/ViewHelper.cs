@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if NET461 || NETSTANDARD2_0
+using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.Foundation;
@@ -32,3 +33,4 @@ namespace Uno.UI
 			=> point;
 	}
 }
+#endif

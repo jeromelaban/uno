@@ -2,7 +2,7 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.ViewManagement
 {
-	#if false || false || false || false || false
+	#if false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class UISettings 
@@ -56,7 +56,7 @@ namespace Windows.UI.ViewManagement
 		// Skipping already declared event Windows.UI.ViewManagement.UISettings.TextScaleFactorChanged
 		// Skipping already declared event Windows.UI.ViewManagement.UISettings.ColorValuesChanged
 		// Skipping already declared event Windows.UI.ViewManagement.UISettings.AdvancedEffectsEnabledChanged
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.UI.ViewManagement.UISettings, global::Windows.UI.ViewManagement.UISettingsAutoHideScrollBarsChangedEventArgs> AutoHideScrollBarsChanged
 		{
@@ -72,7 +72,7 @@ namespace Windows.UI.ViewManagement
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.UI.ViewManagement.UISettings, global::Windows.UI.ViewManagement.UISettingsAnimationsEnabledChangedEventArgs> AnimationsEnabledChanged
 		{
@@ -88,7 +88,7 @@ namespace Windows.UI.ViewManagement
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.UI.ViewManagement.UISettings, global::Windows.UI.ViewManagement.UISettingsMessageDurationChangedEventArgs> MessageDurationChanged
 		{

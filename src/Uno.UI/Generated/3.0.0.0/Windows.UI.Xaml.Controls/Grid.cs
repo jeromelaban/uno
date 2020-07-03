@@ -2,7 +2,7 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Controls
 {
-	#if false || false || false || false || false
+	#if false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class Grid : global::Windows.UI.Xaml.Controls.Panel
@@ -15,7 +15,7 @@ namespace Windows.UI.Xaml.Controls
 		// Skipping already declared property BorderBrush
 		// Skipping already declared property RowSpacing
 		// Skipping already declared property ColumnSpacing
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Xaml.Controls.BackgroundSizing BackgroundSizing
 		{
@@ -39,7 +39,7 @@ namespace Windows.UI.Xaml.Controls
 		// Skipping already declared property PaddingProperty
 		// Skipping already declared property ColumnSpacingProperty
 		// Skipping already declared property RowSpacingProperty
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.UI.Xaml.DependencyProperty BackgroundSizingProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(

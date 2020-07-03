@@ -41,9 +41,12 @@
 	</CreateProperty>
   </Target>
 
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0' and '$(UnoRuntimeIdentifier)'=='WebAssembly'">
 	<DefineConstants>$(DefineConstants);__WASM__;HAS_EXPENSIVE_TRYFINALLY</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0' and '$(UnoRuntimeIdentifier)'=='Reference'">
+	<DefineConstants>$(DefineConstants);__NETSTD_REFERENCE__</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(IsXamarinIOS)">

@@ -1,4 +1,4 @@
-<Project Sdk="MSBuild.Sdk.Extras" ToolsVersion="15.0">
+﻿<Project Sdk="MSBuild.Sdk.Extras" ToolsVersion="15.0">
 	<PropertyGroup>
 		<TargetFrameworks>xamarinmac20;MonoAndroid10.0;xamarinios10;net461;netstandard2.0</TargetFrameworks>
 		<TargetFrameworksCI>MonoAndroid90;MonoAndroid10.0;xamarinios10;net461;netstandard2.0;xamarinmac20</TargetFrameworksCI>
@@ -19,6 +19,8 @@
 
 		<ProduceReferenceAssembly>false</ProduceReferenceAssembly>
 		<Deterministic>true</Deterministic>
+
+		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">Reference</UnoRuntimeIdentifier>
 
 		<T4Path>..\T4Generator\bin\$(Configuration)</T4Path>
 		<T4Bin>$(T4Path)\T4Generator.exe</T4Bin>
@@ -115,6 +117,14 @@
 			</ItemGroup>
 			<ItemGroup Condition="'$(BuildingInsideUnoSourceGenerator)'!=''">
 				<Page Include="$(MSBuildThisFileDirectory)**/*.xaml" Exclude="bin/**/*.xaml;obj/**/*.xaml" />
+			</ItemGroup>
+		</When>
+		<When Condition="'$(TargetFramework)'=='netstandard2.0'">
+			<ItemGroup>
+				<None Include="$(MSBuildThisFileDirectory)**/*.xaml" Exclude="bin/**/*.xaml;obj/**/*.xaml" />
+
+				<!-- Remove all xaml files as netstandard2.0 is the reference target and won't be used at runtime -->
+				<Page Remove="@(Page)" />
 			</ItemGroup>
 		</When>
 		<Otherwise>
@@ -274,12 +284,6 @@
 
 	<ItemGroup>
 		<PRIResource Include="**\*.resw" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-		<EmbeddedResource Include="LinkerDefinition.Wasm.xml">
-			<LogicalName>Uno.UI.xml</LogicalName>
-		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(DocsGeneration)'==''">

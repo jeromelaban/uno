@@ -2,14 +2,14 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Markup
 {
-	#if false || false || false || false || false
+	#if false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class MarkupExtension 
 	{
 		// Skipping already declared method Windows.UI.Xaml.Markup.MarkupExtension.MarkupExtension()
 		// Forced skipping of method Windows.UI.Xaml.Markup.MarkupExtension.MarkupExtension()
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		protected virtual object ProvideValue()
 		{

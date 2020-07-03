@@ -23,7 +23,7 @@ namespace Windows.UI.Xaml.Controls
 	[Markup.ContentProperty(Name = "Children")]
 	public partial class Panel : FrameworkElement, ICustomClippingElement
 	{
-#if NET461 || __WASM__
+#if NET461 || NETSTANDARD2_0
 		private new UIElementCollection _children;
 #else
 		private UIElementCollection _children;

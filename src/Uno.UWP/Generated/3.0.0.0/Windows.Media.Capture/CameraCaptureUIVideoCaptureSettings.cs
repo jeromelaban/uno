@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Media.Capture
 {
-	#if false || false || false || false || false
+	#if false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CameraCaptureUIVideoCaptureSettings 
 	{
-		#if false || false || false || false || __MACOS__
+		#if false || false || false || false || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Media.Capture.CameraCaptureUIMaxVideoResolution MaxResolution
 		{
@@ -21,7 +21,7 @@ namespace Windows.Media.Capture
 			}
 		}
 		#endif
-		#if false || false || false || false || __MACOS__
+		#if false || false || false || false || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  float MaxDurationInSeconds
 		{
@@ -35,7 +35,7 @@ namespace Windows.Media.Capture
 			}
 		}
 		#endif
-		#if false || false || false || false || __MACOS__
+		#if false || false || false || false || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Media.Capture.CameraCaptureUIVideoFormat Format
 		{
@@ -49,7 +49,7 @@ namespace Windows.Media.Capture
 			}
 		}
 		#endif
-		#if false || false || false || false || __MACOS__
+		#if false || false || false || false || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool AllowTrimming
 		{

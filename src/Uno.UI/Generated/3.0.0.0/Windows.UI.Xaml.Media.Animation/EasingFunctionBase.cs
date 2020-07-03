@@ -2,7 +2,7 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Media.Animation
 {
-	#if false || false || false || false || false
+	#if false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class EasingFunctionBase : global::Windows.UI.Xaml.DependencyObject
@@ -11,7 +11,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		// Skipping already declared property EasingModeProperty
 		// Forced skipping of method Windows.UI.Xaml.Media.Animation.EasingFunctionBase.EasingMode.get
 		// Forced skipping of method Windows.UI.Xaml.Media.Animation.EasingFunctionBase.EasingMode.set
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  double Ease( double normalizedTime)
 		{

@@ -526,7 +526,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									}
 								}
 
-								if (IsUnoAssembly)
+								if (IsUnoAssembly && _xamlSourceFiles.Any())
 								{
 									// Build master dictionary
 									foreach (var dictProperty in map.GetAllDictionaryProperties(_baseResourceDependencies))

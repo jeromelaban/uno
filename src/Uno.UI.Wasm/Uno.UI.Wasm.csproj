@@ -1,16 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0</TargetFrameworks>
+		<TargetFramework>netstandard2.0</TargetFramework>
 	</PropertyGroup>
 
 	<PropertyGroup>
 		<UnoSourceGeneratorUseGenerationHost>false</UnoSourceGeneratorUseGenerationHost>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
-		
+		<DefineConstants>$(DefineConstants);IS_UNO</DefineConstants>
+
 		<ProduceReferenceAssembly>false</ProduceReferenceAssembly>
 		<Deterministic>true</Deterministic>
+		<RootNamespace>Uno.UI</RootNamespace>
+		<AssemblyName>Uno.UI</AssemblyName>
  
 		<TSBindingsPath>$(MSBuildThisFileDirectory)tsBindings</TSBindingsPath>
+
+		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">WebAssembly</UnoRuntimeIdentifier>
+		<PlatformItemsBasePath>..\Uno.UI\</PlatformItemsBasePath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,6 +32,10 @@
 		<UpToDateCheckInput Include="ts\**\*" />
 		<UpToDateCheckInput Include="tsBindings\**\*" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<Compile Include="$(PlatformItemsBasePath)**\*.cs" Exclude="$(PlatformItemsBasePath)bin\**\*.cs;$(PlatformItemsBasePath)obj\**\*.cs;" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <EmbeddedResource Include="LinkerDefinition.xml">
@@ -38,12 +48,22 @@
 		<PackageReference Include="Microsoft.TypeScript.Compiler" />
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" />
 		<PackageReference Include="Uno.SourceGenerationTasks" />
+		<PackageReference Include="Uno.Core.Build" />
+		<PackageReference Include="Uno.MonoAnalyzers" Version="1.0.0">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="System.Memory" Version="4.5.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Uno.UI\Uno.UI.csproj" />
-		<ProjectReference Include="..\Uno.UWP\Uno.csproj" />
-		<ProjectReference Include="..\Uno.Foundation\Uno.Foundation.csproj" />
+		<ProjectReference Include="..\Uno.UWP.Wasm\Uno.Wasm.csproj" />
+		<ProjectReference Include="..\Uno.Foundation.Wasm\Uno.Foundation.Wasm.csproj" />
+		<ProjectReference Include="..\SourceGenerators\System.Xaml\Uno.Xaml.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="$(PlatformItemsBasePath)Microsoft\UI\Xaml\Controls\ProgressRing\ProgressRingIntdeterminate.json" />
+		<PRIResource Include="$(PlatformItemsBasePath)**\*.resw" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -51,6 +71,20 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="tsBindings\" />
+	</ItemGroup>
+
+	<Import Project="..\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" Condition="'$(SkipUnoResourceGeneration)' == '' " />
+
+	<ItemGroup>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Mixins\Wasm\" />
+		<Folder Include="UI\Xaml\Maps\Presenters\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PRIResource Include="**\*.resw" />
 	</ItemGroup>
 
 	<Import Project="..\Uno.CrossTargetting.props" />
@@ -80,5 +114,23 @@
 		<Copy SourceFiles="@(_OutputFiles)" DestinationFiles="@(_OutputFiles->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename)%(Extension)')" />
 		<Copy SourceFiles="@(_OutputFilesPDB)" DestinationFiles="@(_OutputFilesPDB->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename).pdb')" />
 	</Target>
+
+	<ItemGroup Condition="'$(DocsGeneration)'==''">
+		<ProjectReference Include="..\SourceGenerators\Uno.UI.SourceGenerators\Uno.UI.SourceGenerators.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+			<UndefineProperties>TargetFramework</UndefineProperties>
+		</ProjectReference>
+		<ProjectReference Include="..\SourceGenerators\Uno.UI.Tasks\Uno.UI.Tasks.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+			<UndefineProperties>TargetFramework</UndefineProperties>
+		</ProjectReference>
+		<ProjectReference Include="..\T4Generator\T4Generator.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+			<UndefineProperties>TargetFramework</UndefineProperties>
+		</ProjectReference>
+	</ItemGroup>
 
 </Project>

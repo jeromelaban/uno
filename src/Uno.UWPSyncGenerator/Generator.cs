@@ -20,8 +20,9 @@ namespace Uno.UWPSyncGenerator
 		private const string net461Define = "NET461";
 		private const string AndroidDefine = "__ANDROID__";
 		private const string iOSDefine = "__IOS__";
-		private const string WasmDefine = "__WASM__";
 		private const string MacDefine = "__MACOS__";
+		private const string NetStdReferenceDefine = "__NETSTD_REFERENCE__";
+		private const string WasmDefine = "__WASM__";
 
 #if HAS_UNO_WINUI
 		private const string BaseXamlNamespace = "Microsoft.UI.Xaml";
@@ -37,6 +38,8 @@ namespace Uno.UWPSyncGenerator
 		private INamedTypeSymbol _macOSBaseSymbol;
 		private Compilation _referenceCompilation;
 		private Compilation _net461Compilation;
+
+		private Compilation _netstdReferenceCompilation;
 		private Compilation _wasmCompilation;
 
 		private ISymbol _voidSymbol;
@@ -60,8 +63,10 @@ namespace Uno.UWPSyncGenerator
 			_iOSCompilation = LoadProject($@"{basePath}\{baseName}.csproj", "xamarinios10");
 			_androidCompilation = LoadProject($@"{basePath}\{baseName}.csproj", "MonoAndroid10.0");
 			_net461Compilation = LoadProject($@"{basePath}\{baseName}.csproj", "net461");
-			_wasmCompilation = LoadProject($@"{basePath}\{baseName}.csproj", "netstandard2.0");
 			_macCompilation = LoadProject($@"{basePath}\{baseName}.csproj", "xamarinmac20");
+
+			_netstdReferenceCompilation = LoadProject($@"{basePath}\{baseName}.csproj", "netstandard2.0");
+			_wasmCompilation = LoadProject($@"{basePath}.Wasm\{baseName}.Wasm.csproj", "netstandard2.0");
 
 			_iOSBaseSymbol = _iOSCompilation.GetTypeByMetadataName("UIKit.UIView");
 			_androidBaseSymbol = _androidCompilation.GetTypeByMetadataName("Android.Views.View");
@@ -187,8 +192,9 @@ namespace Uno.UWPSyncGenerator
 			public T IOSSymbol;
 			public T net461ymbol;
 			public T MacOSSymbol;
-			public T WasmSymbol;
 			public T UAPSymbol;
+			public T NetStdReferenceSymbol;
+			public T WasmSymbol;
 
 			private ImplementedFor _implementedFor;
 			public ImplementedFor ImplementedFor => _implementedFor;
@@ -199,6 +205,7 @@ namespace Uno.UWPSyncGenerator
 				T iOSType,
 				T macOSType,
 				T unitTestType,
+				T netStdRerefenceType,
 				T wasmType,
 				T uapType
 			)
@@ -206,9 +213,10 @@ namespace Uno.UWPSyncGenerator
 				this.AndroidSymbol = androidType;
 				this.IOSSymbol = iOSType;
 				this.net461ymbol = unitTestType;
-				this.WasmSymbol = wasmType;
 				this.MacOSSymbol = macOSType;
 				this.UAPSymbol = uapType;
+				this.NetStdReferenceSymbol = netStdRerefenceType;
+				this.WasmSymbol = wasmType;
 
 				if (IsImplemented(AndroidSymbol))
 				{
@@ -226,6 +234,10 @@ namespace Uno.UWPSyncGenerator
 				{
 					_implementedFor |= ImplementedFor.MacOS;
 				}
+				if (IsImplemented(NetStdReferenceSymbol))
+				{
+					_implementedFor |= ImplementedFor.NetStdReference;
+				}
 				if (IsImplemented(WasmSymbol))
 				{
 					_implementedFor |= ImplementedFor.WASM;
@@ -236,8 +248,9 @@ namespace Uno.UWPSyncGenerator
 				AndroidSymbol == null
 				|| IOSSymbol == null
 				|| net461ymbol == null
-				|| WasmSymbol == null
-				|| MacOSSymbol == null;
+				|| MacOSSymbol == null
+				|| NetStdReferenceSymbol == null
+				|| WasmSymbol == null;
 
 
 			public void AppendIf(IndentedStringBuilder b)
@@ -247,6 +260,7 @@ namespace Uno.UWPSyncGenerator
 					IsNotDefinedByUno(IOSSymbol) ? iOSDefine : "false",
 					IsNotDefinedByUno(net461ymbol) ? net461Define : "false",
 					IsNotDefinedByUno(WasmSymbol) ? WasmDefine : "false",
+					IsNotDefinedByUno(NetStdReferenceSymbol) ? NetStdReferenceDefine : "false",
 					MacOSSymbol == null ? MacDefine : "false",
 				};
 
@@ -294,12 +308,13 @@ namespace Uno.UWPSyncGenerator
 		{
 			var name = uapType.ContainingNamespace + "." + uapType.MetadataName;
 			return new PlatformSymbols<INamedTypeSymbol>(
-				  _androidCompilation.GetTypeByMetadataName(name),
-				  _iOSCompilation.GetTypeByMetadataName(name),
-				  _macCompilation?.GetTypeByMetadataName(name),
-				  _net461Compilation.GetTypeByMetadataName(name),
-				  _wasmCompilation.GetTypeByMetadataName(name),
-				  uapType
+				  androidType: _androidCompilation.GetTypeByMetadataName(name),
+				  iOSType: _iOSCompilation.GetTypeByMetadataName(name),
+				  macOSType: _macCompilation?.GetTypeByMetadataName(name),
+				  unitTestType: _net461Compilation.GetTypeByMetadataName(name),
+				  netStdRerefenceType: _netstdReferenceCompilation.GetTypeByMetadataName(name),
+				  wasmType: _wasmCompilation.GetTypeByMetadataName(name),
+				  uapType: uapType
 			  );
 		}
 
@@ -309,42 +324,44 @@ namespace Uno.UWPSyncGenerator
 			var ios = GetNonGeneratedMembers(types.IOSSymbol, name);
 			var macOS = GetNonGeneratedMembers(types.MacOSSymbol, name);
 			var net461 = GetNonGeneratedMembers(types.net461ymbol, name);
+			var netStdReference = GetNonGeneratedMembers(types.NetStdReferenceSymbol, name);
 			var wasm = GetNonGeneratedMembers(types.WasmSymbol, name);
 
 			return new PlatformSymbols<ISymbol>(
-				filter(android),
-				filter(ios),
-				filter(macOS),
-				filter(net461),
-				filter(wasm),
+				androidType: filter(android),
+				iOSType: filter(ios),
+				macOSType: filter(macOS),
+				unitTestType: filter(net461),
+				netStdRerefenceType: filter(netStdReference),
+				wasmType: filter(wasm),
 				uapType: uapSymbol
 			);
 		}
 
 		protected PlatformSymbols<IMethodSymbol> GetAllMatchingMethods(PlatformSymbols<INamedTypeSymbol> types, IMethodSymbol method)
 			=> new PlatformSymbols<IMethodSymbol>(
-				FindMatchingMethod(types.AndroidSymbol, method),
-				FindMatchingMethod(types.IOSSymbol, method),
-				FindMatchingMethod(types.MacOSSymbol, method),
-				FindMatchingMethod(types.net461ymbol, method),
-				FindMatchingMethod(types.WasmSymbol, method),
+				androidType: FindMatchingMethod(types.AndroidSymbol, method),
+				iOSType: FindMatchingMethod(types.IOSSymbol, method),
+				macOSType: FindMatchingMethod(types.MacOSSymbol, method),
+				unitTestType: FindMatchingMethod(types.net461ymbol, method),
+				netStdRerefenceType: FindMatchingMethod(types.NetStdReferenceSymbol, method),
+				wasmType: FindMatchingMethod(types.WasmSymbol, method),
 				uapType: method
 			);
 
 		protected PlatformSymbols<IPropertySymbol> GetAllMatchingPropertyMember(PlatformSymbols<INamedTypeSymbol> types, IPropertySymbol property)
 			=> new PlatformSymbols<IPropertySymbol>(
-				GetMatchingPropertyMember(types.AndroidSymbol, property),
-				GetMatchingPropertyMember(types.IOSSymbol, property),
-				GetMatchingPropertyMember(types.MacOSSymbol, property),
-				GetMatchingPropertyMember(types.net461ymbol, property),
-				GetMatchingPropertyMember(types.WasmSymbol, property),
+				androidType: GetMatchingPropertyMember(types.AndroidSymbol, property),
+				iOSType: GetMatchingPropertyMember(types.IOSSymbol, property),
+				macOSType: GetMatchingPropertyMember(types.MacOSSymbol, property),
+				unitTestType: GetMatchingPropertyMember(types.net461ymbol, property),
+				netStdRerefenceType: GetMatchingPropertyMember(types.NetStdReferenceSymbol, property),
+				wasmType: GetMatchingPropertyMember(types.WasmSymbol, property),
 				uapType: property
 			);
 
 		protected PlatformSymbols<ISymbol> GetAllMatchingEvents(PlatformSymbols<INamedTypeSymbol> types, IEventSymbol eventMember)
-		{
-			return GetAllGetNonGeneratedMembers(types, eventMember.Name, q => q.OfType<IEventSymbol>().FirstOrDefault(), eventMember);
-		}
+			=> GetAllGetNonGeneratedMembers(types, eventMember.Name, q => q.OfType<IEventSymbol>().FirstOrDefault(), eventMember);
 
 		protected bool SkippedType(INamedTypeSymbol type)
 		{
