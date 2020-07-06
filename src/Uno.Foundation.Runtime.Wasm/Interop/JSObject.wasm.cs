@@ -8,7 +8,6 @@ using Uno.Logging;
 namespace Uno.Foundation.Interop
 {
 	[Obfuscation(Feature = "renaming", Exclude = true)]
-	[Preserve]
 	public sealed class JSObject
 	{
 		private static readonly Func<string, IntPtr> _strToIntPtr =
@@ -20,7 +19,6 @@ namespace Uno.Foundation.Interop
 		/// Used by javascript to dispatch a method call to the managed object at <paramref name="handlePtr"/>.
 		/// </summary>
 		[Obfuscation(Feature = "renaming", Exclude = true)]
-		[Preserve]
 		public static void Dispatch(string handlePtr, string method, string parameters)
 		{
 			var intPtr = _strToIntPtr(handlePtr);

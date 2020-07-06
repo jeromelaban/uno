@@ -90,7 +90,7 @@
   <Target Name="_UnoOverrideNuget"
 		AfterTargets="AfterBuild"
 		DependsOnTargets="BuiltProjectOutputGroup"
-		Condition="'$(UnoNugetOverrideVersion)'!=''">
+		Condition="'$(UnoNugetOverrideVersion)'!='' and ('$(UnoRuntimeIdentifier)'=='' or '$(UnoRuntimeIdentifier)'=='Reference')">
 
 	<PropertyGroup>
 	  <_OverrideTargetFramework>$(TargetFramework)</_OverrideTargetFramework>

@@ -62,7 +62,6 @@ namespace Uno.Foundation
 			|| RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
 
 
-		[Preserve]
 		public static class TraceProvider
 		{
 			// {0B273C3E-11F6-47E7-ABDE-5A777893F3C0}
@@ -348,7 +347,6 @@ namespace Uno.Foundation
 			return tcs.Task;
 		}
 
-		[Preserve]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public static void DispatchAsyncResult(long handle, string result)
 		{
@@ -362,7 +360,6 @@ namespace Uno.Foundation
 			}
 		}
 
-		[Preserve]
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public static void DispatchAsyncError(long handle, string error)
 		{
