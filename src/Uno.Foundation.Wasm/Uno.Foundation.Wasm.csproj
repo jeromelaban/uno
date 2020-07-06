@@ -34,10 +34,6 @@
 		<PackageReference Include="System.Memory" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Compile Include="$(PlatformItemsBasePath)**\*.cs" Exclude="$(PlatformItemsBasePath)bin\**\*.cs;$(PlatformItemsBasePath)obj\**\*.cs;" />
-	</ItemGroup>
-
 	<ItemGroup Condition="'$(TargetFrameworkIdentifier)'=='.NETStandard'">
 		<PackageReference Include="System.Runtime.InteropServices.WindowsRuntime" Version="4.3.0" />
 	</ItemGroup>

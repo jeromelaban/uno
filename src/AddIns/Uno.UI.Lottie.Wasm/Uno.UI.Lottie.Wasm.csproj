@@ -27,10 +27,6 @@
 		<PackageReference Include="Uno.MonoAnalyzers" Version="1.0.0" />
 		<PackageReference Include="Uno.SourceGenerationTasks" Version="2.0.6" />
 	</ItemGroup>
-	
-	<ItemGroup>
-		<Compile Include="$(PlatformItemsBasePath)**\*.cs" Exclude="$(PlatformItemsBasePath)bin\**\*.cs;$(PlatformItemsBasePath)obj\**\*.cs;" />
-	</ItemGroup>
 
 	<Import Project="..\..\Common.targets" />
 	<Import Project="..\..\Uno.CrossTargetting.props" />
