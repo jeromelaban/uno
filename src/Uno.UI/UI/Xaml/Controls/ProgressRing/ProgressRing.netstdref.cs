@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 using Microsoft/*Intentional space for WinUI upgrade tooling*/.UI.Xaml.Controls;
 
