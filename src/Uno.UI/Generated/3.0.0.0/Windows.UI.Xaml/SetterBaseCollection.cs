@@ -2,13 +2,13 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class SetterBaseCollection : global::System.Collections.Generic.IList<global::Windows.UI.Xaml.SetterBase>,global::System.Collections.Generic.IEnumerable<global::Windows.UI.Xaml.SetterBase>
 	{
 		// Skipping already declared property Size
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool IsSealed
 		{

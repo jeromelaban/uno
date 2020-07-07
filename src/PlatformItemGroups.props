@@ -55,6 +55,12 @@
                      Exclude="$(PlatformItemsBasePath)bin\**\*.wasm.cs;$(PlatformItemsBasePath)obj\**\*.wasm.cs"
                      Condition="'$(TargetFramework)'=='netstandard2.0' and '$(UnoRuntimeIdentifier)'=='WebAssembly'" />
 
+	<None Include="$(PlatformItemsBasePath)**\*.skia.cs" Exclude="$(PlatformItemsBasePath)bin\**\*.skia.cs;$(PlatformItemsBasePath)obj\**\*.skia.cs" />
+	<Compile Remove="$(PlatformItemsBasePath)**\*.skia.cs" />
+	<Compile Include="$(PlatformItemsBasePath)**\*.skia.cs"
+                     Exclude="$(PlatformItemsBasePath)bin\**\*.skia.cs;$(PlatformItemsBasePath)obj\**\*.skia.cs"
+                     Condition="'$(TargetFramework)'=='netstandard2.0' and '$(UnoRuntimeIdentifier)'=='Skia'" />
+
 	<None Include="$(PlatformItemsBasePath)**\*.netstdref.cs" Exclude="$(PlatformItemsBasePath)bin\**\*.netstdref.cs;$(PlatformItemsBasePath)obj\**\*.netstdref.cs" />
 	<Compile Remove="$(PlatformItemsBasePath)**\*.netstdref.cs" />
 	<Compile Include="$(PlatformItemsBasePath)**\*.netstdref.cs"

@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Input
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class PointerPointProperties 
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.Rect ContactRect
 		{
@@ -17,7 +17,7 @@ namespace Windows.UI.Input
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.Rect ContactRectRaw
 		{
@@ -28,7 +28,7 @@ namespace Windows.UI.Input
 		}
 		#endif
 		// Skipping already declared property IsBarrelButtonPressed
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool IsCanceled
 		{
@@ -41,7 +41,7 @@ namespace Windows.UI.Input
 		// Skipping already declared property IsEraser
 		// Skipping already declared property IsHorizontalMouseWheel
 		// Skipping already declared property IsInRange
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool IsInverted
 		{
@@ -58,7 +58,7 @@ namespace Windows.UI.Input
 		// Skipping already declared property IsXButton1Pressed
 		// Skipping already declared property IsXButton2Pressed
 		// Skipping already declared property MouseWheelDelta
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  float Orientation
 		{
@@ -70,7 +70,7 @@ namespace Windows.UI.Input
 		#endif
 		// Skipping already declared property PointerUpdateKind
 		// Skipping already declared property Pressure
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool TouchConfidence
 		{
@@ -80,7 +80,7 @@ namespace Windows.UI.Input
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  float Twist
 		{
@@ -90,7 +90,7 @@ namespace Windows.UI.Input
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || false
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || false
 		[global::Uno.NotImplemented]
 		public  float XTilt
 		{
@@ -100,7 +100,7 @@ namespace Windows.UI.Input
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || false
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || false
 		[global::Uno.NotImplemented]
 		public  float YTilt
 		{
@@ -110,7 +110,7 @@ namespace Windows.UI.Input
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  float? ZDistance
 		{
@@ -142,14 +142,14 @@ namespace Windows.UI.Input
 		// Forced skipping of method Windows.UI.Input.PointerPointProperties.IsXButton1Pressed.get
 		// Forced skipping of method Windows.UI.Input.PointerPointProperties.IsXButton2Pressed.get
 		// Forced skipping of method Windows.UI.Input.PointerPointProperties.PointerUpdateKind.get
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool HasUsage( uint usagePage,  uint usageId)
 		{
 			throw new global::System.NotImplementedException("The member bool PointerPointProperties.HasUsage(uint usagePage, uint usageId) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  int GetUsageValue( uint usagePage,  uint usageId)
 		{

@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Devices.Input
 {
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class PenButtonListener 
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool IsSupported()
 		{
@@ -22,14 +22,14 @@ namespace Windows.Devices.Input
 		// Forced skipping of method Windows.Devices.Input.PenButtonListener.TailButtonDoubleClicked.remove
 		// Forced skipping of method Windows.Devices.Input.PenButtonListener.TailButtonLongPressed.add
 		// Forced skipping of method Windows.Devices.Input.PenButtonListener.TailButtonLongPressed.remove
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Devices.Input.PenButtonListener GetDefault()
 		{
 			throw new global::System.NotImplementedException("The member PenButtonListener PenButtonListener.GetDefault() is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Devices.Input.PenButtonListener, object> IsSupportedChanged
 		{
@@ -45,7 +45,7 @@ namespace Windows.Devices.Input
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Devices.Input.PenButtonListener, global::Windows.Devices.Input.PenTailButtonClickedEventArgs> TailButtonClicked
 		{
@@ -61,7 +61,7 @@ namespace Windows.Devices.Input
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Devices.Input.PenButtonListener, global::Windows.Devices.Input.PenTailButtonDoubleClickedEventArgs> TailButtonDoubleClicked
 		{
@@ -77,7 +77,7 @@ namespace Windows.Devices.Input
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Devices.Input.PenButtonListener, global::Windows.Devices.Input.PenTailButtonLongPressedEventArgs> TailButtonLongPressed
 		{

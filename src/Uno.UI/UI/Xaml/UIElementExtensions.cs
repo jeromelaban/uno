@@ -6,6 +6,9 @@ namespace Windows.UI.Xaml
 {
 	public static partial class UIElementExtensions
 	{
+		/// <summary>
+		/// Get the parent view in the visual tree.
+		/// </summary>
 		public static UIElement GetVisualTreeParent(this UIElement uiElement) => (uiElement as FrameworkElement)?.Parent as UIElement;
 	}
 }

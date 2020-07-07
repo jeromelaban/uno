@@ -23,6 +23,7 @@ namespace Uno.UWPSyncGenerator
 		private const string MacDefine = "__MACOS__";
 		private const string NetStdReferenceDefine = "__NETSTD_REFERENCE__";
 		private const string WasmDefine = "__WASM__";
+		private const string SkiaDefine = "__SKIA__";
 
 #if HAS_UNO_WINUI
 		private const string BaseXamlNamespace = "Microsoft.UI.Xaml";
@@ -41,6 +42,7 @@ namespace Uno.UWPSyncGenerator
 
 		private Compilation _netstdReferenceCompilation;
 		private Compilation _wasmCompilation;
+		private Compilation _skiaCompilation;
 
 		private ISymbol _voidSymbol;
 		private ISymbol _dependencyPropertySymbol;
@@ -67,6 +69,7 @@ namespace Uno.UWPSyncGenerator
 
 			_netstdReferenceCompilation = LoadProject($@"{basePath}\{baseName}.csproj", "netstandard2.0");
 			_wasmCompilation = LoadProject($@"{basePath}.Wasm\{baseName}.Wasm.csproj", "netstandard2.0");
+			_skiaCompilation = LoadProject($@"{basePath}.Skia\{baseName}.Skia.csproj", "netstandard2.0");
 
 			_iOSBaseSymbol = _iOSCompilation.GetTypeByMetadataName("UIKit.UIView");
 			_androidBaseSymbol = _androidCompilation.GetTypeByMetadataName("Android.Views.View");
@@ -195,6 +198,7 @@ namespace Uno.UWPSyncGenerator
 			public T UAPSymbol;
 			public T NetStdReferenceSymbol;
 			public T WasmSymbol;
+			public T SkiaSymbol;
 
 			private ImplementedFor _implementedFor;
 			public ImplementedFor ImplementedFor => _implementedFor;
@@ -207,6 +211,7 @@ namespace Uno.UWPSyncGenerator
 				T unitTestType,
 				T netStdRerefenceType,
 				T wasmType,
+				T skiaType,
 				T uapType
 			)
 			{
@@ -217,6 +222,7 @@ namespace Uno.UWPSyncGenerator
 				this.UAPSymbol = uapType;
 				this.NetStdReferenceSymbol = netStdRerefenceType;
 				this.WasmSymbol = wasmType;
+				this.SkiaSymbol = skiaType;
 
 				if (IsImplemented(AndroidSymbol))
 				{
@@ -242,6 +248,10 @@ namespace Uno.UWPSyncGenerator
 				{
 					_implementedFor |= ImplementedFor.WASM;
 				}
+				if (IsImplemented(SkiaSymbol))
+				{
+					_implementedFor |= ImplementedFor.Skia;
+				}
 			}
 
 			public bool HasUndefined =>
@@ -250,7 +260,9 @@ namespace Uno.UWPSyncGenerator
 				|| net461ymbol == null
 				|| MacOSSymbol == null
 				|| NetStdReferenceSymbol == null
-				|| WasmSymbol == null;
+				|| WasmSymbol == null
+				|| SkiaSymbol == null
+				;
 
 
 			public void AppendIf(IndentedStringBuilder b)
@@ -260,6 +272,7 @@ namespace Uno.UWPSyncGenerator
 					IsNotDefinedByUno(IOSSymbol) ? iOSDefine : "false",
 					IsNotDefinedByUno(net461ymbol) ? net461Define : "false",
 					IsNotDefinedByUno(WasmSymbol) ? WasmDefine : "false",
+					IsNotDefinedByUno(SkiaSymbol) ? SkiaDefine : "false",
 					IsNotDefinedByUno(NetStdReferenceSymbol) ? NetStdReferenceDefine : "false",
 					MacOSSymbol == null ? MacDefine : "false",
 				};
@@ -314,6 +327,7 @@ namespace Uno.UWPSyncGenerator
 				  unitTestType: _net461Compilation.GetTypeByMetadataName(name),
 				  netStdRerefenceType: _netstdReferenceCompilation.GetTypeByMetadataName(name),
 				  wasmType: _wasmCompilation.GetTypeByMetadataName(name),
+				  skiaType: _skiaCompilation.GetTypeByMetadataName(name),
 				  uapType: uapType
 			  );
 		}
@@ -326,6 +340,7 @@ namespace Uno.UWPSyncGenerator
 			var net461 = GetNonGeneratedMembers(types.net461ymbol, name);
 			var netStdReference = GetNonGeneratedMembers(types.NetStdReferenceSymbol, name);
 			var wasm = GetNonGeneratedMembers(types.WasmSymbol, name);
+			var skia = GetNonGeneratedMembers(types.SkiaSymbol, name);
 
 			return new PlatformSymbols<ISymbol>(
 				androidType: filter(android),
@@ -334,6 +349,7 @@ namespace Uno.UWPSyncGenerator
 				unitTestType: filter(net461),
 				netStdRerefenceType: filter(netStdReference),
 				wasmType: filter(wasm),
+				skiaType: filter(skia),
 				uapType: uapSymbol
 			);
 		}
@@ -346,6 +362,7 @@ namespace Uno.UWPSyncGenerator
 				unitTestType: FindMatchingMethod(types.net461ymbol, method),
 				netStdRerefenceType: FindMatchingMethod(types.NetStdReferenceSymbol, method),
 				wasmType: FindMatchingMethod(types.WasmSymbol, method),
+				skiaType: FindMatchingMethod(types.SkiaSymbol, method),
 				uapType: method
 			);
 
@@ -357,6 +374,7 @@ namespace Uno.UWPSyncGenerator
 				unitTestType: GetMatchingPropertyMember(types.net461ymbol, property),
 				netStdRerefenceType: GetMatchingPropertyMember(types.NetStdReferenceSymbol, property),
 				wasmType: GetMatchingPropertyMember(types.WasmSymbol, property),
+				skiaType: GetMatchingPropertyMember(types.SkiaSymbol, property),
 				uapType: property
 			);
 
@@ -951,7 +969,7 @@ namespace Uno.UWPSyncGenerator
 									&& type
 										.GetMembers(filteredName + "Property")
 										.OfType<IPropertySymbol>()
-										.Where(f => f.Type == _dependencyPropertySymbol)
+										.Where(f => SymbolEqualityComparer.Default.Equals(f.Type, _dependencyPropertySymbol))
 										.Any();
 
 								if (isAttachedPropertyMethod)
@@ -972,7 +990,7 @@ namespace Uno.UWPSyncGenerator
 								else
 								{
 									bool hasReturnValue =
-										method.ReturnType != _voidSymbol
+										!SymbolEqualityComparer.Default.Equals(method.ReturnType, _voidSymbol)
 										|| method.Parameters.Any(p => p.RefKind == RefKind.Out);
 
 									BuildNotImplementedException(b, method, hasReturnValue);
@@ -1150,7 +1168,7 @@ namespace Uno.UWPSyncGenerator
 					var t3 = type2.Construct(iface.TypeArguments.ToArray());
 
 					var q = from sourceProperty in t3.GetMembers().OfType<IPropertySymbol>()
-							where sourceProperty.Name == property.Name && sourceProperty.Type == property.Type
+							where sourceProperty.Name == property.Name && SymbolEqualityComparer.Default.Equals(sourceProperty.Type, property.Type)
 							select sourceProperty;
 
 					if (q.Any())
@@ -1240,7 +1258,7 @@ namespace Uno.UWPSyncGenerator
 
 						bool isDependencyPropertyDeclaration = property.IsStatic
 							&& property.Name.EndsWith("Property")
-							&& property.Type == _dependencyPropertySymbol;
+							&& SymbolEqualityComparer.Default.Equals(property.Type, _dependencyPropertySymbol);
 
 						if (isDependencyPropertyDeclaration)
 						{
@@ -1447,9 +1465,9 @@ namespace Uno.UWPSyncGenerator
 
 			if (
 				symbol?.BaseType != null
-				&& symbol.BaseType != _iOSBaseSymbol
-				&& symbol.BaseType != _androidBaseSymbol
-				&& symbol.BaseType != _macOSBaseSymbol
+				&& !SymbolEqualityComparer.Default.Equals(symbol.BaseType, _iOSBaseSymbol)
+				&& !SymbolEqualityComparer.Default.Equals(symbol.BaseType, _androidBaseSymbol)
+				&& !SymbolEqualityComparer.Default.Equals(symbol.BaseType, _macOSBaseSymbol)
 			)
 			{
 				foreach (var memberSymbol in GetNonGeneratedMembers(symbol.BaseType, name))

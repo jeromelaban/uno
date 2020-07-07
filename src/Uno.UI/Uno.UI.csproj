@@ -240,6 +240,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <UpToDateCheckInput Remove="UI\Xaml\Controls\Border\BorderLayerRenderer.Composition.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Update="BaseActivity.Callbacks.Implementation.Android.tt">
 	    <Generator>TextTemplatingFileGenerator</Generator>
 	    <LastGenOutput>BaseActivity.Callbacks.Implementation.Android.cs</LastGenOutput>

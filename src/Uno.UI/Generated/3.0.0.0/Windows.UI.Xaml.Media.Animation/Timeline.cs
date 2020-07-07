@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Media.Animation
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class Timeline : global::Windows.UI.Xaml.DependencyObject
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  double SpeedRatio
 		{
@@ -25,7 +25,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		// Skipping already declared property FillBehavior
 		// Skipping already declared property Duration
 		// Skipping already declared property BeginTime
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool AutoReverse
 		{
@@ -39,7 +39,7 @@ namespace Windows.UI.Xaml.Media.Animation
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static bool AllowDependentAnimations
 		{
@@ -53,7 +53,7 @@ namespace Windows.UI.Xaml.Media.Animation
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.UI.Xaml.DependencyProperty AutoReverseProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(
@@ -65,7 +65,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		// Skipping already declared property DurationProperty
 		// Skipping already declared property FillBehaviorProperty
 		// Skipping already declared property RepeatBehaviorProperty
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.UI.Xaml.DependencyProperty SpeedRatioProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(

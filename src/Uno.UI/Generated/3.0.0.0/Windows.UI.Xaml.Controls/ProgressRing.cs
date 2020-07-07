@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Controls
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class ProgressRing 
 	{
-		#if false || false || NET461 || false || false || false
+		#if false || false || NET461 || false || __SKIA__ || false || false
 		[global::Uno.NotImplemented]
 		public  bool IsActive
 		{
@@ -21,7 +21,7 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || false || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Xaml.Controls.Primitives.ProgressRingTemplateSettings TemplateSettings
 		{
@@ -31,7 +31,7 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 		#endif
-		#if false || false || NET461 || false || false || false
+		#if false || false || NET461 || false || __SKIA__ || false || false
 		[global::Uno.NotImplemented]
 		public static global::Windows.UI.Xaml.DependencyProperty IsActiveProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(

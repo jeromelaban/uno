@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.System.Profile
 {
-	#if false || false || NET461 || false || __NETSTD_REFERENCE__ || false
+	#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class AnalyticsInfo 
 	{
-		#if false || false || NET461 || false || __NETSTD_REFERENCE__ || false
+		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || false
 		[global::Uno.NotImplemented]
 		public static string DeviceForm
 		{
@@ -17,7 +17,7 @@ namespace Windows.System.Profile
 			}
 		}
 		#endif
-		#if false || false || NET461 || false || __NETSTD_REFERENCE__ || false
+		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || false
 		[global::Uno.NotImplemented]
 		public static global::Windows.System.Profile.AnalyticsVersionInfo VersionInfo
 		{
@@ -27,7 +27,7 @@ namespace Windows.System.Profile
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Foundation.IAsyncOperation<global::System.Collections.Generic.IReadOnlyDictionary<string, string>> GetSystemPropertiesAsync( global::System.Collections.Generic.IEnumerable<string> attributeNames)
 		{

@@ -67,6 +67,15 @@ namespace Windows.UI.Xaml.Controls
 				.Where(rb => rb != this);
 		}
 
+		private IEnumerable<RadioButton> GetOtherHierarchicalGroupMembers()
+		{
+			return (Parent as FrameworkElement)?
+				.GetChildren()
+				.OfType<RadioButton>()
+				.Where(rb => rb != this)
+				?? Enumerable.Empty<RadioButton>();
+		}
+
 		public string GroupName
 		{
 			get { return (string)GetValue(GroupNameProperty); }

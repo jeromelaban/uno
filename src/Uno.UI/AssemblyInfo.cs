@@ -10,3 +10,4 @@
 [assembly: InternalsVisibleTo("SamplesApp.Droid")]
 [assembly: InternalsVisibleTo("SamplesApp.macOS")]
 [assembly: InternalsVisibleTo("SamplesApp.Wasm")]
+[assembly: InternalsVisibleTo("SamplesApp.Skia")]

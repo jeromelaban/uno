@@ -1,4 +1,4 @@
-﻿#if NET461 || NETSTANDARD2_0
+﻿#if NET461 || NETSTANDARD
 using System;
 using System.Linq;
 using System.Runtime.CompilerServices;

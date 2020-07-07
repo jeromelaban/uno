@@ -96,8 +96,8 @@
 	  Restore the compile items for projects using globbing
 	  that may not have the .cs files as explicit Compile items
 	  -->
-	  <Compile Remove="$(MSBuildThisFileDirectory)/**/*.cs" />
-	  <Compile Include="$(MSBuildThisFileDirectory)/**/*.cs" />
+	  <Compile Remove="$(MSBuildThisFileDirectory)**/*.cs" />
+	  <Compile Include="$(MSBuildThisFileDirectory)**/*.cs" />
 	</ItemGroup>
   </Target>
 

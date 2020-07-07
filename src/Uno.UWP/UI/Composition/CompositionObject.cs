@@ -7,7 +7,16 @@ namespace Windows.UI.Composition
 	{
 		private object _gate = new object();
 
-		public Compositor Compositor => Compositor.Current;
+		internal CompositionObject()
+		{
+		}
+
+		internal CompositionObject(Compositor compositor)
+		{
+			Compositor = compositor;
+		}
+
+		public Compositor Compositor { get; }
 
 		public void StartAnimation(string propertyName, CompositionAnimation animation)
 		{

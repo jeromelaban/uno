@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.ApplicationModel.Core
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CoreApplication 
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static string Id
 		{
@@ -17,7 +17,7 @@ namespace Windows.ApplicationModel.Core
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Foundation.Collections.IPropertySet Properties
 		{
@@ -29,14 +29,14 @@ namespace Windows.ApplicationModel.Core
 		#endif
 		// Skipping already declared property MainView
 		// Skipping already declared property Views
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.ApplicationModel.Core.CoreApplicationView CreateNewView( global::Windows.ApplicationModel.Core.IFrameworkViewSource viewSource)
 		{
 			throw new global::System.NotImplementedException("The member CoreApplicationView CoreApplication.CreateNewView(IFrameworkViewSource viewSource) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.ApplicationModel.Core.CoreApplicationView CreateNewView()
 		{
@@ -45,14 +45,14 @@ namespace Windows.ApplicationModel.Core
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.UnhandledErrorDetected.add
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.UnhandledErrorDetected.remove
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static void IncrementApplicationUseCount()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Core.CoreApplication", "void CoreApplication.IncrementApplicationUseCount()");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static void DecrementApplicationUseCount()
 		{
@@ -60,7 +60,7 @@ namespace Windows.ApplicationModel.Core
 		}
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.Views.get
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.ApplicationModel.Core.CoreApplicationView CreateNewView( string runtimeType,  string entryPoint)
 		{
@@ -68,7 +68,7 @@ namespace Windows.ApplicationModel.Core
 		}
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.MainView.get
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static void Exit()
 		{
@@ -77,14 +77,14 @@ namespace Windows.ApplicationModel.Core
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.Exiting.add
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.Exiting.remove
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Foundation.IAsyncOperation<global::Windows.ApplicationModel.Core.AppRestartFailureReason> RequestRestartAsync( string launchArguments)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<AppRestartFailureReason> CoreApplication.RequestRestartAsync(string launchArguments) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Foundation.IAsyncOperation<global::Windows.ApplicationModel.Core.AppRestartFailureReason> RequestRestartForUserAsync( global::Windows.System.User user,  string launchArguments)
 		{
@@ -97,7 +97,7 @@ namespace Windows.ApplicationModel.Core
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.LeavingBackground.remove
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.EnteredBackground.add
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.EnteredBackground.remove
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static void EnablePrelaunch( bool value)
 		{
@@ -111,21 +111,21 @@ namespace Windows.ApplicationModel.Core
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.Resuming.remove
 		// Forced skipping of method Windows.ApplicationModel.Core.CoreApplication.Properties.get
 		// Skipping already declared method Windows.ApplicationModel.Core.CoreApplication.GetCurrentView()
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static void Run( global::Windows.ApplicationModel.Core.IFrameworkViewSource viewSource)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Core.CoreApplication", "void CoreApplication.Run(IFrameworkViewSource viewSource)");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static void RunWithActivationFactories( global::Windows.Foundation.IGetActivationFactory activationFactoryCallback)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Core.CoreApplication", "void CoreApplication.RunWithActivationFactories(IGetActivationFactory activationFactoryCallback)");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static event global::System.EventHandler<global::Windows.ApplicationModel.Core.UnhandledErrorDetectedEventArgs> UnhandledErrorDetected
 		{
@@ -141,7 +141,7 @@ namespace Windows.ApplicationModel.Core
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static event global::System.EventHandler<object> Exiting
 		{
@@ -157,7 +157,7 @@ namespace Windows.ApplicationModel.Core
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static event global::System.EventHandler<global::Windows.ApplicationModel.Activation.BackgroundActivatedEventArgs> BackgroundActivated
 		{
@@ -173,7 +173,7 @@ namespace Windows.ApplicationModel.Core
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static event global::System.EventHandler<global::Windows.ApplicationModel.EnteredBackgroundEventArgs> EnteredBackground
 		{
@@ -189,7 +189,7 @@ namespace Windows.ApplicationModel.Core
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static event global::System.EventHandler<global::Windows.ApplicationModel.LeavingBackgroundEventArgs> LeavingBackground
 		{

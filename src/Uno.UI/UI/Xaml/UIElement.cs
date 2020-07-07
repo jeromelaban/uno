@@ -317,7 +317,7 @@ namespace Windows.UI.Xaml
 
 			if (NeedsClipToSlot)
 			{
-#if __WASM__
+#if NETSTANDARD
 				var boundsClipping = new Rect(0, 0, RenderSize.Width, RenderSize.Height);
 #else
 				var boundsClipping = ClippedFrame ?? Rect.Empty;
@@ -395,7 +395,7 @@ namespace Windows.UI.Xaml
 
 		internal bool NeedsClipToSlot { get; set; }
 
-#if !__WASM__
+#if !NETSTANDARD
 		/// <summary>
 		/// Backing property for <see cref="Windows.UI.Xaml.Controls.Primitives.LayoutInformation.GetAvailableSize(UIElement)"/>
 		/// </summary>
@@ -422,7 +422,7 @@ namespace Windows.UI.Xaml
 		{
 		}
 
-#if !__WASM__
+#if !NETSTANDARD
 		/// <summary>
 		/// This is the Frame that should be used as "available Size" for the Arrange phase.
 		/// </summary>

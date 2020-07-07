@@ -45,4 +45,8 @@
 
 	<Import Project="..\Uno.CrossTargetting.props" />
 
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="Extensions\RectExtensions.cs" />
+	</ItemGroup>
+
 </Project>

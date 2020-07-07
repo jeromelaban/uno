@@ -2,7 +2,7 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Graphics.Display
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class DisplayInformation 
@@ -32,7 +32,7 @@ namespace Windows.Graphics.Display
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.StereoEnabled.get
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.StereoEnabledChanged.add
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.StereoEnabledChanged.remove
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Storage.Streams.IRandomAccessStream> GetColorProfileAsync()
 		{
@@ -45,7 +45,7 @@ namespace Windows.Graphics.Display
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.DiagonalSizeInInches.get
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.ScreenWidthInRawPixels.get
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.ScreenHeightInRawPixels.get
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Graphics.Display.AdvancedColorInfo GetAdvancedColorInfo()
 		{
@@ -59,7 +59,7 @@ namespace Windows.Graphics.Display
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.AutoRotationPreferences.set
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.DisplayContentsInvalidated.add
 		// Forced skipping of method Windows.Graphics.Display.DisplayInformation.DisplayContentsInvalidated.remove
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Graphics.Display.DisplayInformation, object> ColorProfileChanged
 		{
@@ -75,7 +75,7 @@ namespace Windows.Graphics.Display
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Graphics.Display.DisplayInformation, object> DpiChanged
 		{
@@ -92,7 +92,7 @@ namespace Windows.Graphics.Display
 		}
 		#endif
 		// Skipping already declared event Windows.Graphics.Display.DisplayInformation.OrientationChanged
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Graphics.Display.DisplayInformation, object> StereoEnabledChanged
 		{
@@ -108,7 +108,7 @@ namespace Windows.Graphics.Display
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Graphics.Display.DisplayInformation, object> AdvancedColorInfoChanged
 		{
@@ -124,7 +124,7 @@ namespace Windows.Graphics.Display
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static event global::Windows.Foundation.TypedEventHandler<global::Windows.Graphics.Display.DisplayInformation, object> DisplayContentsInvalidated
 		{

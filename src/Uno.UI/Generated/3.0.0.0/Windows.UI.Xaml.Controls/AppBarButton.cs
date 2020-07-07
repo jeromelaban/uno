@@ -2,7 +2,7 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Controls
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class AppBarButton : global::Windows.UI.Xaml.Controls.Button,global::Windows.UI.Xaml.Controls.ICommandBarElement,global::Windows.UI.Xaml.Controls.ICommandBarElement2
@@ -10,7 +10,7 @@ namespace Windows.UI.Xaml.Controls
 		// Skipping already declared property Label
 		// Skipping already declared property Icon
 		// Skipping already declared property LabelPosition
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  string KeyboardAcceleratorTextOverride
 		{
@@ -34,7 +34,7 @@ namespace Windows.UI.Xaml.Controls
 		// Skipping already declared property DynamicOverflowOrderProperty
 		// Skipping already declared property IsInOverflowProperty
 		// Skipping already declared property LabelPositionProperty
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.UI.Xaml.DependencyProperty KeyboardAcceleratorTextOverrideProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(

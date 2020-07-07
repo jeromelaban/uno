@@ -1,4 +1,4 @@
-﻿#if NET461 || __NETSTD_REFERENCE__
+﻿#if NET461 || NETSTANDARD
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.ApplicationModel.Calls
 {
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class PhoneCallBlocking 
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static bool BlockUnknownNumbers
 		{
@@ -21,7 +21,7 @@ namespace Windows.ApplicationModel.Calls
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static bool BlockPrivateNumbers
 		{
@@ -39,7 +39,7 @@ namespace Windows.ApplicationModel.Calls
 		// Forced skipping of method Windows.ApplicationModel.Calls.PhoneCallBlocking.BlockUnknownNumbers.set
 		// Forced skipping of method Windows.ApplicationModel.Calls.PhoneCallBlocking.BlockPrivateNumbers.get
 		// Forced skipping of method Windows.ApplicationModel.Calls.PhoneCallBlocking.BlockPrivateNumbers.set
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Foundation.IAsyncOperation<bool> SetCallBlockingListAsync( global::System.Collections.Generic.IEnumerable<string> phoneNumberList)
 		{

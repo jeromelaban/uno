@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Devices.Sensors
 {
-	#if false || false || false || false || __NETSTD_REFERENCE__ || false
+	#if false || false || false || false || false || __NETSTD_REFERENCE__ || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class Accelerometer 
 	{
-		#if false || false || NET461 || false || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  uint ReportInterval
 		{
@@ -21,7 +21,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  uint MinimumReportInterval
 		{
@@ -31,7 +31,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if false || false || NET461 || false || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Graphics.Display.DisplayOrientations ReadingTransform
 		{
@@ -45,7 +45,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  uint ReportLatency
 		{
@@ -59,7 +59,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  uint MaxBatchSize
 		{
@@ -69,7 +69,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Devices.Sensors.AccelerometerReadingType ReadingType
 		{
@@ -79,7 +79,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Devices.Sensors.AccelerometerDataThreshold ReportThreshold
 		{
@@ -89,7 +89,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  string DeviceId
 		{
@@ -99,7 +99,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Devices.Sensors.AccelerometerReading GetCurrentReading()
 		{
@@ -121,35 +121,35 @@ namespace Windows.Devices.Sensors
 		// Forced skipping of method Windows.Devices.Sensors.Accelerometer.MaxBatchSize.get
 		// Forced skipping of method Windows.Devices.Sensors.Accelerometer.ReadingType.get
 		// Forced skipping of method Windows.Devices.Sensors.Accelerometer.ReportThreshold.get
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Foundation.IAsyncOperation<global::Windows.Devices.Sensors.Accelerometer> FromIdAsync( string deviceId)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<Accelerometer> Accelerometer.FromIdAsync(string deviceId) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static string GetDeviceSelector( global::Windows.Devices.Sensors.AccelerometerReadingType readingType)
 		{
 			throw new global::System.NotImplementedException("The member string Accelerometer.GetDeviceSelector(AccelerometerReadingType readingType) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Devices.Sensors.Accelerometer GetDefault( global::Windows.Devices.Sensors.AccelerometerReadingType readingType)
 		{
 			throw new global::System.NotImplementedException("The member Accelerometer Accelerometer.GetDefault(AccelerometerReadingType readingType) is not implemented in Uno.");
 		}
 		#endif
-		#if false || false || false || false || __NETSTD_REFERENCE__ || false
+		#if false || false || false || false || __SKIA__ || __NETSTD_REFERENCE__ || false
 		[global::Uno.NotImplemented]
 		public static global::Windows.Devices.Sensors.Accelerometer GetDefault()
 		{
 			throw new global::System.NotImplementedException("The member Accelerometer Accelerometer.GetDefault() is not implemented in Uno.");
 		}
 		#endif
-		#if false || false || NET461 || false || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Devices.Sensors.Accelerometer, global::Windows.Devices.Sensors.AccelerometerReadingChangedEventArgs> ReadingChanged
 		{
@@ -165,7 +165,7 @@ namespace Windows.Devices.Sensors
 			}
 		}
 		#endif
-		#if false || false || NET461 || false || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Devices.Sensors.Accelerometer, global::Windows.Devices.Sensors.AccelerometerShakenEventArgs> Shaken
 		{

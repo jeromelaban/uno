@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Composition.Scenes
 {
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class SceneSurfaceMaterialInput : global::Windows.UI.Composition.Scenes.SceneMaterialInput
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Composition.Scenes.SceneWrappingMode WrappingVMode
 		{
@@ -21,7 +21,7 @@ namespace Windows.UI.Composition.Scenes
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Composition.Scenes.SceneWrappingMode WrappingUMode
 		{
@@ -35,7 +35,7 @@ namespace Windows.UI.Composition.Scenes
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Composition.ICompositionSurface Surface
 		{
@@ -49,7 +49,7 @@ namespace Windows.UI.Composition.Scenes
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Composition.CompositionBitmapInterpolationMode BitmapInterpolationMode
 		{
@@ -71,7 +71,7 @@ namespace Windows.UI.Composition.Scenes
 		// Forced skipping of method Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput.WrappingUMode.set
 		// Forced skipping of method Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput.WrappingVMode.get
 		// Forced skipping of method Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput.WrappingVMode.set
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.UI.Composition.Scenes.SceneSurfaceMaterialInput Create( global::Windows.UI.Composition.Compositor compositor)
 		{

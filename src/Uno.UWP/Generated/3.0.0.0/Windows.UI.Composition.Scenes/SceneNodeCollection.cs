@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Composition.Scenes
 {
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class SceneNodeCollection : global::Windows.UI.Composition.Scenes.SceneObject,global::System.Collections.Generic.IList<global::Windows.UI.Composition.Scenes.SceneNode>,global::System.Collections.Generic.IEnumerable<global::Windows.UI.Composition.Scenes.SceneNode>
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  uint Size
 		{
@@ -31,7 +31,7 @@ namespace Windows.UI.Composition.Scenes
 		// Forced skipping of method Windows.UI.Composition.Scenes.SceneNodeCollection.ReplaceAll(Windows.UI.Composition.Scenes.SceneNode[])
 		// Forced skipping of method Windows.UI.Composition.Scenes.SceneNodeCollection.First()
 		// Processing: System.Collections.Generic.IList<Windows.UI.Composition.Scenes.SceneNode>
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.IList<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public int IndexOf( global::Windows.UI.Composition.Scenes.SceneNode item)
@@ -39,7 +39,7 @@ namespace Windows.UI.Composition.Scenes
 			throw new global::System.NotSupportedException();
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.IList<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public void Insert( int index,  global::Windows.UI.Composition.Scenes.SceneNode item)
@@ -47,7 +47,7 @@ namespace Windows.UI.Composition.Scenes
 			throw new global::System.NotSupportedException();
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.IList<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public void RemoveAt( int index)
@@ -55,7 +55,7 @@ namespace Windows.UI.Composition.Scenes
 			throw new global::System.NotSupportedException();
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public global::Windows.UI.Composition.Scenes.SceneNode this[int index]
 		{
@@ -70,7 +70,7 @@ namespace Windows.UI.Composition.Scenes
 		}
 		#endif
 		// Processing: System.Collections.Generic.ICollection<Windows.UI.Composition.Scenes.SceneNode>
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.ICollection<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public void Add( global::Windows.UI.Composition.Scenes.SceneNode item)
@@ -78,7 +78,7 @@ namespace Windows.UI.Composition.Scenes
 			throw new global::System.NotSupportedException();
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.ICollection<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public void Clear()
@@ -86,7 +86,7 @@ namespace Windows.UI.Composition.Scenes
 			throw new global::System.NotSupportedException();
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.ICollection<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public bool Contains( global::Windows.UI.Composition.Scenes.SceneNode item)
@@ -94,7 +94,7 @@ namespace Windows.UI.Composition.Scenes
 			throw new global::System.NotSupportedException();
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.ICollection<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public void CopyTo( global::Windows.UI.Composition.Scenes.SceneNode[] array,  int arrayIndex)
@@ -102,7 +102,7 @@ namespace Windows.UI.Composition.Scenes
 			throw new global::System.NotSupportedException();
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.ICollection<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public bool Remove( global::Windows.UI.Composition.Scenes.SceneNode item)
@@ -110,7 +110,7 @@ namespace Windows.UI.Composition.Scenes
 			throw new global::System.NotSupportedException();
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public int Count
 		{
@@ -124,7 +124,7 @@ namespace Windows.UI.Composition.Scenes
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public bool IsReadOnly
 		{
@@ -139,7 +139,7 @@ namespace Windows.UI.Composition.Scenes
 		}
 		#endif
 		// Processing: System.Collections.Generic.IEnumerable<Windows.UI.Composition.Scenes.SceneNode>
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.Generic.IEnumerable<Windows.UI.Composition.Scenes.SceneNode>
 		[global::Uno.NotImplemented]
 		public global::System.Collections.Generic.IEnumerator<global::Windows.UI.Composition.Scenes.SceneNode> GetEnumerator()
@@ -148,7 +148,7 @@ namespace Windows.UI.Composition.Scenes
 		}
 		#endif
 		// Processing: System.Collections.IEnumerable
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		// DeclaringType: System.Collections.IEnumerable
 		[global::Uno.NotImplemented]
 		 global::System.Collections.IEnumerator global::System.Collections.IEnumerable.GetEnumerator()

@@ -2,7 +2,7 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Popups
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class MessageDialog 
@@ -26,7 +26,7 @@ namespace Windows.UI.Popups
 		// Forced skipping of method Windows.UI.Popups.MessageDialog.CancelCommandIndex.set
 		// Forced skipping of method Windows.UI.Popups.MessageDialog.Content.get
 		// Forced skipping of method Windows.UI.Popups.MessageDialog.Content.set
-		#if false || false || NET461 || false || __NETSTD_REFERENCE__ || false
+		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || false
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.UI.Popups.IUICommand> ShowAsync()
 		{

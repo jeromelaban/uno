@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Devices.Sensors
 {
-	#if false || false || NET461 || false || __NETSTD_REFERENCE__ || __MACOS__
+	#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class AccelerometerReadingChangedEventArgs 
 	{
-		#if false || false || NET461 || false || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Devices.Sensors.AccelerometerReading Reading
 		{

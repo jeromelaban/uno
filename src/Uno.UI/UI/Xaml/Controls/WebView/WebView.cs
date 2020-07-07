@@ -2,7 +2,7 @@
 #pragma warning disable CS0067, CS0414
 #endif
 
-#if XAMARIN || __WASM__
+#if XAMARIN || __WASM__ || __SKIA__
 using Windows.Foundation;
 using Windows.UI.Xaml.Controls;
 using System;

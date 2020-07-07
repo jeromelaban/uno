@@ -1,0 +1,32 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+
+  <PropertyGroup>
+    <TargetFrameworks>net47;netcoreapp3.1</TargetFrameworks>
+  </PropertyGroup>
+	
+	<ItemGroup>
+	  <PackageReference Include="SkiaSharp.Views" Version="1.68.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'=='net47'">
+		<Reference Include="PresentationFramework" />
+		<Reference Include="PresentationCore" />
+		<Reference Include="WindowsBase" />
+		<Reference Include="System.Xaml" />
+	</ItemGroup>
+
+
+	<ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+		<PackageReference Include="Jellyfin.SkiaSharp.NativeAssets.LinuxArm" />
+		<PackageReference Include="SkiaSharp" />
+		<PackageReference Include="SkiaSharp.NativeAssets.Linux" />
+		<PackageReference Include="GtkSharp" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Uno.Foundation.Skia\Uno.Foundation.Skia.csproj" />
+	  <ProjectReference Include="..\Uno.UI.Skia\Uno.UI.Skia.csproj" />
+	  <ProjectReference Include="..\Uno.UWP.Skia\Uno.Skia.csproj" />
+	</ItemGroup>
+
+</Project>

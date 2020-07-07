@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.StartScreen
 {
-	#if false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class JumpList 
 	{
-		#if false || false || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.StartScreen.JumpListSystemGroupKind SystemGroupKind
 		{
@@ -21,7 +21,7 @@ namespace Windows.UI.StartScreen
 			}
 		}
 		#endif
-		#if false || false || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::System.Collections.Generic.IList<global::Windows.UI.StartScreen.JumpListItem> Items
 		{
@@ -34,14 +34,14 @@ namespace Windows.UI.StartScreen
 		// Forced skipping of method Windows.UI.StartScreen.JumpList.Items.get
 		// Forced skipping of method Windows.UI.StartScreen.JumpList.SystemGroupKind.get
 		// Forced skipping of method Windows.UI.StartScreen.JumpList.SystemGroupKind.set
-		#if false || false || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.IAsyncAction SaveAsync()
 		{
 			throw new global::System.NotImplementedException("The member IAsyncAction JumpList.SaveAsync() is not implemented in Uno.");
 		}
 		#endif
-		#if false || false || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if false || false || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Foundation.IAsyncOperation<global::Windows.UI.StartScreen.JumpList> LoadCurrentAsync()
 		{

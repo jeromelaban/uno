@@ -104,7 +104,5 @@ namespace Windows.UI.Xaml
 
 		private protected virtual double GetActualWidth() => ActualWidth;
 		private protected virtual double GetActualHeight() => ActualHeight;
-
-		private protected virtual Thickness GetBorderThickness() => Thickness.Empty;
 	}
 }

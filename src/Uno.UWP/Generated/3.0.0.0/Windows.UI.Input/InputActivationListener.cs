@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Input
 {
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class InputActivationListener : global::Windows.UI.Input.AttachableInputObject
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Input.InputActivationState State
 		{
@@ -20,7 +20,7 @@ namespace Windows.UI.Input
 		// Forced skipping of method Windows.UI.Input.InputActivationListener.State.get
 		// Forced skipping of method Windows.UI.Input.InputActivationListener.InputActivationChanged.add
 		// Forced skipping of method Windows.UI.Input.InputActivationListener.InputActivationChanged.remove
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Input.InputActivationListener, global::Windows.UI.Input.InputActivationListenerActivationChangedEventArgs> InputActivationChanged
 		{

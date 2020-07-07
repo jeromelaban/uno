@@ -2,12 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Controls.Maps
 {
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || false
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class MapInputEventArgs : global::Windows.UI.Xaml.DependencyObject
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Devices.Geolocation.Geopoint Location
 		{
@@ -17,7 +17,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.Point Position
 		{
@@ -27,7 +27,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || false || false || __MACOS__
+		#if false || __IOS__ || false || false || false || false || false
 		[global::Uno.NotImplemented]
 		public MapInputEventArgs() : base()
 		{

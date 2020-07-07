@@ -2,40 +2,40 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Security.DataProtection
 {
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class UserDataProtectionManager 
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Security.DataProtection.UserDataStorageItemProtectionStatus> ProtectStorageItemAsync( global::Windows.Storage.IStorageItem storageItem,  global::Windows.Security.DataProtection.UserDataAvailability availability)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<UserDataStorageItemProtectionStatus> UserDataProtectionManager.ProtectStorageItemAsync(IStorageItem storageItem, UserDataAvailability availability) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Security.DataProtection.UserDataStorageItemProtectionInfo> GetStorageItemProtectionInfoAsync( global::Windows.Storage.IStorageItem storageItem)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<UserDataStorageItemProtectionInfo> UserDataProtectionManager.GetStorageItemProtectionInfoAsync(IStorageItem storageItem) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Storage.Streams.IBuffer> ProtectBufferAsync( global::Windows.Storage.Streams.IBuffer unprotectedBuffer,  global::Windows.Security.DataProtection.UserDataAvailability availability)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<IBuffer> UserDataProtectionManager.ProtectBufferAsync(IBuffer unprotectedBuffer, UserDataAvailability availability) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Security.DataProtection.UserDataBufferUnprotectResult> UnprotectBufferAsync( global::Windows.Storage.Streams.IBuffer protectedBuffer)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<UserDataBufferUnprotectResult> UserDataProtectionManager.UnprotectBufferAsync(IBuffer protectedBuffer) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  bool IsContinuedDataAvailabilityExpected( global::Windows.Security.DataProtection.UserDataAvailability availability)
 		{
@@ -44,21 +44,21 @@ namespace Windows.Security.DataProtection
 		#endif
 		// Forced skipping of method Windows.Security.DataProtection.UserDataProtectionManager.DataAvailabilityStateChanged.add
 		// Forced skipping of method Windows.Security.DataProtection.UserDataProtectionManager.DataAvailabilityStateChanged.remove
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Security.DataProtection.UserDataProtectionManager TryGetDefault()
 		{
 			throw new global::System.NotImplementedException("The member UserDataProtectionManager UserDataProtectionManager.TryGetDefault() is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public static global::Windows.Security.DataProtection.UserDataProtectionManager TryGetForUser( global::Windows.System.User user)
 		{
 			throw new global::System.NotImplementedException("The member UserDataProtectionManager UserDataProtectionManager.TryGetForUser(User user) is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Windows.Security.DataProtection.UserDataProtectionManager, global::Windows.Security.DataProtection.UserDataAvailabilityStateChangedEventArgs> DataAvailabilityStateChanged
 		{
