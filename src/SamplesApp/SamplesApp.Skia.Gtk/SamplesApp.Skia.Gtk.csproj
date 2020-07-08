@@ -4,12 +4,16 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
 	
 	<ItemGroup>
 		<PackageReference Include="Jellyfin.SkiaSharp.NativeAssets.LinuxArm" Version="1.68.0" />
 		<PackageReference Include="SkiaSharp" Version="1.68.0" />
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="1.68.0.0" />
-		<PackageReference Include="GtkSharp" Version="3.22.25.*" />
+		<PackageReference Include="GtkSharp" Version="3.22.25.98" />
 	</ItemGroup>
 	
 	<ItemGroup>

@@ -3,13 +3,17 @@ using GLib;
 using SkiaSharp;
 using Gtk;
 using Uno.Foundation.Extensibility;
+using System.Threading;
 
 namespace SkiaSharpExample
 {
 	class MainClass
 	{
+		[STAThread]
 		public static void Main(string[] args)
 		{
+			Gtk.Application.Init();
+
 			ApiExtensibility.Register(typeof(Windows.UI.Core.ICoreWindowExtension), o => new Uno.UI.Skia.Platform.GTK.GtkUIElementPointersSupport(o));
 
 			ExceptionManager.UnhandledException += delegate (UnhandledExceptionArgs expArgs)

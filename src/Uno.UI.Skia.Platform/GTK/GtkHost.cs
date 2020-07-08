@@ -23,8 +23,6 @@ namespace Uno.UI.Skia.Platform.GTK
 
 		public void Run()
 		{
-			Gtk.Application.Init();
-
 			_window = new Gtk.Window("Uno Host");
 			_window.SetDefaultSize(1024, 800);
 			_window.SetPosition(Gtk.WindowPosition.Center);
@@ -42,13 +40,27 @@ namespace Uno.UI.Skia.Platform.GTK
 					   Gtk.Application.RunIteration(false);
 				   }
 
-				   Gtk.Application.Invoke((s, e) =>
-				   {
-
+				   GLib.Idle.Add(delegate {
 					   Console.WriteLine("iteration");
+					   try
+					   {
+						   d();
+					   }
+					   catch(Exception e)
+					   {
+						   Console.WriteLine(e);
+					   }
+					   return false;
+					   });
 
-					   d();
-				   });
+
+				   //Gtk.Application.Invoke((s, e) =>
+				   //{
+
+					  // Console.WriteLine("iteration");
+
+					  // d();
+				   //});
 			   };
 
 			_window.Realized += (s, e) =>

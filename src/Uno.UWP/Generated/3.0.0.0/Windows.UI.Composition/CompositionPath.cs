@@ -7,7 +7,7 @@ namespace Windows.UI.Composition
 	#endif
 	public  partial class CompositionPath : global::Windows.Graphics.IGeometrySource2D
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || false || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public CompositionPath( global::Windows.Graphics.IGeometrySource2D source) 
 		{

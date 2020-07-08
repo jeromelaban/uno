@@ -20,5 +20,23 @@ namespace Uno.UI
 		}
 
 		public static FrameworkElement GetTopLevelParent(this UIElement view) => throw new NotImplementedException();
+
+		public static T FindFirstChild<T>(this FrameworkElement root) where T : FrameworkElement
+		{
+			return root.GetDescendants().OfType<T>().FirstOrDefault();
+		}
+
+		private static IEnumerable<FrameworkElement> GetDescendants(this FrameworkElement root)
+		{
+			foreach (var child in root._children)
+			{
+				yield return child as FrameworkElement;
+
+				foreach (var descendant in (child as FrameworkElement).GetDescendants())
+				{
+					yield return descendant;
+				}
+			}
+		}
 	}
 }

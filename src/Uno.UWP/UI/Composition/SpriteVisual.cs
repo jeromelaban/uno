@@ -4,7 +4,15 @@ namespace Windows.UI.Composition
 {
 	public partial class SpriteVisual : ContainerVisual
 	{
+
 		private CompositionBrush _brush;
+
+		internal SpriteVisual() => throw new NotSupportedException();
+
+		internal SpriteVisual(Compositor compositor) : base(compositor)
+		{
+
+		}
 
 		public CompositionBrush Brush
 		{

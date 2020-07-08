@@ -10,6 +10,13 @@ namespace Windows.UI.Composition
 		private List<Action> _colorChangedHandlers = new List<Action>();
 		private Color _color;
 
+		internal CompositionColorBrush() => throw new NotSupportedException();
+
+		internal CompositionColorBrush(Compositor compositor) : base(compositor)
+		{
+
+		}
+
 		public Color Color
 		{
 			get { return _color; }

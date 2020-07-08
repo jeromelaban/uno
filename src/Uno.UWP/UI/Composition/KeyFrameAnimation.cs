@@ -1,5 +1,6 @@
 #pragma warning disable 108 // new keyword hiding
 #pragma warning disable 114 // new keyword hiding
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 
@@ -22,6 +23,13 @@ namespace Windows.UI.Composition
 		public int KeyFrameCount { get; set; }
 
 		public AnimationDirection Direction { get; set; }
+
+		internal KeyFrameAnimation() => throw new NotSupportedException();
+
+		internal KeyFrameAnimation(Compositor compositor) : base(compositor)
+		{
+
+		}
 
 		public virtual void InsertKeyFrame(float normalizedProgressKey, float value)
 		{
