@@ -196,7 +196,11 @@ namespace SamplesApp
 				rootFrame.NavigationFailed += OnNavigationFailed;
 
 				// Place the frame in the current Window
+#if __SKIA__
+				Windows.UI.Xaml.Window.Current.Content = new Uno.UI.Samples.Content.UITests.ButtonTestsControl.Buttons();
+#else
 				Windows.UI.Xaml.Window.Current.Content = rootFrame;
+#endif
 				Console.WriteLine($"RootFrame: {rootFrame}");
 			}
 

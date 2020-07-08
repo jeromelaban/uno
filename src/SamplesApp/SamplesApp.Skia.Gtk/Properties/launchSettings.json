@@ -2,7 +2,7 @@
   "profiles": {
     "SamplesApp.Skia.Gtk": {
       "commandName": "Project",
-      "nativeDebugging": true
+      "nativeDebugging": false
     }
   }
 }

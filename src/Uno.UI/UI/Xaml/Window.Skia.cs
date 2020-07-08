@@ -54,7 +54,12 @@ namespace Windows.UI.Xaml
 
 		private bool _isMeasuring = false;
 
-		internal void InvalidateMeasure()
+		internal static void InvalidateMeasure()
+		{
+			Current.InnerInvalidateMeasure();
+		}
+
+		internal void InnerInvalidateMeasure()
 		{
 			if (_window != null)
 			{

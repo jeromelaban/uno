@@ -1,4 +1,5 @@
-﻿using Windows.Foundation;
+﻿#if !__NETSTD_REFERENCE__
+using Windows.Foundation;
 using System;
 
 namespace Windows.UI.Xaml
@@ -162,3 +163,4 @@ namespace Windows.UI.Xaml
 		}
 	}
 }
+#endif

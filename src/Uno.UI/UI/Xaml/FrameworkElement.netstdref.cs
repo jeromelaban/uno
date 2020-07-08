@@ -56,12 +56,6 @@ namespace Windows.UI.Xaml
 			return Parent != null;
 		}
 
-		protected internal override void OnInvalidateMeasure()
-		{
-			InvalidateMeasureCallCount++;
-			base.OnInvalidateMeasure();
-		}
-
 		partial void OnMeasurePartial(Size slotSize)
 		{
 			

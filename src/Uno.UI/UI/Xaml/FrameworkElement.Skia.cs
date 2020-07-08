@@ -25,13 +25,16 @@ namespace Windows.UI.Xaml
 		public FrameworkElement()
 		{
 			_log = this.Log();
+			_logDebug = _log.IsEnabled(LogLevel.Debug) ? _log : null;
 			Initialize();
 		}
+
 		bool IFrameworkElementInternal.HasLayouter => true;
 
 		partial void Initialize();
 
 		protected internal readonly ILogger _log;
+		private protected readonly ILogger _logDebug;
 
 		partial void OnLoadingPartial();
 

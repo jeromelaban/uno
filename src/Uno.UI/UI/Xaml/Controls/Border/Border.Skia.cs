@@ -98,7 +98,5 @@ namespace Windows.UI.Xaml.Controls
 			=> Background != null || base.IsViewHit();
 		bool ICustomClippingElement.AllowClippingToLayoutSlot => !(Child is UIElement ue) || ue.RenderTransform == null;
 		bool ICustomClippingElement.ForceClippingToLayoutSlot => CornerRadius != CornerRadius.None;
-
-		private protected override Thickness GetThicknessAdjust() => BorderThickness;
 	}
 }

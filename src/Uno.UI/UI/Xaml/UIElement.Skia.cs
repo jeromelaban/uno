@@ -25,16 +25,9 @@ namespace Windows.UI.Xaml
 		private Visibility _visibilityCache;
 		internal double _canvasTop;
 		internal double _canvasLeft;
+		private Rect _currentFinalRect;
 
-		internal void SetDesiredSize(Size desiredSize) => _desiredSize = desiredSize;
-
-		internal bool IsMeasureDirty => !_isMeasureValid;
-		internal bool IsArrangeDirty => !_isArrangeValid;
-
-		/// <summary>
-		/// Backing property for <see cref="Windows.UI.Xaml.Controls.Primitives.LayoutInformation.GetAvailableSize(UIElement)"/>
-		/// </summary>
-		internal Size LastAvailableSize => _previousAvailableSize;
+		private protected int? Depth { get; private set; }
 
 		public UIElement()
 		{
@@ -223,13 +216,13 @@ namespace Windows.UI.Xaml
 		{
 		}
 
-		internal void ArrangeVisual(Point offset, Size oldRenderSize)
+		internal void ArrangeVisual(Rect finalRect, bool clipToBounds, Rect? clippedFrame = default)
 		{
-			var oldOffset = _visualOffset;
-			_visualOffset = offset;
+			var oldFinalRect = _currentFinalRect;
+			_currentFinalRect = finalRect;
 
-			var oldRect = new Rect(oldOffset, oldRenderSize);
-			var newRect = new Rect(offset, RenderSize);
+			var oldRect = oldFinalRect;
+			var newRect = finalRect;
 			if (oldRect != newRect)
 			{
 				if (
@@ -264,7 +257,7 @@ namespace Windows.UI.Xaml
 			}
 			else
 			{
-				this.Log().DebugIfEnabled(() => $"{this}: ArrangeVisual({offset}, {oldRenderSize}) -- SKIPPED (no change)");
+				this.Log().DebugIfEnabled(() => $"{this}: ArrangeVisual({_currentFinalRect}) -- SKIPPED (no change)");
 			}
 		}
 
