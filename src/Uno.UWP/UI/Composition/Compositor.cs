@@ -1,4 +1,3 @@
-
 using Windows.UI;
 
 namespace Windows.UI.Composition
@@ -48,6 +47,5 @@ namespace Windows.UI.Composition
 
 		public global::Windows.UI.Composition.CompositionPathGeometry CreatePathGeometry(global::Windows.UI.Composition.CompositionPath path)
 			=> new CompositionPathGeometry(this, path);
-
 	}
 }

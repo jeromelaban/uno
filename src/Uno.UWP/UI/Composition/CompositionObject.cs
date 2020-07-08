@@ -18,6 +18,8 @@ namespace Windows.UI.Composition
 
 		public Compositor Compositor { get; }
 
+		public UI.Core.CoreDispatcher Dispatcher => UI.Core.CoreDispatcher.Main;
+
 		public void StartAnimation(string propertyName, CompositionAnimation animation)
 		{
 			StartAnimationCore(propertyName, animation);
@@ -27,7 +29,8 @@ namespace Windows.UI.Composition
 
 		public void StopAnimation(string propertyName)
 		{
-
 		}
+
+		public string Comment { get; set; }
 	}
 }

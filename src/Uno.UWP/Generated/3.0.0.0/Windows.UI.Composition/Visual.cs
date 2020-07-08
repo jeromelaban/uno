@@ -7,20 +7,7 @@ namespace Windows.UI.Composition
 	#endif
 	public  partial class Visual : global::Windows.UI.Composition.CompositionObject
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public  global::System.Numerics.Matrix4x4 TransformMatrix
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Matrix4x4 Visual.TransformMatrix is not implemented in Uno.");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.Visual", "Matrix4x4 Visual.TransformMatrix");
-			}
-		}
-		#endif
+		// Skipping already declared property TransformMatrix
 		// Skipping already declared property Size
 		// Skipping already declared property Scale
 		// Skipping already declared property RotationAxis

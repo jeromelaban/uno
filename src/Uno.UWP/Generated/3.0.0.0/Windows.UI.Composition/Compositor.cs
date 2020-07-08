@@ -375,20 +375,8 @@ namespace Windows.UI.Composition
 			throw new global::System.NotImplementedException("The member CompositionLineGeometry Compositor.CreateLineGeometry() is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public  global::Windows.UI.Composition.CompositionPathGeometry CreatePathGeometry()
-		{
-			throw new global::System.NotImplementedException("The member CompositionPathGeometry Compositor.CreatePathGeometry() is not implemented in Uno.");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public  global::Windows.UI.Composition.CompositionPathGeometry CreatePathGeometry( global::Windows.UI.Composition.CompositionPath path)
-		{
-			throw new global::System.NotImplementedException("The member CompositionPathGeometry Compositor.CreatePathGeometry(CompositionPath path) is not implemented in Uno.");
-		}
-		#endif
+		// Skipping already declared method Windows.UI.Composition.Compositor.CreatePathGeometry()
+		// Skipping already declared method Windows.UI.Composition.Compositor.CreatePathGeometry(Windows.UI.Composition.CompositionPath)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Composition.PathKeyFrameAnimation CreatePathKeyFrameAnimation()
@@ -410,27 +398,9 @@ namespace Windows.UI.Composition
 			throw new global::System.NotImplementedException("The member CompositionRoundedRectangleGeometry Compositor.CreateRoundedRectangleGeometry() is not implemented in Uno.");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public  global::Windows.UI.Composition.ShapeVisual CreateShapeVisual()
-		{
-			throw new global::System.NotImplementedException("The member ShapeVisual Compositor.CreateShapeVisual() is not implemented in Uno.");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public  global::Windows.UI.Composition.CompositionSpriteShape CreateSpriteShape()
-		{
-			throw new global::System.NotImplementedException("The member CompositionSpriteShape Compositor.CreateSpriteShape() is not implemented in Uno.");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public  global::Windows.UI.Composition.CompositionSpriteShape CreateSpriteShape( global::Windows.UI.Composition.CompositionGeometry geometry)
-		{
-			throw new global::System.NotImplementedException("The member CompositionSpriteShape Compositor.CreateSpriteShape(CompositionGeometry geometry) is not implemented in Uno.");
-		}
-		#endif
+		// Skipping already declared method Windows.UI.Composition.Compositor.CreateShapeVisual()
+		// Skipping already declared method Windows.UI.Composition.Compositor.CreateSpriteShape()
+		// Skipping already declared method Windows.UI.Composition.Compositor.CreateSpriteShape(Windows.UI.Composition.CompositionGeometry)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Composition.CompositionViewBox CreateViewBox()

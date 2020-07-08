@@ -17,6 +17,8 @@ namespace Windows.UI.Composition
 
 		}
 
+		public Matrix4x4 TransformMatrix { get; set; } = Matrix4x4.Identity;
+
 		public Vector3 Offset
 		{
 			get { return _offset; }
@@ -61,7 +63,7 @@ namespace Windows.UI.Composition
 
 		partial void OnSizeChanged(Vector2 value);
 
-		public float Opacity { get; set; }
+		public float Opacity { get; set; } = 1.0f;
 
 		public Vector3 RotationAxis
 		{

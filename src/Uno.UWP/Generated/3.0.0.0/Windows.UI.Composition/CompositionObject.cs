@@ -8,16 +8,7 @@ namespace Windows.UI.Composition
 	public  partial class CompositionObject : global::System.IDisposable,global::Windows.UI.Composition.IAnimationObject
 	{
 		// Skipping already declared property Compositor
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public  global::Windows.UI.Core.CoreDispatcher Dispatcher
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member CoreDispatcher CompositionObject.Dispatcher is not implemented in Uno.");
-			}
-		}
-		#endif
+		// Skipping already declared property Dispatcher
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.UI.Composition.CompositionPropertySet Properties
@@ -42,20 +33,7 @@ namespace Windows.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public  string Comment
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member string CompositionObject.Comment is not implemented in Uno.");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.CompositionObject", "string CompositionObject.Comment");
-			}
-		}
-		#endif
+		// Skipping already declared property Comment
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented]
 		public  global::Windows.System.DispatcherQueue DispatcherQueue
