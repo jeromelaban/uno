@@ -11,7 +11,7 @@ namespace Windows.UI.Xaml.Hosting
 #if __SKIA__
 			return element.Visual;
 #else
-			return new Composition.Visual() { NativeOwner = element };
+			return new Composition.Visual(null) { NativeOwner = element };
 #endif
 		}
 

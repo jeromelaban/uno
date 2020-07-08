@@ -5,7 +5,19 @@ namespace Windows.UI.Composition
 {
 	public partial class VisualCollection : CompositionObject, IEnumerable<Visual>
 	{
+		private readonly Visual _owner;
+
 		private List<Visual> _visuals = new List<Visual>();
+
+		internal VisualCollection(Compositor compositor, Visual owner) : base(compositor)
+		{
+			_owner = owner;
+		}
+
+		internal VisualCollection(Visual owner)
+		{
+			_owner = owner;
+		}
 
 		public int Count => _visuals.Count;
 

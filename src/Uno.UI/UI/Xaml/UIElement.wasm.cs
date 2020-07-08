@@ -205,7 +205,7 @@ namespace Windows.UI.Xaml
 		/// <param name="rect">The dimensions to apply to the element</param>
 		/// <param name="clipToBounds">Whether the element should be clipped to its bounds</param>
 		/// <param name="clipRect">The Clip rect to set, if any</param>
-		protected internal void ArrangeElementNative(Rect rect, bool clipToBounds, Rect? clipRect)
+		protected internal void ArrangeVisual(Rect rect, bool clipToBounds, Rect? clipRect)
 		{
 			LayoutSlotWithMarginsAndAlignments =
 				VisualTreeHelper.GetParent(this) is UIElement parent

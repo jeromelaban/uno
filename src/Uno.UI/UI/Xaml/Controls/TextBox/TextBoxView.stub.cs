@@ -1,4 +1,4 @@
-﻿#if NET461 || NETSTANDARD
+﻿#if NET461 || __SKIA__ || __NETSTD_REFERENCE__
 using System;
 using System.Collections.Generic;
 using System.Text;

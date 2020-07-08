@@ -5,8 +5,15 @@ using Uno.Extensions;
 using System.Linq;
 using Uno.Disposables;
 using Uno.Logging;
+using Uno.UI;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Automation.Peers;
+
+#if __MACOS__
+using AppKit;
+#elif __IOS__
+using UIKit;
+#endif
 
 namespace Windows.UI.Xaml.Controls
 {

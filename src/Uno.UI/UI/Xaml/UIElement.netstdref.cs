@@ -33,6 +33,8 @@ namespace Windows.UI.Xaml
 
 		internal bool IsPointerCaptured { get; set; }
 
+		internal Size LastAvailableSize => Size.Empty;
+
 		internal Windows.Foundation.Point GetPosition(Point position, global::Windows.UI.Xaml.UIElement relativeTo)
 		{
 			throw new NotSupportedException();

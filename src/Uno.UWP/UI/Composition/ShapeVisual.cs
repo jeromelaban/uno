@@ -1,5 +1,3 @@
-using SkiaSharp;
-
 namespace Windows.UI.Composition
 {
 	public partial class ShapeVisual : global::Windows.UI.Composition.ContainerVisual

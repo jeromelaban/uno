@@ -1,5 +1,6 @@
 
 using System;
+using Windows.UI.Core;
 
 namespace Windows.UI.Composition
 {
@@ -18,7 +19,7 @@ namespace Windows.UI.Composition
 
 		public Compositor Compositor { get; }
 
-		public UI.Core.CoreDispatcher Dispatcher => UI.Core.CoreDispatcher.Main;
+		public CoreDispatcher Dispatcher => CoreDispatcher.Main;
 
 		public void StartAnimation(string propertyName, CompositionAnimation animation)
 		{
