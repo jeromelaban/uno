@@ -1,5 +1,6 @@
 ﻿using System;
 using Uno.Disposables;
+using Uno.Media;
 using Windows.Foundation;
 using Windows.Graphics;
 using Windows.UI.Composition;
@@ -14,13 +15,15 @@ namespace Windows.UI.Xaml.Shapes
 			switch (Data)
 			{
 				case PathGeometry pg:
-					return ToStreamGeometry(pg);
+					return ToGeometrySource2D(pg);
+				case StreamGeometry sg:
+					return sg.GetGeometrySource2D();
 			}
 
 			throw new NotSupportedException($"Geometry {Data} is not supported");
 		}
 
-		private SkiaGeometrySource2D ToStreamGeometry(PathGeometry geometry)
+		private SkiaGeometrySource2D ToGeometrySource2D(PathGeometry geometry)
 		{
 			var skiaGeometry = new SkiaGeometrySource2D();
 

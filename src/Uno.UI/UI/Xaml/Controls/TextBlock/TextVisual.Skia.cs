@@ -38,12 +38,20 @@ namespace Windows.UI.Composition
 			_paint.Typeface = _getTypeFace(_owner.FontFamily.Source);
 			_paint.TextSize = (float)_owner.FontSize;
 
+			var metrics = _paint.FontMetrics;
+			var descent = metrics.Descent;
+			var ascent = metrics.Ascent;
+
+			var lineHeight = descent - ascent;
+
 			UpdateForeground();
 
 			var bounds = new SKRect(0, 0, (float)availableSize.Width, (float)availableSize.Height);
 			_paint.MeasureText(string.IsNullOrEmpty(_owner.Text) ? " " : _owner.Text, ref bounds);
 
 			var size = bounds.Size;
+
+			size.Height = lineHeight;
 
 			return new Size(size.Width, size.Height);
 		}
@@ -62,7 +70,13 @@ namespace Windows.UI.Composition
 		{
 			if (!string.IsNullOrEmpty(_owner.Text))
 			{
-				surface.Canvas.DrawText(_owner.Text, 0, Size.Y, _paint);
+				var metrics = _paint.FontMetrics;
+				var descent = metrics.Descent;
+				var ascent = metrics.Ascent;
+
+				var lineHeight = descent - ascent;
+
+				surface.Canvas.DrawText(_owner.Text, 0, Size.Y-descent, _paint);
 			}
 		}
 	}

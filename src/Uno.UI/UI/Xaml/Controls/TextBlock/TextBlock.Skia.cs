@@ -12,6 +12,7 @@ using System.Numerics;
 using Windows.UI.Composition.Interactions;
 using Uno.Disposables;
 using Windows.UI.Xaml.Media;
+using Uno.UI;
 
 namespace Windows.UI.Xaml.Controls
 {
@@ -63,7 +64,14 @@ namespace Windows.UI.Xaml.Controls
 		protected override Size MeasureOverride(Size availableSize)
 		{
 			_lastMeasure = availableSize;
-			_lastDesiredSize = _textVisual.Measure(availableSize);
+			var padding = Padding;
+
+			// available size considering padding
+			var availableSizeWithoutPadding = availableSize.Subtract(Padding);
+
+			var desiredSize = _textVisual.Measure(availableSizeWithoutPadding);
+
+			_lastDesiredSize = desiredSize.Add(padding);
 
 			return new Size(_lastDesiredSize.Width, _lastDesiredSize.Height);
 		}
