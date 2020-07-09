@@ -65,6 +65,10 @@ namespace Windows.UI.Xaml
 
 		#region IsEnabled DependencyProperty
 
+#pragma warning disable 67
+		public event DependencyPropertyChangedEventHandler IsEnabledChanged;
+#pragma warning restore 67
+
 		public bool IsEnabled
 		{
 			get { return (bool)GetValue(IsEnabledProperty); }

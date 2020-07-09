@@ -98,5 +98,13 @@ namespace Windows.UI.Xaml
 
 		private protected virtual double GetActualWidth() => ActualWidth;
 		private protected virtual double GetActualHeight() => ActualHeight;
+
+#pragma warning disable 67
+		public event RoutedEventHandler Loading;
+
+		public event RoutedEventHandler Loaded;
+
+		public event RoutedEventHandler Unloaded;
+#pragma warning restore 67
 	}
 }

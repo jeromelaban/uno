@@ -122,7 +122,7 @@ namespace Windows.UI.Xaml.Controls
 		// Forced skipping of method Windows.UI.Xaml.Controls.Image.StretchProperty.get
 		// Forced skipping of method Windows.UI.Xaml.Controls.Image.NineGridProperty.get
 		// Forced skipping of method Windows.UI.Xaml.Controls.Image.PlayToSourceProperty.get
-		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || false
+		#if false || false || NET461 || false || false || false || false
 		[global::Uno.NotImplemented]
 		public  event global::Windows.UI.Xaml.ExceptionRoutedEventHandler ImageFailed
 		{
@@ -138,7 +138,7 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 		#endif
-		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || false
+		#if false || false || NET461 || false || false || false || false
 		[global::Uno.NotImplemented]
 		public  event global::Windows.UI.Xaml.RoutedEventHandler ImageOpened
 		{

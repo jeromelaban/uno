@@ -2,7 +2,7 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Xaml.Automation.Peers
 {
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || false
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class AutomationPeerAnnotation : global::Windows.UI.Xaml.DependencyObject
@@ -67,7 +67,7 @@ namespace Windows.UI.Xaml.Automation.Peers
 		}
 		#endif
 		// Forced skipping of method Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation.AutomationPeerAnnotation(Windows.UI.Xaml.Automation.AnnotationType, Windows.UI.Xaml.Automation.Peers.AutomationPeer)
-		#if false || __IOS__ || false || false || false || false || false
+		#if __ANDROID__ || __IOS__ || NET461 || false || false || false || __MACOS__
 		[global::Uno.NotImplemented]
 		public AutomationPeerAnnotation() : base()
 		{
