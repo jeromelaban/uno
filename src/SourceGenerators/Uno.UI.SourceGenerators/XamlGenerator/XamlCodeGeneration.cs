@@ -223,14 +223,14 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				var filesQuery = files
 					.ToArray();
 
-				IEnumerable<XamlFileDefinition> outputFiles = filesQuery;
+				IEnumerable<XamlFileDefinition> filesToProcess = filesQuery;
 
 				if (!Debugger.IsAttached)
 				{
-					outputFiles = outputFiles.AsParallel();
+					filesToProcess = filesToProcess.AsParallel();
 				}
 
-				outputFiles.Select(file => new KeyValuePair<string, string>(
+				var outputFiles = filesToProcess.Select(file => new KeyValuePair<string, string>(
 						file.UniqueID,
 						new XamlFileGenerator(
 							file: file,
