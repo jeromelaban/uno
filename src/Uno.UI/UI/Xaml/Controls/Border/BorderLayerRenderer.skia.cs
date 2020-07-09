@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using Uno.Disposables;
 using System.Text;
 using Uno;
@@ -8,6 +7,7 @@ using Uno.Extensions;
 using Windows.UI.Xaml.Media;
 using Uno.UI.Extensions;
 using Windows.Foundation;
+using Windows.UI;
 using Windows.UI.Composition;
 using System.Numerics;
 

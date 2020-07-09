@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Uno.Extensions;
 using Uno.Disposables;
-using System.Drawing;
+using Windows.UI;
 
 namespace Windows.UI.Xaml.Media
 {
