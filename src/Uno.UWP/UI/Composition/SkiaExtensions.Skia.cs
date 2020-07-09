@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 using Windows.Foundation;
+using Windows.UI;
 
 namespace Windows.UI.Composition
 {

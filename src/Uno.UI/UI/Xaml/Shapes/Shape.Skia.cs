@@ -37,7 +37,7 @@ namespace Windows.UI.Xaml.Shapes
 
 		private void InitCommonShapeProperties() { }
 
-		protected override Foundation.Size ArrangeOverride(Foundation.Size finalSize)
+		protected override Size ArrangeOverride(Size finalSize)
 		{
 			var area = new Rect(0, 0, finalSize.Width, finalSize.Height);
 

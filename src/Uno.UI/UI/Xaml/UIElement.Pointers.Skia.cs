@@ -27,14 +27,12 @@ namespace Windows.UI.Xaml
 				Window.Current.CoreWindow.PointerReleased += CoreWindow_PointerReleased;
 			}
 
-			private void CoreWindow_PointerEntered(Core.CoreWindow sender, Core.PointerEventArgs args)
+			private void CoreWindow_PointerEntered(CoreWindow sender, PointerEventArgs args)
 			{
 				if (this.Log().IsEnabled(LogLevel.Trace))
 				{
 					this.Log().Trace($"CoreWindow_PointerEntered ({args.CurrentPoint.Position})");
 				}
-
-
 			}
 
 			private void CoreWindow_PointerExited(CoreWindow sender, PointerEventArgs args)
@@ -74,7 +72,7 @@ namespace Windows.UI.Xaml
 				}
 			}
 
-			private void CoreWindow_PointerPressed(Core.CoreWindow sender, Core.PointerEventArgs args)
+			private void CoreWindow_PointerPressed(CoreWindow sender, PointerEventArgs args)
 			{
 				if (this.Log().IsEnabled(LogLevel.Trace))
 				{
@@ -90,7 +88,7 @@ namespace Windows.UI.Xaml
 				});
 			}
 
-			private void CoreWindow_PointerMoved(Core.CoreWindow sender, Core.PointerEventArgs args)
+			private void CoreWindow_PointerMoved(CoreWindow sender, PointerEventArgs args)
 			{
 				if (this.Log().IsEnabled(LogLevel.Trace))
 				{

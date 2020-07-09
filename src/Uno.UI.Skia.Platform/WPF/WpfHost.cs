@@ -105,6 +105,7 @@ namespace Uno.UI.Skia.Platform
 			bitmap.Lock();
 			using (var surface = SKSurface.Create(info, bitmap.BackBuffer, bitmap.BackBufferStride))
 			{
+				surface.Canvas.Clear(SKColors.White);
 				WinUI.Window.Current.Compositor.Render(surface, info);
 			}
 
