@@ -976,6 +976,10 @@
 	</IgnoreSet>
 
 	<IgnoreSet baseVersion="2.4.4">
+		<Assemblies>
+			<Member fullName="Uno.UI.Wasm" reason="Moved to another package" />
+		</Assemblies>
+		
 		<Types>
 			<Member
 				fullName="Windows.Gaming.UI.GameMonitor"
