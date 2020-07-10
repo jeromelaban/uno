@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="SkiaSharp.Views" Version="1.68.0" />
+update to skia 	  <PackageReference Include="SkiaSharp.Views" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net47'">
@@ -34,16 +34,23 @@
 
 
 	<ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
-		<PackageReference Include="Jellyfin.SkiaSharp.NativeAssets.LinuxArm" />
-		<PackageReference Include="SkiaSharp" />
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux" />
+		<PackageReference Include="SkiaSharp" />
 		<PackageReference Include="GtkSharp" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Uno.Foundation.Skia\Uno.Foundation.Skia.csproj" />
-	  <ProjectReference Include="..\Uno.UI.Skia\Uno.UI.Skia.csproj" />
-	  <ProjectReference Include="..\Uno.UWP.Skia\Uno.Skia.csproj" />
+	  <ProjectReference Include="..\Uno.Foundation.Skia\Uno.Foundation.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
+	  <ProjectReference Include="..\Uno.UI.Skia\Uno.UI.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
+	  <ProjectReference Include="..\Uno.UWP.Skia\Uno.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)'=='Release'">
+		<ProjectReference Include="..\Uno.UI\Uno.UI\Uno.UI.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+			<UndefineProperties>TargetFramework</UndefineProperties>
+		</ProjectReference>
 	</ItemGroup>
 
 </Project>
