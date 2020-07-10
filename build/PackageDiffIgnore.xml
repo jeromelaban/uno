@@ -1725,7 +1725,12 @@
 			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.WebView.get_IsScrollEnabled()" reason="reference API does not contain this API" />
 			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.Control.IsDelegatingFocusToTemplateChild()" reason="reference API does not contain this API" />
 			<Member fullName="System.Boolean Windows.UI.Core.SystemNavigationManager.DispatchBackRequest()" reason="reference API does not contain this API" />
-			<!-- End Skia Import -->
+
+			<Member fullName="Android.Views.View Windows.UI.Composition.Visual.get_NativeOwner()" reason="reference API does not contain this API" />
+			<Member fullName="System.Void Windows.UI.Composition.Visual.set_NativeOwner(Android.Views.View value)" reason="reference API does not contain this API" />
+			<Member fullName="System.Object Windows.UI.Composition.Visual.get_NativeOwner()" reason="reference API does not contain this API" />
+			<Member fullName="System.Boolean Windows.UI.Xaml.FrameworkElement.HasParent()" reason="reference API does not contain this API" />
+		  <!-- End Skia Import -->
 
 		</Methods>
 
@@ -1851,8 +1856,11 @@
 			<Member fullName="System.Boolean Windows.UI.Xaml.UIElement::HtmlTagIsSvg()" reason="Reference API does not contain this" />
 			<Member fullName="System.Boolean Windows.UI.Xaml.Documents.InlineCollection::IsReadOnly()" reason="Reference API does not contain this" />
 			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.WebView::IsScrollEnabled()" reason="Reference API does not contain this" />
-			<!-- End Skia Import -->
 
+			<Member fullName="Android.Views.View Windows.UI.Composition.Visual::NativeOwner()" reason="Reference API does not contain this" />
+			<Member fullName="Android.Views.View Windows.UI.Composition.Visual::NativeOwner()" reason="Reference API does not contain this" />
+			<Member fullName="System.Object Windows.UI.Composition.Visual::NativeOwner()" reason="Reference API does not contain this" />
+		  <!-- End Skia Import -->
 		</Properties>
 
 		<Fields>
