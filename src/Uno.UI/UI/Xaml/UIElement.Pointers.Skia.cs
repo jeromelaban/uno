@@ -25,6 +25,22 @@ namespace Windows.UI.Xaml
 				Window.Current.CoreWindow.PointerExited += CoreWindow_PointerExited;
 				Window.Current.CoreWindow.PointerPressed += CoreWindow_PointerPressed;
 				Window.Current.CoreWindow.PointerReleased += CoreWindow_PointerReleased;
+				Window.Current.CoreWindow.PointerWheelChanged += CoreWindow_PointerWheelChanged;
+			}
+
+			private void CoreWindow_PointerWheelChanged(CoreWindow sender, PointerEventArgs args)
+			{
+				if (this.Log().IsEnabled(LogLevel.Trace))
+				{
+					this.Log().Trace($"CoreWindow_PointerWheelChanged ({args.CurrentPoint.Position})");
+				}
+
+				PropagateEvent(args, e =>
+				{
+					var pointer = new Pointer(args.CurrentPoint.PointerId, PointerDeviceType.Mouse, false, isInRange: true);
+					var pointerArgs = new PointerRoutedEventArgs(args, pointer, e) { CanBubbleNatively = true };
+					TraverseAncestors(e, pointerArgs, e2 => e2.OnNativePointerWheel(pointerArgs));
+				});
 			}
 
 			private void CoreWindow_PointerEntered(CoreWindow sender, PointerEventArgs args)
@@ -298,7 +314,6 @@ namespace Windows.UI.Xaml
 
 		private static void OnHitTestVisibilityChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			
 		}
 		#endregion
 

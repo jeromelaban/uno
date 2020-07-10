@@ -9,45 +9,45 @@ namespace Windows.UI.Xaml.Controls
 {
 	public partial class ListViewBase
 	{
-		private int PageSize => throw new NotImplementedException();
+		//private int PageSize => throw new NotImplementedException();
 
-		private protected override bool ShouldItemsControlManageChildren => true;
+		//private protected override bool ShouldItemsControlManageChildren => true;
 
-		private void Refresh()
-		{
+		//private void Refresh()
+		//{
 			
-		}
+		//}
 
-		private void AddItems(int firstItem, int count, int section)
-		{
-			Refresh();
-		}
+		//private void AddItems(int firstItem, int count, int section)
+		//{
+		//	Refresh();
+		//}
 
-		private void RemoveItems(int firstItem, int count, int section)
-		{
-			Refresh();
-		}
+		//private void RemoveItems(int firstItem, int count, int section)
+		//{
+		//	Refresh();
+		//}
 
-		private void AddGroup(int groupIndexInView)
-		{
-			Refresh();
-		}
+		//private void AddGroup(int groupIndexInView)
+		//{
+		//	Refresh();
+		//}
 
-		private void RemoveGroup(int groupIndexInView)
-		{
-			Refresh();
-		}
+		//private void RemoveGroup(int groupIndexInView)
+		//{
+		//	Refresh();
+		//}
 
-		private void ReplaceGroup(int groupIndexInView)
-		{
-			Refresh();
-		}
+		//private void ReplaceGroup(int groupIndexInView)
+		//{
+		//	Refresh();
+		//}
 
-		private ContentControl ContainerFromGroupIndex(int groupIndex) => throw new NotImplementedException();
+		//private ContentControl ContainerFromGroupIndex(int groupIndex) => throw new NotImplementedException();
 
-		private void TryLoadMoreItems()
-		{
-			//TODO: ISupportIncrementalLoading
-		}
+		//private void TryLoadMoreItems()
+		//{
+		//	//TODO: ISupportIncrementalLoading
+		//}
 	}
 }

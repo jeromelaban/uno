@@ -9,6 +9,8 @@ using Windows.UI.Composition;
 using System.Numerics;
 using Uno.Extensions;
 using Uno.Logging;
+using Uno.UI;
+using Uno.UI.Extensions;
 
 namespace Windows.UI.Xaml
 {
@@ -37,6 +39,8 @@ namespace Windows.UI.Xaml
 			RegisterPropertyChangedCallback(VisibilityProperty, OnVisibilityPropertyChanged);
 			RegisterPropertyChangedCallback(Controls.Canvas.LeftProperty, OnCanvasLeftChanged);
 			RegisterPropertyChangedCallback(Controls.Canvas.TopProperty, OnCanvasTopChanged);
+
+			UpdateHitTest();
 		}
 
 		private void OnCanvasTopChanged(DependencyObject sender, DependencyProperty dp)
@@ -51,6 +55,8 @@ namespace Windows.UI.Xaml
 
 		private void OnVisibilityPropertyChanged(DependencyObject sender, DependencyProperty dp)
 		{
+			UpdateHitTest();
+
 			_visibilityCache = (Visibility)GetValue(VisibilityProperty);
 		}
 
@@ -150,6 +156,11 @@ namespace Windows.UI.Xaml
 			UpdateOpacity();
 		}
 
+		partial void OnIsHitTestVisibleChangedPartial(bool oldValue, bool newValue)
+		{
+			UpdateHitTest();
+		}
+
 		private void UpdateOpacity() => Visual.Opacity = Visibility == Visibility.Visible ? (float)Opacity : 0;
 
 		private void UpdateChildVisual(UIElement child)
@@ -218,6 +229,11 @@ namespace Windows.UI.Xaml
 
 		internal void ArrangeVisual(Rect finalRect, bool clipToBounds, Rect? clippedFrame = default)
 		{
+			LayoutSlotWithMarginsAndAlignments =
+				VisualTreeHelper.GetParent(this) is UIElement parent
+					? finalRect.DeflateBy(parent.GetBorderThickness())
+					: finalRect;
+
 			var oldFinalRect = _currentFinalRect;
 			_currentFinalRect = finalRect;
 

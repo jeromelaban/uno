@@ -16,7 +16,7 @@ namespace Windows.UI.Composition
 
 		internal override void Render(SKSurface surface, SKImageInfo info)
 		{
-			if(this.Geometry is CompositionPathGeometry cpg)
+			if (Geometry is CompositionPathGeometry cpg)
 			{
 				if (cpg.Path.GeometrySource is SkiaGeometrySource2D geometrySource)
 				{

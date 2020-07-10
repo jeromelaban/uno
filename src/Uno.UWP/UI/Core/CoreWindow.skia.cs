@@ -19,6 +19,7 @@ namespace Windows.UI.Core
 		public event TypedEventHandler<CoreWindow, PointerEventArgs> PointerMoved;
 		public event TypedEventHandler<CoreWindow, PointerEventArgs> PointerPressed;
 		public event TypedEventHandler<CoreWindow, PointerEventArgs> PointerReleased;
+		public event TypedEventHandler<CoreWindow, PointerEventArgs> PointerWheelChanged;
 
 		partial void InitializePartial()
 		{
@@ -42,6 +43,9 @@ namespace Windows.UI.Core
 
 		void ICoreWindowEvents.RaisePointerReleased(PointerEventArgs args)
 			=> PointerReleased?.Invoke(this, args);
+
+		void ICoreWindowEvents.RaisePointerWheelChanged(PointerEventArgs args)
+			=> PointerWheelChanged?.Invoke(this, args);
 	}
 
 	public interface ICoreWindowEvents
@@ -51,5 +55,6 @@ namespace Windows.UI.Core
 		void RaisePointerMoved(PointerEventArgs args);
 		void RaisePointerPressed(PointerEventArgs args);
 		void RaisePointerReleased(PointerEventArgs args);
+		void RaisePointerWheelChanged(PointerEventArgs args);
 	}
 }

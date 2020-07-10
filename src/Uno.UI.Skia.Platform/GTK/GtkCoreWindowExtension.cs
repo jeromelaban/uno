@@ -34,13 +34,47 @@ namespace Uno.UI.Skia.Platform.GTK
 			GtkHost.Window.AddEvents((int)(
 				Gdk.EventMask.PointerMotionMask
 				| EventMask.ButtonPressMask
+				| EventMask.ScrollMask
+				| EventMask.SmoothScrollMask
 			));
 			GtkHost.Window.MotionNotifyEvent += OnMotionEvent;
 			GtkHost.Window.ButtonPressEvent += Window_ButtonPressEvent;
 			GtkHost.Window.ButtonReleaseEvent += Window_ButtonReleaseEvent;
 			GtkHost.Window.EnterNotifyEvent += Window_EnterEvent;
 			GtkHost.Window.LeaveNotifyEvent += Window_LeaveEvent;
+			GtkHost.Window.ScrollEvent += Window_ScrollEvent;
 		}
+		private void Window_ScrollEvent(object o, ScrollEventArgs args)
+		{
+			try
+			{
+				_ownerEvents.RaisePointerWheelChanged(
+					new PointerEventArgs(
+						new Windows.UI.Input.PointerPoint(
+							frameId: 0,
+							timestamp: args.Event.Time,
+							device: PointerDevice.For(PointerDeviceType.Mouse),
+							pointerId: 0,
+							rawPosition: new Windows.Foundation.Point(args.Event.X, args.Event.Y),
+							position: new Windows.Foundation.Point(args.Event.X, args.Event.Y),
+							isInContact: false,
+							properties: BuildProperties(args.Event)
+						)
+					)
+				);
+			}
+			catch (Exception e)
+			{
+				this.Log().Error("Failed to raise PointerExited", e);
+			}
+		}
+
+		private PointerPointProperties BuildProperties(EventScroll scrollEvent)
+			=> new PointerPointProperties
+			   {
+				   MouseWheelDelta = scrollEvent.DeltaX != 0 ? (int)scrollEvent.DeltaX : (int)scrollEvent.DeltaY,
+				   IsHorizontalMouseWheel = scrollEvent.DeltaX != 0,
+				};
 
 		private void Window_LeaveEvent(object o, LeaveNotifyEventArgs args)
 		{

@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Media;
 using Uno.Extensions;
 using Windows.UI.Composition;
 using Uno.Disposables;
+using System.IO.Compression;
 
 namespace Windows.UI.Xaml.Shapes
 {
@@ -36,6 +37,13 @@ namespace Windows.UI.Xaml.Shapes
 		}
 
 		private void InitCommonShapeProperties() { }
+
+		protected override Size MeasureOverride(Size availableSize)
+		{
+			var geometrySource = GetGeometry(availableSize);
+
+			return new Size(geometrySource.Geometry.Bounds.Width, geometrySource.Geometry.Bounds.Height);
+		}
 
 		protected override Size ArrangeOverride(Size finalSize)
 		{

@@ -52,7 +52,8 @@ namespace Windows.UI.Xaml
 			}
 		}
 
-		private bool _isMeasuring = false;
+		private static bool _isMeasureQueued = false;
+		private static bool _isMeasuring = false;
 
 		internal static void InvalidateMeasure()
 		{
@@ -63,26 +64,37 @@ namespace Windows.UI.Xaml
 		{
 			if (_window != null)
 			{
-				try
+				if (!_isMeasureQueued)
 				{
-					_isMeasuring = true;
+					_isMeasureQueued = true;
 
-					var sw = Stopwatch.StartNew();
-					_window.Measure(Bounds.Size);
-					_window.Arrange(Bounds);
-					sw.Stop();
+					CoreDispatcher.Main.RunAsync(CoreDispatcherPriority.Normal, () => {
+						try
+						{
+							_isMeasureQueued = false;
 
-					if (this.Log().IsEnabled(Microsoft.Extensions.Logging.LogLevel.Debug))
-					{
-						this.Log().Debug($"DispatchInvalidateMeasure: {sw.Elapsed}");
-					}
+							_isMeasuring = true;
 
-					InvalidateRender();
+							var sw = Stopwatch.StartNew();
+							_window.Measure(Bounds.Size);
+							_window.Arrange(Bounds);
+							sw.Stop();
+
+							if (this.Log().IsEnabled(Microsoft.Extensions.Logging.LogLevel.Debug))
+							{
+								this.Log().Debug($"DispatchInvalidateMeasure: {sw.Elapsed}");
+							}
+
+							InvalidateRender();
+						}
+						finally
+						{
+							_isMeasuring = false;
+						}
+					});
 				}
-				finally
-				{
-					_isMeasuring = false;
-				}
+
+				
 			}
 		}
 

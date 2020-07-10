@@ -33,5 +33,21 @@ namespace Windows.UI.Xaml.Controls
 				return new Size(0, 0);
 			}
 		}
+
+		public ScrollContentPresenter()
+		{
+			PointerWheelChanged += ScrollContentPresenter_PointerWheelChanged;
+		}
+
+		private void ScrollContentPresenter_PointerWheelChanged(object sender, Input.PointerRoutedEventArgs e)
+		{
+			var properties = e.GetCurrentPoint(null).Properties;
+
+			(TemplatedParent as ScrollViewer)?.OnScrollInternal(
+				properties.IsHorizontalMouseWheel ? properties.MouseWheelDelta : 0,
+				!properties.IsHorizontalMouseWheel ? properties.MouseWheelDelta : 0,
+				false
+			);
+		}
 	}
 }
