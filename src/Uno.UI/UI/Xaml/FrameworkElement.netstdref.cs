@@ -16,7 +16,7 @@ namespace Windows.UI.Xaml
 
 		partial void OnLoadingPartial();
 
-		public T AddChild<T>(T child) where T : View
+		internal T AddChild<T>(T child) where T : View
 		{
 			_children.Add(child);
 			OnAddChild(child);
@@ -24,7 +24,7 @@ namespace Windows.UI.Xaml
 			return child;
 		}
 
-		public T AddChild<T>(T child, int index) where T : View
+		internal T AddChild<T>(T child, int index) where T : View
 		{
 			_children.Insert(index, child);
 			OnAddChild(child);
@@ -35,23 +35,23 @@ namespace Windows.UI.Xaml
 		private void OnAddChild(View child)
 		{
 		}
-		
-		public T RemoveChild<T>(T child) where T : View
+
+		internal T RemoveChild<T>(T child) where T : View
 		{
 			return child;
 		}
 
-		public View FindFirstChild()
+		internal View FindFirstChild()
 		{
 			return _children.FirstOrDefault();
 		}
 
-		public virtual IEnumerable<View> GetChildren()
+		internal virtual IEnumerable<View> GetChildren()
 		{
 			return _children;
 		}
 
-		public bool HasParent()
+		internal bool HasParent()
 		{
 			return Parent != null;
 		}
@@ -69,7 +69,7 @@ namespace Windows.UI.Xaml
 
 		public bool IsLoaded { get; private set; }
 
-		public void ForceLoaded()
+		internal void ForceLoaded()
 		{
 			IsLoaded = true;
 			EnterTree();
@@ -79,7 +79,7 @@ namespace Windows.UI.Xaml
 		{
 		}
 
-		public int InvalidateMeasureCallCount { get; private set; }
+		internal int InvalidateMeasureCallCount { get; private set; }
 
 		private bool IsTopLevelXamlView() => false;
 
@@ -92,7 +92,7 @@ namespace Windows.UI.Xaml
 
 		public double ActualHeight => 0;
 
-		public Size UnclippedDesiredSize => new Size();
+		internal Size UnclippedDesiredSize => new Size();
 
 		public global::System.Uri BaseUri { get; internal set; }
 

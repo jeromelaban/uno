@@ -29,6 +29,8 @@ namespace Windows.UI.Xaml
 			Initialize();
 		}
 
+		public new bool IsLoaded => base.IsLoaded; // The IsLoaded state is managed by the UIElement, FrameworkElement only makes it publicly visible
+
 		bool IFrameworkElementInternal.HasLayouter => true;
 
 		partial void Initialize();

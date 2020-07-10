@@ -55,11 +55,6 @@ namespace Windows.UI.Xaml.Input
 			throw new NotImplementedException();
 		}
 
-		public static void OnFocusChanged(View control, FocusState state)
-		{
-			throw new NotImplementedException();
-		}
-
 		private static void FocusNative(object toFocus) { }
 	}
 }

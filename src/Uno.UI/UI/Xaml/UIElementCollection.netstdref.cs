@@ -10,7 +10,7 @@ namespace Windows.UI.Xaml.Controls
 	public partial class UIElementCollection : BatchCollection<UIElement>
 	{
 
-		public UIElementCollection(FrameworkElement view) : base(view)
+		internal UIElementCollection(FrameworkElement view) : base(view)
 		{
 		}
 

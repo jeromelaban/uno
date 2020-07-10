@@ -10,7 +10,7 @@ namespace Windows.UI.Xaml.Controls
 	{
 		private readonly UIElement _view;
 
-		public UIElementCollection(UIElement view) : base(view)
+		internal UIElementCollection(UIElement view) : base(view)
 		{
 			_view = view;
 		}
