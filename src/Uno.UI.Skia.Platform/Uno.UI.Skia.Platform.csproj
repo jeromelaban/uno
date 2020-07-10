@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-update to skia 	  <PackageReference Include="SkiaSharp.Views" />
+		<PackageReference Include="SkiaSharp.Views" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net47'">

@@ -44,16 +44,16 @@ namespace Windows.UI.Composition
 
 				var visualMatrix = surface.Canvas.TotalMatrix;
 
-				visualMatrix.PreConcat(SKMatrix.CreateTranslation(visual.Offset.X, visual.Offset.Y));
+				visualMatrix = visualMatrix.PreConcat(SKMatrix.CreateTranslation(visual.Offset.X, visual.Offset.Y));
 
 				if (visual.RotationAngleInDegrees != 0)
 				{
-					visualMatrix.PreConcat(SKMatrix.CreateRotationDegrees(visual.RotationAngleInDegrees, visual.CenterPoint.X, visual.CenterPoint.Y));
+					visualMatrix = visualMatrix.PreConcat(SKMatrix.CreateRotationDegrees(visual.RotationAngleInDegrees, visual.CenterPoint.X, visual.CenterPoint.Y));
 				}
 
 				if (visual.TransformMatrix != Matrix4x4.Identity)
 				{
-					visualMatrix.PreConcat(visual.TransformMatrix.ToSKMatrix44().Matrix);
+					visualMatrix = visualMatrix.PreConcat(visual.TransformMatrix.ToSKMatrix44().Matrix);
 				}
 
 				surface.Canvas.SetMatrix(visualMatrix);
