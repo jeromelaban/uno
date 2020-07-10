@@ -1,4 +1,4 @@
-#if XAMARIN || __WASM__ || __NETSTD_REFERENCE__
+#if XAMARIN || NETSTANDARD
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,8 +15,8 @@ namespace Windows.UI.Xaml.Controls
 			DefaultStyleKey = typeof(ProgressRing);
 		}
 
-#if !__WASM__ && !__MACOS__ && !__NETSTD_REFERENCE__
-#region Foreground
+#if !NETSTANDARD && !__MACOS__ && !__NETSTD_REFERENCE__
+		#region Foreground
 
 		/// <summary>
 		/// Gets or sets a value that indicates whether the <see cref="ProgressRing"/> is showing progress.
