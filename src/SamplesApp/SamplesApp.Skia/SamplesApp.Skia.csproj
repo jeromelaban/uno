@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-		<DefineConstants>__SKIA__;HAS_UNO</DefineConstants>
+		<DefineConstants>$(DefineConstants);__SKIA__;HAS_UNO</DefineConstants>
 		<WasmHead>true</WasmHead>
 		<!--<BuildingInsideUnoSourceGenerator>true</BuildingInsideUnoSourceGenerator>-->
   </PropertyGroup>
@@ -39,9 +39,5 @@
 	<Import Project="..\UITests.Shared\UITests.Shared.projitems" Label="Shared" />
 
 	<Import Project="..\SamplesApp.UnitTests.Shared\SamplesApp.UnitTests.Shared.projitems" Label="Shared" />
-
-	<!--<Import Project="..\UITests.Shared\UITests.Shared.projitems" Label="Shared" />
-
-	<Import Project="..\SamplesApp.UnitTests.Shared\SamplesApp.UnitTests.Shared.projitems" Label="Shared" />-->
 
 </Project>
