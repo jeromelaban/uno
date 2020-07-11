@@ -143,6 +143,8 @@ namespace Windows.UI.Xaml
 			throw new NotSupportedException("UIElement doesn't implement ArrangeCore. Inherit from FrameworkElement, which properly implements ArrangeCore.");
 		}
 
+		internal void ClearChildren() { }
+
 		public Size RenderSize
 		{
 			get => Visibility == Visibility.Collapsed ? new Size() : _size;
