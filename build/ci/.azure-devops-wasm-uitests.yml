@@ -10,6 +10,7 @@ jobs:
 
   variables:
     NUGET_PACKAGES: $(build.sourcesdirectory)/.nuget
+    EMSCRIPTEN_VERSION: 1.39.11
 
   steps:
   - checkout: self
@@ -28,27 +29,54 @@ jobs:
       sudo cert-sync /etc/ssl/certs/ca-certificates.crt
 
     displayName: 'Update the SSL trusted certificates'
-    
+
   - bash: |
-      source /emsdk/emsdk_env.sh
+      cd ~
+      echo Installing emscripten $(EMSCRIPTEN_VERSION)
+      git clone --branch $(EMSCRIPTEN_VERSION) https://github.com/emscripten-core/emsdk
+      cd ~/emsdk
+      ./emsdk install $(EMSCRIPTEN_VERSION)
+      ./emsdk activate $(EMSCRIPTEN_VERSION)
+
+    displayName: 'Setup Emscripten'
+
+  - bash: |
+      source ~/emsdk/emsdk_env.sh
       msbuild /r /p:Configuration=Release src/SamplesApp/SamplesApp.Wasm/SamplesApp.Wasm.csproj /p:UnoSourceGeneratorUseGenerationHost=true /p:UnoSourceGeneratorUseGenerationController=false
 
-    displayName: 'Build sample app'
-
-  - bash: |
-      msbuild /r /p:Configuration=Release src/SamplesApp/SamplesApp.UITests/SamplesApp.UITests.csproj
-
-    displayName: 'Build Tests'
+    displayName: 'Build Interpreter Sample App'
 
   - task: CopyFiles@2
     displayName: 'Publish Wasm Site'
     inputs:
       SourceFolder: $(build.sourcesdirectory)/src/SamplesApp/SamplesApp.Wasm/bin/Release/netstandard2.0/dist
       Contents: '**/*.*'
-      TargetFolder: $(build.artifactstagingdirectory)/site
+      TargetFolder: $(build.artifactstagingdirectory)/site-InterpreterAndAOT
       CleanTargetFolder: false
       OverWrite: false
       flattenFolders: false
+    
+  - bash: |
+      source ~/emsdk/emsdk_env.sh
+      rm -fr $(build.sourcesdirectory)/src/SamplesApp/SamplesApp.Wasm/bin/Release/netstandard2.0/dist
+      msbuild /r /p:Configuration=Release src/SamplesApp/SamplesApp.Wasm/SamplesApp.Wasm.csproj /p:WasmShellMonoRuntimeExecutionMode=InterpreterAndAOT /p:UnoSourceGeneratorUseGenerationHost=true /p:UnoSourceGeneratorUseGenerationController=false
+
+    displayName: 'Build InterpreterAndAOT Sample App'
+
+  - task: CopyFiles@2
+    displayName: 'Publish Wasm Site'
+    inputs:
+      SourceFolder: $(build.sourcesdirectory)/src/SamplesApp/SamplesApp.Wasm/bin/Release/netstandard2.0/dist
+      Contents: '**/*.*'
+      TargetFolder: $(build.artifactstagingdirectory)/site-InterpreterAndAOT
+      CleanTargetFolder: false
+      OverWrite: false
+      flattenFolders: false
+
+  - bash: |
+      msbuild /r /p:Configuration=Release src/SamplesApp/SamplesApp.UITests/SamplesApp.UITests.csproj
+
+    displayName: 'Build Tests'
 
   - task: CopyFiles@2
     displayName: 'Publish Wasm UITest binaries'
@@ -124,6 +152,13 @@ jobs:
   dependsOn: Wasm_UITests_Build
   container: nv-bionic-wasm
 
+  strategy:
+    matrix:
+      Runtime-Interpreter:
+        DOTNET_WASM_RUNTIME: Interpreter
+      Runtime-InterpreterAndAOT:
+        DOTNET_WASM_RUNTIME: InterpreterAndAOT
+
   pool:
     vmImage: 'ubuntu-16.04'
 
@@ -152,17 +187,18 @@ jobs:
     env:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
+      DOTNET_WASM_RUNTIME: "$(DOTNET_WASM_RUNTIME)"
 
     displayName: 'Running UI Tests'
 
   - task: PublishTestResults@2
     condition: always()
     inputs:
-      testResultsFiles: '$(build.sourcesdirectory)/build/wasm-uitest-binaries/TestResult.xml'
+      testResultsFiles: '$(build.sourcesdirectory)/build/wasm-uitest-binaries/TestResult-$DOTNET_WASM_RUNTIME.xml'
       testRunTitle: 'WebAssembly Test Run'
       testResultsFormat: 'NUnit'
       failTaskOnFailedTests: true
-      searchFolder: '$(build.artifactstagingdirectory)/screenshots/wasm-automated' # https://github.com/microsoft/azure-pipelines-tasks/issues/10072
+      searchFolder: '$(build.artifactstagingdirectory)/screenshots/wasm-automated-$DOTNET_WASM_RUNTIME' # https://github.com/microsoft/azure-pipelines-tasks/issues/10072
 
   - task: PublishBuildArtifacts@1
     condition: always()
