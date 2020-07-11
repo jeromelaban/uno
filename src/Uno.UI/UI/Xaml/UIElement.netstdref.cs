@@ -40,6 +40,8 @@ namespace Windows.UI.Xaml
 			throw new NotSupportedException();
 		}
 
+		internal void ClearChildren() { }
+
 		protected virtual void OnVisibilityChanged(Visibility oldValue, Visibility newVisibility)
 		{
 		}

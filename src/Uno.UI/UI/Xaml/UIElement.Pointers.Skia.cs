@@ -162,13 +162,20 @@ namespace Windows.UI.Xaml
 				rect.X += root.X;
 				rect.Y += root.Y;
 
-				if (args.CurrentPoint.Position.X >= rect.X	
-					&& args.CurrentPoint.Position.Y >= rect.Y
-					&& args.CurrentPoint.Position.X <= rect.X + rect.Width
-					&& args.CurrentPoint.Position.Y <= rect.Y + rect.Height)
+				var position = args.CurrentPoint.Position;
+
+				if (element.RenderTransform != null)
+				{
+					position = element.RenderTransform.Inverse.TransformPoint(position);
+				}
+
+				if (position.X >= rect.X	
+					&& position.Y >= rect.Y
+					&& position.X <= rect.X + rect.Width
+					&& position.Y <= rect.Y + rect.Height)
 				{
 
-					foreach (var e in element.GetChildren())
+					foreach (var e in element.GetChildren().ToArray())
 					{
 						raised |= PropagageEventRecursive(args, rect.Location, e, raiseEvent);
 					}
