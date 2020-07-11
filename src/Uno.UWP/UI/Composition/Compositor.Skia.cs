@@ -2,6 +2,7 @@
 using SkiaSharp;
 using System.Diagnostics;
 using System.Numerics;
+using Windows.Services.Maps;
 
 namespace Windows.UI.Composition
 {
@@ -57,6 +58,16 @@ namespace Windows.UI.Composition
 				}
 
 				surface.Canvas.SetMatrix(visualMatrix);
+
+				if(visual.Clip is InsetClip insetClip)
+				{
+					surface.Canvas.ClipRect(new SKRect {
+						Top = insetClip.TopInset,
+						Bottom = insetClip.BottomInset,
+						Left = insetClip.LeftInset,
+						Right = insetClip.RightInset
+					});
+				}
 
 				visual.Render(surface, info);
 

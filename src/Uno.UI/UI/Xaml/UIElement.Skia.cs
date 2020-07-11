@@ -282,16 +282,19 @@ namespace Windows.UI.Xaml
 			Visual.Offset = new Vector3((float)rect.X, (float)rect.Y, 0);
 			Visual.Size = new Vector2((float)rect.Width, (float)rect.Height);
 
-			//if (clip is Rect rectClip)
-			//{
-			//	Visual.Clip = new InsetClip()
-			//	{
-			//		RightInset = (float)rectClip.Right,
-			//		TopInset = (float)rectClip.Top,
-			//		LeftInset = (float)rectClip.Left,
-			//		BottomInset = (float)rectClip.Bottom,
-			//	};
-			//}
+			if (clip is Rect rectClip)
+			{
+				Visual.Clip = new InsetClip() {
+					TopInset = (float)rectClip.Top,
+					LeftInset = (float)rectClip.Left,
+					BottomInset = (float)rectClip.Bottom,
+					RightInset = (float)rectClip.Right,
+				};
+			}
+			else
+			{
+				Visual.Clip = null;
+			}
 		}
 	}
 }

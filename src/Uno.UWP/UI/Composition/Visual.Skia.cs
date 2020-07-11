@@ -11,6 +11,12 @@ namespace Windows.UI.Composition
 		{
 
 		}
+
+		public CompositionClip Clip
+		{
+			get;
+			set;
+		}
 	}
 }
 #endif
