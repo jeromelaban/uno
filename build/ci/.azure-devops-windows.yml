@@ -85,11 +85,18 @@ jobs:
     condition: and(succeeded(), not(eq(variables['build.reason'], 'PullRequest')), not(eq(variables['SignClientSecret'], '')), not(eq(variables['SignClientUser'], '')))
 
   - task: PublishBuildArtifacts@1
-    # https://developercommunity.visualstudio.com/content/problem/284991/public-vsts-previouw-cant-set-build-number-of-pr-b.html
     condition: always()
     inputs:
       PathtoPublish: $(build.artifactstagingdirectory)
       ArtifactName: NugetPackages
+      ArtifactType: Container
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish Skia Artifacts
+    condition: always()
+    inputs:
+      PathtoPublish: $(build.sourcesdirectory)\src\SamplesApp\SamplesApp.Skia.Gtk\bin\Release\netcoreapp3.1\**
+      ArtifactName: uno-skia-artifacts
       ArtifactType: Container
 
   # Publish PR packages to local feed to enable canary testing from PR artifacts

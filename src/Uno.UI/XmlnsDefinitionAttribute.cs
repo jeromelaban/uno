@@ -26,13 +26,15 @@ namespace System.Windows.Markup
 		public const string RootUINamespace = "Windows.UI";
 #endif
 
+		public const string WindowsUINamespace = "Windows.UI";
+
 		public const string BaseXamlNamespace = RootUINamespace + ".Xaml";
 
 		internal static class Namespaces
 		{
 			public const string Controls = BaseXamlNamespace + ".Controls";
 			public const string Primitives = Controls + ".Primitives";
-			public const string Text = RootUINamespace + ".Text";
+			public const string Text = WindowsUINamespace + ".Text";
 			public const string Data = BaseXamlNamespace + ".Data";
 			public const string Documents = BaseXamlNamespace + ".Documents";
 			public const string Media = BaseXamlNamespace + ".Media";
