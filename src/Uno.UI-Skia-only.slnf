@@ -2,7 +2,6 @@
   "solution": {
     "path": "Uno.UI.sln",
     "projects": [
-      "..\\build\\Uno.UI.Build.csproj",
       "AddIns\\Uno.UI.Lottie.Skia\\Uno.UI.Lottie.Skia.csproj",
       "AddIns\\Uno.UI.Lottie\\Uno.UI.Lottie.csproj",
       "AddIns\\Uno.UI.MSAL.Skia\\Uno.UI.MSAL.Skia.csproj",
@@ -16,6 +15,7 @@
       "SamplesApp\\SamplesApp.UITests\\SamplesApp.UITests.csproj",
       "SamplesApp\\SamplesApp.UWP.Design\\SamplesApp.UWP.Design.csproj",
       "SamplesApp\\SamplesApp.UnitTests.Shared\\SamplesApp.UnitTests.Shared.shproj",
+      "SamplesApp\\SamplsApp.Skia.Gtk.Windows\\SamplsApp.Skia.Gtk.Windows.wapproj",
       "SamplesApp\\UITests.Shared\\UITests.Shared.shproj",
       "SolutionTemplate\\Uno.ProjectTemplates.Dotnet\\Uno.ProjectTemplates.Dotnet.csproj",
       "SourceGenerators\\System.Xaml\\Uno.Xaml.csproj",
