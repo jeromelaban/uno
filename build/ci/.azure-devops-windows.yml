@@ -95,7 +95,7 @@ jobs:
     displayName: Publish Skia Artifacts
     condition: always()
     inputs:
-      PathtoPublish: $(build.sourcesdirectory)\src\SamplesApp\SamplesApp.Skia.Gtk\bin\Release\netcoreapp3.1\**
+      PathtoPublish: $(build.sourcesdirectory)\src\SamplesApp\SamplesApp.Skia.Gtk\bin\Release\netcoreapp3.1
       ArtifactName: uno-skia-artifacts
       ArtifactType: Container
 
