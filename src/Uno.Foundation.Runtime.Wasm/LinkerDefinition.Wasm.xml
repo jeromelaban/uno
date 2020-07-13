@@ -1,7 +1,4 @@
 ﻿<linker>
-  <assembly fullname="Uno.Foundation">
-	<type fullname="Uno.Foundation.WebAssemblyRuntime"/>
-	<type fullname="Uno.Foundation.Interop.JSObject" />
-  </assembly>
+  <assembly fullname="Uno.Foundation.Runtime.Wasm" />
 </linker>
 
