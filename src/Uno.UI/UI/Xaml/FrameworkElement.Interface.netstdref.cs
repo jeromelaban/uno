@@ -40,11 +40,11 @@ namespace Windows.UI.Xaml
 			OnLoadingPartial();
 		}
 
-		protected virtual void OnLoaded()
+		private protected virtual void OnLoaded()
 		{
 		}
 
-		protected virtual void OnUnloaded()
+		private protected virtual void OnUnloaded()
 		{
 		}
 
