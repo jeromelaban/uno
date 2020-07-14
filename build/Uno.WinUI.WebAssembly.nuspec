@@ -21,4 +21,8 @@
     </dependencies>
 
   </metadata>
+  
+  <files>
+	<file src="_._" target="lib\netstandard1.0" />
+  </files>
 </package>
