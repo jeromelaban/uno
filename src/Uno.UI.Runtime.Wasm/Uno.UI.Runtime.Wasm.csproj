@@ -4,6 +4,8 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
+
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
 		<DefineConstants>$(DefineConstants);IS_UNO</DefineConstants>
 
@@ -11,6 +13,8 @@
 		<Deterministic>true</Deterministic>
 
 		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">WebAssembly</UnoRuntimeIdentifier>
+
+		<PackageId Condition="'$(UNO_UWP_BUILD)'!='true'">Uno.WinUI.Runtime.Wasm</PackageId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -41,7 +45,7 @@
 
 		<PropertyGroup>
 			<_OverrideTargetFramework>$(TargetFramework)</_OverrideTargetFramework>
-			<_TargetNugetFolder>$(USERPROFILE)\.nuget\packages\$(PackageId)\$(UnoNugetOverrideVersion)\uno-runtime\$(UnoRuntimeIdentifier.ToLowerInvariant())</_TargetNugetFolder>
+			<_TargetNugetFolder>$(USERPROFILE)\.nuget\packages\$(PackageId)\$(UnoNugetOverrideVersion)\lib\$(TargetFramework)</_TargetNugetFolder>
 		</PropertyGroup>
 		<ItemGroup>
 			<_OutputFiles Include="$(TargetDir)**" />
@@ -53,5 +57,9 @@
 		<Copy SourceFiles="@(_OutputFiles)" DestinationFiles="@(_OutputFiles->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename)%(Extension)')" />
 		<Copy SourceFiles="@(_OutputFilesPDB)" DestinationFiles="@(_OutputFilesPDB->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename).pdb')" />
 	</Target>
+
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="WasmHttpHandler.cs" />
+	</ItemGroup>
 	
 </Project>
