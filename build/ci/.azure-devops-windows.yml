@@ -1,11 +1,12 @@
 parameters:
-  poolName: ''
+  vmImage: ''
 
 jobs:
 - job: VS_Latest
   timeoutInMinutes: 90
 
-  pool: ${{ parameters.poolName }}
+  pool:
+    vmImage: ${{ parameters.vmImage }}
 
   strategy:
     matrix:
