@@ -35,7 +35,7 @@ namespace Windows.UI.Xaml
 			Initialize();
 		}
 
-		protected virtual void OnLoading()
+		private protected virtual void OnLoading()
 		{
 			OnLoadingPartial();
 		}

@@ -28,12 +28,12 @@ namespace Windows.UI.Xaml
             return null;
         }
 
-        protected virtual void OnLoaded()
+		private protected virtual void OnLoaded()
         {
 
         }
 
-        protected virtual void OnUnloaded()
+		private protected virtual void OnUnloaded()
         {
 
         }
