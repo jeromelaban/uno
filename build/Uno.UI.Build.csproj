@@ -213,6 +213,7 @@
 
 		<Exec Command="dotnet tool install --global Uno.PackageDiff --version 1.0.0-dev.36" IgnoreExitCode="true" />
 		<Exec Command="generatepkgdiff --base=$(PackageNamePrefix) --other=$(PackageNamePrefix).$(GITVERSION_FullSemVer).nupkg --diffignore=PackageDiffIgnore.xml --outfile=$(OutputDir)\ApiDiff.$(GITVERSION_FullSemVer).md" />
+		<Exec Command="dotnet $(MSBuildThisFileDirectory)..\Uno.ReferenceImplComparer\bin\Release\Uno.ReferenceImplComparer.dll $(MSBuildThisFileDirectory)$(PackageNamePrefix).$(GITVERSION_FullSemVer).nupkg" />
 	</Target>
 
 </Project>

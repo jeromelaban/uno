@@ -13,10 +13,12 @@ namespace Uno.ReferenceImplComparer
 {
 	class Program
 	{
-		static void Main(string[] args)
+		static int Main(string[] args)
 		{
 			var hasErrors = false;
 			var filePath = UnpackArchive(args[0]);
+
+			Console.WriteLine($"Validating package {args[0]}");
 
 			foreach(var assembly in Directory.GetFiles(Path.Combine(filePath, "lib", "netstandard2.0"), "*.dll"))
 			{
@@ -35,6 +37,8 @@ namespace Uno.ReferenceImplComparer
 					}
 				}
 			}
+
+			return hasErrors ? 1 : 0;
 		}
 
 		private static bool CompareAssemblies(AssemblyDefinition referenceAssemby, AssemblyDefinition runtimeAssembly, string identifier)
