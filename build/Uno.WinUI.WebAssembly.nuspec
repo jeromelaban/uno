@@ -15,9 +15,9 @@
 	<repository type="git" url="https://github.com/unoplatform/uno.git" />
 
 	<dependencies>
-	  <dependency id="Uno.UI" version="1.0.0" />
+	  <dependency id="Uno.WinUI" version="1.0.0" />
 	  <dependency id="Uno.Foundation.Runtime.Wasm" version="1.0.0" />
-	  <dependency id="Uno.UI.Runtime.Wasm" version="1.0.0" />
+	  <dependency id="Uno.WinUI.Runtime.Wasm" version="1.0.0" />
     </dependencies>
 
   </metadata>

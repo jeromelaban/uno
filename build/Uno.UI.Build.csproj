@@ -171,23 +171,34 @@
 			<PackageNamePrefix Condition="'$(UNO_UWP_BUILD)'=='true'">Uno.UI</PackageNamePrefix>
 		</PropertyGroup>
 
-		<XmlUpdate XmlFileName=".\Uno.WinUI.nuspec" XPath="/x:package/x:metadata/x:dependencies/x:dependency/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
-		<XmlUpdate XmlFileName=".\Uno.WinUI.Lottie.nuspec" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
-		<XmlUpdate XmlFileName=".\Uno.WinUI.RemoteControl.nuspec" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
-		<XmlUpdate XmlFileName=".\Uno.WinUI.Skia.nuspec" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
-		<XmlUpdate XmlFileName=".\Uno.WinUI.WebAssembly.nuspec" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
-		
-		<XmlUpdate XmlFileName=".\Uno.WinUI.Lottie.nuspec" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@id" Value="$(PackageNamePrefix)" Namespace="$(NugetNamespace)" Prefix="x" />
-		<XmlUpdate XmlFileName=".\Uno.WinUI.RemoteControl.nuspec" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@id" Value="$(PackageNamePrefix)" Namespace="$(NugetNamespace)" Prefix="x" />
-		<XmlUpdate XmlFileName=".\Uno.WinUI.Skia.nuspec" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@id" Value="$(PackageNamePrefix)" Namespace="$(NugetNamespace)" Prefix="x" />
-		<XmlUpdate XmlFileName=".\Uno.WinUI.WebAssembly.nuspec" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@id" Value="$(PackageNamePrefix)" Namespace="$(NugetNamespace)" Prefix="x" />
+		<ItemGroup>
+			<_NuspecFiles Include=".\Uno.WinUI.nuspec" />
+			<_NuspecFiles Include=".\Uno.WinUI.Lottie.nuspec" />
+			<_NuspecFiles Include=".\Uno.WinUI.RemoteControl.nuspec" />
+			<_NuspecFiles Include=".\Uno.WinUI.Skia.nuspec" />
+			<_NuspecFiles Include=".\Uno.WinUI.WebAssembly.nuspec" />
+		</ItemGroup>
 
+		<!-- Update the package version -->
+		<XmlUpdate XmlFileName="%(_NuspecFiles)" XPath="/x:package/x:metadata/x:dependencies/x:dependency/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
+
+		<!-- Update Uno.WinUI references version -->
+		<XmlUpdate XmlFileName="%(_NuspecFiles)" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
+		
+		<!-- Update Uno.Foundation.Runtime.Wasm references version -->
+		<XmlUpdate XmlFileName="%(_NuspecFiles)" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.Foundation.Runtime.Wasm']/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
+		
+		<!-- Update Uno.Foundation.Runtime.Wasm references version -->
+		<XmlUpdate XmlFileName="%(_NuspecFiles)" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI.Runtime.Wasm']/@version" Value="$(GITVERSION_FullSemVer)" Namespace="$(NugetNamespace)" Prefix="x" />
+
+		<!-- Update package ID based on WinUI / UWP source tree -->
 		<XmlUpdate XmlFileName=".\Uno.WinUI.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix)" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.Lottie.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).Lottie" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.RemoteControl.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).RemoteControl" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.Skia.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).Skia" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.WebAssembly.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).WebAssembly" Namespace="$(NugetNamespace)" Prefix="x" />
 
+		<!-- Update package Title based on WinUI / UWP source tree -->
 		<XmlUpdate XmlFileName=".\Uno.WinUI.nuspec" XPath="/x:package/x:metadata/x:title" Value="$(PackageNamePrefix)" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.Lottie.nuspec" XPath="/x:package/x:metadata/x:title" Value="$(PackageNamePrefix).Lottie" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.RemoteControl.nuspec" XPath="/x:package/x:metadata/x:title" Value="$(PackageNamePrefix).RemoteControl" Namespace="$(NugetNamespace)" Prefix="x" />
