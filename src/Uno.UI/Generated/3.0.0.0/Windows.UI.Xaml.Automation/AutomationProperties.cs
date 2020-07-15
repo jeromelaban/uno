@@ -495,13 +495,7 @@ namespace Windows.UI.Xaml.Automation
 		#endif
 		// Forced skipping of method Windows.UI.Xaml.Automation.AutomationProperties.LabeledByProperty.get
 		// Skipping already declared method Windows.UI.Xaml.Automation.AutomationProperties.GetLabeledBy(Windows.UI.Xaml.DependencyObject)
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		public static void SetLabeledBy( global::Windows.UI.Xaml.DependencyObject element,  global::Windows.UI.Xaml.UIElement value)
-		{
-			element.SetValue(LabeledByProperty, value);
-		}
-		#endif
+		// Skipping already declared method Windows.UI.Xaml.Automation.AutomationProperties.SetLabeledBy(Windows.UI.Xaml.DependencyObject, Windows.UI.Xaml.UIElement)
 		// Forced skipping of method Windows.UI.Xaml.Automation.AutomationProperties.NameProperty.get
 		// Skipping already declared method Windows.UI.Xaml.Automation.AutomationProperties.GetName(Windows.UI.Xaml.DependencyObject)
 		// Skipping already declared method Windows.UI.Xaml.Automation.AutomationProperties.SetName(Windows.UI.Xaml.DependencyObject, string)

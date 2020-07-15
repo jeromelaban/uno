@@ -31,13 +31,7 @@ namespace Windows.UI.Xaml
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.VisualStateManager", "void VisualStateManager.RaiseCurrentStateChanged(VisualStateGroup stateGroup, VisualState oldState, VisualState newState, Control control)");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
-		protected virtual bool GoToStateCore( global::Windows.UI.Xaml.Controls.Control control,  global::Windows.UI.Xaml.FrameworkElement templateRoot,  string stateName,  global::Windows.UI.Xaml.VisualStateGroup group,  global::Windows.UI.Xaml.VisualState state,  bool useTransitions)
-		{
-			throw new global::System.NotImplementedException("The member bool VisualStateManager.GoToStateCore(Control control, FrameworkElement templateRoot, string stateName, VisualStateGroup group, VisualState state, bool useTransitions) is not implemented in Uno.");
-		}
-		#endif
+		// Skipping already declared method Windows.UI.Xaml.VisualStateManager.GoToStateCore(Windows.UI.Xaml.Controls.Control, Windows.UI.Xaml.FrameworkElement, string, Windows.UI.Xaml.VisualStateGroup, Windows.UI.Xaml.VisualState, bool)
 		// Skipping already declared method Windows.UI.Xaml.VisualStateManager.GetVisualStateGroups(Windows.UI.Xaml.FrameworkElement)
 		// Forced skipping of method Windows.UI.Xaml.VisualStateManager.CustomVisualStateManagerProperty.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
