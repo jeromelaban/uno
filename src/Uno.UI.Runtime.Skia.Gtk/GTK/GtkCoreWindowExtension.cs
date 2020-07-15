@@ -15,8 +15,6 @@ using Windows.UI.Composition;
 using Windows.UI.Core;
 using Windows.UI.Input;
 
-[assembly: ApiExtension(typeof(ICoreWindowExtension), typeof(GtkUIElementPointersSupport))]
-
 namespace Uno.UI.Runtime.Skia
 {
 	public class GtkUIElementPointersSupport : ICoreWindowExtension

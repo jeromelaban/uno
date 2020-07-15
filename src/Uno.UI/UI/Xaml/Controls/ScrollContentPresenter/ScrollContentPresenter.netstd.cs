@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Windows.UI.Xaml.Controls
 {
-	public partial class ScrollContentPresenter : ContentPresenter
+	public partial class ScrollContentPresenter : ContentPresenter, IScrollContentPresenter
 	{
 		protected override Size MeasureOverride(Size size)
 		{
@@ -70,6 +70,16 @@ namespace Windows.UI.Xaml.Controls
 		internal override bool IsViewHit()
 		{
 			return true;
+		}
+
+		void IScrollContentPresenter.OnMinZoomFactorChanged(float newValue)
+		{
+			MinimumZoomScale = newValue;
+		}
+
+		void IScrollContentPresenter.OnMaxZoomFactorChanged(float newValue)
+		{
+			MaximumZoomScale = newValue;
 		}
 	}
 }

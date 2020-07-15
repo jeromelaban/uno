@@ -202,7 +202,8 @@
 		<XmlUpdate XmlFileName=".\Uno.WinUI.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix)" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.Lottie.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).Lottie" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.RemoteControl.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).RemoteControl" Namespace="$(NugetNamespace)" Prefix="x" />
-		<XmlUpdate XmlFileName=".\Uno.WinUI.Skia.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).Skia" Namespace="$(NugetNamespace)" Prefix="x" />
+		<XmlUpdate XmlFileName=".\Uno.WinUI.Skia.Gtk.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).Skia.Gtk" Namespace="$(NugetNamespace)" Prefix="x" />
+		<XmlUpdate XmlFileName=".\Uno.WinUI.Skia.Wpf.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).Skia.Wpf" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.WebAssembly.nuspec" XPath="/x:package/x:metadata/x:id" Value="$(PackageNamePrefix).WebAssembly" Namespace="$(NugetNamespace)" Prefix="x" />
 
 		<!-- Update package Title based on WinUI / UWP source tree -->

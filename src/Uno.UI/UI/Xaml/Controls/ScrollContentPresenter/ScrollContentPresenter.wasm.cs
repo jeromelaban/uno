@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Windows.UI.Xaml.Controls
 {
-	public partial class ScrollContentPresenter : ContentPresenter, IScrollContentPresenter
+	public partial class ScrollContentPresenter : ContentPresenter
 	{
 		private ScrollBarVisibility _verticalScrollBarVisibility;
 		private ScrollBarVisibility _horizotalScrollBarVisibility;
@@ -191,17 +191,6 @@ namespace Windows.UI.Xaml.Controls
 				verticalOffset,
 				isIntermediate
 			);
-		}
-
-
-		void IScrollContentPresenter.OnMinZoomFactorChanged(float newValue)
-		{
-			MinimumZoomScale = newValue;
-		}
-
-		void IScrollContentPresenter.OnMaxZoomFactorChanged(float newValue)
-		{
-			MaximumZoomScale = newValue;
 		}
 	}
 }
