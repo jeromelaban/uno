@@ -1085,6 +1085,11 @@
 		<Member fullName="Uno.Diagnostics.Eventing.EventOpcode" reason="Removed unused Uno-only legacy control." />
 		<Member fullName="Uno.Diagnostics.Eventing.EventDescriptor" reason="Removed unused Uno-only legacy control." />
 		<Member fullName="Uno.Diagnostics.Eventing.EventActivity" reason="Removed unused Uno-only legacy control." />
+
+		<Member fullName="Windows.UI.Xaml.Controls.TextBoxView" reason="Type not present in reference API" />
+		<Member fullName="Windows.UI.Xaml.Font" reason="Type not present in reference API" />
+		<Member fullName="Windows.UI.Xaml.Controls.TextBoxViewDelegate" reason="Type not present in reference API" />
+
 		<!-- End Skia Import -->
 		</Types>
 
@@ -1734,6 +1739,12 @@
 			<Member fullName="System.Object Windows.UI.Composition.Visual.get_NativeOwner()" reason="reference API does not contain this API" />
 			<Member fullName="System.Boolean Windows.UI.Xaml.FrameworkElement.HasParent()" reason="reference API does not contain this API" />
 			<Member fullName="CoreAnimation.CALayer Windows.UI.Composition.Visual.get_NativeLayer()" reason="reference API does not contain this API" />
+
+			<Member fullName="System.Void Windows.UI.Xaml.Controls.WebView..ctor()" reason="reference API does not contain this API" />
+			<Member fullName="System.Void Windows.Devices.Sensors.AccelerometerReading..ctor()" reason="reference API does not contain this API" />
+			<Member fullName="System.Void Windows.Devices.Sensors.AccelerometerReadingChangedEventArgs..ctor()" reason="reference API does not contain this API" />
+			<Member fullName="System.Void Windows.Devices.Sensors.AccelerometerShakenEventArgs..ctor()" reason="reference API does not contain this API" />
+
 		  <!-- End Skia Import -->
 
 		</Methods>
