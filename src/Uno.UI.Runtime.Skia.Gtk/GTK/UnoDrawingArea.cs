@@ -1,9 +1,8 @@
-﻿#if NETCOREAPP
-using System;
+﻿using System;
 using SkiaSharp;
 using WUX = Windows.UI.Xaml;
 
-namespace Uno.UI.Skia.Platform.GTK
+namespace Uno.UI.Runtime.Skia
 {
 	internal class UnoDrawingArea : Gtk.DrawingArea
 	{
@@ -59,4 +58,3 @@ namespace Uno.UI.Skia.Platform.GTK
 		}
 	}
 }
-#endif

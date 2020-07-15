@@ -1,13 +1,13 @@
-﻿#if NETCOREAPP
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Uno.Foundation.Extensibility;
 using Windows.UI.Xaml;
 using WUX = Windows.UI.Xaml;
 
-namespace Uno.UI.Skia.Platform.GTK
+namespace Uno.UI.Runtime.Skia
 {
 	public class GtkHost
 	{
@@ -23,6 +23,10 @@ namespace Uno.UI.Skia.Platform.GTK
 
 		public void Run()
 		{
+			Gtk.Application.Init();
+
+			ApiExtensibility.Register(typeof(Windows.UI.Core.ICoreWindowExtension), o => new GtkUIElementPointersSupport(o));
+
 			_window = new Gtk.Window("Uno Host");
 			_window.SetDefaultSize(1024, 800);
 			_window.SetPosition(Gtk.WindowPosition.Center);
@@ -40,27 +44,19 @@ namespace Uno.UI.Skia.Platform.GTK
 					   Gtk.Application.RunIteration(false);
 				   }
 
-				   GLib.Idle.Add(delegate {
+				   GLib.Idle.Add(delegate
+				   {
 					   Console.WriteLine("iteration");
 					   try
 					   {
 						   d();
 					   }
-					   catch(Exception e)
+					   catch (Exception e)
 					   {
 						   Console.WriteLine(e);
 					   }
 					   return false;
-					   });
-
-
-				   //Gtk.Application.Invoke((s, e) =>
-				   //{
-
-					  // Console.WriteLine("iteration");
-
-					  // d();
-				   //});
+				   });
 			   };
 
 			_window.Realized += (s, e) =>
@@ -91,4 +87,3 @@ namespace Uno.UI.Skia.Platform.GTK
 		}
 	}
 }
-#endif

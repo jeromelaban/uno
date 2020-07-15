@@ -1,5 +1,4 @@
-﻿#if NETCOREAPP
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,18 +8,17 @@ using Gtk;
 using Uno.Extensions;
 using Uno.Foundation.Extensibility;
 using Uno.Logging;
+using Uno.UI.Runtime.Skia;
 using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.UI.Composition;
 using Windows.UI.Core;
 using Windows.UI.Input;
 
-[assembly: ApiExtension(typeof(ICoreWindowExtension), typeof(Uno.UI.Skia.Platform.GTK.GtkUIElementPointersSupport))]
+[assembly: ApiExtension(typeof(ICoreWindowExtension), typeof(GtkUIElementPointersSupport))]
 
-namespace Uno.UI.Skia.Platform.GTK
+namespace Uno.UI.Runtime.Skia
 {
-
-
 	public class GtkUIElementPointersSupport : ICoreWindowExtension
 	{
 		private readonly CoreWindow _owner;
@@ -232,4 +230,3 @@ namespace Uno.UI.Skia.Platform.GTK
 			};
 	}
 }
-#endif
