@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Windows.UI.Xaml.Controls
 {
-	public partial class TextBoxView : FrameworkElement
+	internal partial class TextBoxView : FrameworkElement
 	{
 
 		internal void SetTextNative(string text)

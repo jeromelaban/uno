@@ -67,6 +67,18 @@ namespace Windows.UI.Xaml.Documents
 
 		internal override bool IsViewHit()
 			=> NavigateUri != null || base.IsViewHit();
+
+		public new event global::Windows.UI.Xaml.RoutedEventHandler GotFocus
+		{
+			add => base.GotFocus += value;
+			remove => base.GotFocus -= value;
+		}
+
+		public new event global::Windows.UI.Xaml.RoutedEventHandler LostFocus
+		{
+			add => base.LostFocus += value;
+			remove => base.LostFocus -= value;
+		}
 	}
 
 	public enum NavigationTarget

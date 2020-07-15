@@ -13,18 +13,6 @@ namespace Windows.UI.Xaml.Controls
 {
 	public partial class ScrollViewer 
 	{
-		public Color BackgroundColor
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-			set
-			{
-				throw new NotImplementedException();
-			}
-		}
-
 		private void UpdateZoomedContentAlignment() { }
 
 	}

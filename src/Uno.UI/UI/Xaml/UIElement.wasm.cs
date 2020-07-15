@@ -80,7 +80,11 @@ namespace Windows.UI.Xaml
 			return new Rect(double.Parse(sizeParts[0]), double.Parse(sizeParts[1]), double.Parse(sizeParts[2]), double.Parse(sizeParts[3]));
 		}
 
-		public UIElement(string htmlTag = "div", bool isSvg = false)
+		public UIElement() : this("div", false) { }
+
+		public UIElement(string htmlTag) : this(htmlTag, false) { }
+
+		public UIElement(string htmlTag, bool isSvg)
 		{
 			Initialize();
 

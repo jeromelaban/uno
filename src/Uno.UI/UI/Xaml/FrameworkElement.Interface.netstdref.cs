@@ -76,7 +76,7 @@ namespace Windows.UI.Xaml
 		}
 
 		// Using a DependencyProperty as the backing store for Enabled.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty IsEnabledProperty =
+		public static DependencyProperty IsEnabledProperty { get; } =
 			DependencyProperty.Register(
 				"IsEnabled",
 				typeof(bool),
@@ -103,7 +103,7 @@ namespace Windows.UI.Xaml
 		}
 
 		// Using a DependencyProperty as the backing store for Background.  This enables animation, styling, binding, etc...
-		public static readonly DependencyProperty BackgroundProperty =
+		public static DependencyProperty BackgroundProperty { get; } =
 			DependencyProperty.Register("Background", typeof(Brush), typeof(FrameworkElement), new PropertyMetadata(null, (s, e) => ((FrameworkElement)s)?.OnBackgroundChanged(e)));
 
 		protected virtual void OnBackgroundChanged(DependencyPropertyChangedEventArgs e)

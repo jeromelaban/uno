@@ -44,6 +44,8 @@ namespace Windows.UI.Xaml.Controls
 
 		private void OnImageFailed(object sender, RoutedEventArgs e)
 		{
+			Console.WriteLine($"Image failed {e}");
+
 			if (this.Log().IsEnabled(Microsoft.Extensions.Logging.LogLevel.Debug))
 			{
 				this.Log().Debug($"Image failed [{(Source as BitmapSource)?.WebUri}]");
@@ -76,9 +78,12 @@ namespace Windows.UI.Xaml.Controls
 			remove => _htmlImage.UnregisterEventHandler("load", value);
 		}
 
-		public event RoutedEventHandler ImageFailed
+		private ExceptionRoutedEventArgs ImageFailedConverter(object sender, string e)
+			=> new ExceptionRoutedEventArgs(sender, e);
+
+		public event ExceptionRoutedEventHandler ImageFailed
 		{
-			add => _htmlImage.RegisterEventHandler("error", value);
+			add => _htmlImage.RegisterEventHandler("error", value, payloadConverter: ImageFailedConverter);
 			remove => _htmlImage.UnregisterEventHandler("error", value);
 		}
 
