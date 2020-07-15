@@ -40,7 +40,7 @@ namespace Windows.UI.Xaml
 
         public TransitionCollection Transitions { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public IFrameworkElement FindName(string name)
+        public object FindName(string name)
             => IFrameworkElementHelper.FindName(this, GetChildren(), name);
 
 
@@ -60,7 +60,7 @@ namespace Windows.UI.Xaml
 		public event DependencyPropertyChangedEventHandler IsEnabledChanged;
 
 		[GeneratedDependencyProperty(DefaultValue = true, ChangedCallback = true, CoerceCallback = true, Options = FrameworkPropertyMetadataOptions.Inherits)]
-		public static readonly DependencyProperty IsEnabledProperty = CreateIsEnabledProperty();
+		public static DependencyProperty IsEnabledProperty { get; } = CreateIsEnabledProperty();
 
 		public bool IsEnabled
 		{
@@ -104,7 +104,7 @@ namespace Windows.UI.Xaml
         }
 
         // Using a DependencyProperty as the backing store for Background.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty BackgroundProperty =
+        public static DependencyProperty BackgroundProperty { get; } =
             DependencyProperty.Register("Background", typeof(Brush), typeof(FrameworkElement), new PropertyMetadata(null, (s, e) => ((FrameworkElement)s)?.OnBackgroundChanged(e)));
 
 

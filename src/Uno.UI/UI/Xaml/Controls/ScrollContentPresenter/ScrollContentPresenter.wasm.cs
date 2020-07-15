@@ -203,10 +203,5 @@ namespace Windows.UI.Xaml.Controls
 		{
 			MaximumZoomScale = newValue;
 		}
-
-		internal override bool IsViewHit()
-		{
-			return true;
-		}
 	}
 }

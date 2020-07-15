@@ -16,7 +16,7 @@ namespace Windows.UI.Xaml.Controls
 		}
 
 #if !NETSTANDARD && !__MACOS__ && !__NETSTD_REFERENCE__
-		#region Foreground
+#region Foreground
 
 		/// <summary>
 		/// Gets or sets a value that indicates whether the <see cref="ProgressRing"/> is showing progress.
@@ -30,7 +30,7 @@ namespace Windows.UI.Xaml.Controls
 		public static DependencyProperty IsActiveProperty { get; } =
 			DependencyProperty.Register("IsActive", typeof(bool), typeof(ProgressRing), new PropertyMetadata(false, OnIsActiveChanged));
 
-		#endregion
+#endregion
 
 		private static void OnIsActiveChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
@@ -83,5 +83,7 @@ namespace Windows.UI.Xaml.Controls
 				return result;
 			}
 		}
+#endif
 	}
 }
+#endif

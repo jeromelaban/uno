@@ -60,7 +60,7 @@ namespace Windows.UI.Xaml
 			return finalSize;
 		}
 
-		public IFrameworkElement FindName(string name)
+		public object FindName(string name)
 			=> IFrameworkElementHelper.FindName(this, GetChildren(), name);
 
 		#region IsEnabled DependencyProperty

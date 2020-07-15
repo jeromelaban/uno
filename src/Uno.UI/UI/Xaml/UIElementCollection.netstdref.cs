@@ -7,37 +7,65 @@ using View = Windows.UI.Xaml.UIElement;
 
 namespace Windows.UI.Xaml.Controls
 {
-	public partial class UIElementCollection : BatchCollection<UIElement>
+	public partial class UIElementCollection
 	{
 
-		internal UIElementCollection(FrameworkElement view) : base(view)
+		private readonly List<UIElement> _elements;
+		private readonly FrameworkElement _owner;
+
+		public UIElementCollection(FrameworkElement view)
 		{
+			_elements = view._children;
+			_owner = view;
 		}
 
-		protected override void AddCore(View item) => throw new NotSupportedException();
+		private void AddCore(View item) => _owner.AddChild(item);
 
-		protected override IEnumerable<View> ClearCore() => throw new NotSupportedException();
+		private IEnumerable<View> ClearCore()
+		{
+			var old = _elements.ToArray();
+			_elements.Clear();
 
-		protected override bool ContainsCore(View item) => throw new NotSupportedException();
+			return old;
+		}
 
-		protected override void CopyToCore(View[] array, int arrayIndex) => throw new NotSupportedException();
+		private bool ContainsCore(View item)
+		{
+			throw new NotImplementedException();
+		}
 
-		protected override int CountCore() => throw new NotSupportedException();
+		private void CopyToCore(View[] array, int arrayIndex)
+		{
+			throw new NotImplementedException();
+		}
 
-		protected override View GetAtIndexCore(int index) => throw new NotSupportedException();
+		private int CountCore() => _elements.Count;
 
-		protected override List<View>.Enumerator GetEnumeratorCore() => throw new NotSupportedException();
+		private View GetAtIndexCore(int index) => _elements[index];
 
-		protected override int IndexOfCore(View item) => throw new NotSupportedException();
+		public IEnumerator<View> GetEnumerator() => _elements.GetEnumerator();
 
-		protected override void InsertCore(int index, View item) => throw new NotSupportedException();
+		private int IndexOfCore(View item) => _elements.IndexOf(item);
 
-		protected override void MoveCore(uint oldIndex, uint newIndex) => throw new NotSupportedException();
+		private void InsertCore(int index, View item) => _owner.AddChild(item, index);
 
-		protected override View RemoveAtCore(int index) => throw new NotSupportedException();
+		private void MoveCore(uint oldIndex, uint newIndex)
+		{
+			throw new NotImplementedException();
+		}
 
-		protected override bool RemoveCore(View item) => throw new NotSupportedException();
+		private View RemoveAtCore(int index)
+		{
+			var item = _elements.ElementAtOrDefault(index);
+			if (item != null)
+			{
+				_owner.RemoveChild(item);
+			}
+			return item;
+		}
 
-		protected override View SetAtIndexCore(int index, View value) => throw new NotSupportedException();
+		private bool RemoveCore(View item) => _owner.RemoveChild(item) != null;
+
+		private View SetAtIndexCore(int index, View value) => _elements[index] = value;
 	}
 }
