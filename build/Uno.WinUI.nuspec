@@ -234,14 +234,14 @@
 	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Bin\Release\*.dll" target="build\Uno.UI.Tasks" />
 	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Bin\Release\*.pdb" target="build\Uno.UI.Tasks" />
 
-	<file src="Uno.WinUI.targets" target="build\MonoAndroid" />
-	<file src="Uno.WinUI.targets" target="build\xamarinios10" />
-	<file src="Uno.WinUI.targets" target="build\xamarinmac20" />
-	<file src="Uno.WinUI.targets" target="build\netstandard2.0" />
-	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" target="build\MonoAndroid" />
-	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" target="build\xamarinios10" />
-	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" target="build\xamarinmac20" />
-	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" target="build\netstandard2.0" />
+	<file src="Uno.WinUI.targets" target="buildTransitive\MonoAndroid" />
+	<file src="Uno.WinUI.targets" target="buildTransitive\xamarinios10" />
+	<file src="Uno.WinUI.targets" target="buildTransitive\xamarinmac20" />
+	<file src="Uno.WinUI.targets" target="buildTransitive\netstandard2.0" />
+	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" target="buildTransitive\MonoAndroid" />
+	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" target="buildTransitive\xamarinios10" />
+	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" target="buildTransitive\xamarinmac20" />
+	<file src="..\src\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" target="buildTransitive\netstandard2.0" />
 
 	<!-- Force UAP to ignore netstandard 2.0 -->
 	<file src="_._" target="build\uap10.0.16299" />
