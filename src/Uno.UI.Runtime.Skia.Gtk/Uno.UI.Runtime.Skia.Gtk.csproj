@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFrameworks>net47;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
   </PropertyGroup>
 
 	<PropertyGroup>
@@ -14,7 +14,7 @@
 		<Description>This package provides the platform support for Skia in Uno Platform projects.</Description>
 		<Copyright>Copyright (C) 2015-2020 nventive inc. - all rights reserved</Copyright>
 
-		<PackageId Condition="'$(UNO_UWP_BUILD)'!='true'">Uno.WinUI.Skia.Platform</PackageId>
+		<PackageId Condition="'$(UNO_UWP_BUILD)'!='true'">Uno.WinUI.Runtime.Skia.Gtk</PackageId>
 	</PropertyGroup>
 	
 	<ItemGroup>
@@ -25,15 +25,7 @@
 		<PackageReference Include="SkiaSharp.Views" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net47'">
-		<Reference Include="PresentationFramework" />
-		<Reference Include="PresentationCore" />
-		<Reference Include="WindowsBase" />
-		<Reference Include="System.Xaml" />
-	</ItemGroup>
-
-
-	<ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+	<ItemGroup>
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux" />
 		<PackageReference Include="SkiaSharp" />
 		<PackageReference Include="GtkSharp" />
@@ -41,16 +33,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Uno.Foundation.Skia\Uno.Foundation.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
-	  <ProjectReference Include="..\Uno.UI.Skia\Uno.UI.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
+	  <ProjectReference Include="..\Uno.UI.Skia\Uno.UI.Skia.csproj" />
 	  <ProjectReference Include="..\Uno.UWP.Skia\Uno.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(Configuration)'=='Release'">
-		<ProjectReference Include="..\Uno.UI\Uno.UI\Uno.UI.csproj">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
-			<UndefineProperties>TargetFramework</UndefineProperties>
-		</ProjectReference>
 	</ItemGroup>
 
 </Project>
