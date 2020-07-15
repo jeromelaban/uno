@@ -14,11 +14,11 @@ namespace Uno.UI
 		/// </summary>
 		/// <param name="group"></param>
 		/// <returns></returns>
-		public static IEnumerable<UIElement> GetChildren(this UIElement group) => throw new NotImplementedException();
+		internal static IEnumerable<UIElement> GetChildren(this UIElement group) => throw new NotImplementedException();
 
-		public static FrameworkElement GetTopLevelParent(this UIElement view) => throw new NotImplementedException();
+		internal static FrameworkElement GetTopLevelParent(this UIElement view) => throw new NotImplementedException();
 
-		public static T FindFirstChild<T>(this FrameworkElement root) where T : FrameworkElement
+		internal static T FindFirstChild<T>(this FrameworkElement root) where T : FrameworkElement
 		{
 			return root.GetDescendants().OfType<T>().FirstOrDefault();
 		}
@@ -35,7 +35,7 @@ namespace Uno.UI
 		/// <param name="element">The view to display tree for.</param>
 		/// <param name="fromHeight">How many levels above <paramref name="element"/> should be included in the displayed subtree.</param>
 		/// <returns>A formatted string representing the visual tree around <paramref name="element"/>.</returns>
-		public static string ShowLocalVisualTree(this UIElement element, int fromHeight = 1000)
+		internal static string ShowLocalVisualTree(this UIElement element, int fromHeight = 1000)
 		{
 			throw new NotImplementedException();
 		}
@@ -43,7 +43,7 @@ namespace Uno.UI
 		/// <summary>
 		/// Displays all the visual descendants of <paramref name="element"/> for diagnostic purposes. 
 		/// </summary>
-		public static string ShowDescendants(this UIElement element, StringBuilder sb = null, string spacing = "", UIElement viewOfInterest = null)
+		internal static string ShowDescendants(this UIElement element, StringBuilder sb = null, string spacing = "", UIElement viewOfInterest = null)
 		{
 			throw new NotImplementedException();
 		}
