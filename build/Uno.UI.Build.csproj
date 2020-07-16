@@ -234,6 +234,14 @@
 
 		<Exec Command="dotnet tool install --global Uno.PackageDiff --version 1.0.0-dev.36" IgnoreExitCode="true" />
 		<Exec Command="generatepkgdiff --base=$(PackageNamePrefix) --other=$(PackageNamePrefix).$(GITVERSION_FullSemVer).nupkg --diffignore=PackageDiffIgnore.xml --outfile=$(OutputDir)\ApiDiff.$(GITVERSION_FullSemVer).md" />
+	</Target>
+	
+	<Target Name="ValidatePackageReferenceAPI" AfterTargets="UnoBuild">
+		<PropertyGroup>
+			<PackageNamePrefix>Uno.WinUI</PackageNamePrefix>
+			<PackageNamePrefix Condition="'$(UNO_UWP_BUILD)'=='true'">Uno.UI</PackageNamePrefix>
+		</PropertyGroup>
+
 		<Exec Command="dotnet $(MSBuildThisFileDirectory)..\src\Uno.ReferenceImplComparer\bin\Release\Uno.ReferenceImplComparer.dll $(MSBuildThisFileDirectory)$(PackageNamePrefix).$(GITVERSION_FullSemVer).nupkg" />
 	</Target>
 
