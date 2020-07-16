@@ -54,6 +54,12 @@ namespace Uno.ReferenceImplComparer
 
 				if(runtimeTypes.TryGetValue(referenceType.FullName, out var runtimeType))
 				{
+					if(referenceType.BaseType?.FullName != runtimeType.BaseType?.FullName)
+					{
+						Console.WriteLine($"{referenceType.FullName} base type is different {referenceType.BaseType?.FullName} in reference, {runtimeType.BaseType?.FullName} in {identifier}");
+						hasError = true;
+					}
+
 					hasError |= CompareMembers(referenceType.Methods.Where(m => m.IsPublic), runtimeType.Methods, identifier);
 					hasError |= CompareMembers(referenceType.Properties.Where(m => m.GetMethod?.IsPublic ?? false), runtimeType.Properties, identifier);
 					hasError |= CompareMembers(referenceType.Fields.Where(m => m.IsPublic), runtimeType.Fields, identifier);
@@ -61,6 +67,7 @@ namespace Uno.ReferenceImplComparer
 				}
 				else
 				{
+					hasError = true;
 					Console.WriteLine($"The type {referenceType} is missing from ");
 				}
 			}
