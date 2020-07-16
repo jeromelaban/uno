@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.AppService
 	public  partial class AppServiceCatalog 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Foundation.IAsyncOperation<global::System.Collections.Generic.IReadOnlyList<global::Windows.ApplicationModel.AppInfo>> FindAppServiceProvidersAsync( string appServiceName)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<IReadOnlyList<AppInfo>> AppServiceCatalog.FindAppServiceProvidersAsync(string appServiceName) is not implemented in Uno.");

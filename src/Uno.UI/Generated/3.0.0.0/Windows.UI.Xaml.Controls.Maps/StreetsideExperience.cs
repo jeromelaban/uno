@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 	public  partial class StreetsideExperience : global::Windows.UI.Xaml.Controls.Maps.MapCustomExperience
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool ZoomButtonsVisible
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool StreetLabelsVisible
 		{
 			get
@@ -36,7 +36,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool OverviewMapVisible
 		{
 			get
@@ -50,7 +50,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool ExitButtonVisible
 		{
 			get
@@ -64,7 +64,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool CursorVisible
 		{
 			get
@@ -78,7 +78,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool AddressTextVisible
 		{
 			get
@@ -92,7 +92,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public StreetsideExperience( global::Windows.UI.Xaml.Controls.Maps.StreetsidePanorama panorama) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Controls.Maps.StreetsideExperience", "StreetsideExperience.StreetsideExperience(StreetsidePanorama panorama)");
@@ -100,7 +100,7 @@ namespace Windows.UI.Xaml.Controls.Maps
 		#endif
 		// Forced skipping of method Windows.UI.Xaml.Controls.Maps.StreetsideExperience.StreetsideExperience(Windows.UI.Xaml.Controls.Maps.StreetsidePanorama)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public StreetsideExperience( global::Windows.UI.Xaml.Controls.Maps.StreetsidePanorama panorama,  double headingInDegrees,  double pitchInDegrees,  double fieldOfViewInDegrees) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Controls.Maps.StreetsideExperience", "StreetsideExperience.StreetsideExperience(StreetsidePanorama panorama, double headingInDegrees, double pitchInDegrees, double fieldOfViewInDegrees)");

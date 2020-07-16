@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.UserActivities
 	public  partial class UserActivityRequestedEventArgs 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.ApplicationModel.UserActivities.UserActivityRequest Request
 		{
 			get
@@ -19,7 +19,7 @@ namespace Windows.ApplicationModel.UserActivities
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.UserActivities.UserActivityRequestedEventArgs.Request.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.Deferral GetDeferral()
 		{
 			throw new global::System.NotImplementedException("The member Deferral UserActivityRequestedEventArgs.GetDeferral() is not implemented in Uno.");

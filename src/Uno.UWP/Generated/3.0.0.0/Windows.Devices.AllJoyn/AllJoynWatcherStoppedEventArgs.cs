@@ -8,7 +8,7 @@ namespace Windows.Devices.AllJoyn
 	public  partial class AllJoynWatcherStoppedEventArgs 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  int Status
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.Devices.AllJoyn
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public AllJoynWatcherStoppedEventArgs( int status) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Devices.AllJoyn.AllJoynWatcherStoppedEventArgs", "AllJoynWatcherStoppedEventArgs.AllJoynWatcherStoppedEventArgs(int status)");

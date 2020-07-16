@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Media.Animation
 	public  partial class Timeline : global::Windows.UI.Xaml.DependencyObject
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  double SpeedRatio
 		{
 			get
@@ -26,7 +26,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		// Skipping already declared property Duration
 		// Skipping already declared property BeginTime
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool AutoReverse
 		{
 			get
@@ -40,7 +40,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static bool AllowDependentAnimations
 		{
 			get
@@ -54,7 +54,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Xaml.DependencyProperty AutoReverseProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(
 			nameof(AutoReverse), typeof(bool), 
@@ -66,7 +66,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		// Skipping already declared property FillBehaviorProperty
 		// Skipping already declared property RepeatBehaviorProperty
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Xaml.DependencyProperty SpeedRatioProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(
 			nameof(SpeedRatio), typeof(double), 

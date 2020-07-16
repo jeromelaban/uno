@@ -8,7 +8,7 @@ namespace Windows.UI.WebUI
 	public  partial class SuspendingOperation : global::Windows.ApplicationModel.ISuspendingOperation
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.DateTimeOffset Deadline
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.UI.WebUI
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.ApplicationModel.SuspendingDeferral GetDeferral()
 		{
 			throw new global::System.NotImplementedException("The member SuspendingDeferral SuspendingOperation.GetDeferral() is not implemented in Uno.");

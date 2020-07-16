@@ -8,7 +8,7 @@ namespace Windows.Security.Authentication.Web.Provider
 	public  partial class WebAccountClientView 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string AccountPairwiseId
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.Security.Authentication.Web.Provider
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Uri ApplicationCallbackUri
 		{
 			get
@@ -28,7 +28,7 @@ namespace Windows.Security.Authentication.Web.Provider
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Security.Authentication.Web.Provider.WebAccountClientViewType Type
 		{
 			get
@@ -38,7 +38,7 @@ namespace Windows.Security.Authentication.Web.Provider
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public WebAccountClientView( global::Windows.Security.Authentication.Web.Provider.WebAccountClientViewType viewType,  global::System.Uri applicationCallbackUri) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Security.Authentication.Web.Provider.WebAccountClientView", "WebAccountClientView.WebAccountClientView(WebAccountClientViewType viewType, Uri applicationCallbackUri)");
@@ -46,7 +46,7 @@ namespace Windows.Security.Authentication.Web.Provider
 		#endif
 		// Forced skipping of method Windows.Security.Authentication.Web.Provider.WebAccountClientView.WebAccountClientView(Windows.Security.Authentication.Web.Provider.WebAccountClientViewType, System.Uri)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public WebAccountClientView( global::Windows.Security.Authentication.Web.Provider.WebAccountClientViewType viewType,  global::System.Uri applicationCallbackUri,  string accountPairwiseId) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Security.Authentication.Web.Provider.WebAccountClientView", "WebAccountClientView.WebAccountClientView(WebAccountClientViewType viewType, Uri applicationCallbackUri, string accountPairwiseId)");

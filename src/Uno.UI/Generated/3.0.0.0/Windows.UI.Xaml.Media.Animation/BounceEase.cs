@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Media.Animation
 	public  partial class BounceEase : global::Windows.UI.Xaml.Media.Animation.EasingFunctionBase
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  double Bounciness
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  int Bounces
 		{
 			get
@@ -36,7 +36,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Xaml.DependencyProperty BouncesProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(
 			nameof(Bounces), typeof(int), 
@@ -44,7 +44,7 @@ namespace Windows.UI.Xaml.Media.Animation
 			new FrameworkPropertyMetadata(default(int)));
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Xaml.DependencyProperty BouncinessProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(
 			nameof(Bounciness), typeof(double), 

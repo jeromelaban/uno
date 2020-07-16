@@ -8,7 +8,7 @@ namespace Windows.System.Profile
 	public  partial class SystemSetupInfo 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.System.Profile.SystemOutOfBoxExperienceState OutOfBoxExperienceState
 		{
 			get
@@ -21,15 +21,15 @@ namespace Windows.System.Profile
 		// Forced skipping of method Windows.System.Profile.SystemSetupInfo.OutOfBoxExperienceStateChanged.add
 		// Forced skipping of method Windows.System.Profile.SystemSetupInfo.OutOfBoxExperienceStateChanged.remove
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static event global::System.EventHandler<object> OutOfBoxExperienceStateChanged
 		{
-			[global::Uno.NotImplemented]
+			[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 			add
 			{
 				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.System.Profile.SystemSetupInfo", "event EventHandler<object> SystemSetupInfo.OutOfBoxExperienceStateChanged");
 			}
-			[global::Uno.NotImplemented]
+			[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 			remove
 			{
 				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.System.Profile.SystemSetupInfo", "event EventHandler<object> SystemSetupInfo.OutOfBoxExperienceStateChanged");

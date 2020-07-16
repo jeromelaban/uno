@@ -8,7 +8,7 @@ namespace Windows.UI.Core.Preview
 	public  partial class CoreAppWindowPreview 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static int GetIdFromWindow( global::Windows.UI.WindowManagement.AppWindow window)
 		{
 			throw new global::System.NotImplementedException("The member int CoreAppWindowPreview.GetIdFromWindow(AppWindow window) is not implemented in Uno.");

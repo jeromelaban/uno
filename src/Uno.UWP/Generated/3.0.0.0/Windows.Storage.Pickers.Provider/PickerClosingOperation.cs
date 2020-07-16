@@ -8,7 +8,7 @@ namespace Windows.Storage.Pickers.Provider
 	public  partial class PickerClosingOperation 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.DateTimeOffset Deadline
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.Storage.Pickers.Provider
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Storage.Pickers.Provider.PickerClosingDeferral GetDeferral()
 		{
 			throw new global::System.NotImplementedException("The member PickerClosingDeferral PickerClosingOperation.GetDeferral() is not implemented in Uno.");

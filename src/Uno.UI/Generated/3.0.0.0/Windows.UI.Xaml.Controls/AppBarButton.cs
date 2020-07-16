@@ -11,7 +11,7 @@ namespace Windows.UI.Xaml.Controls
 		// Skipping already declared property Icon
 		// Skipping already declared property LabelPosition
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string KeyboardAcceleratorTextOverride
 		{
 			get
@@ -35,7 +35,7 @@ namespace Windows.UI.Xaml.Controls
 		// Skipping already declared property IsInOverflowProperty
 		// Skipping already declared property LabelPositionProperty
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Xaml.DependencyProperty KeyboardAcceleratorTextOverrideProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.Register(
 			nameof(KeyboardAcceleratorTextOverride), typeof(string), 

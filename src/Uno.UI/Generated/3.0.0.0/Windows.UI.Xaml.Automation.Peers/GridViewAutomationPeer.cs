@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Automation.Peers
 	public  partial class GridViewAutomationPeer : global::Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public GridViewAutomationPeer( global::Windows.UI.Xaml.Controls.GridView owner) : base(owner)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer", "GridViewAutomationPeer.GridViewAutomationPeer(GridView owner)");

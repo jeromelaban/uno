@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.Background
 	public  partial class PushNotificationTrigger : global::Windows.ApplicationModel.Background.IBackgroundTrigger
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PushNotificationTrigger( string applicationId) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Background.PushNotificationTrigger", "PushNotificationTrigger.PushNotificationTrigger(string applicationId)");
@@ -16,7 +16,7 @@ namespace Windows.ApplicationModel.Background
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Background.PushNotificationTrigger.PushNotificationTrigger(string)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PushNotificationTrigger() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Background.PushNotificationTrigger", "PushNotificationTrigger.PushNotificationTrigger()");

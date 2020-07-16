@@ -8,7 +8,7 @@ namespace Windows.Media.Audio
 	public  partial class AudioNodeEmitterShape 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Media.Audio.AudioNodeEmitterConeProperties ConeProperties
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.Media.Audio
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Media.Audio.AudioNodeEmitterShapeKind Kind
 		{
 			get
@@ -30,14 +30,14 @@ namespace Windows.Media.Audio
 		// Forced skipping of method Windows.Media.Audio.AudioNodeEmitterShape.Kind.get
 		// Forced skipping of method Windows.Media.Audio.AudioNodeEmitterShape.ConeProperties.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.Audio.AudioNodeEmitterShape CreateCone( double innerAngle,  double outerAngle,  double outerAngleGain)
 		{
 			throw new global::System.NotImplementedException("The member AudioNodeEmitterShape AudioNodeEmitterShape.CreateCone(double innerAngle, double outerAngle, double outerAngleGain) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.Audio.AudioNodeEmitterShape CreateOmnidirectional()
 		{
 			throw new global::System.NotImplementedException("The member AudioNodeEmitterShape AudioNodeEmitterShape.CreateOmnidirectional() is not implemented in Uno.");

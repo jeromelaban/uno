@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Automation.Peers
 	public  partial class ListBoxAutomationPeer : global::Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public ListBoxAutomationPeer( global::Windows.UI.Xaml.Controls.ListBox owner) : base(owner)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer", "ListBoxAutomationPeer.ListBoxAutomationPeer(ListBox owner)");

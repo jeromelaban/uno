@@ -8,7 +8,7 @@ namespace Windows.Devices.HumanInterfaceDevice
 	public  partial class HidInputReport 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<global::Windows.Devices.HumanInterfaceDevice.HidBooleanControl> ActivatedBooleanControls
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.Devices.HumanInterfaceDevice
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Storage.Streams.IBuffer Data
 		{
 			get
@@ -28,7 +28,7 @@ namespace Windows.Devices.HumanInterfaceDevice
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  ushort Id
 		{
 			get
@@ -38,7 +38,7 @@ namespace Windows.Devices.HumanInterfaceDevice
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<global::Windows.Devices.HumanInterfaceDevice.HidBooleanControl> TransitionedBooleanControls
 		{
 			get
@@ -52,28 +52,28 @@ namespace Windows.Devices.HumanInterfaceDevice
 		// Forced skipping of method Windows.Devices.HumanInterfaceDevice.HidInputReport.ActivatedBooleanControls.get
 		// Forced skipping of method Windows.Devices.HumanInterfaceDevice.HidInputReport.TransitionedBooleanControls.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.HumanInterfaceDevice.HidBooleanControl GetBooleanControl( ushort usagePage,  ushort usageId)
 		{
 			throw new global::System.NotImplementedException("The member HidBooleanControl HidInputReport.GetBooleanControl(ushort usagePage, ushort usageId) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.HumanInterfaceDevice.HidBooleanControl GetBooleanControlByDescription( global::Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription controlDescription)
 		{
 			throw new global::System.NotImplementedException("The member HidBooleanControl HidInputReport.GetBooleanControlByDescription(HidBooleanControlDescription controlDescription) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.HumanInterfaceDevice.HidNumericControl GetNumericControl( ushort usagePage,  ushort usageId)
 		{
 			throw new global::System.NotImplementedException("The member HidNumericControl HidInputReport.GetNumericControl(ushort usagePage, ushort usageId) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.HumanInterfaceDevice.HidNumericControl GetNumericControlByDescription( global::Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription controlDescription)
 		{
 			throw new global::System.NotImplementedException("The member HidNumericControl HidInputReport.GetNumericControlByDescription(HidNumericControlDescription controlDescription) is not implemented in Uno.");

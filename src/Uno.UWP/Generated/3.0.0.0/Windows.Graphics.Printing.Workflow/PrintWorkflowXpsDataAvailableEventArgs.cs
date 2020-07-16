@@ -8,7 +8,7 @@ namespace Windows.Graphics.Printing.Workflow
 	public  partial class PrintWorkflowXpsDataAvailableEventArgs 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Graphics.Printing.Workflow.PrintWorkflowSubmittedOperation Operation
 		{
 			get
@@ -19,7 +19,7 @@ namespace Windows.Graphics.Printing.Workflow
 		#endif
 		// Forced skipping of method Windows.Graphics.Printing.Workflow.PrintWorkflowXpsDataAvailableEventArgs.Operation.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.Deferral GetDeferral()
 		{
 			throw new global::System.NotImplementedException("The member Deferral PrintWorkflowXpsDataAvailableEventArgs.GetDeferral() is not implemented in Uno.");

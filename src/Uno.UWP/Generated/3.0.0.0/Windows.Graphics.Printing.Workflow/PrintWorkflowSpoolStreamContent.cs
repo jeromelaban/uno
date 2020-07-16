@@ -8,7 +8,7 @@ namespace Windows.Graphics.Printing.Workflow
 	public  partial class PrintWorkflowSpoolStreamContent 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Storage.Streams.IInputStream GetInputStream()
 		{
 			throw new global::System.NotImplementedException("The member IInputStream PrintWorkflowSpoolStreamContent.GetInputStream() is not implemented in Uno.");

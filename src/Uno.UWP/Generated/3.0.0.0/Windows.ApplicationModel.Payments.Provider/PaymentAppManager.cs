@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.Payments.Provider
 	public  partial class PaymentAppManager 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.ApplicationModel.Payments.Provider.PaymentAppManager Current
 		{
 			get
@@ -18,14 +18,14 @@ namespace Windows.ApplicationModel.Payments.Provider
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncAction RegisterAsync( global::System.Collections.Generic.IEnumerable<string> supportedPaymentMethodIds)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncAction PaymentAppManager.RegisterAsync(IEnumerable<string> supportedPaymentMethodIds) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncAction UnregisterAsync()
 		{
 			throw new global::System.NotImplementedException("The member IAsyncAction PaymentAppManager.UnregisterAsync() is not implemented in Uno.");

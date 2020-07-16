@@ -8,7 +8,7 @@ namespace Windows.Foundation.Metadata
 	public  partial class FastAbiAttribute : global::System.Attribute
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public FastAbiAttribute( uint version) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Foundation.Metadata.FastAbiAttribute", "FastAbiAttribute.FastAbiAttribute(uint version)");
@@ -16,7 +16,7 @@ namespace Windows.Foundation.Metadata
 		#endif
 		// Forced skipping of method Windows.Foundation.Metadata.FastAbiAttribute.FastAbiAttribute(uint)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public FastAbiAttribute( uint version,  global::Windows.Foundation.Metadata.Platform platform) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Foundation.Metadata.FastAbiAttribute", "FastAbiAttribute.FastAbiAttribute(uint version, Platform platform)");
@@ -24,7 +24,7 @@ namespace Windows.Foundation.Metadata
 		#endif
 		// Forced skipping of method Windows.Foundation.Metadata.FastAbiAttribute.FastAbiAttribute(uint, Windows.Foundation.Metadata.Platform)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public FastAbiAttribute( uint version,  string contractName) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Foundation.Metadata.FastAbiAttribute", "FastAbiAttribute.FastAbiAttribute(uint version, string contractName)");

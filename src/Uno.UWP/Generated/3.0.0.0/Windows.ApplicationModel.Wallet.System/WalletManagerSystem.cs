@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.Wallet.System
 	public  partial class WalletManagerSystem 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Foundation.IAsyncOperation<global::Windows.ApplicationModel.Wallet.System.WalletItemSystemStore> RequestStoreAsync()
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<WalletItemSystemStore> WalletManagerSystem.RequestStoreAsync() is not implemented in Uno.");

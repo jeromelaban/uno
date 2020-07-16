@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.Calls
 	public  partial class PhoneCallHistoryEntryAddress 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind RawAddressKind
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.ApplicationModel.Calls
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string RawAddress
 		{
 			get
@@ -36,7 +36,7 @@ namespace Windows.ApplicationModel.Calls
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string DisplayName
 		{
 			get
@@ -50,7 +50,7 @@ namespace Windows.ApplicationModel.Calls
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string ContactId
 		{
 			get
@@ -64,7 +64,7 @@ namespace Windows.ApplicationModel.Calls
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PhoneCallHistoryEntryAddress( string rawAddress,  global::Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind rawAddressKind) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress", "PhoneCallHistoryEntryAddress.PhoneCallHistoryEntryAddress(string rawAddress, PhoneCallHistoryEntryRawAddressKind rawAddressKind)");
@@ -72,7 +72,7 @@ namespace Windows.ApplicationModel.Calls
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress.PhoneCallHistoryEntryAddress(string, Windows.ApplicationModel.Calls.PhoneCallHistoryEntryRawAddressKind)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PhoneCallHistoryEntryAddress() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress", "PhoneCallHistoryEntryAddress.PhoneCallHistoryEntryAddress()");

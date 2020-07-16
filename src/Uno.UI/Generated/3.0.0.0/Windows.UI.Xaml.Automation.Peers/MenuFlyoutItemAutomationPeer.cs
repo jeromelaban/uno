@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Automation.Peers
 	public  partial class MenuFlyoutItemAutomationPeer : global::Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer,global::Windows.UI.Xaml.Automation.Provider.IInvokeProvider
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public MenuFlyoutItemAutomationPeer( global::Windows.UI.Xaml.Controls.MenuFlyoutItem owner) : base(owner)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Automation.Peers.MenuFlyoutItemAutomationPeer", "MenuFlyoutItemAutomationPeer.MenuFlyoutItemAutomationPeer(MenuFlyoutItem owner)");
@@ -16,7 +16,7 @@ namespace Windows.UI.Xaml.Automation.Peers
 		#endif
 		// Forced skipping of method Windows.UI.Xaml.Automation.Peers.MenuFlyoutItemAutomationPeer.MenuFlyoutItemAutomationPeer(Windows.UI.Xaml.Controls.MenuFlyoutItem)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void Invoke()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Automation.Peers.MenuFlyoutItemAutomationPeer", "void MenuFlyoutItemAutomationPeer.Invoke()");

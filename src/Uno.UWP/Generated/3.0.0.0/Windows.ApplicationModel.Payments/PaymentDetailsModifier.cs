@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.Payments
 	public  partial class PaymentDetailsModifier 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<global::Windows.ApplicationModel.Payments.PaymentItem> AdditionalDisplayItems
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.ApplicationModel.Payments
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string JsonData
 		{
 			get
@@ -28,7 +28,7 @@ namespace Windows.ApplicationModel.Payments
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<string> SupportedMethodIds
 		{
 			get
@@ -38,7 +38,7 @@ namespace Windows.ApplicationModel.Payments
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.ApplicationModel.Payments.PaymentItem Total
 		{
 			get
@@ -48,7 +48,7 @@ namespace Windows.ApplicationModel.Payments
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PaymentDetailsModifier( global::System.Collections.Generic.IEnumerable<string> supportedMethodIds,  global::Windows.ApplicationModel.Payments.PaymentItem total) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Payments.PaymentDetailsModifier", "PaymentDetailsModifier.PaymentDetailsModifier(IEnumerable<string> supportedMethodIds, PaymentItem total)");
@@ -56,7 +56,7 @@ namespace Windows.ApplicationModel.Payments
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Payments.PaymentDetailsModifier.PaymentDetailsModifier(System.Collections.Generic.IEnumerable<string>, Windows.ApplicationModel.Payments.PaymentItem)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PaymentDetailsModifier( global::System.Collections.Generic.IEnumerable<string> supportedMethodIds,  global::Windows.ApplicationModel.Payments.PaymentItem total,  global::System.Collections.Generic.IEnumerable<global::Windows.ApplicationModel.Payments.PaymentItem> additionalDisplayItems) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Payments.PaymentDetailsModifier", "PaymentDetailsModifier.PaymentDetailsModifier(IEnumerable<string> supportedMethodIds, PaymentItem total, IEnumerable<PaymentItem> additionalDisplayItems)");
@@ -64,7 +64,7 @@ namespace Windows.ApplicationModel.Payments
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Payments.PaymentDetailsModifier.PaymentDetailsModifier(System.Collections.Generic.IEnumerable<string>, Windows.ApplicationModel.Payments.PaymentItem, System.Collections.Generic.IEnumerable<Windows.ApplicationModel.Payments.PaymentItem>)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PaymentDetailsModifier( global::System.Collections.Generic.IEnumerable<string> supportedMethodIds,  global::Windows.ApplicationModel.Payments.PaymentItem total,  global::System.Collections.Generic.IEnumerable<global::Windows.ApplicationModel.Payments.PaymentItem> additionalDisplayItems,  string jsonData) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Payments.PaymentDetailsModifier", "PaymentDetailsModifier.PaymentDetailsModifier(IEnumerable<string> supportedMethodIds, PaymentItem total, IEnumerable<PaymentItem> additionalDisplayItems, string jsonData)");

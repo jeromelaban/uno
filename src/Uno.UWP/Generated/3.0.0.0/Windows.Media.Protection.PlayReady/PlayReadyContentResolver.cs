@@ -8,7 +8,7 @@ namespace Windows.Media.Protection.PlayReady
 	public  partial class PlayReadyContentResolver 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.Protection.PlayReady.IPlayReadyServiceRequest ServiceRequest( global::Windows.Media.Protection.PlayReady.PlayReadyContentHeader contentHeader)
 		{
 			throw new global::System.NotImplementedException("The member IPlayReadyServiceRequest PlayReadyContentResolver.ServiceRequest(PlayReadyContentHeader contentHeader) is not implemented in Uno.");

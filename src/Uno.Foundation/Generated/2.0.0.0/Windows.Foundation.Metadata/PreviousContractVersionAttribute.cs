@@ -8,7 +8,7 @@ namespace Windows.Foundation.Metadata
 	public  partial class PreviousContractVersionAttribute : global::System.Attribute
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PreviousContractVersionAttribute( string contract,  uint versionLow,  uint versionHigh,  string newContract) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Foundation.Metadata.PreviousContractVersionAttribute", "PreviousContractVersionAttribute.PreviousContractVersionAttribute(string contract, uint versionLow, uint versionHigh, string newContract)");
@@ -16,7 +16,7 @@ namespace Windows.Foundation.Metadata
 		#endif
 		// Forced skipping of method Windows.Foundation.Metadata.PreviousContractVersionAttribute.PreviousContractVersionAttribute(string, uint, uint, string)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PreviousContractVersionAttribute( string contract,  uint versionLow,  uint versionHigh) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Foundation.Metadata.PreviousContractVersionAttribute", "PreviousContractVersionAttribute.PreviousContractVersionAttribute(string contract, uint versionLow, uint versionHigh)");

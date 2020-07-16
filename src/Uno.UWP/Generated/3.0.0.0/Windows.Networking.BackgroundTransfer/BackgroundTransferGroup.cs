@@ -8,7 +8,7 @@ namespace Windows.Networking.BackgroundTransfer
 	public  partial class BackgroundTransferGroup 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Networking.BackgroundTransfer.BackgroundTransferBehavior TransferBehavior
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.Networking.BackgroundTransfer
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string Name
 		{
 			get
@@ -35,7 +35,7 @@ namespace Windows.Networking.BackgroundTransfer
 		// Forced skipping of method Windows.Networking.BackgroundTransfer.BackgroundTransferGroup.TransferBehavior.get
 		// Forced skipping of method Windows.Networking.BackgroundTransfer.BackgroundTransferGroup.TransferBehavior.set
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Networking.BackgroundTransfer.BackgroundTransferGroup CreateGroup( string name)
 		{
 			throw new global::System.NotImplementedException("The member BackgroundTransferGroup BackgroundTransferGroup.CreateGroup(string name) is not implemented in Uno.");

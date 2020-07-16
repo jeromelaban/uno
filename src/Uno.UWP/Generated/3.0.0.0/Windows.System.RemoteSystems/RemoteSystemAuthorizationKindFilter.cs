@@ -8,7 +8,7 @@ namespace Windows.System.RemoteSystems
 	public  partial class RemoteSystemAuthorizationKindFilter : global::Windows.System.RemoteSystems.IRemoteSystemFilter
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.System.RemoteSystems.RemoteSystemAuthorizationKind RemoteSystemAuthorizationKind
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.System.RemoteSystems
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public RemoteSystemAuthorizationKindFilter( global::Windows.System.RemoteSystems.RemoteSystemAuthorizationKind remoteSystemAuthorizationKind) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.System.RemoteSystems.RemoteSystemAuthorizationKindFilter", "RemoteSystemAuthorizationKindFilter.RemoteSystemAuthorizationKindFilter(RemoteSystemAuthorizationKind remoteSystemAuthorizationKind)");

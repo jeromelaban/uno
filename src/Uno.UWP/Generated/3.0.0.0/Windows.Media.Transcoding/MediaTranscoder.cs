@@ -8,7 +8,7 @@ namespace Windows.Media.Transcoding
 	public  partial class MediaTranscoder 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.TimeSpan TrimStopTime
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.Media.Transcoding
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.TimeSpan TrimStartTime
 		{
 			get
@@ -36,7 +36,7 @@ namespace Windows.Media.Transcoding
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool HardwareAccelerationEnabled
 		{
 			get
@@ -50,7 +50,7 @@ namespace Windows.Media.Transcoding
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool AlwaysReencode
 		{
 			get
@@ -64,7 +64,7 @@ namespace Windows.Media.Transcoding
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Media.Transcoding.MediaVideoProcessingAlgorithm VideoProcessingAlgorithm
 		{
 			get
@@ -78,7 +78,7 @@ namespace Windows.Media.Transcoding
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public MediaTranscoder() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Media.Transcoding.MediaTranscoder", "MediaTranscoder.MediaTranscoder()");
@@ -94,56 +94,56 @@ namespace Windows.Media.Transcoding
 		// Forced skipping of method Windows.Media.Transcoding.MediaTranscoder.HardwareAccelerationEnabled.set
 		// Forced skipping of method Windows.Media.Transcoding.MediaTranscoder.HardwareAccelerationEnabled.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void AddAudioEffect( string activatableClassId)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Media.Transcoding.MediaTranscoder", "void MediaTranscoder.AddAudioEffect(string activatableClassId)");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void AddAudioEffect( string activatableClassId,  bool effectRequired,  global::Windows.Foundation.Collections.IPropertySet configuration)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Media.Transcoding.MediaTranscoder", "void MediaTranscoder.AddAudioEffect(string activatableClassId, bool effectRequired, IPropertySet configuration)");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void AddVideoEffect( string activatableClassId)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Media.Transcoding.MediaTranscoder", "void MediaTranscoder.AddVideoEffect(string activatableClassId)");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void AddVideoEffect( string activatableClassId,  bool effectRequired,  global::Windows.Foundation.Collections.IPropertySet configuration)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Media.Transcoding.MediaTranscoder", "void MediaTranscoder.AddVideoEffect(string activatableClassId, bool effectRequired, IPropertySet configuration)");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void ClearEffects()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Media.Transcoding.MediaTranscoder", "void MediaTranscoder.ClearEffects()");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Media.Transcoding.PrepareTranscodeResult> PrepareFileTranscodeAsync( global::Windows.Storage.IStorageFile source,  global::Windows.Storage.IStorageFile destination,  global::Windows.Media.MediaProperties.MediaEncodingProfile profile)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<PrepareTranscodeResult> MediaTranscoder.PrepareFileTranscodeAsync(IStorageFile source, IStorageFile destination, MediaEncodingProfile profile) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Media.Transcoding.PrepareTranscodeResult> PrepareStreamTranscodeAsync( global::Windows.Storage.Streams.IRandomAccessStream source,  global::Windows.Storage.Streams.IRandomAccessStream destination,  global::Windows.Media.MediaProperties.MediaEncodingProfile profile)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<PrepareTranscodeResult> MediaTranscoder.PrepareStreamTranscodeAsync(IRandomAccessStream source, IRandomAccessStream destination, MediaEncodingProfile profile) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Media.Transcoding.PrepareTranscodeResult> PrepareMediaStreamSourceTranscodeAsync( global::Windows.Media.Core.IMediaSource source,  global::Windows.Storage.Streams.IRandomAccessStream destination,  global::Windows.Media.MediaProperties.MediaEncodingProfile profile)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<PrepareTranscodeResult> MediaTranscoder.PrepareMediaStreamSourceTranscodeAsync(IMediaSource source, IRandomAccessStream destination, MediaEncodingProfile profile) is not implemented in Uno.");

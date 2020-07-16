@@ -12,7 +12,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		// Forced skipping of method Windows.UI.Xaml.Media.Animation.EasingFunctionBase.EasingMode.get
 		// Forced skipping of method Windows.UI.Xaml.Media.Animation.EasingFunctionBase.EasingMode.set
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  double Ease( double normalizedTime)
 		{
 			throw new global::System.NotImplementedException("The member double EasingFunctionBase.Ease(double normalizedTime) is not implemented in Uno.");

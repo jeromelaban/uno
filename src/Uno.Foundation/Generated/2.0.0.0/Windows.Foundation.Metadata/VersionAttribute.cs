@@ -8,7 +8,7 @@ namespace Windows.Foundation.Metadata
 	public  partial class VersionAttribute : global::System.Attribute
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public VersionAttribute( uint version) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Foundation.Metadata.VersionAttribute", "VersionAttribute.VersionAttribute(uint version)");
@@ -16,7 +16,7 @@ namespace Windows.Foundation.Metadata
 		#endif
 		// Forced skipping of method Windows.Foundation.Metadata.VersionAttribute.VersionAttribute(uint)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public VersionAttribute( uint version,  global::Windows.Foundation.Metadata.Platform platform) : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Foundation.Metadata.VersionAttribute", "VersionAttribute.VersionAttribute(uint version, Platform platform)");

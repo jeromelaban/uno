@@ -8,7 +8,7 @@ namespace Windows.Media.DialProtocol
 	public  partial class DialApp 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string AppName
 		{
 			get
@@ -19,21 +19,21 @@ namespace Windows.Media.DialProtocol
 		#endif
 		// Forced skipping of method Windows.Media.DialProtocol.DialApp.AppName.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Media.DialProtocol.DialAppLaunchResult> RequestLaunchAsync( string appArgument)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<DialAppLaunchResult> DialApp.RequestLaunchAsync(string appArgument) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Media.DialProtocol.DialAppStopResult> StopAsync()
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<DialAppStopResult> DialApp.StopAsync() is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.Media.DialProtocol.DialAppStateDetails> GetAppStateAsync()
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<DialAppStateDetails> DialApp.GetAppStateAsync() is not implemented in Uno.");

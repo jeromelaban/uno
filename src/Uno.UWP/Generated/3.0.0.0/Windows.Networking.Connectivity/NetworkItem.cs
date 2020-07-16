@@ -8,7 +8,7 @@ namespace Windows.Networking.Connectivity
 	public  partial class NetworkItem 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Guid NetworkId
 		{
 			get
@@ -19,7 +19,7 @@ namespace Windows.Networking.Connectivity
 		#endif
 		// Forced skipping of method Windows.Networking.Connectivity.NetworkItem.NetworkId.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Networking.Connectivity.NetworkTypes GetNetworkTypes()
 		{
 			throw new global::System.NotImplementedException("The member NetworkTypes NetworkItem.GetNetworkTypes() is not implemented in Uno.");

@@ -8,7 +8,7 @@ namespace Windows.Media.Devices
 	public  partial class SceneModeControl 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<global::Windows.Media.Devices.CaptureSceneMode> SupportedModes
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.Media.Devices
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Media.Devices.CaptureSceneMode Value
 		{
 			get
@@ -30,7 +30,7 @@ namespace Windows.Media.Devices
 		// Forced skipping of method Windows.Media.Devices.SceneModeControl.SupportedModes.get
 		// Forced skipping of method Windows.Media.Devices.SceneModeControl.Value.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncAction SetValueAsync( global::Windows.Media.Devices.CaptureSceneMode sceneMode)
 		{
 			throw new global::System.NotImplementedException("The member IAsyncAction SceneModeControl.SetValueAsync(CaptureSceneMode sceneMode) is not implemented in Uno.");

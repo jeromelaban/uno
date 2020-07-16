@@ -8,7 +8,7 @@ namespace Windows.UI.WindowManagement
 	public  partial class FullScreenPresentationConfiguration : global::Windows.UI.WindowManagement.AppWindowPresentationConfiguration
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool IsExclusive
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.UI.WindowManagement
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public FullScreenPresentationConfiguration() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.WindowManagement.FullScreenPresentationConfiguration", "FullScreenPresentationConfiguration.FullScreenPresentationConfiguration()");

@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Media.Imaging
 	public  partial class VirtualSurfaceImageSource : global::Windows.UI.Xaml.Media.Imaging.SurfaceImageSource
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public VirtualSurfaceImageSource( int pixelWidth,  int pixelHeight) : base(pixelWidth, pixelHeight)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Media.Imaging.VirtualSurfaceImageSource", "VirtualSurfaceImageSource.VirtualSurfaceImageSource(int pixelWidth, int pixelHeight)");
@@ -16,7 +16,7 @@ namespace Windows.UI.Xaml.Media.Imaging
 		#endif
 		// Forced skipping of method Windows.UI.Xaml.Media.Imaging.VirtualSurfaceImageSource.VirtualSurfaceImageSource(int, int)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public VirtualSurfaceImageSource( int pixelWidth,  int pixelHeight,  bool isOpaque) : base(pixelWidth, pixelHeight)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Media.Imaging.VirtualSurfaceImageSource", "VirtualSurfaceImageSource.VirtualSurfaceImageSource(int pixelWidth, int pixelHeight, bool isOpaque)");

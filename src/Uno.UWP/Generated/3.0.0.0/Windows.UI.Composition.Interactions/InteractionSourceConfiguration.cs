@@ -8,7 +8,7 @@ namespace Windows.UI.Composition.Interactions
 	public  partial class InteractionSourceConfiguration : global::Windows.UI.Composition.CompositionObject
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode ScaleSourceMode
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.UI.Composition.Interactions
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode PositionYSourceMode
 		{
 			get
@@ -36,7 +36,7 @@ namespace Windows.UI.Composition.Interactions
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.UI.Composition.Interactions.InteractionSourceRedirectionMode PositionXSourceMode
 		{
 			get

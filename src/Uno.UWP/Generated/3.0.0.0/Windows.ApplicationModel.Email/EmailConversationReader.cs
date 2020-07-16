@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.Email
 	public  partial class EmailConversationReader 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Foundation.IAsyncOperation<global::Windows.ApplicationModel.Email.EmailConversationBatch> ReadBatchAsync()
 		{
 			throw new global::System.NotImplementedException("The member IAsyncOperation<EmailConversationBatch> EmailConversationReader.ReadBatchAsync() is not implemented in Uno.");

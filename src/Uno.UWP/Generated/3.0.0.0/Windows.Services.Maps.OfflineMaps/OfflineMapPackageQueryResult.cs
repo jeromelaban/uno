@@ -8,7 +8,7 @@ namespace Windows.Services.Maps.OfflineMaps
 	public  partial class OfflineMapPackageQueryResult 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<global::Windows.Services.Maps.OfflineMaps.OfflineMapPackage> Packages
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.Services.Maps.OfflineMaps
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryStatus Status
 		{
 			get

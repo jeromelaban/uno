@@ -8,7 +8,7 @@ namespace Windows.System.Profile
 	public  partial class AnalyticsVersionInfo 
 	{
 		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || false
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("NET461", "__SKIA__", "__NETSTD_REFERENCE__")]
 		public  string DeviceFamily
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.System.Profile
 		}
 		#endif
 		#if false || false || NET461 || false || __SKIA__ || __NETSTD_REFERENCE__ || false
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("NET461", "__SKIA__", "__NETSTD_REFERENCE__")]
 		public  string DeviceFamilyVersion
 		{
 			get

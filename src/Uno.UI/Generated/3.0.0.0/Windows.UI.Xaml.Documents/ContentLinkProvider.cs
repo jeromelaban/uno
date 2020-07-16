@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Documents
 	public  partial class ContentLinkProvider : global::Windows.UI.Xaml.DependencyObject
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || false || false || false || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__MACOS__")]
 		protected ContentLinkProvider() : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Documents.ContentLinkProvider", "ContentLinkProvider.ContentLinkProvider()");

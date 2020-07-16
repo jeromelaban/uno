@@ -8,7 +8,7 @@ namespace Windows.Globalization.DateTimeFormatting
 	public  partial class DateTimeFormatter 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string NumeralSystem
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string Clock
 		{
 			get
@@ -32,7 +32,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string GeographicRegion
 		{
 			get
@@ -42,7 +42,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Globalization.DateTimeFormatting.DayFormat IncludeDay
 		{
 			get
@@ -52,7 +52,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Globalization.DateTimeFormatting.DayOfWeekFormat IncludeDayOfWeek
 		{
 			get
@@ -62,7 +62,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Globalization.DateTimeFormatting.HourFormat IncludeHour
 		{
 			get
@@ -72,7 +72,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Globalization.DateTimeFormatting.MinuteFormat IncludeMinute
 		{
 			get
@@ -82,7 +82,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Globalization.DateTimeFormatting.MonthFormat IncludeMonth
 		{
 			get
@@ -92,7 +92,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Globalization.DateTimeFormatting.SecondFormat IncludeSecond
 		{
 			get
@@ -102,7 +102,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Globalization.DateTimeFormatting.YearFormat IncludeYear
 		{
 			get
@@ -112,7 +112,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<string> Languages
 		{
 			get
@@ -122,7 +122,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string Calendar
 		{
 			get
@@ -132,7 +132,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<string> Patterns
 		{
 			get
@@ -142,7 +142,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string ResolvedGeographicRegion
 		{
 			get
@@ -152,7 +152,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string ResolvedLanguage
 		{
 			get
@@ -162,7 +162,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string Template
 		{
 			get
@@ -172,7 +172,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Globalization.DateTimeFormatting.DateTimeFormatter LongDate
 		{
 			get
@@ -182,7 +182,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Globalization.DateTimeFormatting.DateTimeFormatter LongTime
 		{
 			get
@@ -192,7 +192,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Globalization.DateTimeFormatting.DateTimeFormatter ShortDate
 		{
 			get
@@ -202,7 +202,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Globalization.DateTimeFormatting.DateTimeFormatter ShortTime
 		{
 			get
@@ -212,7 +212,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DateTimeFormatter( string formatTemplate) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.DateTimeFormatting.DateTimeFormatter", "DateTimeFormatter.DateTimeFormatter(string formatTemplate)");
@@ -220,7 +220,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		#endif
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.DateTimeFormatter(string)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DateTimeFormatter( string formatTemplate,  global::System.Collections.Generic.IEnumerable<string> languages) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.DateTimeFormatting.DateTimeFormatter", "DateTimeFormatter.DateTimeFormatter(string formatTemplate, IEnumerable<string> languages)");
@@ -228,7 +228,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		#endif
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.DateTimeFormatter(string, System.Collections.Generic.IEnumerable<string>)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DateTimeFormatter( string formatTemplate,  global::System.Collections.Generic.IEnumerable<string> languages,  string geographicRegion,  string calendar,  string clock) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.DateTimeFormatting.DateTimeFormatter", "DateTimeFormatter.DateTimeFormatter(string formatTemplate, IEnumerable<string> languages, string geographicRegion, string calendar, string clock)");
@@ -236,7 +236,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		#endif
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.DateTimeFormatter(string, System.Collections.Generic.IEnumerable<string>, string, string, string)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DateTimeFormatter( global::Windows.Globalization.DateTimeFormatting.YearFormat yearFormat,  global::Windows.Globalization.DateTimeFormatting.MonthFormat monthFormat,  global::Windows.Globalization.DateTimeFormatting.DayFormat dayFormat,  global::Windows.Globalization.DateTimeFormatting.DayOfWeekFormat dayOfWeekFormat) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.DateTimeFormatting.DateTimeFormatter", "DateTimeFormatter.DateTimeFormatter(YearFormat yearFormat, MonthFormat monthFormat, DayFormat dayFormat, DayOfWeekFormat dayOfWeekFormat)");
@@ -244,7 +244,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		#endif
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.DateTimeFormatter(Windows.Globalization.DateTimeFormatting.YearFormat, Windows.Globalization.DateTimeFormatting.MonthFormat, Windows.Globalization.DateTimeFormatting.DayFormat, Windows.Globalization.DateTimeFormatting.DayOfWeekFormat)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DateTimeFormatter( global::Windows.Globalization.DateTimeFormatting.HourFormat hourFormat,  global::Windows.Globalization.DateTimeFormatting.MinuteFormat minuteFormat,  global::Windows.Globalization.DateTimeFormatting.SecondFormat secondFormat) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.DateTimeFormatting.DateTimeFormatter", "DateTimeFormatter.DateTimeFormatter(HourFormat hourFormat, MinuteFormat minuteFormat, SecondFormat secondFormat)");
@@ -252,7 +252,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		#endif
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.DateTimeFormatter(Windows.Globalization.DateTimeFormatting.HourFormat, Windows.Globalization.DateTimeFormatting.MinuteFormat, Windows.Globalization.DateTimeFormatting.SecondFormat)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DateTimeFormatter( global::Windows.Globalization.DateTimeFormatting.YearFormat yearFormat,  global::Windows.Globalization.DateTimeFormatting.MonthFormat monthFormat,  global::Windows.Globalization.DateTimeFormatting.DayFormat dayFormat,  global::Windows.Globalization.DateTimeFormatting.DayOfWeekFormat dayOfWeekFormat,  global::Windows.Globalization.DateTimeFormatting.HourFormat hourFormat,  global::Windows.Globalization.DateTimeFormatting.MinuteFormat minuteFormat,  global::Windows.Globalization.DateTimeFormatting.SecondFormat secondFormat,  global::System.Collections.Generic.IEnumerable<string> languages) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.DateTimeFormatting.DateTimeFormatter", "DateTimeFormatter.DateTimeFormatter(YearFormat yearFormat, MonthFormat monthFormat, DayFormat dayFormat, DayOfWeekFormat dayOfWeekFormat, HourFormat hourFormat, MinuteFormat minuteFormat, SecondFormat secondFormat, IEnumerable<string> languages)");
@@ -260,7 +260,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		#endif
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.DateTimeFormatter(Windows.Globalization.DateTimeFormatting.YearFormat, Windows.Globalization.DateTimeFormatting.MonthFormat, Windows.Globalization.DateTimeFormatting.DayFormat, Windows.Globalization.DateTimeFormatting.DayOfWeekFormat, Windows.Globalization.DateTimeFormatting.HourFormat, Windows.Globalization.DateTimeFormatting.MinuteFormat, Windows.Globalization.DateTimeFormatting.SecondFormat, System.Collections.Generic.IEnumerable<string>)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DateTimeFormatter( global::Windows.Globalization.DateTimeFormatting.YearFormat yearFormat,  global::Windows.Globalization.DateTimeFormatting.MonthFormat monthFormat,  global::Windows.Globalization.DateTimeFormatting.DayFormat dayFormat,  global::Windows.Globalization.DateTimeFormatting.DayOfWeekFormat dayOfWeekFormat,  global::Windows.Globalization.DateTimeFormatting.HourFormat hourFormat,  global::Windows.Globalization.DateTimeFormatting.MinuteFormat minuteFormat,  global::Windows.Globalization.DateTimeFormatting.SecondFormat secondFormat,  global::System.Collections.Generic.IEnumerable<string> languages,  string geographicRegion,  string calendar,  string clock) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.DateTimeFormatting.DateTimeFormatter", "DateTimeFormatter.DateTimeFormatter(YearFormat yearFormat, MonthFormat monthFormat, DayFormat dayFormat, DayOfWeekFormat dayOfWeekFormat, HourFormat hourFormat, MinuteFormat minuteFormat, SecondFormat secondFormat, IEnumerable<string> languages, string geographicRegion, string calendar, string clock)");
@@ -276,7 +276,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Patterns.get
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.Template.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string Format( global::System.DateTimeOffset value)
 		{
 			throw new global::System.NotImplementedException("The member string DateTimeFormatter.Format(DateTimeOffset value) is not implemented in Uno.");
@@ -292,7 +292,7 @@ namespace Windows.Globalization.DateTimeFormatting
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ResolvedLanguage.get
 		// Forced skipping of method Windows.Globalization.DateTimeFormatting.DateTimeFormatter.ResolvedGeographicRegion.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string Format( global::System.DateTimeOffset datetime,  string timeZoneId)
 		{
 			throw new global::System.NotImplementedException("The member string DateTimeFormatter.Format(DateTimeOffset datetime, string timeZoneId) is not implemented in Uno.");

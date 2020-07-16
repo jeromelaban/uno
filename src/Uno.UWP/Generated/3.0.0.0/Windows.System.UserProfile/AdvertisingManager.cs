@@ -8,7 +8,7 @@ namespace Windows.System.UserProfile
 	public  partial class AdvertisingManager 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static string AdvertisingId
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.System.UserProfile
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.System.UserProfile.AdvertisingManagerForUser GetForUser( global::Windows.System.User user)
 		{
 			throw new global::System.NotImplementedException("The member AdvertisingManagerForUser AdvertisingManager.GetForUser(User user) is not implemented in Uno.");

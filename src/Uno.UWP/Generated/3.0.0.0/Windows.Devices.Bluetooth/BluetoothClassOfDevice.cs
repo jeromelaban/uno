@@ -8,7 +8,7 @@ namespace Windows.Devices.Bluetooth
 	public  partial class BluetoothClassOfDevice 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.Bluetooth.BluetoothMajorClass MajorClass
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.Devices.Bluetooth
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.Bluetooth.BluetoothMinorClass MinorClass
 		{
 			get
@@ -28,7 +28,7 @@ namespace Windows.Devices.Bluetooth
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  uint RawValue
 		{
 			get
@@ -38,7 +38,7 @@ namespace Windows.Devices.Bluetooth
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.Bluetooth.BluetoothServiceCapabilities ServiceCapabilities
 		{
 			get
@@ -52,14 +52,14 @@ namespace Windows.Devices.Bluetooth
 		// Forced skipping of method Windows.Devices.Bluetooth.BluetoothClassOfDevice.MinorClass.get
 		// Forced skipping of method Windows.Devices.Bluetooth.BluetoothClassOfDevice.ServiceCapabilities.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Devices.Bluetooth.BluetoothClassOfDevice FromRawValue( uint rawValue)
 		{
 			throw new global::System.NotImplementedException("The member BluetoothClassOfDevice BluetoothClassOfDevice.FromRawValue(uint rawValue) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Devices.Bluetooth.BluetoothClassOfDevice FromParts( global::Windows.Devices.Bluetooth.BluetoothMajorClass majorClass,  global::Windows.Devices.Bluetooth.BluetoothMinorClass minorClass,  global::Windows.Devices.Bluetooth.BluetoothServiceCapabilities serviceCapabilities)
 		{
 			throw new global::System.NotImplementedException("The member BluetoothClassOfDevice BluetoothClassOfDevice.FromParts(BluetoothMajorClass majorClass, BluetoothMinorClass minorClass, BluetoothServiceCapabilities serviceCapabilities) is not implemented in Uno.");

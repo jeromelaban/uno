@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Markup
 	public  partial class XamlBindingHelper 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Xaml.DependencyProperty DataTemplateComponentProperty { get; } = 
 		Windows.UI.Xaml.DependencyProperty.RegisterAttached(
 			"DataTemplateComponent", typeof(global::Windows.UI.Xaml.Markup.IDataTemplateComponent), 
@@ -17,14 +17,14 @@ namespace Windows.UI.Xaml.Markup
 		#endif
 		// Forced skipping of method Windows.UI.Xaml.Markup.XamlBindingHelper.DataTemplateComponentProperty.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Xaml.Markup.IDataTemplateComponent GetDataTemplateComponent( global::Windows.UI.Xaml.DependencyObject element)
 		{
 			return (global::Windows.UI.Xaml.Markup.IDataTemplateComponent)element.GetValue(DataTemplateComponentProperty);
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static void SetDataTemplateComponent( global::Windows.UI.Xaml.DependencyObject element,  global::Windows.UI.Xaml.Markup.IDataTemplateComponent value)
 		{
 			element.SetValue(DataTemplateComponentProperty, value);

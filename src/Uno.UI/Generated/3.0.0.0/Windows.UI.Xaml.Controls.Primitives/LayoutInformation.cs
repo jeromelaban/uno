@@ -9,7 +9,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 	{
 		// Skipping already declared method Windows.UI.Xaml.Controls.Primitives.LayoutInformation.GetAvailableSize(Windows.UI.Xaml.UIElement)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Xaml.UIElement GetLayoutExceptionElement( object dispatcher)
 		{
 			throw new global::System.NotImplementedException("The member UIElement LayoutInformation.GetLayoutExceptionElement(object dispatcher) is not implemented in Uno.");

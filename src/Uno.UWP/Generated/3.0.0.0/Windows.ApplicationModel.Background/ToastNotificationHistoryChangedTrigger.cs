@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.Background
 	public  partial class ToastNotificationHistoryChangedTrigger : global::Windows.ApplicationModel.Background.IBackgroundTrigger
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public ToastNotificationHistoryChangedTrigger( string applicationId) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger", "ToastNotificationHistoryChangedTrigger.ToastNotificationHistoryChangedTrigger(string applicationId)");
@@ -16,7 +16,7 @@ namespace Windows.ApplicationModel.Background
 		#endif
 		// Forced skipping of method Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger.ToastNotificationHistoryChangedTrigger(string)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public ToastNotificationHistoryChangedTrigger() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger", "ToastNotificationHistoryChangedTrigger.ToastNotificationHistoryChangedTrigger()");

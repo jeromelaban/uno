@@ -8,7 +8,7 @@ namespace Windows.Devices.Sensors
 	public  partial class HingeAngleSensorReadingChangedEventArgs 
 	{
 		#if false || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.Sensors.HingeAngleReading Reading
 		{
 			get

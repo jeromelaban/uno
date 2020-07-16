@@ -8,7 +8,7 @@ namespace Windows.UI.WindowManagement
 	public  partial class CompactOverlayPresentationConfiguration : global::Windows.UI.WindowManagement.AppWindowPresentationConfiguration
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public CompactOverlayPresentationConfiguration() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.WindowManagement.CompactOverlayPresentationConfiguration", "CompactOverlayPresentationConfiguration.CompactOverlayPresentationConfiguration()");

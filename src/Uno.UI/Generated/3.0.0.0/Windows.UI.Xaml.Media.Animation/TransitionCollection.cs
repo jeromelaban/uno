@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Media.Animation
 	public  partial class TransitionCollection : global::System.Collections.Generic.IList<global::Windows.UI.Xaml.Media.Animation.Transition>,global::System.Collections.Generic.IEnumerable<global::Windows.UI.Xaml.Media.Animation.Transition>
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  uint Size
 		{
 			get
@@ -37,7 +37,7 @@ namespace Windows.UI.Xaml.Media.Animation
 		// Processing: System.Collections.Generic.ICollection<Windows.UI.Xaml.Media.Animation.Transition>
 		// Skipping already implement System.Collections.Generic.ICollection<Windows.UI.Xaml.Media.Animation.Transition>.Count
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public bool IsReadOnly
 		{
 			get

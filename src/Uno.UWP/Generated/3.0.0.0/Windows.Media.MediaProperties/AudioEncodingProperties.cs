@@ -8,7 +8,7 @@ namespace Windows.Media.MediaProperties
 	public  partial class AudioEncodingProperties : global::Windows.Media.MediaProperties.IMediaEncodingProperties
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  uint SampleRate
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.Media.MediaProperties
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  uint ChannelCount
 		{
 			get
@@ -36,7 +36,7 @@ namespace Windows.Media.MediaProperties
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  uint BitsPerSample
 		{
 			get
@@ -50,7 +50,7 @@ namespace Windows.Media.MediaProperties
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  uint Bitrate
 		{
 			get
@@ -64,7 +64,7 @@ namespace Windows.Media.MediaProperties
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool IsSpatial
 		{
 			get
@@ -74,7 +74,7 @@ namespace Windows.Media.MediaProperties
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string Subtype
 		{
 			get
@@ -88,7 +88,7 @@ namespace Windows.Media.MediaProperties
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Media.MediaProperties.MediaPropertySet Properties
 		{
 			get
@@ -98,7 +98,7 @@ namespace Windows.Media.MediaProperties
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string Type
 		{
 			get
@@ -108,7 +108,7 @@ namespace Windows.Media.MediaProperties
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public AudioEncodingProperties() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Media.MediaProperties.AudioEncodingProperties", "AudioEncodingProperties.AudioEncodingProperties()");
@@ -128,14 +128,14 @@ namespace Windows.Media.MediaProperties
 		// Forced skipping of method Windows.Media.MediaProperties.AudioEncodingProperties.Subtype.set
 		// Forced skipping of method Windows.Media.MediaProperties.AudioEncodingProperties.Subtype.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void SetFormatUserData( byte[] value)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Media.MediaProperties.AudioEncodingProperties", "void AudioEncodingProperties.SetFormatUserData(byte[] value)");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void GetFormatUserData(out byte[] value)
 		{
 			throw new global::System.NotImplementedException("The member void AudioEncodingProperties.GetFormatUserData(out byte[] value) is not implemented in Uno.");
@@ -143,56 +143,56 @@ namespace Windows.Media.MediaProperties
 		#endif
 		// Forced skipping of method Windows.Media.MediaProperties.AudioEncodingProperties.IsSpatial.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Media.MediaProperties.AudioEncodingProperties Copy()
 		{
 			throw new global::System.NotImplementedException("The member AudioEncodingProperties AudioEncodingProperties.Copy() is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.MediaProperties.AudioEncodingProperties CreateAlac( uint sampleRate,  uint channelCount,  uint bitsPerSample)
 		{
 			throw new global::System.NotImplementedException("The member AudioEncodingProperties AudioEncodingProperties.CreateAlac(uint sampleRate, uint channelCount, uint bitsPerSample) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.MediaProperties.AudioEncodingProperties CreateFlac( uint sampleRate,  uint channelCount,  uint bitsPerSample)
 		{
 			throw new global::System.NotImplementedException("The member AudioEncodingProperties AudioEncodingProperties.CreateFlac(uint sampleRate, uint channelCount, uint bitsPerSample) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.MediaProperties.AudioEncodingProperties CreateAac( uint sampleRate,  uint channelCount,  uint bitrate)
 		{
 			throw new global::System.NotImplementedException("The member AudioEncodingProperties AudioEncodingProperties.CreateAac(uint sampleRate, uint channelCount, uint bitrate) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.MediaProperties.AudioEncodingProperties CreateAacAdts( uint sampleRate,  uint channelCount,  uint bitrate)
 		{
 			throw new global::System.NotImplementedException("The member AudioEncodingProperties AudioEncodingProperties.CreateAacAdts(uint sampleRate, uint channelCount, uint bitrate) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.MediaProperties.AudioEncodingProperties CreateMp3( uint sampleRate,  uint channelCount,  uint bitrate)
 		{
 			throw new global::System.NotImplementedException("The member AudioEncodingProperties AudioEncodingProperties.CreateMp3(uint sampleRate, uint channelCount, uint bitrate) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.MediaProperties.AudioEncodingProperties CreatePcm( uint sampleRate,  uint channelCount,  uint bitsPerSample)
 		{
 			throw new global::System.NotImplementedException("The member AudioEncodingProperties AudioEncodingProperties.CreatePcm(uint sampleRate, uint channelCount, uint bitsPerSample) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.Media.MediaProperties.AudioEncodingProperties CreateWma( uint sampleRate,  uint channelCount,  uint bitrate)
 		{
 			throw new global::System.NotImplementedException("The member AudioEncodingProperties AudioEncodingProperties.CreateWma(uint sampleRate, uint channelCount, uint bitrate) is not implemented in Uno.");

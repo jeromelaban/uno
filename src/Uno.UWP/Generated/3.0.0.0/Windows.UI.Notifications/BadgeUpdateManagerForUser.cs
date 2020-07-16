@@ -8,7 +8,7 @@ namespace Windows.UI.Notifications
 	public  partial class BadgeUpdateManagerForUser 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.System.User User
 		{
 			get
@@ -18,21 +18,21 @@ namespace Windows.UI.Notifications
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.UI.Notifications.BadgeUpdater CreateBadgeUpdaterForApplication()
 		{
 			throw new global::System.NotImplementedException("The member BadgeUpdater BadgeUpdateManagerForUser.CreateBadgeUpdaterForApplication() is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.UI.Notifications.BadgeUpdater CreateBadgeUpdaterForApplication( string applicationId)
 		{
 			throw new global::System.NotImplementedException("The member BadgeUpdater BadgeUpdateManagerForUser.CreateBadgeUpdaterForApplication(string applicationId) is not implemented in Uno.");
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.UI.Notifications.BadgeUpdater CreateBadgeUpdaterForSecondaryTile( string tileId)
 		{
 			throw new global::System.NotImplementedException("The member BadgeUpdater BadgeUpdateManagerForUser.CreateBadgeUpdaterForSecondaryTile(string tileId) is not implemented in Uno.");

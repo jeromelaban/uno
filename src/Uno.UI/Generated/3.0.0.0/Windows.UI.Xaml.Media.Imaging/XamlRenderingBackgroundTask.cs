@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Media.Imaging
 	public  partial class XamlRenderingBackgroundTask 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		protected XamlRenderingBackgroundTask() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Media.Imaging.XamlRenderingBackgroundTask", "XamlRenderingBackgroundTask.XamlRenderingBackgroundTask()");
@@ -16,7 +16,7 @@ namespace Windows.UI.Xaml.Media.Imaging
 		#endif
 		// Forced skipping of method Windows.UI.Xaml.Media.Imaging.XamlRenderingBackgroundTask.XamlRenderingBackgroundTask()
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		protected virtual void OnRun( global::Windows.ApplicationModel.Background.IBackgroundTaskInstance taskInstance)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Media.Imaging.XamlRenderingBackgroundTask", "void XamlRenderingBackgroundTask.OnRun(IBackgroundTaskInstance taskInstance)");

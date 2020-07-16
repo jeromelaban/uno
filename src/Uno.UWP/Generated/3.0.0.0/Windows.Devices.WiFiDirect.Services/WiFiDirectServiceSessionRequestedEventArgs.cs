@@ -8,7 +8,7 @@ namespace Windows.Devices.WiFiDirect.Services
 	public  partial class WiFiDirectServiceSessionRequestedEventArgs 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.Devices.WiFiDirect.Services.WiFiDirectServiceSessionRequest GetSessionRequest()
 		{
 			throw new global::System.NotImplementedException("The member WiFiDirectServiceSessionRequest WiFiDirectServiceSessionRequestedEventArgs.GetSessionRequest() is not implemented in Uno.");

@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Documents
 	public  partial class PlaceContentLinkProvider : global::Windows.UI.Xaml.Documents.ContentLinkProvider
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public PlaceContentLinkProvider() : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Documents.PlaceContentLinkProvider", "PlaceContentLinkProvider.PlaceContentLinkProvider()");

@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Markup
 	public  partial class FullXamlMetadataProviderAttribute : global::System.Attribute
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public FullXamlMetadataProviderAttribute() : base()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Markup.FullXamlMetadataProviderAttribute", "FullXamlMetadataProviderAttribute.FullXamlMetadataProviderAttribute()");

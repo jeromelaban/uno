@@ -8,7 +8,7 @@ namespace Windows.UI.Xaml.Media
 	public  partial class GradientStopCollection : global::System.Collections.Generic.IList<global::Windows.UI.Xaml.Media.GradientStop>,global::System.Collections.Generic.IEnumerable<global::Windows.UI.Xaml.Media.GradientStop>
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  uint Size
 		{
 			get
@@ -37,7 +37,7 @@ namespace Windows.UI.Xaml.Media
 		// Processing: System.Collections.Generic.ICollection<Windows.UI.Xaml.Media.GradientStop>
 		// Skipping already implement System.Collections.Generic.ICollection<Windows.UI.Xaml.Media.GradientStop>.Count
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public bool IsReadOnly
 		{
 			get

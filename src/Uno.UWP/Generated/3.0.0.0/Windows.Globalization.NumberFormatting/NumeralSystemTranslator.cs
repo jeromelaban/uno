@@ -8,7 +8,7 @@ namespace Windows.Globalization.NumberFormatting
 	public  partial class NumeralSystemTranslator 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string NumeralSystem
 		{
 			get
@@ -22,7 +22,7 @@ namespace Windows.Globalization.NumberFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Collections.Generic.IReadOnlyList<string> Languages
 		{
 			get
@@ -32,7 +32,7 @@ namespace Windows.Globalization.NumberFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string ResolvedLanguage
 		{
 			get
@@ -42,7 +42,7 @@ namespace Windows.Globalization.NumberFormatting
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public NumeralSystemTranslator( global::System.Collections.Generic.IEnumerable<string> languages) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.NumberFormatting.NumeralSystemTranslator", "NumeralSystemTranslator.NumeralSystemTranslator(IEnumerable<string> languages)");
@@ -50,7 +50,7 @@ namespace Windows.Globalization.NumberFormatting
 		#endif
 		// Forced skipping of method Windows.Globalization.NumberFormatting.NumeralSystemTranslator.NumeralSystemTranslator(System.Collections.Generic.IEnumerable<string>)
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public NumeralSystemTranslator() 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.Globalization.NumberFormatting.NumeralSystemTranslator", "NumeralSystemTranslator.NumeralSystemTranslator()");
@@ -62,7 +62,7 @@ namespace Windows.Globalization.NumberFormatting
 		// Forced skipping of method Windows.Globalization.NumberFormatting.NumeralSystemTranslator.NumeralSystem.get
 		// Forced skipping of method Windows.Globalization.NumberFormatting.NumeralSystemTranslator.NumeralSystem.set
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string TranslateNumerals( string value)
 		{
 			throw new global::System.NotImplementedException("The member string NumeralSystemTranslator.TranslateNumerals(string value) is not implemented in Uno.");

@@ -8,7 +8,7 @@ namespace Windows.ApplicationModel.Background
 	public  partial class NetworkOperatorNotificationTrigger : global::Windows.ApplicationModel.Background.IBackgroundTrigger
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  string NetworkAccountId
 		{
 			get
@@ -18,7 +18,7 @@ namespace Windows.ApplicationModel.Background
 		}
 		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public NetworkOperatorNotificationTrigger( string networkAccountId) 
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.ApplicationModel.Background.NetworkOperatorNotificationTrigger", "NetworkOperatorNotificationTrigger.NetworkOperatorNotificationTrigger(string networkAccountId)");

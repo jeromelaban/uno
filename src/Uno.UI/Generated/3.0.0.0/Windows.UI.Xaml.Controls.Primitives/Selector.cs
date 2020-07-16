@@ -35,7 +35,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 		// Forced skipping of method Windows.UI.Xaml.Controls.Primitives.Selector.SelectedValuePathProperty.get
 		// Forced skipping of method Windows.UI.Xaml.Controls.Primitives.Selector.IsSynchronizedWithCurrentItemProperty.get
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static bool GetIsSelectionActive( global::Windows.UI.Xaml.DependencyObject element)
 		{
 			throw new global::System.NotImplementedException("The member bool Selector.GetIsSelectionActive(DependencyObject element) is not implemented in Uno.");

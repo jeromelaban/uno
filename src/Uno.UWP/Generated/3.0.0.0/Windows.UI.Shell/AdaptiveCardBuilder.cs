@@ -8,7 +8,7 @@ namespace Windows.UI.Shell
 	public  partial class AdaptiveCardBuilder 
 	{
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented]
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Shell.IAdaptiveCard CreateAdaptiveCardFromJson( string value)
 		{
 			throw new global::System.NotImplementedException("The member IAdaptiveCard AdaptiveCardBuilder.CreateAdaptiveCardFromJson(string value) is not implemented in Uno.");
