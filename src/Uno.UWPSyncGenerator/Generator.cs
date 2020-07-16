@@ -264,7 +264,6 @@ namespace Uno.UWPSyncGenerator
 				|| SkiaSymbol == null
 				;
 
-
 			public void AppendIf(IndentedStringBuilder b)
 			{
 				var defines = new[] {
@@ -278,6 +277,21 @@ namespace Uno.UWPSyncGenerator
 				};
 
 				b.AppendLineInvariant($"#if {defines.JoinBy(" || ")}");
+			}
+
+			public string GenerateNotImplementedList()
+			{
+				var defines = new[] {
+					IsNotDefinedByUno(AndroidSymbol) ? AndroidDefine : "",
+					IsNotDefinedByUno(IOSSymbol) ? iOSDefine : "",
+					IsNotDefinedByUno(net461ymbol) ? net461Define : "",
+					IsNotDefinedByUno(WasmSymbol) ? WasmDefine : "",
+					IsNotDefinedByUno(SkiaSymbol) ? SkiaDefine : "",
+					IsNotDefinedByUno(NetStdReferenceSymbol) ? NetStdReferenceDefine : "",
+					MacOSSymbol == null ? MacDefine : "",
+				};
+
+				return defines.Where(d => !string.IsNullOrEmpty(d)).Select(d => $"\"{d}\"").JoinBy(", ");
 			}
 
 			private static bool IsNotDefinedByUno(ISymbol symbol)
@@ -518,7 +532,7 @@ namespace Uno.UWPSyncGenerator
 
 					b.AppendLineInvariant($"// DeclaringType: {ifaceSymbol}");
 
-					b.AppendLineInvariant($"[global::Uno.NotImplemented]");
+					b.AppendLineInvariant($"[global::Uno.NotImplemented({allMethods.GenerateNotImplementedList()})]");
 					using (b.BlockInvariant($"{typeAccessibility} {returnTypeName} {explicitImplementation}{method.Name}({parms})"))
 					{
 						b.AppendLineInvariant($"throw new global::System.NotSupportedException();");
@@ -550,7 +564,7 @@ namespace Uno.UWPSyncGenerator
 
 					var v = property.IsIndexer ? $"public {propertyTypeName} this[{parms}]" : $"public {propertyTypeName} {property.Name}";
 
-					b.AppendLineInvariant($"[global::Uno.NotImplemented]");
+					b.AppendLineInvariant($"[global::Uno.NotImplemented({allProperties.GenerateNotImplementedList()})]");
 					using (b.BlockInvariant(v))
 					{
 						if (property.GetMethod != null)
@@ -823,15 +837,15 @@ namespace Uno.UWPSyncGenerator
 					}
 					else
 					{
-						b.AppendLineInvariant($"[global::Uno.NotImplemented]");
+						b.AppendLineInvariant($"[global::Uno.NotImplemented({allMembers.GenerateNotImplementedList()})]");
 						using (b.BlockInvariant($"public {declaration}"))
 						{
-							b.AppendLineInvariant($"[global::Uno.NotImplemented]");
+							b.AppendLineInvariant($"[global::Uno.NotImplemented({allMembers.GenerateNotImplementedList()})]");
 							using (b.BlockInvariant($"add"))
 							{
 								BuildNotImplementedException(b, eventMember, false);
 							}
-							b.AppendLineInvariant($"[global::Uno.NotImplemented]");
+							b.AppendLineInvariant($"[global::Uno.NotImplemented({allMembers.GenerateNotImplementedList()})]");
 							using (b.BlockInvariant($"remove"))
 							{
 								BuildNotImplementedException(b, eventMember, false);
@@ -922,7 +936,7 @@ namespace Uno.UWPSyncGenerator
 
 						var baseParams = type.BaseType?.Name != "Object" && q.Any() ? $": base({baseParamString})" : "";
 
-						b.AppendLineInvariant($"[global::Uno.NotImplemented]");
+						b.AppendLineInvariant($"[global::Uno.NotImplemented({methods.GenerateNotImplementedList()})]");
 						using (b.BlockInvariant($"{visiblity} {type.Name}({parameters}) {baseParams}"))
 						{
 							BuildNotImplementedException(b, method, false);
@@ -959,7 +973,7 @@ namespace Uno.UWPSyncGenerator
 						}
 						else
 						{
-							b.AppendLineInvariant($"[global::Uno.NotImplemented]");
+							b.AppendLineInvariant($"[global::Uno.NotImplemented({methods.GenerateNotImplementedList()})]");
 							using (b.BlockInvariant($"{visiblity} {staticQualifier}{overrideQualifier}{virtualQualifier} {declaration}"))
 							{
 								var filteredName = method.Name.TrimStart("Get", StringComparison.Ordinal).TrimStart("Set", StringComparison.Ordinal);
@@ -1254,7 +1268,7 @@ namespace Uno.UWPSyncGenerator
 					}
 					else
 					{
-						b.AppendLineInvariant($"[global::Uno.NotImplemented]");
+						b.AppendLineInvariant($"[global::Uno.NotImplemented({allMembers.GenerateNotImplementedList()})]");
 
 						bool isDependencyPropertyDeclaration = property.IsStatic
 							&& property.Name.EndsWith("Property")
