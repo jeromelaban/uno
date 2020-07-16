@@ -214,6 +214,13 @@
 		<XmlUpdate XmlFileName=".\Uno.WinUI.Skia.Wpf.nuspec" XPath="/x:package/x:metadata/x:title" Value="$(PackageNamePrefix).Skia.Wpf" Namespace="$(NugetNamespace)" Prefix="x" />
 		<XmlUpdate XmlFileName=".\Uno.WinUI.WebAssembly.nuspec" XPath="/x:package/x:metadata/x:title" Value="$(PackageNamePrefix).WebAssembly" Namespace="$(NugetNamespace)" Prefix="x" />
 
+		<!-- Rename dependencies -->
+		<XmlUpdate XmlFileName="%(_NuspecFiles.Identity)" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI']/@id" Value="$(PackageNamePrefix)" Namespace="$(NugetNamespace)" Prefix="x" />
+		<XmlUpdate XmlFileName="%(_NuspecFiles.Identity)" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI.Runtime.Skia.Gtk']/@id" Value="$(PackageNamePrefix).Runtime.Skia.Gtk" Namespace="$(NugetNamespace)" Prefix="x" />
+		<XmlUpdate XmlFileName="%(_NuspecFiles.Identity)" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI.Runtime.Skia.Wpf']/@id" Value="$(PackageNamePrefix).Runtime.Skia.Wpf" Namespace="$(NugetNamespace)" Prefix="x" />
+		<XmlUpdate XmlFileName="%(_NuspecFiles.Identity)" XPath="/x:package/x:metadata/x:dependencies//x:dependency[@id='Uno.WinUI.Runtime.Wasm']/@id" Value="$(PackageNamePrefix).Runtime.Wasm" Namespace="$(NugetNamespace)" Prefix="x" />
+
+		<!-- Adjust build targets file to match WinUI / UWP-->
 		<Move SourceFiles=".\uno.winui.targets" DestinationFiles=".\$(PackageNamePrefix).targets" Condition="'$(UNO_UWP_BUILD)'=='true'"/>
 		<XmlUpdate XmlFileName=".\Uno.WinUI.nuspec" XPath="/x:package/x:files/x:file[@src='Uno.WinUI.targets']/@src" Value="$(PackageNamePrefix).targets" Namespace="$(NugetNamespace)" Prefix="x"  Condition="'$(UNO_UWP_BUILD)'=='true'"/>
 
