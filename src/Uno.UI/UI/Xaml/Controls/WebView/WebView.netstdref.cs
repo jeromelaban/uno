@@ -15,5 +15,9 @@ namespace Windows.UI.Xaml.Controls
 {
 	public partial class WebView : Control
 	{
+		public WebView()
+		{
+
+		}
 	}
 }
