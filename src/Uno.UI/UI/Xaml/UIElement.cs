@@ -492,7 +492,7 @@ namespace Windows.UI.Xaml
 			internal set { SetValue(FocusStateProperty, value); }
 		}
 
-		public static DependencyProperty FocusStateProperty =
+		public static DependencyProperty FocusStateProperty { get; } =
 			DependencyProperty.Register(
 				"FocusState",
 				typeof(FocusState),
@@ -512,7 +512,7 @@ namespace Windows.UI.Xaml
 			set { SetValue(IsTabStopProperty, value); }
 		}
 
-		public static DependencyProperty IsTabStopProperty =
+		public static DependencyProperty IsTabStopProperty { get; } =
 			DependencyProperty.Register(
 				"IsTabStop",
 				typeof(bool),
