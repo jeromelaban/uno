@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Uno.Extensions;
 using System;
-using View = Windows.UI.Xaml.UIElement;
+using UIElement = Windows.UI.Xaml.UIElement;
 
 namespace Windows.UI.Xaml.Controls
 {
@@ -13,15 +13,15 @@ namespace Windows.UI.Xaml.Controls
 		private readonly List<UIElement> _elements;
 		private readonly FrameworkElement _owner;
 
-		public UIElementCollection(FrameworkElement view)
+		internal UIElementCollection(FrameworkElement view)
 		{
 			_elements = view._children;
 			_owner = view;
 		}
 
-		private void AddCore(View item) => _owner.AddChild(item);
+		private void AddCore(UIElement item) => _owner.AddChild(item);
 
-		private IEnumerable<View> ClearCore()
+		private IEnumerable<UIElement> ClearCore()
 		{
 			var old = _elements.ToArray();
 			_elements.Clear();
@@ -29,32 +29,34 @@ namespace Windows.UI.Xaml.Controls
 			return old;
 		}
 
-		private bool ContainsCore(View item)
+		private bool ContainsCore(UIElement item)
 		{
 			throw new NotImplementedException();
 		}
 
-		private void CopyToCore(View[] array, int arrayIndex)
+		private void CopyToCore(UIElement[] array, int arrayIndex)
 		{
 			throw new NotImplementedException();
 		}
 
 		private int CountCore() => _elements.Count;
 
-		private View GetAtIndexCore(int index) => _elements[index];
+		private UIElement GetAtIndexCore(int index) => _elements[index];
 
-		public IEnumerator<View> GetEnumerator() => _elements.GetEnumerator();
+		private IEnumerator<UIElement> GetEnumerator() => _elements.GetEnumerator();
 
-		private int IndexOfCore(View item) => _elements.IndexOf(item);
+		IEnumerator<UIElement> IEnumerable<UIElement>.GetEnumerator() => _elements.GetEnumerator();
 
-		private void InsertCore(int index, View item) => _owner.AddChild(item, index);
+		private int IndexOfCore(UIElement item) => _elements.IndexOf(item);
+
+		private void InsertCore(int index, UIElement item) => _owner.AddChild(item, index);
 
 		private void MoveCore(uint oldIndex, uint newIndex)
 		{
 			throw new NotImplementedException();
 		}
 
-		private View RemoveAtCore(int index)
+		private UIElement RemoveAtCore(int index)
 		{
 			var item = _elements.ElementAtOrDefault(index);
 			if (item != null)
@@ -64,8 +66,8 @@ namespace Windows.UI.Xaml.Controls
 			return item;
 		}
 
-		private bool RemoveCore(View item) => _owner.RemoveChild(item) != null;
+		private bool RemoveCore(UIElement item) => _owner.RemoveChild(item) != null;
 
-		private View SetAtIndexCore(int index, View value) => _elements[index] = value;
+		private UIElement SetAtIndexCore(int index, UIElement value) => _elements[index] = value;
 	}
 }
