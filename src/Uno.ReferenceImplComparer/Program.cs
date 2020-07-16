@@ -31,10 +31,7 @@ namespace Uno.ReferenceImplComparer
 
 					var runtimeAssemblyDefinition = ReadAssemblyDefinition(runtimeAssembly);
 
-					if(!CompareAssemblies(referenceAssemblyDefinition, runtimeAssemblyDefinition, identifier))
-					{
-						hasErrors = true;
-					}
+					hasErrors |= CompareAssemblies(referenceAssemblyDefinition, runtimeAssemblyDefinition, identifier);
 				}
 			}
 
