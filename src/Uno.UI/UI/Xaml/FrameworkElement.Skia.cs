@@ -43,7 +43,9 @@ namespace Windows.UI.Xaml
 		private protected readonly ILogger _logDebug;
 
 		partial void OnLoadingPartial();
-
+		private protected virtual void OnPostLoading()
+		{
+		}
 		public bool HasParent()
 		{
 			return Parent != null;

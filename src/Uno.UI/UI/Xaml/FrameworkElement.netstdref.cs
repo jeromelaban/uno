@@ -16,6 +16,10 @@ namespace Windows.UI.Xaml
 
 		partial void OnLoadingPartial();
 
+		private protected virtual void OnPostLoading()
+		{
+		}
+
 		internal T AddChild<T>(T child) where T : View
 		{
 			_children.Add(child);
