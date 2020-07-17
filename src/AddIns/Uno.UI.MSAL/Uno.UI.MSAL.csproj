@@ -26,6 +26,11 @@
 		
 		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">Reference</UnoRuntimeIdentifier>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="buildTransitive\Uno.UI.MSAL.targets" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<None Include="..\..\Common\uno.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
@@ -34,6 +39,13 @@
 		<EmbeddedResource Include="WasmScripts\**\*.js" />
 		<UpToDateCheckInput Remove="WasmScripts\*.js" />
 		<UpToDateCheckInput Include="ts\**\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="buildTransitive/*.targets">
+			<Pack>true</Pack>
+			<PackagePath>buildTransitive</PackagePath>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
@@ -67,8 +79,36 @@
 
 		<Message Importance="high" Text="OVERRIDING NUGET PACKAGE CACHE: $(_TargetNugetFolder)" />
 
-		<Copy SourceFiles="@(_OutputFiles)" DestinationFiles="@(_OutputFiles-&gt;'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename)%(Extension)')" />
-		<Copy SourceFiles="@(_OutputFilesPDB)" DestinationFiles="@(_OutputFilesPDB-&gt;'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename).pdb')" />
+		<Copy SourceFiles="@(_OutputFiles)" DestinationFiles="@(_OutputFiles->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Copy SourceFiles="@(_OutputFilesPDB)" DestinationFiles="@(_OutputFilesPDB->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename).pdb')" />
 	</Target>
+
+	<Target Name="IncludeRuntimeAssets" BeforeTargets="BeforeCompile">
+		
+		<ItemGroup>
+			<Content Include="..\Uno.UI.MSAL.Wasm\bin\$(Configuration)\$(TargetFramework)\Uno.UI.MSAL.*">
+				<Pack>true</Pack>
+				<PackagePath>uno-runtime/webassembly</PackagePath>
+			</Content>
+			<Content Include="..\Uno.UI.MSAL.Skia\bin\$(Configuration)\$(TargetFramework)\Uno.UI.MSAL.*">
+				<Pack>true</Pack>
+				<PackagePath>uno-runtime/skia</PackagePath>
+			</Content>
+		</ItemGroup>
+
+	</Target>
+
+	<ItemGroup Condition="'$(BuildingInsideVisualStudio)'==''">
+		<ProjectReference Include="..\Uno.UI.MSAL.Skia\Uno.UI.MSAL.Skia.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+			<UndefineProperties>TargetFramework</UndefineProperties>
+		</ProjectReference>
+		<ProjectReference Include="..\Uno.UI.MSAL.Wasm\Uno.UI.MSAL.Wasm.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+			<UndefineProperties>TargetFramework</UndefineProperties>
+		</ProjectReference>
+	</ItemGroup>
 
 </Project>
