@@ -2,7 +2,7 @@
 <Project>
 
   <PropertyGroup>
-	<T4Path>$(MSBuildThisFileDirectory)..\..\T4Generator\bin\$(Configuration)</T4Path>
+	<T4Path>$(MSBuildThisFileDirectory)..\T4Generator\bin\$(Configuration)</T4Path>
 	<T4Bin>$(T4Path)\T4Generator.exe</T4Bin>
 
 	<IsMonoAndroid>$(TargetFramework.ToLower().StartsWith('monoandroid'))</IsMonoAndroid>
