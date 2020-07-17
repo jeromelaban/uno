@@ -25,4 +25,7 @@
 	  <ProjectReference Include="..\SamplesApp.Skia\SamplesApp.Skia.csproj" />
 	</ItemGroup>
 
+	<Import Project="..\..\..\build\Uno.WinUI.Skia.Gtk.props" />
+	<Import Project="..\..\..\build\Uno.WinUI.Skia.Gtk.targets" />
+
 </Project>

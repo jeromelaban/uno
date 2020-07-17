@@ -27,7 +27,6 @@
       "Uno.UI.RemoteControl\\Uno.UI.RemoteControl.csproj",
       "Uno.UI.Runtime.Skia.Gtk\\Uno.UI.Runtime.Skia.Gtk.csproj",
       "Uno.UI.Runtime.Skia.Wpf\\Uno.UI.Runtime.Skia.Wpf.csproj",
-      "Uno.UI.Runtime.Wasm\\Uno.UI.Runtime.Wasm.csproj",
       "Uno.UI.RuntimeTests.Skia\\Uno.UI.RuntimeTests.Skia.csproj",
       "Uno.UI.RuntimeTests\\Uno.UI.RuntimeTests.csproj",
       "Uno.UI.Skia\\Uno.UI.Skia.csproj",

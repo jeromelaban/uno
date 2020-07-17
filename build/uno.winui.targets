@@ -4,6 +4,8 @@
 	<PropertyGroup>
 		<SourceGeneratorBasePath Condition="'$(SourceGeneratorBasePath)'==''">..\</SourceGeneratorBasePath>
 		<UnoUIMSBuildTasksTargetPath Condition="'$(UnoUIMSBuildTasksTargetPath)'==''"></UnoUIMSBuildTasksTargetPath>
+
+		<_IsUnoPlatform>true</_IsUnoPlatform>
 	</PropertyGroup>
 
 	<Import Project="$(SourceGeneratorBasePath)Uno.UI.SourceGenerators.props" />
@@ -24,6 +26,10 @@
 			<UnoDefineConstants Condition="'$(MSBuildThisFile)'=='uno.winui.targets'">$(UnoDefineConstants);HAS_UNO_WINUI</UnoDefineConstants>
 			<UnoDefineConstants>$(UnoDefineConstants);UNO_HAS_FRAMEWORKELEMENT_MEASUREOVERRIDE</UnoDefineConstants>
 			<UnoDefineConstants>$(UnoDefineConstants);UNO_HAS_NO_IDEPENDENCYOBJECT</UnoDefineConstants>
+		</PropertyGroup>
+
+		<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='.NETStandard'">
+			<UnoDefineConstants>$(UnoDefineConstants);UNO_REFERENCE_API</UnoDefineConstants>
 		</PropertyGroup>
 
 		<!-- Merge the UnoDefineConstants with the existing constants -->
@@ -63,6 +69,14 @@
 	</ItemGroup>
 
 	<Message Importance="high" Text="ReferenceCopyLocalPaths= @(ReferenceCopyLocalPaths)" />
+  </Target>
+
+  <!-- Backward compatibility validation -->
+  <Target Name="_ValidateTopLevelPackageWasmUpgrade"
+				  Condition="'$(IsUnoHead)'!='true' and '$(WasmHead)'!=''"
+				  BeforeTargets="Build">
+
+	<Error Text="Please update your Uno.UI package reference by the Uno.UI.WebAssembly package for project heads." />
   </Target>
 
   <!--

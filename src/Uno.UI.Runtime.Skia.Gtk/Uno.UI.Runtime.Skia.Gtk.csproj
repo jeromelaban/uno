@@ -1,8 +1,8 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
-  <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+	</PropertyGroup>
 
 	<PropertyGroup>
 		<GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
@@ -16,7 +16,7 @@
 
 		<PackageId Condition="'$(UNO_UWP_BUILD)'!='true'">Uno.WinUI.Runtime.Skia.Gtk</PackageId>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<None Include="..\Common\uno.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
@@ -34,9 +34,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Uno.Foundation.Skia\Uno.Foundation.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
-	  <ProjectReference Include="..\Uno.UI.Skia\Uno.UI.Skia.csproj" />
-	  <ProjectReference Include="..\Uno.UWP.Skia\Uno.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
+		<ProjectReference Include="..\Uno.Foundation.Skia\Uno.Foundation.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
+		<ProjectReference Include="..\Uno.UI.Skia\Uno.UI.Skia.csproj" />
+		<ProjectReference Include="..\Uno.UWP.Skia\Uno.Skia.csproj" TreatAsPackageReference="false" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="build/*.targets">
+			<Pack>true</Pack>
+			<PackagePath>build</PackagePath>
+		</Content>
 	</ItemGroup>
 
 </Project>

@@ -3,8 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netstandard2.0</TargetFramework>
-		<WasmHead>true</WasmHead>
-		<DefineConstants>$(DefineConstants);__WASM__;HAS_UNO</DefineConstants>
+		<DefineConstants>$(DefineConstants);__WASM__;HAS_UNO;UNO_REFERENCE_API</DefineConstants>
 		<NoWarn>NU1701,CS1998</NoWarn>
 		<LangVersion>7.3</LangVersion>
 		<IsUiAutomationMappingEnabled>true</IsUiAutomationMappingEnabled>
@@ -107,4 +106,7 @@
 	<Import Project="..\SamplesApp.UnitTests.Shared\SamplesApp.UnitTests.Shared.projitems" Label="Shared" />
 	<Import Project="..\UITests.Shared\UITests.Shared.projitems" Label="Shared" />
 	<Import Project="..\Benchmarks.Shared\Benchmarks.Shared.projitems" Label="Shared" />
+
+	<Import Project="..\..\..\build\Uno.WinUI.WebAssembly.props" />
+	<Import Project="..\..\..\build\Uno.WinUI.WebAssembly.targets" />
 </Project>

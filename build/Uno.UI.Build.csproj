@@ -224,6 +224,27 @@
 		<Move SourceFiles=".\uno.winui.targets" DestinationFiles=".\$(PackageNamePrefix).targets" Condition="'$(UNO_UWP_BUILD)'=='true'"/>
 		<XmlUpdate XmlFileName=".\Uno.WinUI.nuspec" XPath="/x:package/x:files/x:file[@src='Uno.WinUI.targets']/@src" Value="$(PackageNamePrefix).targets" Namespace="$(NugetNamespace)" Prefix="x"  Condition="'$(UNO_UWP_BUILD)'=='true'"/>
 
+		<!-- Skia GTK targets/props-->
+		<Move SourceFiles=".\uno.winui.Skia.Gtk.targets" DestinationFiles=".\$(PackageNamePrefix).Skia.Gtk.targets" Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+		<Move SourceFiles=".\uno.winui.Skia.Gtk.props" DestinationFiles=".\$(PackageNamePrefix).Skia.Gtk.props" Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+
+		<XmlUpdate XmlFileName=".\uno.winui.Skia.Gtk.nuspec" XPath="/x:package/x:files/x:file[@src='uno.winui.Skia.Gtk.targets']/@src" Value="$(PackageNamePrefix).Skia.Gtk.targets" Namespace="$(NugetNamespace)" Prefix="x"  Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+		<XmlUpdate XmlFileName=".\uno.winui.Skia.Gtk.nuspec" XPath="/x:package/x:files/x:file[@src='uno.winui.Skia.Gtk.props']/@src" Value="$(PackageNamePrefix).Skia.Gtk.props" Namespace="$(NugetNamespace)" Prefix="x"  Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+
+		<!-- Skia Wpf targets/props-->
+		<Move SourceFiles=".\uno.winui.Skia.Wpf.targets" DestinationFiles=".\$(PackageNamePrefix).Skia.Wpf.targets" Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+		<Move SourceFiles=".\uno.winui.Skia.Wpf.props" DestinationFiles=".\$(PackageNamePrefix).Skia.Wpf.props" Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+
+		<XmlUpdate XmlFileName=".\uno.winui.Skia.Wpf.nuspec" XPath="/x:package/x:files/x:file[@src='uno.winui.Skia.Wpf.targets']/@src" Value="$(PackageNamePrefix).Skia.Wpf.targets" Namespace="$(NugetNamespace)" Prefix="x"  Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+		<XmlUpdate XmlFileName=".\uno.winui.Skia.Wpf.nuspec" XPath="/x:package/x:files/x:file[@src='uno.winui.Skia.Wpf.props']/@src" Value="$(PackageNamePrefix).Skia.Wpf.props" Namespace="$(NugetNamespace)" Prefix="x"  Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+
+		<!-- Wasm targets/props-->
+		<Move SourceFiles=".\uno.winui.WebAssembly.targets" DestinationFiles=".\$(PackageNamePrefix).WebAssembly.targets" Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+		<Move SourceFiles=".\uno.winui.WebAssembly.props" DestinationFiles=".\$(PackageNamePrefix).WebAssembly.props" Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+
+		<XmlUpdate XmlFileName=".\uno.winui.WebAssembly.nuspec" XPath="/x:package/x:files/x:file[@src='uno.winui.WebAssembly.targets']/@src" Value="$(PackageNamePrefix).WebAssembly.targets" Namespace="$(NugetNamespace)" Prefix="x"  Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+		<XmlUpdate XmlFileName=".\uno.winui.WebAssembly.nuspec" XPath="/x:package/x:files/x:file[@src='uno.winui.WebAssembly.props']/@src" Value="$(PackageNamePrefix).WebAssembly.props" Namespace="$(NugetNamespace)" Prefix="x"  Condition="'$(UNO_UWP_BUILD)'=='true'"/>
+
 		<!-- Create the packages -->
 		<Exec Command="$(NuGetBin) pack Uno.WinUI.nuspec -Verbosity Detailed -Version &quot;$(GITVERSION_FullSemVer)&quot;" />
 		<Exec Command="$(NuGetBin) pack Uno.WinUI.Lottie.nuspec -Verbosity Detailed -Version &quot;$(GITVERSION_FullSemVer)&quot;" />

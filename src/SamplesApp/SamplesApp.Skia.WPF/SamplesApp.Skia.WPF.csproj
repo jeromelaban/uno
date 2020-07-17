@@ -151,4 +151,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+	<Import Project="..\..\..\build\Uno.WinUI.Skia.Wpf.props" />
+	<Import Project="..\..\..\build\Uno.WinUI.Skia.Wpf.targets" />
 </Project>
