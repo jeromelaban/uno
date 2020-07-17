@@ -64,5 +64,9 @@
 			<PackagePath>build</PackagePath>
 		</Content>
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="HtmlElement.cs" />
+	</ItemGroup>
 
 </Project>

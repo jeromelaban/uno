@@ -5,15 +5,14 @@
 		
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
-  </PropertyGroup>
+		
+		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">Reference</UnoRuntimeIdentifier>
+		<PlatformItemsBasePath>..\Uno.UI.RuntimeTests\</PlatformItemsBasePath>
+	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(UnoTargetFrameworkOverride)'!=''">
 		<TargetFrameworks>$(UnoTargetFrameworkOverride)</TargetFrameworks>
 	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-    <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
-  </PropertyGroup>
 	
 	<!--Workaround to prevent build to fail because the project has too many dependencies when checking support libraries versions. 
 	(Introduced with support libraries 28.0.0.1) -->
@@ -75,6 +74,8 @@
 		<DefineConstants>$(DefineConstants);WINDOWS_UWP</DefineConstants>
 	</PropertyGroup>
 
+	<Import Project="..\Uno.CrossTargetting.props" />
+
 	<PropertyGroup>
 		<UnoUIGeneratorsBinPath>..\SourceGenerators\Uno.UI.SourceGenerators\bin\$(Configuration)</UnoUIGeneratorsBinPath>
 	</PropertyGroup>
@@ -85,6 +86,10 @@
 			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
 			<UndefineProperties>TargetFramework</UndefineProperties>
 		</ProjectReference>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Include="Tests\Windows_UI_Xaml_Controls\HtmlElementAttributeTests\Given_HtmlElementAttribute.Wasm.cs" />
 	</ItemGroup>
 
 	<Import Project="..\SourceGenerators\Uno.UI.SourceGenerators\Content\Uno.UI.SourceGenerators.props" />

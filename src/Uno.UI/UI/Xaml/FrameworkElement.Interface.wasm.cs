@@ -36,7 +36,7 @@ namespace Windows.UI.Xaml
 
 		partial void Initialize();
 
-		public FrameworkElement() : this("div", false)
+		public FrameworkElement() : this(DefaultHtmlTag, false)
 		{
 		}
 

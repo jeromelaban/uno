@@ -15,11 +15,15 @@ using Uno.UI.Extensions;
 using Uno.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.System;
+using System.Reflection;
+using Uno.Core.Comparison;
 
 namespace Windows.UI.Xaml
 {
 	public partial class UIElement : DependencyObject
 	{
+		internal const string DefaultHtmlTag = "div";
+
 		// Even if this a concept of FrameworkElement, the loaded state is handled by the UIElement in order to avoid
 		// to cast to FrameworkElement each time a child is added or removed.
 		internal bool IsLoaded;
@@ -80,9 +84,9 @@ namespace Windows.UI.Xaml
 			return new Rect(double.Parse(sizeParts[0]), double.Parse(sizeParts[1]), double.Parse(sizeParts[2]), double.Parse(sizeParts[3]));
 		}
 
-		public UIElement() : this("div", false) { }
+		public UIElement() : this(null, false) { }
 
-		public UIElement(string htmlTag) : this(htmlTag, false) { }
+		public UIElement(string htmlTag = DefaultHtmlTag) : this(htmlTag, false) { }
 
 		public UIElement(string htmlTag, bool isSvg)
 		{
@@ -90,14 +94,14 @@ namespace Windows.UI.Xaml
 
 			_gcHandle = GCHandle.Alloc(this, GCHandleType.Weak);
 			_isFrameworkElement = this is FrameworkElement;
-			HtmlTag = htmlTag;
+
+			HtmlTag = GetHtmlTag(htmlTag);
 			HtmlTagIsSvg = isSvg;
 
 			var type = GetType();
 
 			Handle = GCHandle.ToIntPtr(_gcHandle);
 			HtmlId = Handle;
-
 
 			Uno.UI.Xaml.WindowManagerInterop.CreateContent(
 				htmlId: HtmlId,
@@ -110,6 +114,45 @@ namespace Windows.UI.Xaml
 
 			InitializePointers();
 			UpdateHitTest();
+		}
+
+		private static Dictionary<Type, string> _htmlTagCache = new Dictionary<Type, string>(FastTypeComparer.Default);
+		private static Type _htmlElementAttribute;
+		private static PropertyInfo _htmlTagAttributeTagGetter;
+		private static Assembly _unoUIAssembly = typeof(UIElement).Assembly;
+
+		private string GetHtmlTag(string htmlTag)
+		{
+			var currentType = GetType();
+
+			if (currentType.Assembly != _unoUIAssembly)
+			{
+				if (_htmlElementAttribute == null)
+				{
+					_htmlElementAttribute = Assembly.Load("Uno.UI.Runtime.Wasm").GetType("Uno.UI.Runtime.Wasm.HtmlElementAttribute", true);
+					_htmlTagAttributeTagGetter = _htmlElementAttribute.GetProperty("Tag");
+				}
+
+				if (!_htmlTagCache.TryGetValue(currentType, out var htmlTagOverride))
+				{
+					htmlTagOverride = DefaultHtmlTag;
+
+					if (currentType.GetCustomAttribute(_htmlElementAttribute) is Attribute attr)
+					{
+						_htmlTagCache[currentType] = htmlTagOverride = _htmlTagAttributeTagGetter.GetValue(attr, Array.Empty<object>()) as string;
+					}
+
+					_htmlTagCache[currentType] = htmlTagOverride;
+				}
+
+				Console.WriteLine($"HTML Tag for {currentType} = {htmlTagOverride}");
+
+				return htmlTagOverride;
+			}
+			else
+			{
+				return htmlTag;
+			}
 		}
 
 		~UIElement()
