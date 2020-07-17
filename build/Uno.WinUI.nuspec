@@ -25,7 +25,7 @@
 		<dependency id="Uno.SourceGenerationTasks" version="2.0.13" />
 		<dependency id="Uno.Core" version="2.0.0" />
 		<dependency id="Uno.Core.Build" version="2.0.0" />
-		<dependency id="Uno.Diagnostics.Eventing" version="1.0.0-dev.4" />
+		<dependency id="Uno.Diagnostics.Eventing" version="1.0.4" />
 	  </group>
 
 	  <!-- Android 10.0 -->
@@ -36,7 +36,7 @@
 		<dependency id="Uno.SourceGenerationTasks" version="2.0.13" />
 		<dependency id="Uno.Core" version="2.0.0" />
 		<dependency id="Uno.Core.Build" version="2.0.0" />
-		<dependency id="Uno.Diagnostics.Eventing" version="1.0.0-dev.4" />
+		<dependency id="Uno.Diagnostics.Eventing" version="1.0.4" />
 	  </group>
 
 	  <!-- iOS -->
@@ -44,7 +44,7 @@
 		<dependency id="Uno.SourceGenerationTasks" version="2.0.13" />
 		<dependency id="Uno.Core" version="2.0.0" />
 		<dependency id="Uno.Core.Build" version="2.0.0" />
-		<dependency id="Uno.Diagnostics.Eventing" version="1.0.0-dev.4" />
+		<dependency id="Uno.Diagnostics.Eventing" version="1.0.4" />
 	  </group>
 
       <!-- iOS -->
@@ -52,7 +52,7 @@
         <dependency id="Uno.SourceGenerationTasks" version="2.0.13" />
         <dependency id="Uno.Core" version="2.0.0" />
         <dependency id="Uno.Core.Build" version="2.0.0" />
-		<dependency id="Uno.Diagnostics.Eventing" version="1.0.0-dev.4" />
+		<dependency id="Uno.Diagnostics.Eventing" version="1.0.4" />
 	  </group>
 
       <!-- .NET Standard 2.0 -->
@@ -63,7 +63,7 @@
         <dependency id="System.Numerics.Vectors" version="4.5.0" />
         <dependency id="System.Runtime.InteropServices.WindowsRuntime" version="4.3.0" />
         <dependency id="System.Memory" version="4.5.2" />
-		<dependency id="Uno.Diagnostics.Eventing" version="1.0.0-dev.4" />
+		<dependency id="Uno.Diagnostics.Eventing" version="1.0.4" />
 	  </group>
     </dependencies>
 
