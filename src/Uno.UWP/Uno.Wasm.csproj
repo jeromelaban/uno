@@ -23,7 +23,7 @@
 		<Deterministic>true</Deterministic>
 
 		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">WebAssembly</UnoRuntimeIdentifier>
-		<PlatformItemsBasePath>..\Uno.UWP\</PlatformItemsBasePath>
+		<PlatformItemsBasePath>.\</PlatformItemsBasePath>
 	</PropertyGroup>
 
 	<Import Project="..\Uno.CrossTargetting.props" />
@@ -36,7 +36,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Uno.Foundation.Wasm\Uno.Foundation.Wasm.csproj" />
+		<ProjectReference Include="..\Uno.Foundation\Uno.Foundation.Wasm.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@
 		<Deterministic>true</Deterministic>
 		
 		<UnoRuntimeIdentifier>WebAssembly</UnoRuntimeIdentifier>
-		<PlatformItemsBasePath>..\Uno.Foundation\</PlatformItemsBasePath>
+		<PlatformItemsBasePath>.\</PlatformItemsBasePath>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -13,7 +13,7 @@
 		<Deterministic>true</Deterministic>
 		
 		<UnoRuntimeIdentifier>Skia</UnoRuntimeIdentifier>
-		<PlatformItemsBasePath>..\Uno.Foundation\</PlatformItemsBasePath>
+		<PlatformItemsBasePath>.\</PlatformItemsBasePath>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -16,7 +16,7 @@
 		<TSBindingsPath>$(MSBuildThisFileDirectory)tsBindings</TSBindingsPath>
 
 		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">WebAssembly</UnoRuntimeIdentifier>
-		<PlatformItemsBasePath>..\Uno.UI\</PlatformItemsBasePath>
+		<PlatformItemsBasePath>.\</PlatformItemsBasePath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -34,7 +34,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="LinkerDefinition.xml">
+	  <EmbeddedResource Include="LinkerDefinition.Wasm.xml">
 		<LogicalName>$(AssemblyName).xml</LogicalName>
 	  </EmbeddedResource>
 	</ItemGroup>
@@ -52,8 +52,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Uno.UWP.Wasm\Uno.Wasm.csproj" />
-		<ProjectReference Include="..\Uno.Foundation.Wasm\Uno.Foundation.Wasm.csproj" />
+		<ProjectReference Include="..\Uno.UWP\Uno.Wasm.csproj" />
+		<ProjectReference Include="..\Uno.Foundation\Uno.Foundation.Wasm.csproj" />
 		<ProjectReference Include="..\SourceGenerators\System.Xaml\Uno.Xaml.csproj" />
 	</ItemGroup>
 

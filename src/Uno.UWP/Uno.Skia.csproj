@@ -23,7 +23,7 @@
 		<Deterministic>true</Deterministic>
 
 		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">Skia</UnoRuntimeIdentifier>
-		<PlatformItemsBasePath>..\Uno.UWP\</PlatformItemsBasePath>
+		<PlatformItemsBasePath>.\</PlatformItemsBasePath>
 	</PropertyGroup>
 
 	<Import Project="..\Uno.CrossTargetting.props" />
@@ -37,7 +37,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Uno.Foundation.Skia\Uno.Foundation.Skia.csproj" />
+		<ProjectReference Include="..\Uno.Foundation\Uno.Foundation.Skia.csproj" />
 	</ItemGroup>
 
 </Project>

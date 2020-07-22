@@ -9,20 +9,10 @@
 		<AssemblyName>Uno.UI.Lottie</AssemblyName>
 		<RootNamespace>Uno.UI.Lottie</RootNamespace>
 
-		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">WebAssembly</UnoRuntimeIdentifier>
-		<PlatformItemsBasePath>..\Uno.UI.Lottie\</PlatformItemsBasePath>
+		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">Skia</UnoRuntimeIdentifier>
+		<PlatformItemsBasePath>.\</PlatformItemsBasePath>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<EmbeddedResource Include="WasmScripts\**\*.js" />
-		<UpToDateCheckInput Remove="WasmScripts\uno-lottie.js" />
-		<UpToDateCheckInput Include="ts\**\*" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.2" />
-	</ItemGroup>
-	
 	<ItemGroup>
 		<PackageReference Include="Uno.MonoAnalyzers" Version="1.0.0" />
 		<PackageReference Include="Uno.SourceGenerationTasks" Version="2.0.6" />
@@ -32,7 +22,7 @@
 	<Import Project="..\..\Uno.CrossTargetting.props" />
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Uno.UI.Wasm\Uno.UI.Wasm.csproj" />
+	  <ProjectReference Include="..\..\Uno.UI.Skia\Uno.UI.Skia.csproj" />
 	</ItemGroup>
 
 	<PropertyGroup>

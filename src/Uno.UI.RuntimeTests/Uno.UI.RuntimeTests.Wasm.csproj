@@ -9,7 +9,7 @@
 		<RootNamespace>Uno.UI.RuntimeTests</RootNamespace>
 		
 		<UnoRuntimeIdentifier Condition="'$(TargetFramework)'=='netstandard2.0'">WebAssembly</UnoRuntimeIdentifier>
-		<PlatformItemsBasePath>..\Uno.UI.RuntimeTests\</PlatformItemsBasePath>
+		<PlatformItemsBasePath>.\</PlatformItemsBasePath>
 	</PropertyGroup>
 
 	<!--Workaround to prevent build to fail because the project has too many dependencies when checking support libraries versions. 
@@ -23,7 +23,7 @@
 		<PackageReference Include="MSTest.TestFramework" Version="2.1.1" />
 		<PackageReference Include="Uno.SourceGenerationTasks" />
 		<ProjectReference Include="..\Uno.UI.Runtime.Wasm\Uno.UI.Runtime.Wasm.csproj" />
-		<ProjectReference Include="..\Uno.UI.Toolkit.Wasm\Uno.UI.Toolkit.Wasm.csproj" />
+		<ProjectReference Include="..\Uno.UI.Toolkit\Uno.UI.Toolkit.Wasm.csproj" />
 		<Reference Include="System.Xml" />
 		<Reference Include="System.Xml.Linq" />
 	</ItemGroup>
@@ -50,9 +50,9 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$(IsMonoAndroid) or $(IsXamarinIOS) or '$(TargetFrameworkIdentifier)'=='.NETStandard' or $(IsXamarinMac)">
-		<ProjectReference Include="..\Uno.Foundation.Wasm\Uno.Foundation.Wasm.csproj" />
-		<ProjectReference Include="..\Uno.UI.Wasm\Uno.UI.Wasm.csproj" />
-		<ProjectReference Include="..\Uno.UWP.Wasm\Uno.Wasm.csproj" />
+		<ProjectReference Include="..\Uno.Foundation\Uno.Foundation.Wasm.csproj" />
+		<ProjectReference Include="..\Uno.UI\Uno.UI.Wasm.csproj" />
+		<ProjectReference Include="..\Uno.UWP\Uno.Wasm.csproj" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$(IsMonoAndroid) or $(IsXamarinIOS) or '$(TargetFramework)'=='xamarinmac20'">
