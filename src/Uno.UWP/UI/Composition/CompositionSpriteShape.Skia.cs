@@ -45,6 +45,10 @@ namespace Windows.UI.Composition
 						surface.Canvas.DrawPath(geometrySource.Geometry, _strokePaint);
 					}
 				}
+				else if(cpg.Path.GeometrySource is null)
+				{
+
+				}
 				else
 				{
 					throw new InvalidOperationException($"CompositionPath does not support the {cpg.Path?.GeometrySource} geometry source");

@@ -12,7 +12,7 @@ namespace Windows.UI.Composition
 		private float _rotationAngleInDegrees;
 		private Vector3 _rotationAxis = new Vector3(0, 0, 1);
 
-		public Visual(Compositor compositor) : base(compositor)
+		internal Visual(Compositor compositor) : base(compositor)
 		{
 
 		}
