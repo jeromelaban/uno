@@ -89,7 +89,7 @@ namespace Windows.UI.Xaml.Shapes
 
 			var adjustedArea = new Rect(
 				x: area.Top + borderThickness.Top / 2,
-				y: area.Left - borderThickness.Left / 2,
+				y: area.Left + borderThickness.Left / 2,
 				width: area.Width - ((borderThickness.Left / 2) + (borderThickness.Right / 2)),
 				height: area.Height - ((borderThickness.Top / 2) + (borderThickness.Bottom / 2))
 			);
@@ -100,6 +100,8 @@ namespace Windows.UI.Xaml.Shapes
 			parent.Children.InsertAtBottom(shapeVisual);
 
 			var spriteShape = compositor.CreateSpriteShape();
+
+			spriteShape.StrokeThickness = (float)adjustedLineWidth;
 
 			SkiaGeometrySource2D BuildGeometry()
 			{
@@ -173,7 +175,7 @@ namespace Windows.UI.Xaml.Shapes
 			spriteShape.Geometry = compositor.CreatePathGeometry(new CompositionPath(BuildGeometry()));
 
 			shapeVisual.Size = new Vector2((float)area.Width, (float)area.Height);
-			shapeVisual.Offset = new Vector3((float)adjustedArea.Top, (float)adjustedArea.Left, 0);
+			// shapeVisual.Offset = new Vector3((float)adjustedArea.Top, (float)adjustedArea.Left, 0);
 
 			shapeVisual.Shapes.Add(spriteShape);
 
