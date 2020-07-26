@@ -109,11 +109,11 @@ namespace Windows.UI.Xaml.Controls
 			{
 				if (properties.IsHorizontalMouseWheel)
 				{
-					HorizontalOffset += GetHorizontalScrollWheelDelta(c.RenderSize, properties.MouseWheelDelta);
+					HorizontalOffset += GetHorizontalScrollWheelDelta(c.DesiredSize, properties.MouseWheelDelta * ScrollViewerDefaultMouseWheelDelta);
 				}
 				else
 				{
-					VerticalOffset += GetVerticalScrollWheelDelta(c.RenderSize, properties.MouseWheelDelta);
+					VerticalOffset += GetVerticalScrollWheelDelta(c.DesiredSize, properties.MouseWheelDelta * ScrollViewerDefaultMouseWheelDelta);
 				}
 
 				c.RenderTransform = new TranslateTransform() { X = -HorizontalOffset, Y = -VerticalOffset };

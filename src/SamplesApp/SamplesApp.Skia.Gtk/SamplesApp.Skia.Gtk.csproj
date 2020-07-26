@@ -24,6 +24,10 @@
 	  <ProjectReference Include="..\..\Uno.UWP\Uno.Skia.csproj" />
 	  <ProjectReference Include="..\SamplesApp.Skia\SamplesApp.Skia.csproj" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Update="Program.cs" />
+	</ItemGroup>
 
 	<Import Project="..\..\..\build\*.Skia.Gtk.props" />
 	<Import Project="..\..\..\build\*.Skia.Gtk.targets" />

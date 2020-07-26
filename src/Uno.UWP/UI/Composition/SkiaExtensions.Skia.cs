@@ -72,5 +72,19 @@ namespace Windows.UI.Composition
 
 			return ret;
 		}
+
+		public static SKMatrix ToSKMatrix(this Matrix3x2 m)
+		{
+			var ret = SKMatrix.Identity;
+
+			ret.ScaleX = m.M11;
+			ret.SkewY = m.M12;
+			ret.SkewX = m.M21;
+			ret.ScaleY = m.M22;
+			ret.TransX = m.M31;
+			ret.TransY = m.M32;
+
+			return ret;
+		}
 	}
 }

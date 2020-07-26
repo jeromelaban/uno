@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using SkiaSharp;
+using Uno.Disposables;
 using Uno.Extensions;
 using Uno.Logging;
 
@@ -9,6 +10,8 @@ namespace Windows.UI.Composition
 {
 	public partial class SpriteVisual : ContainerVisual
 	{
+		private SerialDisposable _csbSubscription = new SerialDisposable();
+
 		private readonly SKPaint _paint
 			= new SKPaint()
 			{
@@ -17,13 +20,34 @@ namespace Windows.UI.Composition
 
 		partial void OnBrushChangedPartial(CompositionBrush brush)
 		{
-			if (brush is CompositionColorBrush b)
+			_csbSubscription.Disposable = null;
+
+			if (brush is CompositionSurfaceBrush csb)
+			{
+				csb.PropertyChanged += UpdatePaint;
+				_csbSubscription.Disposable = Disposable.Create(() => csb.PropertyChanged -= UpdatePaint);
+			}
+
+			UpdatePaint();
+		}
+
+		private void UpdatePaint()
+		{
+			if (Brush is CompositionColorBrush b)
 			{
 				_paint.Color = new SKColor(b.Color.R, b.Color.G, b.Color.B, b.Color.A);
 			}
+			else if (Brush is CompositionSurfaceBrush csb)
+			{
+				if (csb.Surface is SkiaCompositionSurface scs)
+				{
+					_paint.Shader = SKShader.CreateImage(scs.Image, SKShaderTileMode.Repeat, SKShaderTileMode.Repeat, csb.TransformMatrix.ToSKMatrix());
+					_paint.IsAntialias = true;
+				}
+			}
 			else
 			{
-				this.Log().Error($"The brush type {brush?.GetType()} is not supported for sprite visuals.");
+				this.Log().Error($"The brush type {Brush?.GetType()} is not supported for sprite visuals.");
 			}
 		}
 

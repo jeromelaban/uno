@@ -15,19 +15,18 @@ namespace Windows.UI.Xaml.Input
 	{
 		private readonly PointerEventArgs _pointerEventArgs;
 		private readonly Point _absolutePosition;
-		private static long _pseudoNextFrameId;
-		private readonly uint _pseudoFrameId = (uint)Interlocked.Increment(ref _pseudoNextFrameId);
 		private readonly ulong _pseudoTimestamp = (ulong)DateTime.UtcNow.Ticks;
 
 		internal PointerRoutedEventArgs(
 			PointerEventArgs pointerEventArgs,
 			Pointer pointer,
-			UIElement source) : this()
+			UIElement source,
+			uint frameId) : this()
 		{
 			_pointerEventArgs = pointerEventArgs;
 			_absolutePosition = pointerEventArgs.CurrentPoint.RawPosition;
 
-			FrameId = _pseudoFrameId;
+			FrameId = frameId;
 			Pointer = pointer;
 			OriginalSource = source;
 		}
