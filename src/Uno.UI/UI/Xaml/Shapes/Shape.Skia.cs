@@ -55,12 +55,14 @@ namespace Windows.UI.Xaml.Shapes
 			if (scaleX != null && scaleY != null)
 			{
 				_pathSpriteShape.Scale = new Vector2((float)scaleX.Value, (float)scaleY.Value);
-				_pathSpriteShape.Offset = new Vector2((float)renderOriginX.Value, (float)renderOriginY.Value);
 			}
 			else
 			{
-				_pathSpriteShape.Scale = new Vector2();
+				_pathSpriteShape.Scale = new Vector2(1, 1);
 			}
+
+			var thicknessOffset = (float)StrokeThickness / 2.0f;
+			_pathSpriteShape.Offset = new Vector2((float)(renderOriginX ?? 0) + thicknessOffset, (float)(renderOriginY ?? 0) + thicknessOffset);
 
 			_rectangleVisual.Shapes.Clear();
 			_rectangleVisual.Shapes.Add(_pathSpriteShape);

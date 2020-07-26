@@ -61,12 +61,15 @@ namespace Windows.UI.Composition
 
 				if(visual.Clip is InsetClip insetClip)
 				{
-					surface.Canvas.ClipRect(new SKRect {
-						Top = insetClip.TopInset,
-						Bottom = insetClip.BottomInset,
-						Left = insetClip.LeftInset,
-						Right = insetClip.RightInset
-					});
+					var clipRect = new SKRect
+					{
+						Top = insetClip.TopInset - 1,
+						Bottom = insetClip.BottomInset + 1,
+						Left = insetClip.LeftInset - 1,
+						Right = insetClip.RightInset + 1
+					};
+
+					surface.Canvas.ClipRect(clipRect, SKClipOperation.Intersect, true);
 				}
 
 				visual.Render(surface, info);
