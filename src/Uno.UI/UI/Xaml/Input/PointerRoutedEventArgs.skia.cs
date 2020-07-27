@@ -20,15 +20,17 @@ namespace Windows.UI.Xaml.Input
 		internal PointerRoutedEventArgs(
 			PointerEventArgs pointerEventArgs,
 			Pointer pointer,
-			UIElement source,
-			uint frameId) : this()
+			UIElement source) : this()
 		{
 			_pointerEventArgs = pointerEventArgs;
 			_absolutePosition = pointerEventArgs.CurrentPoint.RawPosition;
 
-			FrameId = frameId;
+			FrameId = pointerEventArgs.CurrentPoint.FrameId;
 			Pointer = pointer;
 			OriginalSource = source;
+
+			// All events bubble in managed mode.
+			CanBubbleNatively = false;
 		}
 
 		public PointerPoint GetCurrentPoint(UIElement relativeTo)
