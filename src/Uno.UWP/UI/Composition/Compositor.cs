@@ -37,10 +37,10 @@ namespace Windows.UI.Composition
 			=> new ShapeVisual(this);
 
 		public CompositionSpriteShape CreateSpriteShape()
-			=> new CompositionSpriteShape();
+			=> new CompositionSpriteShape(this);
 
 		public CompositionSpriteShape CreateSpriteShape(CompositionGeometry geometry)
-			=> new CompositionSpriteShape(geometry);
+			=> new CompositionSpriteShape(this, geometry);
 
 		public CompositionPathGeometry CreatePathGeometry()
 			=> new CompositionPathGeometry(this);

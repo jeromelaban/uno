@@ -161,7 +161,10 @@ namespace Windows.UI.Xaml
 			UpdateHitTest();
 		}
 
-		private void UpdateOpacity() => Visual.Opacity = Visibility == Visibility.Visible ? (float)Opacity : 0;
+		private void UpdateOpacity()
+		{
+			Visual.Opacity = Visibility == Visibility.Visible ? (float)Opacity : 0;
+		}
 
 		private void UpdateChildVisual(UIElement child)
 		{

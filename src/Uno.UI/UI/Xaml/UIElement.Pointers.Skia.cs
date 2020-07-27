@@ -174,7 +174,7 @@ namespace Windows.UI.Xaml
 
 			private void PropagateEvent(PointerEventArgs args, Action<UIElement> raiseEvent)
 			{
-				if(Window.Current.Content is UIElement root)
+				if(Window.Current.RootElement is UIElement root)
 				{
 					var pseudoFrameId = GetPseudoFrameId();
 					PropagageEventRecursive(args, new Point(0, 0), root, raiseEvent, pseudoFrameId);

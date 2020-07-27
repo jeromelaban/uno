@@ -542,7 +542,7 @@ namespace SampleControl.Presentation
 				where sampleAttribute != null
 				let content = GetContent(type, sampleAttribute)
 				from category in content.Categories
-				where category.Contains("Font") || category.Contains("Symbol")
+				where category.Contains("Flyout") || category.Contains("Popup")
 				group content by category into contentByCategory
 				orderby contentByCategory.Key.ToLower(CultureInfo.CurrentUICulture)
 				select new SampleChooserCategory(contentByCategory);

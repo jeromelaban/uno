@@ -10,7 +10,7 @@ namespace Windows.UI.Composition
 		private SKPaint _strokePaint;
 		private SKPaint _fillPaint;
 
-		public CompositionSpriteShape()
+		internal CompositionSpriteShape(Compositor compositor) : base(compositor)
 		{
 		}
 
@@ -26,7 +26,8 @@ namespace Windows.UI.Composition
 
 						if (FillBrush is CompositionColorBrush fill)
 						{
-							_fillPaint.Color = fill.Color.ToSKColor();
+							_fillPaint.Color = fill.Color.ToSKColor(Compositor.CurrentOpacity);
+
 						}
 
 						surface.Canvas.DrawPath(geometrySource.Geometry, _fillPaint);
@@ -39,7 +40,7 @@ namespace Windows.UI.Composition
 						if (StrokeBrush is CompositionColorBrush stroke)
 						{
 							_strokePaint.StrokeWidth = StrokeThickness;
-							_strokePaint.Color = stroke.Color.ToSKColor();
+							_strokePaint.Color = stroke.Color.ToSKColor(Compositor.CurrentOpacity);
 						}
 
 						surface.Canvas.DrawPath(geometrySource.Geometry, _strokePaint);

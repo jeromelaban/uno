@@ -19,6 +19,9 @@ namespace Windows.UI.Composition
 		public static SKColor ToSKColor(this Color color)
 			=> new SKColor(red: color.R, green: color.G, blue: color.B, alpha: color.A);
 
+		public static SKColor ToSKColor(this Color color, double alphaMultiplier)
+			=> new SKColor(red: color.R, green: color.G, blue: color.B, alpha: (byte)(color.A * alphaMultiplier));
+
 		public static SKMatrix44 ToSKMatrix44(this Matrix4x4 m)
 		{
 			var ret = new SKMatrix44();

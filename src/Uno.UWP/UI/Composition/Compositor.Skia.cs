@@ -1,14 +1,45 @@
 
 using SkiaSharp;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 using Windows.Services.Maps;
+using Windows.UI.Core;
 
 namespace Windows.UI.Composition
 {
 	public partial class Compositor
 	{
+		private Stack<float> _opacityStack = new Stack<float>();
+		private float _currentOpacity = 1.0f;
+
+		private OpacityDisposable PushOpacity(float opacity)
+		{
+			_opacityStack.Push(_currentOpacity);
+			_currentOpacity *= opacity;
+
+			return new OpacityDisposable(this);
+		}
+
+		private struct OpacityDisposable : IDisposable
+		{
+			private readonly Compositor Compositor;
+
+			public OpacityDisposable(Compositor compositor)
+			{
+				Compositor = compositor;
+			}
+
+			public void Dispose()
+			{
+				Compositor._currentOpacity = Compositor._opacityStack.Pop();
+			}
+		}
+
 		internal ContainerVisual RootVisual { get; set; }
+
+		internal float CurrentOpacity => _currentOpacity;
 
 		//public CompositionSurfaceBrush CreateSurfaceBrush()
 		//{
@@ -37,7 +68,7 @@ namespace Windows.UI.Composition
 			// global::System.Console.WriteLine($"Render time {sw.Elapsed}");
 		}
 
-		private static void RenderVisual(SKSurface surface, SKImageInfo info, Visual visual)
+		private void RenderVisual(SKSurface surface, SKImageInfo info, Visual visual)
 		{
 			if (visual.Opacity != 0)
 			{
@@ -72,6 +103,8 @@ namespace Windows.UI.Composition
 					surface.Canvas.ClipRect(clipRect, SKClipOperation.Intersect, true);
 				}
 
+				using var opacityDisposable = PushOpacity(visual.Opacity);
+
 				visual.Render(surface, info);
 
 				switch (visual)
@@ -93,6 +126,11 @@ namespace Windows.UI.Composition
 
 				surface.Canvas.Restore();
 			}
+		}
+
+		internal void InvalidateRender()
+		{
+			CoreWindow.QueueInvalidateRender();
 		}
 	}
 }
