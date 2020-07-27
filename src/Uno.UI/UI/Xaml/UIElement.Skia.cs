@@ -107,9 +107,18 @@ namespace Windows.UI.Xaml
 			child.SetParent(this);
 			OnAddingChild(child);
 
-			_children.Add(child);
+			if (index is int actualIndex)
+			{
+				var currentVisual = _children[actualIndex];
+				_children.Insert(actualIndex, child);
+				Visual.Children.InsertAbove(child.Visual, currentVisual.Visual);
+			}
+			else
+			{
+				_children.Add(child);
+				Visual.Children.InsertAtTop(child.Visual);
+			}
 
-			UpdateChildVisual(child);
 			OnChildAdded(child);
 
 			InvalidateMeasure();
@@ -164,11 +173,6 @@ namespace Windows.UI.Xaml
 		private void UpdateOpacity()
 		{
 			Visual.Opacity = Visibility == Visibility.Visible ? (float)Opacity : 0;
-		}
-
-		private void UpdateChildVisual(UIElement child)
-		{
-			Visual.Children.InsertAtTop(child.Visual);
 		}
 
 		internal UIElement RemoveChild(UIElement child)
