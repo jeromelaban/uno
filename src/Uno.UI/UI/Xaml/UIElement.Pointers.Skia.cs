@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,6 +13,7 @@ using Uno.Foundation.Extensibility;
 using Windows.UI.Core;
 using Windows.Foundation;
 using System.Threading;
+using System.Numerics;
 
 namespace Windows.UI.Xaml
 {
@@ -87,8 +89,11 @@ namespace Windows.UI.Xaml
 							this.Log().Trace($"PointerManager.Released [{e}/{e.GetHashCode():X8}");
 						}
 
+						Console.WriteLine($"Pointer released [{e}/{e.GetHashCode():X8}]");
+
 						var pointerArgs = new PointerRoutedEventArgs(args, pointer, e);
-						e.OnNativePointerUp(pointerArgs);
+
+						TraverseAncestors(e, e => e.OnNativePointerUp(pointerArgs));
 					});
 				}
 			}
@@ -110,8 +115,29 @@ namespace Windows.UI.Xaml
 					var pointer = new Pointer(args.CurrentPoint.PointerId, PointerDeviceType.Mouse, false, isInRange: true);
 					var pointerArgs = new PointerRoutedEventArgs(args, pointer, e);
 
-					e.OnNativePointerDown(pointerArgs);
+					Console.WriteLine($"Pointer pressed [{e}/{e.GetHashCode():X8}]");
+
+					TraverseAncestors(e, e => e.OnNativePointerDown(pointerArgs));
 				});
+			}
+
+			private void TraverseAncestors(UIElement element, Func<UIElement, bool> action)
+			{
+				if (!action(element))
+				{
+					foreach (var parent in element.GetParents().OfType<UIElement>())
+					{
+						if (this.Log().IsEnabled(LogLevel.Trace))
+						{
+							this.Log().Trace($"TraverseAncestors for [{element}/{element.GetHashCode():X8}] = {parent}/{parent.GetHashCode():X8}");
+						}
+
+						if (action(parent))
+						{
+							return;
+						}
+					}
+				}
 			}
 
 			private void CoreWindow_PointerMoved(CoreWindow sender, PointerEventArgs args)
@@ -142,22 +168,20 @@ namespace Windows.UI.Xaml
 				}
 			}
 
-			private static long _pseudoNextFrameId;
-
 			private void PropagateEvent(PointerEventArgs args, Action<UIElement> raiseEvent)
 			{
 				if(Window.Current.RootElement is UIElement root)
 				{
-					PropagageEventRecursive(args, new Point(0, 0), root, raiseEvent);
+					PropagageEventRecursive(args, new Point(0, 0), root, Matrix3x2.Identity, raiseEvent);
 				}
 			}
 
-			private bool PropagageEventRecursive(PointerEventArgs args, Point root, UIElement element, Action<UIElement> raiseEvent)
+			private bool PropagageEventRecursive(PointerEventArgs args, Point root, UIElement element, Matrix3x2 currentTransform, Action<UIElement> raiseEvent)
 			{
 				bool raised = false;
-				var rect = element.LayoutSlotWithMarginsAndAlignments;
-				rect.X += root.X;
-				rect.Y += root.Y;
+				var elementRect = element.LayoutSlotWithMarginsAndAlignments;
+				elementRect.X += root.X;
+				elementRect.Y += root.Y;
 
 				var position = args.CurrentPoint.Position;
 				var pointer = new Pointer(args.CurrentPoint.PointerId, PointerDeviceType.Mouse, false, isInRange: true);
@@ -165,17 +189,15 @@ namespace Windows.UI.Xaml
 
 				if (element.RenderTransform != null)
 				{
-					// position = element.RenderTransform.Inverse.TransformPoint(position);
+					currentTransform *= element.RenderTransform.MatrixCore;
+					elementRect = currentTransform.Transform(elementRect);
 				}
 
-				if (position.X >= rect.X	
-					&& position.Y >= rect.Y
-					&& position.X <= rect.X + rect.Width
-					&& position.Y <= rect.Y + rect.Height)
+				if (elementRect.Contains(position))
 				{
 					foreach (var e in element.GetChildren().Reverse().ToArray())
 					{
-						if(PropagageEventRecursive(args, rect.Location, e, raiseEvent))
+						if(PropagageEventRecursive(args, elementRect.Location, e, currentTransform, raiseEvent))
 						{
 							return true;
 						}
@@ -189,12 +211,7 @@ namespace Windows.UI.Xaml
 					{
 						if (!element.IsOver(pointer))
 						{
-							// Console.WriteLine($"PointerManager.Entered [{element}/{element.GetHashCode():X8}");
 							element.OnNativePointerEnter(pointerArgs);
-						}
-						else
-						{
-							// Console.WriteLine($"Already over [{element}/{element.GetHashCode():X8}");
 						}
 
 						raiseEvent(element);
@@ -207,7 +224,7 @@ namespace Windows.UI.Xaml
 					{
 						if (e.IsOver(pointer))
 						{
-							foreach(var child in e.GetChildren())
+							foreach(var child in e.GetChildren().Reverse().ToArray())
 							{
 								if (RecursePointerExited(child))
 								{
@@ -215,7 +232,6 @@ namespace Windows.UI.Xaml
 								}
 							}
 
-							// Console.WriteLine($"PointerManager.Exited [{e}/{e.GetHashCode():X8}");
 							e.OnNativePointerExited(pointerArgs);
 							return true;
 						}
@@ -229,8 +245,6 @@ namespace Windows.UI.Xaml
 				return raised;
 			}
 		}
-
-		private bool _pointerEntered;
 
 		// TODO Should be per CoreWindow
 		private static PointerManager _pointerManager;
