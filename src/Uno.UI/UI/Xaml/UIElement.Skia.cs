@@ -107,7 +107,7 @@ namespace Windows.UI.Xaml
 			child.SetParent(this);
 			OnAddingChild(child);
 
-			if (index is int actualIndex)
+			if (index is int actualIndex && actualIndex != _children.Count)
 			{
 				var currentVisual = _children[actualIndex];
 				_children.Insert(actualIndex, child);
