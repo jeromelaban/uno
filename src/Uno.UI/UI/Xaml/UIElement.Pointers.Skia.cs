@@ -173,38 +173,57 @@ namespace Windows.UI.Xaml
 					&& position.X <= rect.X + rect.Width
 					&& position.Y <= rect.Y + rect.Height)
 				{
-
 					foreach (var e in element.GetChildren().Reverse().ToArray())
 					{
-						raised |= PropagageEventRecursive(args, rect.Location, e, raiseEvent);
+						if(PropagageEventRecursive(args, rect.Location, e, raiseEvent))
+						{
+							return true;
+						}
 					}
 
 					var isHitTestVisible =
 						element.GetValue(HitTestVisibilityProperty) is HitTestVisibility hitTestVisibility
 						&& hitTestVisibility == HitTestVisibility.Visible;
 
-					if (!raised && isHitTestVisible)
+					if (isHitTestVisible)
 					{
-						if (!element._pointerEntered)
+						if (!element.IsOver(pointer))
 						{
 							// Console.WriteLine($"PointerManager.Entered [{element}/{element.GetHashCode():X8}");
-							element._pointerEntered = true;
 							element.OnNativePointerEnter(pointerArgs);
+						}
+						else
+						{
+							// Console.WriteLine($"Already over [{element}/{element.GetHashCode():X8}");
 						}
 
 						raiseEvent(element);
-						raised = true;
+						return true;
 					}
 				}
 				else
 				{
-					if (element._pointerEntered)
+					bool RecursePointerExited(UIElement e)
 					{
-						element._pointerEntered = false;
-						// Console.WriteLine($"PointerManager.Exited [{element}/{element.GetHashCode():X8}");
+						if (e.IsOver(pointer))
+						{
+							foreach(var child in e.GetChildren())
+							{
+								if (RecursePointerExited(child))
+								{
+									return true;
+								}
+							}
 
-						element.OnNativePointerExited(pointerArgs);
+							// Console.WriteLine($"PointerManager.Exited [{e}/{e.GetHashCode():X8}");
+							e.OnNativePointerExited(pointerArgs);
+							return true;
+						}
+
+						return false;
 					}
+
+					RecursePointerExited(element);
 				}
 
 				return raised;
