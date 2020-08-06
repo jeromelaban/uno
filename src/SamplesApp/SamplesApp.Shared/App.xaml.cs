@@ -27,6 +27,7 @@ using Uno.Logging;
 using Windows.Graphics.Display;
 using System.Globalization;
 using Windows.UI.ViewManagement;
+using Microsoft.Extensions.Logging.NSLogger;
 #if HAS_UNO_WINUI
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 #else
@@ -338,10 +339,10 @@ namespace SamplesApp
 				)
 #if DEBUG
 				//.AddConsole(LogLevel.Trace);
-				.AddConsole(LogLevel.Debug);
+				.AddNSLog(LogLevel.Debug);
 
 #else
-				.AddConsole(LogLevel.Warning);
+				.AddNSLog(LogLevel.Warning);
 #endif
 		}
 
