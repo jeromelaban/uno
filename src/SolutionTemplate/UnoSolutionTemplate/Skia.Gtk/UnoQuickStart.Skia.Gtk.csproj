@@ -7,8 +7,8 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<EmbeddedResource Include="..\UnoQuickStart.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
-		<EmbeddedResource Include="..\UnoQuickStart.UWP\Assets\StoreLogo.png" LogicalName="Assets\StoreLogo.png" />
+		<EmbeddedResource Include="..\$ext_safeprojectname$.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
+		<EmbeddedResource Include="..\$ext_safeprojectname$.UWP\Assets\StoreLogo.png" LogicalName="Assets\StoreLogo.png" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -23,6 +23,6 @@
 		<PackageReference Include="Uno.UI.RemoteControl" Version="3.0.0-dev.1447" Condition="'$(Configuration)'=='Debug'" />
 	</ItemGroup>
 	
-	<Import Project="..\Uno.Gallery.Shared\Uno.Gallery.Shared.projitems" Label="Shared" />
+	<Import Project="..\$ext_safeprojectname$.Shared\$ext_safeprojectname$.Shared.projitems" Label="Shared" />
 
 </Project>
