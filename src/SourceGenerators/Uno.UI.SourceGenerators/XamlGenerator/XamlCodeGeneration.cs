@@ -579,12 +579,12 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									RegisterForFile(file, url);
 								}
 							}
-							else if (files.Any()) // The NETSTD reference assembly contains no Xaml files
-							{
-								// For Uno assembly, we expose WinUI resources using same uri as on Windows
-								RegisterForFile(files.First(f => map.GetSourceLink(f).EndsWith(WinUIThemeResourcePathSuffix)), XamlFilePathHelper.WinUIThemeResourceURL);
-								RegisterForFile(files.First(f => map.GetSourceLink(f).EndsWith(WinUICompactPathSuffix)), XamlFilePathHelper.WinUICompactURL);
-							}
+							//else if (files.Any()) // The NETSTD reference assembly contains no Xaml files
+							//{
+							//	// For Uno assembly, we expose WinUI resources using same uri as on Windows
+							//	RegisterForFile(files.First(f => map.GetSourceLink(f).EndsWith(WinUIThemeResourcePathSuffix)), XamlFilePathHelper.WinUIThemeResourceURL);
+							//	RegisterForFile(files.First(f => map.GetSourceLink(f).EndsWith(WinUICompactPathSuffix)), XamlFilePathHelper.WinUICompactURL);
+							//}
 
 							void RegisterForFile(XamlFileDefinition file, string url)
 							{
