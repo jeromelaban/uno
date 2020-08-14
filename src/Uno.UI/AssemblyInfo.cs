@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Windows.Devices.Bluetooth.Background;
 
 [assembly: InternalsVisibleTo("Uno.UI.DualScreen")]
 [assembly: InternalsVisibleTo("Uno.UI.Tests")]
@@ -15,3 +16,11 @@
 [assembly: InternalsVisibleTo("SamplesApp.Wasm")]
 [assembly: InternalsVisibleTo("SamplesApp.Skia")]
 [assembly: InternalsVisibleTo("Uno.UI.FluentTheme")]
+
+
+namespace Uno.UI
+{
+	public sealed partial class GlobalStaticResources
+	{
+	}
+}
