@@ -520,14 +520,14 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 				if (asm.MainModule.HasResources && asm.MainModule.Resources.Any(r => r.Name.EndsWith("upri")))
 				{
-					if (asm.FullName == "Uno.UI")
+					if (asm.Name.Name == "Uno.UI")
 					{
 						// Avoid the use of assembly lookup as we already know the assembly
 						writer.AppendLineInvariant($"global::Windows.ApplicationModel.Resources.ResourceLoader.AddLookupAssembly(typeof(global::Windows.UI.Xaml.FrameworkElement).Assembly);");
 					}
 					else
 					{
-						writer.AppendLineInvariant($"global::Windows.ApplicationModel.Resources.ResourceLoader.AddLookupAssembly(\"{asm.FullName}\");");
+						writer.AppendLineInvariant($"global::Windows.ApplicationModel.Resources.ResourceLoader.AddLookupAssembly(global::System.Reflection.Assembly.Load(\"{asm.FullName}\"));");
 					}
 				}
 			}
