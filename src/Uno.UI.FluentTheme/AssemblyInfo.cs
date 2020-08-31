@@ -13,3 +13,11 @@ using global::System.Runtime.InteropServices;
 #elif __ANDROID__
 [assembly: Android.LinkerSafe]
 #endif
+
+
+namespace Uno.UI.FluentTheme
+{
+	public sealed partial class GlobalStaticResources
+	{
+	}
+}

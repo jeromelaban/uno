@@ -85,6 +85,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 				}
 
 				this.Log().Error("Failed to generate type providers.", new Exception("Failed to generate type providers." + message, e));
+				context.AddCompilationUnit("BindableMetadata", message);
 			}
 		}
 
@@ -143,7 +144,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 		}
 
 		private bool IsValidProvider(INamedTypeSymbol type) => type.IsLocallyPublic(_currentModule);
-
+		
 		private void GenerateProviderTable(IEnumerable<INamedTypeSymbol> q, IndentedStringBuilder writer)
 		{
 			writer.AppendLineInvariant("[System.Runtime.CompilerServices.CompilerGeneratedAttribute]");
@@ -154,6 +155,12 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 			using (writer.BlockInvariant("public class BindableMetadataProvider : global::Uno.UI.DataBinding.IBindableMetadataProvider"))
 			{
 				writer.AppendLineInvariant(@"static global::System.Collections.Hashtable _bindableTypeCacheByFullName = new global::System.Collections.Hashtable({0});", q.Count());
+
+				writer.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
+				using (writer.BlockInvariant("private static void RegisterBuilder(string typeName, TypeBuilderDelegate builder)"))
+				{
+					writer.AppendLineInvariant("_bindableTypeCacheByFullName[typeName] = builder;");
+				}
 
 				writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1502:AvoidExcessiveComplexity\", Justification=\"Must be ignored even if generated code is checked.\")]");
 				writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1506:AvoidExcessiveClassCoupling\", Justification = \"Must be ignored even if generated code is checked.\")]");
@@ -175,6 +182,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 					);
 				}
 
+				writer.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 				using (writer.BlockInvariant("static BindableMetadataProvider()"))
 				{
 					GenerateTypeTable(writer, q);
@@ -348,6 +356,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 				writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1502:AvoidExcessiveComplexity\", Justification=\"Must be ignored even if generated code is checked.\")]");
 				writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1506:AvoidExcessiveClassCoupling\", Justification = \"Must be ignored even if generated code is checked.\")]");
 				writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1505:AvoidUnmaintainableCode\", Justification = \"Must be ignored even if generated code is checked.\")]");
+				writer.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 				using (writer.BlockInvariant("internal static global::Uno.UI.DataBinding.IBindableType Build()"))
 				{
 					writer.AppendLineInvariant("return Build(null);");
@@ -356,6 +365,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 				writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1502:AvoidExcessiveComplexity\", Justification=\"Must be ignored even if generated code is checked.\")]");
 				writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1506:AvoidExcessiveClassCoupling\", Justification = \"Must be ignored even if generated code is checked.\")]");
 				writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1505:AvoidUnmaintainableCode\", Justification = \"Must be ignored even if generated code is checked.\")]");
+				writer.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 				using (writer.BlockInvariant("internal static global::Uno.UI.DataBinding.IBindableType Build(global::Uno.UI.DataBinding.BindableType parent)"))
 				{
 					writer.AppendLineInvariant(
@@ -381,6 +391,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 						using (writer.BlockInvariant("if(parent == null)"))
 						{
 							writer.AppendLineInvariant(@"bindableType.AddActivator(CreateInstance);");
+							postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 							postWriter.AppendLineInvariant($@"private static object CreateInstance() => new {ownerTypeName}();");
 						}
 					}
@@ -394,14 +405,23 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 						{
 							writer.AppendLineInvariant("bindableType.AddIndexer(GetIndexer, SetIndexer);");
 
+							postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 							postWriter.AppendLineInvariant($@"private static object GetIndexer(object instance, string name) => (({ownerTypeName})instance)[name];");
 
 							if (property.SetMethod != null)
 							{
-								postWriter.AppendLineInvariant($@"private static void SetIndexer(object instance, string name, object value) => (({ownerTypeName})instance)[name] = ({propertyTypeName})value;");
+								postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
+								using (postWriter.BlockInvariant("private static void SetIndexer(object instance, string name, object value)"))
+								{
+									using (postWriter.BlockInvariant($"if(instance is {ownerTypeName} targetInstance && value is {propertyTypeName.TrimEnd('?')} targetValue)"))
+									{
+										postWriter.AppendLineInvariant($@"targetInstance[name] = targetValue;");
+									}
+								}
 							}
 							else
 							{
+								postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 								postWriter.AppendLineInvariant("private static void SetIndexer(object instance, string name, object value) {{}}");
 							}
 
@@ -424,13 +444,23 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 							{
 								writer.AppendLineInvariant($@"bindableType.AddProperty(""{propertyName}"", typeof({propertyTypeName}), Get{propertyName}, Set{propertyName});");
 
-								postWriter.AppendLineInvariant($@"private static object Get{propertyName}(object instance, Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) => (({ownerTypeName})instance).{propertyName};");
+								postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 
+								using (postWriter.BlockInvariant($"private static object Get{propertyName}(object instance, Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) "))
+								{
+									using (postWriter.BlockInvariant($"if(instance is {ownerTypeName} targetInstance)"))
+									{
+										postWriter.AppendLineInvariant($@"return targetInstance.{propertyName};");
+									}
+									postWriter.AppendLineInvariant("else {{ return null; }}");
+								}
+
+								postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 								using (postWriter.BlockInvariant($@"private static void Set{propertyName}(object instance, object value, Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence)"))
 								{
-									using (postWriter.BlockInvariant($"if(value != null)"))
+									using (postWriter.BlockInvariant($"if(value != null && instance is {ownerTypeName} targetInstance && value is {propertyTypeName.TrimEnd('?')} targetValue)"))
 									{
-										postWriter.AppendLineInvariant($"(({ownerTypeName})instance).{propertyName} = ({propertyTypeName})value;");
+										postWriter.AppendLineInvariant($"targetInstance.{propertyName} = targetValue;");
 									}
 								}
 							}
@@ -438,48 +468,67 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 							{
 								writer.AppendLineInvariant($@"bindableType.AddProperty(""{propertyName}"", typeof({propertyTypeName}), Get{propertyName}, Set{propertyName});");
 
-								postWriter.AppendLineInvariant($@"private static object Get{propertyName}(object instance,  Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) => (({ownerTypeName})instance).{propertyName};");
-								postWriter.AppendLineInvariant($@"private static void Set{propertyName}(object instance, object value, Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) => (({ownerTypeName})instance).{propertyName} = ({propertyTypeName})value;");
+								postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
+								using (postWriter.BlockInvariant($@"private static object Get{propertyName}(object instance,  Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence)"))
+								{
+									using (postWriter.BlockInvariant($"if(instance is {ownerTypeName} targetInstance)"))
+									{
+										postWriter.AppendLineInvariant($"return targetInstance.{propertyName};");
+									}
+									postWriter.AppendLineInvariant("else {{ return null; }}");
+								}
+
+								postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
+								using (postWriter.BlockInvariant($@"private static void Set{propertyName}(object instance, object value, Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence)"))
+								{
+									using (postWriter.BlockInvariant($"if(value != null && instance is {ownerTypeName} targetInstance && value is {propertyTypeName.TrimEnd('?')} targetValue)"))
+									{
+										postWriter.AppendLineInvariant($"targetInstance.{propertyName} = targetValue;");
+									}
+								}
 							}
 						}
 						else if (HasPublicGetter(property))
 						{
 							writer.AppendLineInvariant($@"bindableType.AddProperty(""{propertyName}"", typeof({propertyTypeName}), Get{propertyName});");
 
+							postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 							postWriter.AppendLineInvariant($@"private static object Get{propertyName}(object instance, Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) => (({ownerTypeName})instance).{propertyName};");
 						}
 					}
 
-					foreach (var dependencyProperty in dependencyProperties)
-					{
-						var propertyName = dependencyProperty.TrimEnd("Property");
+					//foreach (var dependencyProperty in dependencyProperties)
+					//{
+					//	var propertyName = dependencyProperty.TrimEnd("Property");
 
-						var getMethod = ownerType.GetMethods().FirstOrDefault(m => m.Name == "Get" + propertyName && m.Parameters.Length == 1 && m.IsLocallyPublic(_currentModule));
-						var setMethod = ownerType.GetMethods().FirstOrDefault(m => m.Name == "Set" + propertyName && m.Parameters.Length == 2 && m.IsLocallyPublic(_currentModule));
+					//	var getMethod = ownerType.GetMethods().FirstOrDefault(m => m.Name == "Get" + propertyName && m.Parameters.Length == 1 && m.IsLocallyPublic(_currentModule));
+					//	var setMethod = ownerType.GetMethods().FirstOrDefault(m => m.Name == "Set" + propertyName && m.Parameters.Length == 2 && m.IsLocallyPublic(_currentModule));
 
-						if (getMethod == null)
-						{
-							getMethod = ownerType
-								.GetProperties()
-								.FirstOrDefault(p => p.Name == propertyName && (p.GetMethod?.IsLocallyPublic(_currentModule) ?? false))
-								?.GetMethod;
-						}
+					//	if (getMethod == null)
+					//	{
+					//		getMethod = ownerType
+					//			.GetProperties()
+					//			.FirstOrDefault(p => p.Name == propertyName && (p.GetMethod?.IsLocallyPublic(_currentModule) ?? false))
+					//			?.GetMethod;
+					//	}
 
-						if (getMethod != null)
-						{
-							var getter = $"{XamlConstants.Types.DependencyObjectExtensions}.GetValue(instance, {ownerTypeName}.{propertyName}Property, precedence)";
-							var setter = $"{XamlConstants.Types.DependencyObjectExtensions}.SetValue(instance, {ownerTypeName}.{propertyName}Property, value, precedence)";
+					//	if (getMethod != null)
+					//	{
+					//		var getter = $"{XamlConstants.Types.DependencyObjectExtensions}.GetValue(instance, {ownerTypeName}.{propertyName}Property, precedence)";
+					//		var setter = $"{XamlConstants.Types.DependencyObjectExtensions}.SetValue(instance, {ownerTypeName}.{propertyName}Property, value, precedence)";
 
-							var propertyType = GetGlobalQualifier(getMethod.ReturnType) + SanitizeTypeName(getMethod.ReturnType.ToString());
+					//		var propertyType = GetGlobalQualifier(getMethod.ReturnType) + SanitizeTypeName(getMethod.ReturnType.ToString());
 
-							writer.AppendLineInvariant($@"bindableType.AddProperty(""{propertyName}"", typeof({propertyType}),  Get{propertyName}, Set{propertyName});");
+					//		writer.AppendLineInvariant($@"bindableType.AddProperty(""{propertyName}"", typeof({propertyType}),  Get{propertyName}, Set{propertyName});");
 
-							postWriter.AppendLineInvariant($@"private static object Get{propertyName}(object instance,  Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) => {getter};");
-							postWriter.AppendLineInvariant($@"private static void Set{propertyName}(object instance, object value, Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) => {setter};");
-						}
-					}
+					//		postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
+					//		postWriter.AppendLineInvariant($@"private static object Get{propertyName}(object instance,  Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) => {getter};");
+					//		postWriter.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
+					//		postWriter.AppendLineInvariant($@"private static void Set{propertyName}(object instance, object value, Windows.UI.Xaml.DependencyPropertyValuePrecedences? precedence) => {setter};");
+					//	}
+					//}
 
-					writer.AppendLineInvariant(@"return bindableType;");
+					writer.AppendLineInvariant(@"return null; //bindableType;");
 				}
 
 				writer.Append(postWriter.ToString());
@@ -596,7 +645,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 			foreach (var type in _typeMap.Where(k => !k.Key.IsGenericType))
 			{
 				writer.AppendLineInvariant(
-					"_bindableTypeCacheByFullName[\"{0}\"] = CreateMemoized(MetadataBuilder_{1:000}.Build);",
+					"RegisterBuilder(\"{0}\", CreateMemoized(MetadataBuilder_{1:000}.Build));",
 					type.Key, 
 					type.Value.Index
 				);

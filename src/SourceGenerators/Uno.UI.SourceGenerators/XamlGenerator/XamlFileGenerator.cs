@@ -688,6 +688,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 						using (writer.BlockInvariant($"{classAccessibility} class {className}"))
 						{
+							writer.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
 							using (writer.BlockInvariant("public {0} Build()", kvp.Value.ReturnType))
 							{
 								writer.AppendLineInvariant("var nameScope = new global::Windows.UI.Xaml.NameScope();");
@@ -2122,7 +2123,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 					if (isInInitializer)
 					{
-						writer.AppendLineInvariant("[{0}] = ", wrappedKey);
+						writer.AppendLineInvariant("/*initializer*/ [{0}] = ", wrappedKey);
 					}
 					else
 					{
@@ -2179,14 +2180,16 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		/// </summary>
 		private IDisposable BuildLazyResourceInitializer(IIndentedStringBuilder writer)
 		{
-			writer.AppendLineInvariant("(global::Windows.UI.Xaml.ResourceDictionary.ResourceInitializer)(() => ");
+			writer.AppendLineInvariant("(global::Windows.UI.Xaml.ResourceDictionary.ResourceInitializer)(() => {{");
 
+			writer.AppendLineInvariant(@"[global::System.Runtime.CompilerServices.MethodImpl(global::System.Runtime.CompilerServices.MethodImplOptions.NoInlining | System.Runtime.CompilerServices.MethodImplOptions.NoOptimization)]");
+			writer.AppendLineInvariant("object privateBuild() => ");
 			var indent = writer.Indent();
 
 			return new DisposableAction(() =>
 			{
 				indent.Dispose();
-				writer.AppendLineInvariant(")");
+				writer.AppendLineInvariant("; return privateBuild(); }})");
 			});
 		}
 

@@ -21,7 +21,7 @@
     <CreateHardLinksForAdditionalFilesIfPossible>true</CreateHardLinksForAdditionalFilesIfPossible>
     <CreateHardLinksForPublishFilesIfPossible>true</CreateHardLinksForPublishFilesIfPossible>
 
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>preview</LangVersion>
 
     <!-- Version management is now done through NuGet, this avoids issues related version mismatch -->
     <Version>255.255.255.255</Version>

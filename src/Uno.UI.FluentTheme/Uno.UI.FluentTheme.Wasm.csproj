@@ -24,6 +24,7 @@
 	
 	<ItemGroup>
 		<PackageReference Include="Uno.SourceGenerationTasks" />
+		<PackageReference Include="Uno.MonoAnalyzers" />
 	</ItemGroup>
 
 	<Import Project="..\Uno.CrossTargetting.props" />
