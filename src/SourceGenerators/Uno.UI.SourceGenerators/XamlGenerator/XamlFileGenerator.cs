@@ -265,6 +265,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			writer.AppendLineInvariant("using System.Diagnostics;");
 			writer.AppendLineInvariant("using System.Linq;");
 			writer.AppendLineInvariant("using Uno.UI;");
+			writer.AppendLineInvariant("using Uno.UI.Xaml;");
 
 			//TODO Determine the list of namespaces to use
 			foreach (var ns in XamlConstants.Namespaces.All)
@@ -2446,9 +2447,22 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									// on it.
 									var localCollectionName = $"{closureName}_collection_{_collectionIndex++}";
 
-									writer.AppendLineInvariant(
-										$"var {localCollectionName} = {ownerType.ToDisplayString()}.Get{member.Member.Name}({closureName});"
-									);
+									var getterMethod = $"Get{member.Member.Name}";
+
+									if (ownerType.GetMethods().Any(m => m.Name == getterMethod))
+									{
+										// Attached property
+										writer.AppendLineInvariant(
+											$"var {localCollectionName} = {ownerType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}.{getterMethod}({closureName});"
+										);
+									}
+									else
+									{
+										// Plain object
+										writer.AppendLineInvariant(
+											$"var {localCollectionName} = {closureName}.{member.Member.Name};"
+										);
+									}
 
 									foreach (var inner in member.Objects)
 									{
@@ -2995,6 +3009,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					TryAnnotateWithGeneratorSource(writer);
 					var isAttachedProperty = IsDependencyProperty(member.Member);
 					var isBindingType = Equals(FindPropertyType(member.Member), _dataBindingSymbol);
+					var isOwnerDependencyObject = GetType(member.Owner.Type).GetAllInterfaces().Any(i => Equals(i, _dependencyObjectSymbol));
 
 					var bindEvalFunction = bindNode != null ? BuildXBindEvalFunction(member, bindNode) : "";
 
@@ -3010,7 +3025,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					}
 					else
 					{
-						writer.AppendLine(formatLine($"SetBinding(\"{member.Member.Name}\", new {XamlConstants.Types.Binding}{{ {bindingOptions} }}{bindEvalFunction})"));
+						var pocoBuilder = isOwnerDependencyObject ? "" : $"GetDependencyObjectForXBind().";
+
+						writer.AppendLine(formatLine($"{pocoBuilder}SetBinding(\"{member.Member.Name}\", new {XamlConstants.Types.Binding}{{ {bindingOptions} }}{bindEvalFunction})"));
 					}
 				}
 

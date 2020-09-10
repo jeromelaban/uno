@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
 namespace Uno.UI.Xaml
@@ -15,5 +16,8 @@ namespace Uno.UI.Xaml
 			binding.SetBindingXBindProvider(compiledSource, xBindSelector, xBindBack, propertyPaths);
 			return binding;
 		}
+
+		public static AttachedDependencyObject GetDependencyObjectForXBind(this object install)
+			=> DependencyObjectExtensions.GetAttachedDependencyObject(install);
 	}
 }

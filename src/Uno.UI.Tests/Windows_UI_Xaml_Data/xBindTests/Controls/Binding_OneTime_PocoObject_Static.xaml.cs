@@ -30,13 +30,13 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Data.xBindTests.Controls
 			this.InitializeComponent();
 		}
 
-		public static string LocalStatic { get; set; }
+		public static string LocalStatic { get; set; } = "Test01";
 	}
 
 	public sealed partial class Binding_OneTime_PocoObject_Static_Control : ContentControl
 	{
-		public Collection<Binding_OneWay_PocoObject_Poco> ClassCollection { get; set; }
-			= new Collection<Binding_OneWay_PocoObject_Poco>();
+		public Collection<Binding_OneTime_PocoObject_Static_Poco> ClassCollection { get; set; }
+			= new Collection<Binding_OneTime_PocoObject_Static_Poco>();
 	}
 
 	public class Binding_OneTime_PocoObject_Static_Poco
@@ -46,6 +46,6 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Data.xBindTests.Controls
 
 	public static class Binding_OneTime_PocoObject_Static_Resource
 	{
-		public static string MyStaticProperty { get; set; }
+		public static string MyStaticProperty { get; set; } = "Test02";
 	}
 }
