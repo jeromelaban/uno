@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Uno.SourceGeneration;
@@ -11,6 +12,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 	{
 		public override void Execute(SourceGeneratorContext context)
 		{
+			// Debugger.Launch();
+
 			var gen = new XamlCodeGeneration(
 				context.Compilation,
 				context.GetProjectInstance(),

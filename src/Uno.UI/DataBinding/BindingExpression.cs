@@ -96,6 +96,11 @@ namespace Windows.UI.Xaml.Data
 			// Note: Bindings should still be disposed in order to also remove reference on the Source.
 			_view = viewReference;
 
+			if(_view?.Target is AttachedDependencyObject ado)
+			{
+				_view = ado.OwnerWeakReference;
+			}
+
 			_targetOwnerType = targetPropertyDetails.Property.OwnerType;
 			TargetPropertyDetails = targetPropertyDetails;
 			_bindingPath = new BindingPath(
