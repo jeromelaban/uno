@@ -72,6 +72,7 @@
 
 	<Import Project="..\SourceGenerators\Uno.UI.SourceGenerators\Content\Uno.UI.SourceGenerators.props" />
 	<Import Project="..\Uno.UI\MixinGeneration.targets" />
+	<Import Project="..\Uno.UI.Design\Uno.UI.Design.targets" Condition="$([MSBuild]::IsOsPlatform('Windows'))" />
 
 	<Target Name="_UnoToolkitOverrideNuget" AfterTargets="AfterBuild" DependsOnTargets="BuiltProjectOutputGroup" Condition="'$(UnoNugetOverrideVersion)'!=''">
 

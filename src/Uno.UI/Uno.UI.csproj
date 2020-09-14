@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras" ToolsVersion="15.0">
 	<PropertyGroup>
-		<TargetFrameworks>xamarinmac20;MonoAndroid10.0;xamarinios10;net461;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net461;xamarinmac20;MonoAndroid10.0;xamarinios10;netstandard2.0</TargetFrameworks>
 		<TargetFrameworksCI>MonoAndroid90;MonoAndroid10.0;xamarinios10;net461;netstandard2.0;xamarinmac20</TargetFrameworksCI>
 	</PropertyGroup>
 
@@ -148,6 +148,7 @@
 
 	<Import Project="..\SourceGenerators\Uno.UI.SourceGenerators\Content\Uno.UI.SourceGenerators.props" />
 	<Import Project="..\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" Condition="'$(SkipUnoResourceGeneration)' == '' " />
+	<Import Project="..\Uno.UI.Design\Uno.UI.Design.targets" Condition="$([MSBuild]::IsOsPlatform('Windows'))" />
 
 	<ItemGroup>
 		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
@@ -168,6 +169,11 @@
 			<UndefineProperties>TargetFramework</UndefineProperties>
 		</ProjectReference>
 		<ProjectReference Include="..\SourceGenerators\Uno.UI.Tasks\Uno.UI.Tasks.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+			<UndefineProperties>TargetFramework</UndefineProperties>
+		</ProjectReference>
+		<ProjectReference Include="..\Uno.UI.Design\Uno.UI.Design.csproj">
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
 			<UndefineProperties>TargetFramework</UndefineProperties>

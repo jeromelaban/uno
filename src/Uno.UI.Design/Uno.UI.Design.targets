@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Project>
+  <Target Name="_CopyDesignerFilesToOutputDirectory" AfterTargets="Build">
+	<PropertyGroup>
+	  <_UnoUIDesignTarget>$(OutputPath)\Design</_UnoUIDesignTarget>
+	</PropertyGroup>
+	
+	<MakeDir Directories="$(_UnoUIDesignTarget)" />
+	<Copy SourceFiles="$(MSBuildThisFileDirectory)bin\$(Configuration)\Uno.UI.Design.dll" DestinationFolder="$(_UnoUIDesignTarget)" />
+  </Target>
+</Project>
