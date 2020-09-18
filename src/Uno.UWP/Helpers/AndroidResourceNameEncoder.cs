@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +44,25 @@ namespace Uno
 			}
 
 			return key;
+		}
+
+		public static string EncodePath(string path, char? separator = null)
+		{
+			separator ??= global::System.IO.Path.DirectorySeparatorChar;
+
+			var directoryName = global::System.IO.Path.GetDirectoryName(path);
+			var fileName = global::System.IO.Path.GetFileNameWithoutExtension(path);
+			var extension = global::System.IO.Path.GetExtension(path);
+
+			var encodedDirectoryParts = directoryName
+				.Split(new[] { separator.Value }, StringSplitOptions.RemoveEmptyEntries)
+				.Select(Encode)
+				.ToArray();
+
+			var encodedDirectory = global::System.IO.Path.Combine(encodedDirectoryParts);
+			var encodedFileName = Encode(fileName);
+
+			return global::System.IO.Path.Combine("Assets", encodedDirectory, encodedFileName + extension);
 		}
 	}
 }

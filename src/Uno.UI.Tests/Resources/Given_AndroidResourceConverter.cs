@@ -48,4 +48,25 @@ namespace Uno.UI.Tests.Resources
 			Assert.AreEqual(expectedPath, actualPath);
 		}
     }
+
+	[TestClass]
+	public class Given_AndroidResourceNameEncoder
+	{
+		[TestMethod]
+		[DataRow(@"logo.png", @"logo.png")]
+		public void When_Encode(string input, string expected)
+		{
+			Assert.AreEqual(expected, AndroidResourceNameEncoder.Encode(input));
+		}
+
+		[TestMethod]
+		[DataRow(@"logo.png", @"Assets/logo.png", '/')]
+		[DataRow(@"test/logo.png", @"Assets/logo.png", '/')]
+		[DataRow(@"test/logo-1.png", @"Assets/logo_1.png", '/')]
+		[DataRow(@"test/logo-1.png", @"Assets/logo_1.png", '/')]
+		public void When_EncodePath(string input, string expected)
+		{
+			Assert.AreEqual(expected, AndroidResourceNameEncoder.EncodePath(input));
+		}
+	}
 }
