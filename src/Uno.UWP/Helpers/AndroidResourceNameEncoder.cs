@@ -48,21 +48,25 @@ namespace Uno
 
 		public static string EncodePath(string path, char? separator = null)
 		{
-			separator ??= global::System.IO.Path.DirectorySeparatorChar;
+			var localSeparation = global::System.IO.Path.DirectorySeparatorChar;
 
-			var directoryName = global::System.IO.Path.GetDirectoryName(path);
-			var fileName = global::System.IO.Path.GetFileNameWithoutExtension(path);
-			var extension = global::System.IO.Path.GetExtension(path);
+			separator ??= localSeparation;
+
+			var alignedPath = path.Replace(separator.Value, localSeparation);
+
+			var directoryName = global::System.IO.Path.GetDirectoryName(alignedPath);
+			var fileName = global::System.IO.Path.GetFileNameWithoutExtension(alignedPath);
+			var extension = global::System.IO.Path.GetExtension(alignedPath);
 
 			var encodedDirectoryParts = directoryName
-				.Split(new[] { separator.Value }, StringSplitOptions.RemoveEmptyEntries)
+				.Split(new[] { localSeparation }, StringSplitOptions.RemoveEmptyEntries)
 				.Select(Encode)
 				.ToArray();
 
 			var encodedDirectory = global::System.IO.Path.Combine(encodedDirectoryParts);
 			var encodedFileName = Encode(fileName);
 
-			return global::System.IO.Path.Combine("Assets", encodedDirectory, encodedFileName + extension);
+			return global::System.IO.Path.Combine("Assets", encodedDirectory, encodedFileName + extension).Replace(localSeparation, separator.Value);
 		}
 	}
 }
