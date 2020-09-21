@@ -112,7 +112,7 @@ namespace Uno.UI.Tasks.Assets
 			}
 			else
 			{
-				var encodedRelativePath = AndroidResourceNameEncoder.EncodePath(relativePath);
+				var encodedRelativePath = AndroidResourceNameEncoder.EncodeFileSystemPath(relativePath);
 
 				this.Log().Info($"Retargeting generic '{asset.ItemSpec}' to '{encodedRelativePath}'.");
 				return new TaskItem(asset.ItemSpec, new Dictionary<string, string>() { { "LogicalName", encodedRelativePath } });

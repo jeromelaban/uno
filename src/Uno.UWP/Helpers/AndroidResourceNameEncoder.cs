@@ -46,13 +46,17 @@ namespace Uno
 			return key;
 		}
 
-		public static string EncodePath(string path, char? separator = null)
+		public static string EncodeFileSystemPath(string path)
+			=> EncodePath(path, global::System.IO.Path.DirectorySeparatorChar);
+
+		public static string EncodeResourcePath(string path)
+			=> EncodePath(path, '/');
+
+		private static string EncodePath(string path, char separator)
 		{
 			var localSeparation = global::System.IO.Path.DirectorySeparatorChar;
 
-			separator ??= localSeparation;
-
-			var alignedPath = path.Replace(separator.Value, localSeparation);
+			var alignedPath = path.Replace(separator, localSeparation);
 
 			var directoryName = global::System.IO.Path.GetDirectoryName(alignedPath);
 			var fileName = global::System.IO.Path.GetFileNameWithoutExtension(alignedPath);
@@ -66,7 +70,7 @@ namespace Uno
 			var encodedDirectory = global::System.IO.Path.Combine(encodedDirectoryParts);
 			var encodedFileName = Encode(fileName);
 
-			return global::System.IO.Path.Combine("Assets", encodedDirectory, encodedFileName + extension).Replace(localSeparation, separator.Value);
+			return global::System.IO.Path.Combine("Assets", encodedDirectory, encodedFileName + extension).Replace(localSeparation, separator);
 		}
 	}
 }
