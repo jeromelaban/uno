@@ -134,6 +134,9 @@
     </Content>
     <Content Include="Resources\UnoPlatformPackage.ico" />
     <Content Include="Resources\VSPackage1.ico" />
+    <VSTemplate Include="UnoApp.vstemplate">
+      <SubType>Designer</SubType>
+    </VSTemplate>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VSPackage.resx">

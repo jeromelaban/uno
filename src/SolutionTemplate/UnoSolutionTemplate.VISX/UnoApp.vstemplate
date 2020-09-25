@@ -33,10 +33,6 @@
 	  <ProjectTemplateLink ProjectName="$projectname$.UWP" CopyParameters="true">UWP\UWP.vstemplate</ProjectTemplateLink>
 	  <ProjectTemplateLink ProjectName="$projectname$.Wasm" CopyParameters="true">Wasm\Wasm.vstemplate</ProjectTemplateLink>
 	  <ProjectTemplateLink ProjectName="$projectname$.macOS" CopyParameters="true">macOS\macOS.vstemplate</ProjectTemplateLink>
-	  
-	  <ProjectTemplateLink ProjectName="$projectname$.macOS" CopyParameters="true">Skia.Wpf.Host\SkiaWpfHost.vstemplate</ProjectTemplateLink>
-	  <ProjectTemplateLink ProjectName="$projectname$.macOS" CopyParameters="true">Skia.Wpf\SkiaWpf.vstemplate</ProjectTemplateLink>
-	  <ProjectTemplateLink ProjectName="$projectname$.macOS" CopyParameters="true">macOS\macOS.vstemplate</ProjectTemplateLink>
 	</ProjectCollection>
   </TemplateContent>
   <WizardExtension>
