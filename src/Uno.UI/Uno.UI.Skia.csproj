@@ -25,8 +25,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Uno.Core" />
-		<PackageReference Include="Uno.SourceGenerationTasks" />
 		<PackageReference Include="Uno.Core.Build" />
+		<PackageReference Include="Uno.SourceGenerationTasks" />
 		<PackageReference Include="Uno.MonoAnalyzers" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
@@ -65,7 +65,6 @@
 	</ItemGroup>
 
 	<PropertyGroup>
-		<UnoUIGeneratorsBinPath>..\SourceGenerators\Uno.UI.SourceGenerators\bin\$(Configuration)</UnoUIGeneratorsBinPath>
 		<UnoUIMSBuildTasksPath>$(MSBuildThisFileDirectory)..\SourceGenerators\Uno.UI.Tasks\bin\$(Configuration)_Shadow</UnoUIMSBuildTasksPath>
 
 		<CompileTypeScriptDependsOn>_UnoSourceGenerator; $(CompileTypeScriptDependsOn)</CompileTypeScriptDependsOn>
@@ -107,6 +106,39 @@
 			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
 			<UndefineProperties>TargetFramework</UndefineProperties>
 		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Include="Mixins\DependencyPropertyMixins.g.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>DependencyPropertyMixins.tt</DependentUpon>
+	  </Compile>
+	  <Compile Include="Mixins\Wasm\VisualStatesMixins.g.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>VisualStatesMixins.tt</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="Mixins\macOS\VisualStatesMixins.g.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>VisualStatesMixins.tt</DependentUpon>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Mixins\DependencyPropertyMixins.tt">
+	    <LastGenOutput>DependencyPropertyMixins.g.cs</LastGenOutput>
+	  </None>
+	  <None Update="Mixins\macOS\VisualStatesMixins.tt">
+	    <LastGenOutput>VisualStatesMixins.g.cs</LastGenOutput>
+	  </None>
+	  <None Update="Mixins\Wasm\VisualStatesMixins.tt">
+	    <LastGenOutput>VisualStatesMixins.g.cs</LastGenOutput>
+	  </None>
 	</ItemGroup>
 
 </Project>
