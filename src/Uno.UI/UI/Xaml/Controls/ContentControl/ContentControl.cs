@@ -192,10 +192,6 @@ namespace Windows.UI.Xaml.Controls
 
 				SetUpdateTemplate();
 			}
-			else if (CanCreateTemplateWithoutParent)
-			{
-				SetUpdateControlTemplate();
-			}
 		}
 
 		protected virtual void OnContentTemplateSelectorChanged(DataTemplateSelector dataTemplateSelector1, DataTemplateSelector dataTemplateSelector2)

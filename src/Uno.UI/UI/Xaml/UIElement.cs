@@ -47,6 +47,26 @@ namespace Windows.UI.Xaml
 			this.SetValue(KeyboardAcceleratorsProperty, new List<KeyboardAccelerator>(0), DependencyPropertyValuePrecedences.DefaultValue);
 		}
 
+		/// <summary>
+		/// Invoked when the element has entered the live visual tree
+		/// </summary>
+		private protected virtual void Enter()
+		{
+			EnterPartial();
+		}
+
+		partial void EnterPartial();
+
+		/// <summary>
+		/// Invoked when the element has left the live visual tree
+		/// </summary>
+		private protected virtual void Leave()
+		{
+			LeavePartial();
+		}
+
+		partial void LeavePartial();
+
 		string IXUidProvider.Uid
 		{
 			get => _uid;

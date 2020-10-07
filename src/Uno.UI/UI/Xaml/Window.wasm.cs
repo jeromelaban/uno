@@ -157,16 +157,11 @@ namespace Windows.UI.Xaml
 			_rootBorder.Child = _content = content;
 			if (content != null)
 			{
-				if (FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded && !_window.IsLoaded)
-				{
-					UIElement.LoadingRootElement(_window);
-				}
-
 				WebAssemblyRuntime.InvokeJS($"Uno.UI.WindowManager.current.setRootContent({_window.HtmlId});");
 
 				if (FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded && !_window.IsLoaded)
 				{
-					UIElement.RootElementLoaded(_window);
+					UIElement.RootElementEnter(_window);
 				}
 			}
 			else
@@ -175,7 +170,7 @@ namespace Windows.UI.Xaml
 
 				if (FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded && _window.IsLoaded)
 				{
-					UIElement.RootElementUnloaded(_window);
+					UIElement.RootElementLeave(_window);
 				}
 			}
 		}

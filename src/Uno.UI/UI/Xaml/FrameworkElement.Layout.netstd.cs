@@ -70,6 +70,9 @@ namespace Windows.UI.Xaml
 
 		private void InnerMeasureCore(Size availableSize)
 		{
+			RaiseLoadingEventIfNeeded();
+			InvokeApplyTemplate();
+
 			var (minSize, maxSize) = this.GetMinMax();
 			var marginSize = this.GetMarginSize();
 

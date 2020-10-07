@@ -133,7 +133,6 @@ namespace Windows.UI.Xaml
 
 		partial void InternalActivate()
 		{
-			// WebAssemblyRuntime.InvokeJS("Uno.UI.WindowManager.current.activate();");
 		}
 
 		private void InternalSetContent(UIElement content)
@@ -154,11 +153,9 @@ namespace Windows.UI.Xaml
 					}
 				};
 
-				UIElement.LoadingRootElement(_window);
-
 				Compositor.RootVisual = _window.Visual;
 
-				UIElement.RootElementLoaded(_window);
+				UIElement.RootElementEnter(_window);
 			}
 
 			if (_rootBorder != null)

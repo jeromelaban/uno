@@ -24,27 +24,7 @@ namespace Windows.UI.Xaml
 	{
 		public new bool IsLoaded => base.IsLoaded; // The IsLoaded state is managed by the UIElement, FrameworkElement only makes it publicly visible
 
-		private protected sealed override void OnFwEltLoading()
-		{
-			OnLoadingPartial();
-			ApplyCompiledBindings();
-
-			try
-			{
-				// Raise event before invoking base in order to raise them top to bottom
-				OnLoading();
-				_loading?.Invoke(this, new RoutedEventArgs(this));
-			}
-			catch (Exception error)
-			{
-				_log.Error("OnElementLoading failed in FrameworkElement", error);
-				Application.Current.RaiseRecoverableUnhandledException(error);
-			}
-
-			OnPostLoading();
-		}
-
-		partial void OnLoadingPartial();
+		partial void OnUnloadedPartial();
 		private protected virtual void OnLoading() { }
 		private protected virtual void OnPostLoading() { }
 
@@ -74,6 +54,7 @@ namespace Windows.UI.Xaml
 			{
 				// Raise event after invoking base in order to raise them bottom to top
 				OnUnloaded();
+				OnUnloadedPartial();
 				_unloaded?.Invoke(this, new RoutedEventArgs(this));
 			}
 			catch (Exception error)

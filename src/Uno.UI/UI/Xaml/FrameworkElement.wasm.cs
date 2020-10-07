@@ -36,8 +36,6 @@ namespace Windows.UI.Xaml
 
 		private void NativeOnLoading(object sender, RoutedEventArgs args)
 		{
-			OnLoadingPartial();
-
 			// Explicit propagation of the loading even must be performed
 			// after the compiled bindings are applied, as there may be altered
 			// properties that affect the visual tree.

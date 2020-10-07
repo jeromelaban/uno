@@ -20,13 +20,9 @@ namespace Windows.UI.Xaml.Controls
 			InitializeControl();
 		}
 
-		partial void UnregisterSubView()
+		partial void UnregisterSubView(View child)
 		{
-			var child = this.GetChildren()?.FirstOrDefault();
-			if (child != null)
-			{
-				RemoveChild(child);
-			}
+			RemoveChild(child);
 		}
 
 		partial void RegisterSubView(View child)

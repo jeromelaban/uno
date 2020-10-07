@@ -37,67 +37,26 @@ namespace Windows.UI.Xaml
 		internal bool IsLoaded { get; private set; }
 #endif
 
-		/// <summary>
-		/// This flag is transiently set while element is 'loading' but not yet 'loaded'.
-		/// </summary>
-#if __WASM__
-		internal bool IsLoading { get; private protected set; } // protected for the native loading support
-#else
-		internal bool IsLoading { get; private set; }
-#endif
-
 		private protected int Depth { get; private set; } = int.MinValue;
 
-		internal static void LoadingRootElement(UIElement visualTreeRoot)
-			=> visualTreeRoot.OnElementLoading(1);
+		internal static void RootElementEnter(UIElement visualTreeRoot)
+			=> visualTreeRoot.Enter();
 
-		internal static void RootElementLoaded(UIElement visualTreeRoot)
-			=> visualTreeRoot.OnElementLoaded();
-
-		internal static void RootElementUnloaded(UIElement visualTreeRoot)
-			=> visualTreeRoot.OnElementUnloaded();
+		internal static void RootElementLeave(UIElement visualTreeRoot)
+			=> visualTreeRoot.Leave();
 
 		// Overloads for the FrameworkElement to raise the events
 		// (Load/Unload is actually a concept of the FwElement, but it's easier to handle it directly from the UIElement)
-		private protected virtual void OnFwEltLoading() { }
 		private protected virtual void OnFwEltLoaded() { }
 		private protected virtual void OnFwEltUnloaded() { }
 
-		private void OnElementLoading(int depth)
-		{
-			if (IsLoading || IsLoaded)
-			{
-				// Note: If child is added while in parent's Laoding handler, we might get a double Loading!
-				return;
-			}
-
-			IsLoading = true;
-			Depth = depth;
-
-			OnFwEltLoading();
-
-			// Explicit propagation of the loading even must be performed
-			// after the compiled bindings are applied (cf. OnLoading), as there may be altered
-			// properties that affect the visual tree.
-			foreach (var child in _children)
-			{
-				child.OnElementLoading(depth + 1);
-			}
-		}
-
-		private void OnElementLoaded()
+		partial void EnterPartial()
 		{
 			if (IsLoaded)
 			{
 				return;
 			}
 
-			if (!IsLoading && _log.IsEnabled(LogLevel.Error))
-			{
-				_log.Error($"Element {this} is being loaded while not in loading state");
-			}
-
-			IsLoading = false;
 			IsLoaded = true;
 
 			OnFwEltLoaded();
@@ -105,11 +64,11 @@ namespace Windows.UI.Xaml
 
 			foreach (var child in _children)
 			{
-				child.OnElementLoaded();
+				child.Enter();
 			}
 		}
 
-		private void OnElementUnloaded()
+		partial void LeavePartial()
 		{
 			if (!IsLoaded)
 			{
@@ -121,7 +80,7 @@ namespace Windows.UI.Xaml
 
 			foreach (var child in _children)
 			{
-				child.OnElementUnloaded();
+				child.Leave();
 			}
 
 			OnFwEltUnloaded();
@@ -130,10 +89,7 @@ namespace Windows.UI.Xaml
 
 		private void OnAddingChild(UIElement child)
 		{
-			if (IsLoading || IsLoaded)
-			{
-				child.OnElementLoading(Depth + 1);
-			}
+			
 		}
 
 		private void OnChildAdded(UIElement child)
@@ -154,7 +110,7 @@ namespace Windows.UI.Xaml
 			}
 			else
 			{
-				child.OnElementLoaded();
+				child.Enter();
 			}
 		}
 
@@ -172,7 +128,7 @@ namespace Windows.UI.Xaml
 
 			if (child.IsLoaded)
 			{
-				child.OnElementUnloaded();
+				child.Leave();
 			}
 			else
 			{

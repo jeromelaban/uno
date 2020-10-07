@@ -24,6 +24,7 @@ using Microsoft.Extensions.Logging;
 using Uno.UI.DataBinding;
 using Uno.UI.Xaml.Controls;
 using Windows.UI.Core;
+using Uno.Disposables;
 #if __ANDROID__
 using Android.Views;
 using _View = Android.Views.View;
@@ -44,6 +45,8 @@ namespace Windows.UI.Xaml.Controls
 	{
 		public event EventHandler<object>? DropDownClosed;
 		public event EventHandler<object>? DropDownOpened;
+
+		private readonly SerialDisposable _disposable = new SerialDisposable();
 
 		private bool _areItemTemplatesForwarded = false;
 
@@ -85,6 +88,8 @@ namespace Windows.UI.Xaml.Controls
 			_popupBorder = this.GetTemplateChild("PopupBorder") as Border;
 			_contentPresenter = this.GetTemplateChild("ContentPresenter") as ContentPresenter;
 			_placeholderTextBlock = this.GetTemplateChild("PlaceholderTextBlock") as TextBlock;
+
+			RegisterPopupEvents();
 
 			if (_popup is PopupBase popup)
 			{
@@ -136,33 +141,39 @@ namespace Windows.UI.Xaml.Controls
 			args.Handled = true;
 		}
 #endif
-
-		private protected override void OnLoaded()
+		private protected override void Enter()
 		{
-			base.OnLoaded();
+			base.Enter();
 
 			UpdateDropDownState();
+			RegisterPopupEvents();
+
+			Xaml.Window.Current.SizeChanged += OnWindowSizeChanged;
+		}
+
+		private protected override void Leave()
+		{
+			base.Leave();
+
+			_disposable.Disposable = null;
+
+			Xaml.Window.Current.SizeChanged -= OnWindowSizeChanged;
+		}
+
+		private void RegisterPopupEvents()
+		{
+			_disposable.Disposable = null;
 
 			if (_popup != null)
 			{
 				_popup.Closed += OnPopupClosed;
 				_popup.Opened += OnPopupOpened;
+
+				_disposable.Disposable = Disposable.Create(() => {
+					_popup.Closed -= OnPopupClosed;
+					_popup.Opened -= OnPopupOpened;
+				});
 			}
-
-			Xaml.Window.Current.SizeChanged += OnWindowSizeChanged;
-		}
-
-		private protected override void OnUnloaded()
-		{
-			base.OnUnloaded();
-
-			if (_popup != null)
-			{
-				_popup.Closed -= OnPopupClosed;
-				_popup.Opened -= OnPopupOpened;
-			}
-
-			Xaml.Window.Current.SizeChanged -= OnWindowSizeChanged;
 		}
 
 		private void OnWindowSizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
@@ -396,6 +407,7 @@ namespace Windows.UI.Xaml.Controls
 
 		protected override void OnPointerReleased(PointerRoutedEventArgs e)
 		{
+			Console.WriteLine("ComboBox: OnPointerReleased");
 			IsDropDownOpen = true;
 		}
 

@@ -55,6 +55,7 @@ namespace Windows.UI.Xaml
 		
 		private bool _constraintsChanged;
 		private bool _suppressIsEnabled;
+		private bool _loadingRaised = false;
 
 		private bool _defaultStyleApplied = false;
 		private protected bool IsDefaultStyleApplied => _defaultStyleApplied;
@@ -283,16 +284,41 @@ namespace Windows.UI.Xaml
 #endif
 		}
 
-		partial void OnLoadingPartial()
+		partial void OnUnloadedPartial()
+		{
+			_loadingRaised = false;
+		}
+
+		private protected override void Enter()
 		{
 			// Apply active style and default style when we enter the visual tree, if they haven't been applied already.
 			ApplyStyles();
+
+			base.Enter();
+		}
+
+		private void RaiseLoadingEventIfNeeded()
+		{
+			if (!_loadingRaised)
+			{
+
+				_loadingRaised = true;
+				OnLoading();
+				_loading?.Invoke(this, new RoutedEventArgs(this));
+			}
+		}
+
+		private protected virtual void InvokeApplyTemplate()
+		{
 		}
 
 		private protected void ApplyStyles()
 		{
-			ApplyStyle();
-			ApplyDefaultStyle();
+			if (_activeStyle == null)
+			{
+				ApplyStyle();
+				ApplyDefaultStyle();
+			}
 		}
 
 		/// <summary>
