@@ -25,7 +25,12 @@ namespace Windows.UI.Xaml
 		public new bool IsLoaded => base.IsLoaded; // The IsLoaded state is managed by the UIElement, FrameworkElement only makes it publicly visible
 
 		partial void OnUnloadedPartial();
-		private protected virtual void OnLoading() { }
+
+		private protected virtual void OnLoading()
+		{
+			_loading?.Invoke(this, new RoutedEventArgs(this));
+		}
+
 		private protected virtual void OnPostLoading() { }
 
 		private protected sealed override void OnFwEltLoaded()

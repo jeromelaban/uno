@@ -100,7 +100,8 @@ namespace Uno.UI.Tests.ItemsControlTests
 
 			Assert.IsNull(SUT.ItemsPresenter);
 
-			itemsPresenter.ForceLoaded();
+			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			Assert.IsNotNull(SUT.ItemsPresenter);
 		}

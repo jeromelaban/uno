@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.UI.Tests.Windows_UI_Xaml_Data.xBindTests.Controls;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -671,11 +672,14 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Data.xBindTests
 			var SUT = new Binding_xLoad();
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(42, 42));
 
 			Assert.IsNull(SUT.topLevelContent);
 			Assert.IsNull(SUT.innerTextBlock);
 
 			SUT.TopLevelVisiblity = true;
+			// SUT.ForceLoaded();
+			// SUT.Measure(new Size(42, 42));
 
 			Assert.IsNotNull(SUT.topLevelContent);
 			Assert.IsNotNull(SUT.innerTextBlock);

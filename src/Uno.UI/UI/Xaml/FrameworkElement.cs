@@ -291,11 +291,26 @@ namespace Windows.UI.Xaml
 
 		private protected override void Enter()
 		{
+			EnterPartial();
 			// Apply active style and default style when we enter the visual tree, if they haven't been applied already.
 			ApplyStyles();
 
 			base.Enter();
 		}
+
+		partial void EnterPartial();
+
+		private protected override void Leave()
+		{
+			LeavePartial();
+
+			base.Leave();
+		}
+
+		partial void LeavePartial();
+
+		void IFrameworkElement.RaiseLoadingEventIfNeeded() => RaiseLoadingEventIfNeeded();
+		void IFrameworkElement.InvokeApplyTemplate() => InvokeApplyTemplate();
 
 		private void RaiseLoadingEventIfNeeded()
 		{
@@ -303,7 +318,6 @@ namespace Windows.UI.Xaml
 			{
 				_loadingRaised = true;
 				OnLoading();
-				_loading?.Invoke(this, new RoutedEventArgs(this));
 			}
 		}
 
@@ -313,11 +327,8 @@ namespace Windows.UI.Xaml
 
 		private protected void ApplyStyles()
 		{
-			if (_activeStyle == null)
-			{
-				ApplyStyle();
-				ApplyDefaultStyle();
-			}
+			ApplyStyle();
+			ApplyDefaultStyle();
 		}
 
 		/// <summary>

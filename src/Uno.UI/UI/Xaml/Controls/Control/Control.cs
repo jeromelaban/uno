@@ -40,7 +40,6 @@ namespace Windows.UI.Xaml.Controls
 	public partial class Control : FrameworkElement
 	{
 		private View _templatedRoot;
-		private bool _updateTemplate;
 
 		private void InitializeControl()
 		{
@@ -83,11 +82,6 @@ namespace Windows.UI.Xaml.Controls
 		{
 		}
 
-		/// <summary>
-		/// Will be set to Template when it is applied
-		/// </summary>
-		private ControlTemplate _controlTemplateUsedLastUpdate;
-
 		partial void UnregisterSubView(View child);
 		partial void RegisterSubView(View child);
 
@@ -114,7 +108,6 @@ namespace Windows.UI.Xaml.Controls
 
 		private void OnTemplateChanged(DependencyPropertyChangedEventArgs e)
 		{
-			_updateTemplate = true;
 			TemplatedRoot = null;
 		}
 
@@ -146,8 +139,6 @@ namespace Windows.UI.Xaml.Controls
 				}
 			}
 		}
-
-		private bool _applyTemplateShouldBeInvoked = false;
 
 		private void SubscribeToOverridenRoutedEvents()
 		{

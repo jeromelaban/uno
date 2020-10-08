@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Extensions;
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -77,6 +78,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml.VisualStateManagerTests
 			};
 
 			SUT.ApplyTemplate();
+			SUT.Measure(new Size(42, 42));
 
 			Assert.IsNotNull(myBorder);
 			Assert.IsNull(myBorder.Tag);

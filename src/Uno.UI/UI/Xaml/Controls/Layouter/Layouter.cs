@@ -89,6 +89,9 @@ namespace Windows.UI.Xaml.Controls
 				return default;
 			}
 
+			Panel.RaiseLoadingEventIfNeeded();
+			Panel.InvokeApplyTemplate();
+
 			using (traceActivity)
 			{
 				var (minSize, maxSize) = Panel.GetMinMax();

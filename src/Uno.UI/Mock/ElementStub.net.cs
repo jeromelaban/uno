@@ -9,9 +9,12 @@ namespace Windows.UI.Xaml
 {
 	public partial class ElementStub
 	{
-		public ElementStub()
+		static ElementStub()
 		{
-			Visibility = Visibility.Collapsed;
+			VisibilityProperty.OverrideMetadata(
+				forType: typeof(ElementStub),
+				typeMetadata: new FrameworkPropertyMetadata(defaultValue: Visibility.Collapsed)
+			);
 		}
 
 		private FrameworkElement MaterializeContent()

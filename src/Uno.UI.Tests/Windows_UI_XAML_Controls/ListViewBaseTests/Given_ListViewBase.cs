@@ -263,6 +263,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			Assert.AreEqual(-1, SUT.SelectedIndex);
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var selectionChanged = new List<SelectionChangedEventArgs>();
 			SUT.SelectionChanged += (s, e) => selectionChanged.Add(e);
@@ -294,6 +295,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 				SelectionMode = ListViewSelectionMode.Single,
 			};
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var selectionChanged = new List<SelectionChangedEventArgs>();
 
@@ -311,6 +313,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			Assert.AreEqual(-1, SUT.SelectedIndex);
 			Assert.AreEqual(0, selectionChanged.Count);
@@ -365,6 +368,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var selectionChanged = new List<SelectionChangedEventArgs>();
 
@@ -382,6 +386,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			Assert.AreEqual(-1, SUT.SelectedIndex);
 			Assert.AreEqual(0, selectionChanged.Count);
@@ -436,6 +441,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var selectionChanged = new List<SelectionChangedEventArgs>();
 
@@ -445,6 +451,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 
 			var source = Enumerable.Range(0, 10).Select(v => v.ToString()).ToArray();
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			Assert.IsNull(SUT.SelectedItem);
 
@@ -478,6 +485,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var selectionChanged = new List<SelectionChangedEventArgs>();
 
@@ -487,6 +495,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 
 			var source = Enumerable.Range(0, 10).Select(v => v.ToString()).ToArray();
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			Assert.IsNull(SUT.SelectedItem);
 
@@ -544,9 +553,11 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var source = Enumerable.Range(0, 10).Select(v => v.ToString()).ToArray();
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			Assert.IsNull(SUT.SelectedItem);
 
@@ -587,6 +598,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var selectionChanged = new List<SelectionChangedEventArgs>();
 
@@ -605,6 +617,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			Assert.AreEqual(-1, SUT.SelectedIndex);
 
@@ -636,12 +649,14 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var source = new[] {
 				"item 0",
 			};
 
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			Assert.AreEqual(-1, SUT.SelectedIndex);
 
@@ -665,6 +680,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var source = new[] {
 				new ListViewItem(){ Content = "item 1" },
@@ -674,6 +690,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			var si = SUT.ContainerFromItem(source[0]) as ListViewItem;
 			Assert.IsNotNull(si);
@@ -694,12 +711,14 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var source = new[] {
 				"Item 1"
 			};
 
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			var si = SUT.ContainerFromItem(source[0]) as ListViewItem;
 			Assert.IsNotNull(si);
@@ -728,6 +747,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			var source = new object[] {
 				new ListViewItem(){ Content = "item 1" },
@@ -735,6 +755,7 @@ namespace Uno.UI.Tests.ListViewBaseTests
 			};
 
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(10, 10));
 
 			var si = SUT.ContainerFromItem(source[0]) as ListViewItem;
 			Assert.IsNotNull(si);

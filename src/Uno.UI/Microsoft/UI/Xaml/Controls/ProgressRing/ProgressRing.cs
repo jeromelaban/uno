@@ -20,7 +20,7 @@ namespace Microsoft.UI.Xaml.Controls
 		private AnimatedVisualPlayer _player;
 		private Panel _layoutRoot;
 
-		public bool IsActive
+		public new bool IsActive
 		{
 			get => (bool)GetValue(IsActiveProperty);
 			set => SetValue(IsActiveProperty, value);

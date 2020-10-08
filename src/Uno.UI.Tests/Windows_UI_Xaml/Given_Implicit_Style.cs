@@ -44,12 +44,15 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 		public void When_Implicit_Style_In_Visual_Tree_Local_Type()
 		{
 			var app = UnitTestsApp.App.EnsureApplication();
+			app.HostView.ForceLoaded();
 
 			var control = new Test_Control();
 
 			var strBefore = control.InlineTemplateControl.MyStringDP;
 
 			app.HostView.Children.Add(control);
+			app.HostView.ForceLoaded();
+			app.HostView.Measure(new Size(10, 10));
 
 			var strAfter = control.InlineTemplateControl.MyStringDP;
 
@@ -61,12 +64,14 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 		public void When_Implicit_Style_In_Visual_Tree_Framework_Type()
 		{
 			var app = UnitTestsApp.App.EnsureApplication();
+			app.HostView.ForceLoaded();
 
 			var control = new Test_Control();
 
 			var tagBefore = control.TestRadioButton.Tag;
 
 			app.HostView.Children.Add(control);
+			app.HostView.Measure(new Size(10, 10));
 
 			var tagAfter = control.TestRadioButton.Tag;
 
@@ -153,10 +158,25 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			var testControl = new Test_Control();
 
 			app.HostView.Children.Add(testControl);
+			app.HostView.Measure(new Size(10, 10));
 
 			Assert.AreEqual("InnerTreeImplicit", testControl.TestRadioButton.Tag);
 			Assert.AreEqual(typeof(RadioButton), testControl.StylesTestRadioButton.ExposedKey);
 			Assert.IsNull(testControl.StylesTestRadioButton.Tag); //Inherited type doesn't use implicit style for base type
+		}
+
+		[TestMethod]
+		public void When_Inheriting_From_Type_With_Implicit_Style2()
+		{
+			var app = UnitTestsApp.App.EnsureApplication();
+			app.HostView.ForceLoaded();
+
+			var testControl = new When_Inheriting_From_Type_With_Implicit_Style();
+
+			app.HostView.Children.Add(testControl);
+			app.HostView.Measure(new Size(10, 10));
+
+			Assert.AreEqual("InnerTreeImplicit", testControl.testRadioButton.Tag);
 		}
 
 		[TestMethod]

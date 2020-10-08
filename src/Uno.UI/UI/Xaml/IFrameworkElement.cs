@@ -94,6 +94,9 @@ namespace Windows.UI.Xaml
 
 		double Opacity { get; set; }
 
+		void RaiseLoadingEventIfNeeded();
+		void InvokeApplyTemplate();
+
 		Style Style { get; set; }
 
 		Windows.UI.Xaml.Media.Brush Background { get; set; }

@@ -35,10 +35,9 @@ namespace Uno.UI.Tests.Windows_UI_Xaml.EventsTests
 			Assert.AreEqual(0, SUT.StackPanel_Loaded_Count);
 
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(42, 42));
 
-			// Count should theoratically be one, but we're testing event
-			// invocation here, so change to one if needed.
-			Assert.AreEqual(2, SUT.StackPanel_Loaded_Count);
+			Assert.AreEqual(1, SUT.StackPanel_Loaded_Count);
 		}
 
 		[TestMethod]
@@ -46,10 +45,12 @@ namespace Uno.UI.Tests.Windows_UI_Xaml.EventsTests
 		{
 			var SUT = new FrameworkElement_ControlTemplate_Event();
 			SUT.ForceLoaded();
+			SUT.Measure(new Size(10, 10));
 
 			Assert.AreEqual(0, SUT.CheckBox_Checked_Count);
 
 			SUT.DataContext = true;
+			SUT.Measure(new Size(10, 10));
 
 			Assert.AreEqual(1, SUT.CheckBox_Checked_Count);
 		}

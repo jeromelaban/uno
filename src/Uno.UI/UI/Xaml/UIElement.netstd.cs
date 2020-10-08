@@ -37,8 +37,6 @@ namespace Windows.UI.Xaml
 		internal bool IsLoaded { get; private set; }
 #endif
 
-		internal bool IsActive { get; private set; } = false;
-
 		private protected int Depth { get; private set; } = int.MinValue;
 
 		internal static void RootElementEnter(UIElement visualTreeRoot)
@@ -54,13 +52,6 @@ namespace Windows.UI.Xaml
 
 		partial void EnterPartial()
 		{
-			if (IsActive)
-			{
-				return;
-			}
-
-			IsActive = true;
-
 			UpdateHitTest();
 
 			EventManager.GetForCurrentThread().QueueOperation(action: () =>
@@ -77,12 +68,6 @@ namespace Windows.UI.Xaml
 
 		partial void LeavePartial()
 		{
-			if (!IsActive)
-			{
-				return;
-			}
-
-			IsActive = false;
 			IsLoaded = false;
 			Depth = int.MinValue;
 

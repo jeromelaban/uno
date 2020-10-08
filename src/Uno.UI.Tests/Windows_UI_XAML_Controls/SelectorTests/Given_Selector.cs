@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 
@@ -239,6 +240,7 @@ namespace Uno.UI.Tests.Windows_UI_XAML_Controls.SelectorTests
 			};
 
 			SUT.ItemsSource = source;
+			SUT.Measure(new Size(42, 42));
 
 			Assert.AreEqual(-1, SUT.SelectedIndex);
 

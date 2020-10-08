@@ -175,6 +175,8 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			var page = new ThemeResource_In_Visual_States_Page();
 			var app = UnitTestsApp.App.EnsureApplication();
 			app.HostView.Children.Add(page);
+			app.HostView.ForceLoaded();
+			app.HostView.Measure(new Size(0, 0));
 
 			await WaitForIdle();
 
@@ -195,6 +197,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			async Task GoTo(string stateName)
 			{
 				var goToResult = VisualStateManager.GoToState(control, stateName, useTransitions: false);
+				app.HostView.Measure(new Size(0, 0));
 				Assert.IsTrue(goToResult);
 				await WaitForIdle();
 			}
@@ -270,6 +273,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			var page = new ThemeResource_In_Visual_States_Page();
 			var app = UnitTestsApp.App.EnsureApplication();
 			app.HostView.Children.Add(page);
+			app.HostView.ForceLoaded();
 
 			await WaitForIdle();
 
@@ -614,6 +618,10 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			Application.Current.SetExplicitRequestedTheme(targetTheme);
 #endif
 			Assert.AreEqual(targetTheme, Application.Current.RequestedTheme);
+
+			UnitTestsApp.App.EnsureApplication().HostView.ForceLoaded();
+			UnitTestsApp.App.EnsureApplication().HostView.Measure(new Size(42, 42));
+
 			return true;
 		}
 	}

@@ -40,7 +40,7 @@ namespace Windows.UI.Xaml
 			if (child is FrameworkElement fe)
 			{
 				fe.IsLoaded = IsLoaded;
-				fe.EnterTree();
+				fe.Enter();
 			}
 		}
 		
@@ -51,7 +51,7 @@ namespace Windows.UI.Xaml
 
 			if (child is FrameworkElement fe)
 			{
-				fe.OnUnloaded();
+				fe.Leave();
 			}
 
 			return child;
@@ -106,10 +106,10 @@ namespace Windows.UI.Xaml
 		public void ForceLoaded()
 		{
 			IsLoaded = true;
-			EnterTree();
+			Enter();
 		}
 
-		private void EnterTree()
+		partial void EnterPartial()
 		{
 			if (IsLoaded)
 			{
@@ -120,10 +120,17 @@ namespace Windows.UI.Xaml
 				foreach (var child in _children.OfType<FrameworkElement>().ToArray())
 				{
 					child.IsLoaded = IsLoaded;
-					child.EnterTree();
+					child.Enter();
 				}
 			}
 		}
+
+		partial void LeavePartial()
+		{
+			OnUnloaded();
+		}
+
+		partial void OnUnloadedPartial();
 
 		public int InvalidateMeasureCallCount { get; private set; }
 

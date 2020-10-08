@@ -42,6 +42,8 @@ namespace Windows.UI.Xaml
 		/// </summary>
 		internal bool IsWindowRoot { get; set; }
 
+		internal bool IsActive { get; private set; }
+
 		internal event Action EnteredLiveTree;
 
 		internal event Action LeftLiveTree;
@@ -56,6 +58,13 @@ namespace Windows.UI.Xaml
 		/// </summary>
 		private protected virtual void Enter()
 		{
+			if (IsActive)
+			{
+				return;
+			}
+
+			IsActive = true;
+
 			EnterPartial();
 			EnteredLiveTree?.Invoke();
 		}
@@ -67,6 +76,13 @@ namespace Windows.UI.Xaml
 		/// </summary>
 		private protected virtual void Leave()
 		{
+			if (!IsActive)
+			{
+				return;
+			}
+
+			IsActive = false;
+
 			LeavePartial();
 			LeftLiveTree?.Invoke();
 		}
