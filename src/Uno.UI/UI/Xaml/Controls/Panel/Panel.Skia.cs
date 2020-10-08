@@ -38,7 +38,7 @@ namespace Windows.UI.Xaml.Controls
 		public void UpdateBorder()
 		{
 			// Checking for Window avoids re-creating the layer until it is actually used.
-			if (IsLoaded)
+			if (IsActive)
 			{
 				_borderRenderer.UpdateLayer(
 					this,

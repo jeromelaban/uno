@@ -6274,8 +6274,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\rating_mouseoverplaceholder_hc.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\rating_mouseoverset.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\rating_mouseoverset_hc.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\rating_placeholder _hc.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\rating_placeholder.png" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\rating_placeholder _hc.png" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\rating_placeholder.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\rating_set.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\rating_set_hc.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\rating_unset.png" />

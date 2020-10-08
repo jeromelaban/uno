@@ -27,7 +27,7 @@ namespace Windows.UI.Xaml.Controls
 
 		private void UpdateBorder()
 		{
-			if (IsLoaded)
+			if (IsActive)
 			{
 				_borderRenderer.UpdateLayer(
 					this,

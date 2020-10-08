@@ -126,15 +126,15 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
-		private protected override void OnLoaded()
+		private protected override void Enter()
 		{
-			base.OnLoaded();
+			base.Enter();
 			RegisterEventHandler("scroll", (EventHandler)OnScroll);
 		}
 
-		private protected override void OnUnloaded()
+		private protected override void Leave()
 		{
-			base.OnUnloaded();
+			base.Leave();
 			UnregisterEventHandler("scroll", (EventHandler)OnScroll);
 		}
 

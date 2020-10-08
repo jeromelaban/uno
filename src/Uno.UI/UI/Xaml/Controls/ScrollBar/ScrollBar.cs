@@ -100,8 +100,6 @@ namespace Windows.UI.Xaml.Controls.Primitives
 
 			SizeChanged += OnSizeChanged;
 			LayoutUpdated += OnLayoutUpdated;
-			Loaded += ReAttachEvents;
-			Unloaded += DetachEvents;
 		}
 
 		// Update the visual states when the Visibility property is changed.
@@ -307,8 +305,8 @@ namespace Windows.UI.Xaml.Controls.Primitives
 			ChangeVisualState(false);
 		}
 
-		private static void DetachEvents(object snd, RoutedEventArgs args) // OnUnloaded
-			=> (snd as ScrollBar)?.DetachEvents();
+		private protected override void Leave() // OnUnloaded
+			=> DetachEvents();
 
 		private void DetachEvents()
 		{
@@ -367,13 +365,10 @@ namespace Windows.UI.Xaml.Controls.Primitives
 			}
 		}
 
-		private static void ReAttachEvents(object snd, RoutedEventArgs args) // OnLoaded
+		private protected override void Enter()
 		{
-			if (snd is ScrollBar sb)
-			{
-				sb.DetachEvents(); // Do not double listen events!
-				sb.AttachEvents();
-			}
+			DetachEvents(); // Do not double listen events!
+			AttachEvents();
 		}
 
 		private void AttachEvents()

@@ -158,13 +158,13 @@ namespace Windows.UI.Xaml.Controls
 		internal void Initialize(_Panel owner)
 		{
 			OwnerPanel = owner ?? throw new ArgumentNullException(nameof(owner));
-			OwnerPanel.Loaded += OnLoaded;
-			OwnerPanel.Unloaded += OnUnloaded;
+			OwnerPanel.EnteredLiveTree += OnEnterTree;
+			OwnerPanel.LeftLiveTree += OnLeftTree;
 
 			Generator = new VirtualizingPanelGenerator(this);
 		}
 
-		private void OnLoaded(object sender, RoutedEventArgs e)
+		private void OnEnterTree()
 		{
 			foreach (var parent in OwnerPanel.GetVisualAncestry())
 			{
@@ -199,7 +199,7 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
-		private void OnUnloaded(object sender, RoutedEventArgs e)
+		private void OnLeftTree()
 		{
 			if (ScrollViewer != null)
 			{

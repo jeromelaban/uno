@@ -847,11 +847,6 @@ namespace Windows.UI.Xaml.Controls
 			UpdateItemsPanelRoot();
 		}
 
-		private protected override void OnUnloaded()
-		{
-			base.OnUnloaded();
-		}
-
 		private void UpdateItemsPanelRoot()
 		{
 			// Remove items from the previous ItemsPanelRoot to ensure they can be safely added to the new one

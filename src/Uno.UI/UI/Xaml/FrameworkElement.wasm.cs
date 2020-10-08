@@ -436,7 +436,7 @@ namespace Windows.UI.Xaml
 		/// </remarks>
 		private protected override void UpdateDOMProperties()
 		{
-			if (FeatureConfiguration.UIElement.AssignDOMXamlProperties && IsLoaded)
+			if (FeatureConfiguration.UIElement.AssignDOMXamlProperties && IsActive)
 			{
 				UpdateDOMXamlProperty(nameof(Margin), Margin);
 				UpdateDOMXamlProperty(nameof(HorizontalAlignment), HorizontalAlignment);

@@ -42,6 +42,10 @@ namespace Windows.UI.Xaml
 		/// </summary>
 		internal bool IsWindowRoot { get; set; }
 
+		internal event Action EnteredLiveTree;
+
+		internal event Action LeftLiveTree;
+
 		private void Initialize()
 		{
 			this.SetValue(KeyboardAcceleratorsProperty, new List<KeyboardAccelerator>(0), DependencyPropertyValuePrecedences.DefaultValue);
@@ -53,6 +57,7 @@ namespace Windows.UI.Xaml
 		private protected virtual void Enter()
 		{
 			EnterPartial();
+			EnteredLiveTree?.Invoke();
 		}
 
 		partial void EnterPartial();
@@ -63,6 +68,7 @@ namespace Windows.UI.Xaml
 		private protected virtual void Leave()
 		{
 			LeavePartial();
+			LeftLiveTree?.Invoke();
 		}
 
 		partial void LeavePartial();

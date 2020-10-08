@@ -137,7 +137,7 @@ namespace Windows.UI.Xaml.Controls
 			{
 				// If the ImageSource has the UseTargetSize set, the image 
 				// must not be loaded until the first layout has been done.
-				if (!IsLoaded)
+				if (!IsActive)
 				{
 					if (this.Log().IsEnabled(Microsoft.Extensions.Logging.LogLevel.Debug))
 					{

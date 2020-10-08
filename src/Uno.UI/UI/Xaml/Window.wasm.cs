@@ -159,7 +159,7 @@ namespace Windows.UI.Xaml
 			{
 				WebAssemblyRuntime.InvokeJS($"Uno.UI.WindowManager.current.setRootContent({_window.HtmlId});");
 
-				if (FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded && !_window.IsLoaded)
+				if (FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded && !_window.IsActive)
 				{
 					UIElement.RootElementEnter(_window);
 				}
@@ -168,7 +168,7 @@ namespace Windows.UI.Xaml
 			{
 				WebAssemblyRuntime.InvokeJS($"Uno.UI.WindowManager.current.setRootContent();");
 
-				if (FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded && _window.IsLoaded)
+				if (FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded && _window.IsActive)
 				{
 					UIElement.RootElementLeave(_window);
 				}

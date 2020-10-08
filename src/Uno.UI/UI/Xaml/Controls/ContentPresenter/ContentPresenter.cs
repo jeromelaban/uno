@@ -778,9 +778,9 @@ namespace Windows.UI.Xaml.Controls
 			SynchronizeContentTemplatedParent();
 		}
 
-		private protected override void OnLoaded()
+		private protected override void Enter()
 		{
-			base.OnLoaded();
+			base.Enter();
 
 			UpdateBorder();
 		}

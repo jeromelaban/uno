@@ -91,7 +91,7 @@ namespace Windows.UI.Xaml
 
 		public override void AddSubview(UIView view)
 		{
-			if (IsLoaded)
+			if (IsActive)
 			{
 				// Apply styles in the subtree being loaded (if not already applied). We do it in this way to force Styles application in a
 				// 'root-first' order, because on iOS the native loading callback is raised 'leaf first,' and waiting until this point to

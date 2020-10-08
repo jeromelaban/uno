@@ -342,7 +342,7 @@ namespace Windows.UI.Xaml.Controls
 				_mediaPlayerPresenter?.ApplyStretch();
 			}
 
-			if (!IsLoaded && MediaPlayer.PlaybackSession.PlaybackState == MediaPlaybackState.None)
+			if (!IsActive && MediaPlayer.PlaybackSession.PlaybackState == MediaPlaybackState.None)
 			{
 				TogglePosterImage(true);
 			}

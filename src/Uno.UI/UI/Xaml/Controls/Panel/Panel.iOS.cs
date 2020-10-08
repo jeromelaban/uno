@@ -86,7 +86,7 @@ namespace Windows.UI.Xaml.Controls
 		private void UpdateBackground(UIImage backgroundImage = null)
 		{
 			// Checking for Window avoids re-creating the layer until it is actually used.
-			if (IsLoaded)
+			if (IsActive)
 			{
 				if (backgroundImage == null)
 				{

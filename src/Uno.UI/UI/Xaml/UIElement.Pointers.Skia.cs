@@ -295,7 +295,7 @@ namespace Windows.UI.Xaml
 			}
 
 			// If we're not locally hit-test visible, visible, or enabled, we should be collapsed. Our children will be collapsed as well.
-			if (!element.IsLoaded || !element.IsHitTestVisible || element.Visibility != Visibility.Visible || !element.IsEnabledOverride())
+			if (!element.IsActive || !element.IsHitTestVisible || element.Visibility != Visibility.Visible || !element.IsEnabledOverride())
 			{
 				return HitTestability.Collapsed;
 			}

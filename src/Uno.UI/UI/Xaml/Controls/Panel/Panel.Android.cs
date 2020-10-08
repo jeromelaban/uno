@@ -50,7 +50,7 @@ namespace Windows.UI.Xaml.Controls
 
 		private void UpdateBorder(bool willUpdateMeasures)
 		{
-			if (IsLoaded)
+			if (IsActive)
 			{
 				_borderRenderer.UpdateLayers(
 					this,

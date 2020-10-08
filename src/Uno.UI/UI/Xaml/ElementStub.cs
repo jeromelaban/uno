@@ -39,9 +39,9 @@ namespace Windows.UI.Xaml
 			}
 		}
 
-		private protected override void OnLoaded()
+		private protected override void Enter()
 		{
-			base.OnLoaded();
+			base.Enter();
 
 			if (ContentBuilder != null
 				&& Visibility == Visibility.Visible

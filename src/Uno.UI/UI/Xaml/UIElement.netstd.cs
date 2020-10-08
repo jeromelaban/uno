@@ -37,6 +37,8 @@ namespace Windows.UI.Xaml
 		internal bool IsLoaded { get; private set; }
 #endif
 
+		internal bool IsActive { get; private set; } = false;
+
 		private protected int Depth { get; private set; } = int.MinValue;
 
 		internal static void RootElementEnter(UIElement visualTreeRoot)
@@ -52,15 +54,20 @@ namespace Windows.UI.Xaml
 
 		partial void EnterPartial()
 		{
-			if (IsLoaded)
+			if (IsActive)
 			{
 				return;
 			}
 
-			IsLoaded = true;
+			IsActive = true;
 
-			OnFwEltLoaded();
 			UpdateHitTest();
+
+			EventManager.GetForCurrentThread().QueueOperation(action: () =>
+			{
+				IsLoaded = true;
+				OnFwEltLoaded();
+			});
 
 			foreach (var child in _children)
 			{
@@ -70,11 +77,12 @@ namespace Windows.UI.Xaml
 
 		partial void LeavePartial()
 		{
-			if (!IsLoaded)
+			if (!IsActive)
 			{
 				return;
 			}
 
+			IsActive = false;
 			IsLoaded = false;
 			Depth = int.MinValue;
 
@@ -98,15 +106,15 @@ namespace Windows.UI.Xaml
 #if __WASM__
 				!FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded ||
 #endif
-				!IsLoaded
+				!IsActive
 				|| !child._isFrameworkElement)
 			{
 				return;
 			}
 
-			if (child.IsLoaded)
+			if (child.IsActive)
 			{
-				this.Log().Error($"{this}: Inconsistent state: child {child} is already loaded (OnChildAdded)");
+				this.Log().Error($"{this}: Inconsistent state: child {child} is already live (OnChildAdded)");
 			}
 			else
 			{
@@ -120,19 +128,19 @@ namespace Windows.UI.Xaml
 #if __WASM__
 				!FeatureConfiguration.FrameworkElement.WasmUseManagedLoadedUnloaded ||
 #endif
-				!IsLoaded
+				!IsActive
 				|| !child._isFrameworkElement)
 			{
 				return;
 			}
 
-			if (child.IsLoaded)
+			if (child.IsActive)
 			{
 				child.Leave();
 			}
 			else
 			{
-				this.Log().Error($"{this}: Inconsistent state: child {child} is not loaded (OnChildRemoved)");
+				this.Log().Error($"{this}: Inconsistent state: child {child} is not live (OnChildRemoved)");
 			}
 		}
 

@@ -57,7 +57,7 @@ namespace Windows.UI.Xaml.Shapes
 		/// <param name="forceRefresh">Forces a refresh by ignoring the shape parameters.</param>
 		protected override void RefreshShape(bool forceRefresh = false)
 		{
-			if (IsLoaded)
+			if (IsActive)
 			{
 				var newLayerState = GetShapeParameters().ToArray();
 

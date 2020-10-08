@@ -224,13 +224,13 @@ namespace Windows.UI.Xaml
 
 			if (this is Windows.UI.Xaml.Controls.Control ctrl)
 			{
-				return ctrl.IsLoaded && ctrl.IsEnabled
+				return ctrl.IsActive && ctrl.IsEnabled
 					? HitTestability.Visible
 					: HitTestability.Collapsed;
 			}
 			else if (this is Windows.UI.Xaml.FrameworkElement fwElt)
 			{
-				return fwElt.IsLoaded
+				return fwElt.IsActive
 					? HitTestability.Visible
 					: HitTestability.Collapsed;
 			}

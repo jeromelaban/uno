@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Uno.Logging;
+using Windows.Services.Cortana;
 
 namespace Windows.UI.Core
 {
@@ -50,6 +51,8 @@ namespace Windows.UI.Core
 			new Queue<UIAsyncOperation>(),
 			new Queue<UIAsyncOperation>(),
 		};
+
+		private List<Action> _nextTickActions = new List<Action>();
 
 		[ThreadStatic]
 		private static bool? _hasThreadAccess;
@@ -137,6 +140,9 @@ namespace Windows.UI.Core
 				GetQueue(CoreDispatcherPriority.High).Count == 0;
 
 		partial void Initialize();
+
+		internal void RunOnNextTick(Action action)
+			=> _nextTickActions.Add(action);
 
 		/// <summary>
 		/// Schedules the provided handler on the dispatcher.
@@ -266,6 +272,8 @@ namespace Windows.UI.Core
 				Rendering.Invoke(null, RenderingEventArgsGenerator.Invoke(DateTimeOffset.UtcNow - _startTime));
 			}
 
+			InvokeNextTickActions();
+
 			var didEnqueue = false;
 			for (var i = 3; i >= 0; i--)
 			{
@@ -346,6 +354,19 @@ namespace Windows.UI.Core
 			if (!didEnqueue && ShouldRaiseRenderEvents)
 			{
 				DispatchWakeUp();
+			}
+		}
+
+		private void InvokeNextTickActions()
+		{
+			if (_nextTickActions.Count != 0)
+			{
+				foreach (var action in _nextTickActions.ToArray())
+				{
+					action();
+				}
+
+				_nextTickActions.Clear();
 			}
 		}
 

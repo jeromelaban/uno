@@ -296,9 +296,9 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
-		private protected override void OnLoaded()
+		private protected override void Enter()
 		{
-			base.OnLoaded();
+			base.Enter();
 
 			if (IsContentPresenterBypassEnabled)
 			{

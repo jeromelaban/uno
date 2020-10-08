@@ -301,7 +301,6 @@ namespace Windows.UI.Xaml
 		{
 			if (!_loadingRaised)
 			{
-
 				_loadingRaised = true;
 				OnLoading();
 				_loading?.Invoke(this, new RoutedEventArgs(this));
@@ -518,7 +517,7 @@ namespace Windows.UI.Xaml
 			{
 				return true;
 			}
-			if (!IsLoaded)
+			if (!IsActive)
 			{
 				//If the control isn't loaded, propagating the request won't do anything anyway
 				return true;
