@@ -23,7 +23,8 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 		[TestInitialize]
 		public void Init()
 		{
-			UnitTestsApp.App.EnsureApplication();
+			var app = UnitTestsApp.App.EnsureApplication();
+			app.HostView.ForceLoaded();
 		}
 
 		[TestCleanup]
@@ -34,10 +35,9 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 				root.RequestedTheme = ElementTheme.Default;
 			}
 
-			if (Application.Current.RequestedTheme == ApplicationTheme.Dark)
-			{
-				await SwapSystemTheme();
-			}
+			SetSystemTheme(ApplicationTheme.Light);
+
+			UnitTestsApp.App.EnsureApplication().HostView.Children.Clear();
 		}
 
 		[TestMethod]
@@ -134,6 +134,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 		{
 			var page = new ThemeResource_Themed_Color_Page();
 			var app = UnitTestsApp.App.EnsureApplication();
+
 			app.HostView.Children.Add(page);
 
 			Assert.AreEqual(Colors.LightBlue, (page.TestBorder.Background as SolidColorBrush).Color);
@@ -175,7 +176,6 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			var page = new ThemeResource_In_Visual_States_Page();
 			var app = UnitTestsApp.App.EnsureApplication();
 			app.HostView.Children.Add(page);
-			app.HostView.ForceLoaded();
 			app.HostView.Measure(new Size(0, 0));
 
 			await WaitForIdle();
@@ -272,8 +272,8 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 		{
 			var page = new ThemeResource_In_Visual_States_Page();
 			var app = UnitTestsApp.App.EnsureApplication();
+
 			app.HostView.Children.Add(page);
-			app.HostView.ForceLoaded();
 
 			await WaitForIdle();
 
@@ -283,6 +283,8 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			{
 				app.HostView.Children.Add(page); // On UWP the control may have been removed by another test after the async pause
 			}
+
+			app.HostView.Measure(new Size(42,42));
 
 			await GoTo("HighPilleability");
 			var lightPilleability = control.InnerMyControl.Pilleability;
@@ -605,6 +607,14 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			var targetTheme = currentTheme == ApplicationTheme.Light ?
 				ApplicationTheme.Dark :
 				ApplicationTheme.Light;
+
+			SetSystemTheme(targetTheme);
+
+			return true;
+		}
+
+		private static void SetSystemTheme(ApplicationTheme targetTheme)
+		{
 #if NETFX_CORE
 			if (!UnitTestsApp.App.EnableInteractiveTests || targetTheme == ApplicationTheme.Light)
 			{
@@ -618,11 +628,6 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			Application.Current.SetExplicitRequestedTheme(targetTheme);
 #endif
 			Assert.AreEqual(targetTheme, Application.Current.RequestedTheme);
-
-			UnitTestsApp.App.EnsureApplication().HostView.ForceLoaded();
-			UnitTestsApp.App.EnsureApplication().HostView.Measure(new Size(42, 42));
-
-			return true;
 		}
 	}
 }

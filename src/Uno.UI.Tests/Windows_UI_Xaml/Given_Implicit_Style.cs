@@ -46,15 +46,14 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			var app = UnitTestsApp.App.EnsureApplication();
 			app.HostView.ForceLoaded();
 
-			var control = new Test_Control();
+			var control = new When_Implicit_Style_In_Visual_Tree_Local_Type();
 
-			var strBefore = control.InlineTemplateControl.MyStringDP;
+			var strBefore = control.inlineTemplateControl.MyStringDP;
 
 			app.HostView.Children.Add(control);
-			app.HostView.ForceLoaded();
-			app.HostView.Measure(new Size(10, 10));
+			app.HostView.Measure(new Size(42, 42));
 
-			var strAfter = control.InlineTemplateControl.MyStringDP;
+			var strAfter = control.inlineTemplateControl.MyStringDP;
 
 			Assert.AreEqual("AppLevelImplicit", strBefore);
 			Assert.AreEqual("InnerTreeImplicit", strAfter);
@@ -71,7 +70,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			var tagBefore = control.TestRadioButton.Tag;
 
 			app.HostView.Children.Add(control);
-			app.HostView.Measure(new Size(10, 10));
+			app.HostView.Measure(new Size(42, 42));
 
 			var tagAfter = control.TestRadioButton.Tag;
 
@@ -138,6 +137,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 		public void When_Implicit_Style_And_Programmatic_Explicit_Style()
 		{
 			var app = UnitTestsApp.App.EnsureApplication();
+			app.HostView.ForceLoaded();
 
 			var testControl = new Test_Control();
 

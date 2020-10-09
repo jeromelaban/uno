@@ -37,9 +37,9 @@ namespace Windows.UI.Xaml
 		private void OnAddChild(View child)
 		{
 			child.SetParent(this);
-			if (child is FrameworkElement fe)
+			if (child is FrameworkElement fe && IsLoaded)
 			{
-				fe.IsLoaded = IsLoaded;
+				fe.IsLoaded = true;
 				fe.Enter();
 			}
 		}
@@ -119,7 +119,7 @@ namespace Windows.UI.Xaml
 
 				foreach (var child in _children.OfType<FrameworkElement>().ToArray())
 				{
-					child.IsLoaded = IsLoaded;
+					child.IsLoaded = true;
 					child.Enter();
 				}
 			}
