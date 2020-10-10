@@ -103,6 +103,9 @@ namespace <#= mixin.NamespaceName #>
 				LayoutUpdated(this, new RoutedEventArgs(this));
 			}
 		}
+
+		void IFrameworkElement.RaiseLoadingEventIfNeeded() { }
+		void IFrameworkElement.InvokeApplyTemplate() { }
 #endif
 
 		internal void SuspendRendering()

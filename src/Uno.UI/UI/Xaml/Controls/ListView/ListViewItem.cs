@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Windows.UI.Input;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,5 +27,8 @@ namespace Windows.UI.Xaml.Controls
 		{
 			return new ListViewItemAutomationPeer(this);
 		}
+
+		private protected override void Enter() => base.Enter();
+		private protected override void Leave() => base.Leave();
 	}
 }

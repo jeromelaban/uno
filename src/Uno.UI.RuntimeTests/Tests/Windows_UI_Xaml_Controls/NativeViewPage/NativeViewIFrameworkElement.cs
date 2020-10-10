@@ -124,6 +124,9 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 		public AutomationPeer GetAutomationPeer() => null;
 
 		public void SetSubviewsNeedLayout() { }
+
+		public void RaiseLoadingEventIfNeeded() { }
+		public void InvokeApplyTemplate() { }
 #endif
 	}
 }

@@ -30,6 +30,14 @@ namespace Windows.UI.Xaml
 			InitializePointers();
 		}
 
+		partial void EnterPartial()
+		{
+		}
+
+		partial void LeavePartial()
+		{
+		}
+
 		internal bool ClippingIsSetByCornerRadius { get; set; } = false;
 
 		partial void ApplyNativeClip(Rect rect)

@@ -44,6 +44,23 @@ namespace Windows.UI.Xaml
 			Initialize();
 		}
 
+		partial void EnterPartial()
+		{
+			EventManager.GetForCurrentThread().QueueOperation(action: () =>
+			{
+				if (IsActive)
+				{
+					IsLoaded = true;
+					OnLoaded();
+				}
+			});
+
+		}
+
+		partial void LeavePartial()
+		{
+		}
+
 		internal CGSize? XamlMeasure(CGSize availableSize)
 		{
 			// If set layout has not been called, we can 

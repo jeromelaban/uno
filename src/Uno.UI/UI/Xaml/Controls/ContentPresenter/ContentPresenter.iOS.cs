@@ -29,8 +29,10 @@ namespace Windows.UI.Xaml.Controls
 
 		private void SetUpdateTemplate()
 		{
-			UpdateContentTemplateRoot();
-			SetNeedsLayout();
+			if (ContentTemplateRoot == null)
+			{
+				UpdateContentTemplateRoot();
+			}
 		}
 
 		partial void RegisterContentTemplateRoot()

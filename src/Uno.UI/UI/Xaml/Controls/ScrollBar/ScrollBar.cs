@@ -306,7 +306,10 @@ namespace Windows.UI.Xaml.Controls.Primitives
 		}
 
 		private protected override void Leave() // OnUnloaded
-			=> DetachEvents();
+		{
+			base.Leave();
+			DetachEvents();
+		}
 
 		private void DetachEvents()
 		{
@@ -367,6 +370,8 @@ namespace Windows.UI.Xaml.Controls.Primitives
 
 		private protected override void Enter()
 		{
+			base.Enter();
+
 			DetachEvents(); // Do not double listen events!
 			AttachEvents();
 		}

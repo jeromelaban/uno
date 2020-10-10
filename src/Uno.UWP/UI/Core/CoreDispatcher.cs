@@ -142,7 +142,21 @@ namespace Windows.UI.Core
 		partial void Initialize();
 
 		internal void RunOnNextTick(Action action)
-			=> _nextTickActions.Add(action);
+		{
+			_nextTickActions.Add(action);
+
+			bool shouldEnqueue;
+
+			lock (_gate)
+			{
+				shouldEnqueue = IncrementGlobalCount() == 1;
+			}
+
+			if (shouldEnqueue)
+			{
+				EnqueueNative();
+			}
+		}
 
 		/// <summary>
 		/// Schedules the provided handler on the dispatcher.
@@ -357,10 +371,12 @@ namespace Windows.UI.Core
 			}
 		}
 
-		private void InvokeNextTickActions()
+		internal void InvokeNextTickActions()
 		{
 			if (_nextTickActions.Count != 0)
 			{
+				DecrementGlobalCount();
+
 				foreach (var action in _nextTickActions.ToArray())
 				{
 					action();

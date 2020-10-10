@@ -291,11 +291,11 @@ namespace Windows.UI.Xaml
 
 		private protected override void Enter()
 		{
+			base.Enter();
+
 			EnterPartial();
 			// Apply active style and default style when we enter the visual tree, if they haven't been applied already.
 			ApplyStyles();
-
-			base.Enter();
 		}
 
 		partial void EnterPartial();

@@ -43,6 +43,10 @@ namespace <#= mixin.NamespaceName #>
 		/// Gets the parent of this FrameworkElement in the object tree.
 		/// </summary>
 		public DependencyObject Parent => ((IDependencyObjectStoreProvider)this).Store.Parent as DependencyObject;
+
+
+		void IFrameworkElement.RaiseLoadingEventIfNeeded() { }
+		void IFrameworkElement.InvokeApplyTemplate() { }
 #endif
 
 #if <#= mixin.HasAttachedToWindow #>
@@ -81,12 +85,20 @@ namespace <#= mixin.NamespaceName #>
 							((IDependencyObjectStoreProvider)this).Store.Parent = superView;
 						}
 
+#if <#= mixin.IsFrameworkElement #>
+						Enter();
+#else
 						OnLoading();
 						OnLoaded();
+#endif
 					}
 					else
 					{
+#if <#= mixin.IsFrameworkElement #>
+						Leave();
+#else
 						OnUnloaded();
+#endif
 					}
 
 					_currentWindow = newWindow;
@@ -528,10 +540,25 @@ namespace <#= mixin.NamespaceName #>
 
 		partial void OnMovedToSuperview();
 
+		private bool _isLoaded;
 		/// <summary>
 		/// Indicates if the view is currently loaded.
 		/// </summary>
-		public bool IsLoaded { get; private set; }
+		public bool IsLoaded
+		{
+			get => _isLoaded;
+			private set
+			{
+#if <#= mixin.IsFrameworkElement #>
+				if(!_isLoaded && !IsActive && value)
+				{
+					throw new InvalidOperationException();
+				}
+#endif
+
+				_isLoaded = value;
+			}
+		}
 
 		private protected virtual void OnPostLoading() {}
 

@@ -43,12 +43,9 @@ namespace Windows.UI.Xaml.Controls
 			return Subviews.FirstOrDefault() as IFrameworkElement;
 		}
 
-		partial void UnregisterSubView()
+		partial void UnregisterSubView(View child)
 		{
-			if (Subviews.Length > 0)
-			{
-				Subviews[0].RemoveFromSuperview();
-			}
+			child?.RemoveFromSuperview();
 		}
 
 		partial void RegisterSubView(View child)

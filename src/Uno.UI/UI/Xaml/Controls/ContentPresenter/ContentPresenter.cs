@@ -769,9 +769,14 @@ namespace Windows.UI.Xaml.Controls
 		{
 			base.InvokeApplyTemplate();
 
-			ResetDataContextOnFirstLoad();
-
 			SetUpdateTemplate();
+		}
+
+		private protected override void OnLoaded()
+		{
+			base.OnLoaded();
+
+			ResetDataContextOnFirstLoad();
 
 			// When the control is loaded, set the TemplatedParent
 			// as it may have been reset during the last unload.

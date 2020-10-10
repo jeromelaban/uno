@@ -19,7 +19,7 @@ namespace Windows.UI.Xaml.Controls
 		/// <summary>
 		/// Gets or sets a value that indicates whether the <see cref="ProgressRing"/> is showing progress.
 		/// </summary>
-		public bool IsActive
+		public new bool IsActive
 		{
 			get { return (bool)GetValue(IsActiveProperty); }
 			set { SetValue(IsActiveProperty, value); }

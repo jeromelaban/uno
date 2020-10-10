@@ -9,6 +9,7 @@ using System.ComponentModel;
 using Windows.Foundation;
 using Uno.Logging;
 using Uno.UI;
+using Windows.UI.Core;
 
 namespace Windows.UI.Xaml
 {
@@ -27,6 +28,9 @@ namespace Windows.UI.Xaml
 			SetSuperviewNeedsLayout();
 		}
 
+		[ThreadStatic]
+		private static int _layoutDepth = 0;
+
 		public override void LayoutSubviews()
 		{
 			if (Visibility == Visibility.Collapsed)
@@ -34,6 +38,8 @@ namespace Windows.UI.Xaml
 				// //Don't layout collapsed views
 				return;
 			}
+
+			var currentLayoutDepth = _layoutDepth++;
 
 			try
 			{
@@ -58,6 +64,12 @@ namespace Windows.UI.Xaml
 				{
 					_inLayoutSubviews = false;
 					RequiresArrange = false;
+					_layoutDepth--;
+				}
+
+				if (currentLayoutDepth == 0)
+				{
+					CoreDispatcher.Main.InvokeNextTickActions();
 				}
 			}
 			catch (Exception e)
