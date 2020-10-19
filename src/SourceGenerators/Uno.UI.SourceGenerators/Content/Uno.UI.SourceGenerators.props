@@ -7,6 +7,7 @@
 
   <PropertyGroup>
 	<_isRoslynAnalyzerAvailable Condition="'$(MSBuildVersion)' &gt;= '16.8'">true</_isRoslynAnalyzerAvailable>
+	<_canUseRoslynAnalyzerCondition>'$(LangVersion)' == 'preview' or ('$(LangVersion)'!='' and $(LangVersion.Contains('.')) and '$(LangVersion)'&gt;='9.0')</_canUseRoslynAnalyzerCondition>
 	<_canUseRoslynAnalyzer Condition="'$(LangVersion)' == 'preview' or ('$(LangVersion)'!='' and $(LangVersion.Contains('.')) and '$(LangVersion)'&gt;='9.0')">true</_canUseRoslynAnalyzer>
 	<UnoUIUseRoslynSourceGenerators Condition="'$(UnoUIUseRoslynSourceGenerators)'=='' and '$(_isRoslynAnalyzerAvailable)' == 'true' and '$(_canUseRoslynAnalyzer)'=='true'">true</UnoUIUseRoslynSourceGenerators>
 	<UnoUIUseRoslynSourceGenerators Condition="'$(UnoUIUseRoslynSourceGenerators)'==''">false</UnoUIUseRoslynSourceGenerators>

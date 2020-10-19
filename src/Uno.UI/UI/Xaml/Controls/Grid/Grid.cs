@@ -63,7 +63,7 @@ namespace Windows.UI.Xaml.Controls
 			Children.CollectionChanged += Children_CollectionChanged;
 		}
 
-		private protected override void Enter()
+		internal override void Enter()
 		{
 			base.Enter();
 

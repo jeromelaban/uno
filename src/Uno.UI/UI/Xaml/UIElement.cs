@@ -56,7 +56,7 @@ namespace Windows.UI.Xaml
 		/// <summary>
 		/// Invoked when the element has entered the live visual tree
 		/// </summary>
-		private protected virtual void Enter()
+		internal virtual void Enter()
 		{
 			if (IsActive)
 			{
@@ -74,7 +74,7 @@ namespace Windows.UI.Xaml
 		/// <summary>
 		/// Invoked when the element has left the live visual tree
 		/// </summary>
-		private protected virtual void Leave()
+		internal virtual void Leave()
 		{
 			if (!IsActive)
 			{

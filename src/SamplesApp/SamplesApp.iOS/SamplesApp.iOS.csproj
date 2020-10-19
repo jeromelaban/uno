@@ -14,8 +14,9 @@
     <IsUiAutomationMappingEnabled>true</IsUiAutomationMappingEnabled>
     <ResourcesDirectory>..\SamplesApp.Shared\Strings</ResourcesDirectory>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <ProvisioningType>manual</ProvisioningType>
-  </PropertyGroup>
+		<ProvisioningType>manual</ProvisioningType>
+		<LangVersion>preview</LangVersion>
+	</PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>

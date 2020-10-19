@@ -138,13 +138,9 @@ namespace Uno.UI.Controls
 		/// observer.</remarks>
 		public new virtual void RemoveView(View view)
 		{
-			if (FeatureConfiguration.FrameworkElement.AndroidUseManagedLoadedUnloaded)
+			if (view is FrameworkElement fe)
 			{
-				if (view is FrameworkElement fe)
-				{
-					fe.IsManagedLoaded = false;
-					fe.PerformOnUnloaded();
-				}
+				fe.Leave();
 			}
 
 			_childrenShadow.Remove(view);
@@ -163,13 +159,9 @@ namespace Uno.UI.Controls
 		{
 			var removedView = _childrenShadow[index];
 
-			if (FeatureConfiguration.FrameworkElement.AndroidUseManagedLoadedUnloaded)
+			if (removedView is FrameworkElement fe)
 			{
-				if (removedView is FrameworkElement fe)
-				{
-					fe.IsManagedLoaded = false;
-					fe.PerformOnUnloaded();
-				}
+				fe.Leave();
 			}
 
 			_childrenShadow.RemoveAt(index);

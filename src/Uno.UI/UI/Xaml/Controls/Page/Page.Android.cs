@@ -24,9 +24,19 @@ namespace Windows.UI.Xaml.Controls
 
 		private void InitializeBorder()
 		{
-			Loaded += (s, e) => UpdateBorder();
-			Unloaded += (s, e) => _borderRenderer.Clear();
 			LayoutUpdated += (s, e) => UpdateBorder();
+		}
+
+		internal override void Enter()
+		{
+			base.Enter();
+			UpdateBorder();
+		}
+
+		internal override void Leave()
+		{
+			base.Leave();
+			_borderRenderer.Clear();
 		}
 
 		private void UpdateBorder()

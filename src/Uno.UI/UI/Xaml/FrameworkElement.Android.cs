@@ -32,13 +32,12 @@ namespace Windows.UI.Xaml
 
 		partial void Initialize();
 
-		protected override void OnNativeLoaded()
+		protected override void OnNativeEnter()
 		{
 			try
 			{
-				PerformOnLoaded();
-
-				base.OnNativeLoaded();
+				Enter();
+				base.OnNativeEnter();
 			}
 			catch (Exception ex)
 			{
@@ -47,38 +46,42 @@ namespace Windows.UI.Xaml
 			}
 		}
 
-		private void PerformOnLoaded()
+		partial void EnterPartial()
 		{
-			((IDependencyObjectStoreProvider)this).Store.Parent = base.Parent;
-			OnLoading();
-			OnLoaded();
-
-			if (FeatureConfiguration.FrameworkElement.AndroidUseManagedLoadedUnloaded)
+			EventManager.GetForCurrentThread().QueueOperation(action: () =>
 			{
-				foreach (var child in (this as IShadowChildrenProvider).ChildrenShadow)
+				if (IsActive)
 				{
-					if (child is FrameworkElement e)
-					{
-						// Mark this instance as managed loaded through managed children
-						// traversal, to avoid paying the cost of overridden method interop
-						e.IsManagedLoaded = true;
+					IsLoaded = true;
+					OnLoaded();
+				}
+			});
 
-						// Calling this method is acceptable as it is an abstract method that
-						// will never do interop with the java class. It is required to invoke
-						// Loaded/Unloaded actions.
-						e.OnNativeLoaded();
-					}
+			((IDependencyObjectStoreProvider)this).Store.Parent = base.Parent;
+
+			foreach (var child in (this as IShadowChildrenProvider).ChildrenShadow)
+			{
+				if (child is FrameworkElement e)
+				{
+					// Mark this instance as managed loaded through managed children
+					// traversal, to avoid paying the cost of overridden method interop
+					e.IsManagedActive = true;
+
+					// Calling this method is acceptable as it is an abstract method that
+					// will never do interop with the java class. It is required to invoke
+					// Loaded/Unloaded actions.
+					e.OnNativeEnter();
 				}
 			}
 		}
 
-		protected override void OnNativeUnloaded()
+		protected override void OnNativeLeave()
 		{
 			try
 			{
-				PerformOnUnloaded();
+				Leave();
 
-				base.OnNativeUnloaded();
+				base.OnNativeLeave();
 			}
 			catch (Exception ex)
 			{
@@ -87,60 +90,53 @@ namespace Windows.UI.Xaml
 			}
 		}
 
-		internal void PerformOnUnloaded()
+		partial void LeavePartial()
 		{
-			if (FeatureConfiguration.FrameworkElement.AndroidUseManagedLoadedUnloaded)
+			IsManagedActive = false;
+
+			if (IsNativeActive)
 			{
-				if (IsNativeLoaded)
+				void ProcessView(View view)
 				{
-					OnUnloaded();
-
-					void ProcessView(View view)
+					if (view is FrameworkElement e)
 					{
-						if (view is FrameworkElement e)
-						{
-							// Mark this instance as managed loaded through managed children
-							// traversal, to avoid paying the cost of overridden method interop
-							e.IsManagedLoaded = false;
+						// Mark this instance as managed loaded through managed children
+						// traversal, to avoid paying the cost of overridden method interop
+						e.IsManagedActive = false;
 
-							// Calling this method is acceptable as it is an abstract method that
-							// will never do interop with the java class. It is required to invoke
-							// Loaded/Unloaded actions.
-							e.OnNativeUnloaded();
-						}
-						else if (view is ViewGroup childViewGroup)
-						{
-							// If the child is a non-UnoView group,
-							// search its children for uno viewgroups.
-							TraverseChildren(childViewGroup);
-						}
+						// Calling this method is acceptable as it is an abstract method that
+						// will never do interop with the java class. It is required to invoke
+						// Loaded/Unloaded actions.
+						e.OnNativeLeave();
 					}
-
-					void TraverseChildren(ViewGroup viewGroup)
+					else if (view is ViewGroup childViewGroup)
 					{
-						if (viewGroup is IShadowChildrenProvider shadowList)
-						{
-							// Allocation-less enumeration
-							foreach (var child in shadowList.ChildrenShadow)
-							{
-								ProcessView(child);
-							}
-						}
-						else
-						{
-							foreach (var child in viewGroup.GetChildren())
-							{
-								ProcessView(child);
-							}
-						}
+						// If the child is a non-UnoView group,
+						// search its children for uno viewgroups.
+						TraverseChildren(childViewGroup);
 					}
-
-					TraverseChildren(this);
 				}
-			}
-			else
-			{
-				OnUnloaded();
+
+				void TraverseChildren(ViewGroup viewGroup)
+				{
+					if (viewGroup is IShadowChildrenProvider shadowList)
+					{
+						// Allocation-less enumeration
+						foreach (var child in shadowList.ChildrenShadow)
+						{
+							ProcessView(child);
+						}
+					}
+					else
+					{
+						foreach (var child in viewGroup.GetChildren())
+						{
+							ProcessView(child);
+						}
+					}
+				}
+
+				TraverseChildren(this);
 			}
 		}
 

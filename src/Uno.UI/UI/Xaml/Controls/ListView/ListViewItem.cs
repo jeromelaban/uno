@@ -28,7 +28,7 @@ namespace Windows.UI.Xaml.Controls
 			return new ListViewItemAutomationPeer(this);
 		}
 
-		private protected override void Enter() => base.Enter();
-		private protected override void Leave() => base.Leave();
+		internal override void Enter() => base.Enter();
+		internal override void Leave() => base.Leave();
 	}
 }

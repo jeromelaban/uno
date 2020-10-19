@@ -144,13 +144,13 @@ namespace Uno.UI
 			);
 		}
 
-		public static bool IsLoaded(this View view)
+		public static bool IsActive(this View view)
 		{
 			var bindableView = view as Controls.BindableView;
 
 			if (bindableView != null)
 			{
-				return bindableView.IsNativeLoaded;
+				return bindableView.IsNativeActive;
 			}
 			else
 			{

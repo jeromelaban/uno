@@ -141,7 +141,7 @@ namespace Windows.UI.Xaml.Controls
 			args.Handled = true;
 		}
 #endif
-		private protected override void Enter()
+		internal override void Enter()
 		{
 			base.Enter();
 
@@ -151,7 +151,7 @@ namespace Windows.UI.Xaml.Controls
 			Xaml.Window.Current.SizeChanged += OnWindowSizeChanged;
 		}
 
-		private protected override void Leave()
+		internal override void Leave()
 		{
 			base.Leave();
 

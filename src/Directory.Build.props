@@ -48,7 +48,7 @@
 	If UnoUIUseRoslynSourceGenerators is not defined, the environment defines if Roslyn is used or not, see
 	Uno.UI.SourceGenerators.props for more details. Note that Roslyn generators required VS 16.8 Pre 3 or later.
 	-->
-	<UnoUIUseRoslynSourceGenerators>true</UnoUIUseRoslynSourceGenerators>
+	<UnoUIUseRoslynSourceGenerators>false</UnoUIUseRoslynSourceGenerators>
   </PropertyGroup>
 
   <!--

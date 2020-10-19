@@ -284,7 +284,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			}
 			catch (Exception e)
 			{
-				throw new Exception($"Processing failed for file {_fileDefinition.FilePath} ({e})", e);
+				throw new Exception($"Processing failed for file {_fileDefinition.FilePath}  ({e})", e);
 			}
 		}
 

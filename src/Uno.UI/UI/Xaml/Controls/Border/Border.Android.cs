@@ -8,6 +8,7 @@ using System.Linq;
 using Uno.Disposables;
 using Windows.UI.Xaml.Media;
 using Uno.UI;
+using Windows.Storage.Streams;
 
 #if XAMARIN_ANDROID
 using View = Android.Views.View;
@@ -31,7 +32,6 @@ namespace Windows.UI.Xaml.Controls
 
 		public Border()
 		{
-			this.RegisterLoadActions(UpdateBorder, () => _borderRenderer.Clear());
 		}
 
 		protected override void OnLayoutCore(bool changed, int left, int top, int right, int bottom)
@@ -54,6 +54,18 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
+		internal override void Enter()
+		{
+			base.Enter();
+			UpdateBorder();
+		}
+
+		internal override void Leave()
+		{
+			base.Leave();
+			_borderRenderer.Clear();
+		}
+
 		protected override void OnDraw(Android.Graphics.Canvas canvas)
 		{
 			AdjustCornerRadius(canvas, CornerRadius);
@@ -66,7 +78,7 @@ namespace Windows.UI.Xaml.Controls
 
 		private void UpdateBorder(bool willUpdateMeasures)
 		{
-			if (IsLoaded)
+			if (IsActive)
 			{
 				_borderRenderer.UpdateLayers(
 					this,

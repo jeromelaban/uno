@@ -20,6 +20,7 @@
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <ResourcesDirectory>..\SamplesApp.Shared\Strings</ResourcesDirectory>
     <AndroidUseAapt2>true</AndroidUseAapt2>
+		<LangVersion>preview</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <IsUiAutomationMappingEnabled>true</IsUiAutomationMappingEnabled>

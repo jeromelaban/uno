@@ -289,7 +289,7 @@ namespace Windows.UI.Xaml
 			_loadingRaised = false;
 		}
 
-		private protected override void Enter()
+		internal override void Enter()
 		{
 			base.Enter();
 
@@ -300,7 +300,7 @@ namespace Windows.UI.Xaml
 
 		partial void EnterPartial();
 
-		private protected override void Leave()
+		internal override void Leave()
 		{
 			LeavePartial();
 

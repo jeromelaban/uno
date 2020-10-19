@@ -325,7 +325,7 @@ namespace Uno.UI.DataBinding
 
 				if (uiView != null)
 				{
-					return uiView.Parent == null && !uiView.IsLoaded();
+					return uiView.Parent == null && !uiView.IsActive();
 				}
 #endif
 			}

@@ -35,7 +35,7 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
-		private protected override void Enter()
+		internal override void Enter()
 		{
 			base.Enter();
 

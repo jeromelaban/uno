@@ -30,7 +30,7 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
-		partial void UnregisterSubView()
+		partial void UnregisterSubView(View child)
 		{
 			if (ChildCount > 0)
 			{

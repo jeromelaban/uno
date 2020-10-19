@@ -23,7 +23,7 @@ public abstract class UnoViewGroup
 	private boolean _isEnabled;
 	private boolean _isHitTestVisible;
 
-	private boolean _isManagedLoaded;
+	private boolean _isManagedActive;
 	private boolean _needsLayoutOnAttachedToWindow;
 
 	private Map<View, Matrix> _childrenTransformations = new HashMap<View, Matrix>();
@@ -253,7 +253,7 @@ public abstract class UnoViewGroup
 		super.measureChild(view, widthSpec, heightSpec);
 	}
 
-	public final boolean getIsNativeLoaded() {
+	public final boolean getIsNativeActive() {
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
 			return super.getWindowId() != null;
 		}
@@ -266,8 +266,8 @@ public abstract class UnoViewGroup
 	{
 		if(nativeRequestLayout())
 		{
-			if (getIsManagedLoaded() && !getIsNativeLoaded()) {
-				// If we're here, managed load is enabled (AndroidUseManagedLoadedUnloaded = true) and requestLayout() has been called from OnLoaded
+			if (getIsManagedActive() && !getIsNativeActive()) {
+				// If we're here, requestLayout() has been called from Enter
 				// prior to dispatchAttachedToWindow() being called. This can cause the request to fall through the cracks, because mAttachInfo
 				// isn't set yet. (See ViewRootImpl.requestLayoutDuringLayout()). If we're in a layout pass already, we have to ensure that requestLayout()
 				// is called again once the view is fully natively initialized.
@@ -389,9 +389,9 @@ public abstract class UnoViewGroup
 	{
 		super.onAttachedToWindow();
 
-		if(!_isManagedLoaded) {
-			onNativeLoaded();
-			_isManagedLoaded = true;
+		if(!_isManagedActive) {
+			onNativeEnter();
+			_isManagedActive = true;
 		}
 		else if (_needsLayoutOnAttachedToWindow && isInLayout()) {
 			requestLayout();
@@ -400,35 +400,35 @@ public abstract class UnoViewGroup
 		_needsLayoutOnAttachedToWindow = false;
 	}
 
-	protected abstract void onNativeLoaded();
+	protected abstract void onNativeEnter();
 
 	protected final void onDetachedFromWindow()
 	{
 		super.onDetachedFromWindow();
 
-		if(_isManagedLoaded) {
-			onNativeUnloaded();
-			_isManagedLoaded = false;
+		if(_isManagedActive) {
+			onNativeLeave();
+			_isManagedActive = false;
 		}
 	}
 
-	protected abstract void onNativeUnloaded();
+	protected abstract void onNativeLeave();
 
 	/**
-	 * Marks this view as loaded from the managed side, so onAttachedToWindow can skip
-	 * calling onNativeLoaded.
+	 * Marks this view as entered in the visual tree from the managed side, so onAttachedToWindow can skip
+	 * calling onNativeEnter.
 	 */
-	public final void setIsManagedLoaded(boolean value)
+	public final void setIsManagedActive(boolean value)
 	{
-		_isManagedLoaded = value;
+		_isManagedActive = value;
 	}
 
 	/**
-	 * Gets if this view is loaded from the managed side.
+	 * Gets if this view has entered the visual tree from the managed side.
 	 */
-	public final boolean getIsManagedLoaded()
+	public final boolean getIsManagedActive()
 	{
-		return _isManagedLoaded;
+		return _isManagedActive;
 	}
 
 	public final void setVisibility(int visibility)

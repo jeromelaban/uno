@@ -30,7 +30,7 @@ namespace Windows.UI.Xaml.Controls
 		/// </summary>
 		internal IDynamicPopupLayouter CustomLayouter { get; set; }
 
-		private protected override void Leave()
+		internal override void Leave()
 		{
 			IsOpen = false;
 			base.Leave();

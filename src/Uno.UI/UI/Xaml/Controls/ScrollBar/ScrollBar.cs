@@ -305,7 +305,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 			ChangeVisualState(false);
 		}
 
-		private protected override void Leave() // OnUnloaded
+		internal override void Leave() // OnUnloaded
 		{
 			base.Leave();
 			DetachEvents();
@@ -368,7 +368,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 			}
 		}
 
-		private protected override void Enter()
+		internal override void Enter()
 		{
 			base.Enter();
 

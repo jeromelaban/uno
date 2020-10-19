@@ -783,7 +783,7 @@ namespace Windows.UI.Xaml.Controls
 			SynchronizeContentTemplatedParent();
 		}
 
-		private protected override void Enter()
+		internal override void Enter()
 		{
 			base.Enter();
 

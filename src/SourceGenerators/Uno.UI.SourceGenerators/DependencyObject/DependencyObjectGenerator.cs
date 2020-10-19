@@ -305,14 +305,14 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 					// Both methods below are implementation of abstract methods
 					// which are called from onAttachedToWindow in Java.
 
-					protected override void OnNativeLoaded()
+					protected override void OnNativeEnter()
 					{{
 						_loadActions.ForEach(a => a.Item1());
 
 						BinderAttachedToWindow();
 					}}
 
-					protected override void OnNativeUnloaded()
+					protected override void OnNativeLeave()
 					{{
 						_loadActions.ForEach(a => a.Item2());
 
@@ -393,7 +393,7 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 						_loadActions.Add(actions);
 
 #if __ANDROID__
-						if(this.IsLoaded())
+						if(this.IsActive())
 #elif __IOS__ || __MACOS__
 						if(Window != null)
 #else
