@@ -24,7 +24,7 @@
 	  <!-- C# 9.0 Generator -->
 
 	  <ItemGroup>
-		<Analyzer Include="$(MSBuildThisFileDirectory)..\bin\$(Configuration)\netstandard2.0\Uno.UI.SourceGenerators.dll" Condition="exists('$(MSBuildThisFileDirectory)..\Uno.UI.SourceGenerators.csproj')"/>
+		<Analyzer Include="$(MSBuildThisFileDirectory)..\bin\$(Configuration)\netstandard2.0\Uno.UI.SourceGenerators.dll" />
 		<!-- generator is automatically included in nuget package, no need to add it here -->
 	  </ItemGroup>
 

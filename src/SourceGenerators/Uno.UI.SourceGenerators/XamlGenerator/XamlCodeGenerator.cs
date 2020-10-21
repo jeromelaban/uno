@@ -44,10 +44,10 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					context.AddSource(tree.Key, tree.Value);
 
 					// Uncomment to output the generated files to a separate folder
-					// var intermediatePath = context.GetMSBuildPropertyValue("IntermediateOutputPath");
-					// var path = Path.Combine(intermediatePath, "generated");
-					// Directory.CreateDirectory(path);
-					// File.WriteAllText(Path.Combine(path, tree.Key), tree.Value);
+					var intermediatePath = context.GetMSBuildPropertyValue("IntermediateOutputPath");
+					var path = Path.Combine(intermediatePath, "generated");
+					Directory.CreateDirectory(path);
+					File.WriteAllText(Path.Combine(path, tree.Key + ".g.cs"), tree.Value);
 				}
 			}
 		}
