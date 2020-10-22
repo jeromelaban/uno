@@ -143,18 +143,18 @@ namespace Windows.UI.Core
 
 		internal void RunOnNextTick(Action action)
 		{
-			_nextTickActions.Add(action);
-
-			bool shouldEnqueue;
-
 			lock (_gate)
 			{
-				shouldEnqueue = IncrementGlobalCount() == 1;
-			}
+				_nextTickActions.Add(action);
 
-			if (shouldEnqueue)
-			{
-				EnqueueNative();
+				bool shouldEnqueue;
+
+				shouldEnqueue = IncrementGlobalCount() == 1;
+
+				if (shouldEnqueue)
+				{
+					EnqueueNative();
+				}
 			}
 		}
 
@@ -286,9 +286,8 @@ namespace Windows.UI.Core
 				Rendering.Invoke(null, RenderingEventArgsGenerator.Invoke(DateTimeOffset.UtcNow - _startTime));
 			}
 
-			InvokeNextTickActions();
+			var didEnqueue = InvokeNextTickActions();
 
-			var didEnqueue = false;
 			for (var i = 3; i >= 0; i--)
 			{
 				var queue = _queues[i];
@@ -371,19 +370,54 @@ namespace Windows.UI.Core
 			}
 		}
 
-		internal void InvokeNextTickActions()
+		internal bool InvokeNextTickActions()
 		{
-			if (_nextTickActions.Count != 0)
+			List<Action>? getActions()
 			{
-				DecrementGlobalCount();
-
-				foreach (var action in _nextTickActions.ToArray())
+				lock (_gate)
 				{
-					action();
+					if (_nextTickActions.Count != 0)
+					{
+						var actions = _nextTickActions;
+						_nextTickActions = new List<Action>();
+						return actions;
+					}
+
+					return null;
+				}
+			}
+
+			var actions = getActions();
+
+			if (actions != null)
+			{
+				var lastCount = Interlocked.Add(ref _globalCount, -actions.Count);
+
+				foreach (var action in actions)
+				{
+					try
+					{
+						action();
+					}
+					catch(Exception e)
+					{
+						this.Log().Error("Dispatcher unhandled exception", e);
+					}
 				}
 
 				_nextTickActions.Clear();
+
+				var didEnqueue = lastCount > 0;
+
+				if(didEnqueue)
+				{
+					EnqueueNative();
+				}
+
+				return didEnqueue;
 			}
+
+			return false;
 		}
 
 		async void DispatchWakeUp()

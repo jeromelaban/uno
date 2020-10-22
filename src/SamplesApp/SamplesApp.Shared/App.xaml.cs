@@ -150,7 +150,7 @@ namespace SamplesApp
 				});
 		}
 
-#if __IOS__
+#if true
 		/// <summary>
 		/// Launches a watchdog that will terminate the app if the dispatcher does not process
 		/// messages within a specific time.
@@ -178,11 +178,11 @@ namespace SamplesApp
 
 						if (await Task.WhenAny(delayTask, messageTask) == delayTask)
 						{
-							ThreadPool.QueueUserWorkItem(
-								_ => {
-								Console.WriteLine("WatchDog detecting a stall in the dispatcher, terminating the app");
-								throw new Exception($"Watchdog failed");
-							});
+							//ThreadPool.QueueUserWorkItem(
+							//	_ => {
+							//	Console.WriteLine("WatchDog detecting a stall in the dispatcher, terminating the app");
+							//	throw new Exception($"Watchdog failed");
+							//});
 						}
 
 						await Task.Delay(TimeSpan.FromSeconds(5));

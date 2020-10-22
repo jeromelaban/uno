@@ -38,7 +38,7 @@
 				Value="Left" />
 		<Setter Property="VerticalContentAlignment"
 				Value="Top" />
-		<netstdref:Setter Property="Template">
+		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="ContentControl">
 					<ContentPresenter Content="{TemplateBinding Content}"
@@ -50,7 +50,7 @@
 									  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
 				</ControlTemplate>
 			</Setter.Value>
-		</netstdref:Setter>
+		</Setter>
 	</Style>
 
 	<!-- FRAMEWORK STYLES -->

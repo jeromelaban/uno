@@ -13,5 +13,10 @@ namespace Windows.UI.Xaml.Controls
 
 		// This mimics UWP
 		private protected override Type GetDefaultStyleKey() => null;
+
+		private protected override void InvokeApplyTemplate()
+		{
+			// Don't apply any template here
+		}
 	}
 }

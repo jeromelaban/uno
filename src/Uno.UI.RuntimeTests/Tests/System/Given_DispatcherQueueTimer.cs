@@ -68,6 +68,10 @@ namespace Uno.UI.RuntimeTests.Tests.System
 				Assert.IsTrue(tcs.Task.IsCompleted);
 				Assert.AreEqual(count, 3);
 			}
+			catch(Exception e)
+			{
+				throw;
+			}
 			finally
 			{
 				timer.Stop();
