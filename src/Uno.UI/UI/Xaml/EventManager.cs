@@ -22,9 +22,9 @@ namespace Windows.UI.Xaml
 		{
 			_actions.Add(action);
 
-			if (!_nextTickIsQueued)
+			if (!_nextTickIsQueued && CoreWindow.GetForCurrentThread() is { } window)
 			{
-				CoreWindow.GetForCurrentThread().Dispatcher.RunOnNextTick(ProcessEvents);
+				window.Dispatcher.RunOnNextTick(ProcessEvents);
 				_nextTickIsQueued = true;
 			}
 		}

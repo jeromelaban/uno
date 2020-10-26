@@ -267,15 +267,9 @@ namespace Windows.UI.Core
 		/// </summary>
 		partial void EnqueueNative();
 
-		private int IncrementGlobalCount()
-		{
-			return Interlocked.Increment(ref _globalCount);
-		}
+		private int IncrementGlobalCount() => Interlocked.Increment(ref _globalCount);
 
-		private int DecrementGlobalCount()
-		{
-			return Interlocked.Decrement(ref _globalCount);
-		}
+		private int DecrementGlobalCount() => Interlocked.Decrement(ref _globalCount);
 
 		private void DispatchItems()
 		{

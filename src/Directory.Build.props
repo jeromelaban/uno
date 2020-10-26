@@ -49,6 +49,7 @@
 	Uno.UI.SourceGenerators.props for more details. Note that Roslyn generators required VS 16.8 Pre 3 or later.
 	-->
 	<UnoUIUseRoslynSourceGenerators>true</UnoUIUseRoslynSourceGenerators>
+	<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <!--
