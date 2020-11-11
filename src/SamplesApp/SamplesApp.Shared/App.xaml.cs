@@ -300,6 +300,7 @@ namespace SamplesApp
 
 						// RemoteControl and HotReload related
 						{ "Uno.UI.RemoteControl", LogLevel.Information },
+						{ "Windows.UI.Xaml.UIElement.KeyboardManager", LogLevel.Trace },
 
 						// { "Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug },
 						// { "Windows.UI.Xaml.Controls.PopupPanel", LogLevel.Debug },
@@ -342,7 +343,7 @@ namespace SamplesApp
 				)
 #if DEBUG
 				//.AddConsole(LogLevel.Trace);
-				.AddConsole(LogLevel.Debug);
+				.AddConsole(LogLevel.Trace);
 
 #else
 				.AddConsole(LogLevel.Warning);

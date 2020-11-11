@@ -22,7 +22,7 @@ using Tizen.NUI;
 
 namespace Uno.UI.Runtime.Skia
 {
-	public class TizenUIElementPointersSupport : ICoreWindowExtension
+	public partial class TizenCoreWindowExtension : ICoreWindowExtension
 	{
 		private static int _currentFrameId = 0;
 
@@ -42,12 +42,15 @@ namespace Uno.UI.Runtime.Skia
 			}
 		}
 
-		public TizenUIElementPointersSupport(object owner, UnoCanvas canvas)
+		public TizenCoreWindowExtension(object owner, UnoCanvas canvas)
 		{
 			_owner = (CoreWindow)owner;
 			_ownerEvents = (ICoreWindowEvents)owner;
 			_canvas = canvas;
 			_displayInformation = DisplayInformation.GetForCurrentView();
+
+			canvas.KeyUp += OnKeyUp;
+			canvas.KeyDown += OnKeyDown;
 
 			_gestureLayer = new GestureLayer(canvas);
 			_gestureLayer.Attach(canvas);

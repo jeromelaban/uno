@@ -24,6 +24,8 @@ namespace Windows.UI.Core
 		public event TypedEventHandler<CoreWindow, PointerEventArgs> PointerPressed;
 		public event TypedEventHandler<CoreWindow, PointerEventArgs> PointerReleased;
 		public event TypedEventHandler<CoreWindow, PointerEventArgs> PointerWheelChanged;
+		public event TypedEventHandler<CoreWindow, KeyEventArgs> KeyDown;
+		public event TypedEventHandler<CoreWindow, KeyEventArgs> KeyUp;
 
 		public CoreCursor PointerCursor
 		{
@@ -56,12 +58,17 @@ namespace Windows.UI.Core
 
 		void ICoreWindowEvents.RaisePointerPressed(PointerEventArgs args)
 			=> PointerPressed?.Invoke(this, args);
-
 		void ICoreWindowEvents.RaisePointerReleased(PointerEventArgs args)
 			=> PointerReleased?.Invoke(this, args);
 
 		void ICoreWindowEvents.RaisePointerWheelChanged(PointerEventArgs args)
 			=> PointerWheelChanged?.Invoke(this, args);
+
+		void ICoreWindowEvents.RaiseKeyUp(KeyEventArgs args)
+			=> KeyUp?.Invoke(this, args);
+
+		void ICoreWindowEvents.RaiseKeyDown(KeyEventArgs args)
+			=> KeyDown?.Invoke(this, args);
 	}
 
 	public interface ICoreWindowEvents
@@ -72,5 +79,7 @@ namespace Windows.UI.Core
 		void RaisePointerPressed(PointerEventArgs args);
 		void RaisePointerReleased(PointerEventArgs args);
 		void RaisePointerWheelChanged(PointerEventArgs args);
+		void RaiseKeyUp(KeyEventArgs args);
+		void RaiseKeyDown(KeyEventArgs args);
 	}
 }
