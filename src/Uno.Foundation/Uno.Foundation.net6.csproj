@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras" ToolsVersion="15.0">
-  <PropertyGroup>
-    <TargetFrameworks>xamarinmac20;xamarinios10;MonoAndroid11.0;net461;netstandard2.0</TargetFrameworks>
-		<TargetFrameworksCI>MonoAndroid11.0;MonoAndroid10.0;xamarinios10;net461;netstandard2.0;xamarinmac20</TargetFrameworksCI>
+  	<PropertyGroup>
+    	<TargetFrameworks>net6.0-android</TargetFrameworks>
+		<TargetFrameworksCI>net6.0-android;net6.0-ios</TargetFrameworksCI>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(UnoTargetFrameworkOverride)'!=''">
@@ -10,7 +10,7 @@
 
 	<PropertyGroup>
 		<AssemblyName>Uno.Foundation</AssemblyName>
-    <RootNamespace>Windows.Foundation</RootNamespace>
+    	<RootNamespace>Windows.Foundation</RootNamespace>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		
@@ -21,8 +21,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-    <PackageReference Include="Uno.SourceGenerationTasks" />
-    <PackageReference Include="Uno.Core" />
+		<PackageReference Include="Uno.SourceGenerationTasks" />
+		<PackageReference Include="Uno.Core" />
 		<PackageReference Include="Uno.MonoAnalyzers" />
 		<PackageReference Include="Uno.Diagnostics.Eventing" />
 	</ItemGroup>

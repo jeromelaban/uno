@@ -49,13 +49,14 @@
 	<PackageReference Update="System.Json" Version="4.7.1" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid11.0'">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid11.0' or '$(TargetFramework)' == 'net6.0-android'">
 	<PackageReference Update="Xamarin.AndroidX.Legacy.Support.v4" Version="1.0.0" />
 	<PackageReference Update="Xamarin.AndroidX.AppCompat" Version="1.1.0" />
 	<PackageReference Update="Xamarin.AndroidX.RecyclerView" Version="1.1.0" />
 	<PackageReference Update="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.2.0.2" />
 	<PackageReference Update="Xamarin.AndroidX.Fragment" Version="1.1.0" />
-  </ItemGroup>
+    <!-- <PackageReference Include="xamarin.androidx.vectordrawable" Version="1.1.0" excludeAssets="buildTransitive" />-->
+ </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'MonoAndroid10.0'">
 	<PackageReference Update="Xamarin.AndroidX.Legacy.Support.v4" Version="1.0.0" />
