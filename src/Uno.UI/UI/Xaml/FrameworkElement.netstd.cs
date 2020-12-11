@@ -26,6 +26,8 @@ namespace Windows.UI.Xaml
 
 		private protected sealed override void OnFwEltLoading()
 		{
+			this.EnableHardParentReference();
+
 			OnLoadingPartial();
 			ApplyCompiledBindings();
 
@@ -66,7 +68,7 @@ namespace Windows.UI.Xaml
 		}
 
 		partial void OnLoadedPartial();
-		private protected virtual void OnLoaded() { }
+		private protected virtual void OnLoaded() {  }
 
 		private protected sealed override void OnFwEltUnloaded()
 		{
@@ -83,6 +85,6 @@ namespace Windows.UI.Xaml
 			}
 		}
 
-		private protected virtual void OnUnloaded() { }
+		private protected virtual void OnUnloaded() { this.DisableHardParentReference(); }
 	}
 }

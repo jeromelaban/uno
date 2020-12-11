@@ -34,6 +34,7 @@ using AppKit;
 #else
 using View = Windows.UI.Xaml.UIElement;
 using ViewGroup = Windows.UI.Xaml.UIElement;
+using Uno.Extensions;
 #endif
 
 namespace Windows.UI.Xaml
@@ -42,8 +43,8 @@ namespace Windows.UI.Xaml
 	{
 		private bool _initializationComplete = false;
 		private readonly static IEventProvider _trace = Tracing.Get(TraceProvider.Id);
-		private ApplicationTheme? _requestedTheme;
 		private bool _themeSetExplicitly = false;
+		private ApplicationTheme? _requestedTheme;
 		private bool _systemThemeChangesObserved = false;
 
 		static Application()
@@ -74,12 +75,12 @@ namespace Windows.UI.Xaml
 		{
 			get
 			{
-				if (_requestedTheme == null)
+				if (InternalRequestedTheme == null)
 				{
 					// just cache the theme, but do not notify about a change unnecessarily	
-					_requestedTheme = GetDefaultSystemTheme();
+					InternalRequestedTheme = GetDefaultSystemTheme();
 				}
-				return _requestedTheme.Value;
+				return InternalRequestedTheme.Value;
 			}
 			set
 			{
@@ -90,6 +91,38 @@ namespace Windows.UI.Xaml
 				SetExplicitRequestedTheme(value);
 			}
 		}
+
+		private ApplicationTheme? InternalRequestedTheme
+		{
+			get => _requestedTheme;
+			set
+			{
+				_requestedTheme = value;
+				RequestedThemeForResources = BuildRequestedThemesForResources();
+			}
+		}
+
+		private static string BuildRequestedThemesForResources()
+		{
+			var custom = ApplicationHelper.RequestedCustomTheme;
+
+			if (!custom.IsNullOrEmpty())
+			{
+				return custom;
+			}
+
+			switch (Application.Current.RequestedTheme)
+			{
+				case ApplicationTheme.Light:
+					return "Light";
+				case ApplicationTheme.Dark:
+					return "Dark";
+				default:
+					throw new InvalidOperationException($"Theme {Application.Current.RequestedTheme} is not valid");
+			}
+		}
+
+		internal string RequestedThemeForResources { get; private set; }
 
 		internal ElementTheme ActualElementTheme => (_themeSetExplicitly, RequestedTheme) switch
 		{
@@ -212,9 +245,9 @@ namespace Windows.UI.Xaml
 
 		private void SetRequestedTheme(ApplicationTheme requestedTheme)
 		{
-			if (requestedTheme != _requestedTheme)
+			if (requestedTheme != InternalRequestedTheme)
 			{
-				_requestedTheme = requestedTheme;
+				InternalRequestedTheme = requestedTheme;
 
 				OnRequestedThemeChanged();
 			}

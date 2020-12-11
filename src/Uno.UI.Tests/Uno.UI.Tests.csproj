@@ -157,6 +157,9 @@
 		<None Update="Windows_UI_XAML_Controls\UserControlTests\UserControl_WriteOnlyProperty.xaml">
 		  <Generator>MSBuild:Compile</Generator>
 		</None>
+		<None Update="Windows_UI_Xaml_Data\xBindTests\Controls\xBind_UserControl.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+		</None>
 	</ItemGroup>
 
 </Project>

@@ -376,7 +376,7 @@ namespace Windows.UI.Xaml
 			}
 		}
 
-		private Style ResolveImplicitStyle() => (this as IDependencyObjectStoreProvider).Store.GetImplicitStyle();
+		private Style ResolveImplicitStyle() => this.GetImplicitStyle();
 
 		#region Requested theme dependency property
 

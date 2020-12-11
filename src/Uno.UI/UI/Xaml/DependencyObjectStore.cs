@@ -80,6 +80,7 @@ namespace Windows.UI.Xaml
 		private ImmutableList<ParentChangedCallback> _parentChangedCallbacks = ImmutableList<ParentChangedCallback>.Empty;
 
 		private readonly ManagedWeakReference _originalObjectRef;
+		private DependencyObject? _hardOriginalObjectRef;
 
 		/// <summary>
 		/// This field is used to pass a reference to itself in the case
@@ -91,6 +92,7 @@ namespace Windows.UI.Xaml
 		private readonly Type _originalObjectType;
 		private readonly SerialDisposable _inheritedProperties = new SerialDisposable();
 		private ManagedWeakReference? _parentRef;
+		private object? _hardParentRef;
 		private readonly Dictionary<DependencyProperty, ManagedWeakReference> _inheritedForwardedProperties = new Dictionary<DependencyProperty, ManagedWeakReference>(DependencyPropertyComparer.Default);
 		private Stack<DependencyPropertyValuePrecedences?>? _overriddenPrecedences;
 
@@ -102,6 +104,18 @@ namespace Windows.UI.Xaml
 
 		private static readonly bool _validatePropertyOwner = Debugger.IsAttached;
 
+		internal void EnableHardReferences()
+		{
+			_hardParentRef = Parent;
+			_hardOriginalObjectRef = ActualInstance;
+		}
+
+		internal void DisableHardReferences()
+		{
+			_hardParentRef = null;
+			_hardOriginalObjectRef = null;
+		}
+
 		/// <summary>
 		/// Provides the parent Dependency Object of this dependency object
 		/// </summary>
@@ -111,7 +125,11 @@ namespace Windows.UI.Xaml
 		/// </remarks>
 		public object? Parent
 		{
-			get => _parentRef?.Target;
+			get
+			{
+				return _hardParentRef ?? _parentRef?.Target;
+			}
+
 			set
 			{
 				if (
@@ -119,6 +137,8 @@ namespace Windows.UI.Xaml
 					|| (_parentRef != null && value is null)
 				)
 				{
+					_hardParentRef = null;
+
 					var previousParent = _parentRef?.Target;
 
 					if (_parentRef != null)
@@ -1169,14 +1189,31 @@ namespace Windows.UI.Xaml
 				yield return containingDictionary;
 			}
 			var candidate = ActualInstance;
+			var candidateFE = ActualInstance as FrameworkElement;
 			while (candidate != null)
 			{
-				if (candidate is FrameworkElement fe)
+				if (candidateFE != null)
 				{
-					yield return fe.Resources;
-				}
+					yield return candidateFE.Resources;
 
-				candidate = candidate.GetParent() as DependencyObject;
+					if (candidateFE is IDependencyObjectStoreProvider provider)
+					{
+						var store = provider.Store;
+						var parent = store.Parent;
+						if (parent is FrameworkElement fe)
+						{
+							candidate = candidateFE = fe;
+						}
+						else
+						{
+							candidate = parent as DependencyObject;
+						}
+					}
+				}
+				else
+				{
+					candidate = candidate.GetParent() as DependencyObject;
+				}
 			}
 
 			if (includeAppResources && Application.Current != null)
@@ -1364,7 +1401,7 @@ namespace Windows.UI.Xaml
 		}
 
 		public DependencyObject? ActualInstance
-			=> _originalObjectRef.Target as DependencyObject;
+			=> _hardOriginalObjectRef ?? _originalObjectRef.Target as DependencyObject;
 
 		/// <summary>
 		/// Creates a weak delegate for the specified PropertyChangedCallback callback.

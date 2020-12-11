@@ -64,6 +64,23 @@ namespace Windows.UI.Xaml
 			return GetStore(dependencyObject).Parent;
 		}
 
+		/// <summary>
+		/// Gets the parent dependency object, if any.
+		/// </summary>
+		/// <param name="dependencyObject"></param>
+		/// <returns></returns>
+		internal static object GetParent(this IDependencyObjectStoreProvider provider)
+			=> provider.Store.Parent;
+
+		internal static void EnableHardParentReference(this IDependencyObjectStoreProvider provider)
+			=> provider.Store.EnableHardReferences();
+
+		internal static void DisableHardParentReference(this IDependencyObjectStoreProvider provider)
+			=> provider.Store.DisableHardReferences();
+
+		internal static Style? GetImplicitStyle(this IDependencyObjectStoreProvider provider)
+			=> provider.Store.GetImplicitStyle();
+
 		internal static IEnumerable<object> GetParents(this object dependencyObject)
 		{
 			var parent = dependencyObject.GetParent();
