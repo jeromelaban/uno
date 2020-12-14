@@ -1,4 +1,4 @@
-﻿#if !NETSTANDARD
+﻿#if !UNO_REFERENCE_API
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -42,7 +42,7 @@ namespace Windows.UI.Xaml.Controls
 			DefaultStyleKey = typeof(TimePicker);
 		}
 
-		#region Time DependencyProperty
+#region Time DependencyProperty
 
 		public TimeSpan Time
 		{
@@ -66,9 +66,9 @@ namespace Windows.UI.Xaml.Controls
 					})
 				);
 
-		#endregion
+#endregion
 
-		#region MinuteIncrement DependencyProperty
+#region MinuteIncrement DependencyProperty
 
 		public int MinuteIncrement
 		{
@@ -99,9 +99,9 @@ namespace Windows.UI.Xaml.Controls
 					})
 				);
 
-		#endregion
+#endregion
 
-		#region FlyoutPlacement DependencyProperty
+#region FlyoutPlacement DependencyProperty
 
 		public FlyoutPlacementMode FlyoutPlacement
 		{
@@ -116,9 +116,9 @@ namespace Windows.UI.Xaml.Controls
 				typeof(TimePicker),
 				new FrameworkPropertyMetadata(FlyoutPlacementMode.Full));
 
-		#endregion
+#endregion
 
-		#region FlyoutPresenterStyle DependencyProperty
+#region FlyoutPresenterStyle DependencyProperty
 		// FlyoutPresenterStyle is an Uno-only property to allow the styling of the TimePicker's FlyoutPresenter.
 		public Style FlyoutPresenterStyle
 		{
@@ -135,9 +135,9 @@ namespace Windows.UI.Xaml.Controls
 					default(Style),
 					FrameworkPropertyMetadataOptions.ValueDoesNotInheritDataContext));
 
-		#endregion
+#endregion
 
-		#region HeaderTemplate DependencyProperty
+#region HeaderTemplate DependencyProperty
 
 		public DataTemplate HeaderTemplate
 		{
@@ -151,9 +151,9 @@ namespace Windows.UI.Xaml.Controls
 				typeof(TimePicker),
 				new FrameworkPropertyMetadata(null));
 
-		#endregion
+#endregion
 
-		#region Header DependencyProperty
+#region Header DependencyProperty
 
 		public object Header
 		{
@@ -170,7 +170,7 @@ namespace Windows.UI.Xaml.Controls
 		private void OnHeaderChanged(DependencyPropertyChangedEventArgs e) =>
 			UpdateHeaderVisibility();
 
-		#endregion
+#endregion
 
 		public LightDismissOverlayMode LightDismissOverlayMode
 		{

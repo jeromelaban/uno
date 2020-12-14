@@ -29,7 +29,7 @@ namespace Windows.ApplicationModel
 		{
 			if (Assembly.GetEntryAssembly() is Assembly assembly)
 			{
-				return global::System.IO.Path.GetDirectoryName(new Uri(assembly.Location).LocalPath);
+				return global::System.IO.Path.GetDirectoryName(new Uri(assembly.Location).LocalPath) ?? "";
 			}
 			else
 			{

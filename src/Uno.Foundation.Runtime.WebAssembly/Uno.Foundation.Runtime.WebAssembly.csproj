@@ -1,6 +1,10 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras" ToolsVersion="15.0">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(UnoTargetFrameworkOverride)'!=''">
+		<TargetFrameworks>$(UnoTargetFrameworkOverride)</TargetFrameworks>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -30,9 +34,13 @@
 		<None Include="..\Common\uno.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
+	<Import Project="..\Uno.CrossTargetting.props" />
+	
 	<ItemGroup>
     <PackageReference Include="Uno.Core" />
-		<PackageReference Include="Uno.MonoAnalyzers" />
+		<PackageReference Include="Uno.MonoAnalyzers" Condition="!$(_IsNetCore)">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
 		<PackageReference Include="Uno.Diagnostics.Eventing" Version="1.0.0-dev.4" />
 	</ItemGroup>
 
@@ -40,13 +48,11 @@
 		<PackageReference Include="System.Memory" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+	<ItemGroup>
 		<EmbeddedResource Include="LinkerDefinition.Wasm.xml">
 			<LogicalName>$(AssemblyName).xml</LogicalName>
 		</EmbeddedResource>
 	</ItemGroup>
-
-	<Import Project="..\Uno.CrossTargetting.props" />
 
 	<ItemGroup>
 	  <UpToDateCheckInput Remove="AssemblyInfo.cs" />

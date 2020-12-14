@@ -22,7 +22,7 @@ using System.IO;
 using Windows.UI.Popups;
 using Uno.Disposables;
 
-#if XAMARIN || NETSTANDARD2_0
+#if XAMARIN || UNO_REFERENCE_API
 using Windows.UI.Xaml.Controls;
 #else
 using Windows.Graphics.Imaging;
@@ -51,7 +51,7 @@ namespace SampleControl.Presentation
 		private List<SampleChooserCategory> _categories;
 
 		private readonly Uno.Threading.AsyncLock _fileLock = new Uno.Threading.AsyncLock();
-#if !NETSTANDARD2_0
+#if !UNO_REFERENCE_API
 		private readonly string SampleChooserFileAddress = "SampleChooserFileAddress.";
 #endif
 
@@ -888,7 +888,7 @@ description:
 
 		private async Task Set<T>(string key, T value)
 		{
-#if !NETSTANDARD2_0
+#if !UNO_REFERENCE_API
 			var json = Newtonsoft.Json.JsonConvert.SerializeObject(value);
 			ApplicationData.Current.LocalSettings.Values[key] = json;
 #endif
@@ -896,7 +896,7 @@ description:
 
 		private async Task<T> Get<T>(string key, Func<T> d = null)
 		{
-#if !NETSTANDARD2_0
+#if !UNO_REFERENCE_API
 			var json = (string)ApplicationData.Current.LocalSettings.Values[key];
 			return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
 #else
@@ -906,7 +906,7 @@ description:
 
 		private async Task SetFile<T>(string key, T value)
 		{
-#if !NETSTANDARD2_0
+#if !UNO_REFERENCE_API
 			var json = Newtonsoft.Json.JsonConvert.SerializeObject(value);
 
 			using (await _fileLock.LockAsync(CancellationToken.None))
@@ -926,7 +926,7 @@ description:
 
 		private async Task<T> GetFile<T>(string key, Func<T> defaultValue = null)
 		{
-#if !NETSTANDARD2_0
+#if !UNO_REFERENCE_API
 			string json = null;
 
 			using (await _fileLock.LockAsync(CancellationToken.None))

@@ -50,7 +50,7 @@ namespace SamplesApp
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
 			
-			ConfigureFilters(LogExtensionPoint.AmbientLoggerFactory);
+			ConfigureFilters();
 			ConfigureFeatureFlags();
 
 			AssertIssue1790();
@@ -284,12 +284,22 @@ namespace SamplesApp
 			deferral.Complete();
 		}
 
-		void ConfigureFilters(ILoggerFactory factory)
+		void ConfigureFilters()
 		{
 #if HAS_UNO
 			System.Threading.Tasks.TaskScheduler.UnobservedTaskException += (s, e) => typeof(App).Log().Error("UnobservedTaskException", e.Exception);
 			AppDomain.CurrentDomain.UnhandledException += (s, e) => typeof(App).Log().Error("UnhandledException", e.ExceptionObject as Exception);
 #endif
+			var factory = LoggerFactory.Create(builder =>
+			{
+#if DEBUG
+				//.AddConsole(LogLevel.Trace);
+				builder.AddDebug();
+
+#else
+				builder.AddConsole(LogLevel.Warning);
+#endif
+			});
 
 			factory
 				.WithFilter(new FilterLoggerSettings
@@ -339,14 +349,11 @@ namespace SamplesApp
 						// { "Windows.UI.Xaml.Controls.BufferViewCache", LogLevel.Debug }, //Android
 						// { "Windows.UI.Xaml.Controls.VirtualizingPanelGenerator", LogLevel.Debug }, //WASM
 					}
-				)
-#if DEBUG
-				//.AddConsole(LogLevel.Trace);
-				.AddConsole(LogLevel.Debug);
+				);
 
-#else
-				.AddConsole(LogLevel.Warning);
-#endif
+			typeof(LogExtensionPoint)
+				.GetField("_loggerFactory", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+				.SetValue(null, factory);
 		}
 
 		static void ConfigureFeatureFlags()
