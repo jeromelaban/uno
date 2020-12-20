@@ -704,26 +704,29 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 						using (writer.BlockInvariant($"{classAccessibility} class {className}"))
 						{
-							using (writer.BlockInvariant("public {0} Build(object __resourceOwner)", kvp.Value.ReturnType))
+							using (ResourceOwnerScope())
 							{
-								writer.AppendLineInvariant("var nameScope = new global::Windows.UI.Xaml.NameScope();");
-								writer.AppendLineInvariant($"{kvp.Value.ReturnType} __rootInstance = null;");
-								writer.AppendLineInvariant("__rootInstance = ");
-
-								// Is never considered in Global Resources because class encapsulation
-								BuildChild(writer, contentOwner, contentOwner.Objects.First());
-
-								writer.AppendLineInvariant(";");
-
-								BuildCompiledBindingsInitializerForTemplate(writer);
-
-								using (writer.BlockInvariant("if (__rootInstance is DependencyObject d)", kvp.Value.ReturnType))
+								using (writer.BlockInvariant($"public {kvp.Value.ReturnType} Build(object {CurrentResourceOwner?.Name})"))
 								{
-									writer.AppendLineInvariant("global::Windows.UI.Xaml.NameScope.SetNameScope(d, nameScope);");
-									writer.AppendLineInvariant("global::Uno.UI.FrameworkElementHelper.AddObjectReference(d, this);");
-								}
+									writer.AppendLineInvariant("var nameScope = new global::Windows.UI.Xaml.NameScope();");
+									writer.AppendLineInvariant($"{kvp.Value.ReturnType} __rootInstance = null;");
+									writer.AppendLineInvariant("__rootInstance = ");
 
-								writer.AppendLineInvariant("return __rootInstance;");
+									// Is never considered in Global Resources because class encapsulation
+									BuildChild(writer, contentOwner, contentOwner.Objects.First());
+
+									writer.AppendLineInvariant(";");
+
+									BuildCompiledBindingsInitializerForTemplate(writer);
+
+									using (writer.BlockInvariant("if (__rootInstance is DependencyObject d)", kvp.Value.ReturnType))
+									{
+										writer.AppendLineInvariant("global::Windows.UI.Xaml.NameScope.SetNameScope(d, nameScope);");
+										writer.AppendLineInvariant("global::Uno.UI.FrameworkElementHelper.AddObjectReference(d, this);");
+									}
+
+									writer.AppendLineInvariant("return __rootInstance;");
+								}
 							}
 
 							for (var i = 0; i < CurrentScope.Components.Count; i++)
@@ -1268,13 +1271,16 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		private void BuildSingleTimeInitializer(IIndentedStringBuilder writer, string initializerName, Action propertyBodyBuilder)
 		{
 			TryAnnotateWithGeneratorSource(writer);
-			writer.AppendLineInvariant("private object {0}(object __resourceOwner) =>", initializerName);
-			using (writer.Indent())
+			using (ResourceOwnerScope())
 			{
-				propertyBodyBuilder();
-				writer.AppendLineInvariant(";");
+				writer.AppendLineInvariant($"private object {initializerName}(object {CurrentResourceOwner?.Name}) =>");
+				using (writer.Indent())
+				{
+					propertyBodyBuilder();
+					writer.AppendLineInvariant(";");
+				}
+				writer.AppendLine();
 			}
-			writer.AppendLine();
 		}
 
 		private void BuildSourceLineInfo(IIndentedStringBuilder writer, XamlObjectDefinition definition)
@@ -1492,38 +1498,60 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				}
 				else
 				{
-					if (isDependencyProperty)
-					{
-						writer.AppendLineInvariant(
-							"new global::Windows.UI.Xaml.Setter({0}.{1}Property, () => ({2})",
-							GetGlobalizedTypeName(fullTargetType),
-							property,
-							propertyType
-						);
-					}
-					else
-					{
-						writer.AppendLineInvariant(
-							"new global::Windows.UI.Xaml.Setter<{0}>(\"{1}\", o => {2}.{1} = ",
-							GetGlobalizedTypeName(fullTargetType),
-							property,
-								targetInstance
-						);
-					}
-
+					IDisposable currentResourceOwner = null;
 					var valueObject = valueNode.Objects.First();
-					if (HasMarkupExtension(valueNode))
-					{
-						TryAnnotateWithGeneratorSource(writer, suffix: isDependencyProperty ? "NonResourceMarkupValueDP" : "MarkupValuePOCO");
-						writer.AppendLineInvariant(BuildBindingOption(valueNode, propertyType, prependCastToType: true));
-					}
-					else
-					{
-						TryAnnotateWithGeneratorSource(writer, suffix: isDependencyProperty ? "ChildValueDP" : "ChildValuePOCO");
-						BuildChild(writer, valueNode, valueObject);
-					}
 
-					writer.AppendLineInvariant(")");
+					try
+					{
+						if (isDependencyProperty)
+						{
+							if (CurrentResourceOwner != null)
+							{
+								var currentOwnerName = CurrentResourceOwner.Name;
+
+								currentResourceOwner = ResourceOwnerScope();
+
+								writer.AppendLineInvariant(
+									$"new global::Windows.UI.Xaml.Setter({GetGlobalizedTypeName(fullTargetType)}.{property}Property, {currentOwnerName}, {CurrentResourceOwner.Name} => ({propertyType})"
+								);
+							}
+							else
+							{
+								writer.AppendLineInvariant(
+									"new global::Windows.UI.Xaml.Setter({0}.{1}Property, () => ({2})",
+									GetGlobalizedTypeName(fullTargetType),
+									property,
+									propertyType
+								);
+							}
+						}
+						else
+						{
+							writer.AppendLineInvariant(
+								"new global::Windows.UI.Xaml.Setter<{0}>(\"{1}\", o => {2}.{1} = ",
+								GetGlobalizedTypeName(fullTargetType),
+								property,
+									targetInstance
+							);
+						}
+
+						if (HasMarkupExtension(valueNode))
+						{
+							TryAnnotateWithGeneratorSource(writer, suffix: isDependencyProperty ? "NonResourceMarkupValueDP" : "MarkupValuePOCO");
+							writer.AppendLineInvariant(BuildBindingOption(valueNode, propertyType, prependCastToType: true));
+						}
+						else
+						{
+							TryAnnotateWithGeneratorSource(writer, suffix: isDependencyProperty ? "ChildValueDP" : "ChildValuePOCO");
+							BuildChild(writer, valueNode, valueObject);
+						}
+
+						writer.AppendLineInvariant(")");
+					}
+					finally
+					{
+						currentResourceOwner?.Dispose();
+					}
 
 					if (valueObject.Type.Name == "ThemeResource")
 					{
@@ -2383,12 +2411,16 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		/// </summary>
 		private IDisposable BuildLazyResourceInitializer(IIndentedStringBuilder writer)
 		{
-			writer.AppendLineInvariant("new global::Windows.UI.Xaml.ResourceDictionary.WeakResourceInitializer(this, __resourceOwner => ");
+			var currentScope = CurrentResourceOwner?.Name ?? "this";
+			var resourceOwnerScope = ResourceOwnerScope();
+			
+			writer.AppendLineInvariant($"new global::Windows.UI.Xaml.ResourceDictionary.WeakResourceInitializer({currentScope}, {CurrentResourceOwner?.Name} => ");
 
 			var indent = writer.Indent();
 
 			return new DisposableAction(() =>
 			{
+				resourceOwnerScope.Dispose();
 				indent.Dispose();
 				writer.AppendLineInvariant(")");
 			});
@@ -3064,7 +3096,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			}
 			else if (_className.className != null)
 			{
-				writeEvent("__resourceOwner");
+				writeEvent(CurrentResourceOwner?.Name);
 			}
 			else
 			{
@@ -4593,8 +4625,6 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			TryAnnotateWithGeneratorSource(writer);
 			var typeName = xamlObjectDefinition.Type.Name;
 			var fullTypeName = xamlObjectDefinition.Type.Name;
-			var isParentInsideTemplate = IsMemberInsideFrameworkTemplate(owner?.Owner);
-			var isInsideTemplate = IsMemberInsideFrameworkTemplate(xamlObjectDefinition);
 
 			var knownType = FindType(xamlObjectDefinition.Type);
 
@@ -4629,9 +4659,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 					if (contentOwner != null)
 					{
-						var resourceOwner = isParentInsideTemplate.isInside || (!isParentInsideTemplate.isInside && isInsideTemplate.isInside) ? "__resourceOwner" : "this";
+						var resourceOwner = CurrentResourceOwner?.Name ?? "this";
 
-						writer.Append($"{resourceOwner} /* isInsideTemplate:{isInsideTemplate.xamlObject?.Type} isParentInsideTemplate:{isParentInsideTemplate.xamlObject?.Type} */, __owner => ");
+						writer.Append($"{resourceOwner} , __owner => ");
 						// This case is to support the layout switching for the ListViewBaseLayout, which is not
 						// a FrameworkTemplate. This will need to be removed when this custom list view is removed.
 						var returnType = typeName == "ListViewBaseLayoutTemplate" ? "global::Uno.UI.Controls.Legacy.ListViewBaseLayout" : "_View";
@@ -5285,18 +5315,36 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		}
 
 		private NameScope CurrentScope
-		{
-			get
-			{
-				return _scopeStack.Peek();
-			}
-		}
+			=> _scopeStack.Peek();
 
 		private IDisposable Scope(string name)
 		{
 			_scopeStack.Push(new NameScope(name));
 
 			return new DisposableAction(() => _scopeStack.Pop());
+		}
+
+		private Stack<ResourceOwner> _resourceOwnerStack = new Stack<ResourceOwner>();
+
+		private class ResourceOwner
+		{
+			static int _resourceOwners;
+			public ResourceOwner()
+			{
+				Name = "__ResourceOwner_" + (_resourceOwners++).ToString();
+			}
+
+			public string Name { get; }
+		}
+
+		private ResourceOwner CurrentResourceOwner
+			=> _resourceOwnerStack.Count != 0 ? _resourceOwnerStack.Peek() : null;
+
+		private IDisposable ResourceOwnerScope()
+		{
+			_resourceOwnerStack.Push(new ResourceOwner());
+
+			return new DisposableAction(() => _resourceOwnerStack.Pop());
 		}
 
 		/// <summary>
