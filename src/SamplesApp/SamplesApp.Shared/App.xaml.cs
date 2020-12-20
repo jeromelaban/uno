@@ -27,6 +27,7 @@ using Uno.Logging;
 using Windows.Graphics.Display;
 using System.Globalization;
 using Windows.UI.ViewManagement;
+using SamplesApp.Logger;
 #if HAS_UNO_WINUI
 using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 #else
@@ -340,12 +341,20 @@ namespace SamplesApp
 						// { "Windows.UI.Xaml.Controls.VirtualizingPanelGenerator", LogLevel.Debug }, //WASM
 					}
 				)
+
+#if __IOS__
+				.AddProvider(new SamplesApp.Logger.OSLogLoggerProvider());
+#else
+
 #if DEBUG
 				//.AddConsole(LogLevel.Trace);
 				.AddConsole(LogLevel.Debug);
 
+
+
 #else
 				.AddConsole(LogLevel.Warning);
+#endif
 #endif
 		}
 

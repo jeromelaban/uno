@@ -704,7 +704,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 						using (writer.BlockInvariant($"{classAccessibility} class {className}"))
 						{
-							using (writer.BlockInvariant("public {0} Build(object owner)", kvp.Value.ReturnType))
+							using (writer.BlockInvariant("public {0} Build(object __resourceOwner)", kvp.Value.ReturnType))
 							{
 								writer.AppendLineInvariant("var nameScope = new global::Windows.UI.Xaml.NameScope();");
 								writer.AppendLineInvariant($"{kvp.Value.ReturnType} __rootInstance = null;");
@@ -1268,7 +1268,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		private void BuildSingleTimeInitializer(IIndentedStringBuilder writer, string initializerName, Action propertyBodyBuilder)
 		{
 			TryAnnotateWithGeneratorSource(writer);
-			writer.AppendLineInvariant("private object {0}() =>", initializerName);
+			writer.AppendLineInvariant("private object {0}(object __resourceOwner) =>", initializerName);
 			using (writer.Indent())
 			{
 				propertyBodyBuilder();
@@ -2336,7 +2336,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						&& GetResourceDictionaryInitializerName(key) is string initializerName)
 					{
 						//
-						writer.AppendLineInvariant("(global::Windows.UI.Xaml.ResourceDictionary.ResourceInitializer){0}", initializerName);
+						writer.AppendLineInvariant("new global::Windows.UI.Xaml.ResourceDictionary.WeakResourceInitializer(this, {0})", initializerName);
 					}
 					else
 					{
@@ -2383,7 +2383,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		/// </summary>
 		private IDisposable BuildLazyResourceInitializer(IIndentedStringBuilder writer)
 		{
-			writer.AppendLineInvariant("(global::Windows.UI.Xaml.ResourceDictionary.ResourceInitializer)(() => ");
+			writer.AppendLineInvariant("new global::Windows.UI.Xaml.ResourceDictionary.WeakResourceInitializer(this, __resourceOwner => ");
 
 			var indent = writer.Indent();
 
@@ -3064,7 +3064,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			}
 			else if (_className.className != null)
 			{
-				writeEvent("owner");
+				writeEvent("__resourceOwner");
 			}
 			else
 			{
@@ -4593,6 +4593,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			TryAnnotateWithGeneratorSource(writer);
 			var typeName = xamlObjectDefinition.Type.Name;
 			var fullTypeName = xamlObjectDefinition.Type.Name;
+			var isParentInsideTemplate = IsMemberInsideFrameworkTemplate(owner?.Owner);
+			var isInsideTemplate = IsMemberInsideFrameworkTemplate(xamlObjectDefinition);
 
 			var knownType = FindType(xamlObjectDefinition.Type);
 
@@ -4627,7 +4629,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 					if (contentOwner != null)
 					{
-						writer.Append("this, __owner => ");
+						var resourceOwner = isParentInsideTemplate.isInside || (!isParentInsideTemplate.isInside && isInsideTemplate.isInside) ? "__resourceOwner" : "this";
+
+						writer.Append($"{resourceOwner} /* isInsideTemplate:{isInsideTemplate.xamlObject?.Type} isParentInsideTemplate:{isParentInsideTemplate.xamlObject?.Type} */, __owner => ");
 						// This case is to support the layout switching for the ListViewBaseLayout, which is not
 						// a FrameworkTemplate. This will need to be removed when this custom list view is removed.
 						var returnType = typeName == "ListViewBaseLayoutTemplate" ? "global::Uno.UI.Controls.Legacy.ListViewBaseLayout" : "_View";

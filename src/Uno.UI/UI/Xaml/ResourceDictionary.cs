@@ -5,6 +5,7 @@ using Uno.UI;
 using Uno.Extensions;
 using System.ComponentModel;
 using Uno.UI.Xaml;
+using Uno.UI.DataBinding;
 
 namespace Windows.UI.Xaml
 {
@@ -130,6 +131,11 @@ namespace Windows.UI.Xaml
 			if (throwIfPresent && _values.ContainsKey(key))
 			{
 				throw new ArgumentException("An entry with the same key already exists.");
+			}
+
+			if(value is WeakResourceInitializer lazyResourceInitializer)
+			{
+				value = lazyResourceInitializer.Initializer;
 			}
 
 			if (value is ResourceInitializer resourceInitializer)
@@ -415,6 +421,24 @@ namespace Windows.UI.Xaml
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public delegate object ResourceInitializer();
+
+#nullable enable
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public delegate object ResourceInitializerWithOwner(object? owner);
+
+		public class WeakResourceInitializer
+		{
+			private readonly ManagedWeakReference _owner;
+
+			public WeakResourceInitializer(object owner, ResourceInitializerWithOwner initializer)
+			{
+				_owner = WeakReferencePool.RentWeakReference(this, owner);
+				Initializer = () => initializer(_owner?.Target);
+			}
+
+			public ResourceInitializer Initializer { get; }
+		}
+#nullable restore
 
 		/// <summary>
 		/// Allows resources to be initialized on-demand using correct scope.

@@ -103,7 +103,7 @@
 
 	<StackPanel>
 		<TextBlock Text="{Binding [Message]}" />
-		<StackPanel Background="Yellow">
+		<!--<StackPanel Background="Yellow">
 			<StackPanel Width="200"
 						Height="200" >
 				<StackPanel.Clip>
@@ -130,7 +130,7 @@
 						Style="{StaticResource CustomButtonStyle}"
 						Command="{Binding [SampleCommand2]}"/>
 			</StackPanel>
-		</StackPanel>
+		</StackPanel>-->
 	</StackPanel>
 
 </UserControl>

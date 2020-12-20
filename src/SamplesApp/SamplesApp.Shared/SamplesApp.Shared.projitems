@@ -18,6 +18,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\OSLogLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\OSLogLoggerProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\WebAssemblyConsoleLogger.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logger\WebAssemblyConsoleLoggerProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

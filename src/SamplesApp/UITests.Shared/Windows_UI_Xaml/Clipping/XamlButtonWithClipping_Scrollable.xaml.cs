@@ -16,7 +16,7 @@ namespace SamplesApp.Windows_UI_Xaml.Clipping
 			{
 				// Yield for the content to be materialized properly
 				await Task.Yield();
-				scrollView.ChangeView(null, 2000, null, true);
+				//scrollView.ChangeView(null, 2000, null, true);
 			};
 		}
 	}
