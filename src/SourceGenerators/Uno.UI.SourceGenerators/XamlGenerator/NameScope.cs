@@ -8,12 +8,15 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 {
 	internal class NameScope
 	{
-		public NameScope(string name)
+		public NameScope(string @namespace, string className)
 		{
-			this.Name = name;
+			Namespace = @namespace ?? string.Empty;
+			ClassName = className;
 		}
 
-		public string Name { get; private set; }
+		public string Name => $"{Namespace.Replace(".", "")}{ClassName}";
+		public string Namespace { get; private set; }
+		public string ClassName { get; private set; }
 
 		public List<BackingFieldDefinition> BackingFields { get; } = new List<BackingFieldDefinition>();
 
@@ -24,6 +27,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		public List<XamlObjectDefinition> Components { get; } = new List<XamlObjectDefinition>();
 
 		public List<XamlObjectDefinition> XBindExpressions { get; } = new List<XamlObjectDefinition>();
+
+		public ThatReference ThatReference { get; set; }
 
 		public int ComponentCount => Components.Count;
 	}

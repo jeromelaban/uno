@@ -22,4 +22,19 @@
 		/// </summary>
 		public string Name { get; }
 	}
+
+	internal class ThatReference
+	{
+		static int _thatReferences;
+
+		public ThatReference()
+		{
+			Name = "__ThatReference_" + (_thatReferences++).ToString();
+		}
+
+		/// <summary>
+		/// Gets the name of the current resource owner variable
+		/// </summary>
+		public string Name { get; }
+	}
 }

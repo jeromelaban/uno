@@ -20,7 +20,7 @@ using Uno.Logging;
 using Uno.UI.SourceGenerators.XamlGenerator.XamlRedirection;
 using System.Runtime.CompilerServices;
 using Uno.UI.Xaml;
-
+using Uno.Disposables;
 
 namespace Uno.UI.SourceGenerators.XamlGenerator
 {
@@ -354,7 +354,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					{
 						var isDirectUserControlChild = _skipUserControlsInVisualTree && IsUserControl(topLevelControl.Type, checkInheritance: false);
 
-						using (Scope("{0}{1}".InvariantCultureFormat(_className.ns.Replace(".", ""), _className.className)))
+						using (Scope(_className.ns, _className.className))
 						{
 							using (writer.BlockInvariant(BuildControlInitializerDeclaration(_className.className, topLevelControl)))
 							{
@@ -369,6 +369,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 								}
 
 								BuildCompiledBindingsInitializer(writer, _className.className, controlBaseType);
+
+								if (CurrentScope.ThatReference != null)
+								{
+									writer.AppendLineInvariant($"{CurrentThatReferenceName} = new global::System.WeakReference<{_className.className}>(this);");
+								}
 
 								if (isDirectUserControlChild)
 								{
@@ -388,11 +393,21 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 									BuildCompiledBindingsInitializer(writer, _className.className, controlBaseType);
 
+									if (CurrentScope.ThatReference != null)
+									{
+										writer.AppendLineInvariant($"{CurrentThatReferenceName} = new global::System.WeakReference<{_className.className}>(this);");
+									}
+
 									if (_isDebug)
 									{
 										writer.AppendLineInvariant($"global::Uno.UI.FrameworkElementHelper.SetBaseUri(this, \"file:///{_fileDefinition.FilePath.Replace("\\", "/")}\");");
 									}
 								}
+							}
+
+							if (CurrentScope.ThatReference != null)
+							{
+								writer.AppendLineInvariant($"private global::System.WeakReference<{_className.className}> {CurrentThatReferenceName};");
 							}
 
 							BuildPartials(writer, isStatic: false);
@@ -691,7 +706,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		{
 			_isInChildSubclass = true;
 			TryAnnotateWithGeneratorSource(writer);
-			var disposable = isTopLevel ? writer.BlockInvariant("namespace {0}.__Resources", _defaultNamespace) : null;
+			var ns = $"{_defaultNamespace}.__Resources";
+			var disposable = isTopLevel ? writer.BlockInvariant($"namespace {ns}") : null;
 
 			using (disposable)
 			{
@@ -700,7 +716,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					var className = kvp.Key;
 					var contentOwner = kvp.Value.ContentOwner;
 
-					using (Scope(className))
+					using (Scope(ns, className))
 					{
 						var classAccessibility = isTopLevel ? "" : "private";
 
@@ -727,6 +743,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 										writer.AppendLineInvariant("global::Uno.UI.FrameworkElementHelper.AddObjectReference(d, this);");
 									}
 
+									if (CurrentScope.ThatReference != null)
+									{
+										writer.AppendLineInvariant($"{CurrentThatReferenceName} = new global::System.WeakReference<{className}>(this);");
+									}
+
 									writer.AppendLineInvariant("return __rootInstance;");
 								}
 							}
@@ -735,6 +756,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 							{
 								var current = CurrentScope.Components[i];
 								writer.AppendLineInvariant($"private {GetType(current.Type).ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)} _component_{i};");
+							}
+
+							if(CurrentScope.ThatReference != null)
+							{
+								writer.AppendLineInvariant($"private global::System.WeakReference<{className}> {CurrentThatReferenceName};");
 							}
 
 							BuildBackingFields(writer);
@@ -914,7 +940,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		{
 			TryAnnotateWithGeneratorSource(writer);
 
-			using (Scope(Path.GetFileNameWithoutExtension(_fileDefinition.FilePath).Replace(".", "_") + "RD"))
+			using (Scope(null, Path.GetFileNameWithoutExtension(_fileDefinition.FilePath).Replace(".", "_") + "RD"))
 			{
 				using (writer.BlockInvariant("namespace {0}", _defaultNamespace))
 				{
@@ -1248,7 +1274,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				{
 					using (writer.BlockInvariant("public sealed partial class {0} : {1}", className.className, GetGlobalizedTypeName(controlBaseType.ToDisplayString())))
 					{
-						using (Scope("{0}{1}".InvariantCultureFormat(className.ns.Replace(".", ""), className.className)))
+						using (Scope(className.ns, className.className))
 						{
 							using (writer.BlockInvariant("public void InitializeComponent()"))
 							{
@@ -2412,7 +2438,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		/// </summary>
 		private IDisposable BuildLazyResourceInitializer(IIndentedStringBuilder writer)
 		{
-			var currentScope = CurrentResourceOwner?.Name ?? "this";
+			var currentScope = CurrentResourceOwnerName;
 			var resourceOwnerScope = ResourceOwnerScope();
 			
 			writer.AppendLineInvariant($"new global::Uno.UI.Xaml.WeakResourceInitializer({currentScope}, {CurrentResourceOwner?.Name} => ");
@@ -2824,7 +2850,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									throw new InvalidOperationException($"Unable to find type {objectDefinition.Type}");
 								}
 
-								writer.AppendLineInvariant("this.{0} = {1};", value, closureName);
+								writer.AppendLineInvariant("{0}.{1} = {2};", CurrentThatReferenceValue, value, closureName);
 								RegisterBackingField(type, value, FindObjectFieldAccessibility(objectDefinition));
 							}
 							else if (member.Member.Name == "Name"
@@ -2950,7 +2976,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						&& (HasXBindMarkupExtension(objectDefinition) || HasMarkupExtensionNeedingComponent(objectDefinition)))
 					{
 						writer.AppendLineInvariant($"/* _isTopLevelDictionary:{_isTopLevelDictionary} */");
-						writer.AppendLineInvariant($"this._component_{CurrentScope.ComponentCount} = {closureName};");
+						writer.AppendLineInvariant($"{CurrentThatReferenceValue}._component_{CurrentScope.ComponentCount} = {closureName};");
+						
 						CurrentScope.Components.Add(objectDefinition);
 					}
 
@@ -4663,7 +4690,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 					if (contentOwner != null)
 					{
-						var resourceOwner = CurrentResourceOwner?.Name ?? "this";
+						var resourceOwner = CurrentResourceOwnerName;
 
 						writer.Append($"{resourceOwner} , __owner => ");
 						// This case is to support the layout switching for the ListViewBaseLayout, which is not
@@ -4983,10 +5010,12 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		{
 			TryAnnotateWithGeneratorSource(writer);
 			var strategy = FindMember(definition, "DeferLoadStrategy");
-			var loadElement = FindMember(definition, "Load");
+			var loadMember = FindMember(definition, "Load");
+			var hasLoadMarkup = HasMarkupExtension(loadMember);
 
 			if (strategy?.Value?.ToString().ToLowerInvariant() == "lazy"
-				|| loadElement?.Value?.ToString().ToLowerInvariant() == "false")
+				|| loadMember?.Value?.ToString().ToLowerInvariant() == "false"
+				|| hasLoadMarkup)
 			{
 				var visibilityMember = FindMember(definition, "Visibility");
 				var dataContextMember = FindMember(definition, "DataContext");
@@ -4998,20 +5027,29 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					return null;
 				}
 
-				if (visibilityMember != null || loadElement?.Value != null)
+				if (visibilityMember != null || loadMember?.Value != null || hasLoadMarkup)
 				{
 					var hasVisibilityMarkup = HasMarkupExtension(visibilityMember);
 					var isLiteralVisible = !hasVisibilityMarkup && (visibilityMember?.Value?.ToString() == "Visible");
 
 					var hasDataContextMarkup = dataContextMember != null && HasMarkupExtension(dataContextMember);
 
-					var disposable = writer.BlockInvariant($"new {XamlConstants.Types.ElementStub}()");
+					var currentOwnerName = CurrentResourceOwnerName;
 
-					writer.Append("ContentBuilder = () => ");
+					var currentResourceOwner = ResourceOwnerScope();
+					TrySetThatReference();
 
+					writer.AppendLineInvariant($"new {XamlConstants.Types.ElementStub}({currentOwnerName}, {CurrentResourceOwner.Name} => ");
+
+					var disposable = new DisposableAction(() =>
+					{
+						writer.AppendLine(")");
+						currentResourceOwner?.Dispose();
+					});
+					
 					return new DisposableAction(() =>
 						{
-							disposable.Dispose();
+							disposable?.Dispose();
 
 							string closureName;
 							using (var innerWriter = CreateApplyBlock(writer, GetType(XamlConstants.Types.ElementStub), out closureName))
@@ -5023,16 +5061,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									// We need to generate the datacontext binding, since the Visibility
 									// may require it to bind properly.
 
-									var def = new XamlMemberDefinition(
-										new XamlMember("DataContext",
-											elementStubType,
-											false
-										), 0, 0
-									);
-
-									def.Objects.AddRange(dataContextMember.Objects);
-
-									BuildComplexPropertyValue(innerWriter, def, closureName + ".", closureName);
+									GenerateBinding("DataContext", dataContextMember);
 								}
 
 								if (nameMember != null)
@@ -5048,38 +5077,45 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									);
 								}
 
-								if (hasVisibilityMarkup)
+								if (hasLoadMarkup || hasVisibilityMarkup)
 								{
-									var def = new XamlMemberDefinition(
-										new XamlMember("Visibility",
-											elementStubType,
-											false
-										), 0, 0
-									);
+									var members = new List<XamlMemberDefinition>();
 
-									def.Objects.AddRange(visibilityMember.Objects);
+									if (hasLoadMarkup)
+									{
+										members.Add(GenerateBinding("Load", loadMember));
+									}
 
-									BuildComplexPropertyValue(innerWriter, def, closureName + ".", closureName);
+									if (hasVisibilityMarkup)
+									{
+										members.Add(GenerateBinding("Visibility", visibilityMember));
+									}
 
 									if (!_isTopLevelDictionary
 										&& (HasXBindMarkupExtension(definition) || HasMarkupExtensionNeedingComponent(definition)))
 									{
 										var componentName = $"_component_{ CurrentScope.ComponentCount}";
-										writer.AppendLineInvariant($"this.{componentName} = {closureName};");
+
+										writer.AppendLineInvariant($"{CurrentThatReferenceValue}.{componentName} = {closureName};");
+										
 
 										using (writer.BlockInvariant($"void {componentName}_update(object sender, RoutedEventArgs e)"))
 										{
 											// Refresh the bindings when the ElementStub is unloaded. This assumes that
 											// ElementStub will be unloaded **after** the stubbed control has been created
 											// in order for the _component_XXX to be filled, and Bindings.Update() to do its work.
-											writer.AppendLineInvariant($"this.Bindings.Update();");
+											writer.AppendLineInvariant($"{CurrentThatReferenceValue}.Bindings.Update();");
 										}
 
 										writer.AppendLineInvariant($"{closureName}.Unloaded += {componentName}_update;");
 
-										CurrentScope.Components.Add(new XamlObjectDefinition(elementStubType, 0, 0, definition) { Members = { def } });
+										var xamlObjectDef = new XamlObjectDefinition(elementStubType, 0, 0, definition);
+										xamlObjectDef.Members.AddRange(members);
+										CurrentScope.Components.Add(xamlObjectDef);
 									}
+
 								}
+
 								else
 								{
 									if (visibilityMember != null)
@@ -5090,6 +5126,22 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 											BuildLiteralValue(visibilityMember)
 										);
 									}
+								}
+
+								XamlMemberDefinition GenerateBinding(string name, XamlMemberDefinition memberDefinition)
+								{
+									var def = new XamlMemberDefinition(
+										new XamlMember(name,
+											elementStubType,
+											false
+										), 0, 0
+									);
+
+									def.Objects.AddRange(memberDefinition.Objects);
+
+									BuildComplexPropertyValue(innerWriter, def, closureName + ".", closureName);
+
+									return def;
 								}
 							}
 						}
@@ -5326,15 +5378,18 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			}
 		}
 
-		private IDisposable Scope(string name)
+		private IDisposable Scope(string @namespace, string className)
 		{
-			_scopeStack.Push(new NameScope(name));
+			_scopeStack.Push(new NameScope(@namespace, className));
 
 			return new DisposableAction(() => _scopeStack.Pop());
 		}
 
 		private ResourceOwner CurrentResourceOwner
 			=> _resourceOwnerStack.Count != 0 ? _resourceOwnerStack.Peek() : null;
+
+		private string CurrentResourceOwnerName
+			=> CurrentResourceOwner?.Name ?? "this";
 
 		/// <summary>
 		/// Pushes a ResourceOwner variable name onto the stack
@@ -5349,6 +5404,25 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			_resourceOwnerStack.Push(new ResourceOwner());
 
 			return new DisposableAction(() => _resourceOwnerStack.Pop());
+		}
+
+		private ThatReference CurrentThatReference
+			=> CurrentScope?.ThatReference;
+
+		private string CurrentThatReferenceName
+			=> CurrentThatReference?.Name ?? "this";
+
+		private string CurrentThatReferenceValue
+			=> CurrentThatReference != null
+				? (CurrentThatReference.Name + ".GetTarget()")
+				: "this";
+
+		private void TrySetThatReference()
+		{
+			if (CurrentScope.ThatReference == null)
+			{
+				CurrentScope.ThatReference = new ThatReference();
+			}
 		}
 
 		/// <summary>
