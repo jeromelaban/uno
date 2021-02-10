@@ -8,6 +8,8 @@ using Uno.Extensions;
 using Uno.UI.DataBinding;
 using Windows.UI.Xaml.Media;
 using Uno.UI;
+using Uno.UI.Xaml;
+using Windows.UI.Xaml.Media.Animation;
 #if XAMARIN_IOS
 using CoreGraphics;
 using UIKit;
@@ -25,6 +27,15 @@ namespace Windows.UI.Xaml.Controls
 
 		public event EventHandler<object> Closed;
 		public event EventHandler<object> Opened;
+
+		//	.Class("PopupBase")
+		//.Property("IsOpen", "bool", "false")
+		//.Property("Child", "UIElement", "null", frameworkPropertyOption: "ValueInheritsDataContext")
+		//.Property("IsLightDismissEnabled", "bool", "true")
+		////.Property("ChildTransitions", "TransitionCollection", "null")
+		//.Property("HorizontalOffset", "double", "0")
+		//.Property("VerticalOffset", "double", "0")
+
 
 		/// <summary>
 		/// Defines a custom layouter which overrides the default placement logic of the <see cref="PopupPanel"/>
@@ -51,7 +62,16 @@ namespace Windows.UI.Xaml.Controls
 			return finalSize;
 		}
 
-		partial void OnIsOpenChangedPartial(bool oldIsOpen, bool newIsOpen)
+		[GeneratedDependencyProperty(DefaultValue = false, ChangedCallback = true)]
+		public static DependencyProperty IsOpenProperty { get; } = CreateIsOpenProperty();
+
+		public bool IsOpen
+		{
+			get => GetIsOpenValue();
+			set => SetIsOpenValue(value);
+		}
+
+		protected virtual void OnIsOpenChanged(bool oldIsOpen, bool newIsOpen)
 		{
 			if (newIsOpen)
 			{
@@ -65,7 +85,16 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
-		partial void OnChildChangedPartial(UIElement oldChild, UIElement newChild)
+		[GeneratedDependencyProperty(DefaultValue = null, ChangedCallback = true, Options = FrameworkPropertyMetadataOptions.ValueInheritsDataContext)]
+		public static DependencyProperty ChildProperty { get; } = CreateChildProperty();
+
+		public UIElement Child
+		{
+			get => GetChildValue();
+			set => SetChildValue(value);
+		}
+
+		protected virtual void OnChildChanged(UIElement oldChild, UIElement newChild)
 		{
 			if (oldChild is IDependencyObjectStoreProvider provider && !_childHasOwnDataContext)
 			{
@@ -157,8 +186,45 @@ namespace Windows.UI.Xaml.Controls
 			void Arrange(Size finalSize, Rect visibleBounds, Size desiredSize, Point? upperLeftOffset = null);
 		}
 
-		partial void OnIsLightDismissEnabledChangedPartial(bool oldIsLightDismissEnabled, bool newIsLightDismissEnabled)
+
+		[GeneratedDependencyProperty(DefaultValue = true, ChangedCallback = true)]
+		public static DependencyProperty IsLightDismissEnabledProperty { get; } = CreateIsLightDismissEnabledProperty();
+		public bool IsLightDismissEnabled
+		{
+			get => GetIsLightDismissEnabledValue();
+			set => SetIsLightDismissEnabledValue(value);
+		}
+
+		protected virtual void OnIsLightDismissEnabledChanged(bool oldIsLightDismissEnabled, bool newIsLightDismissEnabled)
 		{
 		}
+
+		[GeneratedDependencyProperty(DefaultValue = null)]
+		public static DependencyProperty ChildTransitionsProperty { get; } = CreateChildTransitionsProperty();
+		public TransitionCollection ChildTransitions
+		{
+			get => GetChildTransitionsValue();
+			set => SetChildTransitionsValue(value);
+		}
+
+		[GeneratedDependencyProperty(DefaultValue = 0.0, ChangedCallback = true, Options = FrameworkPropertyMetadataOptions.AffectsMeasure)]
+		public static DependencyProperty HorizontalOffsetProperty { get; } = CreateHorizontalOffsetProperty();
+		public double HorizontalOffset
+		{
+			get => GetHorizontalOffsetValue();
+			set => SetHorizontalOffsetValue(value);
+		}
+
+		protected virtual void OnHorizontalOffsetChanged(double oldHorizontalOffset, double newHorizontalOffset) { }
+
+		[GeneratedDependencyProperty(DefaultValue = 0.0, ChangedCallback = true, Options = FrameworkPropertyMetadataOptions.AffectsMeasure)]
+		public static DependencyProperty VerticalOffsetProperty { get; } = CreateVerticalOffsetProperty();
+		public double VerticalOffset
+		{
+			get => GetVerticalOffsetValue();
+			set => SetVerticalOffsetValue(value);
+		}
+
+		protected virtual void OnVerticalOffsetChanged(double oldVerticalOffset, double newVerticalOffset) { }
 	}
 }

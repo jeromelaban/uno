@@ -181,6 +181,7 @@
 	  <Compile Include="Mixins\Android\VisualStatesMixins.g.cs" />
 	  <Compile Include="Mixins\DependencyPropertyMixins.g.cs" />
 	  <Compile Include="Mixins\DependencyPropertyMixins.g.cs" />
+	  <Compile Include="Mixins\DependencyPropertyMixins.g.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

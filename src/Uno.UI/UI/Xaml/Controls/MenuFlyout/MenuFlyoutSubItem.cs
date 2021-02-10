@@ -805,12 +805,12 @@ namespace Windows.UI.Xaml.Controls
 
 			if (position.X != float.NegativeInfinity)
 			{
-				m_tpPopup.HorizontalOffset = position.X;
+				m_tpPopup.HorizontalOffset = position.X - 100;
 			}
 
 			if (position.Y != float.NegativeInfinity)
 			{
-				m_tpPopup.VerticalOffset = position.Y;
+				m_tpPopup.VerticalOffset = position.Y - 100;
 			}
 
 
