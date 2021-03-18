@@ -1,31 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Uno.UI.Samples.Helper;
 using Uno.Extensions;
 using Uno.UI.RuntimeTests;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Uno.UI.Samples.Helper;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Documents;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using System.Xml;
-using System.Diagnostics;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Uno.UI.Samples.Tests
 {
