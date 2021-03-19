@@ -5,14 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using SamplesApp.UITests.TestFramework;
 using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
 
 namespace SamplesApp.UITests.Microsoft_UI_Xaml_Controls.NavigationViewTests
 {
-	public class NavigationView_Tests : SampleControlUITestBase
+	public partial class NavigationView_Tests : SampleControlUITestBase
 	{
 		[Test]
 		[AutoRetry()]
