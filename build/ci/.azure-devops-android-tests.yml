@@ -67,6 +67,7 @@ jobs:
     CI_Build: true
     SourceLinkEnabled: false
     NUGET_PACKAGES: $(Agent.WorkFolder)/.nuget
+    UNO_UITEST_BUCKET_COUNT: 3 # Align with the matrix below for automated tests
 
   pool:
     vmImage: ${{ parameters.vmMacOSImage }}
@@ -77,13 +78,29 @@ jobs:
       #Android_5.0:
       #  ANDROID_SIMULATOR_APILEVEL: 21
       #  UITEST_TEST_MODE_NAME: Automated
-      Android_9.0:
+
+      Android_9.0_Group_01:
         ANDROID_SIMULATOR_APILEVEL: 28
         UITEST_TEST_MODE_NAME: Automated
+        UNO_UITEST_BUCKET_ID: 1
+
+      Android_9.0_Group_02:
+        ANDROID_SIMULATOR_APILEVEL: 28
+        UITEST_TEST_MODE_NAME: Automated
+        UNO_UITEST_BUCKET_ID: 2
+
+      Android_9.0_Group_03:
+        ANDROID_SIMULATOR_APILEVEL: 28
+        UITEST_TEST_MODE_NAME: Automated
+        UNO_UITEST_BUCKET_ID: 3
+
       Android_9.0_Snapshots:
         ANDROID_SIMULATOR_APILEVEL: 28
         UITEST_TEST_MODE_NAME: Snapshots
-        UITEST_SNAPSHOTS_ONLY: true
+
+      Android_9.0_RuntimeTests:
+        ANDROID_SIMULATOR_APILEVEL: 28
+        UITEST_TEST_MODE_NAME: RuntimeTests
 
       # Android 10 testing is disabled because of https://github.com/microsoft/appcenter/issues/1451
       # Android_10.0:
@@ -129,7 +146,9 @@ jobs:
       BUILD_SOURCESDIRECTORY: "$(build.sourcesdirectory)"
       BUILD_ARTIFACTSTAGINGDIRECTORY: "$(build.artifactstagingdirectory)"
       ANDROID_SIMULATOR_APILEVEL: $(ANDROID_SIMULATOR_APILEVEL)
-      UITEST_SNAPSHOTS_ONLY: "$(UITEST_SNAPSHOTS_ONLY)"
+      UITEST_TEST_MODE_NAME: "$(UITEST_TEST_MODE_NAME)"
+      UNO_UITEST_BUCKET_ID: "$(UNO_UITEST_BUCKET_ID)"
+      UNO_UITEST_BUCKET_COUNT: "$(UNO_UITEST_BUCKET_COUNT)"
  
   - task: PublishTestResults@2
     condition: always()
