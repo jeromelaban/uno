@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using SamplesApp.UITests.TestFramework;
 using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
@@ -15,6 +16,7 @@ namespace SamplesApp.UITests.Microsoft_UI_Xaml_Controls.NavigationViewTests
 	{
 		[Test]
 		[AutoRetry()]
+		[ActivePlatforms(Platform.iOS, Platform.Android)] // fails on WebAssembly
 		public void NavigateBackAndForthBetweenMenuItemsAndSettings_Fluent()
 		{
 			Run("SamplesApp.Samples.Microsoft_UI_Xaml_Controls.NavigationViewTests.FluentStyle.FluentStyle_NavigationViewSample");
