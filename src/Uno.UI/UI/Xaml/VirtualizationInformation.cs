@@ -7,7 +7,7 @@ namespace Windows.UI.Xaml
 {
 	/// <summary>
 	/// Class that holds virtualization information. We do not create this class indiscriminately, but only
-	// for containers that happen to be virtualizing.
+	/// for containers that happen to be virtualizing.
 	/// </summary>
 	internal sealed class VirtualizationInformation
 	{

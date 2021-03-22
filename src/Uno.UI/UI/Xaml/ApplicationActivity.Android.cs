@@ -21,6 +21,7 @@ namespace Windows.UI.Xaml
 	public class ApplicationActivity : Controls.NativePage
 	{
 
+		/// <summary>
 		/// The windows model implies only one managed activity.
 		/// </summary>
 		internal static ApplicationActivity Instance { get; private set; }
