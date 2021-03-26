@@ -3069,8 +3069,40 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						// sanitizing member.Member.Name so that "ViewModel.SearchBreeds" becomes "ViewModel_SearchBreeds"
 						var sanitizedEventTarget = SanitizeResourceName(eventTarget);
 
-						(string target, string weakReference, INamedTypeSymbol sourceType) buildTargetContext()
+						(string target, string weakReference, IMethodSymbol targetMethod) buildTargetContext()
 						{
+							IMethodSymbol FindTargetMethodSymbol(INamedTypeSymbol sourceType)
+							{
+								if (eventTarget.Contains("."))
+								{
+									ITypeSymbol currentType = sourceType;
+
+									var parts = eventTarget.Split('.');
+
+									for (var i = 0; i < parts.Length-1; i++)
+									{
+										var next = currentType.GetAllMembersWithName(parts[i]).FirstOrDefault();
+
+										currentType = next switch
+										{
+											IFieldSymbol fs => fs.Type,
+											IPropertySymbol ps => ps.Type,
+											null => throw new InvalidOperationException($"Unable to find member {parts[i]} on type {currentType}"),
+											_ => throw new InvalidOperationException($"The field {next.Name} is not supported for x:Bind event binding")
+										};
+									}
+
+									var method = currentType.GetMethods().FirstOrDefault(m => m.Name == parts.Last())
+										?? throw new InvalidOperationException($"Failed to find {parts.Last()} on {currentType}");
+
+									return method;
+								}
+								else
+								{
+									return sourceType.GetMethods().FirstOrDefault(m => m.Name == eventTarget);
+								}
+							}
+
 							if (isInsideDataTemplate.isInside)
 							{
 								var dataTypeObject = FindMember(isInsideDataTemplate.xamlObject, "DataType", XamlConstants.XamlXmlNamespace)
@@ -3083,22 +3115,23 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									// Use of __rootInstance is required to get the top-level DataContext, as it may be changed
 									// in the current visual tree by the user.
 									$"(__rootInstance as global::Uno.UI.DataBinding.IWeakReferenceProvider).WeakReference",
-									dataTypeSymbol
+									FindTargetMethodSymbol(dataTypeSymbol)
 								);
 							}
 							else
 							{
+
 								return (
 									$"{member.Member.Name}_{sanitizedEventTarget}_That.Target as {_className.className}",
 									$"({eventSource} as global::Uno.UI.DataBinding.IWeakReferenceProvider).WeakReference",
-									FindType(_className.className)
+									FindTargetMethodSymbol(FindType(_className.className))
 								);
 							}
 						}
 
 						var targetContext = buildTargetContext();
 
-						var targetMethodHasParamters = targetContext.sourceType.GetMethods().FirstOrDefault(m => m.Name == eventTarget)?.Parameters.Any() ?? false;
+						var targetMethodHasParamters = targetContext.targetMethod?.Parameters.Any() ?? false;
 						var xBindParams = targetMethodHasParamters ? parms : "";
 
 						//
@@ -3108,7 +3141,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						//
 						writer.AppendLineInvariant($"var {member.Member.Name}_{sanitizedEventTarget}_That = {targetContext.weakReference};");
 
-						writer.AppendLineInvariant($"{closureName}.{member.Member.Name} += ({parms}) => ({targetContext.target})?.{eventTarget}({xBindParams});");
+						writer.AppendLineInvariant($"/* first level targetMethod:{targetContext.targetMethod} */ {closureName}.{member.Member.Name} += ({parms}) => ({targetContext.target})?.{eventTarget}({xBindParams});");
 					}
 					else
 					{
@@ -3123,7 +3156,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						//
 						writer.AppendLineInvariant($"var {member.Member.Name}_{sanitizedMemberValue}_That = ({eventSource} as global::Uno.UI.DataBinding.IWeakReferenceProvider).WeakReference;");
 
-						writer.AppendLineInvariant($"{closureName}.{member.Member.Name} += ({parms}) => ({member.Member.Name}_{sanitizedMemberValue}_That.Target as {_className.className})?.{member.Value}({parms});");
+						writer.AppendLineInvariant($"/* second level */ {closureName}.{member.Member.Name} += ({parms}) => ({member.Member.Name}_{sanitizedMemberValue}_That.Target as {_className.className})?.{member.Value}({parms});");
 					}
 				}
 				else
