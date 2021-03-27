@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,7 +54,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		private readonly bool _shouldAnnotateGeneratedXaml = false;
 
 		private static DateTime _buildTasksBuildDate = File.GetLastWriteTime(new Uri(typeof(XamlFileGenerator).Assembly.CodeBase).LocalPath);
-		private INamedTypeSymbol[] _ambientGlobalResources;
+		private INamedTypeSymbol[]? _ambientGlobalResources;
 		private readonly bool _isUiAutomationMappingEnabled;
 		private Dictionary<string, string> _legacyTypes;
 
@@ -419,6 +421,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 					if (
 						key != null
+						&& key.Value != null
 						&& resource.Type.Name != "StaticResource"
 					)
 					{
@@ -541,28 +544,31 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 							{
 								writer.AppendLineInvariant("_initialized = true;");
 
-								foreach (var ambientResource in _ambientGlobalResources)
+								if (_ambientGlobalResources != null)
 								{
-									if (ambientResource.GetMethods().Any(m => m.Name == "Initialize"))
+									foreach (var ambientResource in _ambientGlobalResources)
 									{
-										writer.AppendLineInvariant("global::{0}.Initialize();", ambientResource.GetFullName());
+										if (ambientResource.GetMethods().Any(m => m.Name == "Initialize"))
+										{
+											writer.AppendLineInvariant("global::{0}.Initialize();", ambientResource.GetFullName());
+										}
 									}
-								}
 
-								foreach (var ambientResource in _ambientGlobalResources)
-								{
-									// Note: we do *not* call RegisterDefaultStyles for the current assembly, because those styles are treated as implicit styles, not default styles
-									if (ambientResource.GetMethods().Any(m => m.Name == "RegisterDefaultStyles"))
+									foreach (var ambientResource in _ambientGlobalResources)
 									{
-										writer.AppendLineInvariant("global::{0}.RegisterDefaultStyles();", ambientResource.GetFullName());
+										// Note: we do *not* call RegisterDefaultStyles for the current assembly, because those styles are treated as implicit styles, not default styles
+										if (ambientResource.GetMethods().Any(m => m.Name == "RegisterDefaultStyles"))
+										{
+											writer.AppendLineInvariant("global::{0}.RegisterDefaultStyles();", ambientResource.GetFullName());
+										}
 									}
-								}
 
-								foreach (var ambientResource in _ambientGlobalResources)
-								{
-									if (ambientResource.GetMethods().Any(m => m.Name == "RegisterResourceDictionariesBySource"))
+									foreach (var ambientResource in _ambientGlobalResources)
 									{
-										writer.AppendLineInvariant("global::{0}.RegisterResourceDictionariesBySource();", ambientResource.GetFullName());
+										if (ambientResource.GetMethods().Any(m => m.Name == "RegisterResourceDictionariesBySource"))
+										{
+											writer.AppendLineInvariant("global::{0}.RegisterResourceDictionariesBySource();", ambientResource.GetFullName());
+										}
 									}
 								}
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,10 +40,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return xamlSourceFiles
 				.AsParallel()
 				.Select(ParseFile)
-				.ToArray();
+				.Where(f => f != null)
+				.ToArray()!;
 		}
 
-		private XamlFileDefinition ParseFile(string file)
+		private XamlFileDefinition? ParseFile(string file)
 		{
 			try
 			{
@@ -210,7 +213,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return targetString.Substring(0, index) + newValue + targetString.Substring(index + oldValue.Length);
 		}
 
-		private (XmlNode Ignorables, bool ShouldCreateIgnorable) FindIgnorables(XmlDocument document)
+		private (XmlNode? Ignorables, bool ShouldCreateIgnorable) FindIgnorables(XmlDocument document)
 		{
 			var ignorables = document.DocumentElement.Attributes.GetNamedItem("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006") as XmlAttribute;
 
@@ -345,7 +348,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			// );
 		}
 
-		private XamlObjectDefinition VisitObject(XamlXmlReader reader, XamlObjectDefinition owner)
+		private XamlObjectDefinition VisitObject(XamlXmlReader reader, XamlObjectDefinition? owner)
 		{
 			var xamlObject = new XamlObjectDefinition(reader.Type, reader.LineNumber, reader.LinePosition, owner);
 
