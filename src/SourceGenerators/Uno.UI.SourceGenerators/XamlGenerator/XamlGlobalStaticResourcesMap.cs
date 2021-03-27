@@ -20,7 +20,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		{
 		}
 
-		internal StaticResourceDefinition FindResource(string resourceKey)
+		internal StaticResourceDefinition? FindResource(string resourceKey)
 		{
 			var list = GetListForKey(resourceKey);
 

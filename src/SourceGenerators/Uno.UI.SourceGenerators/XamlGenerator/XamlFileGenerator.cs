@@ -553,7 +553,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					throw new InvalidOperationException($"The reference {reference.Display} could not be found in {reference.Display}");
 				}
 
-				using var stream = File.OpenRead(reference.Display);
+				using var stream = File.OpenRead(reference.Display!);
 				var asm = Mono.Cecil.AssemblyDefinition.ReadAssembly(stream);
 
 				if (asm.MainModule.HasResources && asm.MainModule.Resources.Any(r => r.Name.EndsWith("upri")))
@@ -1415,7 +1415,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				throw new InvalidOperationException("TargetType cannot be empty");
 			}
 
-			var targetType = targetTypeNode.Value.ToString();
+			var targetType = targetTypeNode.Value.ToString() ?? "";
 			var fullTargetType = FindType(targetType)?.ToDisplayString() ?? targetType;
 
 			using (writer.BlockInvariant("new global::Windows.UI.Xaml.Style(typeof({0}))", GetGlobalizedTypeName(fullTargetType)))
@@ -1838,12 +1838,12 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return literalValue;
 		}
 
-		private XamlMemberDefinition FindMember(XamlObjectDefinition xamlObjectDefinition, string memberName)
+		private XamlMemberDefinition? FindMember(XamlObjectDefinition xamlObjectDefinition, string memberName)
 		{
 			return xamlObjectDefinition.Members.FirstOrDefault(m => m.Member.Name == memberName);
 		}
 
-		private XamlMemberDefinition FindMember(XamlObjectDefinition xamlObjectDefinition, string memberName, string ns)
+		private XamlMemberDefinition? FindMember(XamlObjectDefinition xamlObjectDefinition, string memberName, string ns)
 			=> xamlObjectDefinition.Members.FirstOrDefault(m => m.Member.Name == memberName && m.Member.PreferredXamlNamespace == ns);
 
 		private XamlMemberDefinition GetMember(XamlObjectDefinition xamlObjectDefinition, string memberName)
@@ -1876,9 +1876,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 			if (classMember?.Value != null)
 			{
-				var fullName = classMember.Value.ToString();
+				var fullName = classMember.Value.ToString() ?? "";
 
-				var index = fullName.LastIndexOf('.');
+				var index = fullName?.LastIndexOf('.');
 
 				return (fullName.Substring(0, index), fullName.Substring(index + 1));
 			}
@@ -2242,7 +2242,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 				if (nameProperty.Value.Value != null)
 				{
-					var name = nameProperty.Value.Value.ToString();
+					var name = nameProperty.Value.Value.ToString() ?? "";
 
 					return elementType?.GetAllPropertiesWithName(name).FirstOrDefault();
 				}
@@ -2299,7 +2299,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 		private bool IsResourceDictionarySubclass(XamlType xamlType) => xamlType.Name != "ResourceDictionary" && IsResourceDictionary(xamlType);
 
-		private XamlMemberDefinition FindImplicitContentMember(XamlObjectDefinition topLevelControl, string memberName = "_UnknownContent")
+		private XamlMemberDefinition? FindImplicitContentMember(XamlObjectDefinition topLevelControl, string memberName = "_UnknownContent")
 		{
 			return topLevelControl
 				.Members
@@ -2952,7 +2952,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 								writer.AppendLineInvariant(@"{0}.SetTargetName({2}, ""{1}"");",
 									GetGlobalizedTypeName(FindType(member.Member.DeclaringType)?.ToDisplayString() ?? member.Member.DeclaringType.Name),
-									this.RewriteAttachedPropertyPath(member.Value.ToString()),
+									this.RewriteAttachedPropertyPath(member.Value.ToString() ?? ""),
 									closureName);
 
 								writer.AppendLineInvariant("{0}.SetTarget({2}, _{1}Subject);",
@@ -2982,7 +2982,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 								writer.AppendLineInvariant(@"{0}.SetTargetProperty({2}, ""{1}"");",
 									GetGlobalizedTypeName(FindType(member.Member.DeclaringType)?.ToDisplayString() ?? member.Member.DeclaringType.Name),
-									this.RewriteAttachedPropertyPath(member.Value.ToString()),
+									this.RewriteAttachedPropertyPath(member.Value.ToString() ?? ""),
 									closureName);
 							}
 							else if (
@@ -3167,7 +3167,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									throw new Exception($"Unable to find x:DataType in enclosing DataTemplate for x:Bind event");
 								}
 
-								var dataTypeSymbol = GetType(dataTypeObject.Value.ToString());
+								var dataTypeSymbol = GetType(dataTypeObject.Value.ToString() ?? "");
 
 								return (
 									$"({member.Member.Name}_{sanitizedEventTarget}_That.Target as {XamlConstants.Types.FrameworkElement})?.DataContext as {dataTypeSymbol}",
@@ -3589,7 +3589,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					throw new Exception($"Unable to find x:DataType in enclosing DataTemplate");
 				}
 
-				var dataType = RewriteNamespaces(dataTypeObject.Value.ToString());
+				var dataType = RewriteNamespaces(dataTypeObject.Value.ToString() ?? "");
 
 				var contextFunction = XBindExpressionParser.Rewrite("___tctx", rawFunction, IsStaticMember);
 
@@ -3795,9 +3795,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			var markupTypeDef = member
 				.Objects
 				.FirstOrDefault(o => IsCustomMarkupExtensionType(o.Type));
-			var markupType = GetMarkupExtensionType(markupTypeDef.Type);
+			var markupType = GetMarkupExtensionType(markupTypeDef?.Type);
 
-			if(markupType == null)
+			if(markupType == null || markupTypeDef == null)
 			{
 				throw new InvalidOperationException($"Unable to find markup extension type for ");
 			}
@@ -4488,7 +4488,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					}
 
 					// Skip the literal value, use the elementNameSubject instead
-					string elementName = m.Value.ToString();
+					string elementName = m.Value.ToString() ?? "";
 					value = "_" + elementName + "Subject";
 					// Track referenced ElementNames
 					CurrentScope.ReferencedElementNames.Add(elementName);
@@ -4926,7 +4926,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 								writer.AppendLineInvariant($"new global::Windows.UI.Xaml.Setter(new global::Windows.UI.Xaml.TargetPropertyPath(this._{elementName}Subject, \"{propertyName}\"), ");
 
 								var targetElementType = GetType(targetElement.Type);
-								var propertyType = FindPropertyType(targetElementType.ToString(), propertyName);
+								var propertyType = FindPropertyType(targetElementType.ToString() ?? "", propertyName);
 
 								if (valueNode.Objects.None())
 								{
@@ -5039,7 +5039,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				var q = from element in EnumerateSubElements(xamlObjectDefinition.Owner)
 						let phase = FindMember(element, "Phase")?.Value
 						where phase != null
-						select int.Parse(phase.ToString());
+						select int.Parse(phase.ToString() ?? "");
 
 				var phases = q.Distinct().ToArray();
 
@@ -5157,8 +5157,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			var loadMember = FindMember(definition, "Load");
 			var hasLoadMarkup = HasMarkupExtension(loadMember);
 
-			if (strategy?.Value?.ToString().ToLowerInvariant() == "lazy"
-				|| loadMember?.Value?.ToString().ToLowerInvariant() == "false"
+			if (strategy?.Value?.ToString()?.ToLowerInvariant() == "lazy"
+				|| loadMember?.Value?.ToString()?.ToLowerInvariant() == "false"
 				|| hasLoadMarkup)
 			{
 				var visibilityMember = FindMember(definition, "Visibility");
@@ -5453,7 +5453,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						throw new InvalidOperationException($"Initializer value for {xamlObjectDefinition.Type.Name} cannot be empty");
 					}
 
-					writer.AppendFormatInvariant("{0}", GetFloatingPointLiteral(initializer.Value.ToString(), GetType(xamlObjectDefinition.Type), owner));
+					writer.AppendFormatInvariant("{0}", GetFloatingPointLiteral(initializer.Value.ToString() ?? "", GetType(xamlObjectDefinition.Type), owner));
 				}
 				else if (xamlObjectDefinition.Type.Name == "Boolean")
 				{
@@ -5462,7 +5462,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						throw new InvalidOperationException($"Initializer value for {xamlObjectDefinition.Type.Name} cannot be empty");
 					}
 
-					writer.AppendFormatInvariant("{1}", xamlObjectDefinition.Type.Name, initializer.Value.ToString().ToLowerInvariant());
+					writer.AppendFormatInvariant("{1}", xamlObjectDefinition.Type.Name, initializer.Value.ToString()?.ToLowerInvariant());
 				}
 				else
 				{

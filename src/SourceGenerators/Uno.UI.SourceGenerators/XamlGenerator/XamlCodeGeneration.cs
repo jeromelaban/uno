@@ -112,7 +112,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			_isDebug = string.Equals(_configuration, "Debug", StringComparison.OrdinalIgnoreCase);
 
 			_projectFullPath = context.GetMSBuildPropertyValue("MSBuildProjectFullPath");
-			_projectDirectory = Path.GetDirectoryName(_projectFullPath);
+			_projectDirectory = Path.GetDirectoryName(_projectFullPath)
+				?? throw new InvalidOperationException($"MSBuild property MSBuildProjectFullPath value {_projectFullPath} is not valid");
 
 			var xamlItems = context.GetMSBuildItems("Page")
 				.Concat(context.GetMSBuildItems("ApplicationDefinition"));
@@ -624,7 +625,10 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 								var file = files.FirstOrDefault(f =>
 									f.FilePath.Substring(_projectDirectory.Length+1).Equals(baseFilePath, StringComparison.OrdinalIgnoreCase));
 
-								RegisterForXamlFile(file, url);
+								if (file != null)
+								{
+									RegisterForXamlFile(file, url);
+								}
 							}
 
 							void RegisterForXamlFile(XamlFileDefinition file, string url)

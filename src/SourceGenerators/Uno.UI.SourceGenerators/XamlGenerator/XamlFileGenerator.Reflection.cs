@@ -63,8 +63,10 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		/// Gets the full target type, ensuring it is prefixed by "global::"
 		/// to avoid namespace conflicts
 		/// </summary>
-		private string GetGlobalizedTypeName(string fullTargetType)
+		private string GetGlobalizedTypeName(string? fullTargetType)
 		{
+			fullTargetType ??= "";
+
 			// Only prefix if it isn't already prefixed and if the type is fully qualified with a namespace
 			// as opposed to, for instance, "double" or "Style"
 			if (!fullTargetType.StartsWith(GlobalPrefix)

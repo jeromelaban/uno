@@ -102,7 +102,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 			var newIgnored = ignoredNs
 				.Except(_includeXamlNamespaces)
-				.Concat(_excludeXamlNamespaces.Where(n => document.DocumentElement.GetNamespaceOfPrefix(n).HasValue()))
+				.Concat(_excludeXamlNamespaces.Where(n => document.DocumentElement?.GetNamespaceOfPrefix(n).HasValue() ?? false))
 				.Concat(conditionals.ExcludedConditionals.Select(a => a.LocalName))
 				.ToArray();
 			var newIgnoredFlat = newIgnored.JoinBy(" ");
@@ -131,7 +131,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					targetLine = targetLine.TrimEnd(">");
 				}
 
-				var mcName = document.DocumentElement
+				var mcName = document.DocumentElement?
 					.Attributes
 					.Cast<XmlAttribute>()
 					.FirstOrDefault(a => a.Prefix == "xmlns" && a.Value == "http://schemas.openxmlformats.org/markup-compatibility/2006")
@@ -159,7 +159,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			{
 				adjusted = adjusted
 					.Replace(
-						"xmlns:{0}=\"{1}\"".InvariantCultureFormat(n, document.DocumentElement.GetNamespaceOfPrefix(n)),
+						"xmlns:{0}=\"{1}\"".InvariantCultureFormat(n, document.DocumentElement?.GetNamespaceOfPrefix(n)),
 						"xmlns:{0}=\"{1}\"".InvariantCultureFormat(n, Guid.NewGuid())
 					);
 			}
@@ -168,15 +168,18 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			// DeclaringType properly set.
 			foreach (var n in _includeXamlNamespaces)
 			{
-				var originalPrefix = document.DocumentElement.GetNamespaceOfPrefix(n);
-
-				if (!originalPrefix.StartsWith("using:"))
+				if (document.DocumentElement != null)
 				{
-					adjusted = adjusted
-						.Replace(
-							"xmlns:{0}=\"{1}\"".InvariantCultureFormat(n, document.DocumentElement.GetNamespaceOfPrefix(n)),
-							"xmlns:{0}=\"{1}\"".InvariantCultureFormat(n, document.DocumentElement.GetNamespaceOfPrefix(""))
-						);
+					var originalPrefix = document.DocumentElement.GetNamespaceOfPrefix(n);
+
+					if (!originalPrefix.StartsWith("using:"))
+					{
+						adjusted = adjusted
+							.Replace(
+								"xmlns:{0}=\"{1}\"".InvariantCultureFormat(n, document.DocumentElement.GetNamespaceOfPrefix(n)),
+								"xmlns:{0}=\"{1}\"".InvariantCultureFormat(n, document.DocumentElement.GetNamespaceOfPrefix(""))
+							);
+					}
 				}
 			}
 
@@ -215,10 +218,10 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 		private (XmlNode? Ignorables, bool ShouldCreateIgnorable) FindIgnorables(XmlDocument document)
 		{
-			var ignorables = document.DocumentElement.Attributes.GetNamedItem("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006") as XmlAttribute;
+			var ignorables = document.DocumentElement?.Attributes.GetNamedItem("Ignorable", "http://schemas.openxmlformats.org/markup-compatibility/2006") as XmlAttribute;
 
 			var excludeNamespaces = _excludeXamlNamespaces
-				.Select(n => new { Name = n, Namespace = document.DocumentElement.GetNamespaceOfPrefix(n) })
+				.Select(n => new { Name = n, Namespace = document.DocumentElement?.GetNamespaceOfPrefix(n) })
 				.Where(n => n.Namespace.HasValue());
 
 			var shouldCreateIgnorable = false;
@@ -227,11 +230,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			{
 				var excludeNodes = document
 					.DocumentElement
-					.SelectNodes("//* | //@*")
-					.OfType<XmlNode>()
+					?.SelectNodes("//* | //@*")
+					?.OfType<XmlNode>()
 					.Where(e => e.Prefix == nspace.Name);
 
-				if (ignorables == null && excludeNodes.Any())
+				if (ignorables == null && (excludeNodes?.Any() ?? false))
 				{
 					shouldCreateIgnorable = true;
 				}
@@ -249,7 +252,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			var included = new List<XmlAttribute>();
 			var excluded = new List<XmlAttribute>();
 
-			foreach (XmlAttribute attr in document.DocumentElement.Attributes)
+			foreach (XmlAttribute attr in document.DocumentElement!.Attributes)
 			{
 				if (attr.Prefix != "xmlns")
 				{

@@ -53,7 +53,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator.XamlRedirection
 
 		public override string ToString() => _unoMember?.ToString() ?? "";
 
-		public bool Equals(XamlMember other)
+		public bool Equals(XamlMember? other)
 			=> _name.HasValue()
 			? (
 				other != null
@@ -63,7 +63,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator.XamlRedirection
 			)
 			: _unoMember?.Equals(other?._unoMember) ?? false;
 
-		public override bool Equals(object other)
+		public override bool Equals(object? other)
 			=> other is XamlMember otherMember ? Equals(otherMember) : false;
 
 		public override int GetHashCode()
