@@ -18,7 +18,7 @@ namespace Uno.UI.Tests
 
 			var factory = LoggerFactory.Create(builder =>
 			{
-#if DEBUG
+#if false // DEBUG
 				var logLevel = LogLevel.Debug;
 #else
 				var logLevel = LogLevel.Information;
