@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\s\nv.github\uno-2\src\AddIns\vscode\templates\Uno.ProjectTemplates.Dotnet\content\unoapp-vscode\UnoQuickStart.Skia.WPF.Host\obj\Debug\netcoreapp3.1\
+C:\s\nv.github\uno\src\AddIns\vscode\templates\Uno.ProjectTemplates.Dotnet\content\unoapp-vscode\UnoQuickStart.Skia.WPF.Host\obj\Debug\netcoreapp3.1\
 UnoQuickStart.Skia.Wpf.Host
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\s\nv.github\uno-2\src\AddIns\vscode\templates\Uno.ProjectTemplates.Dotnet\content\unoapp-vscode\UnoQuickStart.Skia.WPF.Host\App.xaml
+C:\s\nv.github\uno\src\AddIns\vscode\templates\Uno.ProjectTemplates.Dotnet\content\unoapp-vscode\UnoQuickStart.Skia.WPF.Host\App.xaml
 11151548125
 11694149736
 5-2017746502
-193251367632
+1931778510826
 MainWindow.xaml;
 
 True
