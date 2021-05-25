@@ -1,5 +1,8 @@
 ﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+//
+// Portions updated to support keyboard input
 
 using System;
 using System.Runtime.InteropServices;
@@ -25,9 +28,7 @@ namespace Uno.UI.Runtime.Skia.Native
 		}
 
 		static void CloseRestricted(int fd, IntPtr userData)
-		{
-			Libc.close(fd);
-		}
+			=> Libc.close(fd);
 
 		private static readonly IntPtr* s_Interface;
 
@@ -91,7 +92,6 @@ namespace Uno.UI.Runtime.Skia.Native
 
 		[DllImport(LibInputName)]
 		public extern static IntPtr libinput_event_get_pointer_event(IntPtr ev);
-
 
 		[DllImport(LibInputName)]
 		public extern static ulong libinput_event_pointer_get_time_usec(IntPtr ev);
