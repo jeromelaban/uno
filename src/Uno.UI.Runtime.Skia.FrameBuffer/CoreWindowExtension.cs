@@ -40,21 +40,25 @@ namespace Uno.UI.Runtime.Skia
 			_ownerEvents = (ICoreWindowEvents)owner;
 			_displayInformation = DisplayInformation.GetForCurrentView();
 
-try 
-{
-			_libInputContext = libinput_path_create_context();
-
-			_inputThread = new Thread(Run)
+			try
 			{
-				Name = "Uno libdev Input",
-				IsBackground = true
-			};
+				_libInputContext = libinput_path_create_context();
 
-			_inputThread.Start();
-}
-catch(Exception e){
+				_inputThread = new Thread(Run)
+				{
+					Name = "Uno libdev Input",
+					IsBackground = true
+				};
 
-}
+				_inputThread.Start();
+			}
+			catch (Exception ex)
+			{
+				if (this.Log().IsEnabled(LogLevel.Warning))
+				{
+					this.Log().LogWarning($"Failed to initialize LibInput, continuing without pointer and keyboard support ({ex.Message})");
+				}
+			}
 		}
 
 		private void Run()
