@@ -38,10 +38,11 @@ namespace Uno.UI.Runtime.Skia
 		{
 			_owner = (CoreWindow)owner;
 			_ownerEvents = (ICoreWindowEvents)owner;
-
-			_libInputContext = libinput_path_create_context();
-
 			_displayInformation = DisplayInformation.GetForCurrentView();
+
+try 
+{
+			_libInputContext = libinput_path_create_context();
 
 			_inputThread = new Thread(Run)
 			{
@@ -50,6 +51,10 @@ namespace Uno.UI.Runtime.Skia
 			};
 
 			_inputThread.Start();
+}
+catch(Exception e){
+
+}
 		}
 
 		private void Run()

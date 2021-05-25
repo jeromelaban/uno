@@ -46,7 +46,7 @@ namespace Uno.UI.Runtime.Skia.Native
 			s_Interface[1] = Convert<CloseRestrictedCallbackDelegate>(CloseRestricted);
 		}
 
-		private const string LibInputName = "libinput.so.10";
+		private const string LibInputName = "libinput_.so.10";
 
 		[DllImport(LibInputName)]
 		public extern static IntPtr libinput_path_create_context(IntPtr* iface, IntPtr userData);
