@@ -11,7 +11,7 @@ using Windows.UI.Input;
 using Uno.UI.Runtime.Skia.Native;
 using static Uno.UI.Runtime.Skia.Native.LibInput;
 using static Windows.UI.Input.PointerUpdateKind;
-using static Uno.UI.Runtime.Skia.Native.LibInput.LibInputEventType;
+using static Uno.UI.Runtime.Skia.Native.libinput_event_type;
 
 using Uno.Logging;
 

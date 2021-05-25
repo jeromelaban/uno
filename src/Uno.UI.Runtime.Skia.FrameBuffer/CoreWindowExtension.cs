@@ -15,7 +15,7 @@ using Windows.UI.Input;
 using Uno.UI.Runtime.Skia.Native;
 using static Uno.UI.Runtime.Skia.Native.LibInput;
 using static Windows.UI.Input.PointerUpdateKind;
-using static Uno.UI.Runtime.Skia.Native.LibInput.LibInputEventType;
+using static Uno.UI.Runtime.Skia.Native.libinput_event_type;
 using Uno.Logging;
 using System.Runtime.CompilerServices;
 
@@ -27,7 +27,7 @@ namespace Uno.UI.Runtime.Skia
 		private readonly ICoreWindowEvents _ownerEvents;
 		private readonly IntPtr _libInputContext;
 		private readonly Dictionary<uint, Point> _activePointers = new Dictionary<uint, Point>();
-		private readonly HashSet<PointerButton> _pointerPressed = new HashSet<PointerButton>();
+		private readonly HashSet<libinput_event_code> _pointerPressed = new HashSet<libinput_event_code>();
 		private readonly DisplayInformation _displayInformation;
 		private readonly Thread _inputThread;
 		private Point _mousePosition;
