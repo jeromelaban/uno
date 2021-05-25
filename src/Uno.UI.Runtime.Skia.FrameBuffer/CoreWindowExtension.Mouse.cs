@@ -11,7 +11,7 @@ using Windows.UI.Input;
 using Uno.UI.Runtime.Skia.Native;
 using static Uno.UI.Runtime.Skia.Native.LibInput;
 using static Windows.UI.Input.PointerUpdateKind;
-using static Uno.UI.Runtime.Skia.Native.LibInput.LibInputEventType;
+using static Uno.UI.Runtime.Skia.Native.libinput_event_type;
 
 using Uno.Logging;
 
@@ -69,9 +69,9 @@ namespace Uno.UI.Runtime.Skia
 
 					properties.PointerUpdateKind = button switch
 					{
-						PointerButton.BTN_LEFT => LeftButtonPressed,
-						PointerButton.BTN_MIDDLE => MiddleButtonPressed,
-						PointerButton.BTN_RIGHT => RightButtonPressed,
+						libinput_event_code.BTN_LEFT => LeftButtonPressed,
+						libinput_event_code.BTN_MIDDLE => MiddleButtonPressed,
+						libinput_event_code.BTN_RIGHT => RightButtonPressed,
 						_ => Other
 					};
 
@@ -83,9 +83,9 @@ namespace Uno.UI.Runtime.Skia
 
 					properties.PointerUpdateKind = button switch
 					{
-						PointerButton.BTN_LEFT => LeftButtonReleased,
-						PointerButton.BTN_MIDDLE => MiddleButtonReleased,
-						PointerButton.BTN_RIGHT => RightButtonReleased,
+						libinput_event_code.BTN_LEFT => LeftButtonReleased,
+						libinput_event_code.BTN_MIDDLE => MiddleButtonReleased,
+						libinput_event_code.BTN_RIGHT => RightButtonReleased,
 						_ => Other
 					};
 
@@ -93,9 +93,9 @@ namespace Uno.UI.Runtime.Skia
 				}
 			}
 
-			properties.IsLeftButtonPressed = _pointerPressed.Contains(PointerButton.BTN_LEFT);
-			properties.IsMiddleButtonPressed = _pointerPressed.Contains(PointerButton.BTN_MIDDLE);
-			properties.IsRightButtonPressed = _pointerPressed.Contains(PointerButton.BTN_RIGHT);
+			properties.IsLeftButtonPressed = _pointerPressed.Contains(libinput_event_code.BTN_LEFT);
+			properties.IsMiddleButtonPressed = _pointerPressed.Contains(libinput_event_code.BTN_MIDDLE);
+			properties.IsRightButtonPressed = _pointerPressed.Contains(libinput_event_code.BTN_RIGHT);
 
 			var pointerPoint = new Windows.UI.Input.PointerPoint(
 				frameId: (uint)timestamp, // UNO TODO: How should set the frame, timestamp may overflow.
