@@ -8,6 +8,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Uno.WinUI.Runtime.Skia.LinuxFB;
+using Windows.UI.Composition;
 
 namespace Uno.UI.Runtime.Skia.Native
 {
@@ -129,5 +130,25 @@ namespace Uno.UI.Runtime.Skia.Native
 
 		[DllImport(LibInputName)]
 		public extern static libinput_key_state libinput_event_keyboard_get_key_state(IntPtr ev);
+
+		[DllImport(LibInputName)]
+		public extern static int libinput_device_config_calibration_has_matrix(IntPtr device);
+
+		[DllImport(LibInputName)]
+		public extern static int libinput_device_config_calibration_get_matrix(IntPtr device, float[] matrix);
+
+		[DllImport(LibInputName)]
+		public extern static libinput_config_status libinput_device_config_calibration_set_matrix(IntPtr device, float[] matrix);
+
+		[DllImport(LibInputName)]
+		public extern static int libinput_device_config_calibration_get_default_matrix(IntPtr device, float[] matrix);
+
+		public enum libinput_config_status
+		{
+			LIBINPUT_CONFIG_STATUS_SUCCESS = 0, /** Config applied successfully */
+			LIBINPUT_CONFIG_STATUS_UNSUPPORTED, /** Configuration not available on
+													this device */
+			LIBINPUT_CONFIG_STATUS_INVALID,     /** Invalid parameter range */
+		}
 	}
 }

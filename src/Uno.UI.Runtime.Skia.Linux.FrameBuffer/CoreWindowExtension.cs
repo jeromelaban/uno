@@ -74,7 +74,55 @@ namespace Uno.UI.Runtime.Skia
 					this.Log().Debug($"Opening input device {f}");
 				}
 
-				libinput_path_add_device(_libInputContext, f);
+				var device = libinput_path_add_device(_libInputContext, f);
+
+				if (device != IntPtr.Zero)
+				{
+					if (libinput_device_config_calibration_has_matrix(device) != 0)
+					{
+						if (this.Log().IsEnabled(LogLevel.Debug))
+						{
+							this.Log().Debug($"Device {f} supports calibration");
+						}
+
+						var matrix = new float[6];
+						Console.WriteLine("before libinput_device_config_calibration_get_matrix");
+						var result = libinput_device_config_calibration_get_matrix(device, matrix);
+						Console.WriteLine("after libinput_device_config_calibration_get_matrix");
+
+						if (this.Log().IsEnabled(LogLevel.Debug))
+						{
+							var formattedMatrix = GetFormattedMatrix(matrix);
+							this.Log().Debug($"Current Device {f} current matrix: {formattedMatrix} result2: {result}");
+						}
+
+						var defaultMatrix = new float[6];
+						var result2 = libinput_device_config_calibration_get_default_matrix(device, defaultMatrix);
+
+						if (this.Log().IsEnabled(LogLevel.Debug))
+						{
+							var formattedMatrix = GetFormattedMatrix(matrix);
+							this.Log().Debug($"Current Device {f} default matrix: {formattedMatrix} result2: {result2}");
+						}
+
+						var result3 = libinput_device_config_calibration_set_matrix(device, defaultMatrix);
+
+						if (this.Log().IsEnabled(LogLevel.Debug))
+						{
+							var formattedMatrix = GetFormattedMatrix(matrix);
+							this.Log().Debug($"Current Device {f} Applied default matrix, result:{result3}");
+						}
+					}
+					else
+					{
+						if (this.Log().IsEnabled(LogLevel.Debug))
+						{
+							this.Log().Debug($"Device {f} does not support calibration");
+						}
+					}
+				}
+
+
 			}
 
 			while (!_cts.IsCancellationRequested)
@@ -115,6 +163,9 @@ namespace Uno.UI.Runtime.Skia
 				Libc.poll(&pfd, (IntPtr)1, -1);
 			}
 		}
+
+		private static string GetFormattedMatrix(float[] matrix)
+			=> $"{matrix[0]} {matrix[1]} {matrix[2]} {matrix[3]} {matrix[4]} {matrix[5]}";
 
 		private void RaisePointerEvent(Action<PointerEventArgs> raisePointerEvent, PointerEventArgs args)
 		{
