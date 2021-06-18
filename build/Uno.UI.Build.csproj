@@ -55,12 +55,12 @@
 		<CallTarget Targets="BuildCImacOS" Condition="'$(Configuration)'=='Release' and !$(_isWindows)" />
 
 		<CallTarget Targets="BuildNuGetPackage" Condition="'$(Configuration)'=='Release'" />
-		<CallTarget Targets="PublishVisx" Condition="'$(Configuration)'=='Release' and $(_isWindows)" />
+		<CallTarget Targets="PublishVSIX" Condition="'$(Configuration)'=='Release' and $(_isWindows)" />
 	</Target>
 
 	<Target Name="UpdateFileVersions">
 
-		<XmlUpdate XmlFileName="..\src\SolutionTemplate\UnoSolutionTemplate.VISX\source.extension.vsixmanifest"
+		<XmlUpdate XmlFileName="..\src\SolutionTemplate\UnoSolutionTemplate.VSIX\source.extension.vsixmanifest"
 							 XPath="/x:PackageManifest/x:Metadata/x:Identity/@Version"
 							 Value="$(GITVERSION_MajorMinorPatch).$(GITVERSION_CommitsSinceVersionSource)"
 							 Namespace="http://schemas.microsoft.com/developer/vsx-schema/2011"
@@ -182,8 +182,8 @@
 		<Exec Command="..\src\Uno.UWPSyncGenerator\Bin\Release\Uno.UWPSyncGenerator.exe &quot;sync&quot;" />
 	</Target>
 
-	<Target Name="PublishVisx" Condition="'$(UNO_UWP_BUILD)'=='true'">
-		<Copy SourceFiles="..\src\SolutionTemplate\UnoSolutionTemplate.VISX\bin\Release\UnoSolutionTemplate.VSIX.vsix"
+	<Target Name="PublishVSIX" Condition="'$(UNO_UWP_BUILD)'=='true'">
+		<Copy SourceFiles="..\src\SolutionTemplate\UnoSolutionTemplate.VSIX\bin\Release\UnoSolutionTemplate.VSIX.vsix"
 					DestinationFiles="$(OutputDir)\vslatest\UnoPlatform-$(GITVERSION_SemVer).vsix" />
 	</Target>
 
