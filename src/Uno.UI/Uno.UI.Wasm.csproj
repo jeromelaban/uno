@@ -21,6 +21,7 @@
 		
 		<PackageId Condition="'$(UNO_UWP_BUILD)'!='true'">Uno.WinUI</PackageId>
 
+		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
 		<UnoRuntimeIdentifier>WebAssembly</UnoRuntimeIdentifier>
 		<PlatformItemsBasePath>.\</PlatformItemsBasePath>
 	</PropertyGroup>
@@ -46,10 +47,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="LinkerDefinition.Wasm.xml">
-		<LogicalName>$(AssemblyName).xml</LogicalName>
-	  </EmbeddedResource>
 	  <EmbeddedResource Include="Microsoft\UI\Xaml\Controls\ProgressRing\ProgressRingDeterminate.json" />
+		
+	  <EmbeddedResource Include="LinkerDefinition.Wasm.xml">
+			<LogicalName>$(AssemblyName).xml</LogicalName>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>

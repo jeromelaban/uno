@@ -47,6 +47,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		private readonly string _projectDirectory;
 		private readonly string _projectFullPath;
 		private readonly bool _outputSourceComments = true;
+		private readonly bool _xamlResourcesTrimming;
 		private readonly RoslynMetadataHelper _metadataHelper;
 
 		/// <summary>
@@ -165,6 +166,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			if (bool.TryParse(context.GetMSBuildPropertyValue("UnoXamlLazyVisualStateManagerEnabled"), out var isLazyVisualStateManagerEnabled))
 			{
 				_isLazyVisualStateManagerEnabled = isLazyVisualStateManagerEnabled;
+			}
+
+			if (bool.TryParse(context.GetMSBuildPropertyValue("UnoXamlResourcesTrimming"), out var xamlResourcesTrimming))
+			{
+				_xamlResourcesTrimming = xamlResourcesTrimming;
 			}
 
 			_targetPath = Path.Combine(
@@ -297,7 +303,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									skipUserControlsInVisualTree: _skipUserControlsInVisualTree,
 									shouldAnnotateGeneratedXaml: _shouldAnnotateGeneratedXaml,
 									isUnoAssembly: IsUnoAssembly,
-									isLazyVisualStateManagerEnabled: _isLazyVisualStateManagerEnabled
+									isLazyVisualStateManagerEnabled: _isLazyVisualStateManagerEnabled,
+									xamlResourcesTrimming: _xamlResourcesTrimming
 								)
 								.GenerateFile()
 						)
