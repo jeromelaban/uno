@@ -2269,7 +2269,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			}
 			catch (Exception e)
 			{
-				throw new InvalidOperationException(
+				throw new XamlParsingException(
 					"An error occurred when processing {0} at line {1}:{2} ({3}) : {4}"
 					.InvariantCultureFormat(
 						topLevelControl.Type.Name,
@@ -2279,6 +2279,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						e.Message
 					)
 					, e
+					, topLevelControl.LineNumber
+					, topLevelControl.LinePosition
+					, _fileDefinition.FilePath
 				);
 			}
 		}
