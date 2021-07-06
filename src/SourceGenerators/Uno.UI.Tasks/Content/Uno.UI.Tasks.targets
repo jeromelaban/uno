@@ -21,9 +21,9 @@
   to inject Uno properly. Failing to add this task early enough makes X.A and X.I miss the generated resource files.
   -->
   <Target Name="UnoResourcesGeneration"
-				BeforeTargets="_GetLibraryImports;PrepareForBuild;_CheckForContent"
-				DependsOnTargets="ResolveProjectReferences"
-				Condition="'$(DesignTimeBuild)' != 'true' and '$(BuildingInsideUnoSourceGenerator)' == ''">
+			  BeforeTargets="_GetLibraryImports;PrepareForBuild;_CheckForContent"
+			  DependsOnTargets="ResolveProjectReferences"
+			  Condition="'$(DesignTimeBuild)' != 'true' and '$(BuildingInsideUnoSourceGenerator)' == ''">
 
 	<CheckForDevenv Condition="'$(SolutionFileName)'=='Uno.UI.sln'" />
 
@@ -51,9 +51,9 @@
   </Target>
 
   <Target Name="UnoAssetsGeneration"
-				BeforeTargets="_GetLibraryImports;PrepareForBuild;_CheckForContent"
-				DependsOnTargets="ResolveProjectReferences"
-				Condition="'$(DesignTimeBuild)' != 'true' and '$(BuildingInsideUnoSourceGenerator)' == '' and ('$(XamarinProjectType)'!='' or '$(UnoForceProcessPRIResource)'!='')">
+			  BeforeTargets="_GetLibraryImports;PrepareForBuild;_CheckForContent"
+			  DependsOnTargets="ResolveProjectReferences"
+			  Condition="'$(DesignTimeBuild)' != 'true' and '$(BuildingInsideUnoSourceGenerator)' == '' and ('$(XamarinProjectType)'!='' or '$(UnoForceProcessPRIResource)'!='')">
 	<!-- Assets -->
 	<PropertyGroup>
 	  <UseHighDPIResources Condition="'$(UseHighDPIResources)'==''">True</UseHighDPIResources>
@@ -82,8 +82,8 @@
   </Target>
 
   <Target Name="_UnoLinkerHintsSubstitutionsMerge"
-		Condition="'$(UnoXamlResourcesTrimming)'=='true'"
-		AfterTargets="CoreCompile">
+	  Condition="'$(UnoXamlResourcesTrimming)'=='true'"
+	  AfterTargets="CoreCompile">
 
 	<ItemGroup>
 	  <!-- Filter ReferenceCopyLocalPaths as it may contain pdbs as well -->
@@ -106,8 +106,8 @@
   </Target>
 
   <Target Name="_UnoLinkerHintsPass1"
-		  Condition="'$(IsUnoHead)'=='true' and '$(UnoXamlResourcesTrimming)'=='true'"
-		  BeforeTargets="BuildDist">
+		Condition="'$(IsUnoHead)'=='true' and '$(UnoXamlResourcesTrimming)'=='true'"
+		BeforeTargets="BuildDist">
 
 	<ItemGroup>
 	  <!-- Filter ReferenceCopyLocalPaths as it may contain pdbs as well -->
@@ -136,9 +136,9 @@
     -->
 
   <UsingTask
-  TaskName="CheckForDevenv"
-  TaskFactory="CodeTaskFactory"
-  AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" >
+TaskName="CheckForDevenv"
+TaskFactory="CodeTaskFactory"
+AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" >
 	<ParameterGroup />
 	<Task>
 	  <Reference Include="System.Xml"/>

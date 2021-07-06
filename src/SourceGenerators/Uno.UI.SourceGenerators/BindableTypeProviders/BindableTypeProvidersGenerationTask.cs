@@ -668,7 +668,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 				{
 					using (writer.BlockInvariant($"static void RegisterBuilder{type.Value.Index:000}()"))
 					{
-						if (type.Key.GetAllInterfaces().Any(i => SymbolEqualityComparer.Default.Equals(i, _dependencyObjectSymbol)))
+						if (_xamlResourcesTrimming && type.Key.GetAllInterfaces().Any(i => SymbolEqualityComparer.Default.Equals(i, _dependencyObjectSymbol)))
 						{
 							var linkerHintsClassName = LinkerHintsHelpers.GetLinkerHintsClassName(_defaultNamespace);
 							var safeTypeName =  LinkerHintsHelpers.GetPropertyAvailableName(type.Key.GetFullMetadataName());

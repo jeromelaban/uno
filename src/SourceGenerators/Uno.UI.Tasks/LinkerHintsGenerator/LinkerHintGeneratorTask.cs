@@ -29,6 +29,8 @@ namespace Uno.UI.Tasks.LinkerHintsGenerator
 #endif
 
 		private List<string> _referencedAssemblies = new List<string>();
+		private string[] _searchPaths = new string[0];
+		private DefaultAssemblyResolver? _assemblyResolver;
 
 		[Required]
 		public string AssemblyPath { get; set; } = "";
@@ -62,21 +64,60 @@ namespace Uno.UI.Tasks.LinkerHintsGenerator
 			Log.LogMessage(DefaultLogMessageLevel, $"Running linker pass 1");
 
 			RunLinker(pass1Path, features);
+			var currrentPassFeatures = BuildResultingFeaturesList(pass1Path);
 
-			var pass1Features = BuildResultingFeaturesList(pass1Path);
-			var pass1LinkerFeatures = string.Join(" ", pass1Features.Select(h => $"--feature {h.Key} {h.Value}"));
+			int pass= 1;
+			do
+			{
+				pass++;
 
-			Log.LogMessage(DefaultLogMessageLevel, $"Running linker pass 2");
-			RunLinker(OutputPath, pass1LinkerFeatures);
+				var currentPassPath = Path.Combine(OutputPath, $"pass{pass}");
+				var currentPassLinkerFeatures = FormatFeaturesForLinker(currrentPassFeatures);
 
-			var finalFeatures = BuildResultingFeaturesList(OutputPath);
+				Log.LogMessage(DefaultLogMessageLevel, $"Running linker pass {pass}");
+				Log.LogMessage(DefaultLogMessageLevel, $"Pass features {currentPassLinkerFeatures}");
+				RunLinker(currentPassPath, currentPassLinkerFeatures);
 
-			OutputFeatures = finalFeatures
+				var newFeatures = BuildResultingFeaturesList(currentPassPath);
+
+				var newList = ToOrderedFeatureArray(newFeatures);
+				var currentList = ToOrderedFeatureArray(currrentPassFeatures);
+
+				currrentPassFeatures = newFeatures;
+
+				if (newList.SequenceEqual(currentList))
+				{
+					Log.LogMessage(DefaultLogMessageLevel, $"Found stable features list, copying to output directory");
+					Log.LogMessage(DefaultLogMessageLevel, $"Final features {FormatFeaturesForLinker(currrentPassFeatures)}");
+
+					foreach (var file in Directory.GetFiles(currentPassPath, "*.dll"))
+					{
+						var targetPath = Path.Combine(OutputPath, Path.GetFileName(file));
+						File.Copy(file, targetPath, true);
+					}
+
+					break;
+				}
+				else
+				{
+					Log.LogMessage(DefaultLogMessageLevel, $"Feature list changed, linking again");
+				}
+			}
+			while (true);
+
+			OutputFeatures = currrentPassFeatures
 				.Select(f => new TaskItem(f.Key, new Dictionary<string, string> { ["Value"] = f.Value }))
 				.ToArray();
 
 			return true;
 		}
+
+		private static string FormatFeaturesForLinker(Dictionary<string, string> currrentPassFeatures) =>
+						string.Join(" ", currrentPassFeatures.Select(h => $"--feature {h.Key} {h.Value}"));
+		private static (string Key, string Value)[] ToOrderedFeatureArray(Dictionary<string, string> features) => features
+							.Select(p => (p.Key, p.Value))
+							.OrderBy(p => p.Key)
+							.ToArray();
 
 		private void RunLinker(string outputPath, string features)
 		{
@@ -163,7 +204,7 @@ namespace Uno.UI.Tasks.LinkerHintsGenerator
 			}
 			catch(Exception e)
 			{
-
+				Log.LogMessage(DefaultLogMessageLevel, $"Failed to resolve base types for {type.FullName}: {e.Message}");
 			}
 
 			return false;
@@ -175,7 +216,11 @@ namespace Uno.UI.Tasks.LinkerHintsGenerator
 
 			var hints = FindAvailableLinkerHints(assemblySearchList);
 
-			return string.Join(" ", hints.Select(h => $"--feature {h} false"));
+			var output = string.Join(" ", hints.Select(h => $"--feature {h} false"));
+
+			assemblySearchList.ForEach(a => a.Dispose());
+
+			return output;
 		}
 
 		private static List<string> FindAvailableLinkerHints(List<AssemblyDefinition> assemblySearchList)
@@ -217,7 +262,7 @@ namespace Uno.UI.Tasks.LinkerHintsGenerator
 		{
 			try
 			{
-				return AssemblyDefinition.ReadAssembly(asmPath);
+				return AssemblyDefinition.ReadAssembly(asmPath, new ReaderParameters { AssemblyResolver = _assemblyResolver });
 			}
 			catch (Exception ex)
 			{
@@ -237,6 +282,18 @@ namespace Uno.UI.Tasks.LinkerHintsGenerator
 
 					var name = Path.GetFileName(referencePath.ItemSpec);
 					_referencedAssemblies.Add(referencePath.ItemSpec);
+				}
+
+				_searchPaths = ReferencePath
+						.Select(p => Path.GetDirectoryName(p.ItemSpec))
+						.Distinct()
+						.ToArray();
+
+				_assemblyResolver = new DefaultAssemblyResolver();
+
+				foreach (var assembly in _searchPaths)
+				{
+					_assemblyResolver.AddSearchDirectory(assembly);
 				}
 			}
 		}
