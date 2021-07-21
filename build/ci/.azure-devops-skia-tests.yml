@@ -17,7 +17,9 @@ jobs:
     NUGET_PACKAGES: $(Agent.WorkFolder)\.nuget
 
   steps:
-   
+ 
+  - template: templates/dotnet-install.yml
+  
   - task: MSBuild@1
     inputs:
       solution: src/SamplesApp/SamplesApp.Skia.Gtk/SamplesApp.Skia.Gtk.csproj
