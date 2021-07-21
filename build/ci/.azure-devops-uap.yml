@@ -1,12 +1,11 @@
 parameters:
-  vmImage: ''
+  poolName: ''
 
 jobs:
 - job: UAP_Build
   displayName: 'UWP Samples App'
 
-  pool:
-    vmImage: ${{ parameters.vmImage }}
+  pool: ${{ parameters.poolName }}
 
   variables:
     CombinedConfiguration: Release|Any CPU

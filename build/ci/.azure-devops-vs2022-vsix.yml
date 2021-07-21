@@ -5,8 +5,7 @@ jobs:
 - job: VS2022_VSIX
   displayName: 'VS 2022 Extension build'
 
-  pool:
-    vmImage: ${{ parameters.vmImage }}
+  pool: ${{ parameters.poolName }}
 
   variables:
     CombinedConfiguration: Release|Any CPU

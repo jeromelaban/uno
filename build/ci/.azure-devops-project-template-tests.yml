@@ -1,13 +1,12 @@
 parameters:
-  vmImageWindows: ''
+  poolNameWindows: ''
   vmImageLinux: ''
 
 jobs:
 - job: Dotnet_Template_Tests
   displayName: 'dotnet new Templates Tests'
 
-  pool:
-    vmImage: ${{ parameters.vmImageWindows }}
+  pool: ${{ parameters.poolNameWindows }}
 
   dependsOn: Generate_Packages
 
