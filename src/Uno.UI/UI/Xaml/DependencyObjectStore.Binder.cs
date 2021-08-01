@@ -96,7 +96,7 @@ namespace Windows.UI.Xaml
 
 		private void ApplyChildrenBindable(object? inheritedValue, bool isTemplatedParent)
 		{
-			void SetInherited(IDependencyObjectStoreProvider provider)
+			static void SetInherited(IDependencyObjectStoreProvider provider, object? inheritedValue, bool isTemplatedParent)
 			{
 				if (isTemplatedParent)
 				{
@@ -107,6 +107,7 @@ namespace Windows.UI.Xaml
 					provider.Store.SetInheritedDataContext(inheritedValue);
 				}
 			}
+
 			for (int i = 0; i < _childrenBindable.Count; i++)
 			{
 				var child = _childrenBindable[i];
@@ -130,7 +131,7 @@ namespace Windows.UI.Xaml
 
 				if (childAsStoreProvider != null)
 				{
-					SetInherited(childAsStoreProvider);
+					SetInherited(childAsStoreProvider, inheritedValue, isTemplatedParent);
 				}
 				else
 				{
@@ -147,7 +148,7 @@ namespace Windows.UI.Xaml
 							{
 								if (list[childIndex] is IDependencyObjectStoreProvider provider2)
 								{
-									SetInherited(provider2);
+									SetInherited(provider2, inheritedValue, isTemplatedParent);
 								}
 							}
 						}
@@ -157,7 +158,7 @@ namespace Windows.UI.Xaml
 							{
 								if (item is IDependencyObjectStoreProvider provider2)
 								{
-									SetInherited(provider2);
+									SetInherited(provider2, inheritedValue, isTemplatedParent);
 								}
 							}
 						}
@@ -561,43 +562,69 @@ namespace Windows.UI.Xaml
 		{
 			SetBindingValue(propertyDetails, args.NewValue);
 
-			var (hasValueInherits, hasValueDoesNotInherit) = GetPropertyInheritanceConfiguration(propertyDetails);
+			GetPropertyInheritanceConfiguration(
+				propertyDetails,
+				args,
+				hasValueInherits: out var hasValueInherits,
+				hasValueDoesNotInherit: out var hasValueDoesNotInherits,
+				valueAsProvider: out var newValueAsProvider
+			);
 
-			if (!hasValueDoesNotInherit && hasValueInherits)
+			if (!hasValueDoesNotInherits)
 			{
-				if (args.NewValue is IDependencyObjectStoreProvider provider)
+				if (hasValueInherits)
 				{
-					_childrenBindable[GetOrCreateChildBindablePropertyIndex(propertyDetails.Property)] =
-						provider.Store.Parent != ActualInstance ? args.NewValue : null;
+					if (newValueAsProvider != null)
+					{
+						_childrenBindable[GetOrCreateChildBindablePropertyIndex(propertyDetails.Property)]
+							= newValueAsProvider.Store.Parent != ActualInstance ? args.NewValue : null;
+					}
+					else
+					{
+						_childrenBindable[GetOrCreateChildBindablePropertyIndex(propertyDetails.Property)] = args.NewValue;
+					}
 				}
 				else
 				{
-					_childrenBindable[GetOrCreateChildBindablePropertyIndex(propertyDetails.Property)] = args.NewValue;
+					if (newValueAsProvider is { }
+						&& !(newValueAsProvider is UIElement))
+					{
+						_childrenBindable[GetOrCreateChildBindablePropertyIndex(propertyDetails.Property)]
+							= newValueAsProvider;
+					}
 				}
 			}
 		}
 
-		(bool hasValueInherits, bool hasValueDoesNotInherit) GetPropertyInheritanceConfiguration(DependencyPropertyDetails propertyDetails)
-		{
-			if (
-				propertyDetails.Property == _templatedParentProperty
-				|| propertyDetails.Property == _dataContextProperty
+		void GetPropertyInheritanceConfiguration(
+			DependencyPropertyDetails propertyDetails,
+			DependencyPropertyChangedEventArgs args,
+			out bool hasValueInherits,
+			out bool hasValueDoesNotInherit,
+			out IDependencyObjectStoreProvider? valueAsProvider
 			)
+		{
+			if (propertyDetails.Property == _templatedParentProperty
+				|| propertyDetails.Property == _dataContextProperty)
 			{
-				// DataContext is inherited
 				// TemplatedParent is a DependencyObject but does not propagate datacontext
-				return (false, true);
+				hasValueInherits = false;
+				hasValueDoesNotInherit = true;
+				valueAsProvider = null;
+				return;
 			}
 
 			if (propertyDetails.Metadata is FrameworkPropertyMetadata propertyMetadata)
 			{
-				return (
-					propertyMetadata.Options.HasValueInheritsDataContext()
-					, propertyMetadata.Options.HasValueDoesNotInheritDataContext()
-				);
+				hasValueInherits = propertyMetadata.Options.HasValueInheritsDataContext();
+				hasValueDoesNotInherit = propertyMetadata.Options.HasValueDoesNotInheritDataContext();
+				valueAsProvider = args.NewValue as IDependencyObjectStoreProvider;
+				return;
 			}
 
-			return (false, false);
+			hasValueInherits = false;
+			hasValueDoesNotInherit = false;
+			valueAsProvider = args.NewValue as IDependencyObjectStoreProvider;
 		}
 
 		/// <summary>
