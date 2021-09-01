@@ -1085,7 +1085,7 @@ namespace Windows.UI.Xaml.Controls
 				// This invariant is only enforced by SetConstantVelocities() when scrolling toward the start of the list.
 				&& actualOffset < 0)
 			{
-				Debug.Assert(actualOffset == _pendingReorderScrollAdjustment, $"Different scroll than expected while reordering, actual={actualOffset}, expected={_pendingReorderScrollAdjustment}");
+				Debug.Assert(actualOffset == _pendingReorderScrollAdjustment, (string)$"Different scroll than expected while reordering, actual={actualOffset}, expected={_pendingReorderScrollAdjustment}");
 			}
 			_pendingReorderScrollAdjustment = 0;
 
@@ -1690,11 +1690,11 @@ namespace Windows.UI.Xaml.Controls
 					var previousRow = materializedNormalLines[i - 1].LastItem.Row;
 					if (_pendingReorder?.index is { } reorderIndex && currentRow == reorderIndex.Row + 1)
 					{
-						Debug.Assert(currentRow == previousRow + 2, $"Non-reordering items after and before reordering item: current={currentRow}, previous={previousRow}");
+						Debug.Assert(currentRow == previousRow + 2, (string)$"Non-reordering items after and before reordering item: current={currentRow}, previous={previousRow}");
 					}
 					else
 					{
-						Debug.Assert(currentRow == previousRow + 1, $"Non-reordering items must be contiguous: current={currentRow}, previous={previousRow}");
+						Debug.Assert(currentRow == previousRow + 1, (string)$"Non-reordering items must be contiguous: current={currentRow}, previous={previousRow}");
 					}
 				}
 			}
