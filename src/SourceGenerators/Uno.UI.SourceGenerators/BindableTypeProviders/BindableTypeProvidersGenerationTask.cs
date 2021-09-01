@@ -204,7 +204,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 				AnalyzerSuppressionsGenerator.Generate(writer, AnalyzerSuppressions);
 				using (writer.BlockInvariant("public class BindableMetadataProvider : global::Uno.UI.DataBinding.IBindableMetadataProvider"))
 				{
-					writer.AppendLineInvariant(@"static global::System.Collections.Hashtable _bindableTypeCacheByFullName = new global::System.Collections.Hashtable({0});", q.Count());
+					writer.AppendLineInvariant(@"global::System.Collections.Hashtable _bindableTypeCacheByFullName = new global::System.Collections.Hashtable({0});", q.Count());
 
 					writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1502:AvoidExcessiveComplexity\", Justification=\"Must be ignored even if generated code is checked.\")]");
 					writer.AppendLineInvariant("[System.Diagnostics.CodeAnalysis.SuppressMessage(\"Microsoft.Maintainability\", \"CA1506:AvoidExcessiveClassCoupling\", Justification = \"Must be ignored even if generated code is checked.\")]");
@@ -656,7 +656,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 
 			private void GenerateTypeTable(IndentedStringBuilder writer, IEnumerable<INamedTypeSymbol> types)
 			{
-				using (writer.BlockInvariant("static BindableMetadataProvider()"))
+				using (writer.BlockInvariant("public BindableMetadataProvider()"))
 				{
 					foreach (var type in _typeMap.Where(k => !k.Key.IsGenericType))
 					{
@@ -666,7 +666,7 @@ namespace Uno.UI.SourceGenerators.BindableTypeProviders
 
 				foreach (var type in _typeMap.Where(k => !k.Key.IsGenericType))
 				{
-					using (writer.BlockInvariant($"static void RegisterBuilder{type.Value.Index:000}()"))
+					using (writer.BlockInvariant($"void RegisterBuilder{type.Value.Index:000}()"))
 					{
 						if (_xamlResourcesTrimming && type.Key.GetAllInterfaces().Any(i => SymbolEqualityComparer.Default.Equals(i, _dependencyObjectSymbol)))
 						{
