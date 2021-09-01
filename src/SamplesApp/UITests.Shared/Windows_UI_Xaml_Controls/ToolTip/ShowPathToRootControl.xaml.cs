@@ -20,7 +20,7 @@ namespace UITests.Shared.Windows_UI_Xaml_Controls.ToolTip
 
 			while (ctl != null)
 			{
-				sb.AppendLine($"{ctl.GetType()} - {ctl.Name}");
+				sb.AppendLine(/* remove starting from .NET 6 RC1 */(string)$"{ctl.GetType()} - {ctl.Name}");
 				ctl = ctl.Parent as FrameworkElement;
 			}
 

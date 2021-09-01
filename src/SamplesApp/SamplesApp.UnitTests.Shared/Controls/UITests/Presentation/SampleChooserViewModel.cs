@@ -193,7 +193,7 @@ namespace SampleControl.Presentation
 					}
 
 					var builder = new System.Text.StringBuilder();
-					builder.AppendLine($"Dump for '{currentContent.GetType().FullName}':");
+					builder.AppendLine(/* remove starting from .NET 6 RC1 */(string)$"Dump for '{currentContent.GetType().FullName}':");
 					PrintViewHierarchy(currentContent, builder);
 					var toLog = builder.ToString();
 					this.Log().Debug(toLog);

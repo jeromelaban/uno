@@ -43,10 +43,8 @@ namespace Uno.UI.Controls
 		}
 
 		public BindableView(Android.Content.Context context)
-			: base(IntPtr.Zero, JniHandleOwnership.DoNotTransfer)
+			: base(context)
 		{
-			NativeInstanceHelper.CreateNativeInstance(base.GetType(), this, context, base.SetHandle);
-
 			Initialize();
 		}
 

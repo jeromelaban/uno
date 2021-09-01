@@ -28,23 +28,23 @@ namespace Microsoft.UI.Xaml.Tests.Common
 			FrameworkElementLosingFocusHandler = new TypedEventHandler<UIElement, LosingFocusEventArgs>((source, e) =>
 			{
 				FrameworkElement sourceAsFrameworkElement = (FrameworkElement)source;
-				EventOrder.Append($"[{sourceAsFrameworkElement.Name}LosingFocus{CanceledToLoggedString(e.Cancel)}{HandledToLoggedString(e.Handled)}{CorrelationIDToLoggedString(e.CorrelationId)}]");
+				EventOrder.Append(/* remove starting from .NET 6 RC1 */(string)$"[{sourceAsFrameworkElement.Name}LosingFocus{CanceledToLoggedString(e.Cancel)}{HandledToLoggedString(e.Handled)}{CorrelationIDToLoggedString(e.CorrelationId)}]");
 			});
 
 			FrameworkElementGettingFocusHandler = new TypedEventHandler<UIElement, GettingFocusEventArgs>((source, e) =>
 			{
 				FrameworkElement sourceAsFrameworkElement = (FrameworkElement)source;
-				EventOrder.Append($"[{sourceAsFrameworkElement.Name}GettingFocus{CanceledToLoggedString(e.Cancel)}{HandledToLoggedString(e.Handled)}{CorrelationIDToLoggedString(e.CorrelationId)}]");
+				EventOrder.Append(/* remove starting from .NET 6 RC1 */(string)$"[{sourceAsFrameworkElement.Name}GettingFocus{CanceledToLoggedString(e.Cancel)}{HandledToLoggedString(e.Handled)}{CorrelationIDToLoggedString(e.CorrelationId)}]");
 			});
 
 			FocusManagerLosingFocusHandler = new EventHandler<Windows.UI.Xaml.Input.LosingFocusEventArgs>((source, e) =>
 			{
-				EventOrder.Append($"[FocusManagerLosingFocus{CanceledToLoggedString(e.Cancel)}{HandledToLoggedString(e.Handled)}{CorrelationIDToLoggedString(e.CorrelationId)}]");
+				EventOrder.Append(/* remove starting from .NET 6 RC1 */(string)$"[FocusManagerLosingFocus{CanceledToLoggedString(e.Cancel)}{HandledToLoggedString(e.Handled)}{CorrelationIDToLoggedString(e.CorrelationId)}]");
 			});
 
 			FocusManagerGettingFocusHandler = new EventHandler<Windows.UI.Xaml.Input.GettingFocusEventArgs>((source, e) =>
 			{
-				EventOrder.Append($"[FocusManagerGettingFocus{CanceledToLoggedString(e.Cancel)}{HandledToLoggedString(e.Handled)}{CorrelationIDToLoggedString(e.CorrelationId)}]");
+				EventOrder.Append(/* remove starting from .NET 6 RC1 */(string)$"[FocusManagerGettingFocus{CanceledToLoggedString(e.Cancel)}{HandledToLoggedString(e.Handled)}{CorrelationIDToLoggedString(e.CorrelationId)}]");
 			});
 
 			UIExecutor.Execute(() =>
@@ -190,12 +190,12 @@ namespace Microsoft.UI.Xaml.Tests.Common
 
 		private void FocusManagerLostFocusHandler(object source, Windows.UI.Xaml.Input.FocusManagerLostFocusEventArgs e)
 		{
-			EventOrder.Append($"[FocusManagerLostFocus{CorrelationIDToLoggedString(e.CorrelationId)}]");
+			EventOrder.Append(/* remove starting from .NET 6 RC1 */(string)$"[FocusManagerLostFocus{CorrelationIDToLoggedString(e.CorrelationId)}]");
 		}
 
 		private void FocusManagerGotFocusHandler(object source, Windows.UI.Xaml.Input.FocusManagerGotFocusEventArgs e)
 		{
-			EventOrder.Append($"[FocusManagerGotFocus{CorrelationIDToLoggedString(e.CorrelationId)}]");
+			EventOrder.Append(/* remove starting from .NET 6 RC1 */(string)$"[FocusManagerGotFocus{CorrelationIDToLoggedString(e.CorrelationId)}]");
 		}
 
 		private void HyperlinkLostFocusHandler(object source, RoutedEventArgs e)

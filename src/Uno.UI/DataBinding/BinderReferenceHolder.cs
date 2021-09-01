@@ -243,7 +243,7 @@ namespace Uno.UI.DataBinding
 					};
 
 			var sb = new StringBuilder();
-			sb.Append($"Detailed {referenceType} DependencyObject references delta: \r\n");
+			sb.Append(/* remove starting from .NET 6 RC1 */(string)$"Detailed {referenceType} DependencyObject references delta: \r\n");
 
 			foreach (var activref in q)
 			{

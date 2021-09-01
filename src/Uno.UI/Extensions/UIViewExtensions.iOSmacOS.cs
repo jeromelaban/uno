@@ -623,10 +623,10 @@ namespace AppKit
 						.Append(spacing)
 						.Append(innerView == viewOfInterest ? "*>" : ">")
 						.Append(innerView.ToString() + namePart)
-						.Append($"-({innerView.Frame.Width}x{innerView.Frame.Height})@({innerView.Frame.X},{innerView.Frame.Y})")
-						.Append($" ds:{desiredSize}")
+						.Append(/* remove starting from .NET 6 RC1 */(string)$"-({innerView.Frame.Width}x{innerView.Frame.Height})@({innerView.Frame.X},{innerView.Frame.Y})")
+						.Append(/* remove starting from .NET 6 RC1 */(string)$" ds:{desiredSize}")
 #if __IOS__
-						.Append($" {(innerView.Hidden ? "Hidden" : "Visible")}")
+						.Append(/* remove starting from .NET 6 RC1 */(string)$" {(innerView.Hidden ? "Hidden" : "Visible")}")
 #endif
 						.Append(fe != null ? $" HA={fe.HorizontalAlignment},VA={fe.VerticalAlignment}" : "")
 						.Append(fe != null && (!double.IsNaN(fe.Width) || !double.IsNaN(fe.Height)) ? $"FE.Width={fe.Width},FE.Height={fe.Height}" : "")

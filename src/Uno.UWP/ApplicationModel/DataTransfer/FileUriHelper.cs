@@ -34,7 +34,7 @@ namespace Windows.ApplicationModel.DataTransfer
 					var bytes = Encoding.UTF8.GetBytes(new[] { ch });
 					foreach (var b in bytes)
 					{
-						uri.Append($"%{b:X2}");
+						uri.Append((string)$"%{b:X2}");
 					}
 				}
 			}

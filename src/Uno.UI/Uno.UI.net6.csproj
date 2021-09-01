@@ -201,6 +201,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="LinkerDefinition.net6.0-android.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Update="Mixins\Android\BaseActivity.Callbacks.tt">
 	    <LastGenOutput>BaseActivity.Callbacks.g.cs</LastGenOutput>
 	  </None>

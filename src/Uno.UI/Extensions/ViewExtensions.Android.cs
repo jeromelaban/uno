@@ -608,8 +608,8 @@ namespace Uno.UI
 					.Append(s)
 					.Append(innerView == viewOfInterest ? "*>" : ">")
 					.Append(innerView.ToString() + namePart)
-					.Append($"-({ViewHelper.PhysicalToLogicalPixels(innerView.Width):F1}x{ViewHelper.PhysicalToLogicalPixels(innerView.Height):F1})@({ViewHelper.PhysicalToLogicalPixels(innerView.Left):F1},{ViewHelper.PhysicalToLogicalPixels(innerView.Top):F1})")
-					.Append($"  {innerView.Visibility}")
+					.Append(/* remove starting from .NET 6 RC1 */(string)$"-({ViewHelper.PhysicalToLogicalPixels(innerView.Width):F1}x{ViewHelper.PhysicalToLogicalPixels(innerView.Height):F1})@({ViewHelper.PhysicalToLogicalPixels(innerView.Left):F1},{ViewHelper.PhysicalToLogicalPixels(innerView.Top):F1})")
+					.Append(/* remove starting from .NET 6 RC1 */(string)$"  {innerView.Visibility}")
 					.Append(fe != null ? $" HA={fe.HorizontalAlignment},VA={fe.VerticalAlignment}" : "")
 					.Append(fe != null && fe.Margin != default ? $" Margin={fe.Margin}" : "")
 					.Append(fe != null && fe.TryGetBorderThickness(out var b) && b != default ? $" Border={b}" : "")
@@ -622,7 +622,7 @@ namespace Uno.UI
 					.Append(u?.GetElementSpecificDetails())
 					.Append(u?.GetElementGridOrCanvasDetails())
 					.Append(u?.RenderTransform.GetTransformDetails())
-					.Append($" IsLayoutRequested={innerView.IsLayoutRequested}")
+					.Append(/* remove starting from .NET 6 RC1 */(string)$" IsLayoutRequested={innerView.IsLayoutRequested}")
 					.Append(innerView is TextBlock textBlock ? $" Text=\"{textBlock.Text}\"" : "")
 					.AppendLine();
 			}

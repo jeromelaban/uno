@@ -86,7 +86,7 @@ namespace Uno.UI.Extensions
 			{
 				if (element.ReadLocalValue(property) is int value)
 				{
-					sb.Append($" {property.OwnerType.Name}.{property.Name}={value}");
+					sb.Append(/* remove starting from .NET 6 RC1 */(string)$" {property.OwnerType.Name}.{property.Name}={value}");
 				}
 			}
 

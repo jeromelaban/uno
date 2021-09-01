@@ -298,7 +298,7 @@ namespace Windows.UI.Xaml
 		internal static Matrix3x2 GetTransform(UIElement from, UIElement to)
 		{
 			var logInfoString = from.Log().IsEnabled(LogLevel.Information) ? new StringBuilder() : null;
-			logInfoString?.Append($"{nameof(GetTransform)}(from: {from}, to: {to?.ToString() ?? "<null>"}) Offsets: [");
+			logInfoString?.Append(/* remove starting from .NET 6 RC1 */(string)$"{nameof(GetTransform)}(from: {from}, to: {to?.ToString() ?? "<null>"}) Offsets: [");
 
 			if (from == to)
 			{
@@ -373,7 +373,7 @@ namespace Windows.UI.Xaml
 				}
 #endif
 
-				logInfoString?.Append($"{elt}: ({offsetX}, {offsetY}), ");
+				logInfoString?.Append(/* remove starting from .NET 6 RC1 */(string)$"{elt}: ({offsetX}, {offsetY}), ");
 			} while (elt.TryGetParentUIElementForTransformToVisual(out elt, ref offsetX, ref offsetY) && elt != to); // If possible we stop as soon as we reach 'to'
 
 			matrix *= Matrix3x2.CreateTranslation((float)offsetX, (float)offsetY);
@@ -391,7 +391,7 @@ namespace Windows.UI.Xaml
 
 			if (logInfoString != null)
 			{
-				logInfoString.Append($"], matrix: {matrix}");
+				logInfoString.Append(/* remove starting from .NET 6 RC1 */(string)$"], matrix: {matrix}");
 				from.Log().LogInformation(logInfoString.ToString());
 			}
 			return matrix;

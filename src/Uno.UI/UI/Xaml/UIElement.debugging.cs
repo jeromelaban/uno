@@ -218,11 +218,11 @@ namespace Windows.UI.Xaml
 					var groups = VisualStateManager.GetVisualStateGroups(root);
 					if (groups != null)
 					{
-						sb.Append($"Parent: {control}, ");
+						sb.Append(/* remove starting from .NET 6 RC1 */(string)$"Parent: {control}, ");
 						sb.Append("States: [");
 						foreach (var group in groups)
 						{
-							sb.Append($"{group}: {group.CurrentState}, ");
+							sb.Append(/* remove starting from .NET 6 RC1 */(string)$"{group}: {group.CurrentState}, ");
 						}
 						sb.Append(" ]; ");
 					}
