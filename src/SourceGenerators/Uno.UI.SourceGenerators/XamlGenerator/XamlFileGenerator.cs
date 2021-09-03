@@ -126,6 +126,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		private readonly INamedTypeSymbol _uiElementSymbol;
 		private readonly INamedTypeSymbol _dependencyObjectSymbol;
 		private readonly INamedTypeSymbol _markupExtensionSymbol;
+		private readonly INamedTypeSymbol _brushSymbol;
 		private readonly INamedTypeSymbol _dependencyObjectParseSymbol;
 		private readonly INamedTypeSymbol? _androidContentContextSymbol; // Android.Content.Context
 		private readonly INamedTypeSymbol? _androidViewSymbol; // Android.Views.View
@@ -247,6 +248,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			_uiElementSymbol = GetType(XamlConstants.Types.UIElement);
 			_dependencyObjectSymbol = GetType(XamlConstants.Types.DependencyObject);
 			_markupExtensionSymbol = GetType(XamlConstants.Types.MarkupExtension);
+			_brushSymbol = GetType(XamlConstants.Types.Brush);
 			_dependencyObjectParseSymbol = GetType(XamlConstants.Types.IDependencyObjectParse);
 			_iCollectionSymbol = GetType("System.Collections.ICollection");
 			_iCollectionOfTSymbol = GetType("System.Collections.Generic.ICollection`1");
@@ -2636,8 +2638,14 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		private bool ShouldLazyInitializeResource(XamlObjectDefinition resource)
 		{
 			var typeName = resource.Type.Name;
+			var symbol = GetType(resource.Type);
 
-			if (typeName == "Style" || typeName == "ControlTemplate" || typeName == "DataTemplate")
+			if (
+				typeName == "Style"
+				|| typeName == "ControlTemplate"
+				|| typeName == "DataTemplate"
+				|| symbol.Is(_brushSymbol)
+				)
 			{
 				// Always lazily initialize styles and templates, since they may be large
 				return true;
