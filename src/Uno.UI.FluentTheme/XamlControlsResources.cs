@@ -41,6 +41,22 @@ namespace Microsoft.UI.Xaml.Controls
 				requestedVersion = MaxSupportedResourcesVersion;
 			}
 
+			switch (requestedVersion)
+			{
+				case ControlsResourcesVersion.Version1:
+					Uno.UI.FluentTheme.v1.GlobalStaticResources.Initialize();
+					Uno.UI.FluentTheme.v1.GlobalStaticResources.RegisterDefaultStyles();
+					Uno.UI.FluentTheme.v1.GlobalStaticResources.RegisterResourceDictionariesBySource();
+					break;
+
+				case ControlsResourcesVersion.Version2:
+					Uno.UI.FluentTheme.v2.GlobalStaticResources.Initialize();
+					Uno.UI.FluentTheme.v2.GlobalStaticResources.RegisterDefaultStyles();
+					Uno.UI.FluentTheme.v2.GlobalStaticResources.RegisterResourceDictionariesBySource();
+					break;
+			}
+
+
 			Source = new Uri(XamlFilePathHelper.AppXIdentifier + XamlFilePathHelper.GetWinUIThemeResourceUrl((int)requestedVersion));
 
 			_isUsingResourcesVersion2 = requestedVersion == ControlsResourcesVersion.Version2;
@@ -74,7 +90,5 @@ namespace Microsoft.UI.Xaml.Controls
 			var resources = owner as XamlControlsResources;
 			resources?.UpdateSource();
 		}
-
-		internal static bool IsUsingResourcesVersion2() => _isUsingResourcesVersion2;
 	}
 }
