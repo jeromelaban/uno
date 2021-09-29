@@ -9,6 +9,6 @@
 	  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Grid>
-		<controls:UnitTestsControl />
+		<controls:UnitTestsControl x:Name="unitTests" />
 	</Grid>
 </Page>

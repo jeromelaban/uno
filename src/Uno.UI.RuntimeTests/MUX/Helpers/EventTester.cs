@@ -156,11 +156,11 @@ namespace Microsoft.UI.Xaml.Tests.Common
 		{
 			get
 			{
-				if (Debugger.IsAttached)
-				{
-					return TimeSpan.FromMilliseconds(-1); // Wait indefinitely if debugger is attached.
-				}
-				else
+				//if (Debugger.IsAttached)
+				//{
+				//	return TimeSpan.FromMilliseconds(-1); // Wait indefinitely if debugger is attached.
+				//}
+				//else
 				{
 					return this.DefaultTimeout;
 				}
