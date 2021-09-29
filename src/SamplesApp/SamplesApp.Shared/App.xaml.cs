@@ -168,6 +168,8 @@ namespace SamplesApp
 
 			if (!string.IsNullOrEmpty(runtimeTestResultFilePath))
 			{
+				Console.WriteLine($"HandleSkiaRuntimeTests: {runtimeTestResultFilePath}");
+
 				_ = Task.Run(
 					async () =>
 					{
@@ -288,6 +290,8 @@ namespace SamplesApp
 
 		private async void HandleLaunchArguments(LaunchActivatedEventArgs launchActivatedEventArgs)
 		{
+			Console.WriteLine($"HandleLaunchArguments: {launchActivatedEventArgs.Arguments}");
+
 			if (await HandleSkiaAutoScreenshots(launchActivatedEventArgs))
 			{
 				return;
