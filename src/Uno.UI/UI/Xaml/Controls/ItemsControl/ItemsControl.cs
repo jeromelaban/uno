@@ -919,115 +919,88 @@ namespace Windows.UI.Xaml.Controls
 		{
 		}
 
-		protected virtual bool UpdateItems(NotifyCollectionChangedEventArgs args)
+		protected virtual void UpdateItems(NotifyCollectionChangedEventArgs args)
 		{
-			if (ItemsPanelRoot != null && ShouldItemsControlManageChildren)
+			if (ItemsPanelRoot == null || !ShouldItemsControlManageChildren)
 			{
-				var items = GetItems() ?? Enumerable.Empty<object>();
-
-				object LocalCreateContainer(int index)
-				{
-					var container = GetContainerForIndex(index);
-					PrepareContainerForIndex(container, index);
-					return container;
-				}
-
-				void LocalCleanupContainer(object container)
-				{
-					if (container is DependencyObject doContainer)
-					{
-						CleanUpContainer(doContainer);
-					}
-				}
-
-				IEnumerable<object> RebuildContainers()
-					=> items
-						.Cast<object>()
-						.Select((_, index) => LocalCreateContainer(index));
-
-				IEnumerable<object> GetContainers()
-				{
-					if(args == null)
-					{
-						return RebuildContainers();
-					}
-					else
-					{
-						if(args.Action == NotifyCollectionChangedAction.Reset)
-						{
-							return Enumerable.Empty<object>();
-						}
-						else if(args.Action == NotifyCollectionChangedAction.Remove)
-						{
-							if(args.OldItems.Count == 1)
-							{
-								var container = ItemsPanelRoot.Children[args.OldStartingIndex];
-
-								ItemsPanelRoot.Children.RemoveAt(args.OldStartingIndex);
-
-								LocalCleanupContainer(container);
-
-								return ItemsPanelRoot.Children;
-							}
-							else
-							{
-								return RebuildContainers();
-							}
-						}
-						else if (args.Action == NotifyCollectionChangedAction.Add)
-						{
-							if (args.NewItems.Count == 1)
-							{
-								ItemsPanelRoot.Children.Insert(args.NewStartingIndex, (UIElement)LocalCreateContainer(args.NewStartingIndex));
-								return ItemsPanelRoot.Children;
-							}
-							else
-							{
-								return RebuildContainers();
-							}
-						}
-						else if (args.Action == NotifyCollectionChangedAction.Replace)
-						{
-							if (args.NewItems.Count == 1)
-							{
-								var container = ItemsPanelRoot.Children[args.NewStartingIndex];
-								LocalCleanupContainer(container);
-
-								ItemsPanelRoot.Children[args.NewStartingIndex] = (UIElement)LocalCreateContainer(args.NewStartingIndex);
-								return ItemsPanelRoot.Children;
-							}
-							else
-							{
-								return RebuildContainers();
-							}
-						}
-						else
-						{
-							return RebuildContainers();
-						}
-					}
-				}
-
-				var containers = GetContainers();
-
-				var results = ItemsPanelRoot.Children.UpdateWithResults(containers.OfType<UIElement>(), comparer: new ViewComparer());
-
-				// This block is a manual enumeration to avoid the foreach pattern
-				// See https://github.com/dotnet/runtime/issues/56309 for details
-				var removedEnumerator = results.Removed.GetEnumerator();
-				while(removedEnumerator.MoveNext())
-				{
-					var removed = removedEnumerator.Current;
-
-					LocalCleanupContainer(removed);
-				}
-
-				RequestLayoutPartial();
-
-				return results.HasChanged();
+				return;
 			}
 
-			return false;
+			object LocalCreateContainer(int index)
+			{
+				var container = GetContainerForIndex(index);
+				PrepareContainerForIndex(container, index);
+				return container;
+			}
+
+			void LocalCleanupContainer(object container)
+			{
+				if (container is DependencyObject doContainer)
+				{
+					CleanUpContainer(doContainer);
+				}
+			}
+
+			if (args != null)
+			{
+				if (args.Action == NotifyCollectionChangedAction.Reset)
+				{
+					for (int i = 0; i < ItemsPanelRoot.Children.Count; i++)
+					{
+						CleanUpContainer(ItemsPanelRoot.Children[i]);
+					}
+
+					ItemsPanelRoot.Children.Clear();
+
+					return;
+				}
+				else if (args.Action == NotifyCollectionChangedAction.Remove
+					&& args.OldItems.Count == 1)
+				{
+					var container = ItemsPanelRoot.Children[args.OldStartingIndex];
+
+					ItemsPanelRoot.Children.RemoveAt(args.OldStartingIndex);
+
+					LocalCleanupContainer(container);
+					return;
+				}
+				else if (args.Action == NotifyCollectionChangedAction.Add
+					&& args.NewItems.Count == 1)
+				{
+					ItemsPanelRoot.Children.Insert(args.NewStartingIndex, (UIElement)LocalCreateContainer(args.NewStartingIndex));
+					return;
+				}
+				else if (args.Action == NotifyCollectionChangedAction.Replace
+					&& args.NewItems.Count == 1)
+				{
+					var container = ItemsPanelRoot.Children[args.NewStartingIndex];
+					LocalCleanupContainer(container);
+
+					ItemsPanelRoot.Children[args.NewStartingIndex] = (UIElement)LocalCreateContainer(args.NewStartingIndex);
+					return;
+				}
+			}
+
+			// Generic implementation when fast paths cannot be used (e.g. when the ItemsSource is assigned)
+
+			var containers =
+				(GetItems() ?? Enumerable.Empty<object>())
+					.Cast<object>()
+					.Select((_, index) => LocalCreateContainer(index));
+
+			var results = ItemsPanelRoot.Children.UpdateWithResults(containers.OfType<UIElement>(), comparer: new ViewComparer());
+
+			// This block is a manual enumeration to avoid the foreach pattern
+			// See https://github.com/dotnet/runtime/issues/56309 for details
+			var removedEnumerator = results.Removed.GetEnumerator();
+			while (removedEnumerator.MoveNext())
+			{
+				var removed = removedEnumerator.Current;
+
+				LocalCleanupContainer(removed);
+			}
+
+			RequestLayoutPartial();
 		}
 
 		protected virtual void ClearContainerForItemOverride(DependencyObject element, object item) { }

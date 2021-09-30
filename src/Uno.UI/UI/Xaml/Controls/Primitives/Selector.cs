@@ -436,6 +436,8 @@ namespace Windows.UI.Xaml.Controls.Primitives
 					}
 					break;
 			}
+
+			OnItemsChanged(c);
 		}
 
 		internal override void OnItemsSourceGroupsChanged(object sender, NotifyCollectionChangedEventArgs c)
@@ -505,14 +507,15 @@ namespace Windows.UI.Xaml.Controls.Primitives
 
 		internal virtual void OnItemClicked(int clickedIndex) { }
 
-		protected override void OnItemsChanged(object e)
+		private void OnItemsChanged(NotifyCollectionChangedEventArgs e)
 		{
 			if (
 				// When ItemsSource is set, we get collection changes from it directly (and it's not possible to directly modify Items)
-				ItemsSource == null &&
-				e is IVectorChangedEventArgs iVCE
+				ItemsSource == null
 			)
 			{
+				var iVCE = e.ToVectorChangedEventArgs();
+
 				if (iVCE.CollectionChange == CollectionChange.ItemChanged
 					|| (iVCE.CollectionChange == CollectionChange.ItemInserted && iVCE.Index < Items.Count))
 				{
@@ -523,10 +526,10 @@ namespace Windows.UI.Xaml.Controls.Primitives
 						ChangeSelectedItem(selectorItem, false, true);
 					}
 					// If the item is inserted before the currently selected one, increase the selected index.
-					else if (iVCE.CollectionChange == CollectionChange.ItemInserted && (int)iVCE.Index <= SelectedIndex)
-					{
-						SelectedIndex++;
-					}
+					//else if (iVCE.CollectionChange == CollectionChange.ItemInserted && (int)iVCE.Index <= SelectedIndex)
+					//{
+					//	SelectedIndex++;
+					//}
 				}
 				else if (iVCE.CollectionChange == CollectionChange.ItemRemoved)
 				{
@@ -536,10 +539,10 @@ namespace Windows.UI.Xaml.Controls.Primitives
 						SelectedIndex = -1;
 					}
 					// But if it's before the currently selected one, decrement SelectedIndex
-					else if ((int)iVCE.Index < SelectedIndex)
-					{
-						SelectedIndex--;
-					}
+					//else if ((int)iVCE.Index < SelectedIndex)
+					//{
+					//	SelectedIndex--;
+					//}
 				}
 			}
 		}
