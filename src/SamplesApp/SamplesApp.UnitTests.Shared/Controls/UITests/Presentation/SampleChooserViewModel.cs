@@ -426,7 +426,7 @@ namespace SampleControl.Presentation
 				if (ContentPhone is FrameworkElement fe
 					&& fe.FindName("unitTests") is Uno.UI.Samples.Tests.UnitTestsControl unitTests)
 				{
-					await unitTests.RunTests(ct, new string[0]);
+					await unitTests.RunTests(ct, new string[] { "xBind" });
 
 					File.WriteAllText(testResultsFilePath, unitTests.NUnitTestResultsDocument);
 				}

@@ -184,8 +184,6 @@ namespace Windows.UI.Xaml.Controls
 
 				ObserveCollectionChanged(listSource);
 			}
-
-			(VectorChanged, _untypedVectorChanged).TryRaiseReseted(this);
 		}
 
 		private void ObserveCollectionChanged(object itemsSource)
