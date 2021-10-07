@@ -121,10 +121,19 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.WindowsAppSDK.WinUI">
-      <Version>1.0.0-experimental1</Version>
-    </PackageReference>
-    <SDKReference Include="WindowsDesktop, Version=10.0.19041.0">
+		<PackageReference Include="Microsoft.WindowsAppSDK">
+			<Version>1.0.0-experimental1</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.WindowsAppSDK.WinUI">
+			<Version>1.0.0-experimental1</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.WindowsAppSDK.Foundation">
+			<Version>1.0.0-experimental1</Version>
+		</PackageReference>
+		<PackageReference Include="Microsoft.WindowsAppSDK.InteractiveExperiences">
+			<Version>1.0.0-experimental1</Version>
+		</PackageReference>
+		<SDKReference Include="WindowsDesktop, Version=10.0.19041.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
     <SDKReference Include="WindowsMobile, Version=10.0.19041.0">
