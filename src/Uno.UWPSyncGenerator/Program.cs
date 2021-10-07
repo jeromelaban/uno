@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace Uno.UWPSyncGenerator
 				new SyncGenerator().Build(@"..\..\..\Uno.UWP", "Uno", "Windows.ApplicationModel.Calls.CallsPhoneContract");
 
 #if HAS_UNO_WINUI
-				new SyncGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.WinUI");
+				new SyncGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.UI.Xaml");
 				new SyncGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.InteractiveExperiences.Projection");
 				new SyncGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.ApplicationModel.Resources");
 				new SyncGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.Web.WebView2.Core");
@@ -46,7 +46,7 @@ namespace Uno.UWPSyncGenerator
 			if (mode == DocMode || mode == AllMode)
 			{
 #if HAS_UNO_WINUI
-				new DocGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.WinUI");
+				new DocGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.UI.Xaml");
 				new DocGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.InteractiveExperiences.Projection");
 				new DocGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.ApplicationModel.Resources");
 				new DocGenerator().Build(@"..\..\..\Uno.UI", "Uno.UI", "Microsoft.Web.WebView2.Core");
