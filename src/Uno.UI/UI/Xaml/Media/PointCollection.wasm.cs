@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +7,7 @@ using System.Text;
 using Windows.Foundation;
 using Uno.Extensions;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class PointCollection : IEnumerable<Point>, IList<Point>
 	{

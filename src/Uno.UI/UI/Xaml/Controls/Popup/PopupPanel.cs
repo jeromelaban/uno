@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +7,8 @@ using Uno.Extensions;
 using Uno.UI;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI.DataBinding;
 
 #if XAMARIN_IOS
@@ -17,7 +17,7 @@ using UIKit;
 using AppKit;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	internal partial class PopupPanel : Panel
 	{

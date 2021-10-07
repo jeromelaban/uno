@@ -1,8 +1,8 @@
-﻿using Tizen.Applications;
+using Tizen.Applications;
 using ElmSharp;
 using SkiaSharp.Views.Tizen;
 using SkiaSharp;
-using WUX = Windows.UI.Xaml;
+using WUX = Microsoft.UI.Xaml;
 using Uno.UI.Runtime.Skia;
 using System.Diagnostics;
 

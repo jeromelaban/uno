@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Drawing;
 using Uno.Extensions;
 using Uno.UI;
 using Uno.UI.DataBinding;
 using System.Linq;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 
 #if XAMARIN_IOS_UNIFIED
 using View = UIKit.UIView;
@@ -21,7 +21,7 @@ using CoreGraphics;
 #endif
 
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class Control
 	{

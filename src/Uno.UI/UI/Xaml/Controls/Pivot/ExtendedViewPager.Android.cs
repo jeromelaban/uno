@@ -1,4 +1,4 @@
-﻿using Android.Content;
+using Android.Content;
 using Android.Graphics;
 using Android.Runtime;
 using AndroidX.ViewPager.Widget;
@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public class ExtendedViewPager : ViewPager
 	{

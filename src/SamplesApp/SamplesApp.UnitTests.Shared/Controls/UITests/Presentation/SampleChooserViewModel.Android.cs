@@ -1,4 +1,4 @@
-﻿#if __ANDROID__
+#if __ANDROID__
 using Android.Graphics;
 using Android.Views;
 using SampleControl.Entities;
@@ -16,8 +16,8 @@ using System.Threading.Tasks;
 using Uno.UI;
 using Uno.UI.Samples.Controls;
 using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace SampleControl.Presentation
 {

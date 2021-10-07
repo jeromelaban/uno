@@ -1,6 +1,6 @@
-﻿// MUX reference InfoBarPanel.properties.cpp, commit 533c6b1
+// MUX reference InfoBarPanel.properties.cpp, commit 533c6b1
 
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Microsoft.UI.Xaml.Controls
 {

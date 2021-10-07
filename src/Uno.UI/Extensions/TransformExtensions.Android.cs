@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Numerics;
@@ -6,7 +6,7 @@ using System.Text;
 using Uno;
 using Uno.UI;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public static class TransformExtensions
 	{

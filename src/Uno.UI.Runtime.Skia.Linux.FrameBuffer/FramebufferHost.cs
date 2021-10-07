@@ -1,7 +1,7 @@
 using System;
 using Windows.System;
-using Windows.UI.Xaml;
-using WUX = Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
+using WUX = Microsoft.UI.Xaml;
 using Uno.WinUI.Runtime.Skia.LinuxFB;
 using Windows.UI.Core;
 using Uno.Foundation.Extensibility;

@@ -2,18 +2,14 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Notifications
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum NotificationMirroring 
 	{
-		#if false
-		Allowed,
-		#endif
-		#if false
-		Disabled,
-		#endif
+		// Skipping already declared field Windows.UI.Notifications.NotificationMirroring.Allowed
+		// Skipping already declared field Windows.UI.Notifications.NotificationMirroring.Disabled
 	}
 	#endif
 }

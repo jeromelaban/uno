@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Android.Graphics;
 using Uno.Extensions;
 using Uno.Disposables;
 using Windows.Foundation;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Rect = Windows.Foundation.Rect;
 using Windows.UI.Input.Spatial;
 using Android.Graphics.Drawables;
 using Android.Graphics.Drawables.Shapes;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	//Android partial for Brush
 	public partial class Brush

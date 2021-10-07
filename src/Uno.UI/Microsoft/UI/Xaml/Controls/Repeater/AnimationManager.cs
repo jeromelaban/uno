@@ -4,7 +4,7 @@
 using System.Collections.Specialized;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using static Microsoft.UI.Xaml.Controls._Tracing;
 
 namespace Microsoft.UI.Xaml.Controls

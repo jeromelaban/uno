@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 //
@@ -11,7 +11,7 @@ using System.Text;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Helpers.WinUI
 {

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using Foundation;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
     partial class DispatcherTimer
     {

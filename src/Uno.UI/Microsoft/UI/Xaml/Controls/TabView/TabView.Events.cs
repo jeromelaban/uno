@@ -1,9 +1,9 @@
-﻿// MUX Reference: TabView.idl, commit 8aaf7f8
+// MUX Reference: TabView.idl, commit 8aaf7f8
 
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Microsoft.UI.Xaml.Controls
 {

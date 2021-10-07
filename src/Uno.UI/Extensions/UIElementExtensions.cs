@@ -1,10 +1,10 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.Extensions;
 using Uno.Logging;
 

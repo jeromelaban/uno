@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Uno;
 using Windows.Foundation;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	[ContentProperty(Name = "Source")]
 	public partial class AnimatedVisualPlayer : FrameworkElement

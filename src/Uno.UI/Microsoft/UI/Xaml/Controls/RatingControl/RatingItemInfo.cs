@@ -1,6 +1,6 @@
 // MUX Reference RatingItemInfo.properties.cpp, commit de78834
 
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Microsoft.UI.Xaml.Controls
 {

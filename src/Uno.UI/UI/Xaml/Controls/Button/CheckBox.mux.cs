@@ -1,7 +1,7 @@
-﻿using Windows.System;
-using Windows.UI.Xaml.Automation.Peers;
+using Windows.System;
+using Microsoft.UI.Xaml.Automation.Peers;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class CheckBox
 	{

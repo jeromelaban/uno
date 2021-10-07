@@ -1174,7 +1174,7 @@ declare namespace Windows.UI.ViewManagement {
         static setBackgroundColor(colorString: string): void;
     }
 }
-declare namespace Windows.UI.Xaml {
+declare namespace Microsoft.UI.Xaml {
     class Application {
         private static dispatchThemeChange;
         private static dispatchVisibilityChange;
@@ -1183,13 +1183,13 @@ declare namespace Windows.UI.Xaml {
         static observeVisibility(): void;
     }
 }
-declare namespace Windows.UI.Xaml {
+declare namespace Microsoft.UI.Xaml {
     enum ApplicationTheme {
         Light = "Light",
         Dark = "Dark"
     }
 }
-declare namespace Windows.UI.Xaml.Media.Animation {
+declare namespace Microsoft.UI.Xaml.Media.Animation {
     class RenderingLoopFloatAnimator {
         private managedHandle;
         private static activeInstances;

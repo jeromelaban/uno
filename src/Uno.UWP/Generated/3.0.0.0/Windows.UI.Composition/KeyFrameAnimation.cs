@@ -2,18 +2,105 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Composition
 {
-	#if false || false || false || false || false || false || false
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class KeyFrameAnimation : global::Windows.UI.Composition.CompositionAnimation
 	{
-		// Skipping already declared property StopBehavior
-		// Skipping already declared property IterationCount
-		// Skipping already declared property IterationBehavior
-		// Skipping already declared property Duration
-		// Skipping already declared property DelayTime
-		// Skipping already declared property KeyFrameCount
-		// Skipping already declared property Direction
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  global::Windows.UI.Composition.AnimationStopBehavior StopBehavior
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member AnimationStopBehavior KeyFrameAnimation.StopBehavior is not implemented in Uno.");
+			}
+			set
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.KeyFrameAnimation", "AnimationStopBehavior KeyFrameAnimation.StopBehavior");
+			}
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  int IterationCount
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member int KeyFrameAnimation.IterationCount is not implemented in Uno.");
+			}
+			set
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.KeyFrameAnimation", "int KeyFrameAnimation.IterationCount");
+			}
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  global::Windows.UI.Composition.AnimationIterationBehavior IterationBehavior
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member AnimationIterationBehavior KeyFrameAnimation.IterationBehavior is not implemented in Uno.");
+			}
+			set
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.KeyFrameAnimation", "AnimationIterationBehavior KeyFrameAnimation.IterationBehavior");
+			}
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  global::System.TimeSpan Duration
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member TimeSpan KeyFrameAnimation.Duration is not implemented in Uno.");
+			}
+			set
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.KeyFrameAnimation", "TimeSpan KeyFrameAnimation.Duration");
+			}
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  global::System.TimeSpan DelayTime
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member TimeSpan KeyFrameAnimation.DelayTime is not implemented in Uno.");
+			}
+			set
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.KeyFrameAnimation", "TimeSpan KeyFrameAnimation.DelayTime");
+			}
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  int KeyFrameCount
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member int KeyFrameAnimation.KeyFrameCount is not implemented in Uno.");
+			}
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  global::Windows.UI.Composition.AnimationDirection Direction
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member AnimationDirection KeyFrameAnimation.Direction is not implemented in Uno.");
+			}
+			set
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.KeyFrameAnimation", "AnimationDirection KeyFrameAnimation.Direction");
+			}
+		}
+		#endif
 		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.UI.Composition.AnimationDelayBehavior DelayBehavior

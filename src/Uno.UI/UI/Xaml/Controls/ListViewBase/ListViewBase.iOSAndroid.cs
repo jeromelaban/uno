@@ -1,4 +1,4 @@
-﻿#if XAMARIN_IOS || XAMARIN_ANDROID
+#if XAMARIN_IOS || XAMARIN_ANDROID
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,10 +9,10 @@ using _View = Android.Views.View;
 #elif XAMARIN_IOS
 using _View = UIKit.UIView;
 #else
-using View = Windows.UI.Xaml.FrameworkElement;
+using View = Microsoft.UI.Xaml.FrameworkElement;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class ListViewBase
 	{

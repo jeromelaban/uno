@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using Uno.Extensions;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using CoreGraphics;
 using Foundation;
 using Uno.UI.Extensions;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Windows.UI.Text;
 using Uno.Logging;
 using AppKit;

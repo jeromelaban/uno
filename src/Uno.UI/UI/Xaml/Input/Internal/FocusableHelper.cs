@@ -1,11 +1,11 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // FocusableHelper.h, FocusableHelper.cpp
 
 #nullable enable
 
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Documents;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Documents;
 
 namespace Uno.UI.Xaml.Input
 {

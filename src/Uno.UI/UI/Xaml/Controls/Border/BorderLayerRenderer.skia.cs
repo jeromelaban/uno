@@ -1,20 +1,20 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Uno.Disposables;
 using System.Text;
 using Uno;
 using Uno.Extensions;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI.Extensions;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 using System.Numerics;
 using Uno.UI;
 using SkiaSharp;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	internal class BorderLayerRenderer
 	{

@@ -273,7 +273,7 @@
           href: features/windows-ui-startscreen.md
         - name: Windows.UI.Notifications
           href: features/windows-ui-notifications.md
-        - name: Windows.UI.Xaml.Application
+        - name: Microsoft.UI.Xaml.Application
           href: features/windows-ui-xaml-application.md
         - name: Windows.Devices.Geolocation
           href: features/windows-devices-geolocation.md

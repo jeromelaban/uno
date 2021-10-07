@@ -6,7 +6,7 @@ using Windows.Foundation;
 using DirectUI;
 using DateTime = System.DateTimeOffset;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class CalendarLayoutStrategy
 	{

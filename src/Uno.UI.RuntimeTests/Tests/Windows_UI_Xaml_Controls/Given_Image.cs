@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,10 +10,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Private.Infrastructure;
 using Windows.Foundation;
 using Windows.Graphics.Display;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 {

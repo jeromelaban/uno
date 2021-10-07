@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 
 	internal partial class CalendarLayoutStrategyImpl : LayoutStrategyBase

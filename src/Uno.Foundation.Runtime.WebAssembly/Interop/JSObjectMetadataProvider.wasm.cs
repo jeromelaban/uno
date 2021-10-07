@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -103,7 +103,7 @@ namespace Uno.Foundation.Interop
 						// We log only methods, which are not declared by Uno/WinUI directly.
 						var reportMethods = duplicateMethods
 							.Where(m =>
-								!m.DeclaringType.FullName.StartsWith("Windows.UI.Xaml") &&
+								!m.DeclaringType.FullName.StartsWith("Microsoft.UI.Xaml") &&
 								!m.DeclaringType.FullName.StartsWith("Microsoft.UI.Xaml") &&
 								!m.DeclaringType.FullName.StartsWith("Uno"))
 							.Select(m => m.Name)

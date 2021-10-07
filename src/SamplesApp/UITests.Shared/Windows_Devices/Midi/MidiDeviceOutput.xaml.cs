@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UITests.Shared.Helpers;
@@ -9,9 +9,9 @@ using Windows.Devices.Enumeration;
 using Windows.Devices.Midi;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using System.Threading.Tasks;
 
 #if !WINDOWS_UWP
@@ -189,7 +189,7 @@ namespace UITests.Shared.Windows_Devices.Midi
 		/// </summary>
 		/// <param name="sender">Element that fired the event</param>
 		/// <param name="e">Event arguments</param>
-		private void resetButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void resetButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
 		{
 			ResetMessageTypeAndParameters(true);
 		}
@@ -240,7 +240,7 @@ namespace UITests.Shared.Windows_Devices.Midi
 		/// </summary>
 		/// <param name="sender">Element that fired the event</param>
 		/// <param name="e">Event arguments</param>
-		private void sendButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void sendButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
 		{
 			IMidiMessage midiMessageToSend = null;
 

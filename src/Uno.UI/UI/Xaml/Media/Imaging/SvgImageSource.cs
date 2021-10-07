@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.IO;
 using System.Threading;
@@ -8,7 +8,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Uno;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 	public partial class SvgImageSource : ImageSource
 	{

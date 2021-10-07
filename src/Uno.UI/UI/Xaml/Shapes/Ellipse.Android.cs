@@ -1,9 +1,9 @@
-﻿using Windows.Foundation;
+using Windows.Foundation;
 using Android.Graphics;
 using Uno.UI;
 using Rect = Windows.Foundation.Rect;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	public partial class Ellipse : Shape
 	{

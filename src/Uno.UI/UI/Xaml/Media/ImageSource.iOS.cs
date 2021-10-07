@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using Uno.Diagnostics.Eventing;
 using Uno.Extensions;
 using System;
@@ -15,7 +15,7 @@ using Windows.UI.Core;
 using Uno.Disposables;
 using Microsoft.Extensions.Logging;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class ImageSource
 	{

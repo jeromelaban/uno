@@ -61,7 +61,7 @@ Markdown:
 
 # [UWP](#tab/tabid-2)
 
-`Windows.UI.Xaml.FrameworkElement`
+`Microsoft.UI.Xaml.FrameworkElement`
 
 ***
 ```
@@ -74,7 +74,7 @@ Html output:
 
 # [UWP](#tab/tabid-2)
 
-`Windows.UI.Xaml.FrameworkElement`
+`Microsoft.UI.Xaml.FrameworkElement`
 
 ***
 

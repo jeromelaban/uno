@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.Foundation;
 using SkiaSharp;
 using Uno.Extensions;
 using Uno.Logging;
-using WUX = Windows.UI.Xaml;
+using WUX = Microsoft.UI.Xaml;
 using Uno.UI.Runtime.Skia.Native;
 
 namespace Uno.UI.Runtime.Skia

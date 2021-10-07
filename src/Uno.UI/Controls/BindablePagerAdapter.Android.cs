@@ -21,7 +21,7 @@ using Uno.Extensions.Specialized;
 
 namespace Uno.UI.Controls
 {
-	[Windows.UI.Xaml.Data.Bindable]
+	[Microsoft.UI.Xaml.Data.Bindable]
 	public class BindablePagerAdapter : PagerAdapter, View.IOnClickListener
 	{
 		private IEnumerable _itemsSource;

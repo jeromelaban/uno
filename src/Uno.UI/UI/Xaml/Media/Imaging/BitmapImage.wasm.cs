@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -13,7 +13,7 @@ using Windows.Storage.Helpers;
 using Windows.Storage.Streams;
 using Path = global::System.IO.Path;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 	public sealed partial class BitmapImage : BitmapSource
 	{

@@ -1,7 +1,7 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using Windows.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common;
+using Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common;
 using MUXControlsTestApp.Utilities;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,11 +9,11 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using Windows.Foundation.Collections;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Common;
 using System;
 using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
 #if USING_TAEF
 using WEX.TestExecution;
@@ -24,7 +24,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 #endif
 
-namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests
+namespace Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests
 {
 	using ItemsSourceView = Microsoft.UI.Xaml.Controls.ItemsSourceView;
 	using IKeyIndexMapping = Microsoft.UI.Xaml.Controls.IKeyIndexMapping;
@@ -168,7 +168,7 @@ namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests
 					Animator = new DefaultElementAnimator()
 				};
 
-				Content = new Windows.UI.Xaml.Controls.ScrollViewer() 
+				Content = new Microsoft.UI.Xaml.Controls.ScrollViewer() 
 				{
 					Width=400,
 					Height=400,
@@ -225,7 +225,7 @@ namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests
 				Content = new ItemsRepeaterScrollHost() {
 					Width = 400,
 					Height = 400,
-					ScrollViewer = new Windows.UI.Xaml.Controls.ScrollViewer() {
+					ScrollViewer = new Microsoft.UI.Xaml.Controls.ScrollViewer() {
 						Content = repeater
 					}
 				};

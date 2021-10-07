@@ -2,4 +2,16 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Globalization.DateTimeFormatting
 {
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
+	#endif
+	public   enum DayOfWeekFormat 
+	{
+		// Skipping already declared field Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.None
+		// Skipping already declared field Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Default
+		// Skipping already declared field Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Abbreviated
+		// Skipping already declared field Windows.Globalization.DateTimeFormatting.DayOfWeekFormat.Full
+	}
+	#endif
 }

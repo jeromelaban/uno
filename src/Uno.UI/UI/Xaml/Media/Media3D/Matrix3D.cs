@@ -1,11 +1,11 @@
-﻿#region Assembly System.Runtime.WindowsRuntime.UI.Xaml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+#region Assembly System.Runtime.WindowsRuntime.UI.Xaml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
 // C:\Users\jerome.laban\.nuget\packages\System.Runtime.WindowsRuntime.UI.Xaml\4.0.0\ref\netcore50\System.Runtime.WindowsRuntime.UI.Xaml.dll
 #endregion
 
 using System;
 using System.Security;
 
-namespace Windows.UI.Xaml.Media.Media3D
+namespace Microsoft.UI.Xaml.Media.Media3D
 {
 	//
 	// Summary:

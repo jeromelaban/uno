@@ -1,11 +1,11 @@
-﻿#if NET461
+#if NET461
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	abstract partial class VirtualizingPanelLayout
 	{

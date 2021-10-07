@@ -1,4 +1,4 @@
-﻿#if UNO_HAS_MANAGED_POINTERS
+#if UNO_HAS_MANAGED_POINTERS
 #nullable enable
 
 using System;
@@ -17,13 +17,13 @@ using Uno.UI.DataBinding;
 using Uno.UI.Extensions;
 using Windows.UI.Core;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI;
 using Uno.UI.Xaml;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	partial class UIElement
 	{
@@ -36,13 +36,13 @@ namespace Windows.UI.Xaml
 
 			public PointerManager()
 			{
-				Windows.UI.Xaml.Window.Current.CoreWindow.PointerMoved += CoreWindow_PointerMoved;
-				Windows.UI.Xaml.Window.Current.CoreWindow.PointerEntered += CoreWindow_PointerEntered;
-				Windows.UI.Xaml.Window.Current.CoreWindow.PointerExited += CoreWindow_PointerExited;
-				Windows.UI.Xaml.Window.Current.CoreWindow.PointerPressed += CoreWindow_PointerPressed;
-				Windows.UI.Xaml.Window.Current.CoreWindow.PointerReleased += CoreWindow_PointerReleased;
-				Windows.UI.Xaml.Window.Current.CoreWindow.PointerWheelChanged += CoreWindow_PointerWheelChanged;
-				Windows.UI.Xaml.Window.Current.CoreWindow.PointerCancelled += CoreWindow_PointerCancelled;
+				Microsoft.UI.Xaml.Window.Current.CoreWindow.PointerMoved += CoreWindow_PointerMoved;
+				Microsoft.UI.Xaml.Window.Current.CoreWindow.PointerEntered += CoreWindow_PointerEntered;
+				Microsoft.UI.Xaml.Window.Current.CoreWindow.PointerExited += CoreWindow_PointerExited;
+				Microsoft.UI.Xaml.Window.Current.CoreWindow.PointerPressed += CoreWindow_PointerPressed;
+				Microsoft.UI.Xaml.Window.Current.CoreWindow.PointerReleased += CoreWindow_PointerReleased;
+				Microsoft.UI.Xaml.Window.Current.CoreWindow.PointerWheelChanged += CoreWindow_PointerWheelChanged;
+				Microsoft.UI.Xaml.Window.Current.CoreWindow.PointerCancelled += CoreWindow_PointerCancelled;
 			}
 
 			private void CoreWindow_PointerWheelChanged(CoreWindow sender, PointerEventArgs args)
@@ -52,7 +52,7 @@ namespace Windows.UI.Xaml
 				// Even if impossible for the Release, we are fallbacking on the RootElement for safety
 				// This is how UWP behaves: when out of the bounds of the Window, the root element is use.
 				// Note that if another app covers your app, then the OriginalSource on UWP is still the element of your app at the pointer's location.
-				originalSource ??= Windows.UI.Xaml.Window.Current.Content;
+				originalSource ??= Microsoft.UI.Xaml.Window.Current.Content;
 
 				if (originalSource is null)
 				{
@@ -82,7 +82,7 @@ namespace Windows.UI.Xaml
 				// Even if impossible for the Enter, we are fallbacking on the RootElement for safety
 				// This is how UWP behaves: when out of the bounds of the Window, the root element is use.
 				// Note that if another app covers your app, then the OriginalSource on UWP is still the element of your app at the pointer's location.
-				originalSource ??= Windows.UI.Xaml.Window.Current.Content;
+				originalSource ??= Microsoft.UI.Xaml.Window.Current.Content;
 
 				if (originalSource is null)
 				{
@@ -107,7 +107,7 @@ namespace Windows.UI.Xaml
 			private void CoreWindow_PointerExited(CoreWindow sender, PointerEventArgs args)
 			{
 				// This is how UWP behaves: when out of the bounds of the Window, the root element is use.
-				var originalSource = Windows.UI.Xaml.Window.Current.Content;
+				var originalSource = Microsoft.UI.Xaml.Window.Current.Content;
 				if (originalSource == null)
 				{
 					if (this.Log().IsEnabled(LogLevel.Trace))
@@ -153,7 +153,7 @@ namespace Windows.UI.Xaml
 				// Even if impossible for the Pressed, we are fallbacking on the RootElement for safety
 				// This is how UWP behaves: when out of the bounds of the Window, the root element is use.
 				// Note that if another app covers your app, then the OriginalSource on UWP is still the element of your app at the pointer's location.
-				originalSource ??= Windows.UI.Xaml.Window.Current.Content;
+				originalSource ??= Microsoft.UI.Xaml.Window.Current.Content;
 
 				if (originalSource is null)
 				{
@@ -184,7 +184,7 @@ namespace Windows.UI.Xaml
 				// Even if impossible for the Release, we are fallbacking on the RootElement for safety
 				// This is how UWP behaves: when out of the bounds of the Window, the root element is use.
 				// Note that if another app covers your app, then the OriginalSource on UWP is still the element of your app at the pointer's location.
-				originalSource ??= Windows.UI.Xaml.Window.Current.Content;
+				originalSource ??= Microsoft.UI.Xaml.Window.Current.Content;
 
 				if (originalSource is null)
 				{
@@ -219,7 +219,7 @@ namespace Windows.UI.Xaml
 
 				// This is how UWP behaves: when out of the bounds of the Window, the root element is use.
 				// Note that if another app covers your app, then the OriginalSource on UWP is still the element of your app at the pointer's location.
-				originalSource ??= Windows.UI.Xaml.Window.Current.Content;
+				originalSource ??= Microsoft.UI.Xaml.Window.Current.Content;
 
 				if (originalSource is null)
 				{
@@ -260,7 +260,7 @@ namespace Windows.UI.Xaml
 
 				// This is how UWP behaves: when out of the bounds of the Window, the root element is use.
 				// Note that is another app covers your app, then the OriginalSource on UWP is still the element of your app at the pointer's location.
-				originalSource ??= Windows.UI.Xaml.Window.Current.Content;
+				originalSource ??= Microsoft.UI.Xaml.Window.Current.Content;
 
 				if (originalSource is null)
 				{

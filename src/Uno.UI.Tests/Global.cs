@@ -1,8 +1,8 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Tests
 {

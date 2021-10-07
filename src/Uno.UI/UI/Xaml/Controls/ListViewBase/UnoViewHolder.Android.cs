@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using AndroidX.RecyclerView.Widget;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	internal class UnoViewHolder : RecyclerView.ViewHolder
 	{

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	internal abstract class CPUBoundAnimator<T> : IValueAnimator where T : struct
 	{

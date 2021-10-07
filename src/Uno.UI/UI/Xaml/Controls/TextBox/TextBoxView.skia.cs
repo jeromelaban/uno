@@ -1,13 +1,13 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 using Uno.Foundation.Extensibility;
 using Uno.UI.Xaml.Controls.Extensions;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	internal class TextBoxView
 	{

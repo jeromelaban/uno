@@ -1,15 +1,15 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
 using System.Collections;
 using System.Collections.Specialized;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 using IKeyIndexMapping = Microsoft.UI.Xaml.Controls.IKeyIndexMapping;
 
-namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common
+namespace Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common
 {
 	public class CustomItemsSourceView :  IList, INotifyCollectionChanged
 	{

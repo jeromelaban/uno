@@ -1,16 +1,16 @@
-﻿// MUX commit reference 36f8f8f6d5f11f414fdaa0462d0c4cb845cf4254
+// MUX commit reference 36f8f8f6d5f11f414fdaa0462d0c4cb845cf4254
 
 using Microsoft.UI.Private.Controls;
 using Uno.UI.Helpers.WinUI;
 using Windows.Devices.Input;
 using Windows.System;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
 
 using SplitButtonAutomationPeer = Microsoft.UI.Xaml.Automation.Peers.SplitButtonAutomationPeer;
 

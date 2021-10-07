@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	/// <summary>
 	/// A panel which supports virtualization when used in <see cref="ListViewBase"/>. On Uno this is supported by delegating the panel's responsibilities

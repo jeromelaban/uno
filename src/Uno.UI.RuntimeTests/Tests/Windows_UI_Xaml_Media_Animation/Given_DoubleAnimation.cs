@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Media_Animation
 {

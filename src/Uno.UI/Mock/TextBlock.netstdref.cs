@@ -3,7 +3,7 @@
 using Windows.Foundation;
 using Windows.UI.Text;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class TextBlock : FrameworkElement
 	{

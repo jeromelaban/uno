@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MUXControlsTestApp.Utilities;
 using Uno.Disposables;
-using Windows.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Automation.Peers;
 
 namespace Uno.UI.RuntimeTests.MUX.Helpers
 {

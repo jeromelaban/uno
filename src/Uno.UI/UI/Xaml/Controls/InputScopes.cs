@@ -1,17 +1,17 @@
-﻿#if !SILVERLIGHT
+#if !SILVERLIGHT
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 #if NETFX_CORE
-using Windows.UI.Xaml.Input;
-using NativeInputScope = Windows.UI.Xaml.Input.InputScopeNameValue;
+using Microsoft.UI.Xaml.Input;
+using NativeInputScope = Microsoft.UI.Xaml.Input.InputScopeNameValue;
 #else
-using Windows.UI.Xaml.Input;
-using NativeInputScope = Windows.UI.Xaml.Input.InputScopeNameValue;
+using Microsoft.UI.Xaml.Input;
+using NativeInputScope = Microsoft.UI.Xaml.Input.InputScopeNameValue;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
     public class InputScopes
     {

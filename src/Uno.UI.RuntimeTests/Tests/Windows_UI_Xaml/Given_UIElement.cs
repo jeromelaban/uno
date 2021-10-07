@@ -1,13 +1,13 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Private.Infrastructure;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Shapes;
 using System;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 #if NETFX_CORE
 using Uno.UI.Extensions;
 #elif __IOS__
@@ -68,8 +68,8 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 			Border border = new Border();
 			TextBlock text = new TextBlock()
 			{
-				HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center,
-				VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center,
+				HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment.Center,
+				VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Center,
 				Text = "Short text"
 			};
 			border.Child = text;
@@ -95,8 +95,8 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 
 			Rectangle rectangle = new Rectangle()
 			{
-				HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center,
-				VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Center,
+				HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment.Center,
+				VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment.Center,
 				Width = 42,
 				Height = 24,
 			};
@@ -205,8 +205,8 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 #endif
 			object GetTreeRoot()
 			{
-				var current = Windows.UI.Xaml.Window.Current.Content?.GetVisualTreeParent();
-				current = Windows.UI.Xaml.Window.Current.Content;
+				var current = Microsoft.UI.Xaml.Window.Current.Content?.GetVisualTreeParent();
+				current = Microsoft.UI.Xaml.Window.Current.Content;
 				var parent = current?.GetVisualTreeParent();
 				while (parent != null)
 				{

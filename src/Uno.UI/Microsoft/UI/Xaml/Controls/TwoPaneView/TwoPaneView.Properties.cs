@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Microsoft.UI.Xaml.Controls
 {
-	public partial class TwoPaneView : Windows.UI.Xaml.Controls.Control
+	public partial class TwoPaneView : Microsoft.UI.Xaml.Controls.Control
 	{
 		private const double c_defaultMinWideModeWidth = 641.0;
 		private const double c_defaultMinTallModeHeight = 641.0;

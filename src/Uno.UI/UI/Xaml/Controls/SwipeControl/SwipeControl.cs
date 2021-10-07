@@ -9,17 +9,17 @@ using System.Numerics;
 using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Hosting;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Hosting;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using Uno.Disposables;
 using Uno.UI.Helpers.WinUI;
 using Uno.UI.Extensions;
 using System.Threading.Tasks;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class SwipeControl : ContentControl
 	{
@@ -1146,7 +1146,7 @@ namespace Windows.UI.Xaml.Controls
 			float width = (float)(ActualWidth);
 			float height = (float)(ActualHeight);
 			Rect rect = new Rect(0.0f, 0.0f, width, height);
-			Windows.UI.Xaml.Media.RectangleGeometry rectangleGeometry = new RectangleGeometry();
+			Microsoft.UI.Xaml.Media.RectangleGeometry rectangleGeometry = new RectangleGeometry();
 			rectangleGeometry.Rect = rect;
 			Clip = rectangleGeometry;
 		}

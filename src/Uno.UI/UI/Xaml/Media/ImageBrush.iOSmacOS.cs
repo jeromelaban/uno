@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uno.Extensions;
 using Uno.Logging;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using Uno.Disposables;
 using Windows.UI.Core;
 
@@ -18,7 +18,7 @@ using AppKit;
 using _Image = AppKit.NSImage;
 #endif
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class ImageBrush
 	{

@@ -7,12 +7,12 @@ using System.Text;
 using UIKit;
 using Uno.Extensions;
 using Uno.UI.Extensions;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI.Controls;
 using Windows.UI;
 using Uno.Disposables;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class SinglelineTextBoxView : UITextField, ITextBoxView, DependencyObject, IFontScalable
 	{

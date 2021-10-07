@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
@@ -313,7 +313,7 @@
 									.Replace("args.PreviousExecutionState", "args.UWPLaunchActivatedEventArgs.PreviousExecutionState")
 									.Replace("args.PrelaunchActivated", "args.UWPLaunchActivatedEventArgs.PrelaunchActivated")
 									.Replace("OnLaunched(LaunchActivatedEventArgs", "OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs")
-									.Replace("Windows.UI.Xaml", "Microsoft.UI.Xaml");
+									.Replace("Microsoft.UI.Xaml", "Microsoft.UI.Xaml");
 									
 								var replacedLogging = @"
 						{ ""Windows"", LogLevel.Warning },

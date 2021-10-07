@@ -2,21 +2,15 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Devices.Bluetooth
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum BluetoothAddressType 
 	{
-		#if false
-		Public,
-		#endif
-		#if false
-		Random,
-		#endif
-		#if false
-		Unspecified,
-		#endif
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothAddressType.Public
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothAddressType.Random
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothAddressType.Unspecified
 	}
 	#endif
 }

@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Windows.ApplicationModel;
 using Windows.Graphics.Display;
 using Windows.UI.Core;
@@ -14,7 +14,7 @@ using Uno.UI.Xaml;
 using Uno.Foundation.Extensibility;
 using Microsoft.Extensions.Logging;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public partial class Application : IApplicationEvents
 	{
@@ -31,7 +31,7 @@ namespace Windows.UI.Xaml
 
 			if (!_startInvoked)
 			{
-				throw new InvalidOperationException("The application must be started using Application.Start first, e.g. Windows.UI.Xaml.Application.Start(_ => new App());");
+				throw new InvalidOperationException("The application must be started using Application.Start first, e.g. Microsoft.UI.Xaml.Application.Start(_ => new App());");
 			}
 
 			ApiExtensibility.CreateInstance(this, out _applicationExtension);
@@ -39,7 +39,7 @@ namespace Windows.UI.Xaml
 			CoreDispatcher.Main.RunAsync(CoreDispatcherPriority.Normal, Initialize);
 		}
 
-		internal static void Start(global::Windows.UI.Xaml.ApplicationInitializationCallback callback, string[] args)
+		internal static void Start(global::Microsoft.UI.Xaml.ApplicationInitializationCallback callback, string[] args)
 		{
 			_args = args;
 			Start(callback);

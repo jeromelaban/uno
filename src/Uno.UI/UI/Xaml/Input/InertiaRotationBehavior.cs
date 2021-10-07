@@ -2,7 +2,7 @@
 
 using Windows.UI.Input;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	public partial class InertiaRotationBehavior 
 	{

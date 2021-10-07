@@ -2,20 +2,71 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Composition
 {
-	#if false || false || false || false || false || false || false
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CompositionScopedBatch : global::Windows.UI.Composition.CompositionObject
 	{
-		// Skipping already declared property IsActive
-		// Skipping already declared property IsEnded
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  bool IsActive
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member bool CompositionScopedBatch.IsActive is not implemented in Uno.");
+			}
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  bool IsEnded
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member bool CompositionScopedBatch.IsEnded is not implemented in Uno.");
+			}
+		}
+		#endif
 		// Forced skipping of method Windows.UI.Composition.CompositionScopedBatch.IsActive.get
 		// Forced skipping of method Windows.UI.Composition.CompositionScopedBatch.IsEnded.get
-		// Skipping already declared method Windows.UI.Composition.CompositionScopedBatch.End()
-		// Skipping already declared method Windows.UI.Composition.CompositionScopedBatch.Resume()
-		// Skipping already declared method Windows.UI.Composition.CompositionScopedBatch.Suspend()
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  void End()
+		{
+			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.CompositionScopedBatch", "void CompositionScopedBatch.End()");
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  void Resume()
+		{
+			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.CompositionScopedBatch", "void CompositionScopedBatch.Resume()");
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  void Suspend()
+		{
+			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.CompositionScopedBatch", "void CompositionScopedBatch.Suspend()");
+		}
+		#endif
 		// Forced skipping of method Windows.UI.Composition.CompositionScopedBatch.Completed.add
 		// Forced skipping of method Windows.UI.Composition.CompositionScopedBatch.Completed.remove
-		// Skipping already declared event Windows.UI.Composition.CompositionScopedBatch.Completed
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  event global::Windows.Foundation.TypedEventHandler<object, global::Windows.UI.Composition.CompositionBatchCompletedEventArgs> Completed
+		{
+			[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+			add
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.CompositionScopedBatch", "event TypedEventHandler<object, CompositionBatchCompletedEventArgs> CompositionScopedBatch.Completed");
+			}
+			[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+			remove
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.CompositionScopedBatch", "event TypedEventHandler<object, CompositionBatchCompletedEventArgs> CompositionScopedBatch.Completed");
+			}
+		}
+		#endif
 	}
 }

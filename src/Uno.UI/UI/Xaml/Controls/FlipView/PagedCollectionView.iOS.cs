@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using UIKit;
 using CoreGraphics;
 using Foundation;
 using System.Collections.Generic;
 using Uno.Extensions;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	/// <summary>
 	/// Natively-derived class that implements FlipView behavior

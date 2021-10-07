@@ -6,7 +6,7 @@ namespace Windows.UI.Notifications
 	#if __ANDROID__ || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
-	public enum BadgeTemplateType 
+	public   enum BadgeTemplateType 
 	{
 		#if __ANDROID__ || false || false || false || false || false || false
 		BadgeGlyph,

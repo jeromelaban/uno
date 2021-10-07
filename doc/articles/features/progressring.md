@@ -2,10 +2,10 @@
 
 There are 2 progress rings available in Uno:
 
-* `Windows.UI.Xaml.Controls.ProgressRing` - the UWP one, support for both native & UWP styling.
+* `Microsoft.UI.Xaml.Controls.ProgressRing` - the UWP one, support for both native & UWP styling.
 * `Microsoft.UI.Xaml.Controls.ProgressRing` - the new version, which is powered by Lottie.
 
-## Using the legacy `Windows.UI.Xaml.Controls.ProgressRing`
+## Using the legacy `Microsoft.UI.Xaml.Controls.ProgressRing`
 
 This control works on all platforms and uses the native progress ring control by default, with the exception of Wasm where there is no native progress ring control.
 

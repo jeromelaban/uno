@@ -1,20 +1,20 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Windows.Foundation;
-using Windows.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Documents;
 using Uno.Extensions;
 using System.Linq;
-using Windows.UI.Xaml.Hosting;
+using Microsoft.UI.Xaml.Hosting;
 using SkiaSharp;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 using System.Numerics;
-using Windows.UI.Composition.Interactions;
+using Microsoft.UI.Composition.Interactions;
 using Uno.Disposables;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class TextBlock : FrameworkElement
 	{

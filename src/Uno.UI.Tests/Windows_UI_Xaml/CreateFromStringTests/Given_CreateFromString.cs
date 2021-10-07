@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,7 +71,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml.CreateFromStringTests
 		}
 	}
 
-	public partial class MyLocationPointControl : Windows.UI.Xaml.Controls.Control
+	public partial class MyLocationPointControl : Microsoft.UI.Xaml.Controls.Control
 	{
 		public Location LocationPoint { get; set; }
 

@@ -14,7 +14,7 @@ using Android.Views;
 using Uno.Diagnostics.Eventing;
 using Uno.Extensions;
 using Uno.Logging;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Android.OS;
 
 namespace Uno.UI
@@ -184,8 +184,8 @@ namespace Uno.UI
 		{
 			SetAsCurrent();
 
-			Windows.UI.Xaml.Application.Current?.OnLeavingBackground();
-			Windows.UI.Xaml.Window.Current?.OnVisibilityChanged(true);
+			Microsoft.UI.Xaml.Application.Current?.OnLeavingBackground();
+			Microsoft.UI.Xaml.Window.Current?.OnVisibilityChanged(true);
 		}
 
 		partial void InnerRestart() => SetAsCurrent();
@@ -194,13 +194,13 @@ namespace Uno.UI
 		{
 			SetAsCurrent();			
 
-			Windows.UI.Xaml.Application.Current?.OnResuming();
-			Windows.UI.Xaml.Window.Current?.OnActivated(CoreWindowActivationState.CodeActivated);
+			Microsoft.UI.Xaml.Application.Current?.OnResuming();
+			Microsoft.UI.Xaml.Window.Current?.OnActivated(CoreWindowActivationState.CodeActivated);
 		}
 
 		partial void InnerTopResumedActivityChanged(bool isTopResumedActivity)
 		{
-			Windows.UI.Xaml.Window.Current?.OnActivated(
+			Microsoft.UI.Xaml.Window.Current?.OnActivated(
 				isTopResumedActivity ?
 					CoreWindowActivationState.CodeActivated :
 					CoreWindowActivationState.Deactivated);
@@ -210,16 +210,16 @@ namespace Uno.UI
 		{
 			ResignCurrent();
 
-			Windows.UI.Xaml.Window.Current?.OnActivated(CoreWindowActivationState.Deactivated);
-			Windows.UI.Xaml.Application.Current?.OnSuspending();
+			Microsoft.UI.Xaml.Window.Current?.OnActivated(CoreWindowActivationState.Deactivated);
+			Microsoft.UI.Xaml.Application.Current?.OnSuspending();
 		}
 
 		partial void InnerStop()
 		{
 			ResignCurrent();
 
-			Windows.UI.Xaml.Window.Current?.OnVisibilityChanged(false);
-			Windows.UI.Xaml.Application.Current?.OnEnteredBackground();
+			Microsoft.UI.Xaml.Window.Current?.OnVisibilityChanged(false);
+			Microsoft.UI.Xaml.Application.Current?.OnEnteredBackground();
 		}
 
 		partial void InnerDestroy() => ResignCurrent();

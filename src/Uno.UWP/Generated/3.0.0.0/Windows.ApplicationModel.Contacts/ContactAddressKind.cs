@@ -2,21 +2,15 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.ApplicationModel.Contacts
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum ContactAddressKind 
 	{
-		#if false
-		Home,
-		#endif
-		#if false
-		Work,
-		#endif
-		#if false
-		Other,
-		#endif
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactAddressKind.Home
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactAddressKind.Work
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactAddressKind.Other
 	}
 	#endif
 }

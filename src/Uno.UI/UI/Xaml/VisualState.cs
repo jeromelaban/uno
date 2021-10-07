@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using Uno.UI.DataBinding;
 using Windows.Foundation.Collections;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Media.Animation;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	[ContentProperty(Name = "Storyboard")]
 	public sealed partial class VisualState : DependencyObject

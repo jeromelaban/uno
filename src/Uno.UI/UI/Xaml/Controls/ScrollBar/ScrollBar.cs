@@ -4,12 +4,12 @@ using System.Text;
 using Windows.Foundation;
 using Uno.Disposables;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public partial class ScrollBar
 	{

@@ -8,7 +8,7 @@ using Uno.UI;
 using Uno.UI.Extensions;
 using Windows.Globalization;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class TimePickerSelector
 	{

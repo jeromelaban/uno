@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +9,10 @@ using Uno.UI.Tests.App.Xaml;
 using Uno.UI.Tests.Helpers;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace Uno.UI.Tests.Windows_UI_Xaml
 {
@@ -35,7 +35,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 
 			app.HostView.Children.Add(control);
 
-			Assert.AreEqual(Windows.UI.Colors.MediumSpringGreen, (control.TopGrid.Background as SolidColorBrush).Color);
+			Assert.AreEqual(Microsoft.UI.Colors.MediumSpringGreen, (control.TopGrid.Background as SolidColorBrush).Color);
 		}
 
 		[TestMethod]

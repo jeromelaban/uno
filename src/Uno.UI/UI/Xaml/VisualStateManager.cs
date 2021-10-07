@@ -1,4 +1,4 @@
-﻿using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using Uno.Extensions;
 using Uno.Logging;
 using Uno.Diagnostics.Eventing;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public partial class VisualStateManager : DependencyObject
 	{

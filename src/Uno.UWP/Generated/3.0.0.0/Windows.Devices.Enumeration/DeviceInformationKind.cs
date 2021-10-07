@@ -2,39 +2,21 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Devices.Enumeration
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum DeviceInformationKind 
 	{
-		#if false
-		Unknown,
-		#endif
-		#if false
-		DeviceInterface,
-		#endif
-		#if false
-		DeviceContainer,
-		#endif
-		#if false
-		Device,
-		#endif
-		#if false
-		DeviceInterfaceClass,
-		#endif
-		#if false
-		AssociationEndpoint,
-		#endif
-		#if false
-		AssociationEndpointContainer,
-		#endif
-		#if false
-		AssociationEndpointService,
-		#endif
-		#if false
-		DevicePanel,
-		#endif
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.Unknown
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.DeviceInterface
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.DeviceContainer
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.Device
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.DeviceInterfaceClass
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.AssociationEndpoint
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.AssociationEndpointContainer
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.AssociationEndpointService
+		// Skipping already declared field Windows.Devices.Enumeration.DeviceInformationKind.DevicePanel
 	}
 	#endif
 }

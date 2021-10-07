@@ -1,4 +1,4 @@
-﻿// MUX Reference: TabViewItem.cpp, commit 542e6f9
+// MUX Reference: TabViewItem.cpp, commit 542e6f9
 
 using System.Numerics;
 using Microsoft.UI.Xaml.Automation.Peers;
@@ -8,13 +8,13 @@ using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Input;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 
 namespace Microsoft.UI.Xaml.Controls
 {
@@ -329,7 +329,7 @@ namespace Microsoft.UI.Xaml.Controls
 				var pointerPoint = args.GetCurrentPoint(this);
 				if (pointerPoint.Properties.IsLeftButtonPressed)
 				{
-					var isCtrlDown = (Windows.UI.Xaml.Window.Current.CoreWindow.GetKeyState(VirtualKey.Control) & CoreVirtualKeyStates.Down) == CoreVirtualKeyStates.Down;
+					var isCtrlDown = (Microsoft.UI.Xaml.Window.Current.CoreWindow.GetKeyState(VirtualKey.Control) & CoreVirtualKeyStates.Down) == CoreVirtualKeyStates.Down;
 					if (isCtrlDown)
 					{
 						// Return here so the base class will not pick it up, but let it remain unhandled so someone else could handle it.

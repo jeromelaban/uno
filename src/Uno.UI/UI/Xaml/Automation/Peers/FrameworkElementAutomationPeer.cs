@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Uno;
 using Uno.UI;
 using System.Linq;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 #if __ANDROID__
 using View = Android.Views.ViewGroup;
@@ -14,10 +14,10 @@ using UIKit;
 using View = AppKit.NSView;
 using AppKit;
 #else
-using View  = Windows.UI.Xaml.UIElement;
+using View  = Microsoft.UI.Xaml.UIElement;
 #endif
 
-namespace Windows.UI.Xaml.Automation.Peers
+namespace Microsoft.UI.Xaml.Automation.Peers
 {
 	public partial class FrameworkElementAutomationPeer : AutomationPeer
 	{
@@ -36,7 +36,7 @@ namespace Windows.UI.Xaml.Automation.Peers
 		}
 
 
-		public static global::Windows.UI.Xaml.Automation.Peers.AutomationPeer FromElement(global::Windows.UI.Xaml.UIElement element)
+		public static global::Microsoft.UI.Xaml.Automation.Peers.AutomationPeer FromElement(global::Microsoft.UI.Xaml.UIElement element)
 		{
 			if(element is IFrameworkElement fe)
 			{
@@ -46,7 +46,7 @@ namespace Windows.UI.Xaml.Automation.Peers
 			return null;
 		}
 
-		public static global::Windows.UI.Xaml.Automation.Peers.AutomationPeer CreatePeerForElement(global::Windows.UI.Xaml.UIElement element)
+		public static global::Microsoft.UI.Xaml.Automation.Peers.AutomationPeer CreatePeerForElement(global::Microsoft.UI.Xaml.UIElement element)
 		{
 			if (element is IFrameworkElement fe)
 			{

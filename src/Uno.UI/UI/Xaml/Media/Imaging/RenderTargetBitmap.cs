@@ -1,4 +1,4 @@
-﻿#if !__IOS__ && !__ANDROID__
+#if !__IOS__ && !__ANDROID__
 #define NOT_IMPLEMENTED
 #endif
 
@@ -12,7 +12,7 @@ using Uno.Extensions;
 using Uno.Logging;
 using Buffer = Windows.Storage.Streams.Buffer;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 #if NOT_IMPLEMENTED
 	[global::Uno.NotImplemented()]

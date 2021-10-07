@@ -2,24 +2,16 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Devices.Radios
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum RadioAccessStatus 
 	{
-		#if false
-		Unspecified,
-		#endif
-		#if false
-		Allowed,
-		#endif
-		#if false
-		DeniedByUser,
-		#endif
-		#if false
-		DeniedBySystem,
-		#endif
+		// Skipping already declared field Windows.Devices.Radios.RadioAccessStatus.Unspecified
+		// Skipping already declared field Windows.Devices.Radios.RadioAccessStatus.Allowed
+		// Skipping already declared field Windows.Devices.Radios.RadioAccessStatus.DeniedByUser
+		// Skipping already declared field Windows.Devices.Radios.RadioAccessStatus.DeniedBySystem
 	}
 	#endif
 }

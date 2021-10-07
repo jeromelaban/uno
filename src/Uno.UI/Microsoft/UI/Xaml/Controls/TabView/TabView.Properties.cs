@@ -1,9 +1,9 @@
-﻿// MUX Reference: TabViewItem.properties.cpp, commit de78834
+// MUX Reference: TabViewItem.properties.cpp, commit de78834
 
 using System.Collections.Generic;
 using System.Windows.Input;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Microsoft.UI.Xaml.Controls
 {

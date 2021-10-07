@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Uno.UI;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Automation.Peers;
 
-namespace Windows.UI.Xaml.Automation
+namespace Microsoft.UI.Xaml.Automation
 {
 	public sealed partial class AutomationProperties
 	{
@@ -169,7 +169,7 @@ namespace Windows.UI.Xaml.Automation
 			=> element.SetValue(AutomationIdProperty, value);
 		#endregion
 
-		public static int GetPositionInSet(global::Windows.UI.Xaml.DependencyObject element) => (int)element.GetValue(PositionInSetProperty);
+		public static int GetPositionInSet(global::Microsoft.UI.Xaml.DependencyObject element) => (int)element.GetValue(PositionInSetProperty);
 
 		public static void SetPositionInSet(DependencyObject element, int value) => element.SetValue(PositionInSetProperty, value);
 

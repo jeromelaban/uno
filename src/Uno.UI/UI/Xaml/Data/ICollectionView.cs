@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-namespace Windows.UI.Xaml.Data
+namespace Microsoft.UI.Xaml.Data
 {
 	public partial interface ICollectionView : IEnumerable<object>, IObservableVector<object>, IList<object>
 	{

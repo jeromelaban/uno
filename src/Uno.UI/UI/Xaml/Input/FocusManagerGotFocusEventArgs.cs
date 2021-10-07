@@ -1,8 +1,8 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	/// <summary>
 	/// Provides data for the GotFocus event.

@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Xaml.Controls;
 using System.ComponentModel;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.Extensions.Logging;
 
 namespace Uno.UI
@@ -86,12 +86,12 @@ namespace Uno.UI
 		public static class CompositionTarget
 		{
 			/// <summary>
-			/// The delay between invocations of the <see cref="Windows.UI.Xaml.Media.CompositionTarget.Rendering"/> event, in milliseconds.
+			/// The delay between invocations of the <see cref="Microsoft.UI.Xaml.Media.CompositionTarget.Rendering"/> event, in milliseconds.
 			/// Lower values will increase the rate at which the event fires, at the expense of increased CPU usage.
 			///
 			/// This property is only used on WebAssembly.
 			/// </summary>
-			/// <remarks>The <see cref="Windows.UI.Xaml.Media.CompositionTarget.Rendering"/> event is used by Xamarin.Forms for WebAssembly for XF animations.</remarks>
+			/// <remarks>The <see cref="Microsoft.UI.Xaml.Media.CompositionTarget.Rendering"/> event is used by Xamarin.Forms for WebAssembly for XF animations.</remarks>
 			public static int RenderEventThrottle { get; set; } = 30;
 		}
 
@@ -114,7 +114,7 @@ namespace Uno.UI
 			public static bool UseLegacyContentAlignment { get; set; } = false;
 
 			/// <summary>
-			/// Enables the lazy materialization of <see cref="Windows.UI.Xaml.Controls.Control"/> template. This behavior
+			/// Enables the lazy materialization of <see cref="Microsoft.UI.Xaml.Controls.Control"/> template. This behavior
 			/// is not aligned with UWP, which materializes templates immediately, making x:Name controls available
 			/// in the constructor of a control.
 			/// </summary>
@@ -192,8 +192,8 @@ namespace Uno.UI
 
 #if __ANDROID__
 			/// <summary>
-			/// Controls the propagation of <see cref="Windows.UI.Xaml.FrameworkElement.Loaded"/> and
-			/// <see cref="Windows.UI.Xaml.FrameworkElement.Unloaded"/> events through managed
+			/// Controls the propagation of <see cref="Microsoft.UI.Xaml.FrameworkElement.Loaded"/> and
+			/// <see cref="Microsoft.UI.Xaml.FrameworkElement.Unloaded"/> events through managed
 			/// or native visual tree traversal.
 			/// </summary>
 			/// <remarks>
@@ -204,8 +204,8 @@ namespace Uno.UI
 #endif
 
 			/// <summary>
-			/// [WebAssembly Only] Controls the propagation of <see cref="Windows.UI.Xaml.FrameworkElement.Loaded"/> and
-			/// <see cref="Windows.UI.Xaml.FrameworkElement.Unloaded"/> events through managed
+			/// [WebAssembly Only] Controls the propagation of <see cref="Microsoft.UI.Xaml.FrameworkElement.Loaded"/> and
+			/// <see cref="Microsoft.UI.Xaml.FrameworkElement.Unloaded"/> events through managed
 			/// or native visual tree traversal.
 			/// </summary>
 			/// <remarks>
@@ -352,14 +352,14 @@ namespace Uno.UI
 			public static IDictionary<Type, bool> UseUWPDefaultStylesOverride { get; } = new Dictionary<Type, bool>();
 
 			/// <summary>
-			/// This enables native frame navigation on Android and iOS by setting related classes (<see cref="Frame"/>, <see cref="Windows.UI.Xaml.Controls.CommandBar"/>
-			/// and <see cref="Windows.UI.Xaml.Controls.AppBarButton"/>) to use their native styles.
+			/// This enables native frame navigation on Android and iOS by setting related classes (<see cref="Frame"/>, <see cref="Microsoft.UI.Xaml.Controls.CommandBar"/>
+			/// and <see cref="Microsoft.UI.Xaml.Controls.AppBarButton"/>) to use their native styles.
 			/// </summary>
 			public static void ConfigureNativeFrameNavigation()
 			{
 				SetUWPDefaultStylesOverride<Frame>(useUWPDefaultStyle: false);
-				SetUWPDefaultStylesOverride<Windows.UI.Xaml.Controls.CommandBar>(useUWPDefaultStyle: false);
-				SetUWPDefaultStylesOverride<Windows.UI.Xaml.Controls.AppBarButton>(useUWPDefaultStyle: false);
+				SetUWPDefaultStylesOverride<Microsoft.UI.Xaml.Controls.CommandBar>(useUWPDefaultStyle: false);
+				SetUWPDefaultStylesOverride<Microsoft.UI.Xaml.Controls.AppBarButton>(useUWPDefaultStyle: false);
 			}
 
 			/// <summary>
@@ -370,7 +370,7 @@ namespace Uno.UI
 			/// Whether instances of <typeparamref name="TControl"/> should use the UWP default style.
 			/// If false, the native default style (if one exists) will be used.
 			/// </param>
-			public static void SetUWPDefaultStylesOverride<TControl>(bool useUWPDefaultStyle) where TControl : Windows.UI.Xaml.Controls.Control
+			public static void SetUWPDefaultStylesOverride<TControl>(bool useUWPDefaultStyle) where TControl : Microsoft.UI.Xaml.Controls.Control
 				=> UseUWPDefaultStylesOverride[typeof(TControl)] = useUWPDefaultStyle;
 		}
 
@@ -511,7 +511,7 @@ namespace Uno.UI
 		public static class VisualState
 		{
 			/// <summary>
-			/// When this is set, the <see cref="Windows.UI.Xaml.VisualState.Setters"/> will be applied synchronously when changing state,
+			/// When this is set, the <see cref="Microsoft.UI.Xaml.VisualState.Setters"/> will be applied synchronously when changing state,
 			/// unlike UWP which waits the for the end of the <see cref="VisualTransition.Storyboard"/> (if any) to apply them.
 			/// </summary>
 			/// <remarks>This flag is for backward compatibility with old versions of uno and should not be turned on.</remarks>
@@ -582,8 +582,8 @@ namespace Uno.UI
 			/// Gets or set whether the EnableBitmapIconTint feature is on or off.
 			/// </summary>
 			/// <remarks>
-			/// This Feature will allow any <see cref="Windows.UI.Xaml.Controls.AppBarButton"/>
-			/// inside a <see cref="Windows.UI.Xaml.Controls.CommandBar"/> to use the Foreground <see cref="SolidColorBrush"/>
+			/// This Feature will allow any <see cref="Microsoft.UI.Xaml.Controls.AppBarButton"/>
+			/// inside a <see cref="Microsoft.UI.Xaml.Controls.CommandBar"/> to use the Foreground <see cref="SolidColorBrush"/>
 			/// as their tint Color.
 			/// <para/>Default value is False.
 			/// </remarks>

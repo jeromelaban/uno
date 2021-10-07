@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +7,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Uno.Extensions;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Uno.UI.Tests.FlyoutTests
 {
@@ -31,7 +31,7 @@ namespace Uno.UI.Tests.FlyoutTests
 			var flyout = new Flyout()
 			{
 				LightDismissOverlayMode = LightDismissOverlayMode.On,
-				Placement = Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.Bottom
+				Placement = Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.Bottom
 			};
 
 			var button = new Button()
@@ -156,7 +156,7 @@ namespace Uno.UI.Tests.FlyoutTests
 
 			var flyout = new Flyout()
 			{
-				Placement = Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.Full,
+				Placement = Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.Full,
 				FlyoutPresenterStyle = new Style
 				{
 					Setters =
@@ -197,7 +197,7 @@ namespace Uno.UI.Tests.FlyoutTests
 
 			var flyout = new Flyout()
 			{
-				Placement = Windows.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.Full,
+				Placement = Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.Full,
 				FlyoutPresenterStyle = new Style
 				{
 					Setters =

@@ -9,12 +9,12 @@ using Uno.Logging;
 using Uno.UI.Extensions;
 using Windows.Foundation;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using CoreAnimation;
 using Uno.UI;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class Image
 	{

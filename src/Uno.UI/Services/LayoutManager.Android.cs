@@ -1,4 +1,4 @@
-﻿using Android.Views;
+using Android.Views;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Uno.Extensions;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Services
 {

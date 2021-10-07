@@ -1,4 +1,4 @@
-﻿#if __IOS__
+#if __IOS__
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,8 +10,8 @@ using System.Collections.Generic;
 using SampleControl.Entities;
 using Uno.Disposables;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using UIKit;
 using System.IO;
 using Foundation;

@@ -1,8 +1,8 @@
-﻿#if !NET461 && !UNO_REFERENCE_API
+#if !NET461 && !UNO_REFERENCE_API
 using Uno.Extensions;
 using Uno.Diagnostics.Eventing;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +10,7 @@ using Uno.Disposables;
 using System.Threading;
 using System.Threading.Tasks;
 using Uno.UI;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Foundation;
 using Uno.Logging;
 using Microsoft.Extensions.Logging;
@@ -21,7 +21,7 @@ using Windows.UI.Core;
 using UIKit;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class Image : FrameworkElement
 	{

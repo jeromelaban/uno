@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,10 +7,10 @@ using Windows.Graphics.Display;
 using Windows.Storage.Streams;
 using Uno.Extensions;
 using Uno.Logging;
-using static Windows.UI.Xaml.Media.Imaging.BitmapImage;
+using static Microsoft.UI.Xaml.Media.Imaging.BitmapImage;
 using Windows.Storage.Helpers;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 	partial class SvgImageSource
 	{

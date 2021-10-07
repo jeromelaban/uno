@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>
 	/// Defines the metadata to use for a dependency property for framework elements

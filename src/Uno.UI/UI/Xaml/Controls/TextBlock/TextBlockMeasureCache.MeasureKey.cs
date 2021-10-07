@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Windows.UI.Text;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Uno.Extensions;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	[DebuggerDisplay("\"{_text}\"")]
 	internal partial class TextBlockMeasureCache

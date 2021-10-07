@@ -1,4 +1,4 @@
-﻿using Uno.Extensions;
+using Uno.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,10 +6,10 @@ using Uno.UI.DataBinding;
 using Uno.Logging;
 using System.Linq;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using System.Diagnostics;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	public partial class Timeline : DependencyObject, ITimeline
 	{

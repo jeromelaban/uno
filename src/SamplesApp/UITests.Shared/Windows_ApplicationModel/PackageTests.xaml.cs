@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Uno.UI.Samples.Controls;
 using Windows.ApplicationModel;
 using Windows.System;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace UITests.Shared.Windows_ApplicationModel
 {

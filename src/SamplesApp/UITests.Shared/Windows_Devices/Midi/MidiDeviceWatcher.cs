@@ -1,4 +1,4 @@
-﻿//*********************************************************
+//*********************************************************
 //
 // Copyright (c) Microsoft. All rights reserved.
 // This code is licensed under the MIT License (MIT).
@@ -14,7 +14,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace UITests.Shared.Windows_Devices.Midi
 {

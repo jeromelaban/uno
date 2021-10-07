@@ -2,42 +2,22 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Devices.Bluetooth
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum BluetoothMajorClass 
 	{
-		#if false
-		Miscellaneous,
-		#endif
-		#if false
-		Computer,
-		#endif
-		#if false
-		Phone,
-		#endif
-		#if false
-		NetworkAccessPoint,
-		#endif
-		#if false
-		AudioVideo,
-		#endif
-		#if false
-		Peripheral,
-		#endif
-		#if false
-		Imaging,
-		#endif
-		#if false
-		Wearable,
-		#endif
-		#if false
-		Toy,
-		#endif
-		#if false
-		Health,
-		#endif
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.Miscellaneous
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.Computer
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.Phone
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.NetworkAccessPoint
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.AudioVideo
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.Peripheral
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.Imaging
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.Wearable
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.Toy
+		// Skipping already declared field Windows.Devices.Bluetooth.BluetoothMajorClass.Health
 	}
 	#endif
 }

@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Windows.UI.Xaml.Markup
+namespace Microsoft.UI.Xaml.Markup
 {
 	/// <summary>
 	/// Defines the property that will be used in Xaml when using implicit content.

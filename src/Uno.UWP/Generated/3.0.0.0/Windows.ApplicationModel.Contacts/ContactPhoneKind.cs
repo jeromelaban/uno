@@ -2,42 +2,22 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.ApplicationModel.Contacts
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum ContactPhoneKind 
 	{
-		#if false
-		Home,
-		#endif
-		#if false
-		Mobile,
-		#endif
-		#if false
-		Work,
-		#endif
-		#if false
-		Other,
-		#endif
-		#if false
-		Pager,
-		#endif
-		#if false
-		BusinessFax,
-		#endif
-		#if false
-		HomeFax,
-		#endif
-		#if false
-		Company,
-		#endif
-		#if false
-		Assistant,
-		#endif
-		#if false
-		Radio,
-		#endif
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.Home
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.Mobile
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.Work
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.Other
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.Pager
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.BusinessFax
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.HomeFax
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.Company
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.Assistant
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactPhoneKind.Radio
 	}
 	#endif
 }

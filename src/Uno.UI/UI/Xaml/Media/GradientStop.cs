@@ -1,4 +1,4 @@
-﻿#if XAMARIN_ANDROID
+#if XAMARIN_ANDROID
 using Android.Views;
 using Android.Graphics;
 using View = Android.Views.View;
@@ -20,7 +20,7 @@ using Color = Windows.UI.Color;
 using Windows.UI;
 #endif
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class GradientStop : DependencyObject
 	{

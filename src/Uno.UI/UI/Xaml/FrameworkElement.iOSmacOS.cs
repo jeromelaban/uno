@@ -1,4 +1,4 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using Uno.Extensions;
 using Uno.UI.Controls;
 using System;
@@ -15,7 +15,7 @@ using _View = UIKit.UIView;
 using _View = AppKit.NSView;
 #endif
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public partial class FrameworkElement
 	{

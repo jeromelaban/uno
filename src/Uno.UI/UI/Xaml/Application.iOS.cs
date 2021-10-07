@@ -1,4 +1,4 @@
-﻿#if XAMARIN_IOS
+#if XAMARIN_IOS
 using Foundation;
 using System;
 using System.Linq;
@@ -18,7 +18,7 @@ using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 using LaunchActivatedEventArgs = Windows.ApplicationModel.Activation.LaunchActivatedEventArgs;
 #endif
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	[Register("UnoAppDelegate")]
 	public partial class Application : UIApplicationDelegate
@@ -231,7 +231,7 @@ namespace Windows.UI.Xaml
 
 		private void OnEnteredBackground(NSNotification notification)
 		{
-			Windows.UI.Xaml.Window.Current?.OnVisibilityChanged(false);
+			Microsoft.UI.Xaml.Window.Current?.OnVisibilityChanged(false);
 			EnteredBackground?.Invoke(this, new EnteredBackgroundEventArgs());
 
 			OnSuspending();
@@ -240,17 +240,17 @@ namespace Windows.UI.Xaml
 		private void OnLeavingBackground(NSNotification notification)
 		{			
 			LeavingBackground?.Invoke(this, new LeavingBackgroundEventArgs());
-			Windows.UI.Xaml.Window.Current?.OnVisibilityChanged(true);
+			Microsoft.UI.Xaml.Window.Current?.OnVisibilityChanged(true);
 		}
 
 		private void OnActivated(NSNotification notification)
 		{
-			Windows.UI.Xaml.Window.Current?.OnActivated(CoreWindowActivationState.CodeActivated);
+			Microsoft.UI.Xaml.Window.Current?.OnActivated(CoreWindowActivationState.CodeActivated);
 		}
 
 		private void OnDeactivated(NSNotification notification)
 		{
-			Windows.UI.Xaml.Window.Current?.OnActivated(CoreWindowActivationState.Deactivated);
+			Microsoft.UI.Xaml.Window.Current?.OnActivated(CoreWindowActivationState.Deactivated);
 		}
 	}
 }

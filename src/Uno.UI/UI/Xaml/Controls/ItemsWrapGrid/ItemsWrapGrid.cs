@@ -1,10 +1,10 @@
-﻿#if !NET461 && !UNO_REFERENCE_API && !__MACOS__
+#if !NET461 && !UNO_REFERENCE_API && !__MACOS__
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.UI;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class ItemsWrapGrid : Panel, IVirtualizingPanel
 	{

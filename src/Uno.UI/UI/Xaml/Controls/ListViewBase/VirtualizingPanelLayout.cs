@@ -1,19 +1,19 @@
-﻿#if !NET461
+#if !NET461
 #nullable enable
 
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Windows.Foundation;
 using System.Linq;
 using Uno.Extensions;
 using Uno.UI;
 using Uno;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
-    [Windows.UI.Xaml.Data.Bindable]
+    [Microsoft.UI.Xaml.Data.Bindable]
 	abstract partial class VirtualizingPanelLayout : IScrollSnapPointsInfo
 	{
 		/// <summary>

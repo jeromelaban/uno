@@ -1,4 +1,4 @@
-﻿using Uno.Disposables;
+using Uno.Disposables;
 using Uno;
 using Uno.Extensions;
 using Uno.UI;
@@ -9,13 +9,13 @@ using System.Linq;
 using System.Text;
 using Uno.UI.DataBinding;
 using Uno.UI.Extensions;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using System.Diagnostics.CodeAnalysis;
 using Uno.Logging;
 using Windows.UI.Core;
 using Uno.UI.Controls;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 #if XAMARIN_IOS_UNIFIED
 using Foundation;
 using UIKit;

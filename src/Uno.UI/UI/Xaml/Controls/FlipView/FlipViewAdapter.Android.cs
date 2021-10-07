@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using Uno.UI.Controls;
 using Uno.Extensions.Specialized;
 using AndroidX.ViewPager.Widget;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public class FlipViewAdapter : PagerAdapter
 	{

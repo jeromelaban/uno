@@ -6,10 +6,10 @@ using System;
 using Uno.Extensions;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class ContentDialog
 	{

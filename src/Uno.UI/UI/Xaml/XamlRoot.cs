@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>
 	/// Represents a tree of XAML content and information about the context in which it is hosted.

@@ -12,9 +12,9 @@ using Uno.UI.DataBinding;
 using Uno.UI.Xaml;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public delegate object SetterValueProviderHandler();
 	public delegate object SetterValueProviderHandlerWithOwner(object? owner);

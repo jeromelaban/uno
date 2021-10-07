@@ -1,7 +1,7 @@
-﻿using Windows.Foundation;
+using Windows.Foundation;
 using Uno.Collections;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	partial class LayoutInformation
 	{

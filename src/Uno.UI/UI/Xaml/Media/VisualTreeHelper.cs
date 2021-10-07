@@ -1,4 +1,4 @@
-﻿#nullable disable // Not supported by WinUI yet
+#nullable disable // Not supported by WinUI yet
 // #define TRACE_HIT_TESTING
 
 using System;
@@ -10,8 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Uno.UI;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Uno.Extensions;
 using Uno.Disposables;
 using Windows.Globalization.DateTimeFormatting;
@@ -31,11 +31,11 @@ using _ViewGroup = AppKit.NSView;
 using _View = Android.Views.View;
 using _ViewGroup = Android.Views.ViewGroup;
 #else
-using _View = Windows.UI.Xaml.UIElement;
-using _ViewGroup = Windows.UI.Xaml.UIElement;
+using _View = Microsoft.UI.Xaml.UIElement;
+using _ViewGroup = Microsoft.UI.Xaml.UIElement;
 #endif
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class VisualTreeHelper
 	{

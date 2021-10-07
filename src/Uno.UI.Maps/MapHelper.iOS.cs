@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using CoreGraphics;
 using CoreLocation;
 using MapKit;
 using Windows.Devices.Geolocation;
 
-namespace Windows.UI.Xaml.Controls.Maps
+namespace Microsoft.UI.Xaml.Controls.Maps
 {
 	internal static class MapHelper
 	{

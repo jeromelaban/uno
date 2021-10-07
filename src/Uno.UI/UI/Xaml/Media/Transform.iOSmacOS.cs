@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -12,7 +12,7 @@ using UIKit;
 using AppKit;
 #endif
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	partial class Transform : GeneralTransform
 	{

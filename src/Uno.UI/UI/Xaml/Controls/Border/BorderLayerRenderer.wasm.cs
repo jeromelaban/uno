@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Linq;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Uno.Disposables;
 using Uno.Extensions;
 using Uno.UI.Xaml;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	internal class BorderLayerRenderer
 	{

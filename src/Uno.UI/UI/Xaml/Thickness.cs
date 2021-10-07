@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Globalization;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	[TypeConverter(typeof(ThicknessConverter))]
 	public partial struct Thickness : IEquatable<Thickness>

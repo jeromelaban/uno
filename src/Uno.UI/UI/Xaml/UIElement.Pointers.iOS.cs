@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 using Foundation;
 using UIKit;
 using Uno.Extensions;
 using Uno.Logging;
 using Uno.UI.Extensions;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	partial class UIElement
 	{

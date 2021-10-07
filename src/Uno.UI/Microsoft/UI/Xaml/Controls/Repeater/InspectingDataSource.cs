@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using Windows.Foundation.Collections;
-using Windows.UI.Xaml.Interop;
+using Microsoft.UI.Xaml.Interop;
 using Uno.Disposables;
 
 // WinRT types that have a different name in .net

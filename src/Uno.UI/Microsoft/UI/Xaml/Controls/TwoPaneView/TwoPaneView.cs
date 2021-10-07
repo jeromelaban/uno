@@ -5,13 +5,13 @@ using Uno.Disposables;
 using Uno.UI.Helpers.WinUI;
 using Windows.Foundation;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 
 namespace Microsoft.UI.Xaml.Controls
 {
-	public partial class TwoPaneView : Windows.UI.Xaml.Controls.Control
+	public partial class TwoPaneView : Microsoft.UI.Xaml.Controls.Control
 	{
 		const string c_pane1ScrollViewerName = "PART_Pane1ScrollViewer";
 		const string c_pane2ScrollViewerName = "PART_Pane2ScrollViewer";
@@ -43,7 +43,7 @@ namespace Microsoft.UI.Xaml.Controls
 			DefaultStyleKey = typeof(TwoPaneView);
 
 			SizeChanged += OnSizeChanged;
-			Windows.UI.Xaml.Window.Current.SizeChanged += OnWindowSizeChanged;
+			Microsoft.UI.Xaml.Window.Current.SizeChanged += OnWindowSizeChanged;
 
 			this.RegisterDisposablePropertyChangedCallback((e, s, a) => OnPropertyChanged(a));
 		}

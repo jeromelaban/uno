@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // RootVisual.h, RootVisual.cpp
 
@@ -7,10 +7,10 @@
 using Uno.UI.Extensions;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Input;
 
 namespace Uno.UI.Xaml.Core
 {
@@ -111,13 +111,13 @@ namespace Uno.UI.Xaml.Core
 		// but Uno does not have it on all targets yet.
 		private bool _isLeftButtonPressed = false;
 
-		private void RootVisual_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+		private void RootVisual_PointerPressed(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
 		{
 			var point = e.GetCurrentPoint(this);
 			_isLeftButtonPressed = point.Properties.IsLeftButtonPressed;
 		}
 
-		private void RootVisual_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+		private void RootVisual_PointerReleased(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
 		{
 			if (_isLeftButtonPressed)
 			{

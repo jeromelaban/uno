@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class FontFamily
 	{

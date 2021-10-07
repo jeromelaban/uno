@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Reflection;
@@ -10,14 +10,14 @@ using Uno.UI.Samples.Controls;
 using Uno.UI.Samples.Entities;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Globalization;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.Storage;
 using Uno.Extensions;
 using Uno.Logging;
 using Microsoft.Extensions.Logging;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using System.IO;
 using Uno.Disposables;
 using System.ComponentModel;
@@ -25,13 +25,13 @@ using Uno.UI.Common;
 using Microsoft.UI.Xaml.Controls;
 
 #if XAMARIN || UNO_REFERENCE_API
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 #else
 using Windows.Graphics.Imaging;
 using Windows.Graphics.Display;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Windows.UI;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 #endif
 
 namespace SampleControl.Presentation
@@ -414,7 +414,7 @@ namespace SampleControl.Presentation
 				// Force the in app styles to reload
 				Application.Current.Resources?.UpdateThemeBindings();
 				Uno.UI.ResourceResolver.UpdateSystemThemeBindings();
-				Application.PropagateThemeChanged(Windows.UI.Xaml.Window.Current.Content);
+				Application.PropagateThemeChanged(Microsoft.UI.Xaml.Window.Current.Content);
 #endif
 				RaisePropertyChanged();
 			}
@@ -426,7 +426,7 @@ namespace SampleControl.Presentation
 			set
 			{
 				_useDarkTheme = value;
-				if (Windows.UI.Xaml.Window.Current.Content is FrameworkElement root)
+				if (Microsoft.UI.Xaml.Window.Current.Content is FrameworkElement root)
 				{
 					root.RequestedTheme = _useDarkTheme ? ElementTheme.Dark : ElementTheme.Light;
 				}

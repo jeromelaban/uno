@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Samples.Controls;
 
 namespace SamplesApp.Windows_UI_Xaml_Controls.PivotTests

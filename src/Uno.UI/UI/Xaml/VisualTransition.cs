@@ -1,12 +1,12 @@
-﻿using Uno.Extensions;
-using Windows.UI.Xaml.Media.Animation;
+using Uno.Extensions;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Windows.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Markup;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	[ContentProperty(Name = "Storyboard")]
 	public partial class VisualTransition : DependencyObject

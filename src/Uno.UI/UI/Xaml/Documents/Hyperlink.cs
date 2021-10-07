@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using DirectUI;
@@ -10,11 +10,11 @@ using Windows.Foundation;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Documents
+namespace Microsoft.UI.Xaml.Documents
 {
 	public sealed partial class Hyperlink : Span
 	{

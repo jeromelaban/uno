@@ -1,14 +1,14 @@
-﻿// MUX Reference TreeViewItemDataAutomationPeer.cpp, commit 46f9da3
+// MUX Reference TreeViewItemDataAutomationPeer.cpp, commit 46f9da3
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Automation.Provider;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Automation.Provider;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Microsoft.UI.Xaml.Automation.Peers
 {

@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Diagnostics.Contracts;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>
 	/// Provides helper methods to evaluate or set Rect values.

@@ -2,24 +2,16 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Devices.Haptics
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum VibrationAccessStatus 
 	{
-		#if false
-		Allowed,
-		#endif
-		#if false
-		DeniedByUser,
-		#endif
-		#if false
-		DeniedBySystem,
-		#endif
-		#if false
-		DeniedByEnergySaver,
-		#endif
+		// Skipping already declared field Windows.Devices.Haptics.VibrationAccessStatus.Allowed
+		// Skipping already declared field Windows.Devices.Haptics.VibrationAccessStatus.DeniedByUser
+		// Skipping already declared field Windows.Devices.Haptics.VibrationAccessStatus.DeniedBySystem
+		// Skipping already declared field Windows.Devices.Haptics.VibrationAccessStatus.DeniedByEnergySaver
 	}
 	#endif
 }

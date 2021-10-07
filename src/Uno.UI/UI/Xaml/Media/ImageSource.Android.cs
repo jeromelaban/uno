@@ -1,4 +1,4 @@
-﻿using Android.Graphics;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Uno.Extensions;
 using Uno.Logging;
@@ -17,7 +17,7 @@ using Microsoft.Extensions.Logging;
 using Uno.UI;
 using Uno;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class ImageSource
 	{

@@ -1,4 +1,4 @@
-﻿using Android.OS;
+using Android.OS;
 using AndroidX.Fragment.App;
 using Android.Views;
 using Uno.Extensions;
@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public class PivotItemFragment : Fragment
 	{

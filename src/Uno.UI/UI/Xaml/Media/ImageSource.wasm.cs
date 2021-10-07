@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using Uno.Extensions;
 using System;
@@ -11,7 +11,7 @@ using Uno.Web.Query;
 using Uno.Web.Query.Cache;
 #endif
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	partial class ImageSource
 	{

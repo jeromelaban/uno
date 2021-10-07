@@ -12,7 +12,7 @@
 using Windows.UI.Core;
 using DateTime = System.DateTimeOffset;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	partial class CalendarPanel
 	{

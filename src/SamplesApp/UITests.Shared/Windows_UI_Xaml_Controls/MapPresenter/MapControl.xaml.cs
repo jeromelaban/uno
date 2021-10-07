@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Uno.Extensions;
 using Uno.Logging;
 using Uno.UI.Samples.Controls;
 using Windows.Devices.Geolocation;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Maps;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Maps;
 
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236

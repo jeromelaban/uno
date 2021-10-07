@@ -3,12 +3,12 @@
 
 using System;
 using System.Collections.Generic;
-using Windows.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation;
 using DirectUI;
 using Uno.Extensions;
 using DateTime = System.DateTimeOffset;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class CalendarViewGeneratorYearViewHost
 	{

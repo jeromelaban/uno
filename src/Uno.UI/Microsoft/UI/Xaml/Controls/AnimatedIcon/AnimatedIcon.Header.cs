@@ -1,12 +1,12 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // MUX Reference AnimatedIcon.cpp, commit 893116c
 
 using System.Collections.Generic;
 using Uno.Disposables;
-using Windows.UI.Composition;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Composition;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 
 namespace Microsoft.UI.Xaml.Controls
 {

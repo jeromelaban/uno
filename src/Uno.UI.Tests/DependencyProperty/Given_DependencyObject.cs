@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Windows.UI.Xaml;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.UI.Xaml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.UI.DataBinding;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Uno.UI.Tests
 {

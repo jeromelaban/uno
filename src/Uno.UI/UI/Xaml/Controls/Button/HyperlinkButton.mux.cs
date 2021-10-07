@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // HyperlinkButton_Partial.h, HyperlinkButton_Partial.cpp
 
@@ -7,10 +7,10 @@
 using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Text;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class HyperlinkButton : ButtonBase
 	{

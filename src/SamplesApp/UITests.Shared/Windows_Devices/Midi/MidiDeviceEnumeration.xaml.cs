@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,7 +10,7 @@ using Uno.UI.Samples.UITests.Helpers;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Midi;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace UITests.Shared.Windows_Devices.Midi
 {
@@ -63,7 +63,7 @@ namespace UITests.Shared.Windows_Devices.Midi
 
 		public ObservableCollection<string> OutputDeviceProperties { get; } = new ObservableCollection<string>();
 
-		private void MidiDeviceEnumerationTests_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void MidiDeviceEnumerationTests_Unloaded(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
 		{
 			// Stop the input and output device watchers
 			_midiInDeviceWatcher.Stop();
@@ -101,7 +101,7 @@ namespace UITests.Shared.Windows_Devices.Midi
 		/// </summary>
 		/// <param name="sender">Element that fired the event</param>
 		/// <param name="e">Event arguments</param>
-		private async void listInputDevicesButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private async void listInputDevicesButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
 		{
 			// Enumerate input devices
 			await EnumerateMidiInputDevices();
@@ -146,7 +146,7 @@ namespace UITests.Shared.Windows_Devices.Midi
 		/// </summary>
 		/// <param name="sender">Element that fired the event</param>
 		/// <param name="e">Event arguments</param>
-		private async void listOutputDevicesButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private async void listOutputDevicesButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
 		{
 			// Enumerate output devices
 			await EnumerateMidiOutputDevices();
@@ -193,7 +193,7 @@ namespace UITests.Shared.Windows_Devices.Midi
 		/// </summary>
 		/// <param name="sender">Element that fired the event</param>
 		/// <param name="e">Event arguments</param>
-		private void DeviceAutoDetectToggle_Toggled(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		private void DeviceAutoDetectToggle_Toggled(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
 		{
 			if (deviceAutoDetectToggle.IsOn)
 			{

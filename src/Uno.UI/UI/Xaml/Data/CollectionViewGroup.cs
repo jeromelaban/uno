@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.UI.DataBinding;
 using Windows.Foundation.Collections;
 
-namespace Windows.UI.Xaml.Data
+namespace Microsoft.UI.Xaml.Data
 {
 	internal class CollectionViewGroup : ICollectionViewGroup
 	{

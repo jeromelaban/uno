@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Uno.Extensions;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using Uno.UI.Common;
 using Windows.Foundation;
 using Uno;
@@ -13,10 +13,10 @@ using Android.Views;
 #elif XAMARIN_IOS
 using View = UIKit.UIView;
 #else
-using View = Windows.UI.Xaml.UIElement;
+using View = Microsoft.UI.Xaml.UIElement;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class RelativePanel
 	{

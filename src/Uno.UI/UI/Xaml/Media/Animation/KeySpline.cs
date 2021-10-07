@@ -1,4 +1,4 @@
-﻿using Windows.Foundation;
+using Windows.Foundation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using Uno.Extensions;
 using System.Globalization;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	public partial class KeySpline : DependencyObject
 	{

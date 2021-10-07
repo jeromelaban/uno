@@ -1,9 +1,9 @@
-﻿using Windows.Foundation;
+using Windows.Foundation;
 using System;
 using Uno.Media;
 using Uno.UI;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	public partial class Line : Shape
 	{

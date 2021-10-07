@@ -1,4 +1,4 @@
-﻿#if !NET461
+#if !NET461
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Uno.UI.Controls
 {
 	public partial class ManagedItemsStackPanel
 #else
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class ItemsStackPanel
 #endif

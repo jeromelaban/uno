@@ -1,5 +1,5 @@
-﻿using Windows.Foundation;
-using Windows.UI.Xaml;
+using Windows.Foundation;
+using Microsoft.UI.Xaml;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

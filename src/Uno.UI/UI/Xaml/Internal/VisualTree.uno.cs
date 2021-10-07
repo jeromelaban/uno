@@ -1,6 +1,6 @@
-﻿#nullable enable
+#nullable enable
 
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Uno.UI.Xaml.Core
 {

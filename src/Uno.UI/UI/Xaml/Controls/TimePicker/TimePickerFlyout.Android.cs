@@ -1,13 +1,13 @@
-﻿#if XAMARIN_ANDROID
+#if XAMARIN_ANDROID
 using Android.OS;
 using System;
 using Uno.UI;
 using Uno.UI.Extensions;
 using Windows.Globalization;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using static Android.App.TimePickerDialog;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class TimePickerFlyout : PickerFlyoutBase
 	{

@@ -1,4 +1,4 @@
-﻿namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>
 	/// Specifies whether text is centered, left-aligned, or right-aligned.

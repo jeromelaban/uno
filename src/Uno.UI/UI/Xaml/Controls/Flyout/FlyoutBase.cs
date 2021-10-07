@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -12,17 +12,17 @@ using Uno.UI.Xaml.Input;
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
 #if XAMARIN_IOS
 using View = UIKit.UIView;
 #elif XAMARIN_ANDROID
 using View = Android.Views.View;
 #else
-using View = Windows.UI.Xaml.UIElement;
+using View = Microsoft.UI.Xaml.UIElement;
 #endif
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public partial class FlyoutBase : DependencyObject
 	{
@@ -35,7 +35,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 
 		internal bool m_isPositionedAtPoint;
 
-		protected internal Windows.UI.Xaml.Controls.Popup _popup;
+		protected internal Microsoft.UI.Xaml.Controls.Popup _popup;
 		private bool _isLightDismissEnabled = true;
 		private readonly SerialDisposable _sizeChangedDisposable = new SerialDisposable();
 
@@ -65,7 +65,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 				ResourceResolver.ApplyResource(this, LightDismissOverlayBackgroundProperty, "FlyoutLightDismissOverlayBackground", isThemeResourceExtension: true);
 
 				var child = CreatePresenter();
-				_popup = new Windows.UI.Xaml.Controls.Popup()
+				_popup = new Microsoft.UI.Xaml.Controls.Popup()
 				{
 					Child = child,
 					IsLightDismissEnabled = _isLightDismissEnabled,
@@ -165,7 +165,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
 		}
 
 		public static DependencyProperty LightDismissOverlayModeProperty { get; } =
-		Windows.UI.Xaml.DependencyProperty.Register(
+		Microsoft.UI.Xaml.DependencyProperty.Register(
 			"LightDismissOverlayMode", typeof(LightDismissOverlayMode),
 			typeof(FlyoutBase),
 			new FrameworkPropertyMetadata(default(LightDismissOverlayMode)));

@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Media;
 using static Private.Infrastructure.TestServices;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Popups
@@ -23,7 +23,7 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Popups
 		[RunsOnUIThread]
 		public async Task Should_Close_Open_Popups()
 		{
-			var button = new Windows.UI.Xaml.Controls.Button();
+			var button = new Microsoft.UI.Xaml.Controls.Button();
 			var flyout = new Flyout();
 			FlyoutBase.SetAttachedFlyout(button, flyout);
 			WindowHelper.WindowContent = button;

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // Hyperlink.h, Hyperlink.cpp
 
@@ -6,7 +6,7 @@
 
 using Uno.UI.Xaml.Input;
 
-namespace Windows.UI.Xaml.Documents
+namespace Microsoft.UI.Xaml.Documents
 {
 	public partial class Hyperlink
 	{

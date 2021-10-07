@@ -1,11 +1,11 @@
-﻿#if !HAS_UI_TESTS
+#if !HAS_UI_TESTS
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using Uno.Disposables;
-using Windows.UI.Xaml.Shapes;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml.Media;
 using CoreGraphics;
 #if __IOS__
 using UIKit;
@@ -15,7 +15,7 @@ using AppKit;
 using _Image = AppKit.NSImage;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
     public partial class Border
 	{

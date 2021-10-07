@@ -1,15 +1,15 @@
-﻿using CoreAnimation;
+using CoreAnimation;
 using CoreGraphics;
 using System;
 using System.Collections.Generic;
 using Uno.Disposables;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI.Extensions;
 using Windows.UI;
 using CoreImage;
 using Foundation;
 using Uno.Extensions;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 #if __IOS__
 using UIKit;
@@ -23,7 +23,7 @@ using _Color = AppKit.NSColor;
 using _Image = AppKit.NSImage;
 #endif
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	internal class BorderLayerRenderer
 	{

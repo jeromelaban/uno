@@ -2,21 +2,15 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.Storage.Streams
 {
-	#if false
-	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum InputStreamOptions 
 	{
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		None,
-		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		Partial,
-		#endif
-		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		ReadAhead,
-		#endif
+		// Skipping already declared field Windows.Storage.Streams.InputStreamOptions.None
+		// Skipping already declared field Windows.Storage.Streams.InputStreamOptions.Partial
+		// Skipping already declared field Windows.Storage.Streams.InputStreamOptions.ReadAhead
 	}
 	#endif
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Windows.Foundation;
 using CoreGraphics;
@@ -6,7 +6,7 @@ using Foundation;
 using UIKit;
 using Uno.UI;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 	partial class RenderTargetBitmap
 	{

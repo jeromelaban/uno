@@ -1,4 +1,4 @@
-﻿using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 using Windows.Foundation;
 using Windows.Graphics;
 using Android.Graphics;
@@ -7,7 +7,7 @@ using System;
 using Rect = Windows.Foundation.Rect;
 using Android.Views;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	public partial class Rectangle : Shape
 	{

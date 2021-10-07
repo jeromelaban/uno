@@ -1,19 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.UI;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using UIKit;
 using CoreGraphics;
 using Uno.UI.Extensions;
 using Uno.Extensions;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Input;
 using Uno.Client;
 using Foundation;
 using Uno.Logging;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class TextBox
 	{

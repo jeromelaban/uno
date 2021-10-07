@@ -2,21 +2,15 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.ApplicationModel.Calls
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum PhoneCallHistoryStoreAccessType 
 	{
-		#if false
-		AppEntriesReadWrite,
-		#endif
-		#if false
-		AllEntriesLimitedReadWrite,
-		#endif
-		#if false
-		AllEntriesReadWrite,
-		#endif
+		// Skipping already declared field Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType.AppEntriesReadWrite
+		// Skipping already declared field Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType.AllEntriesLimitedReadWrite
+		// Skipping already declared field Windows.ApplicationModel.Calls.PhoneCallHistoryStoreAccessType.AllEntriesReadWrite
 	}
 	#endif
 }

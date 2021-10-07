@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.ComponentModel;
@@ -20,9 +20,9 @@ using Uno.UI.Xaml.Core;
 using Windows.Graphics.Display;
 using Windows.System;
 using Windows.Networking.Connectivity;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using WinUI = Windows.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using WinUI = Microsoft.UI.Xaml;
 using Uno.UI.Xaml.Controls.Extensions;
 using Uno.UI.Runtime.Skia.WPF.Extensions.UI.Xaml.Controls;
 using Uno.Extensions.System;
@@ -58,7 +58,7 @@ namespace Uno.UI.Skia.Platform
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(WpfHost), new WpfFrameworkPropertyMetadata(typeof(WpfHost)));
 
 			ApiExtensibility.Register(typeof(Windows.UI.Core.ICoreWindowExtension), o => new WpfCoreWindowExtension(o));
-			ApiExtensibility.Register<Windows.UI.Xaml.Application>(typeof(IApplicationExtension), o => new WpfApplicationExtension(o));
+			ApiExtensibility.Register<Microsoft.UI.Xaml.Application>(typeof(IApplicationExtension), o => new WpfApplicationExtension(o));
 			ApiExtensibility.Register(typeof(Windows.UI.ViewManagement.IApplicationViewExtension), o => new WpfApplicationViewExtension(o));
 			ApiExtensibility.Register(typeof(ISystemThemeHelperExtension), o => new WpfSystemThemeHelperExtension(o));
 			ApiExtensibility.Register(typeof(IDisplayInformationExtension), o => new WpfDisplayInformationExtension(o));
@@ -272,7 +272,7 @@ namespace Uno.UI.Skia.Platform
 		{
 			if (_focusManager == null)
 			{
-				_focusManager = VisualTree.GetFocusManagerForElement(Windows.UI.Xaml.Window.Current?.RootElement);
+				_focusManager = VisualTree.GetFocusManagerForElement(Microsoft.UI.Xaml.Window.Current?.RootElement);
 			}
 			_focusManager?.FocusRectManager?.RedrawFocusVisual();
 		}

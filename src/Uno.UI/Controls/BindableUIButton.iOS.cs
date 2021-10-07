@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.Extensions;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.Extensions.Logging;
 using Uno.Logging;
 
@@ -80,7 +80,7 @@ namespace Uno.UI.Views.Controls
 			{
 				if (value == null)
 				{
-					SetTitleColor(Windows.UI.Colors.Black, UIControlState.Normal);
+					SetTitleColor(Microsoft.UI.Colors.Black, UIControlState.Normal);
 					return;
 				}
 

@@ -1,8 +1,8 @@
-﻿// MUX reference InfoBarAutomationPeer.cpp, commit 3125489
+// MUX reference InfoBarAutomationPeer.cpp, commit 3125489
 
 using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation.Peers;
 
 namespace Microsoft.UI.Xaml.Automation.Peers
 {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.Devices.Input;
@@ -8,7 +8,7 @@ using Foundation;
 using UIKit;
 using Windows.UI.Input;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	partial class PointerRoutedEventArgs
 	{

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using Microsoft.UI.Xaml.Controls;
@@ -22,7 +22,7 @@ namespace MUXControlsTestApp
         {
             if((args.InvokedItem as string) == "Apps")
             {
-                CollapsedItem.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                CollapsedItem.Visibility = Microsoft.UI.Xaml.Visibility.Visible;
 
                 NavView.SelectedItem = CollapsedItem;
             }

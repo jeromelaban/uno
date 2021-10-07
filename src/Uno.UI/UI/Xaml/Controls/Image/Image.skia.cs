@@ -1,20 +1,20 @@
-﻿using System;
+using System;
 using System.Globalization;
 using Windows.Foundation;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Uno.Diagnostics.Eventing;
 using Uno.Extensions;
 using Uno.Logging;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Uno.Disposables;
 using Windows.Storage.Streams;
 using System.Runtime.InteropServices;
 using Microsoft.Extensions.Logging;
 using Windows.UI;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 using System.Numerics;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class Image : FrameworkElement
 	{

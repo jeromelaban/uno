@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -19,10 +19,10 @@ using Uno.UI.Samples.Helper;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Text;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Documents;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.UI.Samples.Tests
 {

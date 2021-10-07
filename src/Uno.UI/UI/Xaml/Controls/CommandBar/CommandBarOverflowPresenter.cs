@@ -1,5 +1,5 @@
 #if XAMARIN
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public  partial class CommandBarOverflowPresenter : ItemsControl
 	{

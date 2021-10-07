@@ -1,4 +1,4 @@
-﻿//#define TRACE_EFFECTIVE_VIEWPORT
+//#define TRACE_EFFECTIVE_VIEWPORT
 
 using System;
 using System.Collections.Generic;
@@ -6,20 +6,20 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Uno;
 using Uno.Disposables;
 using Uno.Extensions;
 using Uno.UI;
 using Uno.UI.Extensions;
-using _This = Windows.UI.Xaml.FrameworkElement;
+using _This = Microsoft.UI.Xaml.FrameworkElement;
 #if __IOS__
 using UIKit;
 #elif __MACOS__
 using AppKit;
 #endif
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 #if !TEMPLATED
 	// Internal interface used to allow communication between the real FrameworkElement

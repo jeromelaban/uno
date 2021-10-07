@@ -1,8 +1,8 @@
-﻿using System.Linq;
+using System.Linq;
 using Android.Graphics;
 using Uno.Extensions;
 using Uno.UI;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Point = Windows.Foundation.Point;
 using Rect = Windows.Foundation.Rect;
 

@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using Uno;
 using Windows.Devices.Input;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	public sealed partial class Pointer : IEquatable<Pointer>
 	{

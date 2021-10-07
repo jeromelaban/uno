@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -49,8 +49,8 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 					?? throw new Exception("Unable to find " + XamlConstants.Types.DependencyObject);
 				_generatedDependencyPropertyAttributeSymbol = comp.GetTypeByMetadataName("Uno.UI.Xaml.GeneratedDependencyPropertyAttribute")
 					?? throw new Exception("Unable to find Uno.UI.Xaml.GeneratedDependencyPropertyAttribute");
-				_dependencyPropertyChangedEventArgsSymbol = comp.GetTypeByMetadataName("Windows.UI.Xaml.DependencyPropertyChangedEventArgs")
-					?? throw new Exception("Unable to find Windows.UI.Xaml.DependencyPropertyChangedEventArgs");
+				_dependencyPropertyChangedEventArgsSymbol = comp.GetTypeByMetadataName("Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs")
+					?? throw new Exception("Unable to find Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs");
 			}
 
 			public override void VisitNamedType(INamedTypeSymbol type)
@@ -112,9 +112,9 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 						builder.AppendLineInvariant($"using Uno.Logging;");
 						builder.AppendLineInvariant($"using Uno.UI;");
 						builder.AppendLineInvariant($"using Uno.UI.DataBinding;");
-						builder.AppendLineInvariant($"using Windows.UI.Xaml;");
-						builder.AppendLineInvariant($"using Windows.UI.Xaml.Controls;");
-						builder.AppendLineInvariant($"using Windows.UI.Xaml.Data;");
+						builder.AppendLineInvariant($"using Microsoft.UI.Xaml;");
+						builder.AppendLineInvariant($"using Microsoft.UI.Xaml.Controls;");
+						builder.AppendLineInvariant($"using Microsoft.UI.Xaml.Data;");
 						builder.AppendLineInvariant($"using Uno.Diagnostics.Eventing;");
 
 						var attachedPropertiesBackingFieldStatements = new Dictionary<INamedTypeSymbol, List<string>>();
@@ -459,7 +459,7 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 				builder.AppendLineInvariant($"/// <summary>");
 				builder.AppendLineInvariant($"/// Generated method used to create the <see cref=\"{propertyName}Property\" /> member value");
 				builder.AppendLineInvariant($"/// </summary>");
-				builder.AppendLineInvariant($"private static global::Windows.UI.Xaml.DependencyProperty Create{propertyName}Property() => ");
+				builder.AppendLineInvariant($"private static global::Microsoft.UI.Xaml.DependencyProperty Create{propertyName}Property() => ");
 			}
 
 			private static void BuildPropertyParameters(
@@ -474,7 +474,7 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 				builder.AppendLineInvariant($"\tname: \"{propertyName}\",");
 				builder.AppendLineInvariant($"\tpropertyType: typeof({propertyTypeName}),");
 				builder.AppendLineInvariant($"\townerType: typeof({containingTypeName}),");
-				builder.AppendLineInvariant($"\ttypeMetadata: new global::Windows.UI.Xaml.FrameworkPropertyMetadata(");
+				builder.AppendLineInvariant($"\ttypeMetadata: new global::Microsoft.UI.Xaml.FrameworkPropertyMetadata(");
 
 				var defaultValueMethodName = $"Get{propertyName}DefaultValue()";
 				if (defaultValue.HasValue && !string.IsNullOrEmpty(defaultValue.Value.Key))
@@ -508,7 +508,7 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 
 				if (metadataOptions != "0")
 				{
-					builder.AppendLineInvariant($"\t\t, options: (global::Windows.UI.Xaml.FrameworkPropertyMetadataOptions){metadataOptions}");
+					builder.AppendLineInvariant($"\t\t, options: (global::Microsoft.UI.Xaml.FrameworkPropertyMetadataOptions){metadataOptions}");
 				}
 			}
 

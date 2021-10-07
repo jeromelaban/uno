@@ -9,14 +9,14 @@ using Windows.Foundation;
 using Windows.Globalization.DateTimeFormatting;
 using Windows.System;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Media;
 using DirectUI;
 using DateTime = System.DateTimeOffset;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class CalendarDatePicker : Control
 	{

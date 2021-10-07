@@ -1,16 +1,16 @@
-﻿using Uno.Extensions;
+using Uno.Extensions;
 using Uno.UI.Views.Controls;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using CoreGraphics;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
 
 // Keep this formatting (with the space) for the WinUI upgrade tooling.
 using Microsoft .UI.Xaml.Controls;
 
-namespace Windows.UI.Xaml.Controls
+namespace Uno.UI.Controls.Legacy
 {
 	/// <summary>
 	/// Represents a control that indicates that an operation is ongoing. The typical visual appearance is a ring-shaped "spinner" that cycles an animation as progress continues.

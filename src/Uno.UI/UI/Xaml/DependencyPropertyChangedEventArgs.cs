@@ -19,7 +19,7 @@ using View = UIKit.UIView;
 using View = MonoTouch.UIKit.UIView;
 #endif
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>
 	/// Describes the changes made to a dependency property

@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Windows.Input;
 using Uno.UI.Samples.Controls;
 using Uno.UI.Samples.UITests.Helpers;
 using Windows.ApplicationModel.Contacts;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 
 namespace UITests.Windows_ApplicationModel.Contacts

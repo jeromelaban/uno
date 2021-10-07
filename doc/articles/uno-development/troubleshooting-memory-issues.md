@@ -23,7 +23,7 @@ private void EnableViewsMemoryStatistics()
 	//
 
 
-	var unused = Windows.UI.Xaml.Window.Current.Dispatcher.RunAsync(
+	var unused = Microsoft.UI.Xaml.Window.Current.Dispatcher.RunAsync(
 		CoreDispatcherPriority.Normal,
 		async () =>
 		{

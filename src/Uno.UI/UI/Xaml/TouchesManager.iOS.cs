@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using UIKit;
 using WebKit;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>
 	/// By default the UIScrollView will delay the touches to the content until it detects

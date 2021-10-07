@@ -1,14 +1,14 @@
-﻿using Uno.UI.DataBinding;
+using Uno.UI.DataBinding;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 #if XAMARIN
-using IValueConverter = Windows.UI.Xaml.Data.IValueConverter;
+using IValueConverter = Microsoft.UI.Xaml.Data.IValueConverter;
 #else
 #endif
 
-namespace Windows.UI.Xaml.Data
+namespace Microsoft.UI.Xaml.Data
 {
 	/// <summary>
 	/// A template binding definition, using a TemplatedParent relative source

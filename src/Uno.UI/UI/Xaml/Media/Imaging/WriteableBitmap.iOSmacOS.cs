@@ -11,7 +11,7 @@ using _NativeImage = AppKit.NSImage;
 using _NativeImage = UIKit.UIImage;
 #endif
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 	partial class WriteableBitmap
 	{

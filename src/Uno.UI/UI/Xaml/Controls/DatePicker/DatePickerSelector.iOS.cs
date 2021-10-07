@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using Uno.UI;
 using Windows.Globalization;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class DatePickerSelector
 	{

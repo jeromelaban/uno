@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ using Windows.ApplicationModel;
 using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.System;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 using Windows.UI.Core;
 using Windows.UI.Input;
 
@@ -68,7 +68,7 @@ namespace Uno.UI.Runtime.Skia
 			}
 			catch (Exception e)
 			{
-				Windows.UI.Xaml.Application.Current.RaiseRecoverableUnhandledException(e);
+				Microsoft.UI.Xaml.Application.Current.RaiseRecoverableUnhandledException(e);
 			}
 		}
 
@@ -95,7 +95,7 @@ namespace Uno.UI.Runtime.Skia
 			}
 			catch (Exception e)
 			{
-				Windows.UI.Xaml.Application.Current.RaiseRecoverableUnhandledException(e);
+				Microsoft.UI.Xaml.Application.Current.RaiseRecoverableUnhandledException(e);
 			}
 		}
 

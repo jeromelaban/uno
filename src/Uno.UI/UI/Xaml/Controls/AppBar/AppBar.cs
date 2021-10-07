@@ -1,4 +1,4 @@
-﻿#if __IOS__ || __ANDROID__
+#if __IOS__ || __ANDROID__
 #define HAS_NATIVE_COMMANDBAR
 #endif
 using System;
@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Text;
 using Uno.UI;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Uno.UI.Controls;
 using Uno.UI.Extensions;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class AppBar : ContentControl
 #if HAS_NATIVE_COMMANDBAR

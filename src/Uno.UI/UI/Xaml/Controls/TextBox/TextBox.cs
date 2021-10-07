@@ -1,4 +1,4 @@
-﻿#if NET461 || UNO_REFERENCE_API || __MACOS__
+#if NET461 || UNO_REFERENCE_API || __MACOS__
 #pragma warning disable CS0067, CS649
 #endif
 
@@ -16,14 +16,14 @@ using Windows.Foundation;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Text;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI.Xaml.Input;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public class TextBoxConstants
 	{

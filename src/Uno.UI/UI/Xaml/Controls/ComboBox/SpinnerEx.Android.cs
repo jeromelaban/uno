@@ -1,11 +1,11 @@
-﻿#pragma warning disable 0618 // For SetBackgroundDrawable
+#pragma warning disable 0618 // For SetBackgroundDrawable
 
 using Uno.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class SpinnerEx : Android.Widget.Spinner
 	{

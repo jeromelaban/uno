@@ -1,9 +1,9 @@
-﻿#if NET461 || __NETSTD_REFERENCE__
+#if NET461 || __NETSTD_REFERENCE__
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	internal partial class TextBoxView : FrameworkElement
 	{

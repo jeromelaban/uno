@@ -7,7 +7,7 @@ using DirectUI;
 using Uno.Extensions;
 using DateTime = System.DateTimeOffset;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class CalendarViewGeneratorDecadeViewHost
 	{

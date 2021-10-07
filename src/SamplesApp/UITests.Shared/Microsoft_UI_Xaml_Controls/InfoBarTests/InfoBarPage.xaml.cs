@@ -1,10 +1,10 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using System;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI;
-using Windows.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation;
 using Uno.UI.Samples.Controls;
 
 namespace UITests.Microsoft_UI_Xaml_Controls.InfoBarTests

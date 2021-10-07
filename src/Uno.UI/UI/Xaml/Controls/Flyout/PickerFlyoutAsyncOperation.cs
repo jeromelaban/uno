@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	internal class PickerFlyoutAsyncOperation<TResult> : IAsyncOperationInternal<TResult>
 	{

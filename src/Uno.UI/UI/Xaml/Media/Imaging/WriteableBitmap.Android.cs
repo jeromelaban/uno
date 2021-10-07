@@ -5,7 +5,7 @@ using Windows.Storage.Streams;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 	partial class WriteableBitmap
 	{

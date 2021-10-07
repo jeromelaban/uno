@@ -1,9 +1,9 @@
 using System;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public sealed partial class TickBar : FrameworkElement
 	{

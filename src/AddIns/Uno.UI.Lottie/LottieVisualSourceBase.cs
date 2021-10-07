@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.Extensions.Logging;
 using Uno;
 using Uno.Disposables;
@@ -58,7 +58,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Lottie
 
 #if HAS_UNO_WINUI
 		[NotImplemented]
-		public IAnimatedVisual TryCreateAnimatedVisual(Windows.UI.Composition.Compositor compositor, out object diagnostics)
+		public IAnimatedVisual TryCreateAnimatedVisual(Microsoft.UI.Composition.Compositor compositor, out object diagnostics)
 		{
 			throw new NotImplementedException();
 		}

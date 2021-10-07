@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using Uno.Extensions;
 using Uno.Logging;
 using Uno.UI;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	[Markup.ContentProperty(Name = "Setters")]
 	public partial class Style

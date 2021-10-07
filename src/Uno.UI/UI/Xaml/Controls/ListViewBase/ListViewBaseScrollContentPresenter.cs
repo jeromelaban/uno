@@ -1,4 +1,4 @@
-﻿#if !NET461 && !UNO_REFERENCE_API && !__MACOS__
+#if !NET461 && !UNO_REFERENCE_API && !__MACOS__
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,7 +20,7 @@ using Color = AppKit.NSColor;
 using Font = AppKit.NSFont;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	/// <summary>
 	/// An Uno-only class which allows the <see cref="ScrollViewer"/> within a <see cref="ListViewBase"/> template

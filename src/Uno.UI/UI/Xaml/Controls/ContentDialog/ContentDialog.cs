@@ -8,14 +8,14 @@ using Uno.Disposables;
 using Uno.Extensions;
 using Uno.UI;
 using Windows.Foundation;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using Windows.System;
 using Uno.UI.DataBinding;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Windows.UI.ViewManagement;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class
 		ContentDialog : ContentControl

@@ -1,25 +1,25 @@
-﻿#if !SILVERLIGHT
+#if !SILVERLIGHT
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using Uno.Extensions;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 #if NETFX_CORE
-using Windows.UI.Xaml;
-using IFrameworkElement = Windows.UI.Xaml.FrameworkElement;
-using IBinder = Windows.UI.Xaml.FrameworkElement;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml;
+using IFrameworkElement = Microsoft.UI.Xaml.FrameworkElement;
+using IBinder = Microsoft.UI.Xaml.FrameworkElement;
+using Microsoft.UI.Xaml.Data;
 #elif XAMARIN
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using Uno.UI.DataBinding;
 #else
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using Uno.UI.DataBinding;
 #endif
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	internal static class FrameworkElementExtensions
 	{
@@ -37,7 +37,7 @@ namespace Windows.UI.Xaml
 		{
 			var dependencyProperty = GetDependencyProperty(element, property);
 			var path = new PropertyPath(propertyPath.Replace("].[", "]["));
-			var binding = new Windows.UI.Xaml.Data.Binding { Path = path, Converter = ResourceHelper.FindConverter(converter) };
+			var binding = new Microsoft.UI.Xaml.Data.Binding { Path = path, Converter = ResourceHelper.FindConverter(converter) };
 
 			(element as IDependencyObjectStoreProvider).Store.SetBinding(dependencyProperty, binding);
 
@@ -140,13 +140,13 @@ namespace Windows.UI.Xaml
 		public static T Binding<T>(this T element, string property, string propertyPath) where T : DependencyObject
 		{
 			var path = new PropertyPath(propertyPath.Replace("].[", "]["));
-			var binding = new Windows.UI.Xaml.Data.Binding { Path = path };
+			var binding = new Microsoft.UI.Xaml.Data.Binding { Path = path };
 
 			return element.Binding(property, binding);
 		}
 
-		public static Windows.UI.Xaml.Documents.Run Binding(
-			this Windows.UI.Xaml.Documents.Run element,
+		public static Microsoft.UI.Xaml.Documents.Run Binding(
+			this Microsoft.UI.Xaml.Documents.Run element,
 			string property,
 			string propertyPath
 		)
@@ -157,12 +157,12 @@ namespace Windows.UI.Xaml
 			{
 				var templateString = "<Run xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" Text=\"{{Binding {0}}}\" />";
 
-				return (Windows.UI.Xaml.Documents.Run)Windows.UI.Xaml.Markup.XamlReader.Load(templateString.InvariantCultureFormat(propertyPath));
+				return (Microsoft.UI.Xaml.Documents.Run)Microsoft.UI.Xaml.Markup.XamlReader.Load(templateString.InvariantCultureFormat(propertyPath));
 			}
 			else
 			{
 				var path = new PropertyPath(propertyPath);
-				var binding = new Windows.UI.Xaml.Data.Binding { Path = path };
+				var binding = new Microsoft.UI.Xaml.Data.Binding { Path = path };
 
 				var dependencyProperty = GetDependencyProperty(element, property);
 

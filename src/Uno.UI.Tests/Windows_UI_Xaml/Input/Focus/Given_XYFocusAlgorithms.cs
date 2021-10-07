@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // XYFocusAlgorithmsUnitTests.h, XYFocusAlgorithmsUnitTests.cpp
 
@@ -8,7 +8,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Uno.UI.Xaml.Input;
 using Windows.Foundation;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 
 namespace Uno.UI.Tests.Windows_UI_Xaml.Input.Internal
 {

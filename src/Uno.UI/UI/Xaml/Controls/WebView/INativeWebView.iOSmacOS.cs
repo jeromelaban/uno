@@ -1,11 +1,11 @@
-﻿using Foundation;
+using Foundation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	/// <summary>
 	/// Wrapper for a version-dependent native iOS WebView

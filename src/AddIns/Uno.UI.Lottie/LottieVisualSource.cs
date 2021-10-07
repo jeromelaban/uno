@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using Uno.Disposables;
 
 namespace Microsoft.Toolkit.Uwp.UI.Lottie

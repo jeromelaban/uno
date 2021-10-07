@@ -1,4 +1,4 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using Uno.Media;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	public partial class Polygon : Shape
 	{

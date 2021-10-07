@@ -6,9 +6,9 @@ using MUXControlsTestApp.Utilities;
 using Common;
 using System;
 using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
 
 #if USING_TAEF
 using WEX.TestExecution;
@@ -27,15 +27,15 @@ using NavigationViewItemHeader = Microsoft.UI.Xaml.Controls.NavigationViewItemHe
 using NavigationViewItemSeparator = Microsoft.UI.Xaml.Controls.NavigationViewItemSeparator;
 using NavigationViewBackButtonVisible = Microsoft.UI.Xaml.Controls.NavigationViewBackButtonVisible;
 using System.Collections.ObjectModel;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Composition;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Composition;
 
 // TODO: Uno specific: Following tests are commented out, as they require additional infrastructure:
 // VerifyHeaderContentMarginOnTopNav
 // VerifyHeaderContentMarginOnMinimalNav
 // VerifyVisualTree
 
-namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests
+namespace Microsoft.UI.Xaml.Tests.MUXControls.ApiTests
 {
 	[TestClass]
 	public class NavigationViewTests : MUXApiTestBase
@@ -798,7 +798,7 @@ namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests
 		[Ignore("This test is disabled in WinUI")]
 		public void VerifyCanNotAddWUXItems()
 		{
-			if (!ApiInformation.IsTypePresent("Windows.UI.Xaml.Controls.NavigationViewItem"))
+			if (!ApiInformation.IsTypePresent("Microsoft.UI.Xaml.Controls.NavigationViewItem"))
 			{
 				Log.Warning("WUX version of NavigationViewItem only available starting in RS3.");
 				return;
@@ -816,7 +816,7 @@ namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests
 				// No errors should occur here when we only use MUX items
 				navView.UpdateLayout();
 
-				var wuxItem = new Windows.UI.Xaml.Controls.NavigationViewItem { Content = "WUX Item" };
+				var wuxItem = new Microsoft.UI.Xaml.Controls.NavigationViewItem { Content = "WUX Item" };
 				navView.MenuItems.Add(wuxItem);
 
 				// But adding a WUX item should generate an exception (as soon as the new item gets processed)

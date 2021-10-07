@@ -1,15 +1,15 @@
 using System;
 using System.Linq;
 using Uno.Extensions;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.UI.DataBinding;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Data;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Controls;
 using Uno.UI;
 using Windows.Foundation;
 
@@ -45,17 +45,17 @@ using Point = Windows.Foundation.Point;
 using CGSize = Windows.Foundation.Size;
 using _Size = Windows.Foundation.Size;
 using NMath = System.Math;
-using View = Windows.UI.Xaml.UIElement;
+using View = Microsoft.UI.Xaml.UIElement;
 #else
 using nint = System.Int32;
 using nfloat = System.Double;
 using CGSize = Windows.Foundation.Size;
 using _Size = Windows.Foundation.Size;
 using NMath = System.Math;
-using View = Windows.UI.Xaml.UIElement;
+using View = Microsoft.UI.Xaml.UIElement;
 #endif
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	internal partial interface IFrameworkElement : IDataContextProvider, DependencyObject, IDependencyObjectParse
 	{
@@ -96,7 +96,7 @@ namespace Windows.UI.Xaml
 
 		Style Style { get; set; }
 
-		Windows.UI.Xaml.Media.Brush Background { get; set; }
+		Microsoft.UI.Xaml.Media.Brush Background { get; set; }
 
 		Transform RenderTransform { get; set; }
 
@@ -425,7 +425,7 @@ namespace Windows.UI.Xaml
 				.SizeThatFits(view, new _Size(view.MeasuredWidth, view.MeasuredHeight).PhysicalToLogicalPixels())
 				.LogicalToPhysicalPixels();
 
-			Windows.UI.Xaml.Controls.Layouter.SetMeasuredDimensions(view, (int)updated.Width, (int)updated.Height);
+			Microsoft.UI.Xaml.Controls.Layouter.SetMeasuredDimensions(view, (int)updated.Width, (int)updated.Height);
 		}
 
 		/// <summary>
@@ -439,7 +439,7 @@ namespace Windows.UI.Xaml
 				.SizeThatFits(view, new _Size(measuredSize.Width, measuredSize.Height).PhysicalToLogicalPixels())
 				.LogicalToPhysicalPixels();
 
-			Windows.UI.Xaml.Controls.Layouter.SetMeasuredDimensions(view, (int)updated.Width, (int)updated.Height);
+			Microsoft.UI.Xaml.Controls.Layouter.SetMeasuredDimensions(view, (int)updated.Width, (int)updated.Height);
 		}
 #endif
 

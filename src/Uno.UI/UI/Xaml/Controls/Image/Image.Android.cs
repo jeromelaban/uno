@@ -1,4 +1,4 @@
-﻿using Android.Graphics;
+using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Views;
 using Android.Widget;
@@ -6,7 +6,7 @@ using Uno;
 using Uno.Extensions;
 using Uno.Logging;
 using Uno.Diagnostics.Eventing;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
 using Windows.Foundation;
@@ -14,10 +14,10 @@ using Uno.Disposables;
 using System.Threading.Tasks;
 using System.Threading;
 using Uno.UI;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.Storage.Streams;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class Image
 	{

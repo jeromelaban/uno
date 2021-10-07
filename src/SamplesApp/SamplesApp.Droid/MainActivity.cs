@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Android.App;
 using Android.Content.PM;
 using Android.Views;
@@ -23,7 +23,7 @@ namespace SamplesApp.Droid
 			Android.Content.Intent.CategoryBrowsable
 		},
 		DataScheme = "uno-samples-test")]
-	public class MainActivity : Windows.UI.Xaml.ApplicationActivity
+	public class MainActivity : Microsoft.UI.Xaml.ApplicationActivity
 	{
 		[Export("RunTest")]
 		public string RunTest(string metadataName) => App.RunTest(metadataName);

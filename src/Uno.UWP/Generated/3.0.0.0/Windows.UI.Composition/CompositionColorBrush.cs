@@ -2,12 +2,25 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Composition
 {
-	#if false || false || false || false || false || false || false
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CompositionColorBrush : global::Windows.UI.Composition.CompositionBrush
 	{
-		// Skipping already declared property Color
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  global::Windows.UI.Color Color
+		{
+			get
+			{
+				throw new global::System.NotImplementedException("The member Color CompositionColorBrush.Color is not implemented in Uno.");
+			}
+			set
+			{
+				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.CompositionColorBrush", "Color CompositionColorBrush.Color");
+			}
+		}
+		#endif
 		// Forced skipping of method Windows.UI.Composition.CompositionColorBrush.Color.get
 		// Forced skipping of method Windows.UI.Composition.CompositionColorBrush.Color.set
 	}

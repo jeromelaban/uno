@@ -2,12 +2,24 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.UI.Composition
 {
-	#if false || false || false || false || false || false || false
+	#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 	[global::Uno.NotImplemented]
 	#endif
 	public  partial class ScalarKeyFrameAnimation : global::Windows.UI.Composition.KeyFrameAnimation
 	{
-		// Skipping already declared method Windows.UI.Composition.ScalarKeyFrameAnimation.InsertKeyFrame(float, float)
-		// Skipping already declared method Windows.UI.Composition.ScalarKeyFrameAnimation.InsertKeyFrame(float, float, Windows.UI.Composition.CompositionEasingFunction)
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  void InsertKeyFrame( float normalizedProgressKey,  float value)
+		{
+			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.ScalarKeyFrameAnimation", "void ScalarKeyFrameAnimation.InsertKeyFrame(float normalizedProgressKey, float value)");
+		}
+		#endif
+		#if __ANDROID__ || __IOS__ || NET461 || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		public  void InsertKeyFrame( float normalizedProgressKey,  float value,  global::Windows.UI.Composition.CompositionEasingFunction easingFunction)
+		{
+			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Composition.ScalarKeyFrameAnimation", "void ScalarKeyFrameAnimation.InsertKeyFrame(float normalizedProgressKey, float value, CompositionEasingFunction easingFunction)");
+		}
+		#endif
 	}
 }

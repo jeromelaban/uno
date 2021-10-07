@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
@@ -6,8 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 
 #if USING_TAEF
 using WEX.TestExecution;

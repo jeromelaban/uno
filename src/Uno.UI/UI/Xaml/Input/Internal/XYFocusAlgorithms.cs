@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // XYFocusAlgorithms.h, XYFocusAlgorithms.cpp
 
@@ -6,7 +6,7 @@
 
 using System;
 using Windows.Foundation;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 using static Uno.UI.Xaml.Input.XYFocusAlgorithmHelper;
 using static Uno.UI.Helpers.WinUI.MathHelpers;
 

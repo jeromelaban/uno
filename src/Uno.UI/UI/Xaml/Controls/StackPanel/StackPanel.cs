@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,10 +14,10 @@ using View = UIKit.UIView;
 #elif __MACOS__
 using View = AppKit.NSView;
 #else
-using View = Windows.UI.Xaml.UIElement;
+using View = Microsoft.UI.Xaml.UIElement;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class StackPanel : Panel
 	{

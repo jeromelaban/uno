@@ -1,4 +1,4 @@
-﻿namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 #if !(__ANDROID__ || __WASM__)
 [global::Uno.NotImplemented]

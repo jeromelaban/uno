@@ -1,9 +1,9 @@
 #nullable enable
 
 using System.Linq;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 
-namespace Windows.UI.Xaml.Hosting
+namespace Microsoft.UI.Xaml.Hosting
 {
 	public partial class ElementCompositionPreview
 	{

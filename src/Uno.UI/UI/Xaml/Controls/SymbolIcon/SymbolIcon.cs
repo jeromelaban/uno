@@ -1,12 +1,12 @@
-﻿#if XAMARIN || __WASM__ || __SKIA__
+#if XAMARIN || __WASM__ || __SKIA__
 
 using System;
 using Uno.UI.Controls;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public sealed partial class SymbolIcon : IconElement
 	{

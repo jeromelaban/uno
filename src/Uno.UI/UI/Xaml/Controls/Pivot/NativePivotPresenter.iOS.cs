@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
@@ -6,7 +6,7 @@ using System.Linq;
 using UIKit;
 using Uno.Extensions;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class NativePivotPresenter
 	{

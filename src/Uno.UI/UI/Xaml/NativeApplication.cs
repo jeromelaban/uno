@@ -1,4 +1,4 @@
-﻿#if XAMARIN_ANDROID
+#if XAMARIN_ANDROID
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,7 @@ using Uno.Extensions;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public class NativeApplication : Android.App.Application
 	{
@@ -21,7 +21,7 @@ namespace Windows.UI.Xaml
 
 		private bool _isRunning = false;
 
-		public delegate Windows.UI.Xaml.Application AppBuilder();
+		public delegate Microsoft.UI.Xaml.Application AppBuilder();
 
 		/// <summary>
 		/// Creates an android Application instance
@@ -30,7 +30,7 @@ namespace Windows.UI.Xaml
 		public NativeApplication(AppBuilder appBuilder, IntPtr javaReference, Android.Runtime.JniHandleOwnership transfer)
 			: base(javaReference, transfer)
 		{
-			// Delay create the Windows.UI.Xaml.Application in order to get the
+			// Delay create the Microsoft.UI.Xaml.Application in order to get the
 			// Android.App.Application.Context to be populated properly. This enables
 			// APIs such as Windows.Storage.ApplicationData.Current.LocalSettings to function properly.
 			_app = appBuilder();

@@ -2,7 +2,7 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Microsoft.UI.Xaml.Controls
 {

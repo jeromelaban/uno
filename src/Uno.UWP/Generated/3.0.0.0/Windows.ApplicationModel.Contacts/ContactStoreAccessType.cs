@@ -2,21 +2,15 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.ApplicationModel.Contacts
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum ContactStoreAccessType 
 	{
-		#if false
-		AppContactsReadWrite,
-		#endif
-		#if false
-		AllContactsReadOnly,
-		#endif
-		#if false
-		AllContactsReadWrite,
-		#endif
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactStoreAccessType.AppContactsReadWrite
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactStoreAccessType.AllContactsReadOnly
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactStoreAccessType.AllContactsReadWrite
 	}
 	#endif
 }

@@ -1,10 +1,10 @@
-﻿using Uno.UI.Extensions;
+using Uno.UI.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public partial struct Duration : IEquatable<Duration>, IComparable<Duration>
 	{

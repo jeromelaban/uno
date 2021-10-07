@@ -1,10 +1,10 @@
-﻿#if __ANDROID__
+#if __ANDROID__
 using Android.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.UI;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 {

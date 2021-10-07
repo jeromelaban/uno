@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,19 +9,19 @@ using Uno.Extensions;
 using Uno.UI;
 using Uno.UI.Xaml;
 using Uno.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Documents;
 
 #if XAMARIN_ANDROID
 using _View = Android.Views.View;
 #elif XAMARIN_IOS_UNIFIED
 using _View = UIKit.UIView;
 #else
-using _View = Windows.UI.Xaml.UIElement;
+using _View = Microsoft.UI.Xaml.UIElement;
 #endif
 
-namespace Windows.UI.Xaml.Markup.Reader
+namespace Microsoft.UI.Xaml.Markup.Reader
 {
 	internal class XamlObjectBuilder
 	{

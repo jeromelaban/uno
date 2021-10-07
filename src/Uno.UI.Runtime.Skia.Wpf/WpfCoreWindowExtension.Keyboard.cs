@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using Windows.Devices.Input;
@@ -47,7 +47,7 @@ namespace Uno.UI.Skia.Platform
 			}
 			catch (Exception e)
 			{
-				Windows.UI.Xaml.Application.Current.RaiseRecoverableUnhandledException(e);
+				Microsoft.UI.Xaml.Application.Current.RaiseRecoverableUnhandledException(e);
 			}
 		}
 
@@ -74,7 +74,7 @@ namespace Uno.UI.Skia.Platform
 			}
 			catch (Exception e)
 			{
-				Windows.UI.Xaml.Application.Current.RaiseRecoverableUnhandledException(e);
+				Microsoft.UI.Xaml.Application.Current.RaiseRecoverableUnhandledException(e);
 			}
 		}
 

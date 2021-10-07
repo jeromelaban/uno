@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Tests.Enterprise;
+using Microsoft.UI.Xaml.Tests.Enterprise;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // BasicAlgorithmUnitTests.h, BasicAlgorithmUnitTests.cpp
 
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Uno.UI.Xaml.Input;
 using Windows.Foundation;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 using static Uno.UI.Tests.Helpers.MuxVerify;
 using static Uno.UI.Xaml.Input.XYFocusAlgorithmHelper;
 

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Linq;
 using Windows.UI;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI.Samples.Controls;
 
 namespace UITests.Shared.Windows_UI_Input.GestureRecognizerTests

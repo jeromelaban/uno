@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.Extensions;
 using Uno.Disposables;
 using Foundation;
@@ -9,7 +9,7 @@ using UIKit;
 using CoreGraphics;
 using Uno.UI.Extensions;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	/// <summary>
 	/// A native layout which implements <see cref="ItemsWrapGrid"/> behaviour.

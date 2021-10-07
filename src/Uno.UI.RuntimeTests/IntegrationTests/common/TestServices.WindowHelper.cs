@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System.Runtime.CompilerServices;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Tests.Enterprise;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Tests.Enterprise;
 #if NETFX_CORE
 using Uno.UI.Extensions;
 #elif __IOS__
@@ -33,7 +33,7 @@ namespace Private.Infrastructure
 				{
 					if (UseActualWindowRoot)
 					{
-						return Windows.UI.Xaml.Window.Current.Content;
+						return Microsoft.UI.Xaml.Window.Current.Content;
 					}
 					return EmbeddedTestRootControl.Content as UIElement;
 				}
@@ -42,7 +42,7 @@ namespace Private.Infrastructure
 				{
 					if (UseActualWindowRoot)
 					{
-						Windows.UI.Xaml.Window.Current.Content = value;
+						Microsoft.UI.Xaml.Window.Current.Content = value;
 					}
 					else if (EmbeddedTestRootControl is ContentControl content)
 					{
@@ -57,14 +57,14 @@ namespace Private.Infrastructure
 
 			public static void SaveOriginalWindowContent()
 			{
-				_originalWindowContent = Windows.UI.Xaml.Window.Current.Content;
+				_originalWindowContent = Microsoft.UI.Xaml.Window.Current.Content;
 			}
 
 			public static void RestoreOriginalWindowContent()
 			{
 				if (_originalWindowContent != null)
 				{
-					Windows.UI.Xaml.Window.Current.Content = _originalWindowContent;
+					Microsoft.UI.Xaml.Window.Current.Content = _originalWindowContent;
 					_originalWindowContent = null;
 				}
 			}
@@ -72,7 +72,7 @@ namespace Private.Infrastructure
 			public static ContentControl EmbeddedTestRootControl { get; set; }
 
 			public static UIElement RootElement => UseActualWindowRoot ?
-					Windows.UI.Xaml.Window.Current.Content :
+					Microsoft.UI.Xaml.Window.Current.Content :
 					EmbeddedTestRootControl;
 
 			internal static async Task WaitForIdle()

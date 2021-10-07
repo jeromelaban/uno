@@ -1,18 +1,18 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 #if !WINDOWS_UWP
 
 using MUXControlsTestApp.Utilities;
 using System;
 using System.Linq;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System.Threading;
 using System.Collections.Generic;
 using Windows.Foundation.Collections;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Media.Animation;
 using System.Collections.ObjectModel;
 using MUXControlsTestApp;
 using Common;

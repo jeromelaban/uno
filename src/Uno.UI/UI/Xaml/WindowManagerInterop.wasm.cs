@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -11,7 +11,7 @@ using Uno.Foundation;
 using Uno.Foundation.Interop;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Xaml
 {

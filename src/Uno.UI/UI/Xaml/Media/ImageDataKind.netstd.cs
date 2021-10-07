@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Linq;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	internal enum ImageDataKind
 	{

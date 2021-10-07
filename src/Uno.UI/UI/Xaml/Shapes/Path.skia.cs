@@ -1,15 +1,15 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using Uno.Disposables;
 using Uno.Media;
 using Windows.Foundation;
 using Windows.Graphics;
-using Windows.UI.Composition;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Composition;
+using Microsoft.UI.Xaml.Media;
 using SkiaSharp;
 using Uno.UI.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	partial class Path : Shape
 	{

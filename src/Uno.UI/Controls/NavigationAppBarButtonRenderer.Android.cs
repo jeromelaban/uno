@@ -1,13 +1,13 @@
-﻿using AndroidX.Core.Graphics.Drawable;
+using AndroidX.Core.Graphics.Drawable;
 using AndroidX.AppCompat.Widget;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.Disposables;
 using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.UI.Controls
 {

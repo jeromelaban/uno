@@ -1,4 +1,4 @@
-﻿#if !__IOS__ && !__MACOS__ && !__SKIA__ && !__ANDROID__
+#if !__IOS__ && !__MACOS__ && !__SKIA__ && !__ANDROID__
 #define LEGACY_SHAPE_MEASURE
 #endif
 
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	public partial class Line
 #if LEGACY_SHAPE_MEASURE

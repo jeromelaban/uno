@@ -5,7 +5,7 @@ using Windows.UI.Input;
 using Microsoft.Extensions.Logging;
 using Uno.Logging;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	[ContractVersion(typeof(UniversalApiContract), 65536U)]
 	[Flags]

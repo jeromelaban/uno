@@ -1,8 +1,8 @@
 using Windows.Foundation;
-using Windows.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Markup;
 using Uno.UI;
-using Windows.UI.Xaml.Media;
-using static Windows.UI.Xaml.Media.Stretch;
+using Microsoft.UI.Xaml.Media;
+using static Microsoft.UI.Xaml.Media.Stretch;
 using System;
 
 #if XAMARIN_ANDROID
@@ -12,10 +12,10 @@ using UIKit;
 using AppKit;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	[ContentProperty(Name = "Child")]
-	public partial class Viewbox : global::Windows.UI.Xaml.FrameworkElement
+	public partial class Viewbox : global::Microsoft.UI.Xaml.FrameworkElement
 	{
 		private const double SCALE_EPSILON = 0.00001d;
 

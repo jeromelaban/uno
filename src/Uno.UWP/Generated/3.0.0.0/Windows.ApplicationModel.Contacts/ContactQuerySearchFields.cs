@@ -2,27 +2,17 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Windows.ApplicationModel.Contacts
 {
-	#if false
-	#if false
+	#if false || false || false || false || false || false || false
+	#if false || false || false || false || false || false || false
 	[global::Uno.NotImplemented]
 	#endif
 	public   enum ContactQuerySearchFields 
 	{
-		#if false
-		None,
-		#endif
-		#if false
-		Name,
-		#endif
-		#if false
-		Email,
-		#endif
-		#if false
-		Phone,
-		#endif
-		#if false
-		All,
-		#endif
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactQuerySearchFields.None
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactQuerySearchFields.Name
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactQuerySearchFields.Email
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactQuerySearchFields.Phone
+		// Skipping already declared field Windows.ApplicationModel.Contacts.ContactQuerySearchFields.All
 	}
 	#endif
 }

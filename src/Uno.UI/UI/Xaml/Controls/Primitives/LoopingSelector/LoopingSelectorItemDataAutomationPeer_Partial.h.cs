@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Windows.UI.Xaml.Automation.Peers
+namespace Microsoft.UI.Xaml.Automation.Peers
 {
 
 	partial class LoopingSelectorItemDataAutomationPeer : AutomationPeer

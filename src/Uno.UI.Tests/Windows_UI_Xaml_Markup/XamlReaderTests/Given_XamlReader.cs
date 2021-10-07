@@ -1,20 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Uno;
 using Uno.Extensions;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Uno.Disposables;
 using System.Text;
 using System.Threading.Tasks;
-using View = Windows.UI.Xaml.FrameworkElement;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Documents;
+using View = Microsoft.UI.Xaml.FrameworkElement;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Documents;
 using FluentAssertions;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI;
 
@@ -33,7 +33,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
         public void When_BasicRoot()
         {
             var s = GetContent(nameof(When_BasicRoot));
-            var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as Page;
+            var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as Page;
 
             Assert.IsNotNull(r);
             Assert.AreEqual("testPage", r.Name);
@@ -43,7 +43,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
         public void When_BasicProperty()
         {
             var s = GetContent(nameof(When_BasicProperty));
-            var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+            var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
             Assert.IsNotNull(r);
             Assert.AreEqual("testPage", r.Name);
@@ -54,7 +54,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
         public void When_UserControl_With_Content()
         {
             var s = GetContent(nameof(When_UserControl_With_Content));
-            var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+            var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
             Assert.IsNotNull(r);
             Assert.AreEqual("testPage", r.Name);
@@ -68,7 +68,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
         public void When_UserControl_With_Grid()
         {
             var s = GetContent(nameof(When_UserControl_With_Grid));
-            var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+            var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
             Assert.IsNotNull(r);
             Assert.AreEqual("testPage", r.Name);
@@ -81,15 +81,15 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			var border1 = grid.Children.ElementAt(0) as Border;
 			var border2 = grid.Children.ElementAt(1) as Border;
 
-			Assert.AreEqual((border1.Background as SolidColorBrush).Color, Windows.UI.Colors.Red);
-			Assert.AreEqual((border2.Background as SolidColorBrush).Color, Windows.UI.Colors.Blue);
+			Assert.AreEqual((border1.Background as SolidColorBrush).Color, Microsoft.UI.Colors.Red);
+			Assert.AreEqual((border2.Background as SolidColorBrush).Color, Microsoft.UI.Colors.Blue);
 		}
 
         [TestMethod]
         public void When_MultipleBindings()
         {
             var s = GetContent(nameof(When_MultipleBindings));
-            var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+            var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
             Assert.IsNotNull(r);
             Assert.AreEqual("rootPage", r.Name);
@@ -119,8 +119,8 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			Assert.IsNotNull(border01);
 			var stops = (border01.Background as LinearGradientBrush).GradientStops;
 			Assert.AreEqual(2, stops.Count);
-			Assert.AreEqual(Windows.UI.Colors.Transparent, stops[0].Color);
-			Assert.AreEqual(Windows.UI.ColorHelper.FromARGB(0x33, 0, 0, 0), stops[1].Color);
+			Assert.AreEqual(Microsoft.UI.Colors.Transparent, stops[0].Color);
+			Assert.AreEqual(Microsoft.UI.ColorHelper.FromARGB(0x33, 0, 0, 0), stops[1].Color);
 			Assert.AreEqual(0.0, stops[0].Offset);
 			Assert.AreEqual(1.0, stops[1].Offset);
 
@@ -143,7 +143,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			var photoTemplateImage = photoTemplateContent.FindName("PhotoTemplateImage") as Image;
 			Assert.IsNotNull(photoTemplateImage);
 
-			var uriSourceExpression = photoTemplateImage.Source.GetBindingExpression(Windows.UI.Xaml.Media.Imaging.BitmapImage.UriSourceProperty);
+			var uriSourceExpression = photoTemplateImage.Source.GetBindingExpression(Microsoft.UI.Xaml.Media.Imaging.BitmapImage.UriSourceProperty);
 			Assert.IsNotNull(uriSourceExpression);
 			Assert.AreEqual("Thumbnail", uriSourceExpression.ParentBinding.Path.Path);
 		}
@@ -152,7 +152,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_AttachedProperty_Different_Target()
 		{
 			var s = GetContent(nameof(When_AttachedProperty_Different_Target));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 			Assert.AreEqual("rootPage", r.Name);
@@ -167,7 +167,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_AttachedProperty_Same_Target()
 		{
 			var s = GetContent(nameof(When_AttachedProperty_Same_Target));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 
@@ -181,7 +181,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_AttachedProperty_Binding()
 		{
 			var s = GetContent(nameof(When_AttachedProperty_Binding));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 
@@ -197,7 +197,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_Binding_TwoWay()
 		{
 			var s = GetContent(nameof(When_Binding_TwoWay));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 
@@ -207,12 +207,12 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			var expression = stackPanel.GetBindingExpression(StackPanel.OrientationProperty);
 			Assert.IsNotNull(expression);
 			Assert.AreEqual("MyOrientation", expression.ParentBinding.Path.Path);
-			Assert.AreEqual(Windows.UI.Xaml.Data.BindingMode.TwoWay, expression.ParentBinding.Mode);
+			Assert.AreEqual(Microsoft.UI.Xaml.Data.BindingMode.TwoWay, expression.ParentBinding.Mode);
 
 			var expressionWidth = stackPanel.GetBindingExpression(StackPanel.WidthProperty);
 			Assert.IsNotNull(expressionWidth);
 			Assert.AreEqual("MyWidth", expressionWidth.ParentBinding.Path.Path);
-			Assert.AreEqual(Windows.UI.Xaml.Data.BindingMode.OneTime, expressionWidth.ParentBinding.Mode);
+			Assert.AreEqual(Microsoft.UI.Xaml.Data.BindingMode.OneTime, expressionWidth.ParentBinding.Mode);
 		}
 
 		[TestMethod]
@@ -224,7 +224,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			app.Resources["StaticHeight"] = 44.0;
 
 			var s = GetContent(nameof(When_StaticResource));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 
@@ -254,7 +254,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			}
 
 			var s = GetContent(nameof(When_ThemeResource));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 
@@ -280,7 +280,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			var app = UnitTestsApp.App.EnsureApplication();
 
 			var s = GetContent(nameof(When_ThemeResource_Lazy));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 
@@ -302,7 +302,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_TextBlock_Basic()
 		{
 			var s = GetContent(nameof(When_TextBlock_Basic));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 
@@ -312,12 +312,12 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 
 			var tb02 = r.FindName("tb02") as TextBlock;
 			Assert.IsNotNull(tb02);
-			var tb02_run = tb02.Inlines.FirstOrDefault() as Windows.UI.Xaml.Documents.Run;
+			var tb02_run = tb02.Inlines.FirstOrDefault() as Microsoft.UI.Xaml.Documents.Run;
 			Assert.AreEqual("My Text 02", tb02_run.Text);
 
 			var tb03 = r.FindName("tb03") as TextBlock;
 			Assert.IsNotNull(tb03);
-			var tb03_run = tb03.Inlines.FirstOrDefault() as Windows.UI.Xaml.Documents.Run;
+			var tb03_run = tb03.Inlines.FirstOrDefault() as Microsoft.UI.Xaml.Documents.Run;
 			Assert.AreEqual("My Run Text", tb03_run.Text);
 		}
 
@@ -325,7 +325,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_ElementName()
 		{
 			var s = GetContent(nameof(When_ElementName));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsNotNull(r);
 
@@ -346,7 +346,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_ContentControl_ControlTemplate()
 		{
 			var s = GetContent(nameof(When_ContentControl_ControlTemplate));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var innerContent = r.Content as ContentControl;
 			innerContent.ApplyTemplate();
@@ -361,7 +361,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_Style_ControlTemplate()
 		{
 			var s = GetContent(nameof(When_Style_ControlTemplate));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 			Assert.IsNotNull(r);
 
 			r.ForceLoaded();
@@ -386,7 +386,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_VisualStateGroup_AttachedProperty()
 		{
 			var s = GetContent(nameof(When_VisualStateGroup_AttachedProperty));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var border1 = r.FindName("border1") as Border;
 			Assert.AreEqual(0, Grid.GetRow(border1));
@@ -400,7 +400,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_VisualStateGroup()
 		{
 			var s = GetContent(nameof(When_VisualStateGroup));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as Grid;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as Grid;
 
 			var groups = VisualStateManager.GetVisualStateGroups(r);
 			Assert.IsNotNull(groups);
@@ -440,7 +440,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_XNull()
 		{
 			var s = GetContent(nameof(When_XNull));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var root = r.FindName("root") as Grid;
 			var innerPanel = r.FindName("innerPanel") as StackPanel;
@@ -453,15 +453,15 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_Binding_TwoWay_UpdateSourceTrigger()
 		{
 			var s = GetContent(nameof(When_Binding_TwoWay_UpdateSourceTrigger));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var innerPanel = r.FindName("innerPanel") as StackPanel;
 
 			var expression = innerPanel.GetBindingExpression(StackPanel.OrientationProperty);
 			Assert.IsNotNull(expression);
 			Assert.AreEqual("MyOrientation", expression.ParentBinding.Path.Path);
-			Assert.AreEqual(Windows.UI.Xaml.Data.BindingMode.TwoWay, expression.ParentBinding.Mode);
-			Assert.AreEqual(Windows.UI.Xaml.Data.UpdateSourceTrigger.PropertyChanged, expression.ParentBinding.UpdateSourceTrigger);
+			Assert.AreEqual(Microsoft.UI.Xaml.Data.BindingMode.TwoWay, expression.ParentBinding.Mode);
+			Assert.AreEqual(Microsoft.UI.Xaml.Data.UpdateSourceTrigger.PropertyChanged, expression.ParentBinding.UpdateSourceTrigger);
 
 			Assert.IsNull(innerPanel.DataContext);
 		}
@@ -470,7 +470,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_Binding_TargetNull()
 		{
 			var s = GetContent(nameof(When_Binding_TargetNull));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var innerPanel = r.FindName("innerPanel") as StackPanel;
 
@@ -487,7 +487,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_TextBlock_ImplicitRun()
 		{
 			var s = GetContent(nameof(When_TextBlock_ImplicitRun));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var tb1 = r.FindName("tb01") as TextBlock;
 			var link = tb1.Inlines.OfType<Hyperlink>().Single();
@@ -516,7 +516,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_TextBlock_NestedSpan()
 		{
 			var s = GetContent(nameof(When_TextBlock_NestedSpan));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var tb = r.FindName("tb01") as TextBlock;
 
@@ -543,7 +543,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_VisualStateGroup_AttachedProperty_Binding()
 		{
 			var s = GetContent(nameof(When_VisualStateGroup_AttachedProperty_Binding));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var root = r.FindName("rootGrid") as Grid;
 			var myPanel = r.FindName("myPanel") as StackPanel;
@@ -575,7 +575,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_VisualStateGroup_Propagation()
 		{
 			var s = GetContent(nameof(When_VisualStateGroup_Propagation));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var root = r.FindName("root") as ListViewItem;
 			var test = r.FindName("test");
@@ -586,7 +586,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_TextBlock_FontFamily()
 		{
 			var s = GetContent(nameof(When_TextBlock_FontFamily));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var tb01 = r.FindName("tb01") as TextBlock;
 			Assert.AreEqual("My Text 01", tb01.Text);
@@ -605,7 +605,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_MultipleImplicitStyle()
 		{
 			var s = GetContent(nameof(When_MultipleImplicitStyle));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsTrue(r.Resources.ContainsKey(typeof(Grid)));
 			Assert.IsTrue(r.Resources.ContainsKey(typeof(TextBlock)));
@@ -615,7 +615,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_Binding_Converter()
 		{
 			var s = GetContent(nameof(When_Binding_Converter));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var c = r.Content as ContentControl;
 
@@ -634,7 +634,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_Binding_ConverterParameter()
 		{
 			var s = GetContent(nameof(When_Binding_ConverterParameter));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var c = r.Content as ContentControl;
 
@@ -645,7 +645,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_StaticResource_Style_And_Binding()
 		{
 			var s = GetContent(nameof(When_StaticResource_Style_And_Binding));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			r.ForceLoaded();
 
@@ -672,7 +672,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_GridRowDefinitions()
 		{
 			var s = GetContent(nameof(When_GridRowDefinitions));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var root = r.FindName("root") as Grid;
 
@@ -695,7 +695,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		{
 			Assert.ThrowsException<InvalidOperationException>(() => {
 				var s = GetContent(nameof(When_ImplicitStyle_WithoutKey));
-				var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+				var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 			});
 		}
 		
@@ -703,7 +703,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_NonDependencyPropertyAssignable()
 		{
 			var s = GetContent(nameof(When_NonDependencyPropertyAssignable));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var root = r.FindName("root") as Grid;
 			var inner = root.Children.First() as NonDependencyPropertyAssignable;
@@ -717,7 +717,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_NonDependencyProperty_Binding()
 		{
 			var s = GetContent(nameof(When_NonDependencyProperty_Binding));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var root = r.FindName("root") as Grid;
 			var inner = root.Children.First() as NonDependencyPropertyAssignable;
@@ -731,7 +731,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_TypeConverters()
 		{
 			var s = GetContent(nameof(When_TypeConverters));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var root = (TypeConvertersControl)r.Content;
 
@@ -743,7 +743,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_SetLessProperty()
 		{
 			var s = GetContent(nameof(When_SetLessProperty));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var root = (SetLessPropertyControl)r.Content;
 		}
@@ -752,7 +752,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_TopLevel_ResourceDictionary()
 		{
 			var s = GetContent(nameof(When_TopLevel_ResourceDictionary));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as ResourceDictionary;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as ResourceDictionary;
 
 			Assert.IsTrue(r.ContainsKey("DefaultColumnStyle"));
 			var style = r["DefaultColumnStyle"] as Style;
@@ -764,7 +764,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_StaticResource_SystemTypes()
 		{
 			var s = GetContent(nameof(When_StaticResource_SystemTypes));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			Assert.IsTrue(r.Resources.ContainsKey("myDouble"));
 			Assert.IsTrue(r.Resources.ContainsKey("mySingle"));
@@ -781,7 +781,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_IList_TabView()
 		{
 			var s = GetContent(nameof(When_IList_TabView));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 
 			var tabView1 = r.FindName("tabView1") as Microsoft.UI.Xaml.Controls.TabView;
 
@@ -792,14 +792,14 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void When_StateTrigger_PropertyPath()
 		{
 			var s = GetContent(nameof(When_StateTrigger_PropertyPath));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as UserControl;
 		}
 
 		[TestMethod]
 		public void When_Brush_And_StringColor()
 		{
 			var s = GetContent(nameof(When_Brush_And_StringColor));
-			var r = Windows.UI.Xaml.Markup.XamlReader.Load(s) as ContentControl;
+			var r = Microsoft.UI.Xaml.Markup.XamlReader.Load(s) as ContentControl;
 		}
 
 		private string GetContent(string testName)

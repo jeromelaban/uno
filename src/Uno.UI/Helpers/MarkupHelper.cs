@@ -1,11 +1,11 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Uno.UI.DataBinding;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Helpers
 {

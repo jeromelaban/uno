@@ -1,11 +1,11 @@
-﻿// MUX reference NavigationViewItem.h, commit 574e5ed
+// MUX reference NavigationViewItem.h, commit 574e5ed
 
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Uno.Disposables;
 using Windows.ApplicationModel.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 
 namespace Microsoft.UI.Xaml.Controls
 {

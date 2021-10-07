@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.Disposables;
 
-namespace Windows.UI.Xaml.Controls.Maps.Presenters
+namespace Microsoft.UI.Xaml.Controls.Maps.Presenters
 {
 	public sealed partial class MapPresenter : Control
 	{

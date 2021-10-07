@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Android.Animation;
 using Android.Views.Animations;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	public partial class ElasticEase
 	{

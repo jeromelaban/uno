@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using Android.Graphics;
 using Uno.UI;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 	partial class RenderTargetBitmap
 	{

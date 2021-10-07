@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using CoreGraphics;
@@ -11,7 +11,7 @@ using AppKit;
 using View = AppKit.NSView;
 #endif
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public partial class FlyoutBase
 	{

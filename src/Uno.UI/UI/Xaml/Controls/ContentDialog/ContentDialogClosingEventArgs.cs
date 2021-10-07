@@ -1,7 +1,7 @@
 using System;
 using Uno.Helpers;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class ContentDialogClosingEventArgs
 	{

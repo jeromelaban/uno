@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 using SkiaSharp;
 using Uno.Extensions;
 using Uno.Logging;
 using Uno.UI.Xaml.Core;
-using Windows.UI.Xaml.Input;
-using WUX = Windows.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
+using WUX = Microsoft.UI.Xaml;
 
 namespace Uno.UI.Runtime.Skia
 {
@@ -30,7 +30,7 @@ namespace Uno.UI.Runtime.Skia
 		{
 			if (_focusManager == null)
 			{
-				_focusManager = VisualTree.GetFocusManagerForElement(Windows.UI.Xaml.Window.Current?.RootElement);
+				_focusManager = VisualTree.GetFocusManagerForElement(Microsoft.UI.Xaml.Window.Current?.RootElement);
 			}
 			_focusManager?.FocusRectManager?.RedrawFocusVisual();
 		}

@@ -1,9 +1,9 @@
-﻿using Windows.Devices.Input;
+using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.UI.Input;
 using Uno.UI.Xaml.Input;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	public sealed partial class DoubleTappedRoutedEventArgs : RoutedEventArgs, IHandleableRoutedEventArgs
 	{

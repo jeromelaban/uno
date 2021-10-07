@@ -1,12 +1,12 @@
 #if XAMARIN || UNO_REFERENCE_API
 using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml;
+using Uno.UI.Controls.Legacy.Primitives;
 
 // Keep this formatting (with the space) for the WinUI upgrade tooling.
 using Microsoft .UI.Xaml.Controls;
 
-namespace Windows.UI.Xaml.Controls
+namespace Uno.UI.Controls.Legacy
 {
 	public partial class ProgressRing : Control
 	{

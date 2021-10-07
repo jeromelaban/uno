@@ -1,20 +1,20 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Private.Infrastructure;
 using Uno.Extensions;
 using Uno.UI.Extensions;
 using DependencyObjectExtensions = Uno.UI.Extensions.DependencyObjectExtensions;
-using Windows.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml.Shapes;
 #if __IOS__
 using UIKit;
 #endif

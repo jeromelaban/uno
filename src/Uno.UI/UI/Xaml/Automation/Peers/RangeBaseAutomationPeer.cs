@@ -1,9 +1,9 @@
 #pragma warning disable 108 // new keyword hiding
 using System;
 
-namespace Windows.UI.Xaml.Automation.Peers
+namespace Microsoft.UI.Xaml.Automation.Peers
 {
-	public  partial class RangeBaseAutomationPeer : global::Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer,global::Windows.UI.Xaml.Automation.Provider.IRangeValueProvider
+	public  partial class RangeBaseAutomationPeer : global::Microsoft.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer,global::Microsoft.UI.Xaml.Automation.Provider.IRangeValueProvider
 	{
 		public RangeBaseAutomationPeer()
 		{

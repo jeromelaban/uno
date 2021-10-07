@@ -2,18 +2,18 @@ using System;
 using Uno.Disposables;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
 
 #if XAMARIN_IOS
 using Foundation;
 using UIKit;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class Slider : RangeBase
 	{

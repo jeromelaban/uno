@@ -1,8 +1,8 @@
-﻿using Uno.Extensions;
+using Uno.Extensions;
 using Uno.UI.DataBinding;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.UI.Extensions;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -19,7 +19,7 @@ using Windows.UI.Input;
 using Uno.UI.Xaml.Input;
 using DraggingEventArgs = UIKit.DraggingEventArgs;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class NativeScrollContentPresenter : UIScrollView, DependencyObject
 	{

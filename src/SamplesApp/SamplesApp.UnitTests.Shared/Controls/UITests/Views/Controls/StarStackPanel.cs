@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -11,8 +11,8 @@ using System.Windows;
 using System.Windows.Controls;
 #else
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 #endif
 
 namespace Uno.UI.Samples.Controls

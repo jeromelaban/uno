@@ -1,14 +1,14 @@
-﻿#if !__ANDROID__
+#if !__ANDROID__
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using Uno.Disposables;
 using Windows.UI;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Lottie;
 using System.Linq;
 using System.Json;

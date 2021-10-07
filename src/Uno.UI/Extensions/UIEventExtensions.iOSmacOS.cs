@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using CoreGraphics;
 using Uno.Extensions;
 using Windows.Foundation;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 #if __IOS__
 using UIKit;

@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Linq;
 using Android.Views;
 using Uno.Extensions;
 using Uno.UI;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class FlipViewItem : SelectorItem
 	{

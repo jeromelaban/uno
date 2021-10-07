@@ -1,9 +1,9 @@
-﻿using Uno;
+using Uno;
 using Uno.Extensions;
 using Windows.UI;
 using NotImplementedException = System.NotImplementedException;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	public abstract partial class ColorKeyFrame : DependencyObject
 	{

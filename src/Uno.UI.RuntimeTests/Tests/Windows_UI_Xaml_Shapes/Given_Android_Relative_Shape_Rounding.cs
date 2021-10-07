@@ -1,4 +1,4 @@
-﻿#if __ANDROID__
+#if __ANDROID__
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Private.Infrastructure;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Shapes;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Shapes
 {

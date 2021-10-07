@@ -1,4 +1,4 @@
-﻿namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	/// <summary>
 	/// Provides data for the FocusDisengaged event.

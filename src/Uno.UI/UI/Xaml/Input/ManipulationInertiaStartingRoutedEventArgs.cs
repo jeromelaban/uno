@@ -2,7 +2,7 @@ using Windows.Devices.Input;
 using Windows.UI.Input;
 using Uno.UI.Xaml.Input;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	public  partial class ManipulationInertiaStartingRoutedEventArgs : RoutedEventArgs, IHandleableRoutedEventArgs
 	{

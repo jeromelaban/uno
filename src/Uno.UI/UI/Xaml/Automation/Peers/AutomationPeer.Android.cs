@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ using Android.Views;
 using Android.Views.Accessibility;
 using Uno.UI;
 
-namespace Windows.UI.Xaml.Automation.Peers
+namespace Microsoft.UI.Xaml.Automation.Peers
 {
 	public partial class AutomationPeer
 	{

@@ -9,8 +9,8 @@ using Uno.UI;
 using Uno.UI.DataBinding;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 
 #if __IOS__
 using UIKit;
@@ -18,7 +18,7 @@ using UIKit;
 using AppKit;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class AutoSuggestBox : ItemsControl, IValueChangedListener
 	{

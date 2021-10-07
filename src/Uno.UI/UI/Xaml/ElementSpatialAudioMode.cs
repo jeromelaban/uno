@@ -1,4 +1,4 @@
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>
 	/// Defines constants that indicate whether spatial sound is on, off, or handled automatically.

@@ -4,7 +4,7 @@ using Windows.Foundation;
 using Windows.Foundation.Metadata;
 using Windows.UI.Core;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public delegate void WindowSizeChangedEventHandler(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e);
 }

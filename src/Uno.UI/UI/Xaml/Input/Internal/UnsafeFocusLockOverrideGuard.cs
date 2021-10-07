@@ -1,5 +1,5 @@
-﻿using System;
-using Windows.UI.Xaml.Input;
+using System;
+using Microsoft.UI.Xaml.Input;
 
 namespace Uno.UI.Xaml.Input
 {

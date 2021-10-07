@@ -1262,7 +1262,7 @@ var Uno;
             getEventExtractor(eventExtractorId) {
                 if (eventExtractorId) {
                     //
-                    // NOTE TO MAINTAINERS: Keep in sync with Windows.UI.Xaml.UIElement.HtmlEventExtractor
+                    // NOTE TO MAINTAINERS: Keep in sync with Microsoft.UI.Xaml.UIElement.HtmlEventExtractor
                     //
                     switch (eventExtractorId) {
                         case 1:
@@ -1801,16 +1801,16 @@ var Uno;
                 }
                 else {
                     if (!WindowManager.resizeMethod) {
-                        WindowManager.resizeMethod = Module.mono_bind_static_method("[Uno.UI] Windows.UI.Xaml.Window:Resize");
+                        WindowManager.resizeMethod = Module.mono_bind_static_method("[Uno.UI] Microsoft.UI.Xaml.Window:Resize");
                     }
                     if (!WindowManager.dispatchEventMethod) {
-                        WindowManager.dispatchEventMethod = Module.mono_bind_static_method("[Uno.UI] Windows.UI.Xaml.UIElement:DispatchEvent");
+                        WindowManager.dispatchEventMethod = Module.mono_bind_static_method("[Uno.UI] Microsoft.UI.Xaml.UIElement:DispatchEvent");
                     }
                     if (!WindowManager.focusInMethod) {
-                        WindowManager.focusInMethod = Module.mono_bind_static_method("[Uno.UI] Windows.UI.Xaml.Input.FocusManager:ReceiveFocusNative");
+                        WindowManager.focusInMethod = Module.mono_bind_static_method("[Uno.UI] Microsoft.UI.Xaml.Input.FocusManager:ReceiveFocusNative");
                     }
                     if (!WindowManager.dispatchSuspendingMethod) {
-                        WindowManager.dispatchSuspendingMethod = Module.mono_bind_static_method("[Uno.UI] Windows.UI.Xaml.Application:DispatchSuspending");
+                        WindowManager.dispatchSuspendingMethod = Module.mono_bind_static_method("[Uno.UI] Microsoft.UI.Xaml.Application:DispatchSuspending");
                     }
                 }
             }
@@ -4344,7 +4344,7 @@ var Windows;
                 }
                 static observeSystemTheme() {
                     if (!Application.dispatchThemeChange) {
-                        Application.dispatchThemeChange = Module.mono_bind_static_method("[Uno.UI] Windows.UI.Xaml.Application:DispatchSystemThemeChange");
+                        Application.dispatchThemeChange = Module.mono_bind_static_method("[Uno.UI] Microsoft.UI.Xaml.Application:DispatchSystemThemeChange");
                     }
                     if (window.matchMedia) {
                         window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", () => {
@@ -4354,7 +4354,7 @@ var Windows;
                 }
                 static observeVisibility() {
                     if (!Application.dispatchVisibilityChange) {
-                        Application.dispatchVisibilityChange = Module.mono_bind_static_method("[Uno.UI] Windows.UI.Xaml.Application:DispatchVisibilityChange");
+                        Application.dispatchVisibilityChange = Module.mono_bind_static_method("[Uno.UI] Microsoft.UI.Xaml.Application:DispatchVisibilityChange");
                     }
                     if (document.onvisibilitychange !== undefined) {
                         document.addEventListener("visibilitychange", () => {

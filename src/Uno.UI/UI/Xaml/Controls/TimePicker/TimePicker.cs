@@ -1,4 +1,4 @@
-﻿#if !UNO_REFERENCE_API
+#if !UNO_REFERENCE_API
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,12 +7,12 @@ using System.Text;
 using Uno.Extensions;
 using Uno.UI;
 using Windows.Globalization;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class TimePicker : Control
 	{

@@ -1,4 +1,4 @@
-﻿using Mono.Cecil;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,7 +33,7 @@ namespace Uno.UI.AssemblyComparer
                 var q = from targetType in targetTypes
                         where !sourceTypes.Any(t => t.FullName == targetType.FullName && IsImplemented(t.CustomAttributes))
                         where targetType.IsPublic
-						where targetType.Namespace.StartsWith("Windows.UI.Xaml")
+						where targetType.Namespace.StartsWith("Microsoft.UI.Xaml")
                         group targetType by targetType.Namespace into namespaces
                         orderby namespaces.Key
                         select new {
@@ -68,7 +68,7 @@ namespace Uno.UI.AssemblyComparer
 
                 // New properties only in target
                 var q1 = from targetType in targetTypes
-						 where targetType.Namespace.StartsWith("Windows.UI.Xaml")
+						 where targetType.Namespace.StartsWith("Microsoft.UI.Xaml")
 						 let sourceType = sourceTypes.FirstOrDefault(t => t.FullName == targetType.FullName)
                          where sourceType != null
                          where targetType.IsPublic

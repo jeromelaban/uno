@@ -1,16 +1,16 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Uno.Disposables;
 using Uno.UI.Runtime.Skia.WPF.Controls;
 using Uno.UI.Skia.Platform;
 using Uno.UI.Xaml.Controls.Extensions;
 using Point = Windows.Foundation.Point;
-using SolidColorBrush = Windows.UI.Xaml.Media.SolidColorBrush;
+using SolidColorBrush = Microsoft.UI.Xaml.Media.SolidColorBrush;
 using WpfCanvas = System.Windows.Controls.Canvas;
 using WpfTextBox = System.Windows.Controls.TextBox;
 
@@ -132,7 +132,7 @@ namespace Uno.UI.Runtime.Skia.WPF.Extensions.UI.Xaml.Controls
 				return;
 			}
 
-			var transformToRoot = _contentElement.TransformToVisual(Windows.UI.Xaml.Window.Current.Content);
+			var transformToRoot = _contentElement.TransformToVisual(Microsoft.UI.Xaml.Window.Current.Content);
 			var point = transformToRoot.TransformPoint(new Point(0, 0));
 			if (textInputLayer.Children.Contains(_currentInputWidget))
 			{
@@ -177,7 +177,7 @@ namespace Uno.UI.Runtime.Skia.WPF.Extensions.UI.Xaml.Controls
 			UpdatePosition();
 		}
 
-		private void ContentElementSizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs args)
+		private void ContentElementSizeChanged(object sender, Microsoft.UI.Xaml.SizeChangedEventArgs args)
 		{
 			UpdateSize();
 			UpdatePosition();

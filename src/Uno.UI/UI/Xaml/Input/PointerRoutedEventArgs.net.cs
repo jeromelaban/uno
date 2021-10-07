@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -6,9 +6,9 @@ using Windows.Devices.Input;
 using Uno;
 using Windows.Foundation;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	partial class PointerRoutedEventArgs
 	{

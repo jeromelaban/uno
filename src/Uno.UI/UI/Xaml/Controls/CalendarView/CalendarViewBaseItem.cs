@@ -5,13 +5,13 @@ using System;
 using System.Runtime.CompilerServices;
 using Windows.Devices.Input;
 using Windows.UI.Input;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using CCalendarViewBaseItemChrome = Windows.UI.Xaml.Controls.CalendarViewBaseItem;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using CCalendarViewBaseItemChrome = Microsoft.UI.Xaml.Controls.CalendarViewBaseItem;
 using DateTime = System.DateTimeOffset;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class CalendarViewBaseItem
 	{

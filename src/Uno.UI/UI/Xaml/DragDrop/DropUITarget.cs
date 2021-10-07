@@ -10,13 +10,13 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.DragDrop.Core;
 using Windows.Foundation;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using Uno.Extensions;
 using Uno.Logging;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	internal class DropUITarget : ICoreDropOperationTarget
 	{
@@ -119,7 +119,7 @@ namespace Windows.UI.Xaml
 				return args.AcceptedOperation;
 			});
 
-		private async Task<(UIElement element, global::Windows.UI.Xaml.DragEventArgs args)?> UpdateTarget(
+		private async Task<(UIElement element, global::Microsoft.UI.Xaml.DragEventArgs args)?> UpdateTarget(
 			CoreDragInfo dragInfo,
 			CoreDragUIOverride? dragUIOverride,
 			CancellationToken ct)

@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Uno.UI;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using System.IO;
 using Windows.UI;
 using Uno.Extensions;

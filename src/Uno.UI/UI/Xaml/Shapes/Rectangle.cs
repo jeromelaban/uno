@@ -1,4 +1,4 @@
-﻿#if !__IOS__ && !__MACOS__ && !__NETSTD_REFERENCE__ && !__SKIA__ && !__ANDROID__
+#if !__IOS__ && !__MACOS__ && !__NETSTD_REFERENCE__ && !__SKIA__ && !__ANDROID__
 #define LEGACY_SHAPE_MEASURE
 #endif
 
@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	public partial class Rectangle : Shape
 	{

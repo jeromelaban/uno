@@ -1,10 +1,10 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Linq;
 using Gtk;
 using Uno.UI.Xaml.Controls.Extensions;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using GLib;
 using Pango;
 using Uno.Disposables;
@@ -150,7 +150,7 @@ namespace Uno.UI.Runtime.Skia.GTK.Extensions.UI.Xaml.Controls
 				return;
 			}
 
-			var transformToRoot = _contentElement.TransformToVisual(Windows.UI.Xaml.Window.Current.Content);
+			var transformToRoot = _contentElement.TransformToVisual(Microsoft.UI.Xaml.Window.Current.Content);
 			var point = transformToRoot.TransformPoint(new Point(0, 0));
 			var textInputLayer = GetWindowTextInputLayer();
 			if (textInputLayer.Children.Contains(_currentInputWidget))
@@ -275,7 +275,7 @@ namespace Uno.UI.Runtime.Skia.GTK.Extensions.UI.Xaml.Controls
 			UpdatePosition();
 		}
 
-		private void ContentElementSizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs args)
+		private void ContentElementSizeChanged(object sender, Microsoft.UI.Xaml.SizeChangedEventArgs args)
 		{
 			UpdateSize();
 			UpdatePosition();

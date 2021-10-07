@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Drawing;
 using Uno.Extensions;
 using Uno.UI;
 using Uno.UI.Views.Controls;
 using Uno.UI.DataBinding;
 using UIKit;
-using Windows.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml.Shapes;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	/// <summary>
 	/// Declares a Content presenter

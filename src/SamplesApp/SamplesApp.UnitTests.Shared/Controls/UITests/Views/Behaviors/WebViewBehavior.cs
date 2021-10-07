@@ -1,14 +1,14 @@
-﻿#if XAMARIN || __WASM__
+#if XAMARIN || __WASM__
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Uno.Logging;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using _WebView = Windows.UI.Xaml.Controls.WebView;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
+using _WebView = Microsoft.UI.Xaml.Controls.WebView;
 
 namespace Uno.UI.Samples.Behaviors
 {

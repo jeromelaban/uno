@@ -161,7 +161,7 @@ namespace Microsoft.UI.Xaml.Media.Animation
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DragItemThemeAnimation() : base()
 		{
-			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Media.Animation.DragItemThemeAnimation", "DragItemThemeAnimation.DragItemThemeAnimation()");
+			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Xaml.Media.Animation.DragItemThemeAnimation", "DragItemThemeAnimation.DragItemThemeAnimation()");
 		}
 	}
 
@@ -192,7 +192,7 @@ namespace Microsoft.UI.Xaml.Media.Animation
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public DropTargetItemThemeAnimation() : base()
 		{
-			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Media.Animation.DropTargetItemThemeAnimation", "DropTargetItemThemeAnimation.DropTargetItemThemeAnimation()");
+			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Xaml.Media.Animation.DropTargetItemThemeAnimation", "DropTargetItemThemeAnimation.DropTargetItemThemeAnimation()");
 		}
 	}
 
@@ -262,7 +262,7 @@ namespace Microsoft.UI.Xaml.Media.Animation
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "NET461", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public RepositionThemeAnimation() : base()
 		{
-			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Xaml.Media.Animation.RepositionThemeAnimation", "RepositionThemeAnimation.RepositionThemeAnimation()");
+			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Xaml.Media.Animation.RepositionThemeAnimation", "RepositionThemeAnimation.RepositionThemeAnimation()");
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace Windows.UI.Xaml.Media.Animation {
+namespace Microsoft.UI.Xaml.Media.Animation {
 	export class RenderingLoopFloatAnimator {
 		private static activeInstances: { [jsHandle: number]: RenderingLoopFloatAnimator} = {};
 

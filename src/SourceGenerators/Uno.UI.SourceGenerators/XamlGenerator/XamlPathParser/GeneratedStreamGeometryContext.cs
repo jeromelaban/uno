@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using Uno.Extensions;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Windows.Foundation;
 
 namespace Uno.Media
@@ -86,8 +86,8 @@ namespace Uno.Media
 		public static string ToCode(this FillRule fillRule)
 		{
 			return fillRule == FillRule.EvenOdd
-				? "global::Windows.UI.Xaml.Media.FillRule.EvenOdd"
-				: "global::Windows.UI.Xaml.Media.FillRule.Nonzero";
+				? "global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd"
+				: "global::Microsoft.UI.Xaml.Media.FillRule.Nonzero";
 		}
 
 		public static string ToCode(this SweepDirection direction)
@@ -95,9 +95,9 @@ namespace Uno.Media
 			switch (direction)
 			{
 				case SweepDirection.Counterclockwise:
-					return "global::Windows.UI.Xaml.Media.SweepDirection.Counterclockwise";
+					return "global::Microsoft.UI.Xaml.Media.SweepDirection.Counterclockwise";
 				case SweepDirection.Clockwise:
-					return "global::Windows.UI.Xaml.Media.SweepDirection.Clockwise";
+					return "global::Microsoft.UI.Xaml.Media.SweepDirection.Clockwise";
 				default:
 					throw new ArgumentException();
 			}

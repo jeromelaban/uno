@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -64,7 +64,7 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 				_javaObjectSymbol = comp.GetTypeByMetadataName("Java.Lang.Object");
 				_androidActivitySymbol = comp.GetTypeByMetadataName("Android.App.Activity");
 				_androidFragmentSymbol = comp.GetTypeByMetadataName("AndroidX.Fragment.App.Fragment");
-			    _bindableAttributeSymbol = comp.GetTypeByMetadataName("Windows.UI.Xaml.Data.BindableAttribute");
+			    _bindableAttributeSymbol = comp.GetTypeByMetadataName("Microsoft.UI.Xaml.Data.BindableAttribute");
 				_iFrameworkElementSymbol = comp.GetTypeByMetadataName(XamlConstants.Types.IFrameworkElement);
 			}
 
@@ -143,15 +143,15 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 					builder.AppendLineInvariant($"using Uno.Logging;");
 					builder.AppendLineInvariant($"using Uno.UI;");
 					builder.AppendLineInvariant($"using Uno.UI.DataBinding;");
-					builder.AppendLineInvariant($"using Windows.UI.Xaml;");
-					builder.AppendLineInvariant($"using Windows.UI.Xaml.Data;");
+					builder.AppendLineInvariant($"using Microsoft.UI.Xaml;");
+					builder.AppendLineInvariant($"using Microsoft.UI.Xaml.Data;");
 					builder.AppendLineInvariant($"using Uno.Diagnostics.Eventing;");
 
 					using (builder.BlockInvariant($"namespace {typeSymbol.ContainingNamespace}"))
 					{
 						if (_bindableAttributeSymbol != null && typeSymbol.FindAttribute(_bindableAttributeSymbol) == null)
 						{
-							builder.AppendLineInvariant(@"[global::Windows.UI.Xaml.Data.Bindable]");
+							builder.AppendLineInvariant(@"[global::Microsoft.UI.Xaml.Data.Bindable]");
 						}
 
 						using (GenerateNestingContainers(builder, typeSymbol))
@@ -755,17 +755,17 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 
 					#endregion
 
-					public void SetBinding(object target, string dependencyProperty, global::Windows.UI.Xaml.Data.BindingBase binding)
+					public void SetBinding(object target, string dependencyProperty, global::Microsoft.UI.Xaml.Data.BindingBase binding)
 					{{
 						__Store.SetBinding(target, dependencyProperty, binding);
 					}}
 
-					public void SetBinding(string dependencyProperty, global::Windows.UI.Xaml.Data.BindingBase binding)
+					public void SetBinding(string dependencyProperty, global::Microsoft.UI.Xaml.Data.BindingBase binding)
 					{{
 						__Store.SetBinding(dependencyProperty, binding);
 					}}
 
-					public void SetBinding(DependencyProperty dependencyProperty, global::Windows.UI.Xaml.Data.BindingBase binding)
+					public void SetBinding(DependencyProperty dependencyProperty, global::Microsoft.UI.Xaml.Data.BindingBase binding)
 					{{
 						__Store.SetBinding(dependencyProperty, binding);
 					}}
@@ -782,7 +782,7 @@ namespace Uno.UI.SourceGenerators.DependencyObject
 
 					partial void OnTemplatedParentChangedPartial(DependencyPropertyChangedEventArgs e);
 
-					public global::Windows.UI.Xaml.Data.BindingExpression GetBindingExpression(DependencyProperty dependencyProperty)
+					public global::Microsoft.UI.Xaml.Data.BindingExpression GetBindingExpression(DependencyProperty dependencyProperty)
 						=>  __Store.GetBindingExpression(dependencyProperty);
 
 					public void ResumeBindings() 

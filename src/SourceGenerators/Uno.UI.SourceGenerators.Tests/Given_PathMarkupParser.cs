@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Uno.Media;
 using Uno.MsBuildTasks.Utils.XamlPathParser;
 using Windows.Foundation;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.UI.SourceGenerators.Tests
 {
@@ -37,7 +37,7 @@ namespace Uno.UI.SourceGenerators.Tests
 {
 c.BeginFigure(new global::Windows.Foundation.Point(10, 10), true, false);
 c.SetClosedState(false);
-}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 
 		[TestMethod]
@@ -49,7 +49,7 @@ c.SetClosedState(false);
 c.BeginFigure(new global::Windows.Foundation.Point(0, 0), true, false);
 c.LineTo(new global::Windows.Foundation.Point(10, 10), true, false);
 c.SetClosedState(false);
-}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 
 		[TestMethod]
@@ -62,7 +62,7 @@ c.SetClosedState(false);
 c.BeginFigure(new global::Windows.Foundation.Point(0, 0), true, false);
 c.LineTo(new global::Windows.Foundation.Point(10, 10), true, false);
 c.SetClosedState(true);
-}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 
 		[TestMethod]
@@ -73,7 +73,7 @@ c.SetClosedState(true);
 {
 c.BeginFigure(new global::Windows.Foundation.Point(0, 0), true, false);
 c.SetClosedState(false);
-}, global::Windows.UI.Xaml.Media.FillRule.Nonzero)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.Nonzero)", generatedCode);
 		}
 
 		[DataTestMethod]
@@ -89,7 +89,7 @@ c.BeginFigure(new global::Windows.Foundation.Point(0, 0), true, false);
 c.LineTo(new global::Windows.Foundation.Point(10, 10), true, false);
 c.LineTo(new global::Windows.Foundation.Point(20, 20), true, false);
 c.SetClosedState(false);
-}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 
 		[DataTestMethod]
@@ -105,7 +105,7 @@ c.BeginFigure(new global::Windows.Foundation.Point(0, 0), true, false);
 c.LineTo(new global::Windows.Foundation.Point(10, 10), true, false);
 c.LineTo(new global::Windows.Foundation.Point(30, 30), true, false);
 c.SetClosedState(false);
-}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 
 		[TestMethod]
@@ -116,7 +116,7 @@ c.SetClosedState(false);
 {
 c.BeginFigure(new global::Windows.Foundation.Point(-1.01725E-05, -1.01725E-05), true, false);
 c.SetClosedState(false);
-}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 
 		[DataTestMethod]
@@ -168,7 +168,7 @@ c.SetClosedState(false);
 c.BeginFigure(new global::Windows.Foundation.Point(0, 0), true, false);
 c.LineTo(new global::Windows.Foundation.Point(10, 10), true, false);
 c.SetClosedState({expectedClosedState});
-}}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 
 		[DataTestMethod]
@@ -224,7 +224,7 @@ c.LineTo(new global::Windows.Foundation.Point(100, 100), true, false);
 c.SetClosedState(true);
 c.BeginFigure(new global::Windows.Foundation.Point(20, 20), true, false);
 c.SetClosedState(false);
-}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 
 		[TestMethod]
@@ -242,7 +242,7 @@ c.BezierTo(new global::Windows.Foundation.Point(11.192, 24.523), new global::Win
 c.LineTo(new global::Windows.Foundation.Point(10.924, 9.066), true, false);
 c.BezierTo(new global::Windows.Foundation.Point(10.924, 8.698), new global::Windows.Foundation.Point(11.194, 8.515), new global::Windows.Foundation.Point(11.528, 8.657), true, false);
 c.LineTo(new global::Windows.Foundation.Point(16.867, 10.94), true, false);
-c.ArcTo(new global::Windows.Foundation.Point(17.137, 11.128), new global::Windows.Foundation.Size(0.898, 0.898), 0d, false, global::Windows.UI.Xaml.Media.SweepDirection.Clockwise, true, false);
+c.ArcTo(new global::Windows.Foundation.Point(17.137, 11.128), new global::Windows.Foundation.Size(0.898, 0.898), 0d, false, global::Microsoft.UI.Xaml.Media.SweepDirection.Clockwise, true, false);
 c.BezierTo(new global::Windows.Foundation.Point(17.227, 11.297), new global::Windows.Foundation.Point(17.326, 11.461), new global::Windows.Foundation.Point(17.432, 11.618), true, false);
 c.SetClosedState(false);
 c.BeginFigure(new global::Windows.Foundation.Point(9.615, 9.07), true, false);
@@ -280,7 +280,7 @@ c.BezierTo(new global::Windows.Foundation.Point(22.77, 13.628), new global::Wind
 c.BezierTo(new global::Windows.Foundation.Point(26.554, 9.798), new global::Windows.Foundation.Point(27.067, 8.484), new global::Windows.Foundation.Point(27.067, 7.106), true, false);
 c.BezierTo(new global::Windows.Foundation.Point(27.067, 4.286), new global::Windows.Foundation.Point(24.822, 2), new global::Windows.Foundation.Point(22.054, 2), true, false);
 c.SetClosedState(false);
-}, global::Windows.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
+}, global::Microsoft.UI.Xaml.Media.FillRule.EvenOdd)", generatedCode);
 		}
 	}
 }

@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.Foundation;
 using DateTime = System.DateTimeOffset;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public sealed partial class CalendarViewTemplateSettings : DependencyObject
 	{

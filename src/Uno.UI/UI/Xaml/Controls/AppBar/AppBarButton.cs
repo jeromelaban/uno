@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Markup;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class AppBarButton : Button, ICommandBarElement, ICommandBarElement2, ICommandBarElement3
 	{

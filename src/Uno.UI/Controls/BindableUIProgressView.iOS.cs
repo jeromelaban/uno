@@ -1,11 +1,11 @@
-﻿using Foundation;
+using Foundation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using UIKit;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.Extensions;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.UI.Views.Controls
 {

@@ -1,4 +1,4 @@
-﻿<#@template language="C#" hostspecific="True" #>
+<#@template language="C#" hostspecific="True" #>
 <#@output extension="g.cs" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.IO" #>
@@ -9,20 +9,20 @@
 <#@include file="..\..\UI\Xaml\IFrameworkElement.Partials.tt"#>
 <#
 	GenerateDefaultPartialClasses(
-		"Windows.UI.Xaml.Controls.NativeListViewBase",
-		"Windows.UI.Xaml.Controls.NativePagedView",
-		"Windows.UI.Xaml.Controls.NativeScrollContentPresenter",
-		"Windows.UI.Xaml.Controls.TextBoxView"
+		"Microsoft.UI.Xaml.Controls.NativeListViewBase",
+		"Microsoft.UI.Xaml.Controls.NativePagedView",
+		"Microsoft.UI.Xaml.Controls.NativeScrollContentPresenter",
+		"Microsoft.UI.Xaml.Controls.TextBoxView"
 	);
 #>
 
 #if __ANDROID__
 <#
-	AddClass("Windows.UI.Xaml", "FrameworkElement", overridesAttachedToWindow:true, overridesOnLayout: false, isUnoMotionTarget: true, hasLayouter: true);
-	AddClass("Windows.UI.Xaml.Controls", "NativeListViewBase", isUnoMotionTarget: true);
-	AddClass("Windows.UI.Xaml.Controls", "NativePagedView", hasLayouter: true);
-	AddClass("Windows.UI.Xaml.Controls", "NativeScrollContentPresenter", callsBaseOnLayout: false, hasLayouter: true);
-	AddClass("Windows.UI.Xaml.Controls", "TextBoxView", hasNewMinWidthHeight: true, hasNewMaxWidthHeight: true);
+	AddClass("Microsoft.UI.Xaml", "FrameworkElement", overridesAttachedToWindow:true, overridesOnLayout: false, isUnoMotionTarget: true, hasLayouter: true);
+	AddClass("Microsoft.UI.Xaml.Controls", "NativeListViewBase", isUnoMotionTarget: true);
+	AddClass("Microsoft.UI.Xaml.Controls", "NativePagedView", hasLayouter: true);
+	AddClass("Microsoft.UI.Xaml.Controls", "NativeScrollContentPresenter", callsBaseOnLayout: false, hasLayouter: true);
+	AddClass("Microsoft.UI.Xaml.Controls", "TextBoxView", hasNewMinWidthHeight: true, hasNewMaxWidthHeight: true);
 	AddClass("Uno.UI.Controls.Legacy", "GridView");
 	AddClass("Uno.UI.Controls.Legacy", "ListView");
 	AddClass("Uno.UI.Controls.Legacy", "HorizontalGridView");

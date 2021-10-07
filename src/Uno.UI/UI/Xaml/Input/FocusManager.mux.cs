@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // focusmgr.h, focusmgr.cpp
 
@@ -11,10 +11,10 @@ using Uno.UI.Xaml.Core;
 using Uno.UI.Xaml.Input;
 using Windows.Foundation;
 using Uno.UI.Extensions;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Documents;
 using Uno.UI.Xaml.Rendering;
 using Uno.UI.Xaml.Core.Rendering;
 using static Microsoft.UI.Xaml.Controls._Tracing;
@@ -22,14 +22,14 @@ using Windows.UI.Core;
 
 //TODO Uno: Workaround for https://github.com/unoplatform/uno/issues/134
 #if NETFX_CORE
-using Popup = Windows.UI.Xaml.Controls.Primitives.Popup;
+using Popup = Microsoft.UI.Xaml.Controls.Primitives.Popup;
 #else
-using Popup = Windows.UI.Xaml.Controls.Popup;
+using Popup = Microsoft.UI.Xaml.Controls.Popup;
 #endif
 
 //TODO:MZ: Handle parameters in/out
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	public partial class FocusManager : IFocusManager
 	{

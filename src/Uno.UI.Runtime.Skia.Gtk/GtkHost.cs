@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Windows.System;
 using Uno.Extensions;
@@ -6,11 +6,11 @@ using Uno.Foundation.Extensibility;
 using Uno.Helpers.Theming;
 using Uno.Logging;
 using Uno.UI.Runtime.Skia.GTK.Extensions.Helpers.Theming;
-using Windows.UI.Xaml;
-using WUX = Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
+using WUX = Microsoft.UI.Xaml;
 using Uno.UI.Xaml.Controls.Extensions;
 using Uno.UI.Runtime.Skia.GTK.Extensions.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Gtk;
 using Uno.UI.Runtime.Skia.GTK.Extensions.Helpers;
 using Uno.Extensions.System;
@@ -55,7 +55,7 @@ namespace Uno.UI.Runtime.Skia
 			SetupTheme();
 
 			ApiExtensibility.Register(typeof(Windows.UI.Core.ICoreWindowExtension), o => new GtkCoreWindowExtension(o));
-			ApiExtensibility.Register<Windows.UI.Xaml.Application>(typeof(Uno.UI.Xaml.IApplicationExtension), o => new GtkApplicationExtension(o));
+			ApiExtensibility.Register<Microsoft.UI.Xaml.Application>(typeof(Uno.UI.Xaml.IApplicationExtension), o => new GtkApplicationExtension(o));
 			ApiExtensibility.Register(typeof(Windows.UI.ViewManagement.IApplicationViewExtension), o => new GtkApplicationViewExtension(o));
 			ApiExtensibility.Register(typeof(ISystemThemeHelperExtension), o => new GtkSystemThemeHelperExtension(o));
 			ApiExtensibility.Register(typeof(Windows.Graphics.Display.IDisplayInformationExtension), o => _displayInformationExtension ??= new GtkDisplayInformationExtension(o, _window));

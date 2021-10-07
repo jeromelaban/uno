@@ -40,7 +40,7 @@
         Always unload the solution before changing or activating this property.
         *** WARNING ***
     -->
-    <!--<UnoTargetFrameworkOverride>netstandard2.0</UnoTargetFrameworkOverride>-->
+    <UnoTargetFrameworkOverride>netstandard2.0</UnoTargetFrameworkOverride>
     
     <!-- 
     This property allows the override of the nuget local cache.

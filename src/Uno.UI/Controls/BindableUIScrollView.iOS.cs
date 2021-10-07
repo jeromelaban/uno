@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Drawing;
 using Uno.Disposables;
 using System.Runtime.CompilerServices;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using Uno.UI.DataBinding;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 #if XAMARIN_IOS_UNIFIED
 using Foundation;

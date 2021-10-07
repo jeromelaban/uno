@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Collections.Generic;
@@ -190,7 +190,7 @@ namespace Uno.UI.Tasks.LinkerHintsGenerator
 
 		private bool IsDependencyObject(TypeDefinition type)
 		{
-			if(type.Interfaces.Any(c => c.InterfaceType.FullName == "Windows.UI.Xaml.DependencyObject"))
+			if(type.Interfaces.Any(c => c.InterfaceType.FullName == "Microsoft.UI.Xaml.DependencyObject"))
 			{
 				return true;
 			}

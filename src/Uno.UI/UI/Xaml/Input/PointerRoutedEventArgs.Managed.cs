@@ -1,4 +1,4 @@
-﻿#if UNO_HAS_MANAGED_POINTERS
+#if UNO_HAS_MANAGED_POINTERS
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,10 +7,10 @@ using Windows.Devices.Input;
 using Uno;
 using Windows.Foundation;
 using Windows.UI.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Windows.UI.Core;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	partial class PointerRoutedEventArgs
 	{

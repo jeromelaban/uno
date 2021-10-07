@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // FocusRectManager.h, FocusRectManager.cpp
 
@@ -8,8 +8,8 @@ using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 using Uno.UI.Xaml.Controls;
 using Uno.UI.Xaml.Core.Rendering;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Input;
 
 namespace Uno.UI.Xaml.Input
 {

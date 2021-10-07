@@ -5,13 +5,13 @@ using System.Linq;
 using Uno.Foundation;
 using Windows.Devices.Input;
 using Windows.Foundation;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 using Windows.System;
 using Windows.UI.Input;
 using Uno.UI;
 using Uno.UI.Xaml;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public partial class UIElement : DependencyObject
 	{

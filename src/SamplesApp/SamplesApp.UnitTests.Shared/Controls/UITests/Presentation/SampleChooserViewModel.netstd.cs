@@ -1,4 +1,4 @@
-﻿#if __SKIA__
+#if __SKIA__
 using SampleControl.Entities;
 using System;
 using System.Collections;
@@ -14,8 +14,8 @@ using System.Threading.Tasks;
 using Uno.UI;
 using Uno.UI.Samples.Controls;
 using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace SampleControl.Presentation
 {

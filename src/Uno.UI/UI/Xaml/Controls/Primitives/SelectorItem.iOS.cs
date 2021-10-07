@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Uno.Disposables;
 using System.Text;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 using Windows.UI.Core;
 using System.Threading.Tasks;
 using Uno.UI;
 using Uno.Extensions;
 using UIKit;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public partial class SelectorItem
 	{

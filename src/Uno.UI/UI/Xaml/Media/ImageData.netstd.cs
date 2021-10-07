@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Linq;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	/// <summary>
 	/// Represents the raw data of an **opened** image source

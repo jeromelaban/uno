@@ -1,5 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using Uno.UI.Samples.Controls;
 using System;
 using System.Collections.Generic;
@@ -12,9 +12,9 @@ using System.Text;
 using Windows.Devices.Input;
 using Windows.UI.Core;
 using Windows.UI.Input;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Documents;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Documents;
 using Uno.Extensions;
 using Uno.Extensions.ValueType;
 
@@ -277,7 +277,7 @@ namespace UITests.Shared.Windows_UI_Input.GestureRecognizer
 					&& ((PointerRoutedEventArgs)e.Args).Pointer.PointerId == pointer.Pointer.PointerId);
 		}
 
-		[Windows.UI.Xaml.Data.Bindable]
+		[Microsoft.UI.Xaml.Data.Bindable]
 		public class RoutedEventLogEntry
 		{
 			public RoutedEventLogEntry(RoutedEvent evt, string eventName, object sender, RoutedEventArgs args, (EventValidity result, string errors) validity)

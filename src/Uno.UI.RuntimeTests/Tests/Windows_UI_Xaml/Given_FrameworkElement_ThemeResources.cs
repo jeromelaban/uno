@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +7,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Uno.UI.RuntimeTests.Helpers;
 using Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml.Controls;
 using Windows.UI;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 #if NETFX_CORE
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Uno.UI.Extensions;
 #elif __IOS__
 using UIKit;

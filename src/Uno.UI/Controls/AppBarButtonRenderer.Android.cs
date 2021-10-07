@@ -1,12 +1,12 @@
-﻿#if __ANDROID__
+#if __ANDROID__
 using AndroidX.Core.Graphics.Drawable;
 using Android.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Windows.Foundation;
 using Uno.Disposables;
 using Android.Graphics.Drawables;

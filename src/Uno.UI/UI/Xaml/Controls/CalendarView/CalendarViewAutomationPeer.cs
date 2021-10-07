@@ -4,13 +4,13 @@
 using System;
 using System.Collections.Generic;
 using Windows.Globalization.DateTimeFormatting;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Automation.Provider;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Automation.Provider;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using DirectUI;
 using DateTime = System.DateTimeOffset;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class CalendarView
 	{

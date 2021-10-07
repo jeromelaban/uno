@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Hosting
+namespace Microsoft.UI.Xaml.Hosting
 {
 	public partial class XamlSourceFocusNavigationRequest
 	{

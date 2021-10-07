@@ -1,14 +1,14 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using Windows.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common;
+using Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common;
 using MUXControlsTestApp.Utilities;
 using System;
 using System.Linq;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Markup;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Markup;
 using System.Threading;
 using Common;
 
@@ -32,7 +32,7 @@ using ItemsRepeaterScrollHost = Microsoft.UI.Xaml.Controls.ItemsRepeaterScrollHo
 using AnimationContext = Microsoft.UI.Xaml.Controls.AnimationContext;
 using System.Collections.Generic;
 
-namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests
+namespace Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests
 {
 	[TestClass]
 	public class FlowLayoutCollectionChangeTests : MUXApiTestBase

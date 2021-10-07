@@ -1,11 +1,11 @@
-﻿using Uno.Extensions;
+using Uno.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Globalization;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>Defines the radius of a rectangle's corners. </summary>
 	[TypeConverter(typeof(CornerRadiusConverter))]

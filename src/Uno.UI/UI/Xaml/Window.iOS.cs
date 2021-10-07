@@ -12,10 +12,10 @@ using Uno.UI.Controls;
 using System.Drawing;
 using Windows.UI.ViewManagement;
 using Uno.UI;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Xaml.Core;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public sealed partial class Window
 	{

@@ -1,4 +1,4 @@
-﻿// Uncomment to get additional reference tracking
+// Uncomment to get additional reference tracking
 // #define TRACK_REFS
 #nullable enable
 
@@ -16,9 +16,9 @@ using Private.Infrastructure;
 using Uno.Extensions;
 using Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml.Controls;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 #if __MACOS__
 using AppKit;

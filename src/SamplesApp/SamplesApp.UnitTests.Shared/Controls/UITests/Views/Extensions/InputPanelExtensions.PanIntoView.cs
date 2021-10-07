@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 
 namespace SamplesApp.UnitTests.Controls.UITests.Views.Extensions
 {
