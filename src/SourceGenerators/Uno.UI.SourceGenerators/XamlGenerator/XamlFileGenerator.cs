@@ -56,6 +56,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		/// </summary>
 		private readonly Dictionary<(string? Theme, string ResourceKey), string> _topLevelQualifiedKeys = new Dictionary<(string?, string), string>();
 		private readonly Stack<NameScope> _scopeStack = new Stack<NameScope>();
+		private readonly Stack<XLoadScope> _xLoadScopeStack = new Stack<XLoadScope>();
 		private readonly Stack<ResourceOwner> _resourceOwnerStack = new Stack<ResourceOwner>();
 		private readonly XamlFileDefinition _fileDefinition;
 		private readonly string _targetPath;
@@ -873,16 +874,16 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					using (writer.BlockInvariant($"__fe.Loading += delegate"))
 					{
 						BuildComponentResouceBindingUpdates(writer);
-						BuildxBindEventHandlerInitializers(writer);
+						BuildxBindEventHandlerInitializers(writer, CurrentScope.xBindEventsHandlers);
 					}
 					writer.AppendLineInvariant(";");
 				}
 			}
 		}
 
-		private void BuildxBindEventHandlerInitializers(IIndentedStringBuilder writer, string prefix = "")
+		private static void BuildxBindEventHandlerInitializers(IIndentedStringBuilder writer, List<BackingFieldDefinition> xBindEventsHandlers, string prefix = "")
 		{
-			foreach (var xBindEventHandler in CurrentScope.xBindEventsHandlers)
+			foreach (var xBindEventHandler in xBindEventsHandlers)
 			{
 				writer.AppendLineInvariant($"{prefix}{xBindEventHandler.Name}?.Invoke();");
 
@@ -984,7 +985,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 								writer.AppendLineInvariant($"owner._component_{i}{wrapInstance}.ApplyXBind();");
 							}
 
-							BuildxBindEventHandlerInitializers(writer, "owner.");
+							BuildxBindEventHandlerInitializers(writer, CurrentScope.xBindEventsHandlers, "owner.");
 						}
 					}
 					using (writer.BlockInvariant($"void {bindingsInterfaceName}.UpdateResources()"))
@@ -3282,7 +3283,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 								writer.AppendLineInvariant($"global::Windows.UI.Xaml.NameScope.SetNameScope(this._component_{CurrentScope.ComponentCount}, nameScope);");
 							}
 
-							CurrentScope.Components.Add(objectDefinition);
+							AddComponentForCurrentScope(objectDefinition);
 						}
 						else if (isFrameworkElement && HasMarkupExtensionNeedingComponent(objectDefinition))
 						{
@@ -3469,9 +3470,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 						var builderName = $"_{ownerPrefix}_{CurrentScope.xBindEventsHandlers.Count}_{member.Member.Name}_{sanitizedEventTarget}_Builder";
 
-						CurrentScope.xBindEventsHandlers.Add(
-							new BackingFieldDefinition("global::System.Action", builderName, Accessibility.Private)
-						);
+						AddXBindEventHandlerToScope(builderName);
 
 						using (writer.BlockInvariant($"{builderName} = () => "))
 						{
@@ -5536,6 +5535,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						writer.AppendLine(")");
 					});
 
+					var xLoadScopeDisposable = XLoadScope();
+
 					return new DisposableAction(() =>
 					{
 						disposable?.Dispose();
@@ -5615,7 +5616,20 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 											// Refresh the bindings when the ElementStub is unloaded. This assumes that
 											// ElementStub will be unloaded **after** the stubbed control has been created
 											// in order for the _component_XXX to be filled, and Bindings.Update() to do its work.
-											writer.AppendLineInvariant($"({componentName}_update_That.Target as {_className.className})?.Bindings.Update();");
+
+											using (writer.BlockInvariant($"if ({componentName}_update_That.Target is {_className.className} that)"))
+											{
+												if (CurrentXLoadScope != null)
+												{
+													foreach (var component in CurrentXLoadScope.Components)
+													{
+														writer.AppendLineInvariant($"that.{component.VariableName}.ApplyXBind();");
+														writer.AppendLineInvariant($"that.{component.VariableName}.UpdateResourceBindings();");
+													}
+
+													BuildxBindEventHandlerInitializers(writer, CurrentXLoadScope.xBindEventsHandlers, "that.");
+												}
+											}
 										}
 
 										writer.AppendLineInvariant($"{closureName}.Materializing += {componentName}_materializing;");
@@ -5627,9 +5641,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 									var xamlObjectDef = new XamlObjectDefinition(elementStubType, 0, 0, definition);
 									xamlObjectDef.Members.AddRange(members);
-									CurrentScope.Components.Add(xamlObjectDef);
+									AddComponentForParentScope(xamlObjectDef);
 								}
-
 							}
 							else
 							{
@@ -5663,6 +5676,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 								return def;
 							}
 						}
+
+						xLoadScopeDisposable?.Dispose();
 					}
 					);
 				}
@@ -5910,18 +5925,56 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		}
 
 		private NameScope CurrentScope
-		{
-			get
-			{
-				return _scopeStack.Peek();
-			}
-		}
+			=> _scopeStack.Peek();
 
 		private IDisposable Scope(string? @namespace, string className)
 		{
 			_scopeStack.Push(new NameScope(@namespace, className));
 
 			return new DisposableAction(() => _scopeStack.Pop());
+		}
+
+		private void AddComponentForCurrentScope(XamlObjectDefinition objectDefinition)
+		{
+			CurrentScope.Components.Add(objectDefinition);
+
+			if (CurrentXLoadScope is { } xLoadScope)
+			{
+				CurrentXLoadScope.Components.Add(new ComponentEntry($"_component_{CurrentScope.ComponentCount - 1}", objectDefinition));
+			}
+		}
+
+		private void AddComponentForParentScope(XamlObjectDefinition objectDefinition)
+		{
+			CurrentScope.Components.Add(objectDefinition);
+
+			if (_xLoadScopeStack.Count > 1)
+			{
+				var parent = _xLoadScopeStack.Skip(1).First();
+
+				parent.Components.Add(new ComponentEntry($"_component_{CurrentScope.ComponentCount - 1}", objectDefinition));
+			}
+		}
+		private void AddXBindEventHandlerToScope(string fieldName)
+		{
+			var definition = new BackingFieldDefinition("global::System.Action", fieldName, Accessibility.Private);
+
+			CurrentScope.xBindEventsHandlers.Add(definition);
+
+			if (CurrentXLoadScope is { } xLoadScope)
+			{
+				CurrentXLoadScope.xBindEventsHandlers.Add(definition);
+			}
+		}
+
+		private XLoadScope? CurrentXLoadScope
+			=> _xLoadScopeStack.Count != 0 ? _xLoadScopeStack.Peek() : null;
+
+		private IDisposable XLoadScope()
+		{
+			_xLoadScopeStack.Push(new XLoadScope());
+
+			return new DisposableAction(() => _xLoadScopeStack.Pop());
 		}
 
 		private ResourceOwner? CurrentResourceOwner
