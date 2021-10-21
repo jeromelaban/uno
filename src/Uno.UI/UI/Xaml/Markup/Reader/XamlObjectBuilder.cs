@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -38,18 +40,18 @@ namespace Windows.UI.Xaml.Markup.Reader
 			TypeResolver = new XamlTypeResolver(_fileDefinition);
 		}
 
-		internal object Build()
+		internal object? Build(object? component = null)
 		{
 			var topLevelControl = _fileDefinition.Objects.First();
 
-			var instance = LoadObject(topLevelControl);
+			var instance = LoadObject(topLevelControl, component);
 
 			ApplyPostActions(instance);
 
 			return instance;
 		}
 
-		private object LoadObject(XamlObjectDefinition control)
+		private object? LoadObject(XamlObjectDefinition? control, object? component = null)
 		{
 			if (control == null)
 			{
@@ -65,17 +67,24 @@ namespace Windows.UI.Xaml.Markup.Reader
 			}
 
 			var type = TypeResolver.FindType(control.Type);
+			var classMember = control.Members.FirstOrDefault(m => m.Member.Name == "Class" && m.Member.PreferredXamlNamespace == XamlConstants.XamlXmlNamespace);
 
 			if (type == null)
 			{
 				throw new InvalidOperationException($"Unable to find type {control.Type}");
 			}
 
+			var unknownContent = control.Members.Where(m => m.Member.Name == "_UnknownContent").FirstOrDefault();
+			var unknownContentValue = unknownContent?.Value;
+			var initializationMember = control.Members.Where(m => m.Member.Name == "_Initialization").FirstOrDefault();
+
+			var isBrush = type == typeof(Media.Brush);
+
 			if (type.Is<FrameworkTemplate>())
 			{
-				Func<_View> builder = () =>
+				Func<_View?> builder = () =>
 				{
-					var contentOwner = control.Members.FirstOrDefault(m => m.Member.Name == "_UnknownContent");
+					var contentOwner = unknownContent;
 
 					return LoadObject(contentOwner?.Objects.FirstOrDefault()) as _View;
 				};
@@ -84,9 +93,9 @@ namespace Windows.UI.Xaml.Markup.Reader
 			}
 			else if (type.Is<ResourceDictionary>())
 			{
-				var contentOwner = control.Members.FirstOrDefault(m => m.Member.Name == "_UnknownContent");
+				var contentOwner = unknownContent;
 
-				var rd = Activator.CreateInstance(type) as ResourceDictionary;
+				var rd = (ResourceDictionary)Activator.CreateInstance(type);
 				foreach (var xamlObjectDefinition in contentOwner.Objects)
 				{
 					var key = xamlObjectDefinition.Members.FirstOrDefault(m => m.Member.Name == "Key")?.Value;
@@ -101,23 +110,24 @@ namespace Windows.UI.Xaml.Markup.Reader
 
 				return rd;
 			}
-			else if (type.IsPrimitive && control.Members.Where(m => m.Member.Name == "_Initialization").FirstOrDefault()?.Value is string primitiveValue)
+			else if (type.IsPrimitive && initializationMember?.Value is string primitiveValue)
 			{
 				return Convert.ChangeType(primitiveValue, type, CultureInfo.InvariantCulture);
 			}
-			else if (type == typeof(string) && control.Members.Where(m => m.Member.Name == "_Initialization").FirstOrDefault()?.Value is string stringValue)
+			else if (type == typeof(string) && unknownContentValue is string stringValue)
 			{
 				return stringValue;
 			}
-			else if (type == typeof(Media.Brush) && control.Members.Where(m => m.Member.Name == "_UnknownContent").FirstOrDefault()?.Value is string brushStringValue)
+			else if (isBrush)
 			{
-				return XamlBindingHelper.ConvertValue(typeof(Media.Brush), brushStringValue);
+				return XamlBindingHelper.ConvertValue(typeof(Media.Brush), unknownContentValue);
 			}
 			else
 			{
-				var instance = Activator.CreateInstance(type);
+				var classType = TypeResolver.FindType(classMember?.Value?.ToString());
+				var instance = component ?? Activator.CreateInstance(type);
 
-				IDisposable TryProcessStyle()
+				IDisposable? TryProcessStyle()
 				{
 					if (instance is Style style)
 					{
@@ -159,8 +169,10 @@ namespace Windows.UI.Xaml.Markup.Reader
 			}
 		}
 
-		private string RewriteAttachedPropertyPath(string value)
+		private string RewriteAttachedPropertyPath(string? value)
 		{
+			value ??= "";
+
 			if (value.Contains("("))
 			{
 				foreach (var ns in _fileDefinition.Namespaces)
@@ -306,7 +318,10 @@ namespace Windows.UI.Xaml.Markup.Reader
 			{
 				foreach (var node in member.Objects)
 				{
-					span.Inlines.Add((Documents.Inline)LoadObject(node));
+					if (LoadObject(node) is Inline inline)
+					{
+						span.Inlines.Add(inline);
+					}
 				}
 			}
 
@@ -353,7 +368,10 @@ namespace Windows.UI.Xaml.Markup.Reader
 				{
 					foreach (var node in member.Objects)
 					{
-						instance.Inlines.Add((Documents.Inline)LoadObject(node));
+						if (LoadObject(node) is Inline inline)
+						{
+							instance.Inlines.Add(inline);
+						}
 					}
 				}
 			}
@@ -408,7 +426,7 @@ namespace Windows.UI.Xaml.Markup.Reader
 						var resourceTargetType = GetResourceTargetType(child);
 
 						if (
-							item.GetType() == typeof(Style)
+							item?.GetType() == typeof(Style)
 							&& resourceTargetType == null
 						)
 						{
@@ -495,13 +513,14 @@ namespace Windows.UI.Xaml.Markup.Reader
 			}
 		}
 
-		private static object ResolveStaticResource(object instance, string keyName)
+		private static object? ResolveStaticResource(object? instance, string? keyName)
 		{
 			var staticResource = (instance as FrameworkElement)
-					.Flatten(i => (i.Parent as FrameworkElement))
+					.Flatten(i => (i?.Parent as FrameworkElement))
 					.Select(fe =>
 					{
-						if (fe.Resources.TryGetValue(keyName, out var resource, shouldCheckSystem: false))
+						if (fe != null
+							&& fe.Resources.TryGetValue(keyName, out var resource, shouldCheckSystem: false))
 						{
 							return resource;
 						}
@@ -554,7 +573,7 @@ namespace Windows.UI.Xaml.Markup.Reader
 			}
 		}
 
-		private Binding BuildBindingExpression(object instance, XamlMemberDefinition member)
+		private Binding BuildBindingExpression(object? instance, XamlMemberDefinition member)
 		{
 			var bindingNode = member.Objects.FirstOrDefault(o => o.Type.Name == "Binding");
 			var templateBindingNode = member.Objects.FirstOrDefault(o => o.Type.Name == "TemplateBinding");
@@ -566,7 +585,12 @@ namespace Windows.UI.Xaml.Markup.Reader
 				binding.RelativeSource = RelativeSource.TemplatedParent;
 			}
 
-			foreach (var bindingProperty in (bindingNode ?? templateBindingNode).Members)
+			if(bindingNode == null && templateBindingNode == null)
+			{
+				throw new InvalidOperationException("Unable to find Binding or TemplateBinding node");
+			}
+
+			foreach (var bindingProperty in (bindingNode ?? templateBindingNode)!.Members)
 			{
 				switch (bindingProperty.Member.Name)
 				{
@@ -578,7 +602,11 @@ namespace Windows.UI.Xaml.Markup.Reader
 					case nameof(Binding.ElementName):
 						var subject = new ElementNameSubject();
 						binding.ElementName = subject;
-						AddElementName(bindingProperty.Value?.ToString(), subject);
+
+						if (bindingProperty.Value != null)
+						{
+							AddElementName(bindingProperty.Value.ToString(), subject);
+						}
 						break;
 
 					case nameof(Binding.TargetNullValue):
@@ -603,7 +631,7 @@ namespace Windows.UI.Xaml.Markup.Reader
 					case nameof(Binding.RelativeSource):
 						if (bindingProperty.Objects.First() is XamlObjectDefinition relativeSource && relativeSource.Type.Name == "RelativeSource")
 						{
-							string relativeSourceValue = relativeSource.Members.FirstOrDefault()?.Value?.ToString()?.ToLowerInvariant();
+							var relativeSourceValue = relativeSource.Members.FirstOrDefault()?.Value?.ToString()?.ToLowerInvariant();
 							switch (relativeSourceValue)
 							{
 								case "templatedparent":
@@ -638,11 +666,11 @@ namespace Windows.UI.Xaml.Markup.Reader
 						{
 							if (converterResource.Type.Name == "StaticResource")
 							{
-								string staticResourceName = converterResource.Members.FirstOrDefault()?.Value?.ToString();
+								var staticResourceName = converterResource.Members.FirstOrDefault()?.Value?.ToString();
 
 								void ResolveResource()
 								{
-									object staticResource = ResolveStaticResource(instance, staticResourceName);
+									var staticResource = ResolveStaticResource(instance, staticResourceName);
 
 									if (staticResource != null)
 									{
@@ -699,7 +727,7 @@ namespace Windows.UI.Xaml.Markup.Reader
 			}
 		}
 
-		private object GetResourceKey(XamlObjectDefinition child) =>
+		private object? GetResourceKey(XamlObjectDefinition child) =>
 			child.Members.FirstOrDefault(m =>
 				string.Equals(m.Member.Name, "Name", StringComparison.OrdinalIgnoreCase)
 				|| string.Equals(m.Member.Name, "Key", StringComparison.OrdinalIgnoreCase)
@@ -734,7 +762,7 @@ namespace Windows.UI.Xaml.Markup.Reader
 			}
 		}
 
-		private object BuildLiteralValue(XamlMemberDefinition member, Type propertyType = null)
+		private object? BuildLiteralValue(XamlMemberDefinition member, Type? propertyType = null)
 		{
 			if (member.Objects.None())
 			{
@@ -779,12 +807,12 @@ namespace Windows.UI.Xaml.Markup.Reader
 			}
 		}
 
-		private object BuildLiteralValue(Type propertyType, string memberValue)
+		private object? BuildLiteralValue(Type propertyType, string? memberValue)
 		{
 			return Uno.UI.DataBinding.BindingPropertyHelper.Convert(() => propertyType, memberValue);
 		}
 
-		private void ApplyPostActions(object instance)
+		private void ApplyPostActions(object? instance)
 		{
 			if (instance is FrameworkElement fe)
 			{
