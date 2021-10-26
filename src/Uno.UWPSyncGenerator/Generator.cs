@@ -459,6 +459,12 @@ namespace Uno.UWPSyncGenerator
 				case "Microsoft.UI.Xaml.Controls.XamlControlsResources":
 					// Skipped because the type is placed in the Uno.UI.FluentTheme assembly
 					return true;
+
+				case "Microsoft.UI.Xaml.Data.INotifyPropertyChanged":
+				case "Microsoft.UI.Xaml.Data.PropertyChangedEventArgs":
+				case "Microsoft.UI.Xaml.Data.PropertyChangedEventHandler":
+					// Skipped because the types are hidden from the projections in WinAppSDK
+					return true;
 			}
 
 

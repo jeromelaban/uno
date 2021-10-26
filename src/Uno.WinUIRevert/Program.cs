@@ -37,6 +37,12 @@ namespace UnoWinUIRevert
 				File.Copy(colorHelperFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "ColorHelper.cs"), true);
 			}
 
+			var fontWeightsFilePath = Path.Combine(basePath, @"src", "Uno.UWP", "UI", "Text", "FontWeights.cs");
+			if (File.Exists(fontWeightsFilePath))
+			{
+				File.Copy(fontWeightsFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "Text", "FontWeights.cs"), true);
+			}
+
 			// Files/Class that are implemented in both MUX and WUX and which should not be converted
 			var duplicatedImplementations = new[]
 			{
@@ -53,6 +59,7 @@ namespace UnoWinUIRevert
 				("Windows.UI.Xaml", "Microsoft.UI.Xaml"),
 				("Windows.UI.Composition", "Microsoft.UI.Composition"),
 				("Windows.UI.Colors", "Microsoft.UI.Colors"),
+				("Windows.UI.Text.FontWeights", "Microsoft.UI.Text.FontWeights"),
 				("Windows.UI.ColorHelper", "Microsoft.UI.ColorHelper"),
 				("Windows.UI.Xaml", "Microsoft.UI.Xaml"),
 				("Microsoft.UI.Xaml.Controls\", \"ProgressRing", "Uno.UI.Controls.Legacy\", \"ProgressRing"),
