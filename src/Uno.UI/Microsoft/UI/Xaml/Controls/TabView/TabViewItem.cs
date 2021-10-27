@@ -16,6 +16,13 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
+#if HAS_UNO_WINUI
+using Microsoft.UI.Input;
+#else
+using Windows.Devices.Input;
+using Windows.UI.Input;
+#endif
+
 namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class TabViewItem : ListViewItem
@@ -324,7 +331,7 @@ namespace Microsoft.UI.Xaml.Controls
 
 		protected override void OnPointerPressed(PointerRoutedEventArgs args)
 		{
-			if (IsSelected && args.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
+			if (IsSelected && (PointerDeviceType)args.Pointer.PointerDeviceType == PointerDeviceType.Mouse)
 			{
 				var pointerPoint = args.GetCurrentPoint(this);
 				if (pointerPoint.Properties.IsLeftButtonPressed)

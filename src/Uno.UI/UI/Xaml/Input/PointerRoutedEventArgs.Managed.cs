@@ -10,6 +10,12 @@ using Windows.UI.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Core;
 
+#if HAS_UNO_WINUI
+using Microsoft.UI.Input;
+#else
+using Windows.UI.Input;
+#endif
+
 namespace Windows.UI.Xaml.Input
 {
 	partial class PointerRoutedEventArgs

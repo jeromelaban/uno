@@ -57,7 +57,7 @@ namespace Windows.UI.Core
 		/// </summary>
 		public Point PointerPosition
 		{
-			get => _pointerPosition ?? LastPointerEvent?.GetLocation(null).Position ?? new Point();
+			get => _pointerPosition /* ?? LastPointerEvent?.GetLocation(null).Position */ ?? new Point();
 			set => _pointerPosition = value;
 		}
 

@@ -16,10 +16,8 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.ApplicationModel.DataTransfer.DragDrop;
 using Windows.ApplicationModel.DataTransfer.DragDrop.Core;
 using Windows.Devices.Haptics;
-using Windows.Devices.Input;
 using Windows.Foundation;
 using Windows.UI.Core;
-using Windows.UI.Input;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Imaging;
 using Microsoft.Extensions.Logging;
@@ -27,6 +25,12 @@ using Uno.Extensions;
 using Uno.Logging;
 using Uno.UI;
 using Uno.UI.Xaml;
+
+#if HAS_UNO_WINUI
+using Microsoft.UI.Input;
+#else
+using Windows.UI.Input;
+#endif
 
 namespace Windows.UI.Xaml
 {

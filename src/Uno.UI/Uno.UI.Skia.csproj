@@ -9,7 +9,7 @@
 	<PropertyGroup>
 		<UnoSourceGeneratorUseGenerationHost>false</UnoSourceGeneratorUseGenerationHost>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
-		<DefineConstants>$(DefineConstants);IS_UNO</DefineConstants>
+		<DefineConstants>$(DefineConstants);IS_UNO;IS_UNO_UI_PROJECT</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<ProduceReferenceAssembly>false</ProduceReferenceAssembly>
@@ -111,6 +111,10 @@
 			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
 			<UndefineProperties>TargetFramework</UndefineProperties>
 		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="Microsoft\UI\Input\PointerDeviceType.cs" />
 	</ItemGroup>
 	
 </Project>

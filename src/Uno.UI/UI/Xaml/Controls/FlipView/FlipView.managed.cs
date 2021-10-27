@@ -12,8 +12,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Input;
-using Windows.Devices.Input;
 using Windows.Foundation.Collections;
 using Windows.System;
 using Windows.UI.Xaml.Automation.Peers;
@@ -23,6 +21,13 @@ using Uno.UI.Xaml;
 using Uno.Disposables;
 using DirectUI;
 using Uno.UI.Xaml.Core;
+
+#if HAS_UNO_WINUI
+using Microsoft.UI.Input;
+#else
+using Windows.Devices.Input;
+using Windows.UI.Input;
+#endif
 
 namespace Windows.UI.Xaml.Controls
 {
@@ -698,7 +703,7 @@ namespace Windows.UI.Xaml.Controls
 
 			spPointer = pArgs.Pointer;
 			if (spPointer == null) throw new ArgumentNullException();
-			pointerDeviceType = spPointer.PointerDeviceType;
+			pointerDeviceType = (PointerDeviceType)spPointer.PointerDeviceType;
 
 			if (pointerDeviceType == PointerDeviceType.Touch)
 			{
@@ -721,7 +726,7 @@ namespace Windows.UI.Xaml.Controls
 
 			spPointer = pArgs.Pointer;
 			if (spPointer == null) throw new ArgumentNullException();
-			pointerDeviceType = spPointer.PointerDeviceType;
+			pointerDeviceType = (PointerDeviceType)spPointer.PointerDeviceType;
 
 			if (PointerDeviceType.Touch != pointerDeviceType)
 			{

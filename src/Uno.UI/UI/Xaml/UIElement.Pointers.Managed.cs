@@ -8,7 +8,6 @@ using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Windows.Devices.Input;
 using Microsoft.Extensions.Logging;
 using Uno.Disposables;
 using Uno.Extensions;
@@ -22,6 +21,13 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Uno.UI;
 using Uno.UI.Xaml;
+
+#if HAS_UNO_WINUI
+using Microsoft.UI.Input;
+#else
+using Windows.Devices.Input;
+using Windows.UI.Input;
+#endif
 
 namespace Windows.UI.Xaml
 {
