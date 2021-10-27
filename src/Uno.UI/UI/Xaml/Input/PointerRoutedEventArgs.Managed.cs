@@ -6,7 +6,6 @@ using System.Threading;
 using Windows.Devices.Input;
 using Uno;
 using Windows.Foundation;
-using Windows.UI.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Core;
 
@@ -38,14 +37,14 @@ namespace Windows.UI.Xaml.Input
 		{
 			if (relativeTo is null)
 			{
-				return _pointerEventArgs.CurrentPoint;
+				return null; // _pointerEventArgs.CurrentPoint;
 			}
 			else
 			{
 				var absolutePosition = _pointerEventArgs.CurrentPoint.Position;
 				var relativePosition = relativeTo.TransformToVisual(null).Inverse.TransformPoint(absolutePosition);
 
-				return _pointerEventArgs.CurrentPoint.At(relativePosition);
+				return null;// _pointerEventArgs.CurrentPoint.At(relativePosition);
 			}
 		}
 

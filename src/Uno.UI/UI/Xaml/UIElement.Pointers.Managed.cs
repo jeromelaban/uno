@@ -144,7 +144,7 @@ namespace Windows.UI.Xaml
 				var routedArgs = new PointerRoutedEventArgs(args, originalSource);
 
 				Raise(Leave, overBranchLeaf, routedArgs);
-				if (!args.CurrentPoint.IsInContact && args.CurrentPoint.Pointer.Type == PointerDeviceType.Touch)
+				if (!args.CurrentPoint.IsInContact && (PointerDeviceType)args.CurrentPoint.Pointer.Type == PointerDeviceType.Touch)
 				{
 					// We release the captures on exit when pointer if not pressed
 					// Note: for a "Tap" with a finger the sequence is Up / Exited / Lost, so the lost cannot be raised on Up
@@ -210,7 +210,7 @@ namespace Windows.UI.Xaml
 				var routedArgs = new PointerRoutedEventArgs(args, originalSource);
 
 				RaiseUsingCaptures(Released, originalSource, routedArgs);
-				if (isOutOfWindow || args.CurrentPoint.Pointer.Type != PointerDeviceType.Touch)
+				if (isOutOfWindow || (PointerDeviceType)args.CurrentPoint.Pointer.Type != PointerDeviceType.Touch)
 				{
 					// We release the captures on up but only after the released event and processed the gesture
 					// Note: For a "Tap" with a finger the sequence is Up / Exited / Lost, so we let the Exit raise the capture lost

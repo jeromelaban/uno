@@ -1415,7 +1415,7 @@ namespace Windows.UI.Xaml.Controls
 		void HandlePointerLostOrCanceled(PointerRoutedEventArgs pArgs)
 		{
 			PointerPoint spPointerPoint;
-			PointerDevice spPointerDevice;
+			Windows.Devices.Input.PointerDevice spPointerDevice;
 			PointerDeviceType nPointerDeviceType = PointerDeviceType.Touch;
 
 			if (pArgs == null) throw new ArgumentNullException();
@@ -1425,7 +1425,7 @@ namespace Windows.UI.Xaml.Controls
 			if (spPointerPoint == null) throw new ArgumentNullException();
 			spPointerDevice = spPointerPoint.PointerDevice;
 			if (spPointerDevice == null) throw new ArgumentNullException();
-			nPointerDeviceType = spPointerDevice.PointerDeviceType;
+			nPointerDeviceType = (PointerDeviceType)spPointerDevice.PointerDeviceType;
 			if (nPointerDeviceType == PointerDeviceType.Touch)
 			{
 				//m_ShouldShowFocusRect = false;

@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-#if !HAS_UNO_WINUI
+#if HAS_UNO_WINUI && IS_UNO_UI_PROJECT
+using Windows.UI.Text;
+namespace Microsoft.UI.Text
+#else
 namespace Windows.UI.Text
+#endif
 {
     public partial class FontWeights
     {

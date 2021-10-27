@@ -1118,6 +1118,36 @@ namespace Uno.UWPSyncGenerator
 				}
 			}
 
+			if (method.ContainingType.Name == "SwapChainPanel")
+			{
+				switch (method.Name)
+				{
+					// This member uses the experimental input layer from UWP
+					case "CreateCoreIndependentInputSource":
+						return true;
+				}
+			}
+
+			if (method.ContainingType.Name == "SwapChainPanel")
+			{
+				switch (method.Name)
+				{
+					// This member uses the experimental input layer from UWP
+					case "CreateCoreIndependentInputSource":
+						return true;
+				}
+			}
+
+			if (method.ContainingType.Name == "VisualInteractionSource")
+			{
+				switch (method.Name)
+				{
+					// This member uses the experimental input layer from UWP
+					case "TryRedirectForManipulation":
+						return true;
+				}
+			}
+
 			return false;
 		}
 
@@ -1472,6 +1502,36 @@ namespace Uno.UWPSyncGenerator
 				switch (property.Name)
 				{
 					case "TemplatedParent":
+						return true;
+				}
+			}
+
+			if (property.ContainingType.Name == "ExpCompositionContent")
+			{
+				switch (property.Name)
+				{
+					case "InputSite":
+						// Member uses the experimental Input layer from UAP
+						return true;
+				}
+			}
+
+			if (property.ContainingType.Name == "ExpCompositionContent")
+			{
+				switch (property.Name)
+				{
+					case "InputSite":
+						// Member uses the experimental Input layer from UAP
+						return true;
+				}
+			}
+
+			if (property.ContainingType.Name == "ScrollControllerInteractionRequestedEventArgs")
+			{
+				switch (property.Name)
+				{
+					case "PointerPoint":
+						// Member uses the experimental Input layer from UAP
 						return true;
 				}
 			}

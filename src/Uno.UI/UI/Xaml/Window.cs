@@ -168,7 +168,7 @@ namespace Windows.UI.Xaml
 				_sizeChangedHandlers,
 				handler,
 				(h, s, e) =>
-					(h as Windows.UI.Xaml.WindowSizeChangedEventHandler)?.Invoke(s, (Windows.UI.Core.WindowSizeChangedEventArgs)e)
+					(h as Windows.UI.Xaml.WindowSizeChangedEventHandler)?.Invoke(s, (WindowSizeChangedEventArgs)e)
 			);
 		}
 
