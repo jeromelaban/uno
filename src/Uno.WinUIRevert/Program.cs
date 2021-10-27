@@ -41,7 +41,7 @@ namespace UnoWinUIRevert
 			if (File.Exists(fontWeightsFilePath))
 			{
 				Directory.CreateDirectory(Path.Combine(basePath, "src", "Uno.UI", "UI", "Text"));
-				File.Move(fontWeightsFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "Text", "FontWeights.cs"), true);
+				File.Copy(fontWeightsFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "Text", "FontWeights.cs"), true);
 			}
 			
 			var inputPath = Path.Combine(basePath, @"src", "Uno.UWP", "UI", "Input");

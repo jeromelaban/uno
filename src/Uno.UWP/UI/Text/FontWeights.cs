@@ -48,4 +48,3 @@ namespace Windows.UI.Text
 		public static FontWeight UltraBlack => _ultraBlack ??= new FontWeight(950);
 	}
 }
-#endif
