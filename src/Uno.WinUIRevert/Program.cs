@@ -52,7 +52,10 @@ namespace UnoWinUIRevert
 				{
 					var relativePath = Path.GetRelativePath(inputPath, file);
 
-					File.Copy(file, Path.Combine(basePath, "src", "Uno.UI", "UI", "Input", relativePath));
+					var targetFile = Path.Combine(basePath, "src", "Uno.UI", "UI", "Input", relativePath);
+
+					Directory.CreateDirectory(Path.GetDirectoryName(targetFile));
+					File.Copy(file, targetFile, true);
 				}
 			}
 
