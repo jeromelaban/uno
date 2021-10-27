@@ -125,6 +125,7 @@ namespace Uno.UWPSyncGenerator
 			var q = from asm in origins
 					where asm.Name == sourceAssembly
 					from targetType in GetNamespaceTypes(asm.Modules.First().GlobalNamespace)
+					where !SkipNamespace(targetType)
 					where targetType.DeclaredAccessibility == Accessibility.Public
 					where ((baseName == "Uno" || baseName == "Uno.Foundation") && !targetType.ContainingNamespace.ToString().StartsWith("Windows.UI.Xaml") && !targetType.ContainingNamespace.ToString().StartsWith("Microsoft.UI.Xaml"))
 					|| (baseName == "Uno.UI" && unoUINamespaces.Any(n => targetType.ContainingNamespace.ToString().StartsWith(n)))
@@ -144,6 +145,17 @@ namespace Uno.UWPSyncGenerator
 					ProcessType(type, ns.Namespace);
 				}
 			}
+		}
+
+		private bool SkipNamespace(INamedTypeSymbol namedTypeSymbol)
+		{
+			if (namedTypeSymbol.ContainingNamespace.ToDisplayString().StartsWith("Microsoft.UI.Input.Experimental"))
+			{
+				// Skip Microsoft.UI.Input.Experimental as it is not part of WinAppSDK desktop APIs
+				return true;
+			}
+
+			return false;
 		}
 
 		protected abstract void ProcessType(INamedTypeSymbol type, INamespaceSymbol ns);
