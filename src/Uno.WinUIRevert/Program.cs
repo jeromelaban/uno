@@ -43,6 +43,18 @@ namespace UnoWinUIRevert
 				Directory.CreateDirectory(Path.Combine(basePath, "src", "Uno.UI", "UI", "Text"));
 				File.Move(fontWeightsFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "Text", "FontWeights.cs"), true);
 			}
+			
+			var inputPath = Path.Combine(basePath, @"src", "Uno.UWP", "UI", "Input");
+			if (Directory.Exists(inputPath))
+			{
+				Console.WriteLine(@"Copying UI.Input");
+				foreach(var file in Directory.GetFiles(inputPath))
+				{
+					var relativePath = Path.GetRelativePath(inputPath, file);
+
+					File.Copy(file, Path.Combine(basePath, "src", "Uno.UI", "UI", "Input", relativePath));
+				}
+			}
 
 			// Files/Class that are implemented in both MUX and WUX and which should not be converted
 			var duplicatedImplementations = new[]
