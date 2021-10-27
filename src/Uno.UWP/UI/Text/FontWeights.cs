@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-#if HAS_UNO_WINUI
-namespace Microsoft.UI.Text
-#else
+#if !HAS_UNO_WINUI
 namespace Windows.UI.Text
-#endif
 {
     public partial class FontWeights
     {
@@ -47,3 +44,4 @@ namespace Windows.UI.Text
 		public static FontWeight UltraBlack => _ultraBlack ??= new FontWeight(950);
 	}
 }
+#endif

@@ -41,7 +41,7 @@ namespace UnoWinUIRevert
 			if (File.Exists(fontWeightsFilePath))
 			{
 				Directory.CreateDirectory(Path.Combine(basePath, "src", "Uno.UI", "UI", "Text"));
-				File.Copy(fontWeightsFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "Text", "FontWeights.cs"), true);
+				File.Move(fontWeightsFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "Text", "FontWeights.cs"), true);
 			}
 
 			// Files/Class that are implemented in both MUX and WUX and which should not be converted

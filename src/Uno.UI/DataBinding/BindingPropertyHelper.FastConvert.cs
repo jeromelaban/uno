@@ -914,55 +914,55 @@ namespace Uno.UI.DataBinding
 				switch (input.ToLowerInvariant())
 				{
 					case "thin":
-						output = FontWeights.Thin;
+						output = Microsoft.UI.Text.FontWeights.Thin;
 						return true;
 					case "extralight":
-						output = FontWeights.ExtraLight;
+						output = Microsoft.UI.Text.FontWeights.ExtraLight;
 						return true;
 					case "ultralight":
-						output = FontWeights.UltraLight;
+						output = Microsoft.UI.Text.FontWeights.UltraLight;
 						return true;
 					case "semilight":
-						output = FontWeights.SemiLight;
+						output = Microsoft.UI.Text.FontWeights.SemiLight;
 						return true;
 					case "light":
-						output = FontWeights.Light;
+						output = Microsoft.UI.Text.FontWeights.Light;
 						return true;
 					case "normal":
-						output = FontWeights.Normal;
+						output = Microsoft.UI.Text.FontWeights.Normal;
 						return true;
 					case "regular":
-						output = FontWeights.Regular;
+						output = Microsoft.UI.Text.FontWeights.Regular;
 						return true;
 					case "medium":
-						output = FontWeights.Medium;
+						output = Microsoft.UI.Text.FontWeights.Medium;
 						return true;
 					case "semibold":
-						output = FontWeights.SemiBold;
+						output = Microsoft.UI.Text.FontWeights.SemiBold;
 						return true;
 					case "demibold":
-						output = FontWeights.DemiBold;
+						output = Microsoft.UI.Text.FontWeights.DemiBold;
 						return true;
 					case "bold":
-						output = FontWeights.Bold;
+						output = Microsoft.UI.Text.FontWeights.Bold;
 						return true;
 					case "ultrabold":
-						output = FontWeights.UltraBold;
+						output = Microsoft.UI.Text.FontWeights.UltraBold;
 						return true;
 					case "extrabold":
-						output = FontWeights.ExtraBold;
+						output = Microsoft.UI.Text.FontWeights.ExtraBold;
 						return true;
 					case "black":
-						output = FontWeights.Black;
+						output = Microsoft.UI.Text.FontWeights.Black;
 						return true;
 					case "heavy":
-						output = FontWeights.Heavy;
+						output = Microsoft.UI.Text.FontWeights.Heavy;
 						return true;
 					case "extrablack":
-						output = FontWeights.ExtraBlack;
+						output = Microsoft.UI.Text.FontWeights.ExtraBlack;
 						return true;
 					case "ultrablack":
-						output = FontWeights.UltraBlack;
+						output = Microsoft.UI.Text.FontWeights.UltraBlack;
 						return true;
 
 					default:
