@@ -964,6 +964,7 @@ namespace Uno.UWPSyncGenerator
 				if (
 					method.MethodKind == MethodKind.Constructor
 					&& type.TypeKind != TypeKind.Interface
+					&& !SkipMethod(type, method)
 					&& type.Name != "DependencyObject"
 					&& (
 						!type.IsValueType
@@ -1146,6 +1147,25 @@ namespace Uno.UWPSyncGenerator
 					case "TryRedirectForManipulation":
 						return true;
 				}
+			}
+
+			if (method.ContainingType.Name == "UIElement")
+			{
+				switch (method.Name)
+				{
+					// This member uses the experimental input layer from UWP
+					case "StartDragAsync":
+						return true;
+				}
+			}
+
+			if (method.ContainingType.Name == "ScrollControllerInteractionRequestedEventArgs"
+				&& method.MethodKind == MethodKind.Constructor
+				&& method.Parameters.Length == 1
+				&& method.Parameters[0].Type.ToDisplayString() == "Microsoft.UI.Input.Experimental.ExpPointerPoint")
+			{
+				// This member uses the experimental input layer from UWP
+				return true;
 			}
 
 			return false;
