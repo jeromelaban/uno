@@ -33,6 +33,21 @@ namespace Windows.UI.Input
 			Properties = properties;
 		}
 
+#if HAS_UNO_WINUI && IS_UNO_UI_PROJECT
+		public PointerPoint(Windows.UI.Input.PointerPoint currentPoint)
+		{
+			FrameId = currentPoint.FrameId;
+			Timestamp = currentPoint.Timestamp;
+			PointerDevice = currentPoint.PointerDevice;
+			PointerId = currentPoint.PointerId;
+			RawPosition = currentPoint.RawPosition;
+			Position = currentPoint.Position;
+			IsInContact = currentPoint.IsInContact;
+
+			Properties = new PointerPointProperties(currentPoint.Properties);
+		}
+#endif
+
 		internal PointerPoint At(Point position)
 			=> new PointerPoint(
 				FrameId,

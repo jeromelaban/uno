@@ -4,13 +4,30 @@ using System.Text;
 namespace Microsoft.UI.Input
 #else
 namespace Windows.UI.Input
-#endif
 {
 	public partial class PointerPointProperties 
 	{
 		internal PointerPointProperties()
 		{
 		}
+
+#if HAS_UNO_WINUI && IS_UNO_UI_PROJECT
+		public PointerPointProperties(Windows.UI.Input.PointerPointProperties properties)
+		{
+			IsPrimary = properties.IsPrimary;
+			IsInRange = properties.IsInRange;
+			IsLeftButtonPressed = properties.IsLeftButtonPressed;
+			IsMiddleButtonPressed = properties.IsMiddleButtonPressed;
+			IsRightButtonPressed = properties.IsRightButtonPressed;
+			IsHorizontalMouseWheel = properties.IsHorizontalMouseWheel;
+			IsXButton1Pressed = properties.IsXButton1Pressed;
+			IsXButton2Pressed = properties.IsXButton2Pressed;
+			IsBarrelButtonPressed = properties.IsBarrelButtonPressed;
+			IsEraser = properties.IsEraser;
+			Pressure = properties.Pressure;
+			PointerUpdateKind = (PointerUpdateKind)properties.PointerUpdateKind;
+		}
+#endif
 
 		internal bool HasPressedButton => IsLeftButtonPressed || IsMiddleButtonPressed || IsRightButtonPressed || IsXButton1Pressed || IsXButton2Pressed || IsBarrelButtonPressed;
 

@@ -20,12 +20,14 @@ namespace Windows.UI.Xaml.Input
 	partial class PointerRoutedEventArgs
 	{
 		private readonly PointerEventArgs _pointerEventArgs;
+		private readonly PointerPoint _currentPoint;
 
 		internal PointerRoutedEventArgs(
 			PointerEventArgs pointerEventArgs,
 			UIElement source) : this()
 		{
 			_pointerEventArgs = pointerEventArgs;
+			_currentPoint = new PointerPoint(_pointerEventArgs.CurrentPoint);
 
 			FrameId = pointerEventArgs.CurrentPoint.FrameId;
 			Pointer = GetPointer(pointerEventArgs);
@@ -37,14 +39,14 @@ namespace Windows.UI.Xaml.Input
 		{
 			if (relativeTo is null)
 			{
-				return null; // _pointerEventArgs.CurrentPoint;
+				return _currentPoint;
 			}
 			else
 			{
 				var absolutePosition = _pointerEventArgs.CurrentPoint.Position;
 				var relativePosition = relativeTo.TransformToVisual(null).Inverse.TransformPoint(absolutePosition);
 
-				return null;// _pointerEventArgs.CurrentPoint.At(relativePosition);
+				return _currentPoint.At(relativePosition);
 			}
 		}
 
