@@ -30,6 +30,7 @@ namespace Windows.UI.Xaml
 		/// The xaml scope in force at the time the Style was created.
 		/// </summary>
 		private readonly XamlScope _xamlScope;
+		private Dictionary<object, ApplyToHandler>? _settersMap;
 
 		public Style()
 		{
@@ -51,6 +52,19 @@ namespace Windows.UI.Xaml
 		public Style? BasedOn { get; set; }
 
 		public SetterBaseCollection Setters { get; } = new SetterBaseCollection();
+
+		public bool IsSealed
+		{
+			get; private set;
+		}
+
+		public void Seal()
+		{
+			IsSealed = true;
+			Setters.Seal();
+
+			BasedOn?.Seal();
+		}
 
 		internal void ApplyTo(DependencyObject o, DependencyPropertyValuePrecedences precedence)
 		{
@@ -115,11 +129,14 @@ namespace Windows.UI.Xaml
 		/// </summary>
 		private IDictionary<object, ApplyToHandler> CreateSetterMap()
 		{
-			var map = new Dictionary<object, ApplyToHandler>();
+			if (_settersMap == null)
+			{
+				_settersMap = new Dictionary<object, ApplyToHandler>();
 
-			EnumerateSetters(this, map);
+				EnumerateSetters(this, _settersMap);
+			}
 
-			return map;
+			return _settersMap;
 		}
 
 		/// <summary>
@@ -127,6 +144,8 @@ namespace Windows.UI.Xaml
 		/// </summary>
 		private void EnumerateSetters(Style style, Dictionary<object, ApplyToHandler> map)
 		{
+			style.Seal();
+
 			if (style.BasedOn != null)
 			{
 				EnumerateSetters(style.BasedOn, map);
