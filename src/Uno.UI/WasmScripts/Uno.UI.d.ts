@@ -1098,6 +1098,11 @@ declare namespace Uno.Storage.Streams {
         static truncateAsync(streamId: string, length: number): Promise<string>;
     }
 }
+declare namespace Windows.System {
+    class MemoryManager {
+        static getAppMemoryUsage(): number;
+    }
+}
 interface Navigator {
     wakeLock: WakeLock;
 }

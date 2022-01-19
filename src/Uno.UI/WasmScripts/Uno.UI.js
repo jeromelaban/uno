@@ -4022,6 +4022,21 @@ var Uno;
         })(Streams = Storage.Streams || (Storage.Streams = {}));
     })(Storage = Uno.Storage || (Uno.Storage = {}));
 })(Uno || (Uno = {}));
+var Windows;
+(function (Windows) {
+    var System;
+    (function (System) {
+        class MemoryManager {
+            static getAppMemoryUsage() {
+                if (typeof Module === "function") {
+                    return Module.asm.memory.buffer.byteLength;
+                }
+                return -1;
+            }
+        }
+        System.MemoryManager = MemoryManager;
+    })(System = Windows.System || (Windows.System = {}));
+})(Windows || (Windows = {}));
 var WakeLockType;
 (function (WakeLockType) {
     WakeLockType["screen"] = "screen";

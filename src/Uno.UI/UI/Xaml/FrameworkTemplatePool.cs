@@ -45,11 +45,61 @@ using Windows.UI.Xaml.Markup;
 #else
 using View = Windows.UI.Xaml.UIElement;
 using ViewGroup = Windows.UI.Xaml.UIElement;
+using Windows.Foundation.Metadata;
+using Windows.System;
 #endif
 
 
 namespace Windows.UI.Xaml
 {
+	internal interface IFrameworkTemplatePoolPlatformProvider
+	{
+		TimeSpan Now { get; }
+
+		void Schedule(IdleDispatchedHandler action);
+
+		Task Delay(TimeSpan duration);
+
+		bool CanUseMemoryManager { get; }
+
+		ulong AppMemoryUsage { get; }
+
+		ulong AppMemoryUsageLimit { get; }
+	}
+
+	class FrameworkTemplatePoolDefaultPlatformProvider : IFrameworkTemplatePoolPlatformProvider
+	{
+		private static readonly bool _canUseMemoryManager;
+		private readonly Stopwatch _watch = new Stopwatch();
+
+		static FrameworkTemplatePoolDefaultPlatformProvider()
+		{
+			_canUseMemoryManager =
+				ApiInformation.IsPropertyPresent("Windows.System.MemoryManager", "AppMemoryUsage")
+				&& MemoryManager.AppMemoryUsage > 0;
+		}
+
+		public FrameworkTemplatePoolDefaultPlatformProvider()
+		{
+			_watch.Start();
+		}
+
+		public TimeSpan Now
+			=> _watch.Elapsed;
+
+		public bool CanUseMemoryManager => _canUseMemoryManager;
+
+		public ulong AppMemoryUsage => MemoryManager.AppMemoryUsage;
+
+		public ulong AppMemoryUsageLimit => MemoryManager.AppMemoryUsageLimit;
+
+		public Task Delay(TimeSpan duration)
+			=> Task.Delay(duration);
+
+		public void Schedule(IdleDispatchedHandler action)
+			=> CoreDispatcher.Main.RunIdleAsync(action);
+	}
+
 	/// <summary>
 	/// Provides an instance pool for FrameworkTemplates, when <see cref="FrameworkTemplate.LoadContentCached"/> is called.
 	/// </summary>
@@ -85,8 +135,8 @@ namespace Windows.UI.Xaml
 
 		private readonly static IEventProvider _trace = Tracing.Get(TraceProvider.Id);
 
-		private readonly Stopwatch _watch = new Stopwatch();
 		private readonly Dictionary<FrameworkTemplate, List<TemplateEntry>> _pooledInstances = new Dictionary<FrameworkTemplate, List<TemplateEntry>>(FrameworkTemplate.FrameworkTemplateEqualityComparer.Default);
+		private IFrameworkTemplatePoolPlatformProvider _platformProvider = new FrameworkTemplatePoolDefaultPlatformProvider();
 
 #if USE_HARD_REFERENCES
 		/// <summary>
@@ -113,12 +163,15 @@ namespace Windows.UI.Xaml
 		/// </summary>
 		public static bool IsPoolingEnabled { get; set; } = true;
 
+		internal static float PoolHighMark { get; set; } = .8f;
+
+		internal void SetPlatformProvider(IFrameworkTemplatePoolPlatformProvider provider)
+			=> _platformProvider = provider;
+
 		private FrameworkTemplatePool()
 		{
-			_watch.Start();
-
 #if !NET461
-			CoreDispatcher.Main.RunIdleAsync(Scavenger);
+			_platformProvider.Schedule(Scavenger);
 #endif
 		}
 
@@ -126,14 +179,14 @@ namespace Windows.UI.Xaml
 		{
 			Scavenge(false);
 
-			await Task.Delay(TimeSpan.FromSeconds(30));
+			await _platformProvider.Delay(TimeSpan.FromSeconds(30));
 
-			CoreDispatcher.Main.RunIdleAsync(Scavenger);
+			_platformProvider.Schedule(Scavenger);
 		}
 
-		private void Scavenge(bool isManual)
+		internal void Scavenge(bool isManual)
 		{
-			var now = _watch.Elapsed;
+			var now = _platformProvider.Now;
 			var removedInstancesCount = 0;
 
 			foreach (var list in _pooledInstances.Values)
@@ -240,6 +293,16 @@ namespace Windows.UI.Xaml
 				return;
 			}
 
+			if (!CanUsePool())
+			{
+				if (this.Log().IsEnabled(Uno.Foundation.Logging.LogLevel.Debug))
+				{
+					(this).Log().Debug($"Not caching template, memory threshold is reached");
+				}
+
+				return;
+			}
+
 			var list = GetTemplatePool(key as FrameworkTemplate ?? throw new InvalidOperationException($"Received {key} but expecting {typeof(FrameworkElement)}"));
 
 			if (args?.NewParent == null)
@@ -255,7 +318,7 @@ namespace Windows.UI.Xaml
 
 				if (item != null)
 				{
-					list.Add(new TemplateEntry(_watch.Elapsed, item));
+					list.Add(new TemplateEntry(_platformProvider.Now, item));
 #if USE_HARD_REFERENCES
 					_activeInstances.Remove(item);
 #endif
@@ -279,6 +342,18 @@ namespace Windows.UI.Xaml
 				{
 					list.RemoveAt(index);
 				}
+			}
+		}
+
+		private bool CanUsePool()
+		{
+			if (_platformProvider.CanUseMemoryManager)
+			{
+				return ((float)_platformProvider.AppMemoryUsage / _platformProvider.AppMemoryUsageLimit) < PoolHighMark;
+			}
+			else
+			{
+				return true;
 			}
 		}
 
