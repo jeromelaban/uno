@@ -125,6 +125,42 @@ namespace Uno.UI.Samples.Tests
 		public static readonly DependencyProperty NUnitTestResultsDocumentProperty =
 			DependencyProperty.Register(nameof(NUnitTestResultsDocument), typeof(string), typeof(UnitTestsControl), new PropertyMetadata(string.Empty));
 
+		/// <summary>
+		/// Gets the unit tests runner status (Used by the Uno.UITests test side)
+		/// </summary>
+		public string RunningState
+		{
+			get => (string)GetValue(RunningStateProperty);
+			set => SetValue(RunningStateProperty, value);
+		}
+
+		public static readonly DependencyProperty RunningStateProperty =
+			DependencyProperty.Register(nameof(RunningState), typeof(string), typeof(UnitTestsControl), new PropertyMetadata("n/a"));
+
+		/// <summary>
+		/// Gets the unit tests that have run (Used by the Uno.UITests test side)
+		/// </summary>
+		public int RunTestCount
+		{
+			get => (int)GetValue(RunTestCountProperty);
+			set => SetValue(RunTestCountProperty, value);
+		}
+
+		public static readonly DependencyProperty RunTestCountProperty =
+			DependencyProperty.Register(nameof(RunTestCount), typeof(int), typeof(UnitTestsControl), new PropertyMetadata(-1));
+
+		/// <summary>
+		/// Gets the unit tests that have failed (Used by the Uno.UITests test side)
+		/// </summary>
+		public int FailedTestCount
+		{
+			get => (int)GetValue(FailedTestCountProperty);
+			set => SetValue(FailedTestCountProperty, value);
+		}
+
+		public static readonly DependencyProperty FailedTestCountProperty =
+			DependencyProperty.Register(nameof(FailedTestCount), typeof(int), typeof(UnitTestsControl), new PropertyMetadata(-1));
+
 		private void OnRunTests(object sender, RoutedEventArgs e)
 		{
 			Interlocked.Exchange(ref _cts, new CancellationTokenSource())?.Cancel(); // cancel any previous CTS
@@ -156,7 +192,7 @@ namespace Uno.UI.Samples.Tests
 				testResults.Visibility = Visibility.Collapsed;
 #endif
 				stopButton.IsEnabled = _cts != null && !_cts.IsCancellationRequested || !isRunning;
-				runningState.Text = isRunning ? "Running" : "Finished";
+				RunningState = runningState.Text = isRunning ? "Running" : "Finished";
 				runStatus.Text = message;
 				_applicationView.Title = message;
 			}
@@ -168,9 +204,11 @@ namespace Uno.UI.Samples.Tests
 		{
 			void Update()
 			{
+				RunTestCount = _currentRun.Run;
 				runTestCount.Text = _currentRun.Run.ToString();
 				ignoredTestCount.Text = _currentRun.Ignored.ToString();
 				succeededTestCount.Text = _currentRun.Succeeded.ToString();
+				FailedTestCount = _currentRun.Failed;
 				failedTestCount.Text = _currentRun.Failed.ToString();
 			}
 
