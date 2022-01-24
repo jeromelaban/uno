@@ -6,7 +6,9 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading;
+using Windows.System;
 
 namespace Uno.Buffers
 {
@@ -21,11 +23,13 @@ namespace Uno.Buffers
 
             private SpinLock _lock; // do not make this readonly; it's a mutable struct
             private int _index;
+			private TimeSpan _timestamp;
+			private int _count;
 
-            /// <summary>
-            /// Creates the pool with numberOfBuffers arrays where each buffer is of bufferLength length.
-            /// </summary>
-            internal Bucket(int bufferLength, int numberOfBuffers, int poolId)
+			/// <summary>
+			/// Creates the pool with numberOfBuffers arrays where each buffer is of bufferLength length.
+			/// </summary>
+			internal Bucket(int bufferLength, int numberOfBuffers, int poolId)
             {
                 _lock = new SpinLock(Debugger.IsAttached); // only enable thread tracking if debugger is attached; it adds non-trivial overheads to Enter/Exit
                 _buffers = new T[numberOfBuffers][];
@@ -68,13 +72,17 @@ namespace Uno.Buffers
 					if (lockTaken) _lock.Exit(false);
                 }
 
-                // While we were holding the lock, we grabbed whatever was at the next available index, if
-                // there was one.  If we tried and if we got back null, that means we hadn't yet allocated
-                // for that slot, in which case we should do so now.
-                if (allocateBuffer)
-                {
-                    buffer = new T[_bufferLength];
-                }
+				// While we were holding the lock, we grabbed whatever was at the next available index, if
+				// there was one.  If we tried and if we got back null, that means we hadn't yet allocated
+				// for that slot, in which case we should do so now.
+				if (allocateBuffer)
+				{
+					buffer = new T[_bufferLength];
+				}
+				else
+				{
+					_count--;
+				}
 
                 return buffer;
             }
@@ -103,9 +111,16 @@ namespace Uno.Buffers
 				{
                     _lock.Enter(ref lockTaken);
 
-                    if (_index != 0)
+					if(_count == 0)
+					{
+						// Trim will see this as 0 and initialize it to the current time when Trim is called.
+						_timestamp = TimeSpan.Zero;
+					}
+
+					if (_index != 0)
                     {
                         _buffers[--_index] = array;
+						_count++;
                     }
                 }
 #if !HAS_EXPENSIVE_TRYFINALLY
@@ -115,6 +130,81 @@ namespace Uno.Buffers
                     if (lockTaken) _lock.Exit(false);
                 }
             }
-        }
+
+			static readonly TimeSpan StackTrimAfter = TimeSpan.FromSeconds(60);         // Trim after 60 seconds for low/moderate pressure
+			static readonly TimeSpan StackHighTrimAfter = TimeSpan.FromSeconds(10);     // Trim after 10 seconds for high pressure
+			const int StackLowTrimCount = 1;											// Trim one item when pressure is low
+			const int StackMediumTrimCount = 2;											// Trim two items when pressure is moderate
+			const int StackHighTrimCount = 8;											// Trim all items when pressure is high
+			const int StackLargeBucket = 16384;											// If the bucket is larger than this we'll trim an extra when under high pressure
+			const int StackModerateTypeSize = 16;										// If T is larger than this we'll trim an extra when under high pressure
+			const int StackLargeTypeSize = 32;											// If T is larger than this we'll trim an extra (additional) when under high pressure
+
+			internal void Trim(TimeSpan currentTime, AppMemoryUsageLevel usageLevel)
+			{
+				if(_count == 0)
+				{
+					return;
+				}
+
+				var trimDelay = usageLevel == AppMemoryUsageLevel.High ? StackHighTrimAfter : StackTrimAfter;
+
+#if !HAS_EXPENSIVE_TRYFINALLY
+				lock (this)
+#endif
+				{
+					if (_count == 0)
+					{
+						return;
+					}
+
+					if (_timestamp == TimeSpan.Zero)
+					{
+						_timestamp = currentTime;
+						return;
+					}
+
+					if ((currentTime - _timestamp) <= trimDelay)
+					{
+						return;
+					}
+
+					int trimCount = StackLowTrimCount;
+					switch (usageLevel)
+					{
+						case AppMemoryUsageLevel.High:
+							trimCount = StackHighTrimCount;
+
+							// When pressure is high, aggressively trim larger arrays.
+							if (_bufferLength > StackLargeBucket)
+							{
+								trimCount++;
+							}
+							if (Unsafe.SizeOf<T>() > StackModerateTypeSize)
+							{
+								trimCount++;
+							}
+							if (Unsafe.SizeOf<T>() > StackLargeTypeSize)
+							{
+								trimCount++;
+							}
+							break;
+
+						case AppMemoryUsageLevel.Medium:
+							trimCount = StackMediumTrimCount;
+							break;
+					}
+
+					while (_count > 0 && trimCount-- > 0)
+					{
+						Rent();
+					}
+
+					_timestamp = _count > 0 ?
+						_timestamp + TimeSpan.FromMilliseconds((trimDelay.TotalMilliseconds / 4)) : // Give the remaining items a bit more time
+						TimeSpan.Zero;
+				}
+			}
+		}
     }
 }

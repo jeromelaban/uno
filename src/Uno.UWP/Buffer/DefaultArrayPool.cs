@@ -5,25 +5,39 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
+using System.Threading;
 
 namespace Uno.Buffers
 {
-    internal sealed partial class ArrayPool<T>
+	internal sealed partial class ArrayPool<T>
     {
         /// <summary>The default maximum length of each array in the pool (2^20).</summary>
         private const int DefaultMaxArrayLength = 1024 * 1024;
-        /// <summary>The default maximum number of arrays per bucket that are available for rent.</summary>
-        private const int DefaultMaxNumberOfArraysPerBucket = 50;
-        /// <summary>Lazily-allocated empty array used when arrays of length 0 are requested.</summary>
-        private static T[] s_emptyArray; // we support contracts earlier than those with Array.Empty<T>()
+		/// <summary>The default maximum number of arrays per bucket that are available for rent when using automatic memory management.</summary>
+		private const int DefaultAutomaticMaxNumberOfArraysPerBucket = 8192;
+		/// <summary>The default maximum number of arrays per bucket that are available for rent.</summary>
+		private const int DefaultMaxNumberOfArraysPerBucket = 50;
+		/// <summary>Lazily-allocated empty array used when arrays of length 0 are requested.</summary>
+		private static T[] s_emptyArray; // we support contracts earlier than those with Array.Empty<T>()
+		private readonly Bucket[] _buckets;
+		private readonly bool _automaticManagement;
+		private int _trimCallbackCreated;
+		private static IArrayPoolPlatformProvider _platformProvider = new DefaultArrayPoolPlatformProvider();
 
-        private readonly Bucket[] _buckets;
-
-        internal ArrayPool() : this(DefaultMaxArrayLength, DefaultMaxNumberOfArraysPerBucket)
+		internal ArrayPool() : this(DefaultMaxArrayLength, DefaultMaxNumberOfArraysPerBucket)
         {
         }
 
-        internal ArrayPool(int maxArrayLength, int maxArraysPerBucket)
+		internal void SetPlatformProvider(IArrayPoolPlatformProvider provider)
+		{
+			_platformProvider = provider is not null
+						   ? provider
+						   : new DefaultArrayPoolPlatformProvider();
+
+			Shared._trimCallbackCreated = 0;
+		}
+
+		internal ArrayPool(int maxArrayLength, int maxArraysPerBucket)
         {
             if (maxArrayLength <= 0)
             {
@@ -57,8 +71,21 @@ namespace Uno.Buffers
             _buckets = buckets;
         }
 
-        /// <summary>Gets an ID for the pool to use with events.</summary>
-        private int Id => GetHashCode();
+		internal static ArrayPool<T> CreateAutomaticMemoryManaged()
+			=> new Buffers.ArrayPool<T>(automaticManagement: true);
+
+		private ArrayPool(bool automaticManagement)
+			: this(
+				  maxArrayLength: DefaultMaxArrayLength,
+				  maxArraysPerBucket: automaticManagement && _platformProvider.CanUseMemoryManager
+					? DefaultAutomaticMaxNumberOfArraysPerBucket
+					: DefaultMaxNumberOfArraysPerBucket)
+		{
+			_automaticManagement = automaticManagement && _platformProvider.CanUseMemoryManager;
+		}
+
+		/// <summary>Gets an ID for the pool to use with events.</summary>
+		private int Id => GetHashCode();
 
 		/// <summary>
 		/// Retrieves a buffer that is at least the requested length.
@@ -157,6 +184,8 @@ namespace Uno.Buffers
                 return;
             }
 
+			TryInitializeMemoryManagement();
+
             // Determine with what bucket this array length is associated
             int bucket = Utilities.SelectBucketIndex(array.Length);
 
@@ -175,5 +204,31 @@ namespace Uno.Buffers
                 _buckets[bucket].Return(array);
             }
         }
-    }
+
+		private void TryInitializeMemoryManagement()
+		{
+			if (_automaticManagement && Interlocked.Exchange(ref _trimCallbackCreated, 1) == 0)
+			{
+				_platformProvider.RegisterTrimCallback(s => ((ArrayPool<T>)s).Trim(), this);
+			}
+		}
+
+		private bool Trim()
+		{
+			if (!_automaticManagement)
+			{
+				return false;
+			}
+
+			var currentTime = _platformProvider.Now;
+			var usageLevel = _platformProvider.AppMemoryUsageLevel;
+
+			for (int i = 0; i < _buckets.Length; i++)
+			{
+				_buckets[i].Trim(currentTime, usageLevel);
+			}
+
+			return true;
+		}
+	}
 }
