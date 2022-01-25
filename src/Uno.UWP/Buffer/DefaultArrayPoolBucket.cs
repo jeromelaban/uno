@@ -1,4 +1,5 @@
-﻿// Imported from https://github.com/dotnet/corefx/commit/d9d1e815ad6c642cf5d61afa4a16726548598bb2 until Xamarin exposes it properly.
+﻿// #define TRACE_REUSE
+// Imported from https://github.com/dotnet/corefx/commit/d9d1e815ad6c642cf5d61afa4a16726548598bb2 until Xamarin exposes it properly.
 //
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
@@ -25,6 +26,11 @@ namespace Uno.Buffers
             private int _index;
 			private TimeSpan _timestamp;
 			private int _count;
+
+#if TRACE_REUSE
+			private int _created;
+			private int _reused;
+#endif
 
 			/// <summary>
 			/// Creates the pool with numberOfBuffers arrays where each buffer is of bufferLength length.
@@ -62,8 +68,19 @@ namespace Uno.Buffers
                     {
                         buffer = buffers[_index];
                         buffers[_index++] = null;
-                        allocateBuffer = buffer == null;
-                    }
+
+						if (buffer == null)
+						{
+							allocateBuffer = true;
+						}
+						else
+						{
+							_count--;
+#if TRACE_REUSETRACE_REUSE
+							_reused++;
+#endif
+						}
+					}
                 }
 #if !HAS_EXPENSIVE_TRYFINALLY
                 finally
@@ -78,13 +95,12 @@ namespace Uno.Buffers
 				if (allocateBuffer)
 				{
 					buffer = new T[_bufferLength];
-				}
-				else
-				{
-					_count--;
+#if TRACE_REUSE
+					_created++;
+#endif
 				}
 
-                return buffer;
+				return buffer;
             }
 
             /// <summary>
@@ -194,6 +210,10 @@ namespace Uno.Buffers
 							trimCount = StackMediumTrimCount;
 							break;
 					}
+
+#if TRACE_REUSE
+					Console.WriteLine($"ArrayPool<{typeof(T)}>(bucket:{_buffers.Length} sizeof:{Unsafe.SizeOf<T>()} created:{_created} reused:{_reused}) = {_count}");
+#endif
 
 					while (_count > 0 && trimCount-- > 0)
 					{

@@ -18,7 +18,12 @@ namespace Uno.Buffers
 		{
 			_canUseMemoryManager =
 				Windows.Foundation.Metadata.ApiInformation.IsPropertyPresent("Windows.System.MemoryManager", "AppMemoryUsage")
-				&& Windows.System.MemoryManager.AppMemoryUsage > 0;
+				&& Windows.System.MemoryManager.IsAvailable;
+		}
+
+		public DefaultArrayPoolPlatformProvider()
+		{
+			_watch.Start();
 		}
 
 		public TimeSpan Now
