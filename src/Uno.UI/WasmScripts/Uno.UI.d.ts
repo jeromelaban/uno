@@ -1014,7 +1014,7 @@ declare namespace Uno.Storage {
 }
 declare namespace Windows.Storage {
     class StorageFolder {
-        private static _isInit;
+        private static _isInitialized;
         private static _isSynchronizing;
         private static dispatchStorageInitialized;
         /**
