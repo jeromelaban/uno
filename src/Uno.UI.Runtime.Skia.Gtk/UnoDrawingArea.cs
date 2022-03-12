@@ -55,6 +55,8 @@ namespace Uno.UI.Runtime.Skia
 
 		protected override bool OnDrawn(Cairo.Context cr)
 		{
+			var sw = Stopwatch.StartNew();
+
 			int width, height;
 
 			if (this.Log().IsEnabled(LogLevel.Trace))
@@ -87,7 +89,7 @@ namespace Uno.UI.Runtime.Skia
 
 				surface.Canvas.Scale((float)_dpi);
 
-				WUX.Window.Current.Compositor.Render(surface, info);
+				WUX.Window.Current.Compositor.Render(surface);
 
 				using (var gtkSurface = new Cairo.ImageSurface(
 					bitmap.GetPixels(out _),
@@ -101,6 +103,9 @@ namespace Uno.UI.Runtime.Skia
 					cr.Paint();
 				}
 			}
+
+			sw.Stop();
+			Console.WriteLine($"Frame: {sw.Elapsed}");
 
 			return true;
 		}

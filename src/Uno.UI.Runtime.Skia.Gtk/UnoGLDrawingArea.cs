@@ -21,6 +21,9 @@ namespace Uno.UI.Runtime.Skia
 {
 	internal class UnoGLDrawingArea : Gtk.GLArea
 	{
+		private const SKColorType colorType = SKColorType.Rgba8888;
+		private const GRSurfaceOrigin surfaceOrigin = GRSurfaceOrigin.BottomLeft;
+
 		private readonly DisplayInformation _displayInformation;
 		private FocusManager _focusManager;
 		private SKBitmap bitmap;
@@ -29,6 +32,8 @@ namespace Uno.UI.Runtime.Skia
 		private float? _dpi = 1;
 		private GRContext _grContext;
 		private GL _gl;
+		private GRBackendRenderTarget _renderTarget;
+		private SKSurface _surface;
 
 		public UnoGLDrawingArea()
 		{
@@ -66,6 +71,8 @@ namespace Uno.UI.Runtime.Skia
 
 		private void UnoGLDrawingArea_Render(object o, RenderArgs args)
 		{
+			var sw = Stopwatch.StartNew();
+
 			args.Context.MakeCurrent();
 
 			// create the contexts if not done already
@@ -76,17 +83,56 @@ namespace Uno.UI.Runtime.Skia
 			}
 
 			_gl.Clear(ClearBufferMask.ColorBufferBit);
-			_gl.ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+			_gl.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+			// manage the drawing surface
+			var alloc = Allocation;
+			var res = (int)Math.Max(1.0, Screen.Resolution / 96.0);
+			var w = Math.Max(0, alloc.Width * res);
+			var h = Math.Max(0, alloc.Height * res);
+
+			if (_renderTarget == null || _surface == null || _renderTarget.Width != w || _renderTarget.Height != h)
+			{
+				// create or update the dimensions
+				_renderTarget?.Dispose();
+
+				_gl.GetInteger(GLEnum.FramebufferBinding, out var framebuffer);
+				_gl.GetInteger(GLEnum.Stencil, out var stencil);
+				_gl.GetInteger(GLEnum.Samples, out var samples);
+				var maxSamples = _grContext.GetMaxSurfaceSampleCount(colorType);
+
+				if (samples > maxSamples)
+				{
+					samples = maxSamples;
+				}
+
+				var glInfo = new GRGlFramebufferInfo((uint)framebuffer, colorType.ToGlSizedFormat());
+
+				_renderTarget = new GRBackendRenderTarget(w, h, samples, stencil, glInfo);
+
+				// create the surface
+				_surface?.Dispose();
+				_surface = SKSurface.Create(_grContext, _renderTarget, surfaceOrigin, colorType);
+			}
+			using (new SKAutoCanvasRestore(_surface.Canvas, true))
+			{
+				_surface.Canvas.Clear(SKColors.White);
+
+				// _surface.Canvas.Scale((float)(1/_dpi));
+
+				WUX.Window.Current.Compositor.Render(_surface);
+			}
+
+			// update the control
+			_surface.Canvas.Flush();
+
 			_gl.Flush();
-
-			//var vendor = GL.GetStringS(StringName.Vendor, 0);
-
-			//GL.GetInteger(GetPName.FramebufferBinding, out var framebuffer);
+			sw.Stop();
+			Console.WriteLine($"Frame: {sw.Elapsed}");
 		}
 
 		private void OnConfigure(object o, ConfigureEventArgs args)
 		{
-			// MakeCurrent();
 
 		}
 
@@ -107,9 +153,6 @@ namespace Uno.UI.Runtime.Skia
 			_gl.Clear(ClearBufferMask.ColorBufferBit);
 			_gl.ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 			_gl.Flush();
-			// var vendor = _gl.GetStringS(StringName.Vendor, 0);
-
-			//GL.GetInteger(GetPName.DrawFramebufferBinding, out var framebuffer);
 		}
 
 
