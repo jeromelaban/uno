@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.IO;
 using SkiaSharp;
 using Uno.Extensions;
@@ -16,26 +18,25 @@ using Gdk;
 using System.Reflection;
 using Gtk;
 using Silk.NET.OpenGL;
+using Silk.NET.Core.Loader;
 
 namespace Uno.UI.Runtime.Skia
 {
-	internal class UnoGLDrawingArea : Gtk.GLArea
+	internal class GLRenderSurface : Gtk.GLArea, IRenderSurface
 	{
 		private const SKColorType colorType = SKColorType.Rgba8888;
 		private const GRSurfaceOrigin surfaceOrigin = GRSurfaceOrigin.BottomLeft;
 
 		private readonly DisplayInformation _displayInformation;
-		private FocusManager _focusManager;
-		private SKBitmap bitmap;
-		private int renderCount;
+		private FocusManager? _focusManager;
 
 		private float? _dpi = 1;
-		private GRContext _grContext;
+		private GRContext? _grContext;
 		private GL _gl;
-		private GRBackendRenderTarget _renderTarget;
-		private SKSurface _surface;
+		private GRBackendRenderTarget? _renderTarget;
+		private SKSurface? _surface;
 
-		public UnoGLDrawingArea()
+		public GLRenderSurface()
 		{
 			_displayInformation = DisplayInformation.GetForCurrentView();
 			_displayInformation.DpiChanged += OnDpiChanged;
@@ -43,30 +44,25 @@ namespace Uno.UI.Runtime.Skia
 				+= () =>
 				{
 					// TODO Uno: Make this invalidation less often if possible.
-					//InvalidateOverlays();
-					//Invalidate();
+					InvalidateOverlays();
 					QueueRender();
 				};
 
-
-			SetSizeRequest(300, 300);
-
 			// Set some event handlers
-			Realized += OnRealized;
-			// Unrealized += OnUnrealized;
-			ConfigureEvent += OnConfigure;
 			Render += UnoGLDrawingArea_Render;
-
-			// SetRequiredVersion(3, 3);
+			Realized += GLRenderSurface_Realized;
 
 			HasDepthBuffer = false;
 			HasStencilBuffer = false;
-
 			AutoRender = true;
+			UseEs = true;
 
-			AttachBuffers();
+			_gl = new GL(new Silk.NET.Core.Contexts.DefaultNativeContext(new GLCoreLibraryNameContainer().GetLibraryName()));
+		}
 
-			_gl = new GL(new Silk.NET.Core.Contexts.DefaultNativeContext("opengl32.dll"));
+		private void GLRenderSurface_Realized(object? sender, EventArgs e)
+		{
+			Context.MakeCurrent();
 		}
 
 		private void UnoGLDrawingArea_Render(object o, RenderArgs args)
@@ -86,10 +82,9 @@ namespace Uno.UI.Runtime.Skia
 			_gl.ClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 			// manage the drawing surface
-			var alloc = Allocation;
 			var res = (int)Math.Max(1.0, Screen.Resolution / 96.0);
-			var w = Math.Max(0, alloc.Width * res);
-			var h = Math.Max(0, alloc.Height * res);
+			var w = Math.Max(0, AllocatedWidth * res);
+			var h = Math.Max(0, AllocatedHeight * res);
 
 			if (_renderTarget == null || _surface == null || _renderTarget.Width != w || _renderTarget.Height != h)
 			{
@@ -113,7 +108,10 @@ namespace Uno.UI.Runtime.Skia
 				// create the surface
 				_surface?.Dispose();
 				_surface = SKSurface.Create(_grContext, _renderTarget, surfaceOrigin, colorType);
+
+				Console.WriteLine($"Recreated surfaces: {w}x{h} Samples:{samples} colorType:{colorType}");
 			}
+
 			using (new SKAutoCanvasRestore(_surface.Canvas, true))
 			{
 				_surface.Canvas.Clear(SKColors.White);
@@ -131,31 +129,6 @@ namespace Uno.UI.Runtime.Skia
 			Console.WriteLine($"Frame: {sw.Elapsed}");
 		}
 
-		private void OnConfigure(object o, ConfigureEventArgs args)
-		{
-
-		}
-
-		private static readonly OpenTK.Windowing.GraphicsLibraryFramework.GLFWCallbacks.ErrorCallback ErrorCallback =
-			(errorCode, description) => throw new Exception(description);
-
-		void OnRealized(object o, EventArgs e)
-		{
-			Context.MakeCurrent();
-
-			// create the contexts if not done already
-			if (_grContext == null)
-			{
-				var glInterface = GRGlInterface.Create();
-				_grContext = GRContext.CreateGl(glInterface);
-			}
-
-			_gl.Clear(ClearBufferMask.ColorBufferBit);
-			_gl.ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-			_gl.Flush();
-		}
-
-
 		private void OnDpiChanged(DisplayInformation sender, object args) =>
 			UpdateDpi();
 
@@ -169,69 +142,37 @@ namespace Uno.UI.Runtime.Skia
 			}
 		}
 
-		private void Invalidate()
-			=> QueueDrawArea(0, 0, 10000, 10000);
-
-		//protected override bool OnDrawn(Cairo.Context cr)
-		//{
-		//	int width, height;
-
-		//	if (this.Log().IsEnabled(LogLevel.Trace))
-		//	{
-		//		this.Log().Trace($"Render {renderCount++}");
-		//	}
-
-		//	if (_dpi == null)
-		//	{
-		//		UpdateDpi();
-		//	}
-			
-		//	width = (int)AllocatedWidth;
-		//	height = (int)AllocatedHeight;
-
-		//	var scaledWidth = (int)(width * _dpi.Value);
-		//	var scaledHeight = (int)(height * _dpi.Value);
-
-		//	var info = new SKImageInfo(scaledWidth, scaledHeight, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
-
-		//	// reset the bitmap if the size has changed
-		//	if (bitmap == null || info.Width != bitmap.Width || info.Height != bitmap.Height)
-		//	{
-		//		bitmap = new SKBitmap(scaledWidth, scaledHeight, SKColorType.Rgba8888, SKAlphaType.Premul);
-		//	}
-
-		//	using (var surface = SKSurface.Create(info, bitmap.GetPixels(out _)))
-		//	{
-		//		surface.Canvas.Clear(SKColors.White);
-
-		//		surface.Canvas.Scale((float)_dpi);
-
-		//		WUX.Window.Current.Compositor.Render(surface, info);
-
-		//		using (var gtkSurface = new Cairo.ImageSurface(
-		//			bitmap.GetPixels(out _),
-		//			Cairo.Format.Argb32,
-		//			bitmap.Width, bitmap.Height,
-		//			bitmap.Width * 4))
-		//		{
-		//			gtkSurface.MarkDirty();
-		//			cr.Scale(1 / _dpi.Value, 1 / _dpi.Value);
-		//			cr.SetSourceSurface(gtkSurface, 0, 0);
-		//			cr.Paint();
-		//		}
-		//	}
-
-		//	return true;
-		//}
-
-		internal void TakeScreenshot(string filePath)
+		public void TakeScreenshot(string filePath)
 		{
 			using Stream memStream = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
-			using SKManagedWStream wstream = new SKManagedWStream(memStream);
 
-			bitmap.Encode(wstream, SKEncodedImageFormat.Png, 100);
+			var image = _surface.Snapshot();
+			var pngData = image.Encode();
+			pngData.SaveTo(memStream);
 		}
 
 		private void UpdateDpi() => _dpi = (float)_displayInformation.RawPixelsPerViewPixel;
+
+		// Extracted from https://github.com/dotnet/Silk.NET/blob/23f9bd4d67ad21c69fbd69cc38a62fb2c0ec3927/src/OpenGL/Silk.NET.OpenGL/GLCoreLibraryNameContainer.cs
+		internal class GLCoreLibraryNameContainer : SearchPathContainer
+		{
+			/// <inheritdoc />
+			public override string Linux => "libGL.so.1";
+
+			/// <inheritdoc />
+			public override string MacOS => "/System/Library/Frameworks/OpenGL.framework/OpenGL";
+
+			/// <inheritdoc />
+			public override string Android => "libGL.so.1";
+
+			/// <inheritdoc />
+			public override string IOS => "/System/Library/Frameworks/OpenGL.framework/OpenGL";
+
+			/// <inheritdoc />
+			public override string Windows64 => "opengl32.dll";
+
+			/// <inheritdoc />
+			public override string Windows86 => "opengl32.dll";
+		}
 	}
 }

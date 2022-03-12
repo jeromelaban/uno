@@ -41,7 +41,6 @@
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux" />
 		<PackageReference Include="SkiaSharp" />
 		<PackageReference Include="GtkSharp" />
-		<PackageReference Include="OpenTK.Windowing.GraphicsLibraryFramework" Version="4.7.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -59,10 +58,6 @@
 
 	<ItemGroup>
 	  <EmbeddedResource Include="Theming\UnoGtk.css" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="UI\OpenGL\" />
 	</ItemGroup>
 
 </Project>
