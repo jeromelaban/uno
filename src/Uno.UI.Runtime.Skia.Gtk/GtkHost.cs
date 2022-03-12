@@ -40,7 +40,7 @@ namespace Uno.UI.Runtime.Skia
 		private readonly Func<WUX.Application> _appBuilder;
 		private static Gtk.Window _window;
 		private static Gtk.EventBox _eventBox;
-		private UnoDrawingArea _area;
+		private UnoGLDrawingArea _area;
 		private Fixed _fix;
 		private GtkDisplayInformationExtension _displayInformationExtension;
 
@@ -131,7 +131,7 @@ namespace Uno.UI.Runtime.Skia
 			var overlay = new Overlay();
 
 			_eventBox = new EventBox();
-			_area = new UnoDrawingArea();
+			_area = new UnoGLDrawingArea();
 			_fix = new Fixed();
 			overlay.Add(_area);
 			overlay.AddOverlay(_fix);
