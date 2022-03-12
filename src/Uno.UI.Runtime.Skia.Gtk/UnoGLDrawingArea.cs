@@ -75,6 +75,10 @@ namespace Uno.UI.Runtime.Skia
 				_grContext = GRContext.CreateGl(glInterface);
 			}
 
+			_gl.Clear(ClearBufferMask.ColorBufferBit);
+			_gl.ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+			_gl.Flush();
+
 			//var vendor = GL.GetStringS(StringName.Vendor, 0);
 
 			//GL.GetInteger(GetPName.FramebufferBinding, out var framebuffer);
@@ -101,7 +105,8 @@ namespace Uno.UI.Runtime.Skia
 			}
 
 			_gl.Clear(ClearBufferMask.ColorBufferBit);
-			_gl.ClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+			_gl.ClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+			_gl.Flush();
 			// var vendor = _gl.GetStringS(StringName.Vendor, 0);
 
 			//GL.GetInteger(GetPName.DrawFramebufferBinding, out var framebuffer);
