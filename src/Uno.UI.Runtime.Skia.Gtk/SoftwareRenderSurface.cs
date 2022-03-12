@@ -15,7 +15,7 @@ using Windows.Graphics.Display;
 
 namespace Uno.UI.Runtime.Skia
 {
-	internal class UnoDrawingArea : Gtk.DrawingArea
+	internal class SoftwareRenderSurface : Gtk.DrawingArea, IRenderSurface
 	{
 		private readonly DisplayInformation _displayInformation;
 		private FocusManager _focusManager;
@@ -24,7 +24,7 @@ namespace Uno.UI.Runtime.Skia
 
 		private float? _dpi = 1;
 
-		public UnoDrawingArea()
+		public SoftwareRenderSurface()
 		{
 			_displayInformation = DisplayInformation.GetForCurrentView();
 			_displayInformation.DpiChanged += OnDpiChanged;
@@ -110,7 +110,7 @@ namespace Uno.UI.Runtime.Skia
 			return true;
 		}
 
-		internal void TakeScreenshot(string filePath)
+		public void TakeScreenshot(string filePath)
 		{
 			using Stream memStream = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
 			using SKManagedWStream wstream = new SKManagedWStream(memStream);

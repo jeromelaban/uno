@@ -40,12 +40,15 @@ namespace Uno.UI.Runtime.Skia
 		private readonly Func<WUX.Application> _appBuilder;
 		private static Gtk.Window _window;
 		private static Gtk.EventBox _eventBox;
-		private UnoDrawingArea _area;
+		private Widget _area;
 		private Fixed _fix;
 		private GtkDisplayInformationExtension _displayInformationExtension;
 
 		public static Gtk.Window Window => _window;
 		public static Gtk.EventBox EventBox => _eventBox;
+
+		public RenderSurfaceType RenderSurfaceType { get; set; }
+			= RenderSurfaceType.OpenGL;
 
 		public GtkHost(Func<WUX.Application> appBuilder, string[] args)
 		{
@@ -131,7 +134,7 @@ namespace Uno.UI.Runtime.Skia
 			var overlay = new Overlay();
 
 			_eventBox = new EventBox();
-			_area = new UnoDrawingArea();
+			_area = BuildRenderSurfaceType();
 			_fix = new Fixed();
 			overlay.Add(_area);
 			overlay.AddOverlay(_fix);
@@ -165,6 +168,14 @@ namespace Uno.UI.Runtime.Skia
 
 			Gtk.Application.Run();
 		}
+
+		private Widget BuildRenderSurfaceType()
+			=> RenderSurfaceType switch
+			{
+				RenderSurfaceType.Software => new SoftwareRenderSurface(),
+				RenderSurfaceType.OpenGL => new GLRenderSurface(),
+				_ => throw new InvalidOperationException($"Unsupported RenderSurfaceType {RenderSurfaceType}")
+			};
 
 		private void OnWindowStateChanged(object o, WindowStateEventArgs args)
 		{
@@ -239,7 +250,10 @@ namespace Uno.UI.Runtime.Skia
 
 		public void TakeScreenshot(string filePath)
 		{
-			_area.TakeScreenshot(filePath);
+			if (_area is IRenderSurface renderSurface)
+			{
+				renderSurface.TakeScreenshot(filePath);
+			}
 		}
 
 		private void SetupTheme()
