@@ -22,7 +22,8 @@ using Silk.NET.Core.Loader;
 
 namespace Uno.UI.Runtime.Skia
 {
-	internal class GLRenderSurface : Gtk.GLArea, IRenderSurface
+
+	internal class GLRenderSurface : GLArea, IRenderSurface
 	{
 		private const SKColorType colorType = SKColorType.Rgba8888;
 		private const GRSurfaceOrigin surfaceOrigin = GRSurfaceOrigin.BottomLeft;
@@ -55,7 +56,7 @@ namespace Uno.UI.Runtime.Skia
 			HasDepthBuffer = false;
 			HasStencilBuffer = false;
 			AutoRender = true;
-			UseEs = true;
+			SetRequiredVersion(3, 3);
 
 			_gl = new GL(new Silk.NET.Core.Contexts.DefaultNativeContext(new GLCoreLibraryNameContainer().GetLibraryName()));
 		}
@@ -70,6 +71,7 @@ namespace Uno.UI.Runtime.Skia
 			var sw = Stopwatch.StartNew();
 
 			args.Context.MakeCurrent();
+
 
 			// create the contexts if not done already
 			if (_grContext == null)
