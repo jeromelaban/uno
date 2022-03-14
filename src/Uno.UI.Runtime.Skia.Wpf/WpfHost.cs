@@ -41,21 +41,20 @@ using WpfFrameworkPropertyMetadata = System.Windows.FrameworkPropertyMetadata;
 namespace Uno.UI.Skia.Platform
 {
 	[TemplatePart(Name = NativeOverlayLayerPart, Type = typeof(WpfCanvas))]
+	[TemplatePart(Name = RenderSurfacePart, Type = typeof(Grid))]
 	public class WpfHost : WpfControl, WinUI.ISkiaHost
 	{
 		private const string NativeOverlayLayerPart = "NativeOverlayLayer";
-
-		private readonly bool designMode;
+		private const string RenderSurfacePart = "renderSurface";
 
 		[ThreadStatic] private static WpfHost _current;
 
 		private WpfCanvas? _nativeOverlayLayer = null;
-		private WriteableBitmap bitmap;
+		private System.Windows.Controls.Border? _renderSurfaceControl;
+		private IRenderSurface? _renderSurface;
 		private bool ignorePixelScaling;
 		private FocusManager? _focusManager;
 		private bool _isVisible = true;
-
-		private DisplayInformation _displayInformation;
 
 		static WpfHost()
 		{
@@ -78,6 +77,9 @@ namespace Uno.UI.Skia.Platform
 			ApiExtensibility.Register(typeof(ISystemNavigationManagerPreviewExtension), o => new SystemNavigationManagerPreviewExtension());
 		}
 
+		public RenderSurfaceType RenderSurfaceType { get; set; }
+			= RenderSurfaceType.OpenGL;
+
 		public static WpfHost Current => _current;
 
 		internal WpfCanvas? NativeOverlayLayer => _nativeOverlayLayer;
@@ -97,8 +99,6 @@ namespace Uno.UI.Skia.Platform
 				.Skip(1)
 				.ToArray();
 
-			designMode = DesignerProperties.GetIsInDesignMode(this);
-
 			void CreateApp(WinUI.ApplicationInitializationCallbackParams _)
 			{
 				var app = appBuilder();
@@ -113,7 +113,7 @@ namespace Uno.UI.Skia.Platform
 			WinUI.Window.InvalidateRender += () =>
 			{
 				InvalidateOverlays();
-				InvalidateVisual();
+				_renderSurface?.Refresh();
 			};
 
 			WpfApplication.Current.Activated += Current_Activated;
@@ -153,6 +153,19 @@ namespace Uno.UI.Skia.Platform
 			base.OnApplyTemplate();
 
 			_nativeOverlayLayer = GetTemplateChild(NativeOverlayLayerPart) as WpfCanvas;
+			_renderSurfaceControl = GetTemplateChild(RenderSurfacePart) as System.Windows.Controls.Border;
+
+			if (_renderSurfaceControl != null)
+			{
+				_renderSurface = RenderSurfaceType switch
+				{
+					RenderSurfaceType.OpenGL => new GLRenderSurface(this),
+					RenderSurfaceType.Software => new SoftwareRenderSurface(this),
+					_ => throw new NotSupportedException($"Render surface {RenderSurfaceType} is not supported")
+				};
+
+				_renderSurfaceControl.Child = _renderSurface as FrameworkElement;
+			}
 		}
 
 		private void MainWindow_StateChanged(object? sender, EventArgs e)
@@ -202,84 +215,14 @@ namespace Uno.UI.Skia.Platform
 			);
 		}
 
-		public SKSize CanvasSize => bitmap == null ? SKSize.Empty : new SKSize(bitmap.PixelWidth, bitmap.PixelHeight);
-
 		public bool IgnorePixelScaling
 		{
 			get => ignorePixelScaling;
 			set
 			{
 				ignorePixelScaling = value;
-				InvalidateVisual();
+				_renderSurface?.Refresh();
 			}
-		}
-
-		protected override void OnRender(DrawingContext drawingContext)
-		{
-			base.OnRender(drawingContext);
-
-			if (designMode)
-			{
-				return;
-			}
-
-			if (ActualWidth == 0
-				|| ActualHeight == 0
-				|| double.IsNaN(ActualWidth)
-				|| double.IsNaN(ActualHeight)
-				|| double.IsInfinity(ActualWidth)
-				|| double.IsInfinity(ActualHeight)
-				|| Visibility != Visibility.Visible)
-			{
-				return;
-			}
-
-
-			int width, height;
-
-			if (_displayInformation == null)
-			{
-				_displayInformation = DisplayInformation.GetForCurrentView();
-			}
-
-			var dpi = _displayInformation.RawPixelsPerViewPixel;
-			double dpiScaleX = dpi;
-			double dpiScaleY = dpi;
-			if (IgnorePixelScaling)
-			{
-				width = (int)ActualWidth;
-				height = (int)ActualHeight;
-			}
-			else
-			{
-				var matrix = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice;
-				dpiScaleX = matrix.M11;
-				dpiScaleY = matrix.M22;
-				width = (int)(ActualWidth * dpiScaleX);
-				height = (int)(ActualHeight * dpiScaleY);
-			}
-
-			var info = new SKImageInfo(width, height, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
-
-			// reset the bitmap if the size has changed
-			if (bitmap == null || info.Width != bitmap.PixelWidth || info.Height != bitmap.PixelHeight)
-			{
-				bitmap = new WriteableBitmap(width, height, 96 * dpiScaleX, 96 * dpiScaleY, PixelFormats.Pbgra32, null);
-			}
-
-			// draw on the bitmap
-			bitmap.Lock();
-			using (var surface = SKSurface.Create(info, bitmap.BackBuffer, bitmap.BackBufferStride))
-			{
-				surface.Canvas.Clear(SKColors.White);
-				surface.Canvas.SetMatrix(SKMatrix.CreateScale((float)dpiScaleX, (float)dpiScaleY));
-				WinUI.Window.Current.Compositor.Render(surface);
-			}
-
-			// draw the bitmap to the screen
-			bitmap.AddDirtyRect(new Int32Rect(0, 0, width, height));
-			bitmap.Unlock();
-			drawingContext.DrawImage(bitmap, new Rect(0, 0, ActualWidth, ActualHeight));
 		}
 
 		private void InvalidateOverlays()
