@@ -48,6 +48,12 @@ namespace Windows.UI.Xaml.Media.Imaging
 
 						return OpenFromStream(targetWidth, targetHeight, surface, fileStream);
 					}
+					else if (UriSource.Scheme == "ms-appdata")
+					{
+						using var fileStream = File.OpenRead(FilePath);
+
+						return OpenFromStream(targetWidth, targetHeight, surface, fileStream);
+					}
 				}
 				else if (_stream != null)
 				{
