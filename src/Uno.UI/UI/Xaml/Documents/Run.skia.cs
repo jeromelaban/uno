@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using HarfBuzzSharp;
 using SkiaSharp;
@@ -27,6 +28,8 @@ namespace Windows.UI.Xaml.Documents
 
 			List<Segment> segments = new();
 			using HarfBuzzSharp.Buffer buffer = new();
+			buffer.ContentType = ContentType.Unicode;
+
 			var font = FontInfo.Font;
 			var paint = Paint;
 
@@ -102,31 +105,35 @@ namespace Windows.UI.Xaml.Documents
 
 				int length = i - s;
 
-				if (lineBreakLength == 2)
-				{
-					buffer.AddUtf16(text.Slice(s, length - 1)); // Skip second line break char so that it is considered part of the same cluster as the first
-				}
-				else
-				{
-					buffer.AddUtf16(text.Slice(s, length));
-				}
+                if (lineBreakLength == 2)
+                {
+                    buffer.AddUtf16(text.Slice(s, length - 1)); // Skip second line break char so that it is considered part of the same cluster as the first
+                }
+                else
+                {
+                    buffer.AddUtf16(text.Slice(s, length).ToString());
+                }
 
-				// TODO: Set the segment properties instead of using HB guessing like below.
-				// - Set direction using Bidi algorithm.
-				// - Set Language and Script on buffer. From HarfBuzz docs:
+                // TODO: Set the segment properties instead of using HB guessing like below.
+                // - Set direction using Bidi algorithm.
+                // - Set Language and Script on buffer. From HarfBuzz docs:
 
-				// Script is crucial for choosing the proper shaping behaviour for scripts that require it (e.g. Arabic) and the which OpenType features defined
-				// in the font to be applied.
+                // Script is crucial for choosing the proper shaping behaviour for scripts that require it (e.g. Arabic) and the which OpenType features defined
+                // in the font to be applied.
 
-				// Languages are crucial for selecting which OpenType feature to apply to the buffer which can result in applying language-specific behaviour.
-				// Languages are orthogonal to the scripts, and though they are related, they are different concepts and should not be confused with each other.
+                // Languages are crucial for selecting which OpenType feature to apply to the buffer which can result in applying language-specific behaviour.
+                // Languages are orthogonal to the scripts, and though they are related, they are different concepts and should not be confused with each other.
 
-				// buffer.Direction = ...
-				// buffer.Language = ...
-				// buffer.Script = ...
+                // buffer.Direction = ...
+                // buffer.Language = ...
+                // buffer.Script = ...
 
-				// Guess the above properties for now before shaping:
-				buffer.GuessSegmentProperties();
+                // Guess the above properties for now before shaping:
+                buffer.GuessSegmentProperties();
+
+				buffer.Direction = Direction.LeftToRight;
+				buffer.Language = new Language(CultureInfo.CurrentCulture);
+
 				var direction = buffer.Direction == Direction.LeftToRight ? FlowDirection.LeftToRight : FlowDirection.RightToLeft;
 
 				font.Shape(buffer);
