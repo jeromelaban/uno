@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Uno;
 using Uno.Disposables;
 using Uno.Foundation.Logging;
+using Uno.Extensions;
+using Uno.Helpers;
 
 namespace Microsoft.Toolkit.Uwp.UI.Lottie
 {
@@ -80,7 +82,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Lottie
 		}
 
 
-#if !(__WASM__ || __ANDROID__ || __IOS__ || __MACOS__)
+#if __NETSTD__ && !__WASM__ && !__SKIA__
 
 		public void Play(double fromProgress, double toProgress, bool looped)
 		{
@@ -140,7 +142,7 @@ namespace Microsoft.Toolkit.Uwp.UI.Lottie
 			}
 		}
 
-#if __NETSTD__ && !__WASM__
+#if __NETSTD__ && !__WASM__ && !__SKIA__
 		private async Task InnerUpdate(CancellationToken ct)
 		{
 			throw new NotSupportedException("Lottie on this platform is not supported yet.");
@@ -240,6 +242,18 @@ namespace Microsoft.Toolkit.Uwp.UI.Lottie
 			if(await TryLoadEmbeddedJson(uri, ct) is {} json)
 			{
 				return json;
+			}
+
+			if (uri.IsLocalResource())
+			{
+				var file = await StorageFile.GetFileFromApplicationUriAsync(uri);
+				return await file.OpenAsync(FileAccessMode.Read);
+			}
+			else if (uri.IsAppData())
+			{
+				var fileStream = File.OpenRead(AppDataUriEvaluator.ToPath(uri));
+
+				return fileStream.AsInputStream();
 			}
 
 			return IsPayloadNeedsToBeUpdated
