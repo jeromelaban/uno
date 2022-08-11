@@ -137,19 +137,33 @@ namespace Uno.UI.Tests
 			{
 				var o2 = new Object();
 				var mr2 = WeakReferencePool.RentWeakReference(o1, o2);
+				
+				try
+				{
 
-				return (new WeakReference(mr2), new WeakReference(mr2.GetUnsafeOwnerHandle()), new WeakReference(mr2.GetUnsafeTargetHandle()));
+					return (new WeakReference(mr2), new WeakReference(mr2.GetUnsafeOwnerHandle()), new WeakReference(mr2.GetUnsafeTargetHandle()));
+				}
+				finally
+				{
+					o2 = null;
+					mr2 = null;
+				}
 			}
 
 			var r = CreateUnreferenced();
 
-			Assert.IsNotNull(r.ownerRef.Target);
-			Assert.IsNotNull(r.targetRef.Target);
-			Assert.IsNotNull(r.refref.Target);
+			void ScopedTest()
+			{
+				Assert.IsNotNull(r.ownerRef.Target);
+				Assert.IsNotNull(r.targetRef.Target);
+				Assert.IsNotNull(r.refref.Target);
 
-			Assert.AreEqual(0, WeakReferencePool.PooledReferences);
+				Assert.AreEqual(0, WeakReferencePool.PooledReferences);
+			}
 
-			GCCondition(5, () => r.refref.Target == null);
+			ScopedTest();
+
+			GCCondition(50, () => r.refref.Target == null);
 
 			Assert.IsNull(r.refref.Target);
 
