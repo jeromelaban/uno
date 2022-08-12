@@ -12,6 +12,8 @@ using Uno.UI.Controls;
 using Windows.UI;
 using Uno.Disposables;
 using Foundation;
+using Uno.Foundation.Logging;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Windows.UI.Xaml.Controls
 {
@@ -34,6 +36,8 @@ namespace Windows.UI.Xaml.Controls
 			get => base.Text;
 			set
 			{
+				this.Log().Error($"SinglelineTextBoxView.setText: {value}");
+
 				// The native control will ignore a value of null and retain an empty string. We coalesce the null to prevent a spurious empty string getting bounced back via two-way binding.
 				value ??= string.Empty;
 				if (base.Text != value)
@@ -51,6 +55,8 @@ namespace Windows.UI.Xaml.Controls
 
 		private void OnTextChanged()
 		{
+			this.Log().Error($"SinglelineTextBoxView.OnTextChanged:");
+
 			var textBox = _textBox?.GetTarget();
 			if (textBox != null)
 			{
@@ -59,7 +65,12 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
-		public void SetTextNative(string text) => Text = text;
+		public void SetTextNative(string text)
+		{
+			this.Log().Error($"SinglelineTextBoxView.SetTextNative: {text}");
+
+			Text = text;
+		}
 
 		private void Initialize()
 		{
@@ -74,12 +85,16 @@ namespace Windows.UI.Xaml.Controls
 
 		partial void OnLoadedPartial()
 		{
+			this.Log().Error($"SinglelineTextBoxView.OnLoadedPartial");
+
 			this.EditingChanged += OnEditingChanged;
 			this.EditingDidEnd += OnEditingChanged;
 		}
 
 		partial void OnUnloadedPartial()
 		{
+			this.Log().Error($"SinglelineTextBoxView.OnUnloadedPartial");
+
 			this.EditingChanged -= OnEditingChanged;
 			this.EditingDidEnd -= OnEditingChanged;
 		}
@@ -87,6 +102,8 @@ namespace Windows.UI.Xaml.Controls
 		//Forces the secure UITextField to maintain its current value upon regaining focus
 		public override bool BecomeFirstResponder()
 		{
+			this.Log().Error($"SinglelineTextBoxView.BecomeFirstResponder");
+
 			var result = base.BecomeFirstResponder();
 
 			if (SecureTextEntry)
@@ -101,26 +118,36 @@ namespace Windows.UI.Xaml.Controls
 
 		public override CGSize SizeThatFits(CGSize size)
 		{
+			this.Log().Error($"SinglelineTextBoxView.SizeThatFits {size}");
+
 			return IFrameworkElementHelper.SizeThatFits(this, base.SizeThatFits(size));
 		}
 
 		public override CGRect TextRect(CGRect forBounds)
 		{
+			this.Log().Error($"SinglelineTextBoxView.TextRect {forBounds}");
+
 			return GetTextRect(forBounds);
 		}
 
-		public override CGRect PlaceholderRect(CGRect forBounds)
-		{
-			return GetTextRect(forBounds);
-		}
+		//public override CGRect PlaceholderRect(CGRect forBounds)
+		//{
+		//	this.Log().Error($"SinglelineTextBoxView.PlaceholderRect {forBounds}");
 
-		public override CGRect EditingRect(CGRect forBounds)
-		{
-			return GetTextRect(forBounds);
-		}
+		//	return GetTextRect(forBounds);
+		//}
+
+		//public override CGRect EditingRect(CGRect forBounds)
+		//{
+		//	this.Log().Error($"SinglelineTextBoxView.EditingRect {forBounds}");
+
+		//	return GetTextRect(forBounds);
+		//}
 
 		private CGRect GetTextRect(CGRect forBounds)
 		{
+			this.Log().Error($"SinglelineTextBoxView.GetTextRect {forBounds}");
+
 			if (IsStoreInitialized)
 			{
 				// This test is present because most virtual methods are
@@ -141,6 +168,8 @@ namespace Windows.UI.Xaml.Controls
 
 		public void UpdateFont()
 		{
+			this.Log().Error($"SinglelineTextBoxView.UpdateFont");
+
 			var textBox = _textBox.GetTarget();
 
 			if (textBox != null)
@@ -175,6 +204,8 @@ namespace Windows.UI.Xaml.Controls
 
 		public void OnForegroundChanged(Brush oldValue, Brush newValue)
 		{
+			this.Log().Error($"SinglelineTextBoxView.OnForegroundChanged");
+
 			_foregroundChanged.Disposable = null;
 			var textBox = _textBox.GetTarget();
 
@@ -198,6 +229,8 @@ namespace Windows.UI.Xaml.Controls
 
 		public void UpdateTextAlignment()
 		{
+			this.Log().Error($"SinglelineTextBoxView.UpdateTextAlignment");
+
 			var textBox = _textBox.GetTarget();
 
 			if (textBox != null)
@@ -208,27 +241,43 @@ namespace Windows.UI.Xaml.Controls
 
 		public void RefreshFont()
 		{
+			this.Log().Error($"SinglelineTextBoxView.RefreshFont");
+
 			UpdateFont();
 		}
 
 		public void Select(int start, int length)
-			=> SelectedTextRange = this.GetTextRange(start: start, end: start + length);
+		{
+			this.Log().Error($"SinglelineTextBoxView.Select {start}/{length}");
+
+			SelectedTextRange = this.GetTextRange(start: start, end: start + length);
+		}
 
 		public override UITextRange SelectedTextRange
 		{
 			get
 			{
-				return base.SelectedTextRange;
+				this.Log().Error($"-> SinglelineTextBoxView.getSelectedTextRange (2)");
+				var value = base.SelectedTextRange;
+				this.Log().Error($"<- SinglelineTextBoxView.getSelectedTextRange (3) {value}");
+
+				return value;
 			}
 			set
 			{
-				var textBox = _textBox.GetTarget();
+				this.Log().Error($"SinglelineTextBoxView.setSelectedTextRange (6) {value}");
 
-				if (textBox != null && base.SelectedTextRange != value)
-				{
-					base.SelectedTextRange = value;
-					textBox.OnSelectionChanged();
-				}
+				//var textBox = _textBox.GetTarget();
+				//var original = base.SelectedTextRange;
+				base.SelectedTextRange = null;
+
+				this.Log().Error($"SinglelineTextBoxView.setSelectedTextRange assign (6) {value}");
+				base.SelectedTextRange = value;
+
+				//if (textBox != null && original != value)
+				//{
+				//	textBox.OnSelectionChanged();
+				//}
 			}
 		}
 	}

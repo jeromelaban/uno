@@ -7,6 +7,7 @@ using System.Text;
 using UIKit;
 using Windows.UI.Core;
 using System.Threading.Tasks;
+using Uno.Foundation.Logging;
 
 namespace Windows.UI.Xaml.Controls
 {
@@ -27,6 +28,8 @@ namespace Windows.UI.Xaml.Controls
 
 		public override bool ShouldChangeCharacters(UITextField textField, NSRange range, string replacementString)
 		{
+			this.Log().Error($"ShouldChangeCharacters.ShouldChangeCharacters {range}/{replacementString}");
+
 			var textBoxView = textField as SinglelineTextBoxView;
 			if (textBoxView != null)
 			{
@@ -47,6 +50,8 @@ namespace Windows.UI.Xaml.Controls
 
 		public override bool ShouldReturn(UITextField textField)
 		{
+			this.Log().Error($"ShouldChangeCharacters.ShouldReturn");
+
 			if (IsKeyboardHiddenOnEnter)
 			{
 				CoreDispatcher.Main.RunAsync(CoreDispatcherPriority.Normal,
@@ -72,6 +77,8 @@ namespace Windows.UI.Xaml.Controls
 
 		public override bool ShouldBeginEditing(UITextField textField)
 		{
+			this.Log().Error($"ShouldChangeCharacters.ShouldBeginEditing");
+
 			if (_textBox.GetTarget() is not TextBox textBox)
 			{
 				return false;
@@ -86,6 +93,8 @@ namespace Windows.UI.Xaml.Controls
 		/// </summary>
 		public override void EditingStarted(UITextField textField)
 		{
+			this.Log().Error($"ShouldChangeCharacters.EditingStarted");
+
 			if (_textBox.GetTarget() is TextBox textBox && textBox.FocusState == FocusState.Unfocused)
 			{
 				textBox.Focus(FocusState.Pointer);
@@ -97,6 +106,8 @@ namespace Windows.UI.Xaml.Controls
 		/// </summary>
 		public override void EditingEnded(UITextField textField)
 		{
+			this.Log().Error($"ShouldChangeCharacters.EditingEnded");
+
 			if (_textBox.GetTarget() is TextBox textBox && textBox.FocusState != FocusState.Unfocused)
 			{
 				textBox.Unfocus();
