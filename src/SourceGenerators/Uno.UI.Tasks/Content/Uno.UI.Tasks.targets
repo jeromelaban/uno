@@ -123,11 +123,14 @@
 
 	<PropertyGroup>
 		<_UnoUIPackageBasePath Condition="'%(UnoRuntimeEnabledPackage.Identity)'=='Uno.UI' or '%(UnoRuntimeEnabledPackage.Identity)'=='Uno.WinUI'">%(UnoRuntimeEnabledPackage.PackageBasePath)</_UnoUIPackageBasePath>
+
+		<_UnoLinkerHintGeneratorAssembly>$(IntermediateOutputPath)$(TargetFileName)</_UnoLinkerHintGeneratorAssembly>
+		<_UnoLinkerHintGeneratorAssembly Condition="'$(TargetFramework)'=='net6.0-android'">$(_OuterIntermediateAssembly)</_UnoLinkerHintGeneratorAssembly>
 	</PropertyGroup>
 
 	<LinkerHintGeneratorTask_v0
 		CurrentProjectPath="$(MSBuildProjectDirectory)"
-		AssemblyPath="$(IntermediateOutputPath)$(TargetFileName)"
+		AssemblyPath="$(_UnoLinkerHintGeneratorAssembly)"
 		OutputPath="$(ProjectDir)$(IntermediateOutputPath)/linkerhints"
 		ReferencePath="@(_UnoLinkerHintsPass1AssembliesForReferencePaths)"
 		ILLinkerPath="$(MSBuildThisFileDirectory)\..\..\tools\linker"
