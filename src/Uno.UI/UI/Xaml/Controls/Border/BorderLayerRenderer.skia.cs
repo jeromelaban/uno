@@ -118,6 +118,7 @@ namespace Windows.UI.Xaml.Shapes
 				var borderShape = compositor.CreateSpriteShape();
 				var backgroundShape = compositor.CreateSpriteShape();
 				var outerShape = compositor.CreateSpriteShape();
+				var clipShape = compositor.CreateSpriteShape();
 
 				// Border brush
 				Brush.AssignAndObserveBrush(borderBrush, compositor, brush => borderShape.FillBrush = brush)
@@ -155,7 +156,10 @@ namespace Windows.UI.Xaml.Shapes
 				owner.ClippingIsSetByCornerRadius = cornerRadius != CornerRadius.None;
 				if (owner.ClippingIsSetByCornerRadius)
 				{
-					parent.Clip = compositor.CreateGeometricClip(outerShape.Geometry);
+					var clipPath = GetRoundedPath(cornerRadius, area.InflateBy(borderThickness));
+					clipShape.Geometry = compositor.CreatePathGeometry(clipPath);
+
+					parent.Clip = compositor.CreateGeometricClip(clipShape.Geometry);
 				}
 			}
 			else

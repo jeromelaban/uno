@@ -52,12 +52,12 @@ namespace Windows.UI.Xaml.Shapes
 
 		private SkiaGeometrySource2D GetGeometry(Rect finalRect)
 		{
-			var strokeThickness = StrokeThickness;
+			var strokeThickness = (float)StrokeThickness;
 			var radiusX = RadiusX;
 			var radiusY = RadiusY;
 
 			var offset = new Vector2((float)(finalRect.Left), (float)(finalRect.Top));
-			var size = new Vector2((float)finalRect.Width, (float)finalRect.Height);
+			var size = new Vector2((float)(finalRect.Width), (float)(finalRect.Height));
 			
 			SkiaGeometrySource2D geometry;
 			if (radiusX == 0 || radiusY == 0)
@@ -70,6 +70,9 @@ namespace Windows.UI.Xaml.Shapes
 			}
 			else
 			{
+				offset = new(offset.X + strokeThickness, offset.Y + strokeThickness);
+				size = new(size.X - strokeThickness, size.Y - strokeThickness);
+
 				// Complex rectangle
 				geometry = new SkiaGeometrySource2D(
 					CompositionGeometry.BuildRoundedRectangleGeometry(
