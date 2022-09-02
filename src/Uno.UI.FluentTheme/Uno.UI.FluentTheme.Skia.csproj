@@ -17,7 +17,8 @@
 		
 		<UnoRuntimeIdentifier>Skia</UnoRuntimeIdentifier>
 
-		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
+		<!-- Disabled because of LinkerDefinitionMergerTask performance issues https://github.com/unoplatform/uno/issues/9632 -->
+		<!--<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>-->
 
 		<UseCommonOverridePackage>true</UseCommonOverridePackage>
 		<CommonOverridePackageId>Uno.UI</CommonOverridePackageId>

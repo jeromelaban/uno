@@ -22,7 +22,8 @@
 		
 		<WarningsAsErrors>true</WarningsAsErrors>
 
-		<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>
+		<!-- Disabled because of LinkerDefinitionMergerTask performance issues https://github.com/unoplatform/uno/issues/9632 -->
+		<!--<UnoXamlResourcesTrimming>true</UnoXamlResourcesTrimming>-->
 
 		<PackageId Condition="'$(UNO_UWP_BUILD)'!='true'">Uno.WinUI</PackageId>
 	</PropertyGroup>
