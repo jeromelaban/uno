@@ -22,6 +22,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Uno.UI.SourceGenerators.Helpers;
+using System.Threading;
 
 #if NETFRAMEWORK
 using Uno.SourceGeneration;
@@ -303,7 +304,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		public string GenerateFile()
 		{
 #if DEBUG
-			Console.WriteLine("Processing file {0}".InvariantCultureFormat(_fileDefinition.FilePath));
+			var sw = Stopwatch.StartNew();
+			Console.WriteLine($"Processing file {_fileDefinition.FilePath} (tid:{Thread.CurrentThread.ManagedThreadId})");
 #endif
 
 			// Check for the Roslyn generator's output location
@@ -346,6 +348,10 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			catch (Exception e)
 			{
 				throw new Exception($"Processing failed for file {_fileDefinition.FilePath} ({e})", e);
+			}
+			finally
+			{
+				Console.WriteLine($"Processed file {_fileDefinition.FilePath} in {sw.Elapsed} (tid:{Thread.CurrentThread.ManagedThreadId})");
 			}
 		}
 
@@ -416,6 +422,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			writer.AppendLineInvariant("");
 
 			var topLevelControl = _fileDefinition.Objects.First();
+
+			BuildNameCache(topLevelControl);
 
 			if (topLevelControl.Type.Name == "ResourceDictionary")
 			{
@@ -5867,6 +5875,26 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return null;
 		}
 
+		private Dictionary<string, List<XamlObjectDefinition>> _nameCache = new();
+
+		private void BuildNameCache(XamlObjectDefinition topLevelControl)
+		{
+			foreach (var element in EnumerateSubElements(topLevelControl))
+			{
+				var nameMember = FindMember(element, "Name");
+
+				if (nameMember?.Value is string name)
+				{
+					if(!_nameCache.TryGetValue(name, out var list))
+					{
+						_nameCache[name] = list = new();
+					}
+
+					list.Add(element);
+				}
+			}
+		}
+
 		/// <summary>
 		/// Statically finds a element by name, given a xaml element root
 		/// </summary>
@@ -5886,6 +5914,31 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			}
 
 			return null;
+
+			//if (_nameCache.TryGetValue(elementName, out var list))
+			//{
+			//	foreach (var namedObject in list)
+			//	{
+			//		var current = namedObject;
+
+			//		do
+			//		{
+			//			if (ReferenceEquals(xamlObject, namedObject))
+			//			{
+			//				return namedObject;
+			//			}
+
+			//			current = current.Owner;
+
+			//		} while (current is not null);
+			//	}
+
+			//	return null;
+			//}
+			//else
+			//{
+			//	return null;
+			//}
 		}
 
 		/// <summary>

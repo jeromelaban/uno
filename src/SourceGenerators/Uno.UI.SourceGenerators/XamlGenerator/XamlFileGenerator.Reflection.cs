@@ -556,7 +556,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					return true;
 				}
 
-				var setMethod = type?.GetMethods().FirstOrDefault(p => p.Name == "Set" + name);
+				var setMethod = type?.GetMethodsWithName("Set" + name).FirstOrDefault();
 				if (setMethod is { IsStatic: true, Parameters: { Length: 2 } })
 				{
 					return true;

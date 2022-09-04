@@ -241,7 +241,14 @@ namespace Uno.Extensions
 
 		public static string Indent(this string text, int indentCount = 1)
 		{
-			return _newLineRegex.Value.Replace(text, new String('\t', indentCount));
+			if (text.Contains("\r"))
+			{
+				return _newLineRegex.Value.Replace(text, new String('\t', indentCount));
+			}
+			else
+			{
+				return new String('\t', indentCount) + text;
+			}
 		}
 
 
