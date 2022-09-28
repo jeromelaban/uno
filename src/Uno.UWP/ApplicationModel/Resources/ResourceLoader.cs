@@ -295,7 +295,7 @@ namespace Windows.ApplicationModel.Resources
 						if (adjustKeyTransformationForV2)
 						{
 							// Restore the original format
-							key = key.Replace("/", ".");
+							key = key.Replace('/', '.');
 
 							var firstDotIndex = key.IndexOf('.');
 							if(firstDotIndex != -1)

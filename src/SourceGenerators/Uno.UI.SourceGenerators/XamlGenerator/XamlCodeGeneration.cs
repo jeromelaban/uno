@@ -652,7 +652,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return resourceKeys;
 		}
 
-		private string RewriteResourceKeyName(StringBuilder builder, string keyName)
+		private static string RewriteResourceKeyName(StringBuilder builder, string keyName)
 		{
 			var firstDotIndex = keyName.IndexOf('.');
 			if (firstDotIndex != -1)
