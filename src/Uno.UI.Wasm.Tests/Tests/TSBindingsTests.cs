@@ -7,6 +7,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Uno;
 using Windows.Foundation;
 using Uno.Foundation.Interop;
+using System.Runtime.InteropServices.JavaScript;
+using System.Net.WebSockets;
+using System.Diagnostics;
 
 namespace SamplesApp.UnitTests.TSBindings
 {
@@ -15,6 +18,31 @@ namespace SamplesApp.UnitTests.TSBindings
 
 	public class TSBindingsTests
 	{
+		[TestMethod]
+		public void When_TestPerf()
+		{
+			var sw1 = Stopwatch.StartNew();
+			for (int i = 0; i < 1000; i++)
+			{
+				string r = TestImport.When_SingleStringNet7(i.ToString());
+			}
+			Console.WriteLine($"net7 interop: {sw1.Elapsed}");
+
+			var sw2 = Stopwatch.StartNew();
+			for (int i = 0; i < 1000; i++)
+			{
+				var param = new When_SingleStringParams()
+				{
+					MyString = "This is 42"
+				};
+
+				var ret = (GenericReturn)TSInteropMarshaller.InvokeJS("TSBindingsUnitTests:When_SingleString", param, typeof(GenericReturn));
+
+			}
+			Console.WriteLine($"uno ts interop: {sw2.Elapsed}");
+
+		}
+
 		[TestMethod]
 		public void When_IntPtr()
 		{
@@ -163,6 +191,12 @@ namespace SamplesApp.UnitTests.TSBindings
 
 			Assert.AreEqual("true;true;true;true", ret.Value);
 		}
+	}
+
+	partial class TestImport
+	{
+		[JSImport("globalThis.TSBindingsTests.When_SingleStringNet7")]
+		internal static partial string When_SingleStringNet7(string value);
 	}
 
 	[TSInteropMessage]
