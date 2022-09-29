@@ -6,7 +6,8 @@ jobs:
   displayName: 'Build WebAssembly Package Binaries'
   container: nv-bionic-wasm
   
-  dependsOn: winui_convert_tree
+  # dependsOn: winui_convert_tree
+  dependsOn: Pipeline_Validations
 
   pool:
     vmImage: ${{ parameters.vmImage }}
