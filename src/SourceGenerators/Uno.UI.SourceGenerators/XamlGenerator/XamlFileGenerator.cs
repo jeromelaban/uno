@@ -3665,12 +3665,14 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					{
 						CurrentScope.XBindExpressions.Add(bind);
 
-						var eventTarget = XBindExpressionParser.RestoreSinglePath(bind.Members.First().Value?.ToString());
+						var originalPath = bind.Members.First().Value?.ToString();
 
-						if (eventTarget == null)
+						if (originalPath is null)
 						{
 							throw new InvalidOperationException("x:Bind event path cannot by empty");
 						}
+
+						var eventTarget = XBindExpressionParser.RestoreSinglePath(originalPath).ToString();
 
 						var parts = eventTarget.Split('.').ToList();
 						var isStaticTarget = parts.FirstOrDefault()?.Contains(":") ?? false;
@@ -4202,6 +4204,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return member?.Objects.FirstOrDefault(o => o.Type.Name == "CustomResource")?.Members.FirstOrDefault()?.Value;
 		}
 
+        private record PropertyPathInfo(string PropertyPath, ISymbol? FirstMember, ITypeSymbol? PropertyType);
+        private record PropertyPathResults(PropertyPathInfo[] Properties, bool HasFunction);
+
 		private string BuildXBindEvalFunction(XamlMemberDefinition member, XamlObjectDefinition bindNode)
 		{
 			CurrentScope.XBindExpressions.Add(bindNode);
@@ -4212,38 +4217,86 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 			var pathMember = bindNode.Members.FirstOrDefault(m => m.Member.Name == "_PositionalParameters" || m.Member.Name == "Path");
 
-			var rawFunction = XBindExpressionParser.RestoreSinglePath(pathMember?.Value?.ToString() ?? "");
+			var rawFunctionBuilder = XBindExpressionParser.RestoreSinglePath(pathMember?.Value?.ToString() ?? "");
 			var propertyType = FindPropertyType(member.Member);
 
 			// Apply replacements to avoid having issues with the XAML parser which does not
 			// support quotes in positional markup extensions parameters.
 			// Note that the UWP preprocessor does not need to apply those replacements as the x:Bind expressions
 			// are being removed during the first phase and replaced by "connections".
-			rawFunction = rawFunction
-				?.Replace("x:False", "false")
+			var rawFunction = rawFunctionBuilder
+				.Replace("x:False", "false")
 				.Replace("x:True", "true")
 				.Replace("{x:Null}", "null")
 				.Replace("x:Null", "null")
-				?? "";
+				.ToString();
 
-			rawFunction = RewriteNamespaces(rawFunction);
+			var compatibleFunction = RewriteNamespaces(rawFunction);
 
 			var modeMember = bindNode.Members.FirstOrDefault(m => m.Member.Name == "Mode")?.Value?.ToString() ?? GetDefaultBindMode();
 			var rawBindBack = bindNode.Members.FirstOrDefault(m => m.Member.Name == "BindBack")?.Value?.ToString();
 
 			// Populate the property paths only if updateable bindings.
-			var propertyPaths = modeMember != "OneTime"
-				? XBindExpressionParser.ParseProperties(rawFunction, IsStaticMember)
-				: (properties: Array.Empty<string>(), hasFunction: false);
+			PropertyPathResults GetPropertyPaths(INamedTypeSymbol? dataTypeSymbol)
+			{
+				if (modeMember != "OneTime")
+				{
+					var props = XBindExpressionParser.ParseProperties(compatibleFunction, IsStaticMember);
 
-			var formattedPaths = propertyPaths
-				.properties
-				.Where(p => !p.StartsWith("global::"))  // Don't include paths that start with global:: (e.g. Enums)
-				.Select(p => $"\"{p}\"");
+					return new(
+						props.properties.Select(p =>
+						{
+							var propertyPath = GetXBindPropertyPathType(p, dataTypeSymbol);
 
-			var pathsArray = formattedPaths.Any()
-				? ", new [] {" + string.Join(", ", formattedPaths) + "}"
-				: "";
+							if (p.StartsWith("global::"))
+							{
+								// Static property binding
+								if (propertyPath is { } propertyPathValue)
+								{
+									return new PropertyPathInfo(propertyPathValue.actualPath, propertyPathValue.firstMember, propertyPathValue.propertyType);
+								}
+							}
+
+							// Instance property binding
+							return new PropertyPathInfo(p, null, propertyPath?.propertyType);
+
+						}).ToArray()
+						, props.hasFunction
+					);
+				}
+				else
+				{
+					return new(Array.Empty<PropertyPathInfo>(), false);
+				}
+			}
+
+			string GetPathArray(PropertyPathResults results)
+			{
+				var formattedPaths = results
+					.Properties
+					.Where(p => p.PropertyType != null)
+					.Select(p => $"\"{p.PropertyPath}\"");
+
+				return formattedPaths.Any()
+					? ", new [] {" + string.Join(", ", formattedPaths) + "}"
+					: "";
+			}
+
+			ISymbol? GetFirstMember(PropertyPathResults results)
+				=> modeMember != "OneTime"
+					&& results.Properties.FirstOrDefault(p => p.FirstMember != null)?.FirstMember is { } firstMember ? firstMember : null;
+
+			string GetPathSource(PropertyPathResults results)
+			{
+				if (GetFirstMember(results) is { } firstMember)
+				{
+					return $"() => {firstMember.ContainingType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}.{firstMember.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)}";
+				}
+				else
+				{
+					return isInsideDataTemplate ? "null" : "this";
+				}
+			}
 
 			if (isInsideDataTemplate)
 			{
@@ -4255,18 +4308,34 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 				var dataType = RewriteNamespaces(dataTypeObject.Value.ToString() ?? "");
 
-				var contextFunction = XBindExpressionParser.Rewrite("___tctx", rawFunction, IsStaticMember);
+				var contextFunction = XBindExpressionParser.Rewrite("___tctx", compatibleFunction, IsStaticMember);
+
+				var propertyPaths = GetPropertyPaths(GetType(dataType));
 
 				string buildBindBack()
 				{
 					if (modeMember == "TwoWay")
 					{
-						if (propertyPaths.hasFunction)
+						if (propertyPaths.Properties.Length != 1)
+						{
+							throw new NotSupportedException($"Invalid x:Bind property path count (This should not happen)");
+						}
+
+						var propertyPathDetail = propertyPaths.Properties[0];
+
+						if (propertyPathDetail.PropertyType is null)
+						{
+							throw new NotSupportedException($"Unable to find the property type for [{propertyPathDetail.PropertyPath}]");
+						}
+
+						if (propertyPaths.HasFunction)
 						{
 							if (!string.IsNullOrWhiteSpace(rawBindBack))
 							{
-								var targetPropertyType = GetXBindPropertyPathType(propertyPaths.properties[0], GetType(dataType)).ToDisplayString(NullableFlowState.None);
-								return $"(___ctx, __value) => {{ if(___ctx is {dataType} ___tctx) {{ ___tctx.{rawBindBack}(({propertyType})__value); }} }}";
+								var targetPropertyType = propertyPathDetail.PropertyType.ToDisplayString(NullableFlowState.None);
+								return $"(___ctx, __value) => {{" +
+									$" if(___ctx is {dataType} ___tctx) {{ ___tctx.{rawBindBack}(({propertyType})__value); }} " +
+									$"}}";
 							}
 							else
 							{
@@ -4275,15 +4344,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						}
 						else
 						{
-							if (propertyPaths.properties.Length == 1)
-							{
-								var targetPropertyType = GetXBindPropertyPathType(propertyPaths.properties[0], GetType(dataType)).ToDisplayString(NullableFlowState.None);
-								return $"(___ctx, __value) => {{ if(___ctx is {dataType} ___tctx) {{ {contextFunction} = ({targetPropertyType})global::Windows.UI.Xaml.Markup.XamlBindingHelper.ConvertValue(typeof({targetPropertyType}), __value); }} }}";
-							}
-							else
-							{
-								throw new NotSupportedException($"Invalid x:Bind property path count (This should not happen)");
-							}
+							var targetPropertyType = propertyPathDetail.PropertyType.ToDisplayString(NullableFlowState.None);
+							return $"(___ctx, __value) => {{ " +
+								$"if(___ctx is {dataType} ___tctx) {{ " +
+								$"{contextFunction} = ({targetPropertyType})global::Windows.UI.Xaml.Markup.XamlBindingHelper.ConvertValue(typeof({targetPropertyType}), __value); " +
+								$"}} }}";
 						}
 					}
 					else
@@ -4292,20 +4357,34 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					}
 				}
 
-				return $".BindingApply(___b => /*defaultBindMode{GetDefaultBindMode()}*/ global::Uno.UI.Xaml.BindingHelper.SetBindingXBindProvider(___b, null, ___ctx => ___ctx is {GetType(dataType)} ___tctx ? (object)({contextFunction}) : null, {buildBindBack()} {pathsArray}))";
+				return $".BindingApply(___b => " +
+					$"/*defaultBindMode{GetDefaultBindMode()}*/ " +
+					$"global::Uno.UI.Xaml.BindingHelper.SetBindingXBindProvider(" +
+					$"___b, " +
+					$"{GetPathSource(propertyPaths)}, " +
+					$"___ctx => ___ctx is {GetType(dataType)} ___tctx ? (object)({contextFunction}) : null, {buildBindBack()} {GetPathArray(propertyPaths)}))";
 			}
 			else
 			{
 				EnsureXClassName();
 
-				var originalRawFunction = rawFunction;
-				rawFunction = string.IsNullOrEmpty(rawFunction) ? "___ctx" : XBindExpressionParser.Rewrite("___tctx", rawFunction, IsStaticMember);
+				var contextalFunction = string.IsNullOrEmpty(compatibleFunction) ? "___ctx" : XBindExpressionParser.Rewrite("___tctx", compatibleFunction, IsStaticMember);
+
+				var propertyPaths = GetPropertyPaths(null);
 
 				string buildBindBack()
 				{
 					if (modeMember == "TwoWay")
 					{
-						if (propertyPaths.hasFunction)
+
+						if (propertyPaths.Properties.Length != 1)
+						{
+							throw new NotSupportedException($"Invalid x:Bind property path count (This should not happen)");
+						}
+
+						var propertyPathDetail = propertyPaths.Properties[0];
+
+						if (propertyPaths.HasFunction)
 						{
 							if (!string.IsNullOrWhiteSpace(rawBindBack))
 							{
@@ -4313,22 +4392,22 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 							}
 							else
 							{
-								throw new NotSupportedException($"Expected BindBack for x:Bind function [{rawFunction}]");
+								throw new NotSupportedException($"Expected BindBack for x:Bind function [{contextalFunction}]");
 							}
 						}
 						else
 						{
-							if (propertyPaths.properties.Length == 1)
+							if (propertyPathDetail.PropertyType is not null)
 							{
-								var targetPropertyType = GetXBindPropertyPathType(propertyPaths.properties[0]).ToDisplayString(NullableFlowState.None);
+								var targetPropertyType = propertyPathDetail.PropertyType.ToDisplayString(NullableFlowState.None);
 								return $"(___ctx, __value) => {{ " +
 									$"if(___ctx is {_xClassName} ___tctx) " +
-									$"{rawFunction} = ({targetPropertyType})global::Windows.UI.Xaml.Markup.XamlBindingHelper.ConvertValue(typeof({targetPropertyType}), __value);" +
+									$"{contextalFunction} = ({targetPropertyType})global::Windows.UI.Xaml.Markup.XamlBindingHelper.ConvertValue(typeof({targetPropertyType}), __value);" +
 									$" }}";
 							}
 							else
 							{
-								throw new NotSupportedException($"Invalid x:Bind property path count (This should not happen)");
+								throw new NotSupportedException($"Unable to find the property type for [{propertyPathDetail.PropertyPath}]");
 							}
 						}
 					}
@@ -4338,51 +4417,107 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					}
 				}
 
-				var bindFunction = $"___ctx is {_xClassName} ___tctx ? (object)({rawFunction}) : null";
-				return $".BindingApply(___b =>  /*defaultBindMode{GetDefaultBindMode()} {originalRawFunction}*/ global::Uno.UI.Xaml.BindingHelper.SetBindingXBindProvider(___b, this, ___ctx => {bindFunction}, {buildBindBack()} {pathsArray}))";
+				var bindFunction = GetFirstMember(propertyPaths) is null
+					? $"___ctx is {_xClassName} ___tctx ? (object)({contextalFunction}) : null"
+					: $"(object)({contextalFunction})";
+
+				return $".BindingApply(___b =>  " +
+					$"/*defaultBindMode{GetDefaultBindMode()} {rawFunction}*/ " +
+					$"global::Uno.UI.Xaml.BindingHelper.SetBindingXBindProvider(" +
+					$"___b," +
+					$"{GetPathSource(propertyPaths)}, " +
+					$"___ctx => {bindFunction}, {buildBindBack()} {GetPathArray(propertyPaths)})" +
+					$")";
 			}
 		}
 
-		private ITypeSymbol GetXBindPropertyPathType(string propertyPath, INamedTypeSymbol? rootType = null)
+		private (ISymbol? firstMember, string actualPath, ITypeSymbol propertyType)? GetXBindPropertyPathType(string propertyPath, INamedTypeSymbol? rootType = null)
 		{
+            if (!propertyPath.HasValue())
+            {
+                return null;
+            }
+
 			ITypeSymbol currentType = rootType
 				?? _xClassName?.Symbol
 				?? throw new InvalidCastException($"Unable to find type {_xClassName}");
 
-			var parts = propertyPath.Split('.');
+			var parts = propertyPath
+				.Replace("global::", "")
+				.Split('.');
 
-			foreach (var part in parts)
+			if (propertyPath.StartsWith("global::"))
 			{
-				if (currentType.GetAllMembersWithName(part).FirstOrDefault() is ISymbol member)
-				{
-					var propertySymbol = member as IPropertySymbol;
-					var fieldSymbol = member as IFieldSymbol;
+				var current = parts[0];
 
-					if (propertySymbol != null || fieldSymbol != null)
+				for (int i = 1; i < parts.Length; i++)
+				{
+					if (FindType(current) is { } baseType)
 					{
-						currentType = propertySymbol?.Type ?? fieldSymbol?.Type!;
+						var resolvedPropertyPath = GetXBindPropertyPathType(string.Join(".", parts.Skip(i)), baseType);
+
+						if (resolvedPropertyPath?.propertyType is { } propertyType)
+						{
+							if (i < parts.Length)
+							{
+								var firstMember = baseType
+									.GetAllMembersWithName(parts[i])
+									.Where(t => t is IFieldSymbol || t is IPropertySymbol)
+									.FirstOrDefault();
+
+								return (firstMember, string.Join(".", parts.Skip(i + 1)), propertyType);
+							}
+							else
+							{
+								return (null, propertyPath, propertyType);
+							}
+						}
+						else
+						{
+							return null;
+						}
+					}
+
+					current += "." + parts[i];
+				}
+
+				throw new InvalidOperationException($"Cannot determine the property type for path {propertyPath}");
+			}
+			else
+			{
+				foreach (var part in parts)
+				{
+					if (currentType.GetAllMembersWithName(part).FirstOrDefault() is ISymbol member)
+					{
+						var propertySymbol = member as IPropertySymbol;
+						var fieldSymbol = member as IFieldSymbol;
+
+						if (propertySymbol != null || fieldSymbol != null)
+						{
+							currentType = propertySymbol?.Type ?? fieldSymbol?.Type!;
+						}
+						else
+						{
+							throw new InvalidOperationException($"Cannot use member [{part}] of type [{member}], as it is not a property of a field");
+						}
+					}
+					else if (FindSubElementByName(_fileDefinition.Objects.First(), part) is XamlObjectDefinition elementByName)
+					{
+						currentType = GetType(elementByName.Type);
+
+						if (currentType == null)
+						{
+							throw new InvalidOperationException($"Unable to find member [{part}] on type [{elementByName.Type}]");
+						}
 					}
 					else
 					{
-						throw new InvalidOperationException($"Cannot use member [{part}] of type [{member}], as it is not a property of a field");
+						throw new InvalidOperationException($"Unable to find member [{part}] on type [{currentType}]");
 					}
 				}
-				else if (FindSubElementByName(_fileDefinition.Objects.First(), part) is XamlObjectDefinition elementByName)
-				{
-					currentType = GetType(elementByName.Type);
 
-					if (currentType == null)
-					{
-						throw new InvalidOperationException($"Unable to find member [{part}] on type [{elementByName.Type}]");
-					}
-				}
-				else
-				{
-					throw new InvalidOperationException($"Unable to find member [{part}] on type [{currentType}]");
-				}
+				return (rootType, propertyPath, currentType);
 			}
-
-			return currentType;
 		}
 
 		private bool IsStaticMember(string fullMemberName)

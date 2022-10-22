@@ -760,6 +760,34 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Data.xBindTests
 		}
 
 		[TestMethod]
+		public void When_Static_Property()
+		{
+			var SUT = new Binding_Static_Property();
+
+			SUT.ForceLoaded();
+
+			var tb01 = SUT.FindName("tb01") as TextBlock;
+
+			Assert.AreEqual(Binding_Static_Property_Class.VM.MyProperty, tb01.Tag);
+		}
+
+		[TestMethod]
+		public void When_Static_Property_Update()
+		{
+			var SUT = new Binding_Static_Property_Update();
+
+			SUT.ForceLoaded();
+
+			var tb01 = SUT.FindName("tb01") as TextBlock;
+
+			Assert.AreEqual(Binding_Static_Property_Update_Class.VM.MyProperty, tb01.Text);
+
+			Binding_Static_Property_Update_Class.VM.MyProperty = "42";
+
+			Assert.AreEqual(Binding_Static_Property_Update_Class.VM.MyProperty, tb01.Text);
+		}
+
+		[TestMethod]
 		public void When_Event_Nested()
 		{
 			var SUT = new Binding_Event_Nested();

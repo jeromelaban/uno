@@ -41,6 +41,16 @@ namespace Windows.UI.Xaml.Data
 		private object _source;
 
 		/// <summary>
+		/// 
+		/// </summary>
+		private Func<object> _compiledSourceSelector;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private object _compiledSource;
+
+		/// <summary>
 		/// Storage for the FallbackValue property
 		/// </summary>
 		private object _fallbackValue;
@@ -193,9 +203,9 @@ namespace Windows.UI.Xaml.Data
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public object CompiledSource
 #if UNO_HAS_UIELEMENT_IMPLICIT_PINNING
-		{ get => _compiledSource?.Target; set => _compiledSource = WeakReferencePool.RentWeakReference(this, value); }
+		{ get => _compiledSourceSelector?.Invoke() ?? _compiledSource?.Target; set => _compiledSource = WeakReferencePool.RentWeakReference(this, value); }
 #else
-		{ get; set; }
+		{ get => _compiledSourceSelector?.Invoke() ?? _compiledSource; set => _compiledSource = value; }
 #endif
 
 
@@ -217,12 +227,24 @@ namespace Windows.UI.Xaml.Data
 		/// </summary>
 		internal string[] XBindPropertyPaths { get; private set; }
 
-		internal void SetBindingXBindProvider(object compiledSource, Func<object, object> xBindSelector, Action<object, object> xBindBack, string[] propertyPaths = null)
+		internal Binding SetBindingXBindProvider(object compiledSource, Func<object, object> xBindSelector, Action<object, object> xBindBack, string[] propertyPaths = null)
 		{
 			CompiledSource = compiledSource;
 			XBindSelector = xBindSelector;
 			XBindPropertyPaths = propertyPaths;
 			XBindBack = xBindBack;
+
+			return this;
+		}
+
+		internal Binding SetBindingXBindProvider(Func<object> compiledSourceSelector, Func<object, object> xBindSelector, Action<object, object> xBindBack, string[] propertyPaths = null)
+		{
+			_compiledSourceSelector = compiledSourceSelector;
+			XBindSelector = xBindSelector;
+			XBindPropertyPaths = propertyPaths;
+			XBindBack = xBindBack;
+
+			return this;
 		}
 
 		/// <summary>
