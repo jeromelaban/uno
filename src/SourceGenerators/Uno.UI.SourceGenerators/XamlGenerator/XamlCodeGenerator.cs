@@ -22,8 +22,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 	[Generator]
 	public partial class XamlCodeGenerator : ISourceGenerator
 	{
-		private readonly GenerationRunInfoManager _generationRunInfoManager = new GenerationRunInfoManager();
 		private readonly object _gate = new();
+		private static int _runIndex;
 
 		public void Initialize(GeneratorInitializationContext context)
 		{
@@ -47,10 +47,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			{
 				if (PlatformHelper.IsValidPlatform(context))
 				{
-					_generationRunInfoManager.Update(context);
-
 					var gen = new XamlCodeGeneration(context);
-					var generatedTrees = gen.Generate(_generationRunInfoManager.CreateRun());
+					var generatedTrees = gen.Generate(_runIndex++);
 
 					foreach (var tree in generatedTrees)
 					{

@@ -109,7 +109,7 @@ namespace Uno.UI.Samples.Tests
 		}
 
 		static void FailCore(string stackTrace, string message, string detailMessage, string errorSource)
-			=> throw new Exception($"{message} ({detailMessage}) {stackTrace}");
+			=> throw new Exception($"9{message} ({detailMessage}) {stackTrace}");
 
 		private void OnSampleChanging(object sender, EventArgs e)
 		{

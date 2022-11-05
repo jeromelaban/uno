@@ -35,7 +35,7 @@
 					x:Name="runButton"
 					Grid.Column="0"
 					not_skia:Content="▶ Run"
-					skia:Content="Run"
+					skia:Content="Run106"
 					Click="OnRunTests"
 					Margin="0,0,4,0"/>
 				<Button
