@@ -264,7 +264,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return link;
 		}
 
-		public List<KeyValuePair<string, string>> Generate(GenerationRunInfo generationRunInfo)
+		public List<KeyValuePair<string, string>> Generate(int runIndex)
 		{
 			var stopwatch = Stopwatch.StartNew();
 
@@ -345,7 +345,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									isLazyVisualStateManagerEnabled: _isLazyVisualStateManagerEnabled,
 									generatorContext: _generatorContext,
 									xamlResourcesTrimming: _xamlResourcesTrimming,
-									generationRunFileInfo: generationRunInfo.GetRunFileInfo(file.UniqueID),
+									runIndex: runIndex,
 									xamlTypeToXamlTypeBaseMap: xamlTypeToXamlTypeBaseMap
 								)
 								.GenerateFile()
