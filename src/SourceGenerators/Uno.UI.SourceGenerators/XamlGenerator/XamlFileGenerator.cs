@@ -3529,7 +3529,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						var isInsideFrameworkTemplate = IsMemberInsideFrameworkTemplate(objectDefinition).isInside;
 						if (!_isTopLevelDictionary || isInsideFrameworkTemplate)
 						{
-							writer.AppendLineIndented($"this._component_{CurrentScope.ComponentCount} = {closureName};");
+							writer.AppendLineIndented($"__that._component_{CurrentScope.ComponentCount} = {closureName};");
 
 							if (HasMarkupExtensionNeedingComponent(objectDefinition)
 								&& IsDependencyObject(objectDefinition)
@@ -3538,7 +3538,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 							{
 								// Ensure that the namescope is property propagated to instances
 								// that are not UIElements in order for ElementName to resolve properly
-								writer.AppendLineIndented($"global::Windows.UI.Xaml.NameScope.SetNameScope(this._component_{CurrentScope.ComponentCount}, __nameScope);");
+								writer.AppendLineIndented($"global::Windows.UI.Xaml.NameScope.SetNameScope(__that._component_{CurrentScope.ComponentCount}, __nameScope);");
 							}
 
 							AddComponentForCurrentScope(objectDefinition);
@@ -4348,7 +4348,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				}
 
 				var bindFunction = $"___ctx is {_xClassName} ___tctx ? (object)({rawFunction}) : null";
-				return $".BindingApply(___b =>  /*defaultBindMode{GetDefaultBindMode()} {originalRawFunction}*/ global::Uno.UI.Xaml.BindingHelper.SetBindingXBindProvider(___b, this, ___ctx => {bindFunction}, {buildBindBack()} {pathsArray}))";
+				return $".BindingApply(___b =>  /*defaultBindMode{GetDefaultBindMode()} {originalRawFunction}*/ global::Uno.UI.Xaml.BindingHelper.SetBindingXBindProvider(___b, __that, ___ctx => {bindFunction}, {buildBindBack()} {pathsArray}))";
 			}
 		}
 
