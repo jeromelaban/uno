@@ -17,6 +17,9 @@
 	<ItemGroup>
 		<Compile Remove="**\*.xaml.cs" />
 		<None Include="**\*.xaml.cs" />
+
+		<Compile Include="..\..\Uno.UI.RemoteControl.Server.Processors\HotReload\MetadataUpdates\WatchHotreloadService.cs" Link="MetadataUpdates\%(RecursiveDir)%(FileName)%(Extension)" />
+		<Compile Include="..\..\Uno.UI.RemoteControl.Server.Processors\HotReload\MetadataUpdates\IReporter.cs" Link="MetadataUpdates\%(RecursiveDir)%(FileName)%(Extension)" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -29,6 +32,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CodeAnalysis" Version="4.4.0-2.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Features" Version="4.4.0-2.final" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Features" Version="4.4.0-2.final" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.SourceGenerators.Testing.MSTest" Version="1.1.1" />
 	</ItemGroup>
 
