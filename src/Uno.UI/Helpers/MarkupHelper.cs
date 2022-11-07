@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Uno.Collections;
 using Uno.UI.DataBinding;
 using Uno.UI.Xaml.Markup;
 using Windows.ApplicationModel.Resources;
@@ -81,5 +82,18 @@ namespace Uno.UI.Helpers
 				Name = propertyName,
 				Type = propertyType,
 			});
+
+
+		private static WeakAttachedDictionary<object, string> _properties = new();
+
+		public static void SetElementProperty<TInstance>(object target, string propertyName, TInstance value)
+		{
+			_properties.SetValue(target, propertyName, value);
+		}
+		
+		public static TInstance? GetElementProperty<TInstance>(object target, string propertyName)
+		{
+			return _properties.GetValue<TInstance>(target, propertyName);
+		}
 	}
 }

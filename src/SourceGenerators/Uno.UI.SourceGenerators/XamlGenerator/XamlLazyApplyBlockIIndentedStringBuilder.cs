@@ -47,7 +47,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				}
 				else
 				{
-					blockDisposable = _source.BlockInvariant(".GenericApply({1}({0} => ", _closureName, delegateString);
+					blockDisposable = _source.BlockInvariant(".GenericApply(__that, __nameScope, {1}(({0}, __that, __nameScope) => ", _closureName, delegateString);
 				}
 
 				_applyDisposable = new DisposableAction(() =>
