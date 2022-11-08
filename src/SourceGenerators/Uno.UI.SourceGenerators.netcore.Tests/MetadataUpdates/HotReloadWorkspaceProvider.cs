@@ -4,11 +4,13 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.CodeAnalysis.Text;
 using Uno.UI.RemoteControl.Host.HotReload.MetadataUpdates;
 using Uno.UI.SourceGenerators.Tests.Verifiers;
 
@@ -21,13 +23,15 @@ internal class HotReloadWorkspace
 	const string CapsRaw = "Baseline AddMethodToExistingType AddStaticFieldToExistingType AddInstanceFieldToExistingType NewTypeDefinition ChangeCustomAttributes UpdateParameters";
 
 	private readonly string _baseWorkFolder;
+	private readonly bool _isDebugCompilation;
 	private Dictionary<string, Dictionary<string, string>> _sourceFiles = new();
 	private Dictionary<string, Dictionary<string, string>> _additionalFiles = new();
 	private Solution? _currentSolution;
 	private WatchHotReloadService? _hotReloadService;
 
-	public HotReloadWorkspace()
+	public HotReloadWorkspace(bool isDebugCompilation)
 	{
+		_isDebugCompilation = isDebugCompilation;
 		_baseWorkFolder = Path.Combine(Path.GetDirectoryName(typeof(HotReloadWorkspace).Assembly.Location)!, "work");
 		Directory.CreateDirectory(_baseWorkFolder);
 
@@ -115,9 +119,13 @@ internal class HotReloadWorkspace
 		};
 
 		var currentSolution = workspace.CurrentSolution;
-		var references = BuildFrameworkReferences();
+		var frameworkReferences = BuildFrameworkReferences();
+		var references = BuildUnoReferences().Concat(frameworkReferences);
+		
+		var generatorReference = new MyGeneratorReference(
+			ImmutableArray.Create<ISourceGenerator>(new XamlGenerator.XamlCodeGenerator()));
 
-		foreach(var projectName in _additionalFiles.Keys.Concat(_sourceFiles.Keys).Distinct())
+		foreach (var projectName in _additionalFiles.Keys.Concat(_sourceFiles.Keys).Distinct())
 		{
 			var projectInfo = ProjectInfo.Create(
 							ProjectId.CreateNewId(),
@@ -127,7 +135,14 @@ internal class HotReloadWorkspace
 							language: LanguageNames.CSharp,
 							filePath: Path.Combine(_baseWorkFolder, projectName + "csproj"),
 							outputFilePath: _baseWorkFolder,
-							metadataReferences: references);
+							metadataReferences: references,
+							compilationOptions: new CSharpCompilationOptions(
+								OutputKind.DynamicallyLinkedLibrary,
+								optimizationLevel: OptimizationLevel.Debug,
+								allowUnsafe: true,
+								nullableContextOptions: NullableContextOptions.Enable,
+								assemblyIdentityComparer: DesktopAssemblyIdentityComparer.Default),
+							analyzerReferences: new[] { generatorReference });
 
 			projectInfo = projectInfo
 				.WithCompilationOutputInfo(
@@ -155,21 +170,47 @@ internal class HotReloadWorkspace
 			{
 				foreach (var (fileName, content) in additionalFiles)
 				{
-					var documentId = DocumentId.CreateNewId(currentSolution.Projects.First().Id);
+					var documentId = DocumentId.CreateNewId(project.Id);
 					currentSolution = currentSolution.AddAdditionalDocument(
 						documentId,
 						fileName,
 						CSharpSyntaxTree.ParseText(content, encoding: Encoding.UTF8).GetText(),
 						filePath: Path.Combine(_baseWorkFolder, project.Name, fileName));
 				}
+
+				if (additionalFiles.Any())
+				{
+					// Build the analyzer document additional data information
+					var analyzerDocumentId = DocumentId.CreateNewId(project.Id);
+
+					var globalConfigBuilder = new StringBuilder($"""
+						is_global = true
+						# For now, there is no need to customize these for each test.
+						build_property.MSBuildProjectFullPath = C:\Project\{project.Name}.csproj
+						build_property.RootNamespace = {project.Name}
+						build_property.XamlSourceGeneratorTracingFolder = c:\Temp\xaml-gen
+						build_property.Configuration = {(_isDebugCompilation ? "Debug" : "Release")}
+						
+						"""); ;
+
+					foreach (var (fileName, content) in additionalFiles.Where(k => k.Key.EndsWith(".xaml")))
+					{
+						globalConfigBuilder.Append($"""
+							[{Path.Combine(_baseWorkFolder, project.Name, fileName).Replace("\\","/")}]
+							build_metadata.AdditionalFiles.SourceItemGroup = Page
+							""");
+					}
+
+					currentSolution = currentSolution.AddAnalyzerConfigDocument(
+						analyzerDocumentId,
+						name: ".globalconfig",
+						filePath: "/.globalconfig",
+						text: SourceText.From(globalConfigBuilder.ToString())
+					); ;	
+				}
 			}
 		}
-
-		var generatorReference = new MyGeneratorReference(ImmutableArray.Create<ISourceGenerator>(new XamlGenerator.XamlCodeGenerator()));
-
-		//currentSolution = currentSolution.Projects.First().WithAnalyzerReferences(new[] {
-		//	generatorReference
-		//}).Solution;
+	
 
 		// Materialize the first build
 		foreach (var p in currentSolution.Projects)
@@ -185,7 +226,7 @@ internal class HotReloadWorkspace
 			{
 				var errors = c.GetDiagnostics().Where(d => d.DefaultSeverity == DiagnosticSeverity.Error);
 
-				throw new InvalidOperationException($"Compilation errors: {string.Join(",", errors)}");
+				throw new InvalidOperationException($"Compilation errors: {string.Join("\n", errors)}");
 			}
 			
 			var emitResult = c.Emit(
@@ -194,7 +235,7 @@ internal class HotReloadWorkspace
 
 			if (!emitResult.Success)
 			{
-				throw new InvalidOperationException($"Emit errors: {string.Join(",", emitResult.Diagnostics)}");
+				throw new InvalidOperationException($"Emit errors: {string.Join("\n", emitResult.Diagnostics)}");
 			}
 		}
 
@@ -222,6 +263,40 @@ internal class HotReloadWorkspace
 				.Where(f => !f.Contains(".Native", StringComparison.OrdinalIgnoreCase))
 				.Select(f => MetadataReference.CreateFromFile(f))
 				.ToArray();
+
+	private static PortableExecutableReference[] BuildUnoReferences()
+	{
+		var availableTargets = new[] {
+			Path.Combine("Uno.UI.Skia", "Debug", "netstandard2.0"),
+			Path.Combine("Uno.UI.Skia", "Debug", "net7.0"),
+			Path.Combine("Uno.UI.Reference", "Debug", "netstandard2.0"),
+			Path.Combine("Uno.UI.Reference", "Debug", "net7.0"),
+		};
+
+		var unoUIBase = Path.Combine(
+			Path.GetDirectoryName(typeof(HotReloadWorkspace).Assembly.Location)!,
+			"..",
+			"..",
+			"..",
+			"..",
+			"..",
+			"Uno.UI",
+			"bin"
+			);
+
+		var unoTarget = availableTargets
+			.Select(t => Path.Combine(unoUIBase, t, "Uno.UI.dll"))
+			.FirstOrDefault(File.Exists);
+
+		if(unoTarget is null)
+		{
+			throw new InvalidOperationException($"Unable to find Uno.UI.dll in {string.Join(",", availableTargets)}");
+		}
+
+		return Directory.GetFiles(Path.GetDirectoryName(unoTarget)!, "*.dll")
+					.Select(f => MetadataReference.CreateFromFile(f))
+					.ToArray();
+	}
 }
 
 sealed class MyGeneratorReference : AnalyzerReference

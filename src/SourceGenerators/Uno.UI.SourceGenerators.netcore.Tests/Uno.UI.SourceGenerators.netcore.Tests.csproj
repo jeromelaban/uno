@@ -7,6 +7,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(MSBuildRuntimeType)'=='Core' or '$(BuildingInsideVisualStudio)'=='true'">
+		<TargetFrameworks>$(TargetFrameworks);net7.0</TargetFrameworks>
+	</PropertyGroup>
 
 	<ItemGroup Label="GlobalUsings">
 		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
@@ -19,6 +23,32 @@
 		<None Include="**\*.xaml.cs" />
 		<None Remove="MetadataUpdateTests\Scenarios\When_Empty\1\p1\_._" />
 		<None Remove="MetadataUpdateTests\Scenarios\When_Empty\_._" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\0\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\0\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\2\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\2\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\1\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\1\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add\0\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add\0\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add\1\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add\1\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property\0\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property\0\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property\1\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property\1\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_xBind_Event_Add\0\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_xBind_Event_Add\0\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_xBind_Event_Add\1\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_xBind_Event_Add\1\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_Text_Change\0\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_Text_Change\0\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_Text_Change\1\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_Text_Change\1\p1\MainPage.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_No_Update\0\p1\File1.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_No_Update\0\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_No_Update\1\p1\MainPage.xaml" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_No_Update\1\p1\MainPage.xaml.cs" />
 
 		<Compile Include="..\..\Uno.UI.RemoteControl.Server.Processors\HotReload\MetadataUpdates\WatchHotreloadService.cs" Link="MetadataUpdates\%(RecursiveDir)%(FileName)%(Extension)" />
 		<Compile Include="..\..\Uno.UI.RemoteControl.Server.Processors\HotReload\MetadataUpdates\IReporter.cs" Link="MetadataUpdates\%(RecursiveDir)%(FileName)%(Extension)" />
@@ -59,6 +89,58 @@
 		<Compile Remove="MetadataUpdateTests\Scenarios\**" />
 		<Page Remove="MetadataUpdateTests\Scenarios\**" />
 		<Content Include="MetadataUpdateTests\Scenarios\**" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\0\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\2\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add_Twice\1\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add\0\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_xName_Add\1\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property\0\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property\1\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_xBind_Event_Add\0\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_xBind_Event_Add\1\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_Text_Change\0\p1\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Single_Text_Change\1\p1\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_No_Update\0\p1\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
+	  <Content Update="MetadataUpdateTests\Scenarios\When_Simple_Xaml_No_Update\1\p1\MainPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Content>
 	</ItemGroup>
 
 	<Import Project="..\Uno.UI.SourceGenerators.Tests.Shared\Uno.UI.SourceGenerators.Tests.Shared.projitems" Label="Shared" />
