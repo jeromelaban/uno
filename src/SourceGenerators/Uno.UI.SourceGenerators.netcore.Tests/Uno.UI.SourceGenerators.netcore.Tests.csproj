@@ -17,9 +17,12 @@
 	<ItemGroup>
 		<Compile Remove="**\*.xaml.cs" />
 		<None Include="**\*.xaml.cs" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Empty\1\p1\_._" />
+		<None Remove="MetadataUpdateTests\Scenarios\When_Empty\_._" />
 
 		<Compile Include="..\..\Uno.UI.RemoteControl.Server.Processors\HotReload\MetadataUpdates\WatchHotreloadService.cs" Link="MetadataUpdates\%(RecursiveDir)%(FileName)%(Extension)" />
 		<Compile Include="..\..\Uno.UI.RemoteControl.Server.Processors\HotReload\MetadataUpdates\IReporter.cs" Link="MetadataUpdates\%(RecursiveDir)%(FileName)%(Extension)" />
+		<Compile Include="MetadataUpdateTests\Scenarios\When_Empty\_._" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -50,6 +53,12 @@
 	  <None Update="Windows_UI_Xaml_Controls\GridTests\Controls\Grid_Uses_Both_Syntaxes.xaml.cs">
 	    <DependentUpon>Grid_Uses_Both_Syntaxes.xaml</DependentUpon>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="MetadataUpdateTests\Scenarios\**" />
+		<Page Remove="MetadataUpdateTests\Scenarios\**" />
+		<Content Include="MetadataUpdateTests\Scenarios\**" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 
 	<Import Project="..\Uno.UI.SourceGenerators.Tests.Shared\Uno.UI.SourceGenerators.Tests.Shared.projitems" Label="Shared" />

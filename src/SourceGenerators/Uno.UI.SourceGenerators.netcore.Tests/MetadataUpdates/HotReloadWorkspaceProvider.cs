@@ -10,28 +10,95 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Uno.UI.RemoteControl.Host.HotReload.MetadataUpdates;
+using Uno.UI.SourceGenerators.Tests.Verifiers;
 
 namespace Uno.UI.SourceGenerators.MetadataUpdates;
 
-internal class HotReloadWorkspaceProvider
+internal class HotReloadWorkspace
 {
+	public record UpdateResult(ImmutableArray<Diagnostic> Diagnostics, ImmutableArray<WatchHotReloadService.Update> MetadataUpdates);
 
-	static HotReloadWorkspaceProvider()
+	const string CapsRaw = "Baseline AddMethodToExistingType AddStaticFieldToExistingType AddInstanceFieldToExistingType NewTypeDefinition ChangeCustomAttributes UpdateParameters";
+
+	private readonly string _baseWorkFolder;
+	private Dictionary<string, Dictionary<string, string>> _sourceFiles = new();
+	private Dictionary<string, Dictionary<string, string>> _additionalFiles = new();
+	private Solution? _currentSolution;
+	private WatchHotReloadService? _hotReloadService;
+
+	public HotReloadWorkspace()
 	{
-		RegisterAssemblyLoader();
+		_baseWorkFolder = Path.Combine(Path.GetDirectoryName(typeof(HotReloadWorkspace).Assembly.Location)!, "work");
+		Directory.CreateDirectory(_baseWorkFolder);
+
+		Environment.SetEnvironmentVariable("Microsoft_CodeAnalysis_EditAndContinue_LogDir", _baseWorkFolder);
 	}
 
-	public record Document(string Name, string Content);
-
-	public static async Task CreateProject(
-		TaskCompletionSource<(AdhocWorkspace, WatchHotReloadService)> taskCompletionSource,
-		IReporter reporter,
-		Document[] csFiles,
-		Document[] xamlFiles,
-		CancellationToken cancellationToken)
+	public void SetSourceFile(string project, string fileName, string content)
 	{
-		var capsRaw = "Baseline AddMethodToExistingType AddStaticFieldToExistingType AddInstanceFieldToExistingType NewTypeDefinition ChangeCustomAttributes UpdateParameters";
-		var caps = capsRaw.Split(" ");
+		if (_sourceFiles.TryGetValue(project, out var files))
+		{
+			files[fileName] = content;
+		}
+		else
+		{
+			_sourceFiles[project] = new() {
+				[fileName] = content
+			};
+		}
+		var basePath = Path.Combine(_baseWorkFolder, project);
+		var filePath = Path.Combine(basePath, fileName);
+		Directory.CreateDirectory(basePath);
+		File.WriteAllText(filePath, content, Encoding.UTF8);
+
+		if(_currentSolution is not null)
+		{
+			var documents = _currentSolution
+				.Projects
+				.SelectMany(p => p.Documents)
+				.First(d => d.FilePath == filePath);
+
+			_currentSolution = _currentSolution.WithDocumentText(
+				documents.Id,
+				CSharpSyntaxTree.ParseText(content, encoding: Encoding.UTF8).GetText());
+		}
+	}
+
+	public void SetAdditionalFile(string project, string fileName, string content)
+	{
+		if (_additionalFiles.TryGetValue(project, out var files))
+		{
+			files[fileName] = content;
+		}
+		else
+		{
+			_additionalFiles[project] = new()
+			{
+				[fileName] = content
+			};
+		}
+		
+		var basePath = Path.Combine(_baseWorkFolder, project);
+		Directory.CreateDirectory(basePath);
+		var filePath = Path.Combine(basePath, fileName);
+		File.WriteAllText(filePath, content, Encoding.UTF8);
+
+		if (_currentSolution is not null)
+		{
+			var documents = _currentSolution
+				.Projects
+				.SelectMany(p => p.AdditionalDocuments)
+				.First(d => d.FilePath == filePath);
+
+			_currentSolution = _currentSolution.WithAdditionalDocumentText(
+				documents.Id,
+				CSharpSyntaxTree.ParseText(content, encoding: Encoding.UTF8).GetText());
+		}
+	}
+
+	public async Task Initialize(CancellationToken ct)
+	{
+		TaskCompletionSource<bool> taskCompletionSource = new();
 
 		var workspace = new AdhocWorkspace();
 
@@ -39,85 +106,77 @@ internal class HotReloadWorkspaceProvider
 		{
 			if (diag.Diagnostic.Kind == WorkspaceDiagnosticKind.Warning)
 			{
-				reporter.Verbose($"MSBuildWorkspace warning: {diag.Diagnostic}");
+				Console.WriteLine($"MSBuildWorkspace warning: {diag.Diagnostic}");
 			}
 			else
 			{
-				if (!diag.Diagnostic.ToString().StartsWith("[Failure] Found invalid data while decoding", StringComparison.Ordinal))
-				{
-					taskCompletionSource.TrySetException(new InvalidOperationException($"Failed to create MSBuildWorkspace: {diag.Diagnostic}"));
-				}
+				taskCompletionSource.TrySetException(new InvalidOperationException($"Failed to create MSBuildWorkspace: {diag.Diagnostic}"));
 			}
 		};
 
 		var currentSolution = workspace.CurrentSolution;
-		
-		var projectId = ProjectId.CreateNewId();
-		var docId = DocumentId.CreateNewId(projectId);
+		var references = BuildFrameworkReferences();
 
-		var references = Directory.GetFiles(Path.GetDirectoryName(typeof(object).Assembly.Location)!, "System*.dll")
-			.Where(f => !f.Contains(".Native", StringComparison.OrdinalIgnoreCase))
-			.Select(f => MetadataReference.CreateFromFile(f))
-			.ToArray();
-
-		var baseWorkFolder = Path.Combine(Path.GetDirectoryName(typeof(HotReloadWorkspaceProvider).Assembly.Location)!, "work");
-		Directory.CreateDirectory(baseWorkFolder);
-		
-		Environment.SetEnvironmentVariable("Microsoft_CodeAnalysis_EditAndContinue_LogDir", baseWorkFolder);
-
-		var projectInfo = ProjectInfo.Create(
-					projectId,
-					VersionStamp.Default,
-					name: "project1",
-					assemblyName: "project1",
-					language: LanguageNames.CSharp,
-					filePath: Path.Combine(baseWorkFolder, "project1.csproj"),
-					outputFilePath: baseWorkFolder,
-					metadataReferences: references);
-
-		projectInfo = projectInfo
-			.WithCompilationOutputInfo(
-				projectInfo.CompilationOutputInfo.WithAssemblyPath(Path.Combine(baseWorkFolder, "project1.exe")));
-
-		currentSolution = workspace.AddProject(projectInfo).Solution;
-
-		foreach (var document in csFiles)
+		foreach(var projectName in _additionalFiles.Keys.Concat(_sourceFiles.Keys).Distinct())
 		{
-			var documentId = DocumentId.CreateNewId(currentSolution.Projects.First().Id);
-			currentSolution = currentSolution.AddDocument(
-				documentId,
-				document.Name,
-				CSharpSyntaxTree.ParseText(document.Content, encoding: Encoding.UTF8).GetText(),
-				filePath: Path.Combine(baseWorkFolder, document.Name)
-			);
+			var projectInfo = ProjectInfo.Create(
+							ProjectId.CreateNewId(),
+							VersionStamp.Default,
+							name: projectName,
+							assemblyName: projectName,
+							language: LanguageNames.CSharp,
+							filePath: Path.Combine(_baseWorkFolder, projectName + "csproj"),
+							outputFilePath: _baseWorkFolder,
+							metadataReferences: references);
 
-			File.WriteAllText(Path.Combine(baseWorkFolder, document.Name), document.Content, Encoding.UTF8);
+			projectInfo = projectInfo
+				.WithCompilationOutputInfo(
+					projectInfo.CompilationOutputInfo.WithAssemblyPath(Path.Combine(_baseWorkFolder, projectName + ".exe")));
+
+			var project = workspace.AddProject(projectInfo);
+			currentSolution = project.Solution;
+
+			if (_sourceFiles.TryGetValue(projectName, out var sourceFiles))
+			{
+				foreach (var (fileName, content) in sourceFiles)
+				{
+					var documentId = DocumentId.CreateNewId(project.Id);
+
+					currentSolution = currentSolution.AddDocument(
+						documentId,
+						fileName,
+						CSharpSyntaxTree.ParseText(content, encoding: Encoding.UTF8).GetText(),
+						filePath: Path.Combine(_baseWorkFolder, project.Name, fileName)
+					);
+				}
+			}
+
+			if (_additionalFiles.TryGetValue(projectName, out var additionalFiles))
+			{
+				foreach (var (fileName, content) in additionalFiles)
+				{
+					var documentId = DocumentId.CreateNewId(currentSolution.Projects.First().Id);
+					currentSolution = currentSolution.AddAdditionalDocument(
+						documentId,
+						fileName,
+						CSharpSyntaxTree.ParseText(content, encoding: Encoding.UTF8).GetText(),
+						filePath: Path.Combine(_baseWorkFolder, project.Name, fileName));
+				}
+			}
 		}
 
-		foreach (var document in xamlFiles)
-		{
-			var documentId = DocumentId.CreateNewId(currentSolution.Projects.First().Id);
-			currentSolution = currentSolution.AddAdditionalDocument(documentId, document.Name, document.Content);
-		}
-		
 		var generatorReference = new MyGeneratorReference(ImmutableArray.Create<ISourceGenerator>(new XamlGenerator.XamlCodeGenerator()));
 
 		//currentSolution = currentSolution.Projects.First().WithAnalyzerReferences(new[] {
 		//	generatorReference
 		//}).Solution;
 
-		workspace.TryApplyChanges(currentSolution);
-
-		// Read the documents to memory
-		await Task.WhenAll(
-			currentSolution.Projects.SelectMany(p => p.Documents.Concat(p.AdditionalDocuments)).Select(d => d.GetTextAsync(cancellationToken)));
-
-		// Warm up the compilation. This would help make the deltas for first edit appear much more quickly
+		// Materialize the first build
 		foreach (var p in currentSolution.Projects)
 		{
-			var c = await p.GetCompilationAsync(cancellationToken);
+			var c = await p.GetCompilationAsync(ct);
 
-			if(c is null)
+			if (c is null)
 			{
 				throw new InvalidOperationException($"Failed to get the compilation for {p}");
 			}
@@ -128,106 +187,41 @@ internal class HotReloadWorkspaceProvider
 
 				throw new InvalidOperationException($"Compilation errors: {string.Join(",", errors)}");
 			}
+			
+			var emitResult = c.Emit(
+				p.CompilationOutputInfo.AssemblyPath!,
+				pdbPath: Path.ChangeExtension(p.CompilationOutputInfo.AssemblyPath, ".pdb"));
 
-			var e = c.Emit(projectInfo.CompilationOutputInfo.AssemblyPath!, pdbPath: Path.ChangeExtension(projectInfo.CompilationOutputInfo.AssemblyPath, ".pdb"));
+			if (!emitResult.Success)
+			{
+				throw new InvalidOperationException($"Emit errors: {string.Join(",", emitResult.Diagnostics)}");
+			}
 		}
 
-		var hotReloadService = new WatchHotReloadService(workspace.Services, caps);
-		await hotReloadService.StartSessionAsync(currentSolution, cancellationToken);
+		var metadataUpdateCaps = CapsRaw.Split(" ");
+		var hotReloadService = new WatchHotReloadService(workspace.Services, metadataUpdateCaps);
+		await hotReloadService.StartSessionAsync(currentSolution, ct);
 
-		taskCompletionSource.TrySetResult((workspace, hotReloadService));
+		_currentSolution = currentSolution;
+		_hotReloadService = hotReloadService;
 	}
 
-	private static void RegisterAssemblyLoader()
+	public async Task<UpdateResult> Update()
 	{
-		// Force assembly loader to consider siblings, when running in a separate appdomain.
-		ResolveEventHandler localResolve = (s, e) =>
+		if(_hotReloadService is null || _currentSolution is null)
 		{
-			if (e.Name == "Mono.Runtime")
-			{
-				// Roslyn 2.0 and later checks for the presence of the Mono runtime
-				// through this check.
-				return null;
-			}
+			throw new InvalidOperationException($"Initialize must be called before Update");
+		}
 
-			var assembly = new AssemblyName(e.Name);
-			var basePath = Path.GetDirectoryName(new Uri(typeof(HotReloadWorkspaceProvider).Assembly.Location).LocalPath);
+		var (updates, diagnostics) = await _hotReloadService.EmitSolutionUpdateAsync(_currentSolution, CancellationToken.None);
 
-			Console.WriteLine($"Searching for [{assembly}] from [{basePath}]");
-
-			// Ignore resource assemblies for now, we'll have to adjust this
-			// when adding globalization.
-			if (assembly.Name!.EndsWith(".resources", StringComparison.Ordinal))
-			{
-				return null;
-			}
-
-			// Lookup for the highest version matching assembly in the current app domain.
-			// There may be an existing one that already matches, even though the
-			// fusion loader did not find an exact match.
-			var loadedAsm = (
-								from asm in AppDomain.CurrentDomain.GetAssemblies()
-								where asm.GetName().Name == assembly.Name
-								orderby asm.GetName().Version descending
-								select asm
-							).ToArray();
-
-			if (loadedAsm.Length > 1)
-			{
-				var duplicates = loadedAsm
-					.Skip(1)
-					.Where(a => a.GetName().Version == loadedAsm[0].GetName().Version)
-					.ToArray();
-
-				if (duplicates.Length != 0)
-				{
-					Console.WriteLine($"Selecting first occurrence of assembly [{e.Name}] which can be found at [{string.Join("; ", duplicates.Select(d => d.Location))}]");
-				}
-
-				return loadedAsm[0];
-			}
-			else if (loadedAsm.Length == 1)
-			{
-				return loadedAsm[0];
-			}
-
-			Assembly? LoadAssembly(string filePath)
-			{
-				if (File.Exists(filePath))
-				{
-					try
-					{
-						var output = Assembly.LoadFrom(filePath);
-
-						Console.WriteLine($"Loaded [{output.GetName()}] from [{output.Location}]");
-
-						return output;
-					}
-					catch (Exception ex)
-					{
-						Console.WriteLine($"Failed to load [{assembly}] from [{filePath}]", ex);
-						return null;
-					}
-				}
-				else
-				{
-					return null;
-				}
-			}
-
-			var paths = new[] {
-					Path.Combine(basePath!, assembly.Name + ".dll"),
-				};
-
-			return paths
-				.Select(LoadAssembly)
-				.Where(p => p != null)
-				.FirstOrDefault();
-		};
-
-		AppDomain.CurrentDomain.AssemblyResolve += localResolve;
-		AppDomain.CurrentDomain.TypeResolve += localResolve;
+		return new(diagnostics, updates);
 	}
+
+	private static PortableExecutableReference[] BuildFrameworkReferences() => Directory.GetFiles(Path.GetDirectoryName(typeof(object).Assembly.Location)!, "System*.dll")
+				.Where(f => !f.Contains(".Native", StringComparison.OrdinalIgnoreCase))
+				.Select(f => MetadataReference.CreateFromFile(f))
+				.ToArray();
 }
 
 sealed class MyGeneratorReference : AnalyzerReference
