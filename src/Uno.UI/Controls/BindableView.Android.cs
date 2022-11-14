@@ -72,7 +72,7 @@ namespace Uno.UI.Controls
 		{
 			unchecked
 			{
-				var d = GetMeasuredDimensions(view);
+				var d = GetMeasuredDimensions_Fast(view);
 
 				return new Windows.Foundation.Size(
 					width: d & 0xFFFFFFFF,

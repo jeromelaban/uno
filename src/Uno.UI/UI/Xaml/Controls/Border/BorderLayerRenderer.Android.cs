@@ -84,7 +84,7 @@ namespace Windows.UI.Xaml.Controls
 
 			if (willUpdateMeasures)
 			{
-				view.RequestLayout();
+				view.InvalidateMeasure();
 			}
 			else
 			{
