@@ -18,8 +18,10 @@ namespace Uno.UI.RemoteControl.HotReload.MetadataUpdater;
 
 internal sealed class HotReloadAgent : IDisposable
 {
+#if NET6_0_OR_GREATER
 	/// Flags for hot reload handler Types like MVC's HotReloadService.
 	private const DynamicallyAccessedMemberTypes HotReloadHandlerLinkerFlags = DynamicallyAccessedMemberTypes.PublicMethods | DynamicallyAccessedMemberTypes.NonPublicMethods;
+#endif
 
 	private readonly Action<string> _log;
 	private readonly AssemblyLoadEventHandler _assemblyLoad;
@@ -83,8 +85,10 @@ internal sealed class HotReloadAgent : IDisposable
 		public List<Action<Type[]?>> UpdateApplication { get; } = new();
 	}
 
+#if NET6_0_OR_GREATER
 	[UnconditionalSuppressMessage("Trimmer", "IL2072",
 		Justification = "The handlerType passed to GetHandlerActions is preserved by MetadataUpdateHandlerAttribute with DynamicallyAccessedMemberTypes.All.")]
+#endif
 	private UpdateHandlerActions GetMetadataUpdateHandlerActions()
 	{
 		// We need to execute MetadataUpdateHandlers in a well-defined order. For v1, the strategy that is used is to topologically
@@ -122,7 +126,10 @@ internal sealed class HotReloadAgent : IDisposable
 
 	internal void GetHandlerActions(
 		UpdateHandlerActions handlerActions,
-		[DynamicallyAccessedMembers(HotReloadHandlerLinkerFlags)] Type handlerType)
+#if NET6_0_OR_GREATER
+		[DynamicallyAccessedMembers(HotReloadHandlerLinkerFlags)]
+#endif
+		Type handlerType)
 	{
 		bool methodFound = false;
 
@@ -160,7 +167,11 @@ internal sealed class HotReloadAgent : IDisposable
 			};
 		}
 
-		MethodInfo? GetUpdateMethod([DynamicallyAccessedMembers(HotReloadHandlerLinkerFlags)] Type handlerType, string name)
+		MethodInfo? GetUpdateMethod(
+#if NET6_0_OR_GREATER
+		[DynamicallyAccessedMembers(HotReloadHandlerLinkerFlags)]
+#endif
+		Type handlerType, string name)
 		{
 			if (handlerType.GetMethod(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, new[] { typeof(Type[]) }) is MethodInfo updateMethod &&
 				updateMethod.ReturnType == typeof(void))
@@ -192,7 +203,9 @@ internal sealed class HotReloadAgent : IDisposable
 			Visit(assemblies, assembly, sortedAssemblies, visited);
 		}
 
+#if NET6_0_OR_GREATER
 		[UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Hot reload is only expected to work when trimming is disabled.")]
+#endif
 		static void Visit(Assembly[] assemblies, Assembly assembly, List<Assembly> sortedAssemblies, HashSet<string> visited)
 		{
 			var assemblyIdentifier = assembly.GetName().Name!;
@@ -269,7 +282,9 @@ internal sealed class HotReloadAgent : IDisposable
 #endif
 	}
 
+#if NET6_0_OR_GREATER
 	[UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Hot reload is only expected to work when trimming is disabled.")]
+#endif
 	private static Type[] GetMetadataUpdateTypes(IReadOnlyList<UpdateDelta> deltas)
 	{
 		List<Type>? types = null;
