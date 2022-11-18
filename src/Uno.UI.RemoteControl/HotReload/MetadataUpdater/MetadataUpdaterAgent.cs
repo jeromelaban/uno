@@ -1,4 +1,6 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+﻿#if NET6_0_OR_GREATER || __WASM__ || __SKIA__
+
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
 // Based on the implementation in https://github.com/dotnet/aspnetcore/blob/26e3dfc7f3f3a91ba445ec0f8b1598d12542fb9f/src/Components/WebAssembly/WebAssembly/src/HotReload/HotReloadAgent.cs
@@ -347,3 +349,5 @@ internal sealed class HotReloadAgent : IDisposable
 		return default;
 	}
 }
+
+#endif
