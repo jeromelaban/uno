@@ -59,6 +59,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="MetadataUpdateTests\Scenarios\When_Empty\Scenario.json" />
+	  <None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property\Scenario.json" />
 	  <None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property_Update\0\p1\MainPage.xaml" />
 	  <None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property_Update\0\p1\MainPage.xaml.cs" />
 	  <None Remove="MetadataUpdateTests\Scenarios\When_Simple_Xaml_Add_xBind_Simple_Property_Update\1\p1\MainPage.xaml" />

@@ -211,13 +211,15 @@ public class Given_HotReloadService
 	}
 
 	[TestMethod]
+	[DataTestMethod]
+
 	public async Task When_Simple_Xaml_Add_xBind_Simple_Property_Update_Mono()
 	{
 		var results = await ApplyScenario(isDebugCompilation: true, isMono: true);
 
 		// MainPage_c2bc688a73eab5431d787dcd21fe32b9.cs(68,83): error ENC0049: Ceasing to capture variable '__that' requires restarting the application.
 		Assert.AreEqual(1, results[0].Diagnostics.Length);
-		Assert.IsTrue(results[0].Diagnostics[0].ToString().Contains("ENC0049"));
+		Assert.AreEqual("ENC0049", results[0].Diagnostics[0].Id);
 		Assert.AreEqual(0, results[0].MetadataUpdates.Length);
 	}
 
@@ -229,6 +231,59 @@ public class Given_HotReloadService
 		Assert.AreEqual(0, results[0].Diagnostics.Length);
 		Assert.AreEqual(1, results[0].MetadataUpdates.Length);
 	}
+
+	[DataTestMethod]
+	[DynamicData(nameof(GetScenarios), DynamicDataSourceType.Method)]
+	public async Task TestRunner(string name, Scenario scenario)
+	{
+		var results = await ApplyScenario(scenario.IsDebug, scenario.IsMono, name);
+
+		for (int i = 0; i < scenario.PassResults.Length; i++)
+		{
+			var resultValidation = scenario.PassResults[i];
+
+			Assert.AreEqual(resultValidation.Diagnostics.Length, results[i].Diagnostics.Length);
+			Assert.AreEqual(resultValidation.MetadataUpdates, results[i].MetadataUpdates.Length);
+		}
+	}
+
+	public record Scenario(bool IsDebug, bool IsMono, params PassResult[] PassResults);
+	public record PassResult(int MetadataUpdates, params DiagnosticsResult[] Diagnostics);
+	public record DiagnosticsResult(string Id);
+
+	private static IEnumerable<object?[]> GetScenarios()
+	{
+		foreach(var scenarioFolder in Directory.EnumerateDirectories(ScenariosFolder, "*.*", SearchOption.TopDirectoryOnly))
+		{
+			var scenarioName = Path.GetFileName(scenarioFolder);
+			var path = Path.Combine(scenarioFolder, "Scenario.json");
+
+			if (!File.Exists(path))
+			{
+				Assert.Fail($"Unable to find TestDetails.json for {scenarioName}");
+			}
+
+			var detailsContent = File.ReadAllText(path);
+
+			var scenarios = System.Text.Json.JsonSerializer.Deserialize<Scenario[]>(detailsContent);
+			if (scenarios != null)
+			{
+				foreach (var scenario in scenarios)
+				{
+					yield return new object?[] {
+						scenarioName,
+						scenario
+					};
+				}
+			}			
+		}
+	}
+
+	private static string ScenariosFolder
+		=> Path.Combine(
+			Path.GetDirectoryName(typeof(HotReloadWorkspace).Assembly.Location)!,
+			"MetadataUpdateTests",
+			"Scenarios");
 
 	private async Task<HotReloadWorkspace.UpdateResult[]> ApplyScenario(bool isDebugCompilation, bool isMono, [CallerMemberName] string? name = null)
 	{
@@ -242,11 +297,7 @@ public class Given_HotReloadService
 			.Replace("_Release", "")
 			.Replace("_Mono", "");
 
-		var scenarioFolder = Path.Combine(
-			Path.GetDirectoryName(typeof(HotReloadWorkspace).Assembly.Location)!,
-			"MetadataUpdateTests",
-			"Scenarios",
-			name);
+		var scenarioFolder = Path.Combine(ScenariosFolder, name);
 		
 		HotReloadWorkspace SUT = new(isDebugCompilation, isMono);
 		List<HotReloadWorkspace.UpdateResult> results = new();
