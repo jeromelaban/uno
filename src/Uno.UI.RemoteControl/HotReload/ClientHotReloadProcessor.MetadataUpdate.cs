@@ -91,11 +91,12 @@ namespace Uno.UI.RemoteControl.HotReload
 				this.Log().Trace($"Applying IL Delta after {assemblyDeltaReload.FilePath}, Guid:{assemblyDeltaReload.ModuleId}");
 			}
 
-			var delta = new UpdateDelta() {
+			var delta = new UpdateDelta()
+			{
 				MetadataDelta = Convert.FromBase64String(assemblyDeltaReload.MetadataDelta),
 				ILDelta = Convert.FromBase64String(assemblyDeltaReload.ILDelta),
 				PdbBytes = Convert.FromBase64String(assemblyDeltaReload.PdbDelta),
-				ModuleId= Guid.Parse(assemblyDeltaReload.ModuleId),
+				ModuleId = Guid.Parse(assemblyDeltaReload.ModuleId),
 			};
 
 			_agent.ApplyDeltas(new[] { delta });
