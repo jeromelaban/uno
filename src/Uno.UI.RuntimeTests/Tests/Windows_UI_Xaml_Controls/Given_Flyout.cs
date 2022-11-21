@@ -452,10 +452,36 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 			}
 		}
 
-#if IS_UNO
+#if HAS_UNO
 		[TestMethod]
 		[RunsOnUIThread]
 		public async Task Test_Flyout_Binding()
+		{
+
+			var (flyout, content) = CreateFlyoutWithBinding();
+
+			var buttonA = new Button()
+			{
+				Content = "Button A",
+				Flyout = flyout,
+				DataContext = "My Data Context",
+			};
+
+			TestServices.WindowHelper.WindowContent = buttonA;
+
+			await TestServices.WindowHelper.WaitForLoaded(buttonA);
+
+			buttonA.RaiseClick();
+
+			await TestServices.WindowHelper.WaitForLoaded(content);
+
+			var stackPanel = content as StackPanel;
+			Assert.AreEqual("My Data Context", (stackPanel.Children[0] as TextBlock).Text);
+		}
+
+		[TestMethod]
+		[RunsOnUIThread]
+		public async Task Test_Flyout_Binding_In_Template()
 		{
 
 			var (flyout, content) = CreateFlyoutWithBinding();
