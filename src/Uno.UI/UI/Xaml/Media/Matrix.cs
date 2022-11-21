@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Numerics;
 using System.Security;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial struct Matrix : IFormattable
 	{

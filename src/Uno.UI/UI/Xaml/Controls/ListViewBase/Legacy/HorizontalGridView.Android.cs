@@ -1,15 +1,15 @@
-﻿using Android.Graphics.Drawables;
+using Android.Graphics.Drawables;
 using Uno.Extensions;
 using Uno.Foundation.Logging;
 using Uno.UI.DataBinding;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using System;
 using System.Collections;
 using System.ComponentModel;
 using Uno.Disposables;
 using System.Runtime.CompilerServices;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Controls.Legacy
 {

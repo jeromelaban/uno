@@ -3,7 +3,7 @@
 // MUX reference PipsPagerTemplateSettings.properties.cpp, commit 3a84856
 
 using System.Collections.Generic;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Microsoft.UI.Xaml.Controls;
 

@@ -1,4 +1,4 @@
-﻿using Android.Views;
+using Android.Views;
 using Uno.Extensions;
 using Uno.Foundation.Logging;
 using Uno.UI;
@@ -10,11 +10,11 @@ using System.Text;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Uno.UI.Services;
 using Uno.Diagnostics.Eventing;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public partial class FrameworkElement
 	{

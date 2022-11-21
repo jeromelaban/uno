@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -13,7 +13,7 @@ using _NativeObject = Foundation.NSObject;
 using _NativeObject = System.Object;
 #endif
 
-namespace Windows.UI.Xaml.Data
+namespace Microsoft.UI.Xaml.Data
 {
 
 	public partial class Binding : BindingBase

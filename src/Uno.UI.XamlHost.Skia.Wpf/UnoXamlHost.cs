@@ -5,7 +5,7 @@
 
 using System.ComponentModel;
 using System.Windows;
-using WUX = Windows.UI.Xaml;
+using WUX = Microsoft.UI.Xaml;
 
 namespace Uno.UI.XamlHost.Skia.Wpf
 {

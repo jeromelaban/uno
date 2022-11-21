@@ -1,4 +1,4 @@
-﻿// #define TRACE_ROUTED_EVENT_BUBBLING
+// #define TRACE_ROUTED_EVENT_BUBBLING
 
 using System;
 using System.Collections.Generic;
@@ -15,13 +15,13 @@ using Uno.UI;
 using Uno.UI.Xaml;
 using Uno.UI.Xaml.Input;
 using Windows.Foundation;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 
 #if __IOS__
 using UIKit;
 #endif
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/*
 		This partial file handles the registration and bubbling of routed events of a UIElement
@@ -937,7 +937,7 @@ namespace Windows.UI.Xaml
 					holdingEventHandler(this, (HoldingRoutedEventArgs)args);
 					break;
 				case DragEventHandler dragEventHandler:
-					dragEventHandler(this, (global::Windows.UI.Xaml.DragEventArgs)args);
+					dragEventHandler(this, (global::Microsoft.UI.Xaml.DragEventArgs)args);
 					break;
 				case TypedEventHandler<UIElement, DragStartingEventArgs> dragStartingHandler:
 					dragStartingHandler(this, (DragStartingEventArgs)args);

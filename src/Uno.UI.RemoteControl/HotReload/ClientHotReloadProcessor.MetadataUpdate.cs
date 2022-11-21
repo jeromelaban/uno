@@ -1,4 +1,4 @@
-﻿#if NET6_0_OR_GREATER || __WASM__ || __SKIA__
+#if NET6_0_OR_GREATER || __WASM__ || __SKIA__
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -12,9 +12,9 @@ using Uno.Extensions;
 using Uno.Foundation.Logging;
 using Uno.UI.RemoteControl.HotReload.Messages;
 using Uno.UI.RemoteControl.HotReload.MetadataUpdater;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Markup;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Markup;
 
 namespace Uno.UI.RemoteControl.HotReload
 {

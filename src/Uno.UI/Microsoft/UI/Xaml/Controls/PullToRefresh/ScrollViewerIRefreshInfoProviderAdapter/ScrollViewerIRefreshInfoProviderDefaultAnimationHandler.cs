@@ -1,4 +1,4 @@
-﻿#if !__ANDROID__ && !__IOS__
+#if !__ANDROID__ && !__IOS__
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // MUX Reference ScrollViewerIRefreshInfoProviderDefaultAnimationHandler.cpp, commit 87ce7c0
@@ -7,11 +7,11 @@ using System;
 using System.Numerics;
 using Uno.Disposables;
 using Uno.UI.Helpers.WinUI;
-using Windows.UI.Composition;
-using Windows.UI.Composition.Interactions;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Hosting;
+using Microsoft.UI.Composition;
+using Microsoft.UI.Composition.Interactions;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Hosting;
 using static Microsoft.UI.Xaml.Controls._Tracing;
 using RefreshPullDirection = Microsoft.UI.Xaml.Controls.RefreshPullDirection;
 

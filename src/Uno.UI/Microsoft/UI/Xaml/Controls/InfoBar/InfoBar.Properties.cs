@@ -1,11 +1,11 @@
-﻿// MUX reference InfoBar.properties.cpp, commit 3125489
+// MUX reference InfoBar.properties.cpp, commit 3125489
 
 #nullable enable
 
 using System.Windows.Input;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace Microsoft.UI.Xaml.Controls
 {

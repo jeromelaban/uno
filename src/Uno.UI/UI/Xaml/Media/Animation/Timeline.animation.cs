@@ -1,4 +1,4 @@
-﻿using Uno.Extensions;
+using Uno.Extensions;
 using System;
 using System.Collections.Generic;
 using Uno.Disposables;
@@ -10,7 +10,7 @@ using Uno.Foundation.Logging;
 using Uno.UI.DataBinding;
 using System.Diagnostics;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	public partial class Timeline
 	{

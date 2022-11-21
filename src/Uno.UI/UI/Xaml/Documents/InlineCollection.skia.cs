@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SkiaSharp;
 using Windows.Foundation;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 using Windows.UI.Text;
-using Windows.UI.Xaml.Documents.TextFormatting;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Documents.TextFormatting;
+using Microsoft.UI.Xaml.Media;
 
 #nullable enable
 
-namespace Windows.UI.Xaml.Documents
+namespace Microsoft.UI.Xaml.Documents
 {
 	partial class InlineCollection
 	{

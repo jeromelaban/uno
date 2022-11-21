@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Uno;
 using Windows.UI.Text;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class FontIcon : IconElement
 	{
@@ -37,7 +37,7 @@ namespace Windows.UI.Xaml.Controls
 
 			_textBlock.VerticalAlignment = VerticalAlignment.Center;
 			_textBlock.HorizontalAlignment = HorizontalAlignment.Center;
-			_textBlock.TextAlignment = Windows.UI.Xaml.TextAlignment.Center;
+			_textBlock.TextAlignment = Microsoft.UI.Xaml.TextAlignment.Center;
 		}
 
 		#region Glyph

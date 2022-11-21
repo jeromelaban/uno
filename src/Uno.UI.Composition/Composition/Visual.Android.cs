@@ -5,9 +5,9 @@ using System.Numerics;
 using System;
 using Android.Views;
 
-namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
-	public partial class Visual : global::Windows.UI.Composition.CompositionObject
+	public partial class Visual : global::Microsoft.UI.Composition.CompositionObject
 	{
 		internal View? NativeOwner { get; set; }
 	}

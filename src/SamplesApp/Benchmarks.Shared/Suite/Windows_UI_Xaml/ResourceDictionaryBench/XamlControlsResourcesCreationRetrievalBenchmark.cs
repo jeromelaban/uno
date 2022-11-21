@@ -1,4 +1,4 @@
-﻿#pragma warning disable 105 // Disabled until the tree is migrate to WinUI
+#pragma warning disable 105 // Disabled until the tree is migrate to WinUI
 
 using System;
 using System.Collections.Generic;
@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using BenchmarkDotNet.Attributes;
 using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace SamplesApp.Benchmarks.Suite.Windows_UI_Xaml.ResourceDictionaryBench
 {

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using SkiaSharp;
 using Uno.Foundation.Extensibility;
 using System.Threading;
 using Uno.UI.Runtime.Skia;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Windows.UI.Core;
 
 namespace SkiaSharpExample

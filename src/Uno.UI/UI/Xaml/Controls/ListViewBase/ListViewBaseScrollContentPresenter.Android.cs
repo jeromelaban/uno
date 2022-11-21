@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +8,7 @@ using Windows.Foundation;
 using Uno.UI;
 using Uno.Disposables;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public sealed partial class ListViewBaseScrollContentPresenter : IScrollContentPresenter, INativeScrollContentPresenter
 	{

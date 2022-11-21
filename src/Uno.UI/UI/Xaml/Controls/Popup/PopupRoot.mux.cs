@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // Popup.cpp, PopupRoot_Partial.cpp, PopupRoot.cpp
 
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Uno;
 using Uno.UI.Xaml.Core;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	internal partial class PopupRoot
 	{

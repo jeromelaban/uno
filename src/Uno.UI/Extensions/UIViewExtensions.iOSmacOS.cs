@@ -1,4 +1,4 @@
-﻿using Uno;
+using Uno;
 using Uno.Extensions;
 using Uno.UI;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using Uno.UI.Extensions;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.Foundation.Logging;
 using Uno.UI.Controls;
 using ObjCRuntime;

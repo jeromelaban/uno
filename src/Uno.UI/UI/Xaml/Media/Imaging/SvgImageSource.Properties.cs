@@ -1,8 +1,8 @@
-﻿#pragma warning disable 67
+#pragma warning disable 67
 using System;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Media.Imaging;
+namespace Microsoft.UI.Xaml.Media.Imaging;
 
 public partial class SvgImageSource : ImageSource
 {

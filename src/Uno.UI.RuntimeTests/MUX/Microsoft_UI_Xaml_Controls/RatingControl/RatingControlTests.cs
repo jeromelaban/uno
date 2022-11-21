@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // MUX Reference RatingControlTests.h, commit e7e0823
 
@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 using MUXControlsTestApp.Utilities;
 
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Common;
 
 #if USING_TAEF
@@ -29,7 +29,7 @@ using RatingItemFontInfo = Microsoft.UI.Xaml.Controls.RatingItemFontInfo;
 using RatingItemImageInfo = Microsoft.UI.Xaml.Controls.RatingItemImageInfo;
 using Private.Infrastructure;
 
-namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests
+namespace Microsoft.UI.Xaml.Tests.MUXControls.ApiTests
 {
 	[TestClass]
 	public class RatingControlTests : MUXApiTestBase

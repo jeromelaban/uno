@@ -1,8 +1,8 @@
-﻿// Licensed under the MIT License. See LICENSE in the project root for license information.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
 // MUX reference SliderUnitTests.cpp
 
 #if HAS_UNO
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Uno.UI.RuntimeTests;
 using static Private.Infrastructure.TestServices;
 using Windows.System;

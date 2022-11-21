@@ -1,8 +1,8 @@
-﻿#pragma warning disable CS0169
+#pragma warning disable CS0169
 #pragma warning disable CS0649
 #nullable enable
 
-namespace Windows.UI.Xaml.Controls;
+namespace Microsoft.UI.Xaml.Controls;
 
 partial class Image
 {

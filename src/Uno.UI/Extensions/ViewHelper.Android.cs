@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Windows.Foundation;
 using Uno.Foundation.Logging;
 using Uno.Extensions;
 using Android.App;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using SizeF = System.Drawing.SizeF;
 using System.Runtime.CompilerServices;
 using Android.Views;

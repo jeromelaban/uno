@@ -4,10 +4,10 @@
 
 using System;
 using System.Collections;
-using XGRIDLENGTH = Windows.UI.Xaml.GridLength;
+using XGRIDLENGTH = Microsoft.UI.Xaml.GridLength;
 using XFLOAT = System.Double;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	// Abstract base class for Grid Row/Column Definitions.
 	internal interface DefinitionBase

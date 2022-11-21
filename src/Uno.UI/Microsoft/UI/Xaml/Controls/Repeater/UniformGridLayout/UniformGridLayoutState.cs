@@ -5,7 +5,7 @@
 
 using System;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Uno.Extensions;
 
 namespace Microsoft.UI.Xaml.Controls

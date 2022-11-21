@@ -1,4 +1,4 @@
-﻿#if !__IOS__ && !__MACOS__ && !__SKIA__ && !__ANDROID__
+#if !__IOS__ && !__MACOS__ && !__SKIA__ && !__ANDROID__
 #define LEGACY_SHAPE_MEASURE
 #endif
 
@@ -8,11 +8,11 @@ using Uno.Disposables;
 using System.Text;
 using Windows.Foundation;
 using Uno.Extensions;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Uno.Foundation.Logging;
 
-namespace Windows.UI.Xaml.Shapes
+namespace Microsoft.UI.Xaml.Shapes
 {
 	public abstract partial class Shape : FrameworkElement
 	{

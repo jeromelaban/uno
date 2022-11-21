@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using Windows.Foundation.Metadata;
 using Windows.UI.Core;
 
-namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
 	public partial class CompositionObject : IDisposable
 	{

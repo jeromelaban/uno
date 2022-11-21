@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 using System.Data.SqlTypes;
 using System.IO;
 using System.Threading.Tasks;
 using Uno.UI.Xaml.Media.Imaging.Svg;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Uno.Foundation.Logging;
 using Uno.Disposables;
 using Windows.Graphics.Display;

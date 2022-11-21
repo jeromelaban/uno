@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Uno.Extensions;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	[DebuggerDisplay("{DebugDisplay,nq}")]
 	public partial struct GridLength : IEquatable<GridLength>

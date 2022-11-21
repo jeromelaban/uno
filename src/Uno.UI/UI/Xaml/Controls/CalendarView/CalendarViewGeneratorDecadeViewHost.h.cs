@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	internal partial class CalendarViewGeneratorDecadeViewHost : CalendarViewGeneratorHost
 	{

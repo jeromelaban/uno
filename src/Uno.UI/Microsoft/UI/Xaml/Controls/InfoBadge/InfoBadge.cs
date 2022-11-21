@@ -5,8 +5,8 @@
 using System;
 using Uno.UI.Helpers.WinUI;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Microsoft.UI.Xaml.Controls
 {
@@ -81,7 +81,7 @@ namespace Microsoft.UI.Xaml.Controls
 			}
 		}
 
-		private void OnSizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs args)
+		private void OnSizeChanged(object sender, Microsoft.UI.Xaml.SizeChangedEventArgs args)
 		{
 			CornerRadius GetCornerRadius()
 			{

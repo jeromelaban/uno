@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Text;
 using Uno.UI.Samples.UITests.Helpers;
 using Windows.UI.Core;
 #if XAMARIN
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 #else
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 #endif
 
 namespace Uno.UI.Samples.Presentation.SamplePages.GridView

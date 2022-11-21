@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS0067
+#pragma warning disable CS0067
 
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using Uno.Extensions;
 using Uno.Foundation.Logging;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	internal sealed class NotSupportedAnimator : IValueAnimator, IDisposable
 	{

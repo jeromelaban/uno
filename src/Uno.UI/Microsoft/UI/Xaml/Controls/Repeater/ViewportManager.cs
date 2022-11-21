@@ -3,7 +3,7 @@
 // ItemsRepeater.cpp, commit 1cf9f1c
 
 using Windows.Foundation;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Microsoft.UI.Xaml.Controls
 {

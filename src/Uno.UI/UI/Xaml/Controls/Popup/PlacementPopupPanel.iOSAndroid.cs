@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Uno.UI;
 using Windows.UI.Core;
 using Uno.Extensions;
@@ -16,7 +16,7 @@ using Android.Views;
 
 #nullable enable
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	partial class PlacementPopupPanel
 	{

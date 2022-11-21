@@ -1,10 +1,10 @@
-﻿// MUX Reference TreeViewItem.properties.cpp, commit f56157d
+// MUX Reference TreeViewItem.properties.cpp, commit f56157d
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 
 namespace Microsoft.UI.Xaml.Controls
 {

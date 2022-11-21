@@ -1,4 +1,4 @@
-﻿namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
 	public enum CompositionGradientExtendMode
 	{

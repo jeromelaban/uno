@@ -1,4 +1,4 @@
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	/// <summary>
 	/// Specifies the disambiguation strategy used for navigating between multiple candidate targets.

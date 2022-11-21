@@ -1,8 +1,8 @@
-﻿#nullable enable
+#nullable enable
 
 using Uno.UI.Xaml.Core;
 
-namespace Windows.UI.Xaml;
+namespace Microsoft.UI.Xaml;
 
 public sealed partial class XamlRoot
 {

@@ -4,15 +4,15 @@
 using System;
 using System.Threading.Tasks;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Tests.Enterprise;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Tests.Enterprise;
 using Uno.UI.RuntimeTests.Helpers;
 
 using static Private.Infrastructure.TestServices;
 using static Private.Infrastructure.CalendarHelper;
 using Private.Infrastructure;
 
-namespace Windows.UI.Xaml.Tests.Common
+namespace Microsoft.UI.Xaml.Tests.Common
 {
 
 	internal class CalendarDatePickerHelper

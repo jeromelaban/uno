@@ -7,10 +7,10 @@ using System;
 using Uno.UI.Runtime.Skia.Wpf;
 using Uno.UI.XamlHost.Skia.Wpf;
 using Uno.UI.XamlHost.Skia.Wpf.Hosting;
-using Windows.UI.Xaml;
-using WinUI = Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
+using WinUI = Microsoft.UI.Xaml;
 using WpfControl = global::System.Windows.Controls.Control;
-using WUX = Windows.UI.Xaml;
+using WUX = Microsoft.UI.Xaml;
 
 namespace Uno.UI.XamlHost.Skia.Wpf
 {

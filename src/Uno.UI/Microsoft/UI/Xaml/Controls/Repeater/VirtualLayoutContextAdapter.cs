@@ -3,7 +3,7 @@
 
 using System;
 using System.Collections.Generic;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.Extensions;
 
 namespace Microsoft.UI.Xaml.Controls

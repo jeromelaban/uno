@@ -1,9 +1,9 @@
-﻿using Windows.Foundation;
+using Windows.Foundation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	internal class SplineEasingFunction : IEasingFunction
 	{

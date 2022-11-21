@@ -1,7 +1,7 @@
 using Uno;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public partial class AppBarToggleButtonTemplateSettings : DependencyObject
 	{

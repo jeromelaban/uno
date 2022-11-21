@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Uno.Extensions;
 using Uno.Foundation.Logging;
 using Uno.UI;
@@ -16,7 +16,7 @@ using CGSize = System.Drawing.SizeF;
 using nint = System.Int32;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class ContentControl
 	{

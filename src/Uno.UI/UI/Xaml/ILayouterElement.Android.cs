@@ -1,11 +1,11 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using System.Runtime.CompilerServices;
 using Uno.Extensions;
 using Uno.UI;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml;
+namespace Microsoft.UI.Xaml;
 
 internal partial interface ILayouterElement
 {

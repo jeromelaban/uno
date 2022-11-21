@@ -1,4 +1,4 @@
-﻿#if __IOS__ || __MACOS__ || __SKIA__
+#if __IOS__ || __MACOS__ || __SKIA__
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -9,10 +9,10 @@ using Private.Infrastructure;
 using Uno.Extensions;
 using Windows.Devices.Perception;
 using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Shapes;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Shapes
 {

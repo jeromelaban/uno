@@ -1,5 +1,5 @@
-﻿using SkiaSharp;
-using Windows.UI.Xaml.Media;
+using SkiaSharp;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.UI.UI.Xaml.Media
 {

@@ -1,4 +1,4 @@
-﻿#if IS_UNO
+#if IS_UNO
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +18,7 @@ using View = AppKit.NSView;
 using View = System.Object;
 #endif
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 
 	/// <summary>

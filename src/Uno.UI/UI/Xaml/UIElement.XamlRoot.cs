@@ -1,11 +1,11 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using Uno.UI.DataBinding;
 using Uno.UI.Extensions;
 using Uno.UI.Xaml.Core;
 
-namespace Windows.UI.Xaml;
+namespace Microsoft.UI.Xaml;
 
 public partial class UIElement : DependencyObject, IXUidProvider, IUIElement
 {

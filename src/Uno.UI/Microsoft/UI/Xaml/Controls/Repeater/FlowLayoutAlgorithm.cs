@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Specialized;
 using Windows.Foundation;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.Extensions;
 using static Microsoft.UI.Xaml.Controls._Tracing;
 

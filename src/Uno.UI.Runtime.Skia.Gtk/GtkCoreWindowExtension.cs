@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 //#define TRACE_NATIVE_POINTER_EVENTS
 
 using System;
@@ -18,7 +18,7 @@ using Uno.Foundation.Logging;
 using static Windows.UI.Input.PointerUpdateKind;
 using Device = Gtk.Device;
 using Exception = System.Exception;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Uno.UI.Xaml.Core;
 
 namespace Uno.UI.Runtime.Skia

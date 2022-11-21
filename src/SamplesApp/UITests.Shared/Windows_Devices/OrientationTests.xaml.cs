@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using Uno.Extensions;
 using Uno.UI.Samples.Controls;
 using Windows.Devices.Sensors;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace UITests.Shared.Windows_Devices
 {

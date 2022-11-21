@@ -1,4 +1,4 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using Foundation;
 using System;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ using UIKit;
 using AppKit;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class UnoWKWebView : WKWebView, INativeWebView
 #if __MACOS__

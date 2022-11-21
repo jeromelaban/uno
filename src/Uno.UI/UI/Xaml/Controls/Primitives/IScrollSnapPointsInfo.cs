@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Uno;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public partial interface IScrollSnapPointsInfo
 	{

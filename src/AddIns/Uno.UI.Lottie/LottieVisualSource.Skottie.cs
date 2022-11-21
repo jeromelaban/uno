@@ -1,19 +1,19 @@
-﻿#nullable enable
+#nullable enable
 
 #if HAS_SKOTTIE
 using System;
 using System.Threading;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using System.Threading.Tasks;
 using Uno.Disposables;
 using SkiaSharp;
 using Uno.Foundation.Logging;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Windows.System;
 using System.Diagnostics;
 using SkiaSharp.SceneGraph;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using System.Text;
 using System.IO;
 

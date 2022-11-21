@@ -5,7 +5,7 @@
 
 using System;
 using System.Linq;
-using WUX = Windows.UI.Xaml;
+using WUX = Microsoft.UI.Xaml;
 
 namespace Uno.UI.XamlHost;
 

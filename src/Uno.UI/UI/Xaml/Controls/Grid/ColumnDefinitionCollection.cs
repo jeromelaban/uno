@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Windows.Foundation.Collections;
 using Uno.Extensions.Specialized;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class ColumnDefinitionCollection : DefinitionCollectionBase, IList<ColumnDefinition>, IEnumerable<ColumnDefinition>
 	{

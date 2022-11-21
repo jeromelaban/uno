@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // The MIT License(MIT)
 //
 // Original work (https://github.com/AvaloniaUI/Avalonia/blob/4d01dacd77ff17a080b5e5778a18864831e92a63/src/Avalonia.Visuals/Media/PathMarkupParser.cs):
@@ -32,7 +32,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using Windows.Foundation;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
 namespace Uno.Media
 {

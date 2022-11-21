@@ -1,10 +1,10 @@
-﻿#if __SKIA__
+#if __SKIA__
 using System;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Windows.Storage;
 using Uno.UI.Extensions;
 using System.Collections.Immutable;

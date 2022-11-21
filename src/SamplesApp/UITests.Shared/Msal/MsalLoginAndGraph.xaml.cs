@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -7,9 +7,9 @@ using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using Uno.Extensions;
 using Uno.UI.MSAL;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Uno.UI.Samples.Controls;
 using Prompt = Microsoft.Identity.Client.Prompt;
 

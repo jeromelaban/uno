@@ -12,11 +12,11 @@ using System.Globalization;
 using System.Reflection;
 using Uno.UI.DataBinding;
 using Uno;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using System.Collections;
 using Uno.Conversion;
 
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using System.Dynamic;
 using System.Runtime.CompilerServices;
 
@@ -427,7 +427,7 @@ namespace Uno.UI.DataBinding
 			// Possible values for 'property' parameter:
 			// - "PropertyName"
 			// - "TypeName.PropertyName"
-			// - "Windows.UI.Xaml.Controls:UIElement.Opacity" (fully qualified)
+			// - "Microsoft.UI.Xaml.Controls:UIElement.Opacity" (fully qualified)
 
 			if (property.Contains("."))
 			{

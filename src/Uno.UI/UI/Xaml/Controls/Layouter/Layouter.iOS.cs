@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ using Uno;
 using Uno.UI;
 using Uno.Foundation.Logging;
 using Uno.Collections;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Windows.Foundation;
 using View = UIKit.UIView;
 using UIKit;
@@ -18,7 +18,7 @@ using Uno.Disposables;
 using ObjCRuntime;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	abstract partial class Layouter
 	{

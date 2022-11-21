@@ -1,11 +1,11 @@
-﻿#if XAMARIN_ANDROID
+#if XAMARIN_ANDROID
 using Java.Interop;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.UI.Controls;
 using Java.Lang.Reflect;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.DataBinding
 {

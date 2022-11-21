@@ -1,12 +1,12 @@
-﻿#if !__NETSTD_REFERENCE__
+#if !__NETSTD_REFERENCE__
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Uno.UI;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public partial class UIElement : DependencyObject
 	{

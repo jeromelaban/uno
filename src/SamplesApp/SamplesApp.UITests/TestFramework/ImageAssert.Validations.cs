@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -19,11 +19,11 @@ using Windows.UI;
 using Rectangle = System.Drawing.Rectangle;
 using Size = System.Drawing.Size;
 using Point = System.Drawing.Point;
-using Windows.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Markup;
 using _Bitmap = Uno.UI.RuntimeTests.Helpers.RawBitmap;
 using SamplesApp.UITests;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml;
 using SamplesApp.UITests.TestFramework;
 
 namespace Uno.UI.RuntimeTests.Helpers;

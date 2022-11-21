@@ -1,8 +1,8 @@
-﻿using Android.Graphics;
+using Android.Graphics;
 using Rect = Windows.Foundation.Rect;
 using Size = Windows.Foundation.Size;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	partial class GradientBrush
 	{

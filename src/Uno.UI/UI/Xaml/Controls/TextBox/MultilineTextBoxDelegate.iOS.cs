@@ -1,10 +1,10 @@
-﻿using Foundation;
+using Foundation;
 using Uno.Extensions;
 using System;
 using System.Linq;
 using UIKit;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class MultilineTextBoxDelegate : UITextViewDelegate
 	{

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using CoreGraphics;
@@ -9,7 +9,7 @@ using _EdgeInsets = UIKit.UIEdgeInsets;
 using _EdgeInsets = AppKit.NSEdgeInsets;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	internal partial interface IScrollContentPresenter : IUIScrollView
 	{

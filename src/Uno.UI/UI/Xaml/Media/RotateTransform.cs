@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Windows.Foundation;
@@ -6,7 +6,7 @@ using global::System.Numerics;
 using Uno.Extensions;
 using Uno.UI;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	/// <summary>
 	/// RotateTransform :  Based on the WinRT Rotate transform

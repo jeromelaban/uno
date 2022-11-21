@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Uno.Buffers;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
     /// <summary>
     /// DependencyProperty Callback Manager

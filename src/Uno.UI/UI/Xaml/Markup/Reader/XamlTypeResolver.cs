@@ -12,7 +12,7 @@ using Uno.Xaml;
 using Windows.UI;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Markup.Reader
+namespace Microsoft.UI.Xaml.Markup.Reader
 {
 	internal class XamlTypeResolver
 	{

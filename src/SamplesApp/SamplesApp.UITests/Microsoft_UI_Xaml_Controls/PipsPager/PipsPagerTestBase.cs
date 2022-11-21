@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Linq;
 using Common;
 using SamplesApp.UITests;
 using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
 
-namespace Windows.UI.Xaml.Tests.MUXControls.InteractionTests
+namespace Microsoft.UI.Xaml.Tests.MUXControls.InteractionTests
 {
 	public partial class PipsPagerTestBase : SampleControlUITestBase
 	{

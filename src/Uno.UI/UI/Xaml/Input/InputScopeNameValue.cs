@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Windows.UI.Xaml.Input
+namespace Microsoft.UI.Xaml.Input
 {
 	/// <summary>
 	/// Specifies a particular named input mode (<see cref="InputScopeName"/>) used to populate an <see cref="InputScope"/>.

@@ -1,4 +1,4 @@
-﻿/*
+/*
 
 Implementation based on https://github.com/roubachof/Sharpnado.MaterialFrame.
 with some modifications and removal of unused features.
@@ -12,16 +12,16 @@ using Android.Graphics.Drawables;
 using Android.Runtime;
 using Java.IO;
 using Android.Graphics;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Uno.Extensions;
 
 using Uno.Foundation.Logging;
 using Uno.UI.Controls;
 using Uno.UI;
 using Android.Views;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	/// <summary>
 	/// Renderer to update all frames with better shadows matching material design standards.

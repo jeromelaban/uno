@@ -3,7 +3,7 @@
 
 using System;
 using Windows.Foundation;
-using Windows.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Markup;
 using Uno.Extensions;
 
 namespace Microsoft.UI.Xaml.Controls

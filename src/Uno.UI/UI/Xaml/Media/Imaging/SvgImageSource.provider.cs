@@ -1,4 +1,4 @@
-﻿#if __IOS__ || __MACOS__ || __SKIA__ || __ANDROID__
+#if __IOS__ || __MACOS__ || __SKIA__ || __ANDROID__
 #nullable enable
 
 using System;
@@ -10,7 +10,7 @@ using Uno.UI.Xaml.Media;
 using Uno.UI.Xaml.Media.Imaging.Svg;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Media.Imaging;
+namespace Microsoft.UI.Xaml.Media.Imaging;
 
 partial class SvgImageSource
 {

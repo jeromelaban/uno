@@ -1,4 +1,4 @@
-﻿#pragma warning disable 67 // TODO: Focus-related members are currently unused https://github.com/unoplatform/uno/issues/8978
+#pragma warning disable 67 // TODO: Focus-related members are currently unused https://github.com/unoplatform/uno/issues/8978
 
 using System;
 using Uno.UI.Xaml.Core;
@@ -6,7 +6,7 @@ using Uno.UI.Xaml.Islands;
 using Windows.Foundation;
 using WinUICoreServices = global::Uno.UI.Xaml.Core.CoreServices;
 
-namespace Windows.UI.Xaml.Hosting;
+namespace Microsoft.UI.Xaml.Hosting;
 
 // TODO: Port more of the actual implementation from WinUI
 
@@ -44,7 +44,7 @@ public partial class DesktopWindowXamlSource : IDisposable
 	public bool HasFocus => false; //TODO: Always false currently, should adhere to its purpose https://github.com/unoplatform/uno/issues/8978[focus]
 
 	/// <summary>
-	/// Gets or sets the Windows.UI.Xaml.UIElement object that you want to host in the application.
+	/// Gets or sets the Microsoft.UI.Xaml.UIElement object that you want to host in the application.
 	/// </summary>
 	public UIElement Content
 	{

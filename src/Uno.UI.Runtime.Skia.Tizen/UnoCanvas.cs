@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ElmSharp;
 using SkiaSharp;
 using SkiaSharp.Views.Tizen;
-using WUX = Windows.UI.Xaml;
+using WUX = Microsoft.UI.Xaml;
 
 namespace Uno.UI.Runtime.Skia
 {

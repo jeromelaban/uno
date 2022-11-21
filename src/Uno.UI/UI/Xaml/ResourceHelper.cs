@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.Extensions;
 using Uno.Foundation.Logging;
 using Uno.UI.Converters;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using Uno.UI;
 using Windows.ApplicationModel.Resources;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
     public static class ResourceHelper
     {

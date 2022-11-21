@@ -1,16 +1,16 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // MUX reference PipsPagerPage.xaml.cs, commit fc2d862
 #pragma warning disable CS0105 // duplicate namespace because of WinUI source conversion
 
 using System;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using PipsPagerButtonVisibility = Microsoft.UI.Xaml.Controls.PipsPagerButtonVisibility;
 using PipsPagerSelectedIndexChangedEventArgs = Microsoft.UI.Xaml.Controls.PipsPagerSelectedIndexChangedEventArgs;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Controls;
 using MUXControlsTestApp.Utilities;
 using Uno.UI.Samples.Controls;
@@ -143,17 +143,17 @@ namespace MUXControlsTestApp
 			UpdateButtonVisibilityCheckboxes();
 		}
 
-		private void TestPipsPager_PointerCanceled(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+		private void TestPipsPager_PointerCanceled(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
 		{
 			UpdateButtonVisibilityCheckboxes();
 		}
 
-		private void TestPipsPager_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+		private void TestPipsPager_PointerExited(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
 		{
 			UpdateButtonVisibilityCheckboxes();
 		}
 
-		private void TestPipsPager_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+		private void TestPipsPager_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
 		{
 			UpdateButtonVisibilityCheckboxes();
 		}

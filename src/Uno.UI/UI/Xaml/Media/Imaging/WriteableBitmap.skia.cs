@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Uno.Foundation;
-using Windows.UI.Composition;
+using Microsoft.UI.Composition;
 using Uno.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 	partial class WriteableBitmap
 	{

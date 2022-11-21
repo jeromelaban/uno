@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using Uno.UI.Extensions;
 
 #if XAMARIN_IOS_UNIFIED
@@ -27,7 +27,7 @@ using ObjCRuntime;
 #elif XAMARIN_ANDROID
 using Android.Graphics;
 #elif __SKIA__
-using Path = Windows.UI.Composition.SkiaGeometrySource2D;
+using Path = Microsoft.UI.Composition.SkiaGeometrySource2D;
 using SkiaSharp;
 #else
 using Path = System.Object;

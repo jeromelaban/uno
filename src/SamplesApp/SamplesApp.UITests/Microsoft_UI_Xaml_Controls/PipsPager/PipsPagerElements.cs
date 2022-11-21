@@ -1,9 +1,9 @@
-﻿using Common;
+using Common;
 using Uno.UITest;
 using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
 
-namespace Windows.UI.Xaml.Tests.MUXControls.InteractionTests
+namespace Microsoft.UI.Xaml.Tests.MUXControls.InteractionTests
 {
     public class PipsPagerElements
     {

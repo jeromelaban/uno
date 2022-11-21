@@ -3,7 +3,7 @@
 using System;
 using Uno;
 
-namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
 	public  partial class CompositionAnimation
 	{

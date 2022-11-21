@@ -104,7 +104,7 @@ namespace SamplesApp.UITests.Windows_UI_Xaml_Controls.DatePickerTests
 				_app.WaitForElement(datePickerFlyout);
 
 				_app.WaitForDependencyPropertyValue(datePickerFlyout, "Content",
-					"Windows.UI.Xaml.Controls.DatePickerSelector");
+					"Microsoft.UI.Xaml.Controls.DatePickerSelector");
 			}
 
 			using var screenshotOpened = TakeScreenshot("OpenedPicker");

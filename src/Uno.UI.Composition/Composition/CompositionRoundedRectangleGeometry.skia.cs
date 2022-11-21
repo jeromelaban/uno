@@ -1,10 +1,10 @@
-﻿#nullable enable
+#nullable enable
 
 using System.Numerics;
 using SkiaSharp;
 using Windows.Graphics;
 
-namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
 	public partial class CompositionRoundedRectangleGeometry : CompositionGeometry
 	{

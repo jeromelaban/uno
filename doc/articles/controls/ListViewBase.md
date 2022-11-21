@@ -1,4 +1,4 @@
-﻿# ListViewBase in Uno Platform
+# ListViewBase in Uno Platform
 
 Uno Platform's implementation of ListViewBase supports shared styling and template use with UWP apps, whilst internally delegating to the native list view on Android and iOS for high performance. This document explains how Uno's implementation differs in some details from Windows.
 
@@ -9,7 +9,7 @@ For contributors, [in-depth documentation on the internals of ListView is availa
 This is a stripped-down view of the default style for ListView in Uno:
 
 ```xml
-<!-- Default style for Windows.UI.Xaml.Controls.ListView -->
+<!-- Default style for Microsoft.UI.Xaml.Controls.ListView -->
 <xamarin:Style TargetType="ListView">
   <Setter Property="ItemsPanel">
     <Setter.Value>

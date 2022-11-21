@@ -6,7 +6,7 @@ using System.Numerics;
 using SkiaSharp;
 using Windows.UI.Core;
 
-namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
 	public partial class Compositor
 	{

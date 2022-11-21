@@ -1,11 +1,11 @@
-﻿using Android.Graphics;
+using Android.Graphics;
 using Uno.Extensions;
 using Uno.UI;
 using Uno.UI.Extensions;
 using Point = Windows.Foundation.Point;
 using Size = Windows.Foundation.Size;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class LinearGradientBrush
 	{

@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 #if !__IOS__ && !__ANDROID__ && !__SKIA__ && !__MACOS__
 #define NOT_IMPLEMENTED
 #endif
@@ -14,7 +14,7 @@ using Uno.Foundation.Logging;
 using Buffer = Windows.Storage.Streams.Buffer;
 using System.Buffers;
 
-namespace Windows.UI.Xaml.Media.Imaging
+namespace Microsoft.UI.Xaml.Media.Imaging
 {
 #if NOT_IMPLEMENTED
 	[global::Uno.NotImplemented("NET461", "__WASM__", "__NETSTD_REFERENCE__")]

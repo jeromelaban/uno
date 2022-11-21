@@ -8,8 +8,8 @@ using System;
 using System.Diagnostics;
 using Windows.Foundation;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Disposables;
 using static Microsoft.UI.Xaml.Controls._Tracing;
@@ -416,10 +416,10 @@ namespace Microsoft.UI.Xaml.Controls
 				{
 					m_renderingToken = Disposable.Create(() =>
 					{
-						Windows.UI.Xaml.Media.CompositionTarget.Rendering -= OnCompositionTargetRendering;
+						Microsoft.UI.Xaml.Media.CompositionTarget.Rendering -= OnCompositionTargetRendering;
 						m_renderingToken = null;
 					});
-					Windows.UI.Xaml.Media.CompositionTarget.Rendering += OnCompositionTargetRendering;
+					Microsoft.UI.Xaml.Media.CompositionTarget.Rendering += OnCompositionTargetRendering;
 				}
 			}
 		}

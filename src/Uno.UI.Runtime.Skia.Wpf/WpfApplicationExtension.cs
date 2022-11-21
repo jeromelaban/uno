@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Microsoft.Win32;
 using Uno.Helpers.Theming;
 using Uno.UI.Runtime.Skia.Wpf.WPF.Extensions.Helper.Theming;
 using Uno.UI.Xaml;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Runtime.Skia.Wpf
 {

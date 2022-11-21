@@ -1,4 +1,4 @@
-﻿#if XAMARIN_ANDROID
+#if XAMARIN_ANDROID
 
 using System;
 using Uno.Extensions;
@@ -6,9 +6,9 @@ using Uno.Foundation.Logging;
 using Uno.UI;
 using Uno.UI.Extensions;
 using Windows.Globalization;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class TimePickerSelector : ContentControl
 	{

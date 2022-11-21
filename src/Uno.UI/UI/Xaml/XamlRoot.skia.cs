@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using Uno.Disposables;
@@ -8,7 +8,7 @@ using Uno.UI.Xaml.Islands;
 using Windows.Foundation;
 using Windows.Graphics.Display;
 
-namespace Windows.UI.Xaml;
+namespace Microsoft.UI.Xaml;
 
 public partial class XamlRoot
 {

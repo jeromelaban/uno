@@ -11,7 +11,7 @@ using Uno.UI;
 using Windows.Globalization;
 using Uno.Helpers.Theming;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class DatePickerSelector
 	{

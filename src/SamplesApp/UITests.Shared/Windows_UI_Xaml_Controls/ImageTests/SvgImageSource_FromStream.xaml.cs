@@ -1,4 +1,4 @@
-﻿#pragma warning disable CA1848 // Use LoggerMessage 
+#pragma warning disable CA1848 // Use LoggerMessage 
 
 using System;
 using System.IO;
@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging;
 using Uno.Extensions;
 using Uno.UI.Samples.Controls;
 using Windows.Storage;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace UITests.Windows_UI_Xaml_Controls.ImageTests;
 

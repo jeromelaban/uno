@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using Android.Views;
 using Uno.Disposables;
 using Uno.Extensions;
 using Uno.Foundation.Logging;
 using Uno.UI;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 using Android.Runtime;
 using Java.Interop;
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	public partial class ButtonBase : ContentControl
 	{

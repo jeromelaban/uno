@@ -5,7 +5,7 @@ using Uno.UI.Xaml.Islands;
 using Windows.Foundation;
 using Windows.Graphics.Display;
 
-namespace Windows.UI.Xaml;
+namespace Microsoft.UI.Xaml;
 
 /// <summary>
 /// Represents a tree of XAML content and information about the context in which it is hosted.
@@ -31,7 +31,7 @@ public sealed partial class XamlRoot
 	/// </summary>
 	public UIElement? Content =>
 		VisualTree.ContentRoot.Type == ContentRootType.CoreWindow ?
-			Windows.UI.Xaml.Window.Current?.Content : VisualTree.PublicRootVisual;
+			Microsoft.UI.Xaml.Window.Current?.Content : VisualTree.PublicRootVisual;
 
 	//TODO Uno specific: This logic is most likely not implemented here in MUX:
 	/// <summary>

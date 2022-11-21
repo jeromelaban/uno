@@ -363,7 +363,7 @@ As mentioned earlier, the navigation implementation differs between Silverlight 
     > [!TIP]
     > You can learn more about the UWP page class here:
     >
-    > * [Page class](https://docs.microsoft.com/uwp/api/Windows.UI.Xaml.Controls.Page)
+    > * [Page class](https://docs.microsoft.com/uwp/api/Microsoft.UI.Xaml.Controls.Page)
 
 1. Update the remaining two **HyperlinkButton** declarations to use **Click** events and add the methods to the code-behind:
 

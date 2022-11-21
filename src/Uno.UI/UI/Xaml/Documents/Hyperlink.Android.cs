@@ -1,12 +1,12 @@
-﻿#if __ANDROID__
+#if __ANDROID__
 using Android.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Uno.UI;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 
-namespace Windows.UI.Xaml.Documents
+namespace Microsoft.UI.Xaml.Documents
 {
 	public partial class Hyperlink
 	{

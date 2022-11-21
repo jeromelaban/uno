@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Private.Infrastructure;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 {
@@ -42,7 +42,7 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 			finally
 			{
 #if HAS_UNO
-				Windows.UI.Xaml.Media.VisualTreeHelper.CloseAllPopups();
+				Microsoft.UI.Xaml.Media.VisualTreeHelper.CloseAllPopups();
 #endif
 			}
 		}

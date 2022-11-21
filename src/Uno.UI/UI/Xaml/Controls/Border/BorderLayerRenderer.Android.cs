@@ -7,7 +7,7 @@ using Android.Views;
 using Uno.Extensions;
 using Uno.UI.Controls;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using System;
 using System.Collections.Generic;
 using Uno.Disposables;
@@ -19,7 +19,7 @@ using AndroidX.AppCompat.View;
 using System.Diagnostics;
 using Rect = Windows.Foundation.Rect;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class BorderLayerRenderer
 	{

@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Java.Util;
 using System;
 using System.Collections.Generic;
@@ -6,9 +6,9 @@ using System.Diagnostics;
 using System.Text;
 using Uno.UI;
 using Windows.Foundation;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class NativeDatePickerFlyout : DatePickerFlyout
 	{

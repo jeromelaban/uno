@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Uno.Foundation;
 using Windows.Foundation;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 using Windows.System;
 using Uno;
 using Uno.Foundation.Interop;
@@ -27,7 +27,7 @@ using Windows.Devices.Input;
 using Windows.UI.Input;
 #endif
 
-namespace Windows.UI.Xaml;
+namespace Microsoft.UI.Xaml;
 
 public partial class UIElement : DependencyObject
 {

@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using Uno.UI.Samples.Controls;
 using Windows.Foundation;
 using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 

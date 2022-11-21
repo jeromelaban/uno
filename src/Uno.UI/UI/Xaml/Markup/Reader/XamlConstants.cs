@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Windows.UI.Xaml.Markup.Reader
+namespace Microsoft.UI.Xaml.Markup.Reader
 {
     internal static class XamlConstants
 	{
@@ -12,10 +12,10 @@ namespace Windows.UI.Xaml.Markup.Reader
 		public const string BundleResourcePrefix = "ms-appx:///";
 
 		public const string RootFoundationNamespace = "Windows.Foundation";
-		public const string RootWUINamespace = "Windows.UI";
-		public const string RootMUINamespace = "Windows.UI";
-		public const string BaseXamlNamespace = "Windows.UI.Xaml";
-		public const string UnoXamlNamespace = "Windows.UI.Xaml";
+		public const string RootWUINamespace = "Microsoft.UI";
+		public const string RootMUINamespace = "Microsoft.UI";
+		public const string BaseXamlNamespace = "Microsoft.UI.Xaml";
+		public const string UnoXamlNamespace = "Microsoft.UI.Xaml";
 
 		public static class Namespaces
 		{

@@ -16,7 +16,7 @@ using Java.Lang;
 using Uno.Foundation.Logging;
 using Uno.UI;
 using Uno.Extensions;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Controls
 {

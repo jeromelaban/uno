@@ -1,4 +1,4 @@
-﻿namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	/// <summary>
 	/// Internal implemenation for <see cref="DependencyObject"/>

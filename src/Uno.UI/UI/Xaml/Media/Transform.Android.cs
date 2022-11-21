@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Numerics;
 using Uno.UI;
 using Windows.Foundation;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	/// <summary>
 	/// Transform: Android part

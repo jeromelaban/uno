@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using Windows.Foundation;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using static System.Double;
 
 #if NET6_0_OR_GREATER && (__IOS__ || __MACOS__)

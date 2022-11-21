@@ -1,8 +1,8 @@
-﻿#nullable enable
+#nullable enable
 
 using Uno.UI.DataBinding;
 
-namespace Windows.UI.Xaml.Markup
+namespace Microsoft.UI.Xaml.Markup
 {
 	/// <summary>
 	/// Reference holder for XAML generated x:Name and other markup elements.

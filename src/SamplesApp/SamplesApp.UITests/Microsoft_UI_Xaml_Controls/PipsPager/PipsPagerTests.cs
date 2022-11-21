@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using Common;
@@ -8,7 +8,7 @@ using Uno.UITest;
 using Uno.UITest.Helpers;
 using Uno.UITest.Helpers.Queries;
 
-namespace Windows.UI.Xaml.Tests.MUXControls.InteractionTests
+namespace Microsoft.UI.Xaml.Tests.MUXControls.InteractionTests
 {
     [Ignore("PipsPager tests are failing due to UI test differences")]
     public partial class PipsPagerTests : PipsPagerTestBase

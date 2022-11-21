@@ -1,10 +1,10 @@
-﻿using Windows.Foundation;
+using Windows.Foundation;
 using Uno.UI;
 using Uno.UI.Extensions;
 using Uno.UI.Helpers;
 using Uno.UI.Xaml.Core;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	partial class Border
 	{

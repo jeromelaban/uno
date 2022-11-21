@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Foundation;
 using UIKit;
 using CoreGraphics;
-using Windows.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Input;
 using System.Linq;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
     internal static class InputScopeHelper
     {

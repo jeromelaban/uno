@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Input;
 using Uno.UI.Samples.Controls;
 using Uno.UI.Samples.UITests.Helpers;
@@ -6,7 +6,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 
 namespace UITests.Windows_Storage
 {
@@ -20,7 +20,7 @@ namespace UITests.Windows_Storage
 			this.DataContextChanged += StorageFileOperationsTests_DataContextChanged;
 		}
 
-		private void StorageFileOperationsTests_DataContextChanged(Windows.UI.Xaml.DependencyObject sender, Windows.UI.Xaml.DataContextChangedEventArgs args)
+		private void StorageFileOperationsTests_DataContextChanged(Microsoft.UI.Xaml.DependencyObject sender, Microsoft.UI.Xaml.DataContextChangedEventArgs args)
 		{
 			ViewModel = args.NewValue as StorageFileOperationsTestsViewModel;
 		}

@@ -1,11 +1,11 @@
-﻿using Android.Util;
+using Android.Util;
 using Android.Widget;
 using Uno.UI.DataBinding;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Data;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using Uno.Extensions;

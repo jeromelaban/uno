@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 
 using System;
@@ -9,7 +9,7 @@ using Uno.Extensions;
 using Uno.Foundation.Logging;
 using Windows.Graphics;
 
-namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
 	internal partial class SkiaCompositionSurface : ICompositionSurface
 	{

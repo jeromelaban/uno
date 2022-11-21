@@ -1,13 +1,13 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 #pragma warning disable 105 // Disabled until the tree is migrate to WinUI
 
 using Uno.UI.Samples.Controls;
 using System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 using System.Collections.ObjectModel;
 
@@ -17,7 +17,7 @@ using RadioButtonsTestHooks = Microsoft.UI.Private.Controls.RadioButtonsTestHook
 #endif
 using System.Collections;
 using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation;
 
 namespace UITests.Microsoft_UI_Xaml_Controls.RadioButtonsTests
 {

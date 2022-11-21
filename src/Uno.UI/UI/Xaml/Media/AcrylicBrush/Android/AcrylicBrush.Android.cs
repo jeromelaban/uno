@@ -1,4 +1,4 @@
-﻿#pragma warning disable CS0618
+#pragma warning disable CS0618
 using System;
 using Android.Graphics;
 using Android.Graphics.Drawables;
@@ -7,10 +7,10 @@ using Java.Lang;
 using Uno.Disposables;
 using Uno.UI.Controls;
 using Uno.UI.Xaml.Media;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Rect = Windows.Foundation.Rect;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public partial class AcrylicBrush
 	{

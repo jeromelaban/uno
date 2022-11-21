@@ -1,11 +1,11 @@
-﻿#nullable enable
+#nullable enable
 
 using System;
 using System.Linq;
 using Windows.Foundation;
 using Uno.Extensions;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	internal struct ViewportInfo : IEquatable<ViewportInfo>
 	{

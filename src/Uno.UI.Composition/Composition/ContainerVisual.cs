@@ -2,7 +2,7 @@
 
 using System;
 
-namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
 	public partial class ContainerVisual : Visual
 	{

@@ -1,4 +1,4 @@
-﻿using Android.Animation;
+using Android.Animation;
 using Android.Views;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using Windows.Foundation;
 using Uno.UI;
 using Windows.UI;
 
-namespace Windows.UI.Xaml.Media.Animation
+namespace Microsoft.UI.Xaml.Media.Animation
 {
 	internal static partial class AnimatorFactory
 	{

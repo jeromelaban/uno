@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Uno.UI;
 using Windows.UI.Core;
 using Uno.Extensions;
@@ -14,10 +14,10 @@ using WindowSizeChangedEventArgs = Microsoft.UI.Xaml.WindowSizeChangedEventArgs;
 using XamlWindow = Microsoft.UI.Xaml.Window;
 #else
 using WindowSizeChangedEventArgs = Windows.UI.Core.WindowSizeChangedEventArgs;
-using XamlWindow = Windows.UI.Xaml.Window;
+using XamlWindow = Microsoft.UI.Xaml.Window;
 #endif
 
-namespace Windows.UI.Xaml.Controls.Primitives
+namespace Microsoft.UI.Xaml.Controls.Primitives
 {
 	/// <summary>
 	/// This is a base popup panel to calculate the placement near an anchor control.
@@ -77,8 +77,8 @@ namespace Windows.UI.Xaml.Controls.Primitives
 
 		protected PlacementPopupPanel(Popup popup) : base(popup)
 		{
-			Loaded += (s, e) => Windows.UI.Xaml.Window.Current.SizeChanged += Current_SizeChanged;
-			Unloaded += (s, e) => Windows.UI.Xaml.Window.Current.SizeChanged -= Current_SizeChanged;
+			Loaded += (s, e) => Microsoft.UI.Xaml.Window.Current.SizeChanged += Current_SizeChanged;
+			Unloaded += (s, e) => Microsoft.UI.Xaml.Window.Current.SizeChanged -= Current_SizeChanged;
 		}
 
 		private void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)

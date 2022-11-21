@@ -1,4 +1,4 @@
-﻿#if __WASM__ || __SKIA__
+#if __WASM__ || __SKIA__
 // "Managed Measure Dirty Path" means it's the responsibility of the
 // managed code (Uno) to walk the tree and do the measure phase.
 #define IMPLEMENTS_MANAGED_MEASURE_DIRTY_PATH
@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	partial class UIElement
 	{

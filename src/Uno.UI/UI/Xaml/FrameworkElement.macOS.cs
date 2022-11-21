@@ -1,4 +1,4 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using Uno.Extensions;
 using Uno.UI.Controls;
 using System;
@@ -10,7 +10,7 @@ using Uno.Foundation.Logging;
 using Uno.UI;
 using AppKit;
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	public partial class FrameworkElement
 	{

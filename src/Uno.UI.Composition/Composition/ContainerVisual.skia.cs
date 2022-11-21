@@ -3,7 +3,7 @@ using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Windows.UI.Composition;
+namespace Microsoft.UI.Composition;
 
 public partial class ContainerVisual : Visual
 {

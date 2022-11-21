@@ -1,5 +1,5 @@
 
-namespace Windows.UI.Xaml.Controls.Maps
+namespace Microsoft.UI.Xaml.Controls.Maps
 {
 	public partial class MapInputEventArgs : DependencyObject
 	{

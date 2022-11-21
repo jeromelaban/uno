@@ -4,9 +4,9 @@ using System.Numerics;
 using SkiaSharp;
 using Uno.UI.Composition.Composition;
 
-namespace Windows.UI.Composition
+namespace Microsoft.UI.Composition
 {
-	public partial class Visual : global::Windows.UI.Composition.CompositionObject
+	public partial class Visual : global::Microsoft.UI.Composition.CompositionObject
 	{
 		internal virtual void Render(SKSurface surface)
 		{
