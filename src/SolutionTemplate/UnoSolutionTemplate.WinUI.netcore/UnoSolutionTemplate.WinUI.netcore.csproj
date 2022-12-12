@@ -123,7 +123,7 @@
     <None Include="Skia.Gtk\UnoQuickStart.Skia.Gtk.csproj" />
     <None Include="Skia.WPF\UnoQuickStart.Skia.Wpf.csproj" />
     <None Include="Wasm\Platforms\WebAssembly\Program.cs" />
-    <None Include="Shared\App.xaml.cs" />
+    <None Include="Base\App.xaml.cs" />
     <None Include="Shared\MainPage.xaml.cs" />
     <None Include="Wasm\Platforms\WebAssembly\wwwroot\web.config" />
     <None Include="WinUI\Platforms\Windows\app.manifest" />
@@ -150,7 +150,7 @@
     <None Include="Shared\UnoQuickStart.Shared.shproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shared\App.xaml">
+    <None Include="Base\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </None>
@@ -178,6 +178,9 @@
     <VSTemplate Include="Skia.Linux.FrameBuffer\SkiaLinuxFrameBuffer.winui.netcore.vstemplate">
       <SubType>Designer</SubType>
     </VSTemplate>
+    <VSTemplate Include="Base\Base.winui.netcore.vstemplate" />
+    <Content Include="Base\__PreviewImage.png" />
+    <Content Include="Base\__TemplateIcon.png" />
     <Content Include="Mobile\Platforms\Android\AndroidManifest.xml" />
     <Content Include="Mobile\Platforms\Android\Assets\AboutAssets.txt" />
     <Content Include="Mobile\Platforms\Android\Resources\AboutResources.txt" />
