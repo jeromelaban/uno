@@ -1,14 +1,14 @@
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
 	<TemplateData>
-		<Name>UnoQuickStart.Shared</Name>
+		<Name>UnoQuickStart.Views</Name>
 		<Description>
 		</Description>
-		<ProjectType>Code Sharing Projects</ProjectType>
+		<ProjectType>View Projects</ProjectType>
 		<ProjectSubType>
 		</ProjectSubType>
 		<SortOrder>1000</SortOrder>
 		<CreateNewFolder>true</CreateNewFolder>
-		<DefaultName>UnoQuickStart.Shared</DefaultName>
+		<DefaultName>UnoQuickStart</DefaultName>
 		<ProvideDefaultName>true</ProvideDefaultName>
 		<LocationField>Enabled</LocationField>
 		<EnableLocationBrowseButton>true</EnableLocationBrowseButton>
@@ -18,7 +18,7 @@
 		<PreviewImage>__PreviewImage.png</PreviewImage>
 	</TemplateData>
 	<TemplateContent>
-		<Project TargetFileName="$ext_safeprojectname$.Shared.shproj" File="UnoQuickStart.Shared.shproj" ReplaceParameters="true">
+		<Project TargetFileName="$ext_safeprojectname$.csproj" File="UnoQuickStart.csproj" ReplaceParameters="true">
 			<Folder Name="Assets" TargetFolderName="Assets">
 				<Folder Name="Fonts" TargetFolderName="Fonts">
 					<ProjectItem TargetFileName="uno-fluentui-assets.ttf" ReplaceParameters="false">uno-fluentui-assets.ttf</ProjectItem>

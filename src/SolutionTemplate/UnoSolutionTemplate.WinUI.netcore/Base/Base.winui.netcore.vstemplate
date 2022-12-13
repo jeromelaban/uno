@@ -18,7 +18,10 @@
 		<Hidden>true</Hidden>
 	</TemplateData>
 	<TemplateContent>
-		<!--<ProjectItem ReplaceParameters="true" TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
-		<ProjectItem ReplaceParameters="true" TargetFileName="App.xaml">App.xaml</ProjectItem>-->
+		<Project TargetFileName="$ext_safeprojectname$.Base.shproj" File="UnoQuickStart.Base.shproj" ReplaceParameters="true">
+			<ProjectItem ReplaceParameters="true" TargetFileName="App.xaml.cs">App.xaml.cs</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="App.xaml">App.xaml</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="base.props">base.props</ProjectItem>
+		</Project>
 	</TemplateContent>
 </VSTemplate>
