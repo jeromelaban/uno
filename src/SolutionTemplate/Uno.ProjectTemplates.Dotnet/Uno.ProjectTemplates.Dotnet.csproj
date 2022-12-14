@@ -334,6 +334,7 @@
 							.Replace("UseAppKit", "macos")
 							.Replace("UseCatalyst", "maccatalyst")
 							.Replace("UseServer", "hosted")
+							.Replace("UseWebAssembly", "WebAssembly")
 							.Replace("UseWebAssemblyManifestJson", "wasm-pwa-manifest")
 							.Replace("$basetargetframework$", "net6.0")
 							;
