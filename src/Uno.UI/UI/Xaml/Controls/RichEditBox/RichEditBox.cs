@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Windows.UI.Xaml.Controls
 {
-	public partial class RichEditBox : Control
+	public partial class RichEditBox // : Control
 	{
 	}
 }
