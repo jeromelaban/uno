@@ -17,12 +17,12 @@
 				</ResourceDictionary>
 			</ResourceDictionary.ThemeDictionaries>
 
-			<Color x:Key="Color2">#B910A8</Color>
+			<Color x:Key="Color2">Yellow</Color>
 		</ResourceDictionary>
 	</Page.Resources>
 
 	<StackPanel>
-		<Border Background="{StaticResource Color1}" />
-		<Border Background="{StaticResource Color2}" />
+		<Border x:Name="border1" Background="{ThemeResource Color1}" />
+		<Border x:Name="border2" Background="{StaticResource Color2}" />
 	</StackPanel>
 </Page>

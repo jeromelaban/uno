@@ -21,6 +21,7 @@ using Windows.UI;
 using System.Text.RegularExpressions;
 using FluentAssertions.Execution;
 using System.Globalization;
+using Uno.UI.Tests.Helpers;
 
 namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 {
@@ -31,6 +32,20 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		public void Initialize()
 		{
 			UnitTestsApp.App.EnsureApplication();
+		}
+
+		[TestCleanup]
+		public async Task Cleanup()
+		{
+			if (Window.Current?.Content is FrameworkElement root)
+			{
+				root.RequestedTheme = ElementTheme.Default;
+			}
+
+			if (Application.Current.RequestedTheme == ApplicationTheme.Dark)
+			{
+				await SwapSystemTheme();
+			}
 		}
 
 		[TestMethod]
@@ -1522,6 +1537,31 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 		}
 
 		[TestMethod]
+		public async Task When_ThemeResource_With_StaticResource_And_Theme_Change()
+		{
+			var s = GetContent(nameof(When_ThemeResource_With_StaticResource));
+			var SUT = Windows.UI.Xaml.Markup.XamlReader.Load(s) as Page;
+
+			var app = UnitTestsApp.App.EnsureApplication();
+
+			app.HostView.Children.Add(SUT);
+
+			var border1 = SUT.FindName("border1") as Border;
+			Assert.IsNotNull(border1);
+
+			var border2 = SUT.FindName("border2") as Border;
+			Assert.IsNotNull(border2);
+
+			Assert.AreEqual(Colors.White, (border1.Background as SolidColorBrush)!.Color);
+			Assert.AreEqual(Colors.Yellow, (border2.Background as SolidColorBrush)!.Color);
+
+            await SwapSystemTheme();
+
+			Assert.AreEqual(Colors.Black, (border1.Background as SolidColorBrush)!.Color);
+			Assert.AreEqual(Colors.Yellow, (border2.Background as SolidColorBrush)!.Color);
+		}
+
+		[TestMethod]
 		public void When_ResourceDictionary_With_Theme_And_Static()
 		{
 			var s = GetContent(nameof(When_ResourceDictionary_With_Theme_And_Static));
@@ -1580,6 +1620,8 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			{
 				return stream.ReadToEnd();
 			}
-		}
-	}
+        }
+
+        internal static Task<bool> SwapSystemTheme() => ThemeHelper.SwapSystemTheme();
+    }
 }
