@@ -15,7 +15,11 @@
 	</PropertyGroup>
 
 	<Import Project="../targetframework-override.props" />
-
+	
+	<PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+	</PropertyGroup>
+	
 	<PropertyGroup>
 		<UnoSourceGeneratorUseGenerationHost>false</UnoSourceGeneratorUseGenerationHost>
 		<NoWarn>$(NoWarn);NU1701</NoWarn>
