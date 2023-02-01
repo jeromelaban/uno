@@ -17,6 +17,7 @@ using Uno.UI;
 using System.Collections;
 using System.Globalization;
 using Windows.ApplicationModel.Calls;
+using Uno.UI.Xaml.Core;
 
 #if XAMARIN_ANDROID
 using View = Android.Views.View;
@@ -1421,6 +1422,19 @@ namespace Microsoft.UI.Xaml
 			while (candidate != null)
 			{
 				var parent = candidate.GetParent() as DependencyObject;
+
+#if __ANDROID__
+				// In the context of Android loading/loaded events, the loading event is
+				// raised before the DependencyObject parent is set. If that's the case,
+				// we can rely on the android parent property to traverse the ancestors.
+				if(parent is null
+                    && candidateFE is { IsLoaded: false }
+                    && candidate is not RootVisual
+                    && candidate is Android.Views.ViewGroup vg)
+				{
+					parent = vg.Parent as DependencyObject;
+				}
+#endif
 
 				if (candidateFE != null)
 				{

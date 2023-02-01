@@ -137,6 +137,9 @@
 	<Target Name="CommonOverrideNuget" AfterTargets="AfterBuild" DependsOnTargets="BuiltProjectOutputGroup" Condition="'$(UnoNugetOverrideVersion)'!='' and '$(UseCommonOverridePackage)'!=''">
 		<PropertyGroup>
 			<_OverrideTargetFramework>$(TargetFramework)</_OverrideTargetFramework>
+			
+			<_OverrideTargetFramework Condition="$(_OverrideTargetFramework.EndsWith('-android'))">$(_OverrideTargetFramework)30.0</_OverrideTargetFramework>
+			
 			<_baseNugetPath Condition="'$(USERPROFILE)'!=''">$(USERPROFILE)</_baseNugetPath>
 			<_baseNugetPath Condition="'$(HOME)'!=''">$(HOME)</_baseNugetPath>
 			<CommonOverridePackageId Condition="'$(CommonOverridePackageId)'==''">$(AssemblyName)</CommonOverridePackageId>
