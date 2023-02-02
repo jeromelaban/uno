@@ -296,6 +296,12 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				var resourceKeys = GetResourceKeys(_generatorContext.CancellationToken);
 				TryGenerateUnoResourcesKeyAttribute(resourceKeys);
 
+				var resourceFileNames =
+					ImmutableHashSet.ToImmutableHashSet(
+						_cachedResources
+						.Keys
+						.Select(k => Path.GetFileNameWithoutExtension(k.File)));
+
 				var filesFull = new XamlFileParser(_excludeXamlNamespaces, _includeXamlNamespaces, _metadataHelper)
 					.ParseFiles(_xamlSourceFiles, _projectDirectory, _generatorContext.CancellationToken);
 
@@ -349,6 +355,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									analyzerSuppressions: _analyzerSuppressions,
 									globalStaticResourcesMap: globalStaticResourcesMap,
 									resourceKeys: resourceKeys,
+									resourceFileNames: resourceFileNames,
 									isUiAutomationMappingEnabled: _isUiAutomationMappingEnabled,
 									uiAutomationMappings: _uiAutomationMappings,
 									defaultLanguage: _defaultLanguage,
@@ -630,6 +637,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					{
 						var sourceText = file.File.GetText(ct)!;
 						var cachedFileKey = new ResourceCacheKey(file.Identity, sourceText.GetChecksum());
+						var resourceFileName = Path.GetFileNameWithoutExtension(file.Identity);
+
 						if (_cachedResources.TryGetValue(cachedFileKey, out var cachedResource))
 						{
 							_cachedResources[cachedFileKey] = cachedResource.WithUpdatedLastTimeUsed();
@@ -650,7 +659,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						// Per this documentation, /root/data should be more performant than //data
 						var keys = doc.SelectNodes("/root/data")
 							?.Cast<XmlElement>()
-							.Select(node => RewriteResourceKeyName(rewriterBuilder, node.GetAttribute("name")))
+							.Select(node => RewriteResourceKeyName(rewriterBuilder, node.GetAttribute("name"), resourceFileName))
 							.ToArray() ?? Array.Empty<string>();
 						_cachedResources[cachedFileKey] = new CachedResource(DateTimeOffset.Now, keys);
 						return keys;
@@ -674,7 +683,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					}
 				})
 				.Distinct()
-				.ToImmutableHashSet();
+				.ToImmutableHashSet(StringComparer.OrdinalIgnoreCase);
 
 #if DEBUG
 			Console.WriteLine(resourceKeys.Count + " localization keys found");
@@ -682,7 +691,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return resourceKeys;
 		}
 
-		private string RewriteResourceKeyName(StringBuilder builder, string keyName)
+		private string RewriteResourceKeyName(StringBuilder builder, string keyName, string resourceFileName)
 		{
 			var firstDotIndex = keyName.IndexOf('.');
 			if (firstDotIndex != -1)
@@ -692,8 +701,23 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 				builder[firstDotIndex] = '/';
 
-				return builder.ToString();
+				keyName = builder.ToString();
 			}
+
+			if (_isUnoHead
+				&& !resourceFileName.Equals("Resources", StringComparison.OrdinalIgnoreCase))
+			{
+				keyName = $"/{resourceFileName}/{keyName}";
+			}
+			else
+			{
+				keyName = $"/{_metadataHelper.AssemblyName}/{resourceFileName}/{keyName}";
+			}
+
+#if false
+			// Uncomment for debugging
+			Console.WriteLine($"Build key {keyName} ({resourceFileName} / {_isUnoHead})");
+#endif
 
 			return keyName;
 		}

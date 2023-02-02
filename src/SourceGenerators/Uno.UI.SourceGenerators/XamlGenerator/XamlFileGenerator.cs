@@ -70,6 +70,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		private readonly DateTime _lastReferenceUpdateTime;
 		private readonly string[] _analyzerSuppressions;
 		private readonly ImmutableHashSet<string> _resourceKeys;
+		private readonly ImmutableHashSet<string> _resourceFileNames;
 		private int _applyIndex;
 		private int _collectionIndex;
 		private int _subclassIndex;
@@ -232,6 +233,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			DateTime lastReferenceUpdateTime,
 			string[] analyzerSuppressions,
 			ImmutableHashSet<string> resourceKeys,
+			ImmutableHashSet<string> resourceFileNames,
 			XamlGlobalStaticResourcesMap globalStaticResourcesMap,
 			bool isUiAutomationMappingEnabled,
 			Dictionary<string, string[]> uiAutomationMappings,
@@ -261,6 +263,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			_lastReferenceUpdateTime = lastReferenceUpdateTime;
 			_analyzerSuppressions = analyzerSuppressions;
 			_resourceKeys = resourceKeys;
+			_resourceFileNames = resourceFileNames;
 			_globalStaticResourcesMap = globalStaticResourcesMap;
 			_isUiAutomationMappingEnabled = isUiAutomationMappingEnabled;
 			_uiAutomationMappings = uiAutomationMappings;
@@ -5167,15 +5170,22 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			// - /ResourceFileName/MyPrefix/MyUid
 			// - /ResourceFilename/MyPrefix1/MyPrefix2/MyUid
 			// - /ResourceFilename/MyPrefix1/MyPrefix2/MyPrefix3/MyUid
+			// - /LibraryName/ResourceFileName/MyUid
+			// - /LibraryName/ResourceFileName/MyPrefix/MyUid
 
 			(string? resourceFileName, string uidName) parseXUid()
 			{
 				if (objectUid.StartsWith("/", StringComparison.Ordinal))
 				{
-					var separator = objectUid.IndexOf('/', 1);
+					// Skip the current assembly name for self lookup
+					var startIndex = objectUid.StartsWith("/" + _metadataHelper.AssemblyName, StringComparison.Ordinal)
+						? _metadataHelper.AssemblyName.Length + 2
+						: 1;
+
+					var separator = objectUid.IndexOf('/', startIndex);
 
 					return (
-						objectUid.Substring(1, separator - 1),
+						objectUid.Substring(startIndex, separator - startIndex),
 						objectUid.Substring(separator + 1)
 					);
 				}
@@ -5198,14 +5208,30 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				fullKey = $"{uidName}/[using:{nsRaw}]{type}.{memberName}";
 			}
 
-			if (_resourceKeys.Contains(fullKey))
+			var libraryPrefix = (_isInsideMainAssembly, resourceFileName.IsNullOrEmpty()) switch
 			{
-				var resourceNameString = resourceFileName == null ? "null" : $"\"{resourceFileName}\"";
+				(true, true) => "",
+				(true, false) => "",
+				(false, true) => "/" + _metadataHelper.AssemblyName + "/Resources/",
+				(false, false) => "/" + _metadataHelper.AssemblyName + "/" + resourceFileName + "/",
+			};
 
-				return $"global::Uno.UI.Helpers.MarkupHelper.GetResourceStringForXUid({resourceNameString}, \"{fullKey}\")";
+			var fullKeyWithLibrary = libraryPrefix + fullKey;
+
+			if (_resourceKeys.Contains(fullKeyWithLibrary))
+			{
+				var resourceFileNameParam = (_isInsideMainAssembly, resourceFileName is null) switch
+				{
+					(true, true) => "null",
+					(true, false) => $"\"{resourceFileName}\"",
+					(false, true) => $"\"{_metadataHelper.AssemblyName}/Resources\"",
+					(false, false) => $"\"{_metadataHelper.AssemblyName}/{resourceFileName}\"",
+				};
+
+				return $"global::Uno.UI.Helpers.MarkupHelper.GetResourceStringForXUid({resourceFileNameParam}, \"{fullKey}\")";
 			}
 
-			return null;
+			return null; //$"null /*{fullKeyWithLibrary}*/";
 		}
 
 		private bool IsPropertyLocalized(XamlObjectDefinition obj, string propertyName)
