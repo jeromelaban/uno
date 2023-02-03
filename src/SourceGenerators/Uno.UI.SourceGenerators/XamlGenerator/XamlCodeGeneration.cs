@@ -293,14 +293,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					|| PlatformHelper.IsXamarinMacOs(_generatorContext)
 					|| PlatformHelper.IsAndroid(_generatorContext);
 
-				var resourceKeys = GetResourceKeys(_generatorContext.CancellationToken);
-				TryGenerateUnoResourcesKeyAttribute(resourceKeys);
-
-				var resourceFileNames =
-					ImmutableHashSet.ToImmutableHashSet(
-						_cachedResources
-						.Keys
-						.Select(k => Path.GetFileNameWithoutExtension(k.File)));
+				var resourceDetailsCollection = BuildResourceDetails(_generatorContext.CancellationToken);
+				TryGenerateUnoResourcesKeyAttribute(resourceDetailsCollection);
 
 				var filesFull = new XamlFileParser(_excludeXamlNamespaces, _includeXamlNamespaces, _metadataHelper)
 					.ParseFiles(_xamlSourceFiles, _projectDirectory, _generatorContext.CancellationToken);
@@ -354,8 +348,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 									lastReferenceUpdateTime: lastBinaryUpdateTime,
 									analyzerSuppressions: _analyzerSuppressions,
 									globalStaticResourcesMap: globalStaticResourcesMap,
-									resourceKeys: resourceKeys,
-									resourceFileNames: resourceFileNames,
+									resourceDetailsCollection: resourceDetailsCollection,
 									isUiAutomationMappingEnabled: _isUiAutomationMappingEnabled,
 									uiAutomationMappings: _uiAutomationMappings,
 									defaultLanguage: _defaultLanguage,
@@ -409,9 +402,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			}
 		}
 
-		private void TryGenerateUnoResourcesKeyAttribute(ImmutableHashSet<string> resourceKeys)
+		private void TryGenerateUnoResourcesKeyAttribute(ResourceDetailsCollection resourceDetailsCollection)
 		{
-			var hasResources = !resourceKeys.IsEmpty;
+			var hasResources = resourceDetailsCollection.HasLocalResources;
 
 			_generatorContext.AddSource(
 				"LocalizationResources",
@@ -623,9 +616,20 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		}
 
 		//get keys of localized strings
-		private ImmutableHashSet<string> GetResourceKeys(CancellationToken ct)
+		private ResourceDetailsCollection BuildResourceDetails(CancellationToken ct)
 		{
-			ImmutableHashSet<string> resourceKeys = _resourceFiles
+			var localResources = BuildLocalResourceDetails(ct);
+
+			var collection = new ResourceDetailsCollection(_metadataHelper.AssemblyName);
+
+			collection.AddRange(localResources);
+
+			return collection;
+		}
+
+		private ResourceDetails[] BuildLocalResourceDetails(CancellationToken ct)
+		{
+			var resourceKeys = _resourceFiles
 				.AsParallel()
 				.WithCancellation(ct)
 				.SelectMany(file =>
@@ -660,7 +664,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						var keys = doc.SelectNodes("/root/data")
 							?.Cast<XmlElement>()
 							.Select(node => RewriteResourceKeyName(rewriterBuilder, node.GetAttribute("name"), resourceFileName))
-							.ToArray() ?? Array.Empty<string>();
+							.ToArray() ?? Array.Empty<ResourceDetails>();
 						_cachedResources[cachedFileKey] = new CachedResource(DateTimeOffset.Now, keys);
 						return keys;
 					}
@@ -676,22 +680,22 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 						_generatorContext.ReportDiagnostic(diagnostic);
 
-						return Array.Empty<string>();
+						return Array.Empty<ResourceDetails>();
 #else
 						throw new InvalidOperationException(message, e);
 #endif
 					}
 				})
 				.Distinct()
-				.ToImmutableHashSet(StringComparer.OrdinalIgnoreCase);
+				.ToArray();
 
 #if DEBUG
-			Console.WriteLine(resourceKeys.Count + " localization keys found");
+			Console.WriteLine(resourceKeys.Length + " localization keys found");
 #endif
 			return resourceKeys;
 		}
 
-		private string RewriteResourceKeyName(StringBuilder builder, string keyName, string resourceFileName)
+		private ResourceDetails RewriteResourceKeyName(StringBuilder builder, string keyName, string resourceFileName)
 		{
 			var firstDotIndex = keyName.IndexOf('.');
 			if (firstDotIndex != -1)
@@ -704,22 +708,12 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				keyName = builder.ToString();
 			}
 
-			if (_isUnoHead
-				&& !resourceFileName.Equals("Resources", StringComparison.OrdinalIgnoreCase))
-			{
-				keyName = $"/{resourceFileName}/{keyName}";
-			}
-			else
-			{
-				keyName = $"/{_metadataHelper.AssemblyName}/{resourceFileName}/{keyName}";
-			}
-
-#if false
+#if true // false
 			// Uncomment for debugging
 			Console.WriteLine($"Build key {keyName} ({resourceFileName} / {_isUnoHead})");
 #endif
 
-			return keyName;
+			return new(_metadataHelper.AssemblyName, resourceFileName, keyName);
 		}
 
 		private DateTime GetLastBinaryUpdateTime()

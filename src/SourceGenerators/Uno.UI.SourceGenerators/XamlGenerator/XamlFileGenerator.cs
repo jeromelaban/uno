@@ -69,8 +69,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		private readonly string _fileUniqueId;
 		private readonly DateTime _lastReferenceUpdateTime;
 		private readonly string[] _analyzerSuppressions;
-		private readonly ImmutableHashSet<string> _resourceKeys;
-		private readonly ImmutableHashSet<string> _resourceFileNames;
+		private readonly ResourceDetailsCollection _resourceDetailsCollection;
 		private int _applyIndex;
 		private int _collectionIndex;
 		private int _subclassIndex;
@@ -232,8 +231,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			string fileUniqueId,
 			DateTime lastReferenceUpdateTime,
 			string[] analyzerSuppressions,
-			ImmutableHashSet<string> resourceKeys,
-			ImmutableHashSet<string> resourceFileNames,
+			ResourceDetailsCollection resourceDetailsCollection,
 			XamlGlobalStaticResourcesMap globalStaticResourcesMap,
 			bool isUiAutomationMappingEnabled,
 			Dictionary<string, string[]> uiAutomationMappings,
@@ -262,8 +260,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			_fileUniqueId = fileUniqueId;
 			_lastReferenceUpdateTime = lastReferenceUpdateTime;
 			_analyzerSuppressions = analyzerSuppressions;
-			_resourceKeys = resourceKeys;
-			_resourceFileNames = resourceFileNames;
+			_resourceDetailsCollection = resourceDetailsCollection;
 			_globalStaticResourcesMap = globalStaticResourcesMap;
 			_isUiAutomationMappingEnabled = isUiAutomationMappingEnabled;
 			_uiAutomationMappings = uiAutomationMappings;
@@ -4045,7 +4042,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 			if (objectUid != null)
 			{
-				var candidateAttachedProperties = FindLocalizableAttachedProperties(objectUid);
+				var candidateAttachedProperties = FindLocalizableAttachedProperties(writer, objectUid);
 				foreach (var candidate in candidateAttachedProperties)
 				{
 					var localizedValue = BuildLocalizedResourceValue(candidate.ownerType, candidate.property, objectUid);
@@ -5162,76 +5159,28 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 		private string? BuildLocalizedResourceValue(INamedTypeSymbol? owner, string memberName, string objectUid)
 		{
-			// see: https://docs.microsoft.com/en-us/windows/uwp/app-resources/localize-strings-ui-manifest
-			// Valid formats:
-			// - MyUid
-			// - MyPrefix/MyUid
-			// - /ResourceFileName/MyUid
-			// - /ResourceFileName/MyPrefix/MyUid
-			// - /ResourceFilename/MyPrefix1/MyPrefix2/MyUid
-			// - /ResourceFilename/MyPrefix1/MyPrefix2/MyPrefix3/MyUid
-			// - /LibraryName/ResourceFileName/MyUid
-			// - /LibraryName/ResourceFileName/MyPrefix/MyUid
-
-			(string? resourceFileName, string uidName) parseXUid()
-			{
-				if (objectUid.StartsWith("/", StringComparison.Ordinal))
-				{
-					// Skip the current assembly name for self lookup
-					var startIndex = objectUid.StartsWith("/" + _metadataHelper.AssemblyName, StringComparison.Ordinal)
-						? _metadataHelper.AssemblyName.Length + 2
-						: 1;
-
-					var separator = objectUid.IndexOf('/', startIndex);
-
-					return (
-						objectUid.Substring(startIndex, separator - startIndex),
-						objectUid.Substring(separator + 1)
-					);
-				}
-				else
-				{
-					return (null, objectUid);
-				}
-			}
-
-			var (resourceFileName, uidName) = parseXUid();
-
 			//windows 10 localization concat the xUid Value with the member value (Text, Content, Header etc...)
-			var fullKey = uidName + "/" + memberName;
+			string fullKey;
 
 			if (owner != null && IsAttachedProperty(owner, memberName))
 			{
 				var declaringType = owner;
 				var nsRaw = declaringType.ContainingNamespace.GetFullName();
 				var type = declaringType.Name;
-				fullKey = $"{uidName}/[using:{nsRaw}]{type}.{memberName}";
+
+				fullKey = $"{objectUid}/[using:{nsRaw}]{type}.{memberName}";
+			}
+			else
+			{
+				fullKey = objectUid + "/" + memberName;
 			}
 
-			var libraryPrefix = (_isInsideMainAssembly, resourceFileName.IsNullOrEmpty()) switch
+			if (_resourceDetailsCollection.FindByUId(fullKey) is { } resourceDetail)
 			{
-				(true, true) => "",
-				(true, false) => "",
-				(false, true) => "/" + _metadataHelper.AssemblyName + "/Resources/",
-				(false, false) => "/" + _metadataHelper.AssemblyName + "/" + resourceFileName + "/",
-			};
-
-			var fullKeyWithLibrary = libraryPrefix + fullKey;
-
-			if (_resourceKeys.Contains(fullKeyWithLibrary))
-			{
-				var resourceFileNameParam = (_isInsideMainAssembly, resourceFileName is null) switch
-				{
-					(true, true) => "null",
-					(true, false) => $"\"{resourceFileName}\"",
-					(false, true) => $"\"{_metadataHelper.AssemblyName}/Resources\"",
-					(false, false) => $"\"{_metadataHelper.AssemblyName}/{resourceFileName}\"",
-				};
-
-				return $"global::Uno.UI.Helpers.MarkupHelper.GetResourceStringForXUid({resourceFileNameParam}, \"{fullKey}\")";
+				return $"global::Uno.UI.Helpers.MarkupHelper.GetResourceStringForXUid(\"{resourceDetail.FileName}\", \"{resourceDetail.Key}\")";
 			}
 
-			return null; //$"null /*{fullKeyWithLibrary}*/";
+			return null; // $"null /*{fullKeyWithLibrary}*/";
 		}
 
 		private bool IsPropertyLocalized(XamlObjectDefinition obj, string propertyName)
