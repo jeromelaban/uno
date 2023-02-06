@@ -32,6 +32,7 @@ using Microsoft.UI.Xaml.Data;
 using Uno.UI.RuntimeTests.Extensions;
 using Microsoft.UI.Xaml.Input;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Diagnostics;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 {
@@ -2277,6 +2278,51 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 			}
 		}
 
+		private record TestReleaseObject()
+		{
+			public byte[] test { get; set; } = new byte[1024 * 1024 * 2];
+		}
+
+		[TestMethod]
+		public async Task When_Item_Removed_Then_DataContext_Released()
+		{
+			// using (FeatureConfigurationHelper.UseTemplatePooling())
+			{
+				var collection = new ObservableCollection<TestReleaseObject>();
+
+				var itemRef = AddItem();
+
+				var SUT = new ListView
+				{
+					Width = 200,
+					Height = 300,
+					ItemsSource = collection,
+				};
+
+				WindowHelper.WindowContent = SUT;
+
+				await WindowHelper.WaitForLoaded(SUT);
+
+				Assert.AreEqual(1, SUT.Items.Count);
+
+				var item = SUT.GetContainerForIndex(0);
+
+				collection.Clear();
+
+				await WindowHelper.WaitForIdle();
+
+				await AssertCollectedReference(itemRef);
+
+				WeakReference AddItem()
+				{
+					var item = new TestReleaseObject();
+					collection.Add(item);
+
+					return new(item);
+				}
+			}
+		}
+
 #if __SKIA__ || __WASM__
 		[TestMethod]
 		[RequiresFullWindow]
@@ -2528,6 +2574,25 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 
 
 		private bool ApproxEquals(double value1, double value2) => Math.Abs(value1 - value2) <= 2;
+
+		private async Task AssertCollectedReference(WeakReference reference)
+		{
+			var sw = Stopwatch.StartNew();
+			while (sw.Elapsed < TimeSpan.FromSeconds(3))
+			{
+				GC.Collect(2);
+				GC.WaitForPendingFinalizers();
+
+				if (!reference.IsAlive)
+				{
+					return;
+				}
+
+				await Task.Delay(100);
+			}
+
+			Assert.IsFalse(reference.IsAlive);
+		}
 
 		#region Helper classes
 		private class When_Removed_From_Tree_And_Selection_TwoWay_Bound_DataContext : System.ComponentModel.INotifyPropertyChanged

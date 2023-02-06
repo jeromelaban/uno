@@ -176,6 +176,9 @@ namespace Microsoft.UI.Xaml.Controls
 		/// <param name="index">The item index that the container was being used for.</param>
 		public void RecycleViewForItem(FrameworkElement container, int index)
 		{
+			ItemsControl.CleanUpContainer(container);
+			container?.ClearValue(FrameworkElement.DataContextProperty, DependencyPropertyValuePrecedences.DefaultStyle);
+
 			var id = GetItemId(index);
 
 			if (id != IsOwnContainerItemId) //If container was the item, it shouldn't be reycled

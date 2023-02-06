@@ -16,6 +16,9 @@
 		<UseUnoXamlParser>true</UseUnoXamlParser>
 		<UnoRuntimeIdentifier>WebAssembly</UnoRuntimeIdentifier>
 		<WasmShellIncludeWindowsCompatibility>false</WasmShellIncludeWindowsCompatibility>
+
+		<WasmShellEnableLogProfiler>true</WasmShellEnableLogProfiler>
+
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
