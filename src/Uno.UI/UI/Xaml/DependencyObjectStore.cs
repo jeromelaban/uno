@@ -492,14 +492,24 @@ namespace Microsoft.UI.Xaml
 
 					if (propertyDetails.HasInherits)
 					{
-						if (newPrecedence < previousPrecedence && previousValue is IDependencyObjectStoreProvider childProviderClear)
+						// If a value is set with a higher precedence, the lower precedence datacontext must be cleared
+						//
+						if (newPrecedence < previousPrecedence
+							&& previousValue is IDependencyObjectStoreProvider childProviderClear
+							&& newValue is IDependencyObjectStoreProvider childProviderClearNewValue)
 						{
 							childProviderClear.Store.ClearValue(childProviderClear.Store.DataContextProperty, DependencyPropertyValuePrecedences.Inheritance);
+							childProviderClearNewValue.Store.SetValue(childProviderClearNewValue.Store.DataContextProperty, GetValue(DataContextProperty), DependencyPropertyValuePrecedences.Inheritance);
 						}
 
-						if (newPrecedence > previousPrecedence && newValue is IDependencyObjectStoreProvider childProviderSet)
+						// If a value is set with a lower precedence, the higher precedence datacontext must be set to the current DataContext
+						//
+						if (newPrecedence > previousPrecedence
+							&& newValue is IDependencyObjectStoreProvider childProviderSet
+							&& previousValue is IDependencyObjectStoreProvider childProviderSetNewValue)
 						{
 							childProviderSet.Store.SetValue(childProviderSet.Store.DataContextProperty, GetValue(DataContextProperty), DependencyPropertyValuePrecedences.Inheritance);
+							childProviderSetNewValue.Store.ClearValue(childProviderSetNewValue.Store.DataContextProperty, DependencyPropertyValuePrecedences.Inheritance);
 						}
 					}
 
