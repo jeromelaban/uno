@@ -3,7 +3,6 @@ using Microsoft.UI.Xaml.Controls;
 using Private.Infrastructure;
 using Windows.Foundation;
 using Windows.UI;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml

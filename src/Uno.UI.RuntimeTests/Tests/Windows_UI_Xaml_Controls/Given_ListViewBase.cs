@@ -2286,7 +2286,7 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 		[TestMethod]
 		public async Task When_Item_Removed_Then_DataContext_Released()
 		{
-			// using (FeatureConfigurationHelper.UseTemplatePooling())
+			using (FeatureConfigurationHelper.UseTemplatePooling())
 			{
 				var collection = new ObservableCollection<TestReleaseObject>();
 
@@ -2305,7 +2305,7 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 
 				Assert.AreEqual(1, SUT.Items.Count);
 
-				var item = SUT.GetContainerForIndex(0);
+				var item = SUT.ContainerFromIndex(0);
 
 				collection.Clear();
 
@@ -2578,7 +2578,7 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 		private async Task AssertCollectedReference(WeakReference reference)
 		{
 			var sw = Stopwatch.StartNew();
-			while (sw.Elapsed < TimeSpan.FromSeconds(3))
+			while (sw.Elapsed < TimeSpan.FromSeconds(2))
 			{
 				GC.Collect(2);
 				GC.WaitForPendingFinalizers();

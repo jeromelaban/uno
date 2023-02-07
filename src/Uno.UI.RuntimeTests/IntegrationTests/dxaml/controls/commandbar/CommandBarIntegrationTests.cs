@@ -25,7 +25,6 @@ using Microsoft.UI.Xaml.Shapes;
 using Uno.UI.RuntimeTests;
 using Windows.Foundation.Collections;
 using ButtonBase = Microsoft.UI.Xaml.Controls.Primitives.ButtonBase;
-using Microsoft.UI.Xaml.Controls;
 using Uno.UI;
 using Microsoft.UI.Xaml.Controls.Primitives;
 

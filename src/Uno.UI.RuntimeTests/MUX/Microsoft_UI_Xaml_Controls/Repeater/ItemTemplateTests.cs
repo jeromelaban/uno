@@ -12,7 +12,6 @@ using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common;
 using Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common.Mocks;
-using Microsoft.UI.Xaml.Controls;
 using System;
 using Private.Infrastructure;
 using System.Threading.Tasks;

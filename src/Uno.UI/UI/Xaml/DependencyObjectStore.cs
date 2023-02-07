@@ -490,6 +490,19 @@ namespace Microsoft.UI.Xaml
 						OnDataContextChanged(value, newValue, precedence);
 					}
 
+					if (propertyDetails.HasInherits)
+					{
+						if (newPrecedence < previousPrecedence && previousValue is IDependencyObjectStoreProvider childProviderClear)
+						{
+							childProviderClear.Store.ClearValue(childProviderClear.Store.DataContextProperty, DependencyPropertyValuePrecedences.Inheritance);
+						}
+
+						if (newPrecedence > previousPrecedence && newValue is IDependencyObjectStoreProvider childProviderSet)
+						{
+							childProviderSet.Store.SetValue(childProviderSet.Store.DataContextProperty, GetValue(DataContextProperty), DependencyPropertyValuePrecedences.Inheritance);
+						}
+					}
+
 					TryUpdateInheritedAttachedProperty(property, propertyDetails);
 
 					if (this.Log().IsEnabled(Uno.Foundation.Logging.LogLevel.Debug))
@@ -1181,7 +1194,7 @@ namespace Microsoft.UI.Xaml
 				{
 					var propertyDetails = _properties.GetPropertyDetails(localProperty);
 
-					if (HasInherits(propertyDetails))
+					if (propertyDetails.HasInherits)
 					{
 						return (localProperty, propertyDetails);
 					}
@@ -1194,8 +1207,7 @@ namespace Microsoft.UI.Xaml
 				else if (
 					property.IsAttached
 					&& _properties.FindPropertyDetails(property) is DependencyPropertyDetails attachedDetails
-					&& HasInherits(attachedDetails)
-				)
+					&& attachedDetails.HasInherits)
 				{
 					return (property, attachedDetails);
 				}
@@ -1646,19 +1658,6 @@ namespace Microsoft.UI.Xaml
 			}
 
 			return isAncestor;
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		private bool HasInherits(DependencyPropertyDetails propertyDetails)
-		{
-			var metadata = propertyDetails.Metadata;
-
-			if (metadata is FrameworkPropertyMetadata frameworkMetadata)
-			{
-				return frameworkMetadata.Options.HasInherits();
-			}
-
-			return false;
 		}
 
 		public DependencyObject? ActualInstance

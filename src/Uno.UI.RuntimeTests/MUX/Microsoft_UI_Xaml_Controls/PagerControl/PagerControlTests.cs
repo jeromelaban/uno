@@ -13,8 +13,6 @@ using System.Collections.Generic;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Provider;
-using Microsoft.UI.Xaml.Automation.Peers;
-using Microsoft.UI.Xaml.Controls;
 
 #if USING_TAEF
 using WEX.TestExecution;

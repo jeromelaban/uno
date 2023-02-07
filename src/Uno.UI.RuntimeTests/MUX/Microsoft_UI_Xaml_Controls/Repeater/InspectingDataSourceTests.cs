@@ -16,7 +16,6 @@ using MUXControlsTestApp.Utils;
 using Private.Infrastructure;
 using Uno.UI.RuntimeTests;
 using Windows.Foundation.Collections;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common;
 
 #if USING_TAEF

@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using System.Linq;
 using System.Diagnostics;
 using System.Threading;
+using Microsoft.UI.Xaml.Controls;
 
 namespace UnitTests
 {

@@ -71,6 +71,12 @@ namespace Microsoft.UI.Xaml
 			{
 				_flags |= Flags.WeakStorage;
 			}
+
+			if (property.GetMetadata(_dependencyObjectType) is FrameworkPropertyMetadata fpm
+				&& fpm.Options.HasInherits())
+			{
+				_flags |= Flags.Inherits;
+			}
 		}
 
 		private object? GetDefaultValue()
@@ -318,6 +324,9 @@ namespace Microsoft.UI.Xaml
 		private bool HasDefaultValueSet
 			=> (_flags & Flags.DefaultValueSet) != 0;
 
+		public bool HasInherits
+			=> (_flags & Flags.Inherits) != 0;
+
 		private object?[] Stack
 		{
 			get
@@ -375,6 +384,11 @@ namespace Microsoft.UI.Xaml
 			/// Determines if the default value has been populated
 			/// </summary>
 			DefaultValueSet = 1 << 1,
+
+			/// <summary>
+			/// Determines if the property inherits from parents
+			/// </summary>
+			Inherits = 1 << 2,
 		}
 	}
 }
