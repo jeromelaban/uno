@@ -8,11 +8,12 @@ namespace Uno.UI.RemoteControl.HotReload.Messages
 	{
 		public const string Name = nameof(ConfigureServer);
 
-		public ConfigureServer(string projectPath, string[] xamlPaths, string[] metadataUpdateCapabilities)
+		public ConfigureServer(string projectPath, string[] xamlPaths, string[] metadataUpdateCapabilities, bool metadataUpdateEnabled)
 		{
 			ProjectPath = projectPath;
 			XamlPaths = xamlPaths;
 			MetadataUpdateCapabilities = metadataUpdateCapabilities;
+			MetadataUpdateEnabled = metadataUpdateEnabled;
 		}
 
 		public string ProjectPath { get; set; }
@@ -20,6 +21,8 @@ namespace Uno.UI.RemoteControl.HotReload.Messages
 		public string[] XamlPaths { get; set; }
 
 		public string[] MetadataUpdateCapabilities { get; set; }
+
+		public bool MetadataUpdateEnabled { get; set; }
 
 		public string Scope => HotReloadConstants.ScopeName;
 

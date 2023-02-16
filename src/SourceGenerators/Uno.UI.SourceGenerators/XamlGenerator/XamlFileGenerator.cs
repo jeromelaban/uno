@@ -452,7 +452,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			{
 				_isTopLevelDictionary = true;
 
-				if (_generationRunFileInfo.RunInfo.Manager.AllRuns.None() || !_useXamlReaderHotReload)
+				if (_generationRunFileInfo.RunInfo.Manager.GetAllRunsForAssembly(_generatorContext.Compilation.Assembly.Name).None() || !_useXamlReaderHotReload)
 				{
 					// On the first run, or if XamlReader hot reload is disabled, generate the full code.
 
@@ -475,7 +475,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 				else
 				{
 					// if XamlReader hot reload is enabled, generate partial code
-					if (_generationRunFileInfo.RunInfo.Manager.AllRuns.FirstOrDefault(r => r.GetRunFileInfo(_fileUniqueId)?.ComponentCode != null) is { } runFileInfo)
+					if (_generationRunFileInfo.RunInfo.Manager.GetAllRunsForAssembly(_generatorContext.Compilation.Assembly.Name).FirstOrDefault(r => r.GetRunFileInfo(_fileUniqueId)?.ComponentCode != null) is { } runFileInfo)
 					{
 						var generationRunFileInfo = runFileInfo.GetRunFileInfo(_fileUniqueId);
 
@@ -505,7 +505,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 						using (Scope(_xClassName.Namespace, _xClassName.ClassName))
 						{
-							if (_generationRunFileInfo.RunInfo.Manager.AllRuns.None() || !_useXamlReaderHotReload)
+							if (_generationRunFileInfo.RunInfo.Manager.GetAllRunsForAssembly(_generatorContext.Compilation.Assembly.Name).None() || !_useXamlReaderHotReload)
 							{
 								var componentBuilder = new IndentedStringBuilder();
 
@@ -541,7 +541,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 							}
 							else
 							{
-								if (_generationRunFileInfo.RunInfo.Manager.AllRuns.FirstOrDefault(r => r.GetRunFileInfo(_fileUniqueId)?.ComponentCode != null) is { } runFileInfo)
+								if (_generationRunFileInfo.RunInfo.Manager.GetAllRunsForAssembly(_generatorContext.Compilation.Assembly.Name).FirstOrDefault(r => r.GetRunFileInfo(_fileUniqueId)?.ComponentCode != null) is { } runFileInfo)
 								{
 									var generationRunFileInfo = runFileInfo.GetRunFileInfo(_fileUniqueId);
 
@@ -589,7 +589,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 			if (_isHotReloadEnabled)
 			{
-				foreach (var previousRun in _generationRunFileInfo.RunInfo.Manager.AllRuns.Except(_generationRunFileInfo.RunInfo))
+				foreach (var previousRun in _generationRunFileInfo.RunInfo.Manager.GetAllRunsForAssembly(_generatorContext.Compilation.Assembly.Name).Except(_generationRunFileInfo.RunInfo))
 				{
 					using (writer.BlockInvariant($"private void InitializeComponent_{previousRun.ToRunIdentifierString()}()"))
 					{

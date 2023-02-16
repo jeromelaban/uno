@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Mono.Options;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace Uno.UI.RemoteControl.Host
 {
@@ -12,6 +13,8 @@ namespace Uno.UI.RemoteControl.Host
 	{
 		static void Main(string[] args)
 		{
+			Debugger.Launch();
+
 			var httpPort = 0;
 
 			var p = new OptionSet() {

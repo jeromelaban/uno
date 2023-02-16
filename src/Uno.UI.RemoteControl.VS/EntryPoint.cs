@@ -248,12 +248,17 @@ namespace Uno.UI.RemoteControl.VS
 			{
 				RemoteControlServerPort = GetTcpPort();
 
-				var runtimeVersionPath = GetDotnetMajorVersion() > 5 ? "netcoreapp3.1" : "net6.0";
+				var runtimeVersionPath = GetDotnetMajorVersion() switch
+				{
+					< 6 => "netcoreapp3.1",
+					< 7 => "net6.0",
+					>= 7 => "net7.0"
+				};
 
 				var sb = new StringBuilder();
 
 				var hostBinPath = Path.Combine(_toolsPath, "host", runtimeVersionPath, "Uno.UI.RemoteControl.Host.dll");
-				string arguments = $"\"{hostBinPath}\" --httpPort {RemoteControlServerPort}";
+				string arguments = $"\"{hostBinPath}\" --httpPort {RemoteControlServerPort} --metadata-updates true";
 				var pi = new ProcessStartInfo("dotnet", arguments)
 				{
 					UseShellExecute = false,

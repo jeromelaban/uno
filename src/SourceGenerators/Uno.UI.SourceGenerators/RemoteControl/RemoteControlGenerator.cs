@@ -97,9 +97,11 @@ namespace Uno.UI.SourceGenerators.RemoteControl
 
 			sb.AppendLineIndented($"new string[]{{{distictPaths}}}");
 
+			//bool.TryParse(context.GetMSBuildPropertyValue("UnoMetadataUpdatesEnabled"), out var metadataUpdatesEnabled);
+			//sb.AppendLineIndented($", {metadataUpdatesEnabled.ToString().ToLowerInvariant()}");
+
 			sb.AppendLineIndented(")]");
 		}
-
 
 		private static void BuildEndPointAttribute(GeneratorExecutionContext context, IndentedStringBuilder sb)
 		{

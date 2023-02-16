@@ -22,26 +22,31 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 	{
 		private List<GenerationRunInfo> _runs = new List<GenerationRunInfo>();
 
+		private record HashInfo(string AssemblyName, int Hash);
 		/// <summary>
 		/// A list of known hashes for the current process to avoid removing previously
 		/// generated hashes and break Roslyn's metadata generator with inconsistent missing
 		/// methods.
 		/// </summary>
-		private static ConcurrentDictionary<int, object?> _knownAdditionalFilesHashes = new();
+		private static ConcurrentDictionary<HashInfo, object?> _knownAdditionalFilesHashes = new();
 
 		internal GenerationRunInfoManager()
 		{
 			foreach (var hash in _knownAdditionalFilesHashes.ToArray())
 			{
-				_runs.Add(new(this, hash.Key));
+				_runs.Add(new(this, hash.Key.Hash, hash.Key.AssemblyName));
 			}
 		}
 
-		public IEnumerable<GenerationRunInfo> AllRuns
-			=> _runs.AsEnumerable();
+		public IEnumerable<GenerationRunInfo> GetAllRunsForAssembly(string assemblyName)
+			=> _runs
+			.Where(r => r.AssemblyName == assemblyName)
+			.AsEnumerable();
 
 		internal GenerationRunInfo CreateRun(GeneratorExecutionContext context)
 		{
+			var assemblyName = context.Compilation.Assembly.Name;
+
 			ReadProjectConfiguration(
 				context,
 				out var useXamlReaderHotReload,
@@ -56,17 +61,20 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			if (
 				!useXamlReaderHotReload
 				&& useHotReload
-				&& _runs.FirstOrDefault(r => r.AdditionalFilesHash == hash) is { } run)
+				&& _runs.FirstOrDefault(r =>
+				{
+					return r.AdditionalFilesHash == hash && r.AssemblyName == assemblyName;
+				}) is { } run)
 			{
 				return run;
 			}
 			else
 			{
-				var runInfo = new GenerationRunInfo(this, hash);
+				var runInfo = new GenerationRunInfo(this, hash, assemblyName);
 
 				_runs.Add(runInfo);
 
-				_knownAdditionalFilesHashes.TryAdd(hash, null);
+				_knownAdditionalFilesHashes.TryAdd(new(assemblyName, hash), null);
 
 				return runInfo;
 			}

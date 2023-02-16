@@ -14,6 +14,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
+using Org.W3c.Dom;
 using Uno;
 
 namespace Uno.UI.RemoteControl.HotReload.MetadataUpdater;
@@ -71,6 +72,9 @@ internal sealed class HotReloadAgent : IDisposable
 		_handlerActions = null;
 		var loadedAssembly = eventArgs.LoadedAssembly;
 		var moduleId = TryGetModuleId(loadedAssembly);
+
+		_log($"[MetadataUpdater] Loaded assembly {eventArgs.LoadedAssembly.FullName} (mvid:{moduleId})");
+
 		if (moduleId is null)
 		{
 			return;
@@ -242,13 +246,27 @@ internal sealed class HotReloadAgent : IDisposable
 		for (var i = 0; i < deltas.Count; i++)
 		{
 			var item = deltas[i];
+
+			_log($"[MetadataUpdater] Searching target assembly with mvid [{item.ModuleId}]");
+
 			foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
 			{
-				if (TryGetModuleId(assembly) is Guid moduleId && moduleId == item.ModuleId)
+				if (TryGetModuleId(assembly) is Guid moduleId)
 				{
-					_log($"Applying delta to {assembly} / {moduleId}");
+					if (moduleId == item.ModuleId)
+					{
+						_log($"Applying delta to {assembly} / {moduleId}");
 
-					ApplyUpdate(assembly, item);
+						ApplyUpdate(assembly, item);
+					}
+					else
+					{
+						_log($"Not applying delta to {assembly} / {moduleId}");
+					}
+				}
+				else
+				{
+					_log($"Assemby {assembly} does not have an mvid");
 				}
 			}
 

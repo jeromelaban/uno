@@ -36,6 +36,7 @@ namespace Uno.UI.RemoteControl.Host.HotReload.MetadataUpdates
 			var globalProperties = new Dictionary<string, string> {
 				// Mark this compilation as hot-reload capable, so generators can act accordingly
 				{ "IsHotReloadHost", "True" },
+				{ "TargetFramework", "net7.0-android" }
 			};
 
 			var workspace = MSBuildWorkspace.Create(globalProperties);

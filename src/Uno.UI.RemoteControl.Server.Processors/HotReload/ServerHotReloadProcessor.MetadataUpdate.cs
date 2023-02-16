@@ -58,6 +58,10 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 
 					ObserveSolutionPaths(result.Item1);
 
+#if DEBUG
+					Console.WriteLine($"Initialized Compilation workspace");
+#endif
+
 					return result;
 				}
 				catch (Exception e)
