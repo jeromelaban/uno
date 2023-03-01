@@ -109,6 +109,7 @@ namespace Microsoft.UI.Xaml.Controls
 
 				SetToolTipReference(owner, toolTip);
 				toolTip.OwnerEventSubscriptions = SubscribeToEvents(owner, toolTip);
+				// toolTip.SetParent(owner);
 			}
 			void DisposePreviousToolTip(ToolTip toolTip = null)
 			{
@@ -117,6 +118,7 @@ namespace Microsoft.UI.Xaml.Controls
 				toolTip.OwnerEventSubscriptions?.Dispose();
 				toolTip.OwnerEventSubscriptions = null;
 				SetToolTipReference(owner, null);
+				// toolTip.SetParent(null);
 			}
 		}
 

@@ -128,6 +128,12 @@ namespace Microsoft.UI.Xaml.Controls
 				Popup.XamlRoot = XamlRoot.GetForElement(_owner);
 			}
 			Popup.IsOpen = isOpen;
+
+			if (isOpen && _owner is FrameworkElement fe)
+			{
+				this.SetValue(DataContextProperty, fe.DataContext, DependencyPropertyValuePrecedences.Inheritance);
+			}
+
 			if (isOpen && IsEnabled)
 			{
 				AttachToPopup();
