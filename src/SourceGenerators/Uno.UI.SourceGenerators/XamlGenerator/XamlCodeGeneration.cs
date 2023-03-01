@@ -275,7 +275,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			IListSymbol = GetMandatorySymbolAsLazy("System.Collections.IList");
 			IListOfTSymbol = GetSpecialTypeSymbolAsLazy(SpecialType.System_Collections_Generic_IList_T);
 			IDictionaryOfTKeySymbol = GetMandatorySymbolAsLazy("System.Collections.Generic.IDictionary`2");
-			DataBindingSymbol = GetMandatorySymbolAsLazy("Windows.UI.Xaml.Data.Binding");
+			DataBindingSymbol = GetMandatorySymbolAsLazy("Microsoft.UI.Xaml.Data.Binding");
 			StyleSymbol = GetMandatorySymbolAsLazy(XamlConstants.Types.Style);
 			ColorSymbol = GetMandatorySymbolAsLazy(XamlConstants.Types.Color);
 			AndroidContentContextSymbol = GetOptionalSymbolAsLazy("Android.Content.Context");
@@ -942,7 +942,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					{
 						// Declare master dictionary
 						writer.AppendLine();
-						writer.AppendLineIndented("internal static global::Windows.UI.Xaml.ResourceDictionary MasterDictionary { get; } = new global::Windows.UI.Xaml.ResourceDictionary();");
+						writer.AppendLineIndented("internal static global::Microsoft.UI.Xaml.ResourceDictionary MasterDictionary { get; } = new global::Microsoft.UI.Xaml.ResourceDictionary();");
 					}
 
 					// Generate all the partial methods, even if they don't exist. That avoids
