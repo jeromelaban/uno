@@ -76,12 +76,12 @@
 			<PackagePath>content\unoapp-winui-xamarin</PackagePath>
 			<Pack>true</Pack>
 		</Content>
-		<Content Include="content\unoapp\**">
-			<PackagePath>content\unoapp</PackagePath>
+		<Content Include="content\unoapp-winui\**">
+			<PackagePath>content\unoapp-winui</PackagePath>
 			<Pack>true</Pack>
 		</Content>
-		<Content Include="content\unoapp\UnoWinUIQuickStart\**">
-			<PackagePath>content\unoapp</PackagePath>
+		<Content Include="content\unoapp-winui\UnoWinUIQuickStart\**">
+			<PackagePath>content\unoapp-winui</PackagePath>
 			<Pack>true</Pack>
 		</Content>
 		<Content Include="content\unolib-crossruntime\**" Exclude="content\unolib-crossruntime\**\bin\**;content\unolib-crossruntime\**\obj\**">
@@ -152,8 +152,8 @@
 	  <Content Update="content\unoapp-uwp-net6\UnoQuickStart-vsmac.slnf">
 	    <PackagePath>content\unoapp-uwp-net6</PackagePath>
 	  </Content>
-	  <Content Update="content\unoapp\UnoWinUIQuickStart-vsmac.slnf">
-	    <PackagePath>content\unoapp</PackagePath>
+	  <Content Update="content\unoapp-winui\UnoWinUIQuickStart-vsmac.slnf">
+	    <PackagePath>content\unoapp-winui</PackagePath>
 	  </Content>
 	  <Content Update="content\unoapp-winui-xamarin\UnoWinUIQuickStart-vsmac.slnf">
 	    <PackagePath>content\unoapp-winui-xamarin</PackagePath>
@@ -271,7 +271,7 @@
 		<ItemGroup>
 			<Content Include="$(IntermediateTemplatePath)/**/*.*">
 				<Pack>true</Pack>
-				<PackagePath>content/unoapp</PackagePath>
+				<PackagePath>content/unoapp-winui</PackagePath>
 			</Content>
 		</ItemGroup>
 	</Target>
@@ -283,7 +283,7 @@
 		<Copy SkipUnchangedFiles="true" SourceFiles="..\UnoSolutionTemplate.Wizard.2022\.vsconfig.vs16" DestinationFiles="content/unoapp-winui-xamarin/.vsconfig" />
 
 		<Copy SkipUnchangedFiles="true" SourceFiles="..\UnoSolutionTemplate.Wizard.2022\.vsconfig.vs17" DestinationFiles="content/unoapp-uwp-net6/.vsconfig" />
-		<Copy SkipUnchangedFiles="true" SourceFiles="..\UnoSolutionTemplate.Wizard.2022\.vsconfig.vs17" DestinationFiles="content/unoapp/.vsconfig" />
+		<Copy SkipUnchangedFiles="true" SourceFiles="..\UnoSolutionTemplate.Wizard.2022\.vsconfig.vs17" DestinationFiles="content/unoapp-winui/.vsconfig" />
 	</Target>
 
 	<UsingTask TaskName="ReplaceContent" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
