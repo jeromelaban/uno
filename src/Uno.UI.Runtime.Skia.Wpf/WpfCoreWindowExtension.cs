@@ -63,5 +63,10 @@ namespace Uno.UI.Skia.Platform
 
 		public void ReleasePointerCapture(PointerIdentifier pointer)
 			=> WpfHost.Current?.ReleaseMouseCapture();
+		public bool IsNativeElement(object content) => false;
+		public void AttachNativeElement(object owner, object content) => throw new NotImplementedException();
+		public void DetachNativeElement(object owner, object content) => throw new NotImplementedException();
+		public void ArrangeNativeElement(object owner, object content, Windows.Foundation.Rect arrangeRect) => throw new NotImplementedException();
+		public Windows.Foundation.Size MeasureNativeElement(object owner, object content, Windows.Foundation.Size size) => throw new NotImplementedException();
 	}
 }

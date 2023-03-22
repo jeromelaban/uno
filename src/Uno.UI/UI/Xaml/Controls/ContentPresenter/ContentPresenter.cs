@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Text;
 
 using Uno.UI.Xaml;
+using Windows.UI.Core;
 #if XAMARIN_ANDROID
 using View = Android.Views.View;
 using ViewGroup = Android.Views.ViewGroup;
@@ -619,6 +620,29 @@ namespace Windows.UI.Xaml.Controls
 
 			if (newValue is not null)
 			{
+#if UNO_SUPPORTS_NATIVEHOST
+				if (CoreWindow.Main.IsNativeElement(newValue))
+				{
+					IsNativeHost = true;
+
+					if (ContentTemplate is not null)
+					{
+						throw new InvalidOperationException("CHANGEME");
+					}
+					if (ContentTemplateSelector is not null)
+					{
+						throw new InvalidOperationException("CHANGEME");
+					}
+
+					RegisterNativeHostSupport();
+				}
+				else if (IsNativeHost)
+				{
+					IsNativeHost = false;
+					UnregisterNativeHostSupport();
+				}
+#endif
+
 				TrySetDataContextFromContent(newValue);
 
 				SetUpdateTemplate();
@@ -799,14 +823,30 @@ namespace Windows.UI.Xaml.Controls
 			SynchronizeContentTemplatedParent();
 
 			UpdateBorder();
+
+#if UNO_SUPPORTS_NATIVEHOST
+			if (IsNativeHost)
+			{
+				CoreWindow.Main.AttachNativeElement(XamlRoot, Content);
+			}
+#endif
 		}
 
-#if __ANDROID__ || __IOS__ || __MACOS__
+#if __ANDROID__ || __IOS__ || __MACOS__ || UNO_SUPPORTS_NATIVEHOST
 		private protected override void OnUnloaded()
 		{
 			base.OnUnloaded();
 
+#if __ANDROID__ || __IOS__ || __MACOS__
 			_borderRenderer.Clear();
+#endif
+
+#if UNO_SUPPORTS_NATIVEHOST
+			if (IsNativeHost)
+			{
+				CoreWindow.Main.DetachNativeElement(XamlRoot, Content);
+			}
+#endif
 		}
 #endif
 
@@ -910,12 +950,15 @@ namespace Windows.UI.Xaml.Controls
 					}
 				);
 
-			setBinding(TextBlock.TextProperty, nameof(Content));
-			setBinding(TextBlock.HorizontalAlignmentProperty, nameof(HorizontalContentAlignment));
-			setBinding(TextBlock.VerticalAlignmentProperty, nameof(VerticalContentAlignment));
-			setBinding(TextBlock.TextWrappingProperty, nameof(TextWrapping));
-			setBinding(TextBlock.MaxLinesProperty, nameof(MaxLines));
-			setBinding(TextBlock.TextAlignmentProperty, nameof(TextAlignment));
+			if (!IsNativeHost)
+			{
+				setBinding(TextBlock.TextProperty, nameof(Content));
+				setBinding(TextBlock.HorizontalAlignmentProperty, nameof(HorizontalContentAlignment));
+				setBinding(TextBlock.VerticalAlignmentProperty, nameof(VerticalContentAlignment));
+				setBinding(TextBlock.TextWrappingProperty, nameof(TextWrapping));
+				setBinding(TextBlock.MaxLinesProperty, nameof(MaxLines));
+				setBinding(TextBlock.TextAlignmentProperty, nameof(TextAlignment));
+			}
 
 			ContentTemplateRoot = textBlock;
 			IsUsingDefaultTemplate = true;
@@ -1042,6 +1085,10 @@ namespace Windows.UI.Xaml.Controls
 					contentSize.Height);
 
 				ArrangeElement(child, arrangeRect);
+
+#if UNO_SUPPORTS_NATIVEHOST
+				ArrangeNativeElement(arrangeRect);
+#endif
 			}
 
 			return finalSize;
@@ -1108,6 +1155,10 @@ namespace Windows.UI.Xaml.Controls
 					size.Height - padding.Top - padding.Bottom - borderThickness.Top - borderThickness.Bottom
 				)
 			);
+
+#if UNO_SUPPORTS_NATIVEHOST
+			measuredSize = MeasureNativeElement(measuredSize);
+#endif
 
 			return new Size(
 				measuredSize.Width + padding.Left + padding.Right + borderThickness.Left + borderThickness.Right,
