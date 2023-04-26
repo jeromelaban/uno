@@ -10,7 +10,7 @@ jobs:
     vmImage: ${{ parameters.vmImage }}
 
   dependsOn:
-    - winui_convert_tree
+    - uwp_convert_tree
     - reference_package_build
 
   strategy:
