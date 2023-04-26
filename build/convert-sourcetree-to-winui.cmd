@@ -14,7 +14,9 @@ set myvar=%cd%
 pushd ..\src\Uno.WinUIRevert
 dotnet run %myvar%\..
 popd
-msbuild Uno.UI.Build.csproj "/p:CombinedConfiguration=Release|AnyCPU;BUILD_BUILDNUMBER=test_test_8888" /m /t:RunAPISyncTool /clp:PerformanceSummary;Summary /bl
+
+msbuild Uno.UI.Build.csproj "/p:CombinedConfiguration=Release|AnyCPU;BUILD_BUILDNUMBER=test_test_8888" /m /t:RunAPISyncTool /p:UnoDisableNet8Mobile=true /p:UnoDisableNet8=true /clp:PerformanceSummary;Summary /bl
+
 pause
 goto end
 :errorci
