@@ -18,59 +18,46 @@ namespace UnoWinUIRevert
 			DeleteFolder(Path.Combine(basePath, "src", "Uno.UI.Composition", "Generated"));
 			DeleteFolder(Path.Combine(basePath, "src", "Uno.UWP", "Generated"));
 			DeleteFolder(Path.Combine(basePath, "src", "Uno.UI", "tsBindings")); // Generated
+
 			DeleteFolder(Path.Combine(basePath, "src", "Uno.UI", "UI", "Xaml", "Controls", "ProgressBar")); // ProgressBar in WinUI is a replacement of the UWP's version
 
-			var colorsFilepath = Path.Combine(basePath, @"src", "Uno.UWP", "UI", "Colors.cs");
+			var colorsFilepath = Path.Combine(basePath, @"src", "Uno.UI", "UI", "Colors.cs");
 			if (File.Exists(colorsFilepath))
 			{
-				File.Copy(colorsFilepath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "Colors.cs"), true);
+				File.Delete(colorsFilepath);
 			}
 
-			var colorHelperFilePath = Path.Combine(basePath, @"src", "Uno.UWP", "UI", "ColorHelper.cs");
+			var colorHelperFilePath = Path.Combine(basePath, @"src", "Uno.UI", "UI", "ColorHelper.cs");
 			if (File.Exists(colorHelperFilePath))
 			{
-				File.Copy(colorHelperFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "ColorHelper.cs"), true);
+				File.Delete(colorHelperFilePath);
 			}
 
-			var fontWeightsFilePath = Path.Combine(basePath, @"src", "Uno.UWP", "UI", "Text", "FontWeights.cs");
+			var fontWeightsFilePath = Path.Combine(basePath, @"src", "Uno.UI", "UI", "Text", "FontWeights.cs");
 			if (File.Exists(fontWeightsFilePath))
 			{
-				Directory.CreateDirectory(Path.Combine(basePath, "src", "Uno.UI", "UI", "Text"));
-				File.Copy(fontWeightsFilePath, Path.Combine(basePath, @"src", "Uno.UI", "UI", "Text", "FontWeights.cs"), true);
+				File.Delete(fontWeightsFilePath);
 			}
 
-			var inputPath = Path.Combine(basePath, @"src", "Uno.UWP", "UI", "Input");
+			var inputPath = Path.Combine(basePath, "src", "Uno.UI", "UI", "Input");
 			if (Directory.Exists(inputPath))
 			{
-				Console.WriteLine(@"Copying UI.Input");
-				foreach (var file in Directory.GetFiles(inputPath))
-				{
-					var relativePath = Path.GetRelativePath(inputPath, file);
-
-					var targetFile = Path.Combine(basePath, "src", "Uno.UI", "UI", "Input", relativePath);
-
-					Directory.CreateDirectory(Path.GetDirectoryName(targetFile)!);
-					File.Copy(file, targetFile, true);
-				}
+				Directory.Delete(inputPath, true);
 			}
 
-			var dispatcherQueuePath = Path.Combine(basePath, @"src", "Uno.UWP", "System");
+			var dispatcherQueuePath = Path.Combine(basePath, "src", "Uno.UI.Dispatching", "Dispatching");
 			if (Directory.Exists(dispatcherQueuePath))
 			{
-				Console.WriteLine(@"Copying DispatcherQueue types");
-				foreach (var file in Directory.GetFiles(dispatcherQueuePath, "DispatcherQueue*.cs"))
-				{
-					var relativePath = Path.GetRelativePath(dispatcherQueuePath, file);
-
-					var targetFile = Path.Combine(basePath, "src", "Uno.UI.Dispatching", "Dispatching", relativePath);
-
-					Directory.CreateDirectory(Path.GetDirectoryName(targetFile)!);
-					File.Copy(file, targetFile, true);
-				}
+				Directory.Delete(dispatcherQueuePath, true);
 			}
 
 			// Files/Class that are implemented in both MUX and WUX and which should not be converted
-			Directory.Delete(Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Controls\Unsupported"), recursive: true);
+			var unsupportedPath = Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Controls\Unsupported");
+			if (Directory.Exists(unsupportedPath))
+			{
+				Directory.Delete(unsupportedPath, recursive: true);
+			}
+
 			var duplicatedImplementations = new[]
 			{
 				Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Controls\Icon\BitmapIconSource.cs"),
@@ -80,56 +67,36 @@ namespace UnoWinUIRevert
 				Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Controls\Icon\IconSource.cs"),
 				Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Automation\Peers\RatingControlAutomationPeer.cs"),
 			};
+
 			DeleteFiles(duplicatedImplementations);
 
 			// Generic replacements
 			var genericReplacements = new[] {
-				("Microsoft.UI.Xaml", "Microsoft.UI.Xaml"),
-				("Microsoft.UI.Composition", "Microsoft.UI.Composition"),
-				("Microsoft.UI.Colors", "Microsoft.UI.Colors"),
-				("Microsoft.UI.Text.FontWeights", "Microsoft.UI.Text.FontWeights"),
-				("Microsoft.UI.ColorHelper", "Microsoft.UI.ColorHelper"),
-				("Microsoft.UI.Xaml", "Microsoft.UI.Xaml"),
-				("__LinkerHints.Is_Microsoft_UI_Xaml", "__LinkerHints.Is_Microsoft_UI_Xaml"),
-				("Microsoft.UI.Xaml.Controls\", \"ProgressRing", "Uno.UI.Controls.Legacy\", \"ProgressRing"),
-				("<UNO_UWP_BUILD>false</UNO_UWP_BUILD>", "<UNO_UWP_BUILD>false</UNO_UWP_BUILD>"),
+				("Microsoft.UI.Xaml", "Windows.UI.Xaml"),
+				("Microsoft.UI.Composition", "Windows.UI.Composition"),
+				("Microsoft.UI.Colors", "Windows.UI.Colors"),
+				("Microsoft.UI.Text.FontWeights", "Windows.UI.Text.FontWeights"),
+				("Windows.UI.ColorHelper", "Microsoft.UI.ColorHelper"),
+				("Microsoft.UI.Xaml", "Windows.UI.Xaml"),
+				("__LinkerHints.Is_Microsoft_UI_Xaml", "__LinkerHints.Is_Windows_UI_Xaml"),
+				("Uno.UI.Controls.Legacy\", \"ProgressRing", "Microsoft.UI.Xaml.Controls\", \"ProgressRing"),
+				("<UNO_UWP_BUILD>false</UNO_UWP_BUILD>", "<UNO_UWP_BUILD>true</UNO_UWP_BUILD>"),
 			};
 
 			ReplaceInFolders(basePath, genericReplacements);
 
 			// Restore ProgressRing
 			var progressRingReplacements = new[] {
-				("Microsoft.UI.Xaml.Controls", "Uno.UI.Controls.Legacy"),
+				("Uno.UI.Controls.Legacy", "Microsoft.UI.Xaml.Controls"),
 			};
 
 			ReplaceInFolders(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Controls", "ProgressRing"), progressRingReplacements);
-			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Controls", "ProgressRing", "ProgressRing.xaml"), "\"ProgressRing\"", "\"legacy:ProgressRing\"");
-			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Style", "Generic", "Generic.Native.xaml"), "ProgressRing", "legacy:ProgressRing");
-			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "Microsoft", "UI", "Xaml", "Controls", "ProgressRing", "ProgressRing.xaml"), "using:Microsoft.UI.Xaml.Controls", "using:Uno.UI.Controls.Legacy");
+			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Controls", "ProgressRing", "ProgressRing.xaml"), "\"legacy:ProgressRing\"", "\"ProgressRing\"");
+			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Style", "Generic", "Generic.Native.xaml"), "legacy:ProgressRing", "ProgressRing");
+			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "Microsoft", "UI", "Xaml", "Controls", "ProgressRing", "ProgressRing.xaml"), "using:Uno.UI.Controls.Legacy", "using:Microsoft.UI.Xaml.Controls");
 
-			// Restore DualPaneView XAML
-			// ReplaceInFile(Path.Combine(basePath, @"src\Uno.UI\Microsoft\UI\Xaml\Controls\TwoPaneView\TwoPaneView.xaml"), "using:Microsoft.UI.Xaml.Controls", "using:Microsoft.UI.Xaml.Controls");
-
-			// Adjust Colors
-			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Colors.cs"), "Windows.UI", "Microsoft.UI");
-			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "ColorHelper.cs"), "Windows.UI", "Microsoft.UI");
-			ReplaceInFile(Path.Combine(basePath, @"src", "SourceGenerators", "Uno.UI.SourceGenerators", "XamlGenerator", "XamlConstants.cs"), "Windows.UI", "Microsoft.UI");
-			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Markup", "Reader", "XamlConstants.cs"), "Windows.UI", "Microsoft.UI");
-
-			// Custom animation
-			// ReplaceInFile(Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Media\Animation\Animators\RenderingLoopAnimator.wasm.cs"), "Microsoft", "Windows");
-
-			// Revert partial changes for WinUI 2.4 imported controls
-			//foreach (var file in Directory.EnumerateFiles(Path.Combine(basePath, @"src\Uno.UI\Microsoft\UI\Xaml\Controls"), "*.*", SearchOption.AllDirectories))
-			//{
-			//	ReplaceInFile(file, "namespace Microsoft.UI.Xaml.Controls", "namespace Microsoft.UI.Xaml.Controls");
-			//}
-
-			// Restore RadialGradientBrush
-			//ReplaceInFile(Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Media\RadialGradientBrush.Android.cs"), "namespace Microsoft.UI.Xaml.Controls", "namespace Microsoft.UI.Xaml.Controls");
-			//ReplaceInFile(Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Media\RadialGradientBrush.cs"), "namespace Microsoft.UI.Xaml.Controls", "namespace Microsoft.UI.Xaml.Controls");
-			//ReplaceInFile(Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Media\RadialGradientBrush.iOSmacOS.cs"), "namespace Microsoft.UI.Xaml.Controls", "namespace Microsoft.UI.Xaml.Controls");
-			//ReplaceInFile(Path.Combine(basePath, @"src\Uno.UI\UI\Xaml\Media\RadialGradientBrush.wasm.cs"), "namespace Microsoft.UI.Xaml.Controls", "namespace Microsoft.UI.Xaml.Controls");
+			ReplaceInFile(Path.Combine(basePath, @"src", "SourceGenerators", "Uno.UI.SourceGenerators", "XamlGenerator", "XamlConstants.cs"), "Microsoft.UI", "Windows.UI");
+			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Markup", "Reader", "XamlConstants.cs"), "Microsoft.UI", "Windows.UI");
 
 			UncommentWinUISpecificBlock(Path.Combine(basePath, "build", "Uno.WinUI.nuspec"));
 		}
@@ -212,8 +179,8 @@ namespace UnoWinUIRevert
 
 		private static void UncommentWinUISpecificBlock(string nuspecPath)
 		{
-			ReplaceInFile(nuspecPath, @"<!-- BEGIN WinUI-specific", string.Empty);
-			ReplaceInFile(nuspecPath, @"END WinUI-specific -->", string.Empty);
+			ReplaceInFile(nuspecPath, @"<!-- BEGIN UWP-excluded -->", "<!-- WinUI Specific ");
+			ReplaceInFile(nuspecPath, @"<!-- END UWP-excluded -->", "-->");
 		}
 	}
 }
