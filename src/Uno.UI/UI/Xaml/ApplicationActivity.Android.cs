@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -19,11 +19,11 @@ using Windows.Security.Authentication.Web;
 using Windows.Storage.Pickers;
 using Windows.System;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using WinUICoreServices = Uno.UI.Xaml.Core.CoreServices;
 
 
-namespace Windows.UI.Xaml
+namespace Microsoft.UI.Xaml
 {
 	[Activity(ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.UiMode, WindowSoftInputMode = SoftInput.AdjustPan | SoftInput.StateHidden)]
 	public class ApplicationActivity : Controls.NativePage, Uno.UI.Composition.ICompositionRoot
@@ -283,7 +283,7 @@ namespace Windows.UI.Xaml
 			Xaml.Window.Current?.RaiseNativeSizeChanged();
 			ViewHelper.RefreshFontScale();
 			DisplayInformation.GetForCurrentView().HandleConfigurationChange();
-			Windows.UI.Xaml.Application.Current.OnSystemThemeChanged();
+			Microsoft.UI.Xaml.Application.Current.OnSystemThemeChanged();
 		}
 
 #pragma warning disable CS0618 // deprecated members
