@@ -3,7 +3,7 @@
 // MUX reference PipsPagerAutomationPeer.cpp, commit fc2d862
 
 using System;
-using Microsoft.UI.Xaml.Controls;
+using Microsoft/**/.UI.Xaml.Controls;
 using Uno.UI.Helpers.WinUI;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;

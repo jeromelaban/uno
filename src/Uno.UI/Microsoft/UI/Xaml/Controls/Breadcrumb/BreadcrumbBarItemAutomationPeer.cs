@@ -4,6 +4,9 @@
 
 #nullable enable
 
+#if !HAS_UNO_WINUI
+using Windows/*  don't rename */.UI.Xaml.Controls;
+#endif
 using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Helpers.WinUI;
 using Microsoft.UI.Xaml.Automation.Peers;

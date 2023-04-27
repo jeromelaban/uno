@@ -1,7 +1,7 @@
 ﻿// MUX reference NavigationViewAutomationPeer.cpp, commit 8f1a682
 
 using System;
-using Microsoft.UI.Xaml.Controls;
+using Microsoft/**/.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation.Provider;
 

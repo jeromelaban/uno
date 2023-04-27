@@ -11,7 +11,7 @@ using System.Collections.Specialized;
 using System.Globalization;
 using System.Numerics;
 using Microsoft.UI.Xaml.Automation.Peers;
-using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+using Microsoft/**/.UI.Xaml.Controls.AnimatedVisuals;
 using Uno.Disposables;
 using Uno.UI.Helpers.WinUI;
 using Windows.ApplicationModel.Core;

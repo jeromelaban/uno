@@ -1249,6 +1249,17 @@ namespace Uno.UWPSyncGenerator
 				}
 			}
 
+			if (method.ContainingType.Name == "CoreIndependentInputSourceController")
+			{
+				switch (method.Name)
+				{
+					// Avoid circular reference in UWP
+					case "CreateForVisual":
+					case "CreateForIVisualElement":
+						return true;
+				}
+			}
+
 			if (method.ContainingType.Name == "ScrollControllerInteractionRequestedEventArgs"
 				&& method.MethodKind == MethodKind.Constructor
 				&& method.Parameters.Length == 1
