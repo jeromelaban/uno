@@ -203,6 +203,20 @@ namespace Uno.UWPSyncGenerator
 				excludeNamespaces.Add("Windows.UI.Dispatching");
 				excludeNamespaces.Add("Windows.UI.Composition");
 			}
+#else
+			if (baseName == "Uno.UI.Dispatching")
+			{
+				includeNamespaces.Add("Microsoft.UI.Dispatching");
+			}
+			else if (baseName == "Uno.UI.Composition")
+			{
+				includeNamespaces.Add("Microsoft.UI.Composition");
+			}
+			else
+			{
+				excludeNamespaces.Add("Microsoft.UI.Dispatching");
+				excludeNamespaces.Add("Microsoft.UI.Composition");
+			}
 #endif
 
 			var q = from asm in origins
@@ -1249,6 +1263,7 @@ namespace Uno.UWPSyncGenerator
 				}
 			}
 
+#if !HAS_UNO_WINUI
 			if (method.ContainingType.Name == "CoreIndependentInputSourceController")
 			{
 				switch (method.Name)
@@ -1259,6 +1274,7 @@ namespace Uno.UWPSyncGenerator
 						return true;
 				}
 			}
+#endif
 
 			if (method.ContainingType.Name == "ScrollControllerInteractionRequestedEventArgs"
 				&& method.MethodKind == MethodKind.Constructor
