@@ -106,6 +106,13 @@ namespace UnoWinUIRevert
 			ReplaceInFile(Path.Combine(basePath, @"src", "SourceGenerators", "Uno.UI.SourceGenerators", "XamlGenerator", "XamlConstants.cs"), "Microsoft.UI", "Windows.UI");
 			ReplaceInFile(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Markup", "Reader", "XamlConstants.cs"), "Microsoft.UI", "Windows.UI");
 
+			// Restore original MUX namespace for xaml files in the MUX folder
+			ReplaceInFolders(
+				Path.Combine(basePath, @"src", "Uno.UI", "Microsoft"),
+				new[] {
+					("using:Windows.UI.Xaml", "using:Microsoft.UI.Xaml")
+				});
+
 			UncommentWinUISpecificBlock(Path.Combine(basePath, "build", "Uno.WinUI.nuspec"));
 		}
 
