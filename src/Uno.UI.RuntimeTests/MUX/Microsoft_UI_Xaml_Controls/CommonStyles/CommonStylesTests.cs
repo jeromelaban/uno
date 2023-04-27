@@ -18,8 +18,11 @@ using System.Collections.Generic;
 using XamlControlsResources = Microsoft.UI.Xaml.Controls.XamlControlsResources;
 using Microsoft.UI.Xaml.Markup;
 using System;
-using Microsoft.UI.Xaml.Controls;
 using System.Text;
+
+#if !HAS_UNO_WINUI
+using Windows /* don't rename */.UI.Xaml.Controls;
+#endif
 
 #if USING_TAEF
 using WEX.TestExecution;

@@ -25,9 +25,12 @@ using Microsoft.UI.Xaml.Shapes;
 using Uno.UI.RuntimeTests;
 using Windows.Foundation.Collections;
 using ButtonBase = Microsoft.UI.Xaml.Controls.Primitives.ButtonBase;
-using Microsoft.UI.Xaml.Controls;
 using Uno.UI;
 using Microsoft.UI.Xaml.Controls.Primitives;
+
+#if !HAS_UNO_WINUI
+using Windows /* don't rename */.UI.Xaml.Controls;
+#endif
 
 namespace Windows.UI.Tests.Enterprise
 {

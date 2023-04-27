@@ -7,13 +7,17 @@ using Microsoft.UI.Xaml.Controls;
 using MUXControlsTestApp.Utilities;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation.Provider;
-using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Automation;
 using Private.Infrastructure;
 using System.Threading.Tasks;
 using Uno.UI.RuntimeTests;
+
+#if !HAS_UNO_WINUI
+using Windows/* don't rename */.UI.Xaml.Controls;
+using Windows/* don't rename */.UI.Xaml.Automation.Peers;
+#endif
+
 #if USING_TAEF
 using WEX.TestExecution;
 using WEX.TestExecution.Markup;

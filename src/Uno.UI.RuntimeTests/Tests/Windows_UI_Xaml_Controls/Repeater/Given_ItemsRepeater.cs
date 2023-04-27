@@ -7,7 +7,6 @@ using Windows.UI;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Private.Infrastructure;
 using Uno.UI.Extensions;
@@ -15,6 +14,10 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 using FluentAssertions;
 using Uno.Extensions;
+
+#if !HAS_UNO_WINUI
+using Windows/* don't rename */.UI.Xaml.Controls;
+#endif
 
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls.Repeater
 {

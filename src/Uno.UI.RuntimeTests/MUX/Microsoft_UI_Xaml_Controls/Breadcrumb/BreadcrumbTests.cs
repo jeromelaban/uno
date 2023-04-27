@@ -12,9 +12,12 @@ using Private.Infrastructure;
 using Uno.UI.RuntimeTests;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation.Provider;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
+
+#if !HAS_UNO_WINUI
+using Windows /* don't rename */.UI.Xaml.Controls;
+#endif
 
 #if USING_TAEF
 using WEX.TestExecution;

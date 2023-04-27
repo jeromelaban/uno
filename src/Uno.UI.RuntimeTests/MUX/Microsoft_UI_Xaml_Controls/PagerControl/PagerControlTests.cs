@@ -13,8 +13,11 @@ using System.Collections.Generic;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Provider;
-using Microsoft.UI.Xaml.Automation.Peers;
-using Microsoft.UI.Xaml.Controls;
+
+#if !HAS_UNO_WINUI
+using Windows/* don't rename */.UI.Xaml.Controls;
+using Windows/* don't rename */.UI.Xaml.Automation.Peers;
+#endif
 
 #if USING_TAEF
 using WEX.TestExecution;

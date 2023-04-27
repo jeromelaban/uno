@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls;
 using Common;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
@@ -14,6 +13,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MUXControlsTestApp.Utilities;
 using Microsoft.UI.Xaml;
 using Windows.UI;
+
+#if !HAS_UNO_WINUI
+using Windows/* don't rename */.UI.Xaml.Controls;
+#endif
 
 namespace Uno.UI.RuntimeTests.MUX.Microsoft_UI_Xaml_Controls
 {

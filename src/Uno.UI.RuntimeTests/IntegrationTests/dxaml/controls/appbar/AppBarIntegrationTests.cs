@@ -22,9 +22,12 @@ using Windows.Foundation;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Shapes;
-using Microsoft.UI.Xaml.Controls;
 using Uno.UI.RuntimeTests;
 using MUXControlsTestApp.Utilities;
+
+#if !HAS_UNO_WINUI
+using Windows /* don't rename */.UI.Xaml.Controls;
+#endif
 
 namespace Windows.UI.Tests.Enterprise
 {

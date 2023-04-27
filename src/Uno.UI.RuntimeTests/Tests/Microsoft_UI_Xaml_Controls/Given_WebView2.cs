@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
 using Private.Infrastructure;
-using Microsoft.UI.Xaml.Controls;
+
+#if !HAS_UNO_WINUI
+using Windows/* don't rename */.UI.Xaml.Controls;
+#endif
 
 namespace Uno.UI.RuntimeTests.Tests.Microsoft_UI_Xaml_Controls;
 

@@ -25,9 +25,13 @@ using FontIconSource = Microsoft.UI.Xaml.Controls.FontIconSource;
 using BitmapIconSource = Microsoft.UI.Xaml.Controls.BitmapIconSource;
 using ImageIconSource = Microsoft.UI.Xaml.Controls.ImageIconSource;
 using PathIconSource = Microsoft.UI.Xaml.Controls.PathIconSource;
-using Microsoft.UI.Xaml.Controls;
+
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Controls.AnimatedVisuals;
+
+#if !HAS_UNO_WINUI
+using Windows /* don't rename */.UI.Xaml.Controls;
+#endif
 
 namespace Microsoft.UI.Xaml.Tests.MUXControls.ApiTests
 {

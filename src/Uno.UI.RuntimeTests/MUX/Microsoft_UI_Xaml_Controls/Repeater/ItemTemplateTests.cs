@@ -12,11 +12,14 @@ using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common;
 using Microsoft.UI.Xaml.Tests.MUXControls.ApiTests.RepeaterTests.Common.Mocks;
-using Microsoft.UI.Xaml.Controls;
 using System;
 using Private.Infrastructure;
 using System.Threading.Tasks;
 using Uno.UI.RuntimeTests;
+
+#if !HAS_UNO_WINUI
+using Windows/* don't rename */.UI.Xaml.Controls;
+#endif
 
 #if USING_TAEF
 using WEX.TestExecution;

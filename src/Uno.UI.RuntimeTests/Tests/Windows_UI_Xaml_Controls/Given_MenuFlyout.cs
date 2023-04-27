@@ -17,13 +17,17 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation.Peers;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Shapes;
 using static Private.Infrastructure.TestServices;
+
+#if !HAS_UNO_WINUI
+using Windows/* don't rename */.UI.Xaml.Controls;
+#endif
+
 #if NETFX_CORE
 // Use the MUX MenuBar on Window for consistency, since Uno is using the MUX styles. (However Uno.UI only defines WUXC.MenuBar, not MUXC.MenuBar)
 using MenuBar = Microsoft.UI.Xaml.Controls.MenuBar;
