@@ -3,7 +3,7 @@ parameters:
 
 jobs:
 - job: uwp_convert_tree
-  displayName: 'WinUI Converted Tree Generation'
+  displayName: 'UWP Converted Tree Generation'
 
   pool: ${{ parameters.poolName }}
 
@@ -41,10 +41,11 @@ jobs:
         dotnet run "$(build.sourcesdirectory)"
 
     condition: and(succeeded(), eq(variables['UNO_UWP_BUILD'], 'true'))
-    displayName: Convert source tree to UWP structure
+    displayName: 'Convert source tree to UWP structure (Pass 1)'
 
   # Required to build on net5 because of uwp compatibility (until 16.10 gets published)
   - task: MSBuild@1
+    displayName: 'Convert source tree to UWP structure (Pass 2)'
     inputs:
       solution: Build/Uno.UI.Build.csproj
       msbuildLocationMethod: version
