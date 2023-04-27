@@ -2,21 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class ContainerVisual : global::Microsoft.UI.Composition.Visual
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.VisualCollection Children
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member VisualCollection ContainerVisual.Children is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=VisualCollection%20ContainerVisual.Children");
-			}
-		}
-		#endif
+		// Skipping already declared property Children
 		// Forced skipping of method Microsoft.UI.Composition.ContainerVisual.Children.get
 	}
 }

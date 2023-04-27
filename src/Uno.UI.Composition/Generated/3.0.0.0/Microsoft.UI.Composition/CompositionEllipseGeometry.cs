@@ -2,39 +2,13 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CompositionEllipseGeometry : global::Microsoft.UI.Composition.CompositionGeometry
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Radius
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionEllipseGeometry.Radius is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionEllipseGeometry.Radius");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionEllipseGeometry", "Vector2 CompositionEllipseGeometry.Radius");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Center
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionEllipseGeometry.Center is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionEllipseGeometry.Center");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionEllipseGeometry", "Vector2 CompositionEllipseGeometry.Center");
-			}
-		}
-		#endif
+		// Skipping already declared property Radius
+		// Skipping already declared property Center
 		// Forced skipping of method Microsoft.UI.Composition.CompositionEllipseGeometry.Radius.set
 		// Forced skipping of method Microsoft.UI.Composition.CompositionEllipseGeometry.Radius.get
 		// Forced skipping of method Microsoft.UI.Composition.CompositionEllipseGeometry.Center.set

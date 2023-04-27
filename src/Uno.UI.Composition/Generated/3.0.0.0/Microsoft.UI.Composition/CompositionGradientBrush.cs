@@ -2,81 +2,16 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CompositionGradientBrush : global::Microsoft.UI.Composition.CompositionBrush
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Matrix3x2 TransformMatrix
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Matrix3x2 CompositionGradientBrush.TransformMatrix is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Matrix3x2%20CompositionGradientBrush.TransformMatrix");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionGradientBrush", "Matrix3x2 CompositionGradientBrush.TransformMatrix");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Scale
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionGradientBrush.Scale is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionGradientBrush.Scale");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionGradientBrush", "Vector2 CompositionGradientBrush.Scale");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  float RotationAngleInDegrees
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member float CompositionGradientBrush.RotationAngleInDegrees is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=float%20CompositionGradientBrush.RotationAngleInDegrees");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionGradientBrush", "float CompositionGradientBrush.RotationAngleInDegrees");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  float RotationAngle
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member float CompositionGradientBrush.RotationAngle is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=float%20CompositionGradientBrush.RotationAngle");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionGradientBrush", "float CompositionGradientBrush.RotationAngle");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Offset
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionGradientBrush.Offset is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionGradientBrush.Offset");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionGradientBrush", "Vector2 CompositionGradientBrush.Offset");
-			}
-		}
-		#endif
+		// Skipping already declared property TransformMatrix
+		// Skipping already declared property Scale
+		// Skipping already declared property RotationAngleInDegrees
+		// Skipping already declared property RotationAngle
+		// Skipping already declared property Offset
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.CompositionColorSpace InterpolationSpace
@@ -91,34 +26,8 @@ namespace Microsoft.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionGradientExtendMode ExtendMode
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member CompositionGradientExtendMode CompositionGradientBrush.ExtendMode is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionGradientExtendMode%20CompositionGradientBrush.ExtendMode");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionGradientBrush", "CompositionGradientExtendMode CompositionGradientBrush.ExtendMode");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 CenterPoint
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionGradientBrush.CenterPoint is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionGradientBrush.CenterPoint");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionGradientBrush", "Vector2 CompositionGradientBrush.CenterPoint");
-			}
-		}
-		#endif
+		// Skipping already declared property ExtendMode
+		// Skipping already declared property CenterPoint
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Numerics.Vector2 AnchorPoint
@@ -133,30 +42,8 @@ namespace Microsoft.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionColorGradientStopCollection ColorStops
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member CompositionColorGradientStopCollection CompositionGradientBrush.ColorStops is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionColorGradientStopCollection%20CompositionGradientBrush.ColorStops");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionMappingMode MappingMode
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member CompositionMappingMode CompositionGradientBrush.MappingMode is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionMappingMode%20CompositionGradientBrush.MappingMode");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionGradientBrush", "CompositionMappingMode CompositionGradientBrush.MappingMode");
-			}
-		}
-		#endif
+		// Skipping already declared property ColorStops
+		// Skipping already declared property MappingMode
 		// Forced skipping of method Microsoft.UI.Composition.CompositionGradientBrush.TransformMatrix.set
 		// Forced skipping of method Microsoft.UI.Composition.CompositionGradientBrush.AnchorPoint.set
 		// Forced skipping of method Microsoft.UI.Composition.CompositionGradientBrush.CenterPoint.get

@@ -2,8 +2,8 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CompositionShapeCollection : global::Microsoft.UI.Composition.CompositionObject,global::System.Collections.Generic.IList<global::Microsoft.UI.Composition.CompositionShape>,global::System.Collections.Generic.IEnumerable<global::Microsoft.UI.Composition.CompositionShape>
 	{
@@ -31,122 +31,11 @@ namespace Microsoft.UI.Composition
 		// Forced skipping of method Microsoft.UI.Composition.CompositionShapeCollection.SetAt(uint, Microsoft.UI.Composition.CompositionShape)
 		// Forced skipping of method Microsoft.UI.Composition.CompositionShapeCollection.InsertAt(uint, Microsoft.UI.Composition.CompositionShape)
 		// Processing: System.Collections.Generic.IList<Microsoft.UI.Composition.CompositionShape>
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.IList<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public int IndexOf( global::Microsoft.UI.Composition.CompositionShape item)
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.IList<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public void Insert( int index,  global::Microsoft.UI.Composition.CompositionShape item)
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.IList<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public void RemoveAt( int index)
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public global::Microsoft.UI.Composition.CompositionShape this[int index]
-		{
-			get
-			{
-				throw new global::System.NotSupportedException();
-			}
-			set
-			{
-				throw new global::System.NotSupportedException();
-			}
-		}
-		#endif
+		// Skipping already implement System.Collections.Generic.IList<Microsoft.UI.Composition.CompositionShape>.this[int]
 		// Processing: System.Collections.Generic.ICollection<Microsoft.UI.Composition.CompositionShape>
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.ICollection<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public void Add( global::Microsoft.UI.Composition.CompositionShape item)
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.ICollection<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public void Clear()
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.ICollection<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public bool Contains( global::Microsoft.UI.Composition.CompositionShape item)
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.ICollection<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public void CopyTo( global::Microsoft.UI.Composition.CompositionShape[] array,  int arrayIndex)
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.ICollection<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public bool Remove( global::Microsoft.UI.Composition.CompositionShape item)
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public int Count
-		{
-			get
-			{
-				throw new global::System.NotSupportedException();
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public bool IsReadOnly
-		{
-			get
-			{
-				throw new global::System.NotSupportedException();
-			}
-		}
-		#endif
+		// Skipping already implement System.Collections.Generic.ICollection<Microsoft.UI.Composition.CompositionShape>.Count
+		// Skipping already implement System.Collections.Generic.ICollection<Microsoft.UI.Composition.CompositionShape>.IsReadOnly
 		// Processing: System.Collections.Generic.IEnumerable<Microsoft.UI.Composition.CompositionShape>
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.Generic.IEnumerable<Microsoft.UI.Composition.CompositionShape>
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public global::System.Collections.Generic.IEnumerator<global::Microsoft.UI.Composition.CompositionShape> GetEnumerator()
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
 		// Processing: System.Collections.IEnumerable
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		// DeclaringType: System.Collections.IEnumerable
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		 global::System.Collections.IEnumerator global::System.Collections.IEnumerable.GetEnumerator()
-		{
-			throw new global::System.NotSupportedException();
-		}
-		#endif
 	}
 }

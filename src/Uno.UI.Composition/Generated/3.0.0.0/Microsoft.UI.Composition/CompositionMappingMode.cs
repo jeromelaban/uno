@@ -2,15 +2,11 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if false || false || false || false || false || false || false
 	public   enum CompositionMappingMode 
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		Absolute = 0,
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		Relative = 1,
-		#endif
+		// Skipping already declared field Microsoft.UI.Composition.CompositionMappingMode.Absolute
+		// Skipping already declared field Microsoft.UI.Composition.CompositionMappingMode.Relative
 	}
 	#endif
 }

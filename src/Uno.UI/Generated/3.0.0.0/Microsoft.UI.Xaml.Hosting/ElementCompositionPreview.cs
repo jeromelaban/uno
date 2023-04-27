@@ -15,7 +15,7 @@ namespace Microsoft.UI.Xaml.Hosting
 			throw new global::System.NotImplementedException("The member Visual ElementCompositionPreview.GetElementChildVisual(UIElement element) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Visual%20ElementCompositionPreview.GetElementChildVisual%28UIElement%20element%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+		#if false
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static void SetElementChildVisual( global::Microsoft.UI.Xaml.UIElement element,  global::Microsoft.UI.Composition.Visual visual)
 		{

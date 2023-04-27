@@ -10,13 +10,13 @@ namespace Microsoft.UI.Xaml.Controls.AnimatedVisuals
 		// Skipping already declared property Markers
 		// Skipping already declared method Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedChevronDownSmallVisualSource.AnimatedChevronDownSmallVisualSource()
 		// Forced skipping of method Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedChevronDownSmallVisualSource.AnimatedChevronDownSmallVisualSource()
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#if false
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Xaml.Controls.IAnimatedVisual TryCreateAnimatedVisual( global::Microsoft.UI.Composition.Compositor compositor, out object diagnostics)
 		{
 			throw new global::System.NotImplementedException("The member IAnimatedVisual AnimatedChevronDownSmallVisualSource.TryCreateAnimatedVisual(Compositor compositor, out object diagnostics) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=IAnimatedVisual%20AnimatedChevronDownSmallVisualSource.TryCreateAnimatedVisual%28Compositor%20compositor%2C%20out%20object%20diagnostics%29");
 		}
-		#endif
+#endif
 		// Forced skipping of method Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedChevronDownSmallVisualSource.Markers.get
 		// Skipping already declared method Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedChevronDownSmallVisualSource.SetColorProperty(string, Windows.UI.Color)
 		// Processing: Microsoft.UI.Xaml.Controls.IAnimatedVisualSource

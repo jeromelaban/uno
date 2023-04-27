@@ -7,7 +7,7 @@ namespace Windows.UI.Core
 	#endif
 	public  partial class CoreIndependentInputSourceController : global::System.IDisposable
 	{
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool IsTransparentForUncontrolledInput
 		{
@@ -20,8 +20,8 @@ namespace Windows.UI.Core
 				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Core.CoreIndependentInputSourceController", "bool CoreIndependentInputSourceController.IsTransparentForUncontrolledInput");
 			}
 		}
-		#endif
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#endif
+#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  bool IsPalmRejectionEnabled
 		{
@@ -34,8 +34,8 @@ namespace Windows.UI.Core
 				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Core.CoreIndependentInputSourceController", "bool CoreIndependentInputSourceController.IsPalmRejectionEnabled");
 			}
 		}
-		#endif
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#endif
+#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Windows.UI.Core.CoreIndependentInputSource Source
 		{
@@ -44,47 +44,47 @@ namespace Windows.UI.Core
 				throw new global::System.NotImplementedException("The member CoreIndependentInputSource CoreIndependentInputSourceController.Source is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CoreIndependentInputSource%20CoreIndependentInputSourceController.Source");
 			}
 		}
-		#endif
+#endif
 		// Forced skipping of method Windows.UI.Core.CoreIndependentInputSourceController.IsTransparentForUncontrolledInput.get
 		// Forced skipping of method Windows.UI.Core.CoreIndependentInputSourceController.IsTransparentForUncontrolledInput.set
 		// Forced skipping of method Windows.UI.Core.CoreIndependentInputSourceController.IsPalmRejectionEnabled.get
 		// Forced skipping of method Windows.UI.Core.CoreIndependentInputSourceController.IsPalmRejectionEnabled.set
 		// Forced skipping of method Windows.UI.Core.CoreIndependentInputSourceController.Source.get
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void SetControlledInput( global::Windows.UI.Core.CoreInputDeviceTypes inputTypes)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Core.CoreIndependentInputSourceController", "void CoreIndependentInputSourceController.SetControlledInput(CoreInputDeviceTypes inputTypes)");
 		}
-		#endif
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#endif
+#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void SetControlledInput( global::Windows.UI.Core.CoreInputDeviceTypes inputTypes,  global::Windows.UI.Core.CoreIndependentInputFilters required,  global::Windows.UI.Core.CoreIndependentInputFilters excluded)
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Core.CoreIndependentInputSourceController", "void CoreIndependentInputSourceController.SetControlledInput(CoreInputDeviceTypes inputTypes, CoreIndependentInputFilters required, CoreIndependentInputFilters excluded)");
 		}
-		#endif
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#endif
+#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  void Dispose()
 		{
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Windows.UI.Core.CoreIndependentInputSourceController", "void CoreIndependentInputSourceController.Dispose()");
 		}
-		#endif
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#endif
+#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Core.CoreIndependentInputSourceController CreateForVisual( global::Windows.UI.Composition.Visual visual)
 		{
 			throw new global::System.NotImplementedException("The member CoreIndependentInputSourceController CoreIndependentInputSourceController.CreateForVisual(Visual visual) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CoreIndependentInputSourceController%20CoreIndependentInputSourceController.CreateForVisual%28Visual%20visual%29");
 		}
-		#endif
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+#endif
+#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static global::Windows.UI.Core.CoreIndependentInputSourceController CreateForIVisualElement( global::Windows.UI.Composition.IVisualElement visualElement)
 		{
 			throw new global::System.NotImplementedException("The member CoreIndependentInputSourceController CoreIndependentInputSourceController.CreateForIVisualElement(IVisualElement visualElement) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CoreIndependentInputSourceController%20CoreIndependentInputSourceController.CreateForIVisualElement%28IVisualElement%20visualElement%29");
 		}
-		#endif
+#endif
 		// Processing: System.IDisposable
 	}
 }

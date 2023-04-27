@@ -2,53 +2,14 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CompositionRoundedRectangleGeometry : global::Microsoft.UI.Composition.CompositionGeometry
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Size
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionRoundedRectangleGeometry.Size is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionRoundedRectangleGeometry.Size");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionRoundedRectangleGeometry", "Vector2 CompositionRoundedRectangleGeometry.Size");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Offset
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionRoundedRectangleGeometry.Offset is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionRoundedRectangleGeometry.Offset");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionRoundedRectangleGeometry", "Vector2 CompositionRoundedRectangleGeometry.Offset");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 CornerRadius
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionRoundedRectangleGeometry.CornerRadius is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionRoundedRectangleGeometry.CornerRadius");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionRoundedRectangleGeometry", "Vector2 CompositionRoundedRectangleGeometry.CornerRadius");
-			}
-		}
-		#endif
+		// Skipping already declared property Size
+		// Skipping already declared property Offset
+		// Skipping already declared property CornerRadius
 		// Forced skipping of method Microsoft.UI.Composition.CompositionRoundedRectangleGeometry.Size.set
 		// Forced skipping of method Microsoft.UI.Composition.CompositionRoundedRectangleGeometry.CornerRadius.set
 		// Forced skipping of method Microsoft.UI.Composition.CompositionRoundedRectangleGeometry.CornerRadius.get

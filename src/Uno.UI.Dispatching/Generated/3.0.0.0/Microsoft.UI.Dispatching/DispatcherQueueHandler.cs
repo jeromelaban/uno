@@ -2,7 +2,5 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Dispatching
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	public delegate void DispatcherQueueHandler();
-	#endif
+	// Skipping already declared delegate Microsoft.UI.Dispatching.DispatcherQueueHandler
 }

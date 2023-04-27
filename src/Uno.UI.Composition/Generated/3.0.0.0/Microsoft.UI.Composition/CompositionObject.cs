@@ -2,21 +2,12 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CompositionObject : global::System.IDisposable,global::Microsoft.UI.Composition.IAnimationObject
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.Compositor Compositor
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Compositor CompositionObject.Compositor is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Compositor%20CompositionObject.Compositor");
-			}
-		}
-		#endif
+		// Skipping already declared property Compositor
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.CompositionPropertySet Properties
@@ -41,20 +32,7 @@ namespace Microsoft.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  string Comment
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member string CompositionObject.Comment is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=string%20CompositionObject.Comment");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionObject", "string CompositionObject.Comment");
-			}
-		}
-		#endif
+		// Skipping already declared property Comment
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Dispatching.DispatcherQueue DispatcherQueue
@@ -74,20 +52,8 @@ namespace Microsoft.UI.Composition
 		#endif
 		// Forced skipping of method Microsoft.UI.Composition.CompositionObject.Comment.set
 		// Forced skipping of method Microsoft.UI.Composition.CompositionObject.Properties.get
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  void StartAnimation( string propertyName,  global::Microsoft.UI.Composition.CompositionAnimation animation)
-		{
-			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionObject", "void CompositionObject.StartAnimation(string propertyName, CompositionAnimation animation)");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  void StopAnimation( string propertyName)
-		{
-			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionObject", "void CompositionObject.StopAnimation(string propertyName)");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.CompositionObject.StartAnimation(string, Microsoft.UI.Composition.CompositionAnimation)
+		// Skipping already declared method Microsoft.UI.Composition.CompositionObject.StopAnimation(string)
 		// Forced skipping of method Microsoft.UI.Composition.CompositionObject.Comment.get
 		// Forced skipping of method Microsoft.UI.Composition.CompositionObject.Compositor.get
 		// Forced skipping of method Microsoft.UI.Composition.CompositionObject.ImplicitAnimations.get
@@ -121,13 +87,7 @@ namespace Microsoft.UI.Composition
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionObject", "void CompositionObject.StartAnimation(string propertyName, CompositionAnimation animation, AnimationController animationController)");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  void Dispose()
-		{
-			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionObject", "void CompositionObject.Dispose()");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.CompositionObject.Dispose()
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public static void StartAnimationWithIAnimationObject( global::Microsoft.UI.Composition.IAnimationObject target,  string propertyName,  global::Microsoft.UI.Composition.CompositionAnimation animation)

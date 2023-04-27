@@ -2,81 +2,16 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class Visual : global::Microsoft.UI.Composition.CompositionObject
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Matrix4x4 TransformMatrix
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Matrix4x4 Visual.TransformMatrix is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Matrix4x4%20Visual.TransformMatrix");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "Matrix4x4 Visual.TransformMatrix");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Size
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 Visual.Size is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20Visual.Size");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "Vector2 Visual.Size");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector3 Scale
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector3 Visual.Scale is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector3%20Visual.Scale");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "Vector3 Visual.Scale");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector3 RotationAxis
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector3 Visual.RotationAxis is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector3%20Visual.RotationAxis");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "Vector3 Visual.RotationAxis");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  float RotationAngleInDegrees
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member float Visual.RotationAngleInDegrees is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=float%20Visual.RotationAngleInDegrees");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "float Visual.RotationAngleInDegrees");
-			}
-		}
-		#endif
+		// Skipping already declared property TransformMatrix
+		// Skipping already declared property Size
+		// Skipping already declared property Scale
+		// Skipping already declared property RotationAxis
+		// Skipping already declared property RotationAngleInDegrees
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  float RotationAngle
@@ -105,64 +40,12 @@ namespace Microsoft.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  float Opacity
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member float Visual.Opacity is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=float%20Visual.Opacity");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "float Visual.Opacity");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector3 Offset
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector3 Visual.Offset is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector3%20Visual.Offset");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "Vector3 Visual.Offset");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  bool IsVisible
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member bool Visual.IsVisible is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=bool%20Visual.IsVisible");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "bool Visual.IsVisible");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionCompositeMode CompositeMode
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member CompositionCompositeMode Visual.CompositeMode is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionCompositeMode%20Visual.CompositeMode");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "CompositionCompositeMode Visual.CompositeMode");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		// Skipping already declared property Opacity
+		// Skipping already declared property Offset
+		// Skipping already declared property IsVisible
+		// Skipping already declared property CompositeMode
+		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || false || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.CompositionClip Clip
 		{
 			get
@@ -175,20 +58,7 @@ namespace Microsoft.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector3 CenterPoint
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector3 Visual.CenterPoint is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector3%20Visual.CenterPoint");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Visual", "Vector3 Visual.CenterPoint");
-			}
-		}
-		#endif
+		// Skipping already declared property CenterPoint
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.CompositionBorderMode BorderMode
@@ -217,8 +87,8 @@ namespace Microsoft.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || false || __NETSTD_REFERENCE__ || __MACOS__
+		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Numerics.Vector2 AnchorPoint
 		{
 			get
@@ -231,16 +101,7 @@ namespace Microsoft.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.ContainerVisual Parent
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member ContainerVisual Visual.Parent is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=ContainerVisual%20Visual.Parent");
-			}
-		}
-		#endif
+		// Skipping already declared property Parent
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::System.Numerics.Vector2 RelativeSizeAdjustment

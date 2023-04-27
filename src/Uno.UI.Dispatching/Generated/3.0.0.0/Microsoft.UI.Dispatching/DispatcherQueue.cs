@@ -2,54 +2,21 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Dispatching
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class DispatcherQueue 
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  bool HasThreadAccess
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member bool DispatcherQueue.HasThreadAccess is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=bool%20DispatcherQueue.HasThreadAccess");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  bool TryEnqueue( global::Microsoft.UI.Dispatching.DispatcherQueuePriority priority,  global::Microsoft.UI.Dispatching.DispatcherQueueHandler callback)
-		{
-			throw new global::System.NotImplementedException("The member bool DispatcherQueue.TryEnqueue(DispatcherQueuePriority priority, DispatcherQueueHandler callback) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=bool%20DispatcherQueue.TryEnqueue%28DispatcherQueuePriority%20priority%2C%20DispatcherQueueHandler%20callback%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Dispatching.DispatcherQueueTimer CreateTimer()
-		{
-			throw new global::System.NotImplementedException("The member DispatcherQueueTimer DispatcherQueue.CreateTimer() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=DispatcherQueueTimer%20DispatcherQueue.CreateTimer%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  bool TryEnqueue( global::Microsoft.UI.Dispatching.DispatcherQueueHandler callback)
-		{
-			throw new global::System.NotImplementedException("The member bool DispatcherQueue.TryEnqueue(DispatcherQueueHandler callback) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=bool%20DispatcherQueue.TryEnqueue%28DispatcherQueueHandler%20callback%29");
-		}
-		#endif
+		// Skipping already declared property HasThreadAccess
+		// Skipping already declared method Microsoft.UI.Dispatching.DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority, Microsoft.UI.Dispatching.DispatcherQueueHandler)
+		// Skipping already declared method Microsoft.UI.Dispatching.DispatcherQueue.CreateTimer()
+		// Skipping already declared method Microsoft.UI.Dispatching.DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueueHandler)
 		// Forced skipping of method Microsoft.UI.Dispatching.DispatcherQueue.ShutdownStarting.add
 		// Forced skipping of method Microsoft.UI.Dispatching.DispatcherQueue.ShutdownStarting.remove
 		// Forced skipping of method Microsoft.UI.Dispatching.DispatcherQueue.ShutdownCompleted.add
 		// Forced skipping of method Microsoft.UI.Dispatching.DispatcherQueue.ShutdownCompleted.remove
 		// Forced skipping of method Microsoft.UI.Dispatching.DispatcherQueue.HasThreadAccess.get
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public static global::Microsoft.UI.Dispatching.DispatcherQueue GetForCurrentThread()
-		{
-			throw new global::System.NotImplementedException("The member DispatcherQueue DispatcherQueue.GetForCurrentThread() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=DispatcherQueue%20DispatcherQueue.GetForCurrentThread%28%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread()
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  event global::Windows.Foundation.TypedEventHandler<global::Microsoft.UI.Dispatching.DispatcherQueue, object> ShutdownCompleted

@@ -2,8 +2,8 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class Compositor : global::System.IDisposable
 	{
@@ -65,13 +65,7 @@ namespace Microsoft.UI.Composition
 			}
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionSpriteShape CreateSpriteShape( global::Microsoft.UI.Composition.CompositionGeometry geometry)
-		{
-			throw new global::System.NotImplementedException("The member CompositionSpriteShape Compositor.CreateSpriteShape(CompositionGeometry geometry) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionSpriteShape%20Compositor.CreateSpriteShape%28CompositionGeometry%20geometry%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateSpriteShape(Microsoft.UI.Composition.CompositionGeometry)
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.ColorKeyFrameAnimation CreateColorKeyFrameAnimation()
@@ -110,34 +104,10 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member CompositionContainerShape Compositor.CreateContainerShape() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionContainerShape%20Compositor.CreateContainerShape%28%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionEllipseGeometry CreateEllipseGeometry()
-		{
-			throw new global::System.NotImplementedException("The member CompositionEllipseGeometry Compositor.CreateEllipseGeometry() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionEllipseGeometry%20Compositor.CreateEllipseGeometry%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionLineGeometry CreateLineGeometry()
-		{
-			throw new global::System.NotImplementedException("The member CompositionLineGeometry Compositor.CreateLineGeometry() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionLineGeometry%20Compositor.CreateLineGeometry%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionPathGeometry CreatePathGeometry()
-		{
-			throw new global::System.NotImplementedException("The member CompositionPathGeometry Compositor.CreatePathGeometry() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionPathGeometry%20Compositor.CreatePathGeometry%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionPathGeometry CreatePathGeometry( global::Microsoft.UI.Composition.CompositionPath path)
-		{
-			throw new global::System.NotImplementedException("The member CompositionPathGeometry Compositor.CreatePathGeometry(CompositionPath path) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionPathGeometry%20Compositor.CreatePathGeometry%28CompositionPath%20path%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateEllipseGeometry()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateLineGeometry()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreatePathGeometry()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreatePathGeometry(Microsoft.UI.Composition.CompositionPath)
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.PathKeyFrameAnimation CreatePathKeyFrameAnimation()
@@ -145,34 +115,10 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member PathKeyFrameAnimation Compositor.CreatePathKeyFrameAnimation() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=PathKeyFrameAnimation%20Compositor.CreatePathKeyFrameAnimation%28%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionRectangleGeometry CreateRectangleGeometry()
-		{
-			throw new global::System.NotImplementedException("The member CompositionRectangleGeometry Compositor.CreateRectangleGeometry() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionRectangleGeometry%20Compositor.CreateRectangleGeometry%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionRoundedRectangleGeometry CreateRoundedRectangleGeometry()
-		{
-			throw new global::System.NotImplementedException("The member CompositionRoundedRectangleGeometry Compositor.CreateRoundedRectangleGeometry() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionRoundedRectangleGeometry%20Compositor.CreateRoundedRectangleGeometry%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.ShapeVisual CreateShapeVisual()
-		{
-			throw new global::System.NotImplementedException("The member ShapeVisual Compositor.CreateShapeVisual() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=ShapeVisual%20Compositor.CreateShapeVisual%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionSpriteShape CreateSpriteShape()
-		{
-			throw new global::System.NotImplementedException("The member CompositionSpriteShape Compositor.CreateSpriteShape() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionSpriteShape%20Compositor.CreateSpriteShape%28%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateRectangleGeometry()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateRoundedRectangleGeometry()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateShapeVisual()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateSpriteShape()
 		// Forced skipping of method Microsoft.UI.Composition.Compositor.Comment.get
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
@@ -188,20 +134,8 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member IAsyncAction Compositor.RequestCommitAsync() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=IAsyncAction%20Compositor.RequestCommitAsync%28%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionGeometricClip CreateGeometricClip()
-		{
-			throw new global::System.NotImplementedException("The member CompositionGeometricClip Compositor.CreateGeometricClip() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionGeometricClip%20Compositor.CreateGeometricClip%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionGeometricClip CreateGeometricClip( global::Microsoft.UI.Composition.CompositionGeometry geometry)
-		{
-			throw new global::System.NotImplementedException("The member CompositionGeometricClip Compositor.CreateGeometricClip(CompositionGeometry geometry) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionGeometricClip%20Compositor.CreateGeometricClip%28CompositionGeometry%20geometry%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateGeometricClip()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateGeometricClip(Microsoft.UI.Composition.CompositionGeometry)
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.RedirectVisual CreateRedirectVisual()
@@ -231,27 +165,9 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member AnimationPropertyInfo Compositor.CreateAnimationPropertyInfo() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=AnimationPropertyInfo%20Compositor.CreateAnimationPropertyInfo%28%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.RectangleClip CreateRectangleClip()
-		{
-			throw new global::System.NotImplementedException("The member RectangleClip Compositor.CreateRectangleClip() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=RectangleClip%20Compositor.CreateRectangleClip%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.RectangleClip CreateRectangleClip( float left,  float top,  float right,  float bottom)
-		{
-			throw new global::System.NotImplementedException("The member RectangleClip Compositor.CreateRectangleClip(float left, float top, float right, float bottom) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=RectangleClip%20Compositor.CreateRectangleClip%28float%20left%2C%20float%20top%2C%20float%20right%2C%20float%20bottom%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.RectangleClip CreateRectangleClip( float left,  float top,  float right,  float bottom,  global::System.Numerics.Vector2 topLeftRadius,  global::System.Numerics.Vector2 topRightRadius,  global::System.Numerics.Vector2 bottomRightRadius,  global::System.Numerics.Vector2 bottomLeftRadius)
-		{
-			throw new global::System.NotImplementedException("The member RectangleClip Compositor.CreateRectangleClip(float left, float top, float right, float bottom, Vector2 topLeftRadius, Vector2 topRightRadius, Vector2 bottomRightRadius, Vector2 bottomLeftRadius) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=RectangleClip%20Compositor.CreateRectangleClip%28float%20left%2C%20float%20top%2C%20float%20right%2C%20float%20bottom%2C%20Vector2%20topLeftRadius%2C%20Vector2%20topRightRadius%2C%20Vector2%20bottomRightRadius%2C%20Vector2%20bottomLeftRadius%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateRectangleClip()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateRectangleClip(float, float, float, float)
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateRectangleClip(float, float, float, float, System.Numerics.Vector2, System.Numerics.Vector2, System.Numerics.Vector2, System.Numerics.Vector2)
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.CompositionProjectedShadowCaster CreateProjectedShadowCaster()
@@ -273,13 +189,7 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member CompositionProjectedShadowReceiver Compositor.CreateProjectedShadowReceiver() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionProjectedShadowReceiver%20Compositor.CreateProjectedShadowReceiver%28%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionRadialGradientBrush CreateRadialGradientBrush()
-		{
-			throw new global::System.NotImplementedException("The member CompositionRadialGradientBrush Compositor.CreateRadialGradientBrush() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionRadialGradientBrush%20Compositor.CreateRadialGradientBrush%28%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateRadialGradientBrush()
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.CompositionVisualSurface CreateVisualSurface()
@@ -301,27 +211,9 @@ namespace Microsoft.UI.Composition
 			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Compositor", "void Compositor.Dispose()");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionColorBrush CreateColorBrush()
-		{
-			throw new global::System.NotImplementedException("The member CompositionColorBrush Compositor.CreateColorBrush() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionColorBrush%20Compositor.CreateColorBrush%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionColorBrush CreateColorBrush( global::Windows.UI.Color color)
-		{
-			throw new global::System.NotImplementedException("The member CompositionColorBrush Compositor.CreateColorBrush(Color color) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionColorBrush%20Compositor.CreateColorBrush%28Color%20color%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.ContainerVisual CreateContainerVisual()
-		{
-			throw new global::System.NotImplementedException("The member ContainerVisual Compositor.CreateContainerVisual() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=ContainerVisual%20Compositor.CreateContainerVisual%28%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateColorBrush()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateColorBrush(Windows.UI.Color)
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateContainerVisual()
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.CubicBezierEasingFunction CreateCubicBezierEasingFunction( global::System.Numerics.Vector2 controlPoint1,  global::System.Numerics.Vector2 controlPoint2)
@@ -357,20 +249,8 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member ExpressionAnimation Compositor.CreateExpressionAnimation(string expression) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=ExpressionAnimation%20Compositor.CreateExpressionAnimation%28string%20expression%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.InsetClip CreateInsetClip()
-		{
-			throw new global::System.NotImplementedException("The member InsetClip Compositor.CreateInsetClip() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=InsetClip%20Compositor.CreateInsetClip%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.InsetClip CreateInsetClip( float leftInset,  float topInset,  float rightInset,  float bottomInset)
-		{
-			throw new global::System.NotImplementedException("The member InsetClip Compositor.CreateInsetClip(float leftInset, float topInset, float rightInset, float bottomInset) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=InsetClip%20Compositor.CreateInsetClip%28float%20leftInset%2C%20float%20topInset%2C%20float%20rightInset%2C%20float%20bottomInset%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateInsetClip()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateInsetClip(float, float, float, float)
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.LinearEasingFunction CreateLinearEasingFunction()
@@ -378,13 +258,7 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member LinearEasingFunction Compositor.CreateLinearEasingFunction() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=LinearEasingFunction%20Compositor.CreateLinearEasingFunction%28%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionPropertySet CreatePropertySet()
-		{
-			throw new global::System.NotImplementedException("The member CompositionPropertySet Compositor.CreatePropertySet() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionPropertySet%20Compositor.CreatePropertySet%28%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreatePropertySet()
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.QuaternionKeyFrameAnimation CreateQuaternionKeyFrameAnimation()
@@ -392,41 +266,11 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member QuaternionKeyFrameAnimation Compositor.CreateQuaternionKeyFrameAnimation() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=QuaternionKeyFrameAnimation%20Compositor.CreateQuaternionKeyFrameAnimation%28%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.ScalarKeyFrameAnimation CreateScalarKeyFrameAnimation()
-		{
-			throw new global::System.NotImplementedException("The member ScalarKeyFrameAnimation Compositor.CreateScalarKeyFrameAnimation() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=ScalarKeyFrameAnimation%20Compositor.CreateScalarKeyFrameAnimation%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionScopedBatch CreateScopedBatch( global::Microsoft.UI.Composition.CompositionBatchTypes batchType)
-		{
-			throw new global::System.NotImplementedException("The member CompositionScopedBatch Compositor.CreateScopedBatch(CompositionBatchTypes batchType) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionScopedBatch%20Compositor.CreateScopedBatch%28CompositionBatchTypes%20batchType%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.SpriteVisual CreateSpriteVisual()
-		{
-			throw new global::System.NotImplementedException("The member SpriteVisual Compositor.CreateSpriteVisual() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=SpriteVisual%20Compositor.CreateSpriteVisual%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionSurfaceBrush CreateSurfaceBrush()
-		{
-			throw new global::System.NotImplementedException("The member CompositionSurfaceBrush Compositor.CreateSurfaceBrush() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionSurfaceBrush%20Compositor.CreateSurfaceBrush%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionSurfaceBrush CreateSurfaceBrush( global::Microsoft.UI.Composition.ICompositionSurface surface)
-		{
-			throw new global::System.NotImplementedException("The member CompositionSurfaceBrush Compositor.CreateSurfaceBrush(ICompositionSurface surface) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionSurfaceBrush%20Compositor.CreateSurfaceBrush%28ICompositionSurface%20surface%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateScalarKeyFrameAnimation()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateScopedBatch(Microsoft.UI.Composition.CompositionBatchTypes)
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateSpriteVisual()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateSurfaceBrush()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateSurfaceBrush(Microsoft.UI.Composition.ICompositionSurface)
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.Vector2KeyFrameAnimation CreateVector2KeyFrameAnimation()
@@ -546,27 +390,9 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member StepEasingFunction Compositor.CreateStepEasingFunction(int stepCount) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=StepEasingFunction%20Compositor.CreateStepEasingFunction%28int%20stepCount%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionColorGradientStop CreateColorGradientStop()
-		{
-			throw new global::System.NotImplementedException("The member CompositionColorGradientStop Compositor.CreateColorGradientStop() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionColorGradientStop%20Compositor.CreateColorGradientStop%28%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionColorGradientStop CreateColorGradientStop( float offset,  global::Windows.UI.Color color)
-		{
-			throw new global::System.NotImplementedException("The member CompositionColorGradientStop Compositor.CreateColorGradientStop(float offset, Color color) is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionColorGradientStop%20Compositor.CreateColorGradientStop%28float%20offset%2C%20Color%20color%29");
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::Microsoft.UI.Composition.CompositionLinearGradientBrush CreateLinearGradientBrush()
-		{
-			throw new global::System.NotImplementedException("The member CompositionLinearGradientBrush Compositor.CreateLinearGradientBrush() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=CompositionLinearGradientBrush%20Compositor.CreateLinearGradientBrush%28%29");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateColorGradientStop()
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateColorGradientStop(float, Windows.UI.Color)
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.CreateLinearGradientBrush()
 		#if __ANDROID__ || __IOS__ || IS_UNIT_TESTS || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
 		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "IS_UNIT_TESTS", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
 		public  global::Microsoft.UI.Composition.SpringScalarNaturalMotionAnimation CreateSpringScalarAnimation()
@@ -588,13 +414,7 @@ namespace Microsoft.UI.Composition
 			throw new global::System.NotImplementedException("The member SpringVector3NaturalMotionAnimation Compositor.CreateSpringVector3Animation() is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=SpringVector3NaturalMotionAnimation%20Compositor.CreateSpringVector3Animation%28%29");
 		}
 		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public Compositor() 
-		{
-			global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.Compositor", "Compositor.Compositor()");
-		}
-		#endif
+		// Skipping already declared method Microsoft.UI.Composition.Compositor.Compositor()
 		// Forced skipping of method Microsoft.UI.Composition.Compositor.Compositor()
 		// Forced skipping of method Microsoft.UI.Composition.Compositor.MaxGlobalPlaybackRate.get
 		// Forced skipping of method Microsoft.UI.Composition.Compositor.MinGlobalPlaybackRate.get

@@ -2,39 +2,13 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
+	#if false || false || false || false || false || false || false
+	[global::Uno.NotImplemented]
 	#endif
 	public  partial class CompositionRectangleGeometry : global::Microsoft.UI.Composition.CompositionGeometry
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Size
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionRectangleGeometry.Size is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionRectangleGeometry.Size");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionRectangleGeometry", "Vector2 CompositionRectangleGeometry.Size");
-			}
-		}
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__", "__NETSTD_REFERENCE__", "__MACOS__")]
-		public  global::System.Numerics.Vector2 Offset
-		{
-			get
-			{
-				throw new global::System.NotImplementedException("The member Vector2 CompositionRectangleGeometry.Offset is not implemented. For more information, visit https://aka.platform.uno/notimplemented?m=Vector2%20CompositionRectangleGeometry.Offset");
-			}
-			set
-			{
-				global::Windows.Foundation.Metadata.ApiInformation.TryRaiseNotImplemented("Microsoft.UI.Composition.CompositionRectangleGeometry", "Vector2 CompositionRectangleGeometry.Offset");
-			}
-		}
-		#endif
+		// Skipping already declared property Size
+		// Skipping already declared property Offset
 		// Forced skipping of method Microsoft.UI.Composition.CompositionRectangleGeometry.Size.set
 		// Forced skipping of method Microsoft.UI.Composition.CompositionRectangleGeometry.Size.get
 		// Forced skipping of method Microsoft.UI.Composition.CompositionRectangleGeometry.Offset.get

@@ -2,25 +2,15 @@
 #pragma warning disable 114 // new keyword hiding
 namespace Microsoft.UI.Composition
 {
-	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
+	#if false || false || false || false || false || false || false
 	[global::System.FlagsAttribute]
 	public   enum CompositionBatchTypes : uint
 	{
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		None = 0,
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		Animation = 1,
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		Effect = 2,
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		InfiniteAnimation = 4,
-		#endif
-		#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || __NETSTD_REFERENCE__ || __MACOS__
-		AllAnimations = 5,
-		#endif
+		// Skipping already declared field Microsoft.UI.Composition.CompositionBatchTypes.None
+		// Skipping already declared field Microsoft.UI.Composition.CompositionBatchTypes.Animation
+		// Skipping already declared field Microsoft.UI.Composition.CompositionBatchTypes.Effect
+		// Skipping already declared field Microsoft.UI.Composition.CompositionBatchTypes.InfiniteAnimation
+		// Skipping already declared field Microsoft.UI.Composition.CompositionBatchTypes.AllAnimations
 	}
 	#endif
 }
