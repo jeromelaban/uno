@@ -71,7 +71,12 @@ namespace UnoWinUIRevert
 			DeleteFiles(duplicatedImplementations);
 
 			// Ensure that files in the Microsoft namespace are not renamed, as they need to be kept in this specific namespace
-			ReplaceInFolders(Path.Combine(basePath, @"src", "Uno.UI", "Microsoft"), new[] { ("namespace Microsoft.UI.Xaml", "namespace Microsoft/**/.UI.Xaml") });
+			ReplaceInFolders(
+				Path.Combine(basePath, @"src", "Uno.UI", "Microsoft"),
+				new[] {
+					("namespace Microsoft.UI.Xaml", "namespace Microsoft/**/.UI.Xaml"),
+					("Windows.UI.Xaml.Controls._Tracing", "Microsoft/**/.UI.Xaml.Controls._Tracing"),
+				});
 
 			// Generic replacements
 			var genericReplacements = new[] {
