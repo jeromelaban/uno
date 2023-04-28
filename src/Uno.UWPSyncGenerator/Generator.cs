@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
 using Uno.Extensions;
@@ -150,14 +152,19 @@ namespace Uno.UWPSyncGenerator
 
 			_dependencyPropertySymbol = _referenceCompilation.GetTypeByMetadataName(BaseXamlNamespace + ".DependencyProperty");
 
-			_iOSCompilation = LoadProject($@"{basePath}\{baseName}.netcoremobile.csproj", "net7.0-ios");
-			_androidCompilation = LoadProject($@"{basePath}\{baseName}.netcoremobile.csproj", "net7.0-android");
-			_unitTestsCompilation = LoadProject($@"{basePath}\{baseName}.Tests.csproj", "net7.0");
-			_macCompilation = LoadProject($@"{basePath}\{baseName}.netcoremobile.csproj", "net7.0-macos");
+			var tasks = new Action[]{
+				() => _iOSCompilation = LoadProject($@"{basePath}\{baseName}.netcoremobile.csproj", "net7.0-ios"),
 
-			_netstdReferenceCompilation = LoadProject($@"{basePath}\{baseName}.Reference.csproj", "net7.0");
-			_wasmCompilation = LoadProject($@"{basePath}\{baseName}.Wasm.csproj", "net7.0");
-			_skiaCompilation = LoadProject($@"{basePath}\{baseName}.Skia.csproj", "net7.0");
+				() =>_androidCompilation = LoadProject($@"{basePath}\{baseName}.netcoremobile.csproj", "net7.0-android"),
+				() => _unitTestsCompilation = LoadProject($@"{basePath}\{baseName}.Tests.csproj", "net7.0"),
+				() => _macCompilation = LoadProject($@"{basePath}\{baseName}.netcoremobile.csproj", "net7.0-macos"),
+
+				() => _netstdReferenceCompilation = LoadProject($@"{basePath}\{baseName}.Reference.csproj", "net7.0"),
+				() => _wasmCompilation = LoadProject($@"{basePath}\{baseName}.Wasm.csproj", "net7.0"),
+				() => _skiaCompilation = LoadProject($@"{basePath}\{baseName}.Skia.csproj", "net7.0"),
+			};
+
+			Task.WaitAll(tasks.Select(a => Task.Run(a)).ToArray());
 
 			_iOSBaseSymbol = _iOSCompilation.GetTypeByMetadataName("UIKit.UIView");
 			_androidBaseSymbol = _androidCompilation.GetTypeByMetadataName("Android.Views.View");
@@ -1797,7 +1804,7 @@ namespace Uno.UWPSyncGenerator
 			}
 		}
 
-		static Dictionary<(string projectFile, string targetFramework), Compilation> _projects
+		static ConcurrentDictionary<(string projectFile, string targetFramework), Compilation> _projects
 			= new();
 
 		private static Compilation LoadProject(string projectFile, string targetFramework = null)
@@ -1826,6 +1833,8 @@ namespace Uno.UWPSyncGenerator
 
 			return p.GetCompilationAsync().Result;
 		}
+
+		private static object msbuildLock = new();
 
 		private static Compilation InnerLoadProject(string projectFile, string targetFramework = null)
 		{
@@ -1856,14 +1865,19 @@ namespace Uno.UWPSyncGenerator
 			ws.WorkspaceFailed +=
 				(s, e) => Console.WriteLine(e.Diagnostic.ToString());
 
-			var project = ws.OpenProjectAsync(projectFile).Result;
+			Microsoft.CodeAnalysis.Project project;
 
-			var generatedDocs = project.Documents
-				.Where(d => d.FilePath.Contains("\\Generated\\"))
-				.Select(d => d.Id)
-				.ToImmutableArray();
+			lock (msbuildLock)
+			{
+				project = ws.OpenProjectAsync(projectFile).Result;
 
-			project = project.RemoveDocuments(generatedDocs);
+				var generatedDocs = project.Documents
+					.Where(d => d.FilePath.Contains("\\Generated\\"))
+					.Select(d => d.Id)
+					.ToImmutableArray();
+
+				project = project.RemoveDocuments(generatedDocs);
+			}
 
 			var metadataLessProjects = ws
 				.CurrentSolution
