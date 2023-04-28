@@ -22,7 +22,7 @@ using Windows.Devices.Input;
 using Windows.UI.Input;
 #endif
 
-using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft/* don't rename */.UI.Xaml.Automation.Peers;
 
 namespace Microsoft/* don't rename */.UI.Xaml.Controls
 {

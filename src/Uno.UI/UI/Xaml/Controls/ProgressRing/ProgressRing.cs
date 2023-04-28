@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Controls.Legacy.Primitives;
 
-using Microsoft/* don't rename */.UI.Xaml.Controls.Primitives;
+using Microsoft/* don't rename */.UI.Xaml.Controls;
 using Microsoft/*Intentional space for WinUI upgrade tool*/.UI.Xaml.Controls;
 
 namespace Uno.UI.Controls.Legacy;
