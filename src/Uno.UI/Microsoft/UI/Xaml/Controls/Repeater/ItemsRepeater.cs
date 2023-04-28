@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using static Microsoft.UI.Xaml.Controls._Tracing;
+using Microsoft/* don't rename */.UI.Xaml.Automation.Peers;
 
 namespace Microsoft.UI.Xaml.Controls
 {
@@ -88,7 +89,7 @@ namespace Microsoft.UI.Xaml.Controls
 
 		ItemsSourceView m_itemsSourceView;
 
-		Microsoft.UI.Xaml.Controls.IElementFactoryShim m_itemTemplateWrapper;
+		Microsoft/* don't rename */.UI.Xaml.Controls.IElementFactoryShim m_itemTemplateWrapper;
 
 		VirtualizingLayoutContext m_layoutContext;
 		object m_layoutState;

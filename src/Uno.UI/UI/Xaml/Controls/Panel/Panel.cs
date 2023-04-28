@@ -19,7 +19,9 @@ using View = UIKit.UIView;
 using View = MonoTouch.UIKit.UIView;
 #endif
 
-namespace Microsoft.UI.Xaml.Controls
+using Microsoft/* don't rename */.UI.Xaml.Controls;
+
+namespace Windows.UI.Xaml.Controls
 {
 	[Markup.ContentProperty(Name = "Children")]
 	public partial class Panel : FrameworkElement, ICustomClippingElement, IPanel

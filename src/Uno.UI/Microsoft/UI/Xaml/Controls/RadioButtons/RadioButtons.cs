@@ -15,7 +15,11 @@ using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using System.Collections.ObjectModel;
 
-namespace Microsoft.UI.Xaml.Controls
+#if !HAS_UNO_WINUI
+using Microsoft/* don't rename */.UI.Xaml.Controls.Primitives;
+#endif
+
+namespace Microsoft/**/.UI.Xaml.Controls
 {
 	[ContentProperty(Name = nameof(Items))]
 	public partial class RadioButtons : Control

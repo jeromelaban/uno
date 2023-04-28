@@ -2,6 +2,8 @@
 using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation;
 
+using Microsoft/* don't rename */.UI.Xaml.Controls;
+
 namespace Microsoft.UI.Private.Controls
 {
 	internal static class RadioButtonsTestHooks

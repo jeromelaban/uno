@@ -76,6 +76,7 @@ namespace UnoWinUIRevert
 				new[] {
 					("namespace Microsoft.UI.Xaml", "namespace Microsoft/**/.UI.Xaml"),
 					("namespace Microsoft.UI.Private.Controls", "namespace Microsoft/**/.UI.Private.Controls"),
+					("Microsoft.UI.Xaml.Automation.Peers.SplitButtonAutomationPeer", "namespace Microsoft/**/.UI.Xaml.Automation.Peers.SplitButtonAutomationPeer"),
 				});
 
 			// Generic replacements

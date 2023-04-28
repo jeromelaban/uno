@@ -22,7 +22,9 @@ using Windows.Devices.Input;
 using Windows.UI.Input;
 #endif
 
-namespace Microsoft.UI.Xaml.Controls
+using Microsoft.UI.Xaml.Automation.Peers;
+
+namespace Microsoft/* don't rename */.UI.Xaml.Controls
 {
 	/// <summary>
 	/// Represents a single tab within a TabView.

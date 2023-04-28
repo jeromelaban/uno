@@ -1281,6 +1281,16 @@ namespace Uno.UWPSyncGenerator
 						return true;
 				}
 			}
+
+			if (method.ContainingType.Name == "ElementCompositionPreview")
+			{
+				switch (method.Name)
+				{
+					// Adjust for already implemented member
+					case "SetElementChildVisual":
+						return true;
+				}
+			}
 #endif
 
 			if (method.ContainingType.Name == "ScrollControllerInteractionRequestedEventArgs"

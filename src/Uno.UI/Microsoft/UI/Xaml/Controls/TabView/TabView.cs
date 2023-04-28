@@ -29,6 +29,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft/* don't rename */.UI.Xaml.Controls.Primitives;
 
 namespace Microsoft.UI.Xaml.Controls
 {

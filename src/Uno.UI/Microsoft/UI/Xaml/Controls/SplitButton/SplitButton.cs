@@ -18,7 +18,7 @@ using Windows.Devices.Input;
 using Windows.UI.Input;
 #endif
 
-using SplitButtonAutomationPeer = Microsoft.UI.Xaml.Automation.Peers.SplitButtonAutomationPeer;
+using SplitButtonAutomationPeer = Microsoft/**/.UI.Xaml.Automation.Peers.SplitButtonAutomationPeer;
 
 namespace Microsoft.UI.Xaml.Controls
 {

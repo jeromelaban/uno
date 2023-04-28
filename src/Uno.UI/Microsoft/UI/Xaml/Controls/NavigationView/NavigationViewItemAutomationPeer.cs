@@ -2,12 +2,13 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // MUX reference NavigationViewItemAutomationPeer.cpp, commit 2ec9b1c
 
-using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Helpers.WinUI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation.Provider;
+
+using Microsoft/* don't rename */.UI.Xaml.Controls;
 
 namespace Microsoft.UI.Xaml.Automation.Peers
 {
