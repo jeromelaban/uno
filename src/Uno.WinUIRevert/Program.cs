@@ -75,7 +75,8 @@ namespace UnoWinUIRevert
 				Path.Combine(basePath, @"src", "Uno.UI", "Microsoft"),
 				new[] {
 					("namespace Microsoft.UI.Xaml", "namespace Microsoft/**/.UI.Xaml"),
-					("Windows.UI.Xaml.Controls._Tracing", "Microsoft/**/.UI.Xaml.Controls._Tracing"),
+					("namespace Microsoft.UI.Private.Controls", "namespace Microsoft/**/.UI.Private.Controls"),
+					("Microsoft.UI.Xaml.Controls._Tracing", "Microsoft/**/.UI.Xaml.Controls._Tracing"),
 				});
 
 			// Generic replacements
