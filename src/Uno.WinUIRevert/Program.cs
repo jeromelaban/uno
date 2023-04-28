@@ -76,11 +76,11 @@ namespace UnoWinUIRevert
 				new[] {
 					("namespace Microsoft.UI.Xaml", "namespace Microsoft/**/.UI.Xaml"),
 					("namespace Microsoft.UI.Private.Controls", "namespace Microsoft/**/.UI.Private.Controls"),
-					("Microsoft.UI.Xaml.Controls._Tracing", "Microsoft/**/.UI.Xaml.Controls._Tracing"),
 				});
 
 			// Generic replacements
 			var genericReplacements = new[] {
+				("Microsoft.UI.Xaml.Controls._Tracing", "Microsoft/**/.UI.Xaml.Controls._Tracing"),
 				("Microsoft.UI.Xaml", "Windows.UI.Xaml"),
 				("Microsoft.UI.Composition", "Windows.UI.Composition"),
 				("Microsoft.UI.Colors", "Windows.UI.Colors"),
