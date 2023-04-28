@@ -2,7 +2,9 @@
 using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation;
 
+#if !HAS_UNO_WINUI
 using Microsoft/* don't rename */.UI.Xaml.Controls;
+#endif
 
 namespace Microsoft.UI.Private.Controls
 {

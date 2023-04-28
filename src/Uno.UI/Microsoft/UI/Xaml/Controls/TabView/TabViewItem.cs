@@ -22,7 +22,9 @@ using Windows.Devices.Input;
 using Windows.UI.Input;
 #endif
 
+#if !HAS_UNO_WINUI
 using Microsoft/* don't rename */.UI.Xaml.Automation.Peers;
+#endif
 
 namespace Microsoft/* don't rename */.UI.Xaml.Controls
 {

@@ -6,7 +6,9 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Controls;
 
+#if !HAS_UNO_WINUI
 using Microsoft/* don't rename */.UI.Xaml.Controls;
+#endif
 
 namespace Microsoft.UI.Xaml.Automation.Peers
 {

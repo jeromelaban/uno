@@ -11,6 +11,7 @@ using Windows.UI.Core;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Xaml;
+
 #if XAMARIN_ANDROID
 using View = Android.Views.View;
 #elif XAMARIN_IOS_UNIFIED
@@ -19,9 +20,11 @@ using View = UIKit.UIView;
 using View = MonoTouch.UIKit.UIView;
 #endif
 
+#if !HAS_UNO_WINUI
 using Microsoft/* don't rename */.UI.Xaml.Controls;
+#endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	[Markup.ContentProperty(Name = "Children")]
 	public partial class Panel : FrameworkElement, ICustomClippingElement, IPanel

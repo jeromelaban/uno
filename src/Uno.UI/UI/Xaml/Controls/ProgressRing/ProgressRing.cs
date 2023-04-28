@@ -3,8 +3,10 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.UI.Controls.Legacy.Primitives;
 
+#if !HAS_UNO_WINUI
 using Microsoft/* don't rename */.UI.Xaml.Controls;
 using Microsoft/*Intentional space for WinUI upgrade tool*/.UI.Xaml.Controls;
+#endif
 
 namespace Uno.UI.Controls.Legacy;
 
