@@ -89,7 +89,7 @@ namespace UnoWinUIRevert
 				("Windows.UI.ColorHelper", "Microsoft.UI.ColorHelper"),
 				("Microsoft.UI.Xaml", "Windows.UI.Xaml"),
 				("__LinkerHints.Is_Microsoft_UI_Xaml", "__LinkerHints.Is_Windows_UI_Xaml"),
-				("Uno.UI.Controls.Legacy\", \"ProgressRing", "Microsoft.UI.Xaml.Controls\", \"ProgressRing"),
+				("Uno.UI.Controls.Legacy\", \"ProgressRing", "Windows.UI.Xaml.Controls\", \"ProgressRing"),
 				("<UNO_UWP_BUILD>false</UNO_UWP_BUILD>", "<UNO_UWP_BUILD>true</UNO_UWP_BUILD>"),
 			};
 
@@ -97,7 +97,7 @@ namespace UnoWinUIRevert
 
 			// Restore ProgressRing
 			var progressRingReplacements = new[] {
-				("Uno.UI.Controls.Legacy", "Microsoft.UI.Xaml.Controls"),
+				("Uno.UI.Controls.Legacy", "Windows.UI.Xaml.Controls"),
 			};
 
 			ReplaceInFolders(Path.Combine(basePath, @"src", "Uno.UI", "UI", "Xaml", "Controls", "ProgressRing"), progressRingReplacements);
