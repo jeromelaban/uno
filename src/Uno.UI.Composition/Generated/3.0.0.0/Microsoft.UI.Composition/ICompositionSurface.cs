@@ -1,0 +1,11 @@
+#pragma warning disable 108 // new keyword hiding
+#pragma warning disable 114 // new keyword hiding
+namespace Microsoft.UI.Composition
+{
+	#if __ANDROID__ || __IOS__ || false || __WASM__ || __SKIA__ || false || false
+	[global::Uno.NotImplemented("__ANDROID__", "__IOS__", "__WASM__", "__SKIA__")]
+	#endif
+	public  partial interface ICompositionSurface 
+	{
+	}
+}

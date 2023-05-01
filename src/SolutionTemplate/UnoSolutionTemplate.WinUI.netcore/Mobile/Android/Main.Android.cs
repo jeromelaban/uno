@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Com.Nostra13.Universalimageloader.Core;
-using Microsoft.UI.Xaml.Media;
+using Microsoft/* UWP don't rename */.UI.Xaml.Media;
 
 namespace $ext_safeprojectname$.Droid
 {
@@ -20,7 +20,7 @@ namespace $ext_safeprojectname$.Droid
 		HardwareAccelerated = true,
 		Theme = "@style/AppTheme"
 	)]
-	public class Application : Microsoft.UI.Xaml.NativeApplication
+	public class Application : Microsoft/* UWP don't rename */.UI.Xaml.NativeApplication
 	{
 		public Application(IntPtr javaReference, JniHandleOwnership transfer)
 			: base(() => new AppHead(), javaReference, transfer)

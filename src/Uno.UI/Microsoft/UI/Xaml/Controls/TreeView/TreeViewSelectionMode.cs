@@ -1,6 +1,6 @@
 ﻿// MUX Reference TreeView.idl, commit 96244e6
 
-namespace Microsoft.UI.Xaml.Controls
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 {
 	public enum TreeViewSelectionMode
 	{

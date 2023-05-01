@@ -1,6 +1,6 @@
 ﻿// MUX reference PagerControlSelectedIndexChangedEventArgs.cpp, commit a08f765
 
-namespace Microsoft.UI.Xaml.Controls
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 {
 	public partial class PagerControlSelectedIndexChangedEventArgs
 	{

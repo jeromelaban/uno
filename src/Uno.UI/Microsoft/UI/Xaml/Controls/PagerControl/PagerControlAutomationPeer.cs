@@ -1,13 +1,13 @@
 ﻿// MUX reference PagerControlAutomationPeer.cpp, commit a08f765
 
 using System;
-using Microsoft.UI.Xaml.Controls;
+using Microsoft/* UWP don't rename */.UI.Xaml.Controls;
 using Uno.UI.Helpers.WinUI;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Automation.Provider;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Automation.Provider;
 
-namespace Microsoft.UI.Xaml.Automation.Peers
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Automation.Peers
 {
 	public partial class PagerControlAutomationPeer : FrameworkElementAutomationPeer, ISelectionProvider
 	{

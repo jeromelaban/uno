@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using Windows.Foundation.Metadata;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class BitmapIconSource : IconSource
 	{
@@ -38,7 +38,7 @@ namespace Windows.UI.Xaml.Controls
 				bitmapIcon.UriSource = UriSource;
 			}
 
-			if (ApiInformation.IsPropertyPresent("Windows.UI.Xaml.Controls.BitmapIcon", "ShowAsMonochrome"))
+			if (ApiInformation.IsPropertyPresent("Microsoft.UI.Xaml.Controls.BitmapIcon", "ShowAsMonochrome"))
 			{
 				bitmapIcon.ShowAsMonochrome = ShowAsMonochrome;
 			}

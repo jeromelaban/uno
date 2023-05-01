@@ -1,6 +1,6 @@
 ﻿// MUX Reference TreeViewNode.h, commit 2aa9a15
 
-namespace Microsoft.UI.Xaml.Controls
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 {
 	internal enum TreeNodeSelectionState
 	{

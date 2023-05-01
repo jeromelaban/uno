@@ -2,11 +2,11 @@
 using Android.Graphics;
 using Uno.Extensions;
 using Uno.UI;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media;
 using Point = Windows.Foundation.Point;
 using Size = Windows.Foundation.Size;
 
-namespace Microsoft.UI.Xaml.Media
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Media
 {
 	partial class RadialGradientBrush
 	{
