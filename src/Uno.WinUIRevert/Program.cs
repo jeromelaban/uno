@@ -84,6 +84,7 @@ namespace UnoWinUIRevert
 
 			// Generic replacements
 			var genericReplacements = new[] {
+				("Microsoft.UI.Xaml", "Microsoft/* UWP don't rename */.UI.Xaml"),
 				("Windows.UI.Xaml", "Microsoft.UI.Xaml"),
 				("Windows.UI.Composition", "Microsoft.UI.Composition"),
 				("Windows.UI.Colors", "Microsoft.UI.Colors"),
