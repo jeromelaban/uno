@@ -5,4 +5,10 @@
 		<PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4" PrivateAssets="all" />
 		<AdditionalFiles Include="$(MSBuildThisFileDirectory)\BannedSymbols.txt" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<!-- These files are present for the UWP Build only, to preserve compatibility -->
+		<Compile Condition="'$(UNO_UWP_BUILD)'!='true'" Remove="UI\Xaml\Controls\Unsupported\*.cs"/>
+	</ItemGroup>
+
 </Project>
