@@ -3,7 +3,7 @@
 using System;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation.Provider;
-using TreeViewList = Microsoft.UI.Xaml.Controls.TreeViewList;
+using TreeViewList = Microsoft/* don't rename */.UI.Xaml.Controls.TreeViewList;
 
 namespace Microsoft.UI.Xaml.Automation.Peers
 {

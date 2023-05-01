@@ -17,7 +17,7 @@ using Microsoft.UI.Xaml.Media;
 #if HAS_UNO_WINUI
 using Microsoft.UI.Input;
 #else
-using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft/**/.UI.Xaml.Automation.Peers;
 using Windows.Devices.Input;
 using Windows.UI.Input;
 #endif

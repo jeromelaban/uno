@@ -4,6 +4,10 @@
 using System;
 using Microsoft.UI.Xaml.Controls;
 
+#if !HAS_UNO_WINUI
+using Microsoft/**/.UI.Xaml.Controls;
+#endif
+
 namespace Microsoft.UI.Private.Controls
 {
 	internal partial class RepeaterTestHooks

@@ -10,7 +10,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation.Provider;
-using RatingControl = Microsoft.UI.Xaml.Controls.RatingControl;
+using RatingControl = Microsoft/* don't rename */.UI.Xaml.Controls.RatingControl;
 
 namespace Microsoft.UI.Xaml.Automation.Peers;
 

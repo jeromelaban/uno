@@ -10,10 +10,10 @@ using Microsoft.UI.Xaml.Automation.Peers;
 using Microsoft.UI.Xaml.Automation.Provider;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using TreeView = Microsoft.UI.Xaml.Controls.TreeView;
-using TreeViewItem = Microsoft.UI.Xaml.Controls.TreeViewItem;
-using TreeViewNode = Microsoft.UI.Xaml.Controls.TreeViewNode;
-using TreeViewSelectionMode = Microsoft.UI.Xaml.Controls.TreeViewSelectionMode;
+using TreeView = Microsoft/* don't rename */.UI.Xaml.Controls.TreeView;
+using TreeViewItem = Microsoft/* don't rename */.UI.Xaml.Controls.TreeViewItem;
+using TreeViewNode = Microsoft/* don't rename */.UI.Xaml.Controls.TreeViewNode;
+using TreeViewSelectionMode = Microsoft/* don't rename */.UI.Xaml.Controls.TreeViewSelectionMode;
 
 namespace Microsoft.UI.Xaml.Automation.Peers
 {

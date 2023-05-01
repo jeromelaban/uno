@@ -663,9 +663,9 @@ namespace Uno.UI.Helpers.WinUI
 			return false;
 		}
 
-		public static IconElement MakeIconElementFrom(Microsoft.UI.Xaml.Controls.IconSource iconSource)
+		public static IconElement MakeIconElementFrom(Microsoft/**/.UI.Xaml.Controls.IconSource iconSource)
 		{
-			if (iconSource is Microsoft.UI.Xaml.Controls.FontIconSource fontIconSource)
+			if (iconSource is Microsoft/**/.UI.Xaml.Controls.FontIconSource fontIconSource)
 			{
 				FontIcon fontIcon = new FontIcon();
 
@@ -689,7 +689,7 @@ namespace Uno.UI.Helpers.WinUI
 
 				return fontIcon;
 			}
-			else if (iconSource is Microsoft.UI.Xaml.Controls.SymbolIconSource symbolIconSource)
+			else if (iconSource is Microsoft/**/.UI.Xaml.Controls.SymbolIconSource symbolIconSource)
 			{
 				SymbolIcon symbolIcon = new SymbolIcon();
 				symbolIcon.Symbol = symbolIconSource.Symbol;
@@ -701,7 +701,7 @@ namespace Uno.UI.Helpers.WinUI
 
 				return symbolIcon;
 			}
-			else if (iconSource is Microsoft.UI.Xaml.Controls.BitmapIconSource bitmapIconSource)
+			else if (iconSource is Microsoft/**/.UI.Xaml.Controls.BitmapIconSource bitmapIconSource)
 			{
 				BitmapIcon bitmapIcon = new BitmapIcon();
 
@@ -722,7 +722,7 @@ namespace Uno.UI.Helpers.WinUI
 
 				return bitmapIcon;
 			}
-			else if (iconSource is Microsoft.UI.Xaml.Controls.PathIconSource pathIconSource)
+			else if (iconSource is Microsoft/**/.UI.Xaml.Controls.PathIconSource pathIconSource)
 			{
 				PathIcon pathIcon = new PathIcon();
 
