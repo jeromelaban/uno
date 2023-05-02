@@ -21,8 +21,8 @@ namespace Uno.UI.Helpers.WinUI
 	internal partial class ResourceAccessor
 	{
 #if !IS_UNO
-		public const string MUXCONTROLS_PACKAGE_NAME = "Microsoft/* UWP don't rename */.UI.Xaml.3.0";
-		private const string c_resourceLoc = "Microsoft/* UWP don't rename */.UI.Xaml/Resources";
+		public const string MUXCONTROLS_PACKAGE_NAME = "Microsoft" + /* uwp don't rename */ ".UI.Xaml.3.0";
+		private const string c_resourceLoc = "Microsoft" + /* uwp don't rename */ ".UI.Xaml/Resources";
 
 		private static ResourceMap s_resourceMap = GetPackageResourceMap();
 		private static ResourceContext s_resourceContext = ResourceContext.GetForViewIndependentUse();
@@ -50,7 +50,7 @@ namespace Uno.UI.Helpers.WinUI
 			return s_resourceMap.GetSubtree(c_resourceLoc);
 		}
 #else
-		public const string MUXCONTROLS_PACKAGE_NAME = "Microsoft/* UWP don't rename */.UI.Xaml.3.0";
+		public const string MUXCONTROLS_PACKAGE_NAME = "Microsoft" + /* UWP don't rename */ ".UI.Xaml.3.0";
 		private const string c_resourceLoc = "Uno.UI/Resources";
 #endif
 
@@ -69,11 +69,11 @@ namespace Uno.UI.Helpers.WinUI
 			{
 				if (SharedHelpers.IsInFrameworkPackage())
 				{
-					return new Uri("ms-resource://" + MUXCONTROLS_PACKAGE_NAME + "/Files/Microsoft/* UWP don't rename */.UI.Xaml/Assets/" + assetName + ".png");
+					return new Uri("ms-resource://" + MUXCONTROLS_PACKAGE_NAME + "/Files/Microsoft" + /* UWP don't rename */ ".UI.Xaml/Assets/" + assetName + ".png");
 				}
 				else
 				{
-					return new Uri("ms-resource:///Files/Microsoft/* UWP don't rename */.UI.Xaml/Assets/" + assetName + ".png");
+					return new Uri("ms-resource:///Files/Microsoft" + /* UWP don't rename */ ".UI.Xaml/Assets/" + assetName + ".png");
 				}
 			}
 

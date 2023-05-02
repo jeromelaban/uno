@@ -6,7 +6,7 @@ jobs:
   displayName: 'Build Skia Package Binaries'
   container: nv-bionic-wasm
 
-  dependsOn: winui_convert_tree
+  dependsOn: uwp_convert_tree
 
   pool:
     vmImage: ${{ parameters.vmImage }}

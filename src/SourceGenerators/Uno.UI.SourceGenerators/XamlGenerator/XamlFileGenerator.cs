@@ -1598,7 +1598,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		{
 			var type = GetType(topLevelControl.Type);
 
-			if (type.GetFullyQualifiedTypeExcludingGlobal().Equals("Microsoft/* UWP don't rename */.UI.Xaml.Controls.XamlControlsResources", StringComparison.Ordinal))
+			if (type.GetFullyQualifiedTypeExcludingGlobal().Equals(/* uwp don't rename */"Microsoft.UI.Xaml.Controls.XamlControlsResources", StringComparison.Ordinal))
 			{
 				int GetResourcesVersion()
 				{

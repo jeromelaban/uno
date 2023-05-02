@@ -52,8 +52,8 @@ namespace Uno.UI.Xaml
 		{
 			return version switch
 			{
-				1 => "Microsoft/* UWP don't rename */.UI.Xaml/Themes/themeresources_v1.xaml",
-				2 => "Microsoft/* UWP don't rename */.UI.Xaml/Themes/themeresources_v2.xaml",
+				1 => "Microsoft" + /* UWP don't rename */ ".UI.Xaml/Themes/themeresources_v1.xaml",
+				2 => "Microsoft" + /* UWP don't rename */ ".UI.Xaml/Themes/themeresources_v2.xaml",
 				_ => throw new ArgumentOutOfRangeException(nameof(version), $"'version' must be between 1 and 2. Found {version}."),
 			};
 		}

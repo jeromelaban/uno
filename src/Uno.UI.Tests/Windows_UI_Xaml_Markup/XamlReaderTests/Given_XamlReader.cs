@@ -1592,7 +1592,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 			var root = (StackPanel)XamlReader.Load(
 				@"<StackPanel xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
                         xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
-                        xmlns:primitives='using:Microsoft/* UWP don't rename */.UI.Xaml.Controls.Primitives'> 
+                        xmlns:primitives='using:Microsoft" + /* UWP don't rename */ @".UI.Xaml.Controls.Primitives'> 
                     <StackPanel.Resources>
                         <primitives:CornerRadiusFilterConverter x:Key='RightCornerRadiusFilterConverter' Filter='Right'/>
                     </StackPanel.Resources>
@@ -1642,7 +1642,7 @@ namespace Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests
 				["x"] = "http://schemas.microsoft.com/winfx/2006/xaml",
 				["local"] = "Uno.UI.Tests.Windows_UI_Xaml_Markup.XamlReaderTests",
 				["toolkit"] = "using:Uno.UI.Toolkit",
-				["muxc"] = "using:Microsoft/* UWP don't rename */.UI.Xaml.Controls",
+				["muxc"] = "using:Microsoft" + /* UWP don't rename */ ".UI.Xaml.Controls",
 			};
 
 			/// <summary>
