@@ -6,9 +6,18 @@
 		<AdditionalFiles Include="$(MSBuildThisFileDirectory)\BannedSymbols.txt" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="'$(UNO_UWP_BUILD)'!='true'">
 		<!-- These files are present for the UWP Build only, to preserve compatibility -->
-		<Compile Condition="'$(UNO_UWP_BUILD)'!='true'" Remove="UI\Xaml\Controls\Unsupported\*.cs"/>
+		<Compile Remove="UI\Xaml\Controls\Unsupported\*.cs"/>
+		
+		<Compile Remove="UI\Xaml\Controls\ProgressBar\*.cs"/>
+		<None Include="UI\Xaml\Controls\ProgressBar\*.cs"/>
+
+		<Compile Remove="UI\Xaml\Controls\Icon\BitmapIconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icon\FontIconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icon\IconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icon\PathIconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icon\SymbolIconSource.cs" />
 	</ItemGroup>
 
 </Project>
