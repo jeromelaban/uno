@@ -146,7 +146,7 @@ namespace UnoWinUIRevert
 			"Uno.UWPSyncGenerator.Reference.csproj",
 			"SamplesApp.UWP.csproj",
 			"SamplesApp.UWP.Design.csproj",
-			@"Uno.UWPSyncGenerator\Generator.cs",
+			@"Uno.UWPSyncGenerator",
 			@"src\Uno.UWP\",
 			@"src\Uno.UI\UI\Xaml\Controls\NavigationView\",
 			@"src\Uno.UI.RuntimeTests\Tests\Windows_UI_Xaml_Controls\Given_NavigationView.cs",
