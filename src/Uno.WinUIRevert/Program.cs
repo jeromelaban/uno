@@ -163,39 +163,45 @@ namespace UnoWinUIRevert
 
 		private static void ReplaceInFolders(string basePath, (string from, string to)[] replacements, string searchPattern = "*.*")
 		{
-			foreach (var file in Directory.EnumerateFiles(basePath, searchPattern, SearchOption.AllDirectories))
-			{
-				if (_exclusions.Any(e => file.Contains(e, StringComparison.Ordinal)))
+			Directory.EnumerateFiles(basePath, searchPattern, SearchOption.AllDirectories)
+				.AsParallel()
+				.ForAll(file =>
 				{
-					continue;
-				}
-
-				var originalContent = File.ReadAllText(file);
-				var updatedContent = originalContent;
-
-				for (int i = 0; i < replacements.Length; i++)
-				{
-					updatedContent = updatedContent.Replace(replacements[i].from, replacements[i].to);
-				}
-
-				if (!object.ReferenceEquals(originalContent, updatedContent))
-				{
-					Console.WriteLine($"Updating [{file}]");
-
-					int retry = 3;
-					while (retry-- > 0)
+					if (_exclusions.Any(e => file.Contains(e, StringComparison.OrdinalIgnoreCase)))
 					{
-						try
+						return;
+					}
+
+					var updated = false;
+					var content = File.ReadAllText(file);
+
+					for (int i = 0; i < replacements.Length; i++)
+					{
+						if (content.Contains(replacements[i].from))
 						{
-							File.WriteAllText(file, updatedContent, Encoding.UTF8);
-						}
-						catch
-						{
-							System.Threading.Thread.Sleep(500);
+							content = content.Replace(replacements[i].from, replacements[i].to);
+							updated = true;
 						}
 					}
-				}
-			}
+
+					if (updated)
+					{
+						Console.WriteLine($"Updating [{file}]");
+
+						int retry = 3;
+						while (retry-- > 0)
+						{
+							try
+							{
+								File.WriteAllText(file, content, Encoding.UTF8);
+							}
+							catch
+							{
+								System.Threading.Thread.Sleep(500);
+							}
+						}
+					}
+				});
 		}
 
 		private static void DeleteFolder(string path)
