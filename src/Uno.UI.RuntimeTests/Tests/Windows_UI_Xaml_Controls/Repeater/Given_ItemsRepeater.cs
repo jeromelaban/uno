@@ -16,6 +16,10 @@ using Windows.UI.Xaml.Data;
 using FluentAssertions;
 using Uno.Extensions;
 
+#if !HAS_UNO_WINUI
+using Microsoft/* UWP don't rename */.UI.Xaml.Controls;
+#endif
+
 namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls.Repeater
 {
 	[TestClass]

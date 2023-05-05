@@ -3,9 +3,7 @@
 // MUX reference PipsPagerTests.cs, commit 2eebc34
 
 using Common;
-using Microsoft.UI.Xaml.Controls;
 using MUXControlsTestApp.Utilities;
-using Microsoft.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Automation.Provider;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Media;
@@ -23,6 +21,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
 #endif
 
+#if !HAS_UNO_WINUI
+using Microsoft/* UWP don't rename */.UI.Xaml.Controls;
+using Microsoft/* UWP don't rename */.UI.Xaml.Automation.Peers;
+#endif
 namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests
 {
 	[TestClass]

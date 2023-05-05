@@ -4,7 +4,6 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.UI.Xaml.Controls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Private.Infrastructure;
 using Uno.Extensions;
@@ -24,6 +23,11 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
 using static Private.Infrastructure.TestServices;
+
+#if !HAS_UNO_WINUI
+using Microsoft/* UWP don't rename */.UI.Xaml.Controls;
+#endif
+
 #if NETFX_CORE
 // Use the MUX MenuBar on Window for consistency, since Uno is using the MUX styles. (However Uno.UI only defines WUXC.MenuBar, not MUXC.MenuBar)
 using MenuBar = Microsoft.UI.Xaml.Controls.MenuBar;
