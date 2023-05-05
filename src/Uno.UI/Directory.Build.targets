@@ -13,11 +13,12 @@
 		<Compile Remove="UI\Xaml\Controls\ProgressBar\*.cs"/>
 		<None Include="UI\Xaml\Controls\ProgressBar\*.cs"/>
 
-		<Compile Remove="UI\Xaml\Controls\Icon\BitmapIconSource.cs" />
-		<Compile Remove="UI\Xaml\Controls\Icon\FontIconSource.cs" />
-		<Compile Remove="UI\Xaml\Controls\Icon\IconSource.cs" />
-		<Compile Remove="UI\Xaml\Controls\Icon\PathIconSource.cs" />
-		<Compile Remove="UI\Xaml\Controls\Icon\SymbolIconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icons\BitmapIconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icons\FontIconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icons\IconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icons\PathIconSource.cs" />
+		<Compile Remove="UI\Xaml\Controls\Icons\SymbolIconSource.cs" />
+		<Compile Remove="UI\Xaml\Automation\Peers\RatingControlAutomationPeer.cs" />
 	</ItemGroup>
 
 </Project>
