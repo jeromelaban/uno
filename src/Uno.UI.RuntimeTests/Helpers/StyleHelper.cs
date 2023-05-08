@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Uno.Disposables;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 namespace Uno.UI.RuntimeTests.Helpers
 {
@@ -73,12 +73,12 @@ namespace Uno.UI.RuntimeTests.Helpers
 			return null;
 #else
 			var resources = Application.Current.Resources;
-			if (resources is Microsoft.UI.Xaml.Controls.XamlControlsResources || resources.MergedDictionaries.OfType<Microsoft.UI.Xaml.Controls.XamlControlsResources>().Any())
+			if (resources is Microsoft/* UWP don't rename */.UI.Xaml.Controls.XamlControlsResources || resources.MergedDictionaries.OfType<Microsoft/* UWP don't rename */.UI.Xaml.Controls.XamlControlsResources>().Any())
 			{
 				return null;
 			}
 
-			var xcr = new Microsoft.UI.Xaml.Controls.XamlControlsResources();
+			var xcr = new Microsoft/* UWP don't rename */.UI.Xaml.Controls.XamlControlsResources();
 			resources.MergedDictionaries.Insert(0, xcr);
 
 			return new DisposableAction(() => resources.MergedDictionaries.Remove(xcr));

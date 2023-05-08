@@ -2,11 +2,11 @@
 using Uno.UI.RuntimeTests.Helpers;
 using MUXControlsTestApp.Utilities;
 using Private.Infrastructure;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Common;
 
-namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests
+namespace Microsoft.UI.Xaml.Tests.MUXControls.ApiTests
 {
 	[TestClass]
 	public class ToggleSplitButtonTests
@@ -18,12 +18,12 @@ namespace Windows.UI.Xaml.Tests.MUXControls.ApiTests
 #endif
 		public void VerifyFontFamilyForChevron()
 		{
-			Microsoft.UI.Xaml.Controls.ToggleSplitButton toggleSplitButton = null;
+			Microsoft/* UWP don't rename */.UI.Xaml.Controls.ToggleSplitButton toggleSplitButton = null;
 			using (StyleHelper.UseFluentStyles())
 			{
 				RunOnUIThread.Execute(() =>
 				{
-					toggleSplitButton = new Microsoft.UI.Xaml.Controls.ToggleSplitButton();
+					toggleSplitButton = new Microsoft/* UWP don't rename */.UI.Xaml.Controls.ToggleSplitButton();
 					TestServices.WindowHelper.WindowContent = toggleSplitButton;
 
 					var secondayButton = toggleSplitButton.GetTemplateChild("SecondaryButton");

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <DiffIgnore>
   <IgnoreSets>
 	<IgnoreSet baseVersion="4.0.13">
@@ -21,30 +21,30 @@
 				fullName="System.Void Uno.Media.StreamGeometryContext.BeginFigure(Windows.Foundation.Point startPoint, System.Boolean isFilled, System.Boolean isClosed)"
 				reason="isClosed paramater is not used and is misleading" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Media.Animation.Timeline.add_Completed(System.EventHandler`1&lt;System.Object&gt; value)"
+				fullName="System.Void Microsoft.UI.Xaml.Media.Animation.Timeline.add_Completed(System.EventHandler`1&lt;System.Object&gt; value)"
 				reason="Incorrectly marked as removed because removed from an internal interface" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Media.Animation.Timeline.remove_Completed(System.EventHandler`1&lt;System.Object&gt; value)"
+				fullName="System.Void Microsoft.UI.Xaml.Media.Animation.Timeline.remove_Completed(System.EventHandler`1&lt;System.Object&gt; value)"
 				reason="Incorrectly marked as removed because removed from an internal interface" />
 			<Member
-				fullName="System.nint Windows.UI.Xaml.Controls.SecureTextBoxView.get_ConversationIdentifier()"
+				fullName="System.nint Microsoft.UI.Xaml.Controls.SecureTextBoxView.get_ConversationIdentifier()"
 				reason="net6 macos remove deprecated API" />
 			<Member
-				fullName="System.nuint Windows.UI.Xaml.Controls.SecureTextBoxView.GetCharacterIndex(CoreGraphics.CGPoint point)"
+				fullName="System.nuint Microsoft.UI.Xaml.Controls.SecureTextBoxView.GetCharacterIndex(CoreGraphics.CGPoint point)"
 				reason="net6 macos remove deprecated API" />
 			<Member
 				fullName="System.Void Windows.UI.Input.Preview.Injection.InputInjector..ctor()"
 				reason="Not part of the UWP API" />
 			<Member
-				fullName="System.Object Windows.UI.Xaml.RoutedEventArgs.get_OriginalSource()"
+				fullName="System.Object Microsoft.UI.Xaml.RoutedEventArgs.get_OriginalSource()"
 				reason="False positive: added in an internal interface" />
 			<Member
-				fullName="System.Boolean Windows.UI.Xaml.FrameworkElement.get_StretchAffectsMeasure()"
+				fullName="System.Boolean Microsoft.UI.Xaml.FrameworkElement.get_StretchAffectsMeasure()"
 				reason="False positive: added in an internal interface" />
 		</Methods>
 	  <Properties>
 		  <Member
-			  fullName="System.nint Windows.UI.Xaml.Controls.SecureTextBoxView::ConversationIdentifier()"
+			  fullName="System.nint Microsoft.UI.Xaml.Controls.SecureTextBoxView::ConversationIdentifier()"
 			  reason="net6 macos remove deprecated API" />
 	  </Properties>
 	</IgnoreSet>
@@ -57,7 +57,7 @@
 				fullName="System.Void Windows.Devices.Power.BatteryReport..ctor()"
 				reason="not public in UWP"/>
 			<Member
-				fullName="System.Boolean Windows.UI.Xaml.FrameworkElement.get_StretchAffectsMeasure()"
+				fullName="System.Boolean Microsoft.UI.Xaml.FrameworkElement.get_StretchAffectsMeasure()"
 				reason="False positive: added in an internal interface" />
 			<Member
 				fullName="System.Void Windows.UI.Core.Preview.SystemNavigationManagerPreview..ctor()"
@@ -78,7 +78,7 @@
 				fullName="System.Void Windows.Graphics.Printing.Workflow.PrintWorkflowObjectModelSourceFileContent..ctor()"
 				reason="Does not exist in UWP" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.BringIntoViewRequestedEventArgs..ctor()"
+				fullName="System.Void Microsoft.UI.Xaml.BringIntoViewRequestedEventArgs..ctor()"
 				reason="Does not exist in UWP" />
 
 			<!-- BEGIN .NET 6 RC 1 -->
@@ -86,21 +86,21 @@
 			<Member fullName="ObjCRuntime.nfloat UIKit.UIViewExtensions.StackSubViews(UIKit.UIView thisView)" reason="net6 preview 14 breaking changes" />
 			<Member fullName="ObjCRuntime.nfloat UIKit.UIViewExtensions.StackSubViews(UIKit.UIView thisView, System.Single topPadding, System.Single spaceBetweenElements)" reason="net6 preview 14 breaking changes" />
 			<Member fullName="ObjCRuntime.nfloat UIKit.UIViewExtensions.GetNativeAlpha(UIKit.UIView view)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.ListViewBaseScrollContentPresenter.SetZoomScale(ObjCRuntime.nfloat scale, System.Boolean animated)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="ObjCRuntime.nfloat Windows.UI.Xaml.Controls.VirtualizingPanelLayout.LayoutItemsInGroup(System.Int32 group, ObjCRuntime.nfloat availableBreadth, CoreGraphics.CGRect&amp; frame, System.Boolean createLayoutInfo, System.Collections.Generic.Dictionary`2&lt;Foundation.NSIndexPath,System.Nullable`1&lt;CoreGraphics.CGSize&gt;&gt; oldItemSizes)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.VirtualizingPanelLayout.UpdateLayoutAttributesForGroupHeader(UIKit.UICollectionViewLayoutAttributes groupHeaderLayout, ObjCRuntime.nfloat extentDifference, System.Boolean applyOffsetToThis)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="CoreGraphics.CGRect Windows.UI.Xaml.Controls.VirtualizingPanelLayout.AdjustExtentOffset(CoreGraphics.CGRect frame, ObjCRuntime.nfloat adjustment)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="CoreGraphics.CGPoint Windows.UI.Xaml.Controls.VirtualizingPanelLayout.AdjustExtentOffset(CoreGraphics.CGPoint point, ObjCRuntime.nfloat adjustment)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="ObjCRuntime.nfloat Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetExtentStart(CoreGraphics.CGRect frame)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="ObjCRuntime.nfloat Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetExtentEnd(CoreGraphics.CGRect frame)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="ObjCRuntime.nfloat Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetBreadth(CoreGraphics.CGSize size)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="ObjCRuntime.nfloat Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetBreadthStart(CoreGraphics.CGRect frame)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="ObjCRuntime.nfloat Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetBreadthEnd(CoreGraphics.CGRect frame)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.VirtualizingPanelLayout.SetBreadthStart(CoreGraphics.CGRect&amp; frame, ObjCRuntime.nfloat breadthStart)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.VirtualizingPanelLayout.SetBreadth(CoreGraphics.CGRect&amp; frame, ObjCRuntime.nfloat breadth)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.VirtualizingPanelLayout.SetExtentStart(CoreGraphics.CGRect&amp; frame, ObjCRuntime.nfloat extentStart)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.VirtualizingPanelLayout.SetExtent(CoreGraphics.CGSize&amp; size, ObjCRuntime.nfloat extent)" reason="net6 preview 14 breaking changes" />
-			<Member fullName="CoreGraphics.CGPoint Windows.UI.Xaml.Controls.VirtualizingPanelLayout.SetExtentOffset(CoreGraphics.CGPoint point, ObjCRuntime.nfloat newOffset)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.ListViewBaseScrollContentPresenter.SetZoomScale(ObjCRuntime.nfloat scale, System.Boolean animated)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="ObjCRuntime.nfloat Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.LayoutItemsInGroup(System.Int32 group, ObjCRuntime.nfloat availableBreadth, CoreGraphics.CGRect&amp; frame, System.Boolean createLayoutInfo, System.Collections.Generic.Dictionary`2&lt;Foundation.NSIndexPath,System.Nullable`1&lt;CoreGraphics.CGSize&gt;&gt; oldItemSizes)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.UpdateLayoutAttributesForGroupHeader(UIKit.UICollectionViewLayoutAttributes groupHeaderLayout, ObjCRuntime.nfloat extentDifference, System.Boolean applyOffsetToThis)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="CoreGraphics.CGRect Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.AdjustExtentOffset(CoreGraphics.CGRect frame, ObjCRuntime.nfloat adjustment)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="CoreGraphics.CGPoint Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.AdjustExtentOffset(CoreGraphics.CGPoint point, ObjCRuntime.nfloat adjustment)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="ObjCRuntime.nfloat Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetExtentStart(CoreGraphics.CGRect frame)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="ObjCRuntime.nfloat Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetExtentEnd(CoreGraphics.CGRect frame)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="ObjCRuntime.nfloat Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetBreadth(CoreGraphics.CGSize size)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="ObjCRuntime.nfloat Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetBreadthStart(CoreGraphics.CGRect frame)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="ObjCRuntime.nfloat Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetBreadthEnd(CoreGraphics.CGRect frame)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.SetBreadthStart(CoreGraphics.CGRect&amp; frame, ObjCRuntime.nfloat breadthStart)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.SetBreadth(CoreGraphics.CGRect&amp; frame, ObjCRuntime.nfloat breadth)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.SetExtentStart(CoreGraphics.CGRect&amp; frame, ObjCRuntime.nfloat extentStart)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.SetExtent(CoreGraphics.CGSize&amp; size, ObjCRuntime.nfloat extent)" reason="net6 preview 14 breaking changes" />
+			<Member fullName="CoreGraphics.CGPoint Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.SetExtentOffset(CoreGraphics.CGPoint point, ObjCRuntime.nfloat newOffset)" reason="net6 preview 14 breaking changes" />
 			<Member fullName="ObjCRuntime.nfloat Uno.UI.ViewHelper.get_OnePixel()" reason="net6 preview 14 breaking changes" />
 			<Member fullName="ObjCRuntime.nfloat Uno.UI.ViewHelper.GetConvertedPixel(System.Single thickness)" reason="net6 preview 14 breaking changes" />
 			<Member fullName="ObjCRuntime.nfloat Uno.UI.ViewHelper.StackSubViews(System.Collections.Generic.IEnumerable`1&lt;UIKit.UIView&gt; views)" reason="net6 preview 14 breaking changes" />
@@ -141,7 +141,7 @@
 		</Properties>
 		<Fields>
 			<!-- BEGIN .NET 6 RC 1 -->
-			<Member fullName="System.Collections.Generic.Dictionary`2&lt;System.Int32,ObjCRuntime.nfloat&gt; Windows.UI.Xaml.Controls.VirtualizingPanelLayout::_sectionEnd" reason="net6 preview 14 breaking changes" />
+			<Member fullName="System.Collections.Generic.Dictionary`2&lt;System.Int32,ObjCRuntime.nfloat&gt; Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout::_sectionEnd" reason="net6 preview 14 breaking changes" />
 			<Member fullName="ObjCRuntime.nfloat Uno.UI.ViewHelper::MainScreenScale" reason="net6 preview 14 breaking changes" />
 			<!-- END .NET 6 RC 1 -->
 		</Fields>
@@ -190,7 +190,7 @@
 				reason="Not part of UWP API" />
 
 			<!-- BEGIN .NET 6 ios updated native ctors -->
-			<Member fullName="System.Void Windows.UI.Xaml.Application..ctor(System.IntPtr handle)" reason="Changed by .NET 6 iOS" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Application..ctor(System.IntPtr handle)" reason="Changed by .NET 6 iOS" />
 			<Member fullName="System.Void Uno.UI.Views.Controls.BindableUIActivityIndicatorView..ctor(System.IntPtr handle)" reason="Changed by .NET 6 iOS" />
 			<Member fullName="System.Void Uno.UI.Views.Controls.BindableUIAlertView..ctor(System.IntPtr handle)" reason="Changed by .NET 6 iOS" />
 			<Member fullName="System.Void Uno.UI.Views.Controls.BindableUIButton..ctor(System.IntPtr handle)" reason="Changed by .NET 6 iOS" />
@@ -263,31 +263,31 @@
 				fullName="System.Void Windows.UI.UIContext..ctor()"
 				reason="Not part of UWP API" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.Primitives.RangeBase.OnMinimumChanged(System.Double oldValue, System.Double newValue)"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.Primitives.RangeBase.OnMinimumChanged(System.Double oldValue, System.Double newValue)"
 				reason="Parameter names were incorrect" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.Primitives.RangeBase.OnMaximumChanged(System.Double oldValue, System.Double newValue)"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.Primitives.RangeBase.OnMaximumChanged(System.Double oldValue, System.Double newValue)"
 				reason="Parameter names were incorrect" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.Primitives.RangeBase.OnSmallChangeChanged(System.Double oldValue, System.Double newValue)"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.Primitives.RangeBase.OnSmallChangeChanged(System.Double oldValue, System.Double newValue)"
 				reason="Parameter names were incorrect" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.Primitives.RangeBase.OnSmallChangeChanged(System.Double oldValue, System.Double newValue)"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.Primitives.RangeBase.OnSmallChangeChanged(System.Double oldValue, System.Double newValue)"
 				reason="Not part of public API" />
 			<Member
-				fullName="System.Double Windows.UI.Xaml.Controls.Primitives.RangeBase.get_ActualValue()"
+				fullName="System.Double Microsoft.UI.Xaml.Controls.Primitives.RangeBase.get_ActualValue()"
 				reason="Not part of public API" />
 			<Member
-				fullName="Windows.UI.Xaml.DependencyProperty Windows.UI.Xaml.Controls.Primitives.RangeBase.get_ActualValueProperty()"
+				fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.Primitives.RangeBase.get_ActualValueProperty()"
 				reason="Not part of public API" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.Primitives.RangeBase.OnActualValueChanged(System.Double oldValue, System.Double newValue)"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.Primitives.RangeBase.OnActualValueChanged(System.Double oldValue, System.Double newValue)"
 				reason="Not part of public API" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Automation.Peers.RangeBaseAutomationPeer..ctor()"
+				fullName="System.Void Microsoft.UI.Xaml.Automation.Peers.RangeBaseAutomationPeer..ctor()"
 				reason="Not part of public API" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Automation.Peers.RangeBaseAutomationPeer..ctor(System.Object instance)"
+				fullName="System.Void Microsoft.UI.Xaml.Automation.Peers.RangeBaseAutomationPeer..ctor(System.Object instance)"
 				reason="Not part of public API" />
 			<!-- BEGIN BitmapEncoder -->
 			<Member
@@ -305,42 +305,42 @@
 				reason="Protected method no longer used or required" />
 			<!-- BEGIN iOS 16 workaround -->
 			<Member
-				fullName="UIKit.UITextRange Windows.UI.Xaml.Controls.SinglelineTextBoxView::get_SelectedTextRange()"
+				fullName="UIKit.UITextRange Microsoft.UI.Xaml.Controls.SinglelineTextBoxView::get_SelectedTextRange()"
 				reason="Workaround for iOS 16" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.SinglelineTextBoxView::set_SelectedTextRange(UIKit.UITextRange value)"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.SinglelineTextBoxView::set_SelectedTextRange(UIKit.UITextRange value)"
 				reason="Workaround for iOS 16" />
 			<Member
-				fullName="UIKit.UITextRange Windows.UI.Xaml.Controls.MultilineTextBoxView::get_SelectedTextRange()"
+				fullName="UIKit.UITextRange Microsoft.UI.Xaml.Controls.MultilineTextBoxView::get_SelectedTextRange()"
 				reason="Workaround for iOS 16" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.MultilineTextBoxView::set_SelectedTextRange(UIKit.UITextRange value)"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.MultilineTextBoxView::set_SelectedTextRange(UIKit.UITextRange value)"
 				reason="Workaround for iOS 16" />
 			<!-- END iOS 16 workaround -->
 
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.TimePickerSelectedValueChangedEventArgs..ctor()"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.TimePickerSelectedValueChangedEventArgs..ctor()"
 				reason="Constructor is internal on UWP" />
 			<Member
-				fullName="System.Void Windows.UI.Xaml.Controls.TimePickerValueChangedEventArgs..ctor()"
+				fullName="System.Void Microsoft.UI.Xaml.Controls.TimePickerValueChangedEventArgs..ctor()"
 				reason="Constructor is internal on UWP" />
 		</Methods>
 		<Properties>
 			<Member
-				fullName="System.Double Windows.UI.Xaml.Controls.Primitives.RangeBase::ActualValue()"
+				fullName="System.Double Microsoft.UI.Xaml.Controls.Primitives.RangeBase::ActualValue()"
 				reason="Not part of public API" />
 			<Member
-				fullName="Windows.UI.Xaml.DependencyProperty Windows.UI.Xaml.Controls.Primitives.RangeBase::ActualValueProperty()"
+				fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.Primitives.RangeBase::ActualValueProperty()"
 				reason="Not part of public API" />
 			<Member
-				fullName="System.Boolean Windows.UI.Xaml.Controls.SinglelineTextBoxView::SecureTextEntry()"
+				fullName="System.Boolean Microsoft.UI.Xaml.Controls.SinglelineTextBoxView::SecureTextEntry()"
 				reason="Removed no-longer-needed override" />
 			<!-- BEGIN iOS 16 workaround -->
 			<Member
-				fullName="UIKit.UITextRange Windows.UI.Xaml.Controls.SinglelineTextBoxView::SelectedTextRange()"
+				fullName="UIKit.UITextRange Microsoft.UI.Xaml.Controls.SinglelineTextBoxView::SelectedTextRange()"
 				reason="Workaround for iOS 16" />
 			<Member
-				fullName="UIKit.UITextRange Windows.UI.Xaml.Controls.MultilineTextBoxView::SelectedTextRange()"
+				fullName="UIKit.UITextRange Microsoft.UI.Xaml.Controls.MultilineTextBoxView::SelectedTextRange()"
 				reason="Workaround for iOS 16" />
 			<!-- END iOS 16 workaround -->
 		</Properties>
@@ -420,7 +420,7 @@
 		<Methods>
 			<Member fullName="System.Void Uno.UI.UnoViewGroup.OnLayoutCore(System.Boolean p0, System.Int32 p1, System.Int32 p2, System.Int32 p3, System.Int32 p4)"
 					reason="Externally unused API for android layouting" />
-		<Member fullName="System.Void Windows.UI.Xaml.Window..ctor()"
+		<Member fullName="System.Void Microsoft.UI.Xaml.Window..ctor()"
 				reason="Window constructor does not exist in UWP" />
 		</Methods>
 	</IgnoreSet>
@@ -428,7 +428,7 @@
 	<IgnoreSet baseVersion="4.8">
 		<Types>
 			<!-- BEGIN WebView -->
-			<Member fullName="Windows.UI.Xaml.Controls.INativeWebView" reason="Should not be public" />
+			<Member fullName="Microsoft.UI.Xaml.Controls.INativeWebView" reason="Should not be public" />
 			<!-- END WebView -->
 
 			<Member fullName="Microsoft.UI.Windowing.AppWindowConfiguration" reason="Not present in WinAppSDK 1.2" />
@@ -512,7 +512,7 @@
 			<Member fullName="Microsoft.UI.Xaml.Automation.Peers.ScrollPresenterAutomationPeer" reason="Not present in WinAppSDK 1.2" />
 			<Member fullName="Microsoft.UI.Xaml.Media.RevealBrushState" reason="Not present in WinAppSDK 1.2" />
 			<Member fullName="Windows.Foundation.IClosable" reason="Shouldn't be visible in .NET and shows as IDisposable instead." />
-			<Member fullName="Windows.UI.Xaml.Media.TransformExtensions" reason="Moved to RuntimeTests project as it is only used there." />
+			<Member fullName="Microsoft.UI.Xaml.Media.TransformExtensions" reason="Moved to RuntimeTests project as it is only used there." />
 			<Member fullName="Uno.UI.Extensions.FragmentManagerExtensions" reason="Legacy class that is no longer needed" />
 			<Member fullName="Uno.UI.BaseFragment" reason="Legacy class that is no longer needed" />
 			<Member fullName="Windows.Foundation.HResult" reason="Type is hidden in .NET and shouldn't be used" />
@@ -521,12 +521,12 @@
 			<Member fullName="Uno.Extensions.JavaObjectExtensions" reason="Only needed internally" />
 			<Member fullName="Uno.Client.ICommandExtensions" reason="Only needed internally" />
 			<Member fullName="Uno.Extensions.UriExtensions" reason="Not needed publicly" />
-			<Member fullName="Windows.UI.Xaml.Controls.PanelExtensions" reason="Not needed" />
 			<Member fullName="Microsoft.UI.Xaml.Controls.PanelExtensions" reason="Not needed" />
-			<Member fullName="Windows.UI.Xaml.FontFamilyHelper" reason="Only needed internally. The public facing type is Uno.UI.Xaml.Media.FontFamilyHelper" />
-			<Member fullName="Windows.UI.Xaml.SolidColorBrushHelper" reason="Not needed publicly and not present in Windows." />
-			<Member fullName="Windows.UI.Xaml.Controls.PersonPictureTemplateSettings" reason="Moved to MUXC" />
-			<Member fullName="Windows.UI.Xaml.VisiblityExtensions" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.Controls.PanelExtensions" reason="Not needed" />
+			<Member fullName="Microsoft.UI.Xaml.FontFamilyHelper" reason="Only needed internally. The public facing type is Uno.UI.Xaml.Media.FontFamilyHelper" />
+			<Member fullName="Microsoft.UI.Xaml.SolidColorBrushHelper" reason="Not needed publicly and not present in Windows." />
+			<Member fullName="Microsoft.UI.Xaml.Controls.PersonPictureTemplateSettings" reason="Moved to MUXC" />
+			<Member fullName="Microsoft.UI.Xaml.VisiblityExtensions" reason="Api alignments" />
 			<Member fullName="Uno.Presentation.Resources.IResourceRegistry" reason="Api alignments" />
 			<Member fullName="Uno.Presentation.Resources.ResourceRegistry" reason="Api alignments" />
 			<Member fullName="Microsoft.UI.Xaml.Controls.ControlsResourcesVersion" reason="Api alignments" />
@@ -540,7 +540,7 @@
 			<Member fullName="Uno.UI.Common.DelegateCommand" reason="Api alignments" />
 			<Member fullName="Uno.UI.Common.DelegateCommand`1" reason="Api alignments" />
 			<Member fullName="Windows.Foundation.SizeConverter" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.ResourceHelper" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.ResourceHelper" reason="Api alignments" />
 			<Member fullName="Uno.UI.Extensions.CollectionViewExtensions" reason="Api alignments" />
 
 		</Types>
@@ -554,35 +554,35 @@
 			<Member fullName="Windows.Foundation.TypedEventHandler`2&lt;Microsoft.UI.Xaml.Controls.IInputValidationControl,Microsoft.UI.Xaml.Controls.HasValidationErrorsChangedEventArgs&gt; Microsoft.UI.Xaml.Controls.TextBox::HasValidationErrorsChanged" reason="Not present in WinAppSDK 1.2" />
 			<Member fullName="Windows.Foundation.TypedEventHandler`2&lt;Microsoft.UI.Xaml.Controls.IInputValidationControl,Microsoft.UI.Xaml.Controls.InputValidationErrorEventArgs&gt; Microsoft.UI.Xaml.Controls.TextBox::ValidationError" reason="Not present in WinAppSDK 1.2" />
 			<Member fullName="Windows.Foundation.TypedEventHandler`2&lt;Microsoft.UI.Xaml.FrameworkElement,Microsoft.UI.Xaml.DataContextChangedEventArgs&gt; Microsoft.UI.Xaml.Controls.ElementFactory::DataContextChanged" reason="Not present in WinAppSDK 1.2" />
-			<Member fullName="Windows.Foundation.TypedEventHandler`2&lt;Windows.UI.Xaml.Controls.CalendarDatePicker,Windows.UI.Xaml.Controls.CalendarDatePickerDateChangedEventArgs&gt; Windows.UI.Xaml.Controls.CalendarDatePicker::_dateChanged" reason="Not in Windows" />
+			<Member fullName="Windows.Foundation.TypedEventHandler`2&lt;Microsoft.UI.Xaml.Controls.CalendarDatePicker,Microsoft.UI.Xaml.Controls.CalendarDatePickerDateChangedEventArgs&gt; Microsoft.UI.Xaml.Controls.CalendarDatePicker::_dateChanged" reason="Not in Windows" />
 		</Events>
 		<Fields>
 			<Member fullName="System.Runtime.InteropServices.NFloat Uno.UI.ViewHelper::MainScreenScale" reason="Api alignments" />
 			<Member fullName="System.Boolean Uno.UI.ViewHelper::IsRetinaDisplay" reason="Api alignments" />
 			<Member fullName="System.nfloat Uno.UI.ViewHelper::MainScreenScale" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.StackLayout::SpacingProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.StackLayout::DisableVirtualizationProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Windows.UI.Xaml.Documents.TextElement::BaseLineAlignmentProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::IsEnabledProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::ContentProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::RightPaneProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::RightPaneOpenLengthProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::IsRightPaneOpenProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::RightPaneBackgroundProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::LeftPaneProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::LeftPaneOpenLengthProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::IsLeftPaneOpenProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::LeftPaneBackgroundProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.Legacy.GridView::PaddingProperty" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Controls.Legacy.GridView::ItemContainerStyleProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.StackLayout::SpacingProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.StackLayout::DisableVirtualizationProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Documents.TextElement::BaseLineAlignmentProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::IsEnabledProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::ContentProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::RightPaneProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::RightPaneOpenLengthProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::IsRightPaneOpenProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::RightPaneBackgroundProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::LeftPaneProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::LeftPaneOpenLengthProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::IsLeftPaneOpenProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.BindableDrawerLayout::LeftPaneBackgroundProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.Legacy.GridView::PaddingProperty" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Controls.Legacy.GridView::ItemContainerStyleProperty" reason="Api alignments" />
 			<Member fullName="Foundation.NSString Windows.Media.Playback.MediaPlayer::RateObservationContext" reason="Api alignments" />
 			<Member fullName="UIKit.UIInterfaceOrientationMask[] Windows.Graphics.Display.DisplayInformation::PreferredOrientations" reason="Api alignments" />
 		</Fields>
 		<Properties>
 			<!-- BEGIN Expander -->
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.Expander::TemplateSettingsProperty()" reason="Should not be public" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings::ContentHeightProperty()" reason="Should not be public" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings::NegativeContentHeightProperty()" reason="Should not be public" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.Expander::TemplateSettingsProperty()" reason="Should not be public" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings::ContentHeightProperty()" reason="Should not be public" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings::NegativeContentHeightProperty()" reason="Should not be public" />
 			<!-- END Expander -->
 
 
@@ -655,16 +655,16 @@
 			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Media.RevealBrush::AlwaysUseFallbackProperty()" reason="Not present in WinAppSDK 1.2" />
 			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Media.RevealBrush::StateProperty()" reason="Not present in WinAppSDK 1.2" />
 			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Media.RevealBrush::TargetThemeProperty()" reason="Not present in WinAppSDK 1.2" />
-			<Member fullName="System.String Windows.UI.Xaml.Markup.ContentPropertyAttribute::Name()" reason="Property changed to field to match Windows" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Toolkit.ElevatedView::CornerRadiusProperty()" reason="Already exists in Control and ElevatedView should not shadow it" />
-			<Member fullName="Windows.UI.Xaml.CornerRadius Uno.UI.Toolkit.ElevatedView::CornerRadius()" reason="Already exists in Control and ElevatedView should not shadow it" />
-			<Member fullName="Windows.UI.Xaml.Controls.PersonPictureTemplateSettings Windows.UI.Xaml.Controls.PersonPicture::TemplateSettings()" reason="Moved to MUXC" />
+			<Member fullName="System.String Microsoft.UI.Xaml.Markup.ContentPropertyAttribute::Name()" reason="Property changed to field to match Windows" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Toolkit.ElevatedView::CornerRadiusProperty()" reason="Already exists in Control and ElevatedView should not shadow it" />
+			<Member fullName="Microsoft.UI.Xaml.CornerRadius Uno.UI.Toolkit.ElevatedView::CornerRadius()" reason="Already exists in Control and ElevatedView should not shadow it" />
+			<Member fullName="Microsoft.UI.Xaml.Controls.PersonPictureTemplateSettings Microsoft.UI.Xaml.Controls.PersonPicture::TemplateSettings()" reason="Moved to MUXC" />
 			<Member fullName="System.Boolean Uno.Devices.Sensors.INativeDualScreenProvider::IsDualScreen()" reason="Api alignments" />
-			<Member fullName="Uno.Presentation.Resources.IResourceRegistry Windows.UI.Xaml.ResourceHelper::Registry()" reason="Api alignments" />
+			<Member fullName="Uno.Presentation.Resources.IResourceRegistry Microsoft.UI.Xaml.ResourceHelper::Registry()" reason="Api alignments" />
 
 			<!-- BEGIN WebView -->
-			<Member fullName="Uno.UI.Web.WebErrorStatus Windows.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs::WebErrorStatus()" reason="Incorrect type" />
-			<Member fullName="Uno.UI.Web.WebErrorStatus Windows.UI.Xaml.Controls.WebViewNavigationFailedEventArgs::WebErrorStatus()" reason="Incorrect type" />
+			<Member fullName="Uno.UI.Web.WebErrorStatus Microsoft.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs::WebErrorStatus()" reason="Incorrect type" />
+			<Member fullName="Uno.UI.Web.WebErrorStatus Microsoft.UI.Xaml.Controls.WebViewNavigationFailedEventArgs::WebErrorStatus()" reason="Incorrect type" />
 			<!-- END WebView -->
 		</Properties>
 		<Methods>
@@ -683,34 +683,34 @@
 			<Member fullName="System.Void Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs..ctor()" reason="Should not be public" />
 			<Member fullName="System.Void Microsoft.Web.WebView2.Core.CoreWebView2Settings..ctor()" reason="Should not be public" />
 			<Member fullName="System.Threading.Tasks.Task Microsoft.UI.Xaml.Controls.WebView.LaunchMailto(System.Threading.CancellationToken ct, System.String subject, System.String body, System.String[] to, System.String[] cc, System.String[] bcc)" reason="Should not be public" />
-			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.WebView.MustUseWebKitWebView()" reason="Should not be public" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs..ctor()" reason="Should not be public" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.WebViewNavigationFailedEventArgs..ctor()" reason="Should not be public" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.WebViewNavigationStartingEventArgs..ctor()" reason="Should not be public" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.WebViewUnsupportedUriSchemeIdentifiedEventArgs..ctor(System.Uri uri)" reason="Should not be public" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.UnoWKWebView.RegisterNavigationEvents(Windows.UI.Xaml.Controls.WebView xamlWebView)" reason="Should not be public" />
-			<Member fullName="System.Threading.Tasks.Task`1&lt;System.String&gt; Windows.UI.Xaml.Controls.UnoWKWebView.EvaluateJavascriptAsync(System.Threading.CancellationToken ct, System.String javascript)" reason="Should not be public" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.WebView.Navigate(System.Uri uri)" reason="Was using incorrect parameter name" />
-			<Member fullName="System.Threading.Tasks.Task Windows.UI.Xaml.Controls.WebView.LaunchMailto(System.Threading.CancellationToken ct, System.String subject, System.String body, System.String[] to, System.String[] cc, System.String[] bcc)" reason="Should not be public" />
+			<Member fullName="System.Boolean Microsoft.UI.Xaml.Controls.WebView.MustUseWebKitWebView()" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs..ctor()" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.WebViewNavigationFailedEventArgs..ctor()" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.WebViewNavigationStartingEventArgs..ctor()" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.WebViewUnsupportedUriSchemeIdentifiedEventArgs..ctor(System.Uri uri)" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.UnoWKWebView.RegisterNavigationEvents(Microsoft.UI.Xaml.Controls.WebView xamlWebView)" reason="Should not be public" />
+			<Member fullName="System.Threading.Tasks.Task`1&lt;System.String&gt; Microsoft.UI.Xaml.Controls.UnoWKWebView.EvaluateJavascriptAsync(System.Threading.CancellationToken ct, System.String javascript)" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.WebView.Navigate(System.Uri uri)" reason="Was using incorrect parameter name" />
+			<Member fullName="System.Threading.Tasks.Task Microsoft.UI.Xaml.Controls.WebView.LaunchMailto(System.Threading.CancellationToken ct, System.String subject, System.String body, System.String[] to, System.String[] cc, System.String[] bcc)" reason="Should not be public" />
 			<Member fullName="System.Void Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs..ctor()" reason="Should not be public" />
-			<Member fullName="System.Threading.Tasks.Task`1&lt;System.String&gt; Windows.UI.Xaml.Controls.WebView.InvokeScriptAsync(System.Threading.CancellationToken ct, System.String script, System.String[] arguments)" reason="Not present in WinUI" />
-			<Member fullName="Uno.UI.Web.WebErrorStatus Windows.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs.get_WebErrorStatus()" reason="Incorrect return type" />
-			<Member fullName="Uno.UI.Web.WebErrorStatus Windows.UI.Xaml.Controls.WebViewNavigationFailedEventArgs.get_WebErrorStatus()" reason="Incorrect return type" />
+			<Member fullName="System.Threading.Tasks.Task`1&lt;System.String&gt; Microsoft.UI.Xaml.Controls.WebView.InvokeScriptAsync(System.Threading.CancellationToken ct, System.String script, System.String[] arguments)" reason="Not present in WinUI" />
+			<Member fullName="Uno.UI.Web.WebErrorStatus Microsoft.UI.Xaml.Controls.WebViewNavigationCompletedEventArgs.get_WebErrorStatus()" reason="Incorrect return type" />
+			<Member fullName="Uno.UI.Web.WebErrorStatus Microsoft.UI.Xaml.Controls.WebViewNavigationFailedEventArgs.get_WebErrorStatus()" reason="Incorrect return type" />
 			<!-- END WebView -->
 
-			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.OnContentClipSizeChanged(System.Object sender, Windows.UI.Xaml.SizeChangedEventArgs args)" reason="Should not be public" />
-			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.OnContentSizeChanged(System.Object sender, Windows.UI.Xaml.SizeChangedEventArgs args)" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.OnContentClipSizeChanged(System.Object sender, Microsoft.UI.Xaml.SizeChangedEventArgs args)" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.OnContentSizeChanged(System.Object sender, Microsoft.UI.Xaml.SizeChangedEventArgs args)" reason="Should not be public" />
 			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.RaiseExpandingEvent(Microsoft.UI.Xaml.Controls.Expander container)" reason="Should not be public" />
 			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.RaiseCollapsedEvent(Microsoft.UI.Xaml.Controls.Expander container)" reason="Should not be public" />
-			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.OnIsExpandedPropertyChanged(Windows.UI.Xaml.DependencyPropertyChangedEventArgs args)" reason="Should not be public" />
-			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.OnExpandDirectionPropertyChanged(Windows.UI.Xaml.DependencyPropertyChangedEventArgs args)" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.OnIsExpandedPropertyChanged(Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs args)" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.OnExpandDirectionPropertyChanged(Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs args)" reason="Should not be public" />
 			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Expander.set_TemplateSettings(Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings value)" reason="Should not be public" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.Expander.get_TemplateSettingsProperty()" reason="Should not be public" />
-			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.ExpanderAutomationPeer.RaiseExpandCollapseAutomationEvent(Windows.UI.Xaml.Automation.ExpandCollapseState newState)" reason="Should not be public" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.Expander.get_TemplateSettingsProperty()" reason="Should not be public" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.ExpanderAutomationPeer.RaiseExpandCollapseAutomationEvent(Microsoft.UI.Xaml.Automation.ExpandCollapseState newState)" reason="Should not be public" />
 			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.ExpanderCollapsedEventArgs..ctor()" reason="Should not be public" />
 			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.ExpanderExpandingEventArgs..ctor()" reason="Should not be public" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings.get_ContentHeightProperty()" reason="Should not be public" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings.get_NegativeContentHeightProperty()" reason="Should not be public" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings.get_ContentHeightProperty()" reason="Should not be public" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings.get_NegativeContentHeightProperty()" reason="Should not be public" />
 			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.ExpanderTemplateSettings..ctor()" reason="Should not be public" />
 
 			<Member fullName="Microsoft.UI.Windowing.AppWindowConfiguration Microsoft.UI.Windowing.AppWindow.get_Configuration()" reason="Not present in WinAppSDK 1.2" />
@@ -876,30 +876,30 @@
 			<Member fullName="Microsoft.UI.Xaml.Media.RevealBrushState Microsoft.UI.Xaml.Media.RevealBrush.GetState(Microsoft.UI.Xaml.UIElement element)" reason="Not present in WinAppSDK 1.2" />
 			<Member fullName="System.Void Windows.Web.Http.Headers.HttpRequestHeaderCollection..ctor()" reason="Not in Windows and must not be instantiated by user." />
 			<Member fullName="System.Void Windows.Foundation.IPropertyValue.GetDateTimeArray(System.DateTime[]&amp; value)" reason="Not in Windows" />
-			<Member fullName="Uno.UI.Xaml.RoutedEventFlag Windows.UI.Xaml.Controls.Control.GetImplementedRoutedEvents(System.Type type)" reason="Not in Windows and is unnecessary now." />
+			<Member fullName="Uno.UI.Xaml.RoutedEventFlag Microsoft.UI.Xaml.Controls.Control.GetImplementedRoutedEvents(System.Type type)" reason="Not in Windows and is unnecessary now." />
 			<Member fullName="System.Object Uno.UI.FluentTheme.GlobalStaticResources.FindResource(System.String name)" reason="Empty method generated by XAML generator" />
 			<Member fullName="System.Object Uno.UI.FluentTheme.v1.GlobalStaticResources.FindResource(System.String name)" reason="Empty method generated by XAML generator" />
 			<Member fullName="System.Object Uno.UI.FluentTheme.v2.GlobalStaticResources.FindResource(System.String name)" reason="Empty method generated by XAML generator" />
 			<Member fullName="System.Object Uno.UI.Toolkit.GlobalStaticResources.FindResource(System.String name)" reason="Empty method generated by XAML generator" />
-			<Member fullName="Uno.UI.Xaml.RoutedEventFlag Windows.UI.Xaml.Controls.Control.GetImplementedRoutedEvents(System.Type type)" reason="Not in Windows and is unnecessary now." />
+			<Member fullName="Uno.UI.Xaml.RoutedEventFlag Microsoft.UI.Xaml.Controls.Control.GetImplementedRoutedEvents(System.Type type)" reason="Not in Windows and is unnecessary now." />
 			<Member fullName="System.Void Windows.Devices.Geolocation.Geolocator.OnLocationChanged(Android.Locations.Location location)" reason="Not present in Windows" />
 			<Member fullName="System.Void Windows.Devices.Geolocation.Geolocator.OnProviderDisabled(System.String provider)" reason="Not present in Windows" />
 			<Member fullName="System.Void Windows.Devices.Geolocation.Geolocator.OnProviderEnabled(System.String provider)" reason="Not present in Windows" />
 			<Member fullName="System.Void Windows.Devices.Geolocation.Geolocator.OnStatusChanged(System.String provider, Android.Locations.Availability status, Android.OS.Bundle extras)" reason="Not present in Windows" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.TextBox.OnInputScopeChanged(Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Changed parameter type and made private." />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.TextBox.OnIsSpellCheckEnabledChanged(Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Changed parameter type and made private." />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.TextBox.OnIsTextPredictionEnabledChanged(Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Changed parameter type and made private." />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.TextBox.OnTextAlignmentChanged(Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Changed parameter type and made private." />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.TextBox.OnInputScopeChanged(Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Changed parameter type and made private." />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.TextBox.OnIsSpellCheckEnabledChanged(Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Changed parameter type and made private." />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.TextBox.OnIsTextPredictionEnabledChanged(Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Changed parameter type and made private." />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.TextBox.OnTextAlignmentChanged(Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Changed parameter type and made private." />
 			<Member fullName="System.Void Windows.Devices.Lights.Lamp..ctor()" reason="Not present in Windows" />
-			<Member fullName="System.String Windows.UI.Xaml.Markup.ContentPropertyAttribute.get_Name()" reason="Property changed to field to match Windows" />
-			<Member fullName="System.Void Windows.UI.Xaml.Markup.ContentPropertyAttribute.set_Name(System.String value)" reason="Property changed to field to match Windows" />
+			<Member fullName="System.String Microsoft.UI.Xaml.Markup.ContentPropertyAttribute.get_Name()" reason="Property changed to field to match Windows" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Markup.ContentPropertyAttribute.set_Name(System.String value)" reason="Property changed to field to match Windows" />
 			<Member fullName="System.Void Windows.Foundation.Deferral.Close()" reason="Shouldn't be visible in .NET" />
-			<Member fullName="Windows.UI.Xaml.CornerRadius Uno.UI.Toolkit.ElevatedView.get_CornerRadius()" reason="Already exists in Control and ElevatedView should not shadow it" />
-			<Member fullName="System.Void Uno.UI.Toolkit.ElevatedView.set_CornerRadius(Windows.UI.Xaml.CornerRadius value)" reason="Already exists in Control and ElevatedView should not shadow it" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Uno.UI.Toolkit.ElevatedView.get_CornerRadiusProperty()" reason="Already exists in Control and ElevatedView should not shadow it" />
+			<Member fullName="Microsoft.UI.Xaml.CornerRadius Uno.UI.Toolkit.ElevatedView.get_CornerRadius()" reason="Already exists in Control and ElevatedView should not shadow it" />
+			<Member fullName="System.Void Uno.UI.Toolkit.ElevatedView.set_CornerRadius(Microsoft.UI.Xaml.CornerRadius value)" reason="Already exists in Control and ElevatedView should not shadow it" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Uno.UI.Toolkit.ElevatedView.get_CornerRadiusProperty()" reason="Already exists in Control and ElevatedView should not shadow it" />
 			<Member fullName="System.Void Windows.ApplicationModel.SuspendingDeferral..ctor(System.Action deferralDone)" reason="This constructor does not exist in Windows" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.CalendarDatePicker.add__dateChanged(Windows.Foundation.TypedEventHandler`2&lt;Windows.UI.Xaml.Controls.CalendarDatePicker,Windows.UI.Xaml.Controls.CalendarDatePickerDateChangedEventArgs&gt; value)" reason="Not in Windows" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.CalendarDatePicker.remove__dateChanged(Windows.Foundation.TypedEventHandler`2&lt;Windows.UI.Xaml.Controls.CalendarDatePicker,Windows.UI.Xaml.Controls.CalendarDatePickerDateChangedEventArgs&gt; value)" reason="Not in Windows" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.CalendarDatePicker.add__dateChanged(Windows.Foundation.TypedEventHandler`2&lt;Microsoft.UI.Xaml.Controls.CalendarDatePicker,Microsoft.UI.Xaml.Controls.CalendarDatePickerDateChangedEventArgs&gt; value)" reason="Not in Windows" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.CalendarDatePicker.remove__dateChanged(Windows.Foundation.TypedEventHandler`2&lt;Microsoft.UI.Xaml.Controls.CalendarDatePicker,Microsoft.UI.Xaml.Controls.CalendarDatePickerDateChangedEventArgs&gt; value)" reason="Not in Windows" />
 			<Member fullName="System.Threading.Tasks.Task`1&lt;System.Collections.Generic.IList`1&lt;Windows.Devices.Geolocation.Geoposition&gt;&gt; Windows.Devices.Geolocation.Geolocator.GetGeopositionHistoryAsync(System.DateTime startTime)" reason="Not in Windows and not implemented properly" />
 			<Member fullName="System.Threading.Tasks.Task`1&lt;System.Collections.Generic.IList`1&lt;Windows.Devices.Geolocation.Geoposition&gt;&gt; Windows.Devices.Geolocation.Geolocator.GetGeopositionHistoryAsync(System.DateTime startTime, System.TimeSpan duration)" reason="Not in Windows and not implemented properly" />
 			<Member fullName="System.Void Uno.UI.Controls.Window.SetNeedsKeyboard(AppKit.NSView view, System.Boolean needsKeyboard)" reason="Not needed and doesn't do something useful" />
@@ -907,65 +907,65 @@
 			<Member fullName="CoreGraphics.CGSize Uno.UI.ViewHelper.GetScreenSize()" reason="Renamed to GetMainWindowSize and made internal" />
 			<Member fullName="System.Threading.Tasks.Task`1&lt;System.Collections.Generic.IList`1&lt;Windows.Devices.Geolocation.Geoposition&gt;&gt; Windows.Devices.Geolocation.Geolocator.GetGeopositionHistoryAsync(System.DateTime startTime)" reason="Not in Windows and not implemented properly" />
 			<Member fullName="System.Threading.Tasks.Task`1&lt;System.Collections.Generic.IList`1&lt;Windows.Devices.Geolocation.Geoposition&gt;&gt; Windows.Devices.Geolocation.Geolocator.GetGeopositionHistoryAsync(System.DateTime startTime, System.TimeSpan duration)" reason="Not in Windows and not implemented properly" />
-			<Member fullName="System.Void Windows.UI.Xaml.Style.RegisterDefaultStyleForType(System.Type type, Windows.UI.Xaml.Style/StyleProviderHandler styleProvider)" reason="Was used by Xaml generated code but no longer used." />
-			<Member fullName="System.Void Windows.UI.Xaml.Style.RegisterDefaultStyleForType(System.Type type, Windows.UI.Xaml.Style/StyleProviderHandler styleProvider, System.Boolean isNative)" reason="Was used by Xaml generated code but no longer used." />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Style.RegisterDefaultStyleForType(System.Type type, Microsoft.UI.Xaml.Style/StyleProviderHandler styleProvider)" reason="Was used by Xaml generated code but no longer used." />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Style.RegisterDefaultStyleForType(System.Type type, Microsoft.UI.Xaml.Style/StyleProviderHandler styleProvider, System.Boolean isNative)" reason="Was used by Xaml generated code but no longer used." />
 
 			<Member fullName="System.Void Windows.ApplicationModel.SuspendingDeferral..ctor(System.Action deferralDone)" reason="This constructor does not exist in Windows" />
-			<Member fullName="Windows.UI.Xaml.Controls.PersonPictureTemplateSettings Windows.UI.Xaml.Controls.PersonPicture.get_TemplateSettings()" reason="Moved to MUXC" />
-			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.RelativePanel.GetAlignBottomWithPanel(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignBottomWithPanel(Windows.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
-			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.RelativePanel.GetAlignLeftWithPanel(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignLeftWithPanel(Windows.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
-			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.RelativePanel.GetAlignRightWithPanel(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignRightWithPanel(Windows.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
-			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.RelativePanel.GetAlignTopWithPanel(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignTopWithPanel(Windows.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
-			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.RelativePanel.GetAlignHorizontalCenterWithPanel(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignHorizontalCenterWithPanel(Windows.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
-			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.RelativePanel.GetAlignVerticalCenterWithPanel(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignVerticalCenterWithPanel(Windows.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetAlignBottomWith(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignBottomWith(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetAlignLeftWith(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignLeftWith(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetAlignRightWith(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignRightWith(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetAlignTopWith(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignTopWith(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetAlignHorizontalCenterWith(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignHorizontalCenterWith(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetAlignVerticalCenterWith(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAlignVerticalCenterWith(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetAbove(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetAbove(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetBelow(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetBelow(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetLeftOf(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetLeftOf(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.Controls.RelativePanel.GetRightOf(Windows.UI.Xaml.UIElement view)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.Primitives.Popup.OnHorizontalOffsetChanged(System.Double oldHorizontalOffset, System.Double newHorizontalOffset)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.Primitives.Popup.OnVerticalOffsetChanged(System.Double oldVerticalOffset, System.Double newVerticalOffset)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.RelativePanel.SetRightOf(Windows.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.WebView.NavigateWithHttpRequestMessage(System.Net.Http.HttpRequestMessage requestMessage)" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.Controls.PersonPictureTemplateSettings Microsoft.UI.Xaml.Controls.PersonPicture.get_TemplateSettings()" reason="Moved to MUXC" />
+			<Member fullName="System.Boolean Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignBottomWithPanel(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignBottomWithPanel(Microsoft.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
+			<Member fullName="System.Boolean Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignLeftWithPanel(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignLeftWithPanel(Microsoft.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
+			<Member fullName="System.Boolean Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignRightWithPanel(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignRightWithPanel(Microsoft.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
+			<Member fullName="System.Boolean Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignTopWithPanel(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignTopWithPanel(Microsoft.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
+			<Member fullName="System.Boolean Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignHorizontalCenterWithPanel(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignHorizontalCenterWithPanel(Microsoft.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
+			<Member fullName="System.Boolean Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignVerticalCenterWithPanel(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignVerticalCenterWithPanel(Microsoft.UI.Xaml.UIElement view, System.Boolean value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignBottomWith(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignBottomWith(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignLeftWith(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignLeftWith(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignRightWith(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignRightWith(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignTopWith(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignTopWith(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignHorizontalCenterWith(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignHorizontalCenterWith(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetAlignVerticalCenterWith(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAlignVerticalCenterWith(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetAbove(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetAbove(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetBelow(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetBelow(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetLeftOf(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetLeftOf(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.Controls.RelativePanel.GetRightOf(Microsoft.UI.Xaml.UIElement view)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Primitives.Popup.OnHorizontalOffsetChanged(System.Double oldHorizontalOffset, System.Double newHorizontalOffset)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Primitives.Popup.OnVerticalOffsetChanged(System.Double oldVerticalOffset, System.Double newVerticalOffset)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.RelativePanel.SetRightOf(Microsoft.UI.Xaml.UIElement view, System.Object value)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.WebView.NavigateWithHttpRequestMessage(System.Net.Http.HttpRequestMessage requestMessage)" reason="Api alignments" />
 			<Member fullName="System.Boolean Uno.Devices.Sensors.INativeDualScreenProvider.get_IsDualScreen()" reason="Api alignments" />
-			<Member fullName="System.Boolean Windows.UI.Xaml.Controls.WebView.MustUseWebKitWebView()" reason="Api alignments" />
-			<Member fullName="System.Double Windows.UI.Xaml.Controls.Canvas.GetLeft(Windows.UI.Xaml.DependencyObject obj)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.Canvas.SetLeft(Windows.UI.Xaml.DependencyObject obj, System.Double value)" reason="Api alignments" />
-			<Member fullName="System.Double Windows.UI.Xaml.Controls.Canvas.GetTop(Windows.UI.Xaml.DependencyObject obj)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.Canvas.SetTop(Windows.UI.Xaml.DependencyObject obj, System.Double value)" reason="Api alignments" />
-			<Member fullName="System.Double Windows.UI.Xaml.Controls.Canvas.GetZIndex(Windows.UI.Xaml.DependencyObject obj)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.Canvas.SetZIndex(Windows.UI.Xaml.DependencyObject obj, System.Double value)" reason="Api alignments" />
-			<Member fullName="Uno.Presentation.Resources.IResourceRegistry Windows.UI.Xaml.ResourceHelper.get_Registry()" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.ResourceHelper.set_Registry(Uno.Presentation.Resources.IResourceRegistry value)" reason="Api alignments" />
-			<Member fullName="System.Object Windows.UI.Xaml.ResourceHelper.FindResource(System.String resourceName)" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.Data.IValueConverter Windows.UI.Xaml.ResourceHelper.FindConverter(System.String converterName)" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.DependencyProperty Windows.UI.Xaml.DependencyProperty.RegisterAttached(System.String name, System.Type propertyType, System.Type ownerType, Windows.UI.Xaml.PropertyMetadata typeMetadata)" reason="Changed parameter name to match WinUI" />
+			<Member fullName="System.Boolean Microsoft.UI.Xaml.Controls.WebView.MustUseWebKitWebView()" reason="Api alignments" />
+			<Member fullName="System.Double Microsoft.UI.Xaml.Controls.Canvas.GetLeft(Microsoft.UI.Xaml.DependencyObject obj)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Canvas.SetLeft(Microsoft.UI.Xaml.DependencyObject obj, System.Double value)" reason="Api alignments" />
+			<Member fullName="System.Double Microsoft.UI.Xaml.Controls.Canvas.GetTop(Microsoft.UI.Xaml.DependencyObject obj)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Canvas.SetTop(Microsoft.UI.Xaml.DependencyObject obj, System.Double value)" reason="Api alignments" />
+			<Member fullName="System.Double Microsoft.UI.Xaml.Controls.Canvas.GetZIndex(Microsoft.UI.Xaml.DependencyObject obj)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Canvas.SetZIndex(Microsoft.UI.Xaml.DependencyObject obj, System.Double value)" reason="Api alignments" />
+			<Member fullName="Uno.Presentation.Resources.IResourceRegistry Microsoft.UI.Xaml.ResourceHelper.get_Registry()" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.ResourceHelper.set_Registry(Uno.Presentation.Resources.IResourceRegistry value)" reason="Api alignments" />
+			<Member fullName="System.Object Microsoft.UI.Xaml.ResourceHelper.FindResource(System.String resourceName)" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.Data.IValueConverter Microsoft.UI.Xaml.ResourceHelper.FindConverter(System.String converterName)" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.DependencyProperty Microsoft.UI.Xaml.DependencyProperty.RegisterAttached(System.String name, System.Type propertyType, System.Type ownerType, Microsoft.UI.Xaml.PropertyMetadata typeMetadata)" reason="Changed parameter name to match WinUI" />
 
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.IconElement..ctor()" reason="Not public in WinUI" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.IconElement..ctor()" reason="Not public in WinUI" />
 			
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.Image.OnImageFailed(Windows.UI.Xaml.Media.ImageSource imageSource)" reason="Added parameter and made private" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.Image.OnImageFailed(Microsoft.UI.Xaml.Media.ImageSource imageSource)" reason="Added parameter and made private" />
 
-			  <Member fullName="System.Void Windows.UI.Xaml.Controls.IconElement.OnForegroundChanged(Windows.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Should not be public" />
+			  <Member fullName="System.Void Microsoft.UI.Xaml.Controls.IconElement.OnForegroundChanged(Microsoft.UI.Xaml.DependencyPropertyChangedEventArgs e)" reason="Should not be public" />
 
 			<!-- BEGIN XamlFileParser performance updates -->
 			<Member fullName="System.Void Uno.Xaml.XamlXmlReader..ctor(System.Xml.XmlReader xmlReader, Uno.Xaml.XamlSchemaContext schemaContext, Uno.Xaml.XamlXmlReaderSettings settings)" reason="Adding parameter. These should not be used by user code" />
@@ -973,16 +973,16 @@
 
 			  <Member fullName="System.Void Uno.Foundation.Interop.JSObject.Dispatch(System.String handlePtr, System.String method, System.String parameters)" reason="First parameter changed from string to IntPtr for performance" />
 
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.ListViewBaseScrollContentPresenter.SetContentOffset(CoreGraphics.CGPoint contentOffset, System.Boolean animated)" reason="Api alignments" />
-			<Member fullName="System.Void Windows.UI.Xaml.Controls.ListViewBaseScrollContentPresenter.SetZoomScale(System.Runtime.InteropServices.NFloat scale, System.Boolean animated)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.ListViewBaseScrollContentPresenter.SetContentOffset(CoreGraphics.CGPoint contentOffset, System.Boolean animated)" reason="Api alignments" />
+			<Member fullName="System.Void Microsoft.UI.Xaml.Controls.ListViewBaseScrollContentPresenter.SetZoomScale(System.Runtime.InteropServices.NFloat scale, System.Boolean animated)" reason="Api alignments" />
 
-			<Member fullName="System.Nullable`1&lt;Uno.UI.IndexPath&gt; Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetNextUnmaterializedItem(Windows.UI.Xaml.Controls.Primitives.GeneratorDirection fillDirection, System.Nullable`1&lt;Uno.UI.IndexPath&gt; currentMaterializedItem)" reason="Api alignments" />
-			<Member fullName="System.Nullable`1&lt;Uno.UI.IndexPath&gt; Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetDynamicSeedIndex(System.Nullable`1&lt;Uno.UI.IndexPath&gt; firstVisibleItem)" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.Controls.VirtualizingPanelLayout/Line Windows.UI.Xaml.Controls.VirtualizingPanelLayout.CreateLine(Windows.UI.Xaml.Controls.Primitives.GeneratorDirection fillDirection, System.Double extentOffset, System.Double availableBreadth, Uno.UI.IndexPath nextVisibleItem)" reason="Api alignments" />
-			<Member fullName="System.Int32 Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetFlatItemIndex(Uno.UI.IndexPath indexPath)" reason="Api alignments" />
-			<Member fullName="System.Nullable`1&lt;Uno.UI.IndexPath&gt; Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetAndUpdateReorderingIndex()" reason="Api alignments" />
-			<Member fullName="Windows.UI.Xaml.Controls.VirtualizingPanelLayout/Line Windows.UI.Xaml.Controls.VirtualizingPanelLayout.CreateLine(Windows.UI.Xaml.Controls.Primitives.GeneratorDirection fillDirection, System.Int32 extentOffset, System.Int32 breadthOffset, System.Int32 availableBreadth, AndroidX.RecyclerView.Widget.RecyclerView/Recycler recycler, AndroidX.RecyclerView.Widget.RecyclerView/State state, Uno.UI.IndexPath nextVisibleItem, System.Boolean isNewGroup)" reason="Api alignments" />
-			<Member fullName="System.Nullable`1&lt;Uno.UI.IndexPath&gt; Windows.UI.Xaml.Controls.VirtualizingPanelLayout.GetDynamicSeedIndex(System.Nullable`1&lt;Uno.UI.IndexPath&gt; firstVisibleItem, System.Int32 availableBreadth)" reason="Api alignments" />
+			<Member fullName="System.Nullable`1&lt;Uno.UI.IndexPath&gt; Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetNextUnmaterializedItem(Microsoft.UI.Xaml.Controls.Primitives.GeneratorDirection fillDirection, System.Nullable`1&lt;Uno.UI.IndexPath&gt; currentMaterializedItem)" reason="Api alignments" />
+			<Member fullName="System.Nullable`1&lt;Uno.UI.IndexPath&gt; Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetDynamicSeedIndex(System.Nullable`1&lt;Uno.UI.IndexPath&gt; firstVisibleItem)" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout/Line Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.CreateLine(Microsoft.UI.Xaml.Controls.Primitives.GeneratorDirection fillDirection, System.Double extentOffset, System.Double availableBreadth, Uno.UI.IndexPath nextVisibleItem)" reason="Api alignments" />
+			<Member fullName="System.Int32 Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetFlatItemIndex(Uno.UI.IndexPath indexPath)" reason="Api alignments" />
+			<Member fullName="System.Nullable`1&lt;Uno.UI.IndexPath&gt; Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetAndUpdateReorderingIndex()" reason="Api alignments" />
+			<Member fullName="Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout/Line Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.CreateLine(Microsoft.UI.Xaml.Controls.Primitives.GeneratorDirection fillDirection, System.Int32 extentOffset, System.Int32 breadthOffset, System.Int32 availableBreadth, AndroidX.RecyclerView.Widget.RecyclerView/Recycler recycler, AndroidX.RecyclerView.Widget.RecyclerView/State state, Uno.UI.IndexPath nextVisibleItem, System.Boolean isNewGroup)" reason="Api alignments" />
+			<Member fullName="System.Nullable`1&lt;Uno.UI.IndexPath&gt; Microsoft.UI.Xaml.Controls.VirtualizingPanelLayout.GetDynamicSeedIndex(System.Nullable`1&lt;Uno.UI.IndexPath&gt; firstVisibleItem, System.Int32 availableBreadth)" reason="Api alignments" />
 			<Member fullName="System.String Uno.UI.Services.ResourcesService.Get(System.String id)" reason="Api alignments" />
 		</Methods>
 	</IgnoreSet>

@@ -2,11 +2,11 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 // MUX reference InfoBarAutomationPeer.cpp, commit 3125489
 
-using Microsoft.UI.Xaml.Controls;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation.Peers;
+using Microsoft/* UWP don't rename */.UI.Xaml.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation.Peers;
 
-namespace Microsoft.UI.Xaml.Automation.Peers
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Automation.Peers
 {
 	/// <summary>
 	/// Exposes InfoBar types to Microsoft UI Automation.

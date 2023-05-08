@@ -1,4 +1,4 @@
-// MUX Reference PersonPicture.cpp, commit de78834
+﻿// MUX Reference PersonPicture.cpp, commit de78834
 
 using System;
 using System.Globalization;
@@ -8,15 +8,15 @@ using Windows.ApplicationModel.Contacts;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Storage.Streams;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Shapes;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Xaml.Shapes;
 
-namespace Microsoft.UI.Xaml.Controls
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 {
 	public partial class PersonPicture : Control
 	{
@@ -149,7 +149,7 @@ namespace Microsoft.UI.Xaml.Controls
 
 		protected override AutomationPeer OnCreateAutomationPeer()
 		{
-			return new Microsoft.UI.Xaml.Automation.Peers.PersonPictureAutomationPeer(this);
+			return new Microsoft/* UWP don't rename */.UI.Xaml.Automation.Peers.PersonPictureAutomationPeer(this);
 		}
 
 		protected override void OnApplyTemplate()

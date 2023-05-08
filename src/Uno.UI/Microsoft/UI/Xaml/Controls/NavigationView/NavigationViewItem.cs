@@ -12,21 +12,21 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft/* UWP don't rename */.UI.Xaml.Controls.Primitives;
 using Uno.Disposables;
 using Uno.UI.Helpers.WinUI;
 using Windows.Foundation;
 using Windows.System;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Automation.Peers;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Hosting;
-using Windows.UI.Xaml.Input;
-using static Microsoft.UI.Xaml.Controls._Tracing;
-using FlyoutBase = Windows.UI.Xaml.Controls.Primitives.FlyoutBase;
-using FlyoutBaseClosingEventArgs = Windows.UI.Xaml.Controls.Primitives.FlyoutBaseClosingEventArgs;
-using NavigationViewItemAutomationPeer = Microsoft.UI.Xaml.Automation.Peers.NavigationViewItemAutomationPeer;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Automation.Peers;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Hosting;
+using Microsoft.UI.Xaml.Input;
+using static Microsoft/* UWP don't rename */.UI.Xaml.Controls._Tracing;
+using FlyoutBase = Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase;
+using FlyoutBaseClosingEventArgs = Microsoft.UI.Xaml.Controls.Primitives.FlyoutBaseClosingEventArgs;
+using NavigationViewItemAutomationPeer = Microsoft/* UWP don't rename */.UI.Xaml.Automation.Peers.NavigationViewItemAutomationPeer;
 
 #if HAS_UNO_WINUI
 using Microsoft.UI.Input;
@@ -35,7 +35,7 @@ using Windows.UI.Input;
 using Windows.Devices.Input;
 #endif
 
-namespace Microsoft.UI.Xaml.Controls
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 {
 	public partial class NavigationViewItem : NavigationViewItemBase
 	{

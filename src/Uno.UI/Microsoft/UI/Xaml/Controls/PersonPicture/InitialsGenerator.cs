@@ -1,4 +1,4 @@
-// MUX Reference InitialsGenerator.cpp, commit de78834
+﻿// MUX Reference InitialsGenerator.cpp, commit de78834
 
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
@@ -12,11 +12,11 @@ using Windows.ApplicationModel.Contacts;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Storage.Streams;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Automation.Peers;
-using Microsoft.UI.Xaml.Media;
+using Microsoft/* UWP don't rename */.UI.Xaml.Automation;
+using Microsoft/* UWP don't rename */.UI.Xaml.Automation.Peers;
+using Microsoft/* UWP don't rename */.UI.Xaml.Media;
 
-namespace Microsoft.UI.Xaml.Controls
+namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 {
 	/// <summary>
 	/// Value indicating the general character set for a given character.

@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.UI.Xaml;
+using Microsoft/* UWP don't rename */.UI.Xaml;
 
 namespace $ext_safeprojectname$.Wasm
 {
@@ -9,7 +9,7 @@ namespace $ext_safeprojectname$.Wasm
 
 		static int Main(string[] args)
 		{
-			Microsoft.UI.Xaml.Application.Start(_ => _app = new AppHead());
+			Microsoft/* UWP don't rename */.UI.Xaml.Application.Start(_ => _app = new AppHead());
 
 			return 0;
 		}

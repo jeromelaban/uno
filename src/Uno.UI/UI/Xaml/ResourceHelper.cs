@@ -2,7 +2,7 @@
 using Uno.UI.Services;
 using Windows.ApplicationModel.Resources;
 
-namespace Windows.UI.Xaml;
+namespace Microsoft.UI.Xaml;
 
 public static class ResourceHelper
 {

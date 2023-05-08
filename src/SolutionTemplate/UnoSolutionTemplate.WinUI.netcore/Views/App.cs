@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Logging;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Navigation;
+using Microsoft/* UWP don't rename */.UI.Xaml;
+using Microsoft/* UWP don't rename */.UI.Xaml.Controls;
+using Microsoft/* UWP don't rename */.UI.Xaml.Navigation;
 
 namespace $ext_safeprojectname$;
 
@@ -35,7 +35,7 @@ public partial class App : Application
 	/// will be used such as when the application is launched to open a specific file.
 	/// </summary>
 	/// <param name="args">Details about the launch request and process.</param>
-	protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+	protected override void OnLaunched(Microsoft/* UWP don't rename */.UI.Xaml.LaunchActivatedEventArgs args)
 	{
 #if DEBUG
 		if (System.Diagnostics.Debugger.IsAttached)
@@ -48,7 +48,7 @@ public partial class App : Application
 		MainWindow = new Window();
 		MainWindow.Activate();
 #else
-		MainWindow = Microsoft.UI.Xaml.Window.Current;
+		MainWindow = Microsoft/* UWP don't rename */.UI.Xaml.Window.Current;
 #endif
 
 		// Do not repeat app initialization when the Window already has content,

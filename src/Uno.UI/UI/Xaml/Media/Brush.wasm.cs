@@ -7,9 +7,9 @@ using Uno.Disposables;
 using Windows.Foundation.Collections;
 using Windows.UI; // Required for WinUI 3+ Color
 
-using RadialGradientBrush = Microsoft.UI.Xaml.Media.RadialGradientBrush;
+using RadialGradientBrush = Microsoft/* UWP don't rename */.UI.Xaml.Media.RadialGradientBrush;
 
-namespace Windows.UI.Xaml.Media
+namespace Microsoft.UI.Xaml.Media
 {
 	public abstract partial class Brush
 	{
