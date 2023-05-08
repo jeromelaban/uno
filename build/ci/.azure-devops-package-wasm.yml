@@ -5,7 +5,7 @@ jobs:
 - job: wasm_package_build
   displayName: 'Build WebAssembly Package Binaries'
 
-  dependsOn: winui_convert_tree
+  dependsOn: uwp_convert_tree
 
   pool:
     vmImage: ${{ parameters.vmImage }}
