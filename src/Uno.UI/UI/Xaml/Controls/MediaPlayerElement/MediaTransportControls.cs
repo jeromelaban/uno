@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Uno.UI.Xaml.Controls.MediaPlayer.Internal;
+using System.Drawing;
 
 #if __IOS__
 using UIKit;
@@ -43,6 +44,7 @@ namespace Windows.UI.Xaml.Controls
 	[TemplatePart(Name = "ProgressSlider", Type = typeof(Slider))]
 	[TemplatePart(Name = "BufferingProgressBar", Type = typeof(ProgressBar))]
 	[TemplatePart(Name = "DownloadProgressIndicator", Type = typeof(ProgressBar))]
+	[TemplatePart(Name = "ControlPanelGrid", Type = typeof(Grid))]
 	public partial class MediaTransportControls : Control
 	{
 		private const string RootGridName = "RootGrid";
@@ -73,6 +75,7 @@ namespace Windows.UI.Xaml.Controls
 		private const string HorizontalThumbName = "HorizontalThumb";
 		private const string DownloadProgressIndicatorName = "DownloadProgressIndicator";
 		private const string CompactOverlayButtonName = "CompactOverlayButton";
+		private const string ControlPanelGridName = "ControlPanelGrid";
 
 		private Grid _rootGrid;
 		private Button _playPauseButton;
@@ -101,6 +104,7 @@ namespace Windows.UI.Xaml.Controls
 		private ProgressBar _bufferingProgressBar;
 		private Border _timelineContainer;
 		private ProgressBar _downloadProgressIndicator;
+		private Grid _controlPanelGrid;
 
 		private Timer _controlsVisibilityTimer;
 		private bool _wasPlaying;
@@ -206,6 +210,10 @@ namespace Windows.UI.Xaml.Controls
 			_compactOverlayButton.Tapped -= UpdateMediaTransportControlMode;
 			_compactOverlayButton.Tapped += UpdateMediaTransportControlMode;
 
+			_controlPanelGrid = this.GetTemplateChild(ControlPanelGridName) as Grid;
+			_controlPanelGrid.SizeChanged -= ControlPanelGridSizeChanged;
+			_controlPanelGrid.SizeChanged += ControlPanelGridSizeChanged;
+
 			_repeatVideoButton = this.GetTemplateChild(RepeatVideoButtonName) as Button;
 			_repeatVideoButton?.SetBinding(Button.VisibilityProperty, new Binding { Path = "IsRepeatButtonVisible", Source = this, Mode = BindingMode.OneWay, FallbackValue = Visibility.Collapsed, Converter = trueToVisible });
 			_repeatVideoButton?.SetBinding(Button.IsEnabledProperty, new Binding { Path = "IsRepeatEnabled", Source = this, Mode = BindingMode.OneWay, FallbackValue = true });
@@ -277,6 +285,11 @@ namespace Windows.UI.Xaml.Controls
 			}
 		}
 
+		private void ControlPanelGridSizeChanged(object sender, SizeChangedEventArgs args)
+		{
+			OnControlsBoundsChanged();
+		}
+
 		private void FullWindowButtonTapped(object sender, RoutedEventArgs e)
 		{
 			_mpe.IsFullWindow = !_mpe.IsFullWindow;
@@ -333,6 +346,7 @@ namespace Windows.UI.Xaml.Controls
 			{
 				VisualStateManager.GoToState(this, "ControlPanelFadeIn", false);
 			});
+			OnControlsBoundsChanged();
 		}
 
 		public void Hide()
@@ -346,6 +360,23 @@ namespace Windows.UI.Xaml.Controls
 					VisualStateManager.GoToState(this, "ControlPanelFadeOut", false);
 				}
 			});
+			OnControlsBoundsChanged();
+		}
+
+		private void OnControlsBoundsChanged()
+		{
+			var root = (XamlRoot.Content as UIElement);
+			if (root is null)
+			{
+				return;
+			}
+			var transportBounds =
+				this.TransformToVisual(root)
+					.TransformBounds(
+						new Foundation.Rect(
+							0, 0,
+							_controlPanelGrid.ActualWidth, _isInteractive ? _controlPanelGrid.ActualHeight : 0));
+			this._mediaPlayer?.SetTransportControlBounds(transportBounds);
 		}
 
 		private void OnRootGridTapped(object sender, TappedRoutedEventArgs e)
@@ -373,11 +404,15 @@ namespace Windows.UI.Xaml.Controls
 		private void UpdateMediaTransportControlMode()
 		{
 			VisualStateManager.GoToState(this, IsCompact ? "CompactMode" : "NormalMode", true);
+			OnControlsBoundsChanged();
 		}
 
 		private static void OnIsCompactChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
 		{
-			VisualStateManager.GoToState((MediaTransportControls)dependencyObject, (bool)args.NewValue ? "CompactMode" : "NormalMode", false);
+			if (dependencyObject is MediaTransportControls mtc)
+			{
+				mtc.UpdateMediaTransportControlMode();
+			}
 		}
 
 		private static void OnShowAndHideAutomaticallyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs args)
