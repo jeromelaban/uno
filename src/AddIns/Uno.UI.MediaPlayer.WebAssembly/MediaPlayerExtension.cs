@@ -589,4 +589,6 @@ public partial class MediaPlayerExtension : IMediaPlayerExtension
 			_isPlayerPrepared = false;
 		}
 	}
+
+	public void SetTransportControlsBounds(Rect bounds) => throw new NotImplementedException();
 }
