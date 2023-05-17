@@ -369,6 +369,8 @@ namespace Windows.UI.Xaml.Controls
 			{
 				return;
 			}
+
+#if !__MACCATALYST__
 			var bounds = new Foundation.Rect(0, 0,
 											_controlPanelGrid.ActualWidth,
 											_isInteractive ? _controlPanelGrid.ActualHeight : 0);
@@ -377,6 +379,7 @@ namespace Windows.UI.Xaml.Controls
 				this.TransformToVisual(root)
 					.TransformBounds(bounds);
 			this._mediaPlayer?.SetTransportControlBounds(transportBounds);
+#endif
 		}
 
 		private void OnRootGridTapped(object sender, TappedRoutedEventArgs e)
