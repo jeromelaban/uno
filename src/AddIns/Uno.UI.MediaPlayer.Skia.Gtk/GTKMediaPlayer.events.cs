@@ -50,7 +50,7 @@ public partial class GtkMediaPlayer
 			this.Log().Debug($"Creating VideoView");
 		}
 		_videoView = new LibVLCSharp.GTK.VideoView();
-		_videoContainer = new ContentControl
+		_videoContainer = new ContentPresenter
 		{
 			HorizontalAlignment = HorizontalAlignment.Center,
 			VerticalAlignment = VerticalAlignment.Center,

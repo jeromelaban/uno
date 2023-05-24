@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Cairo;
 using Gdk;
 using Gtk;
 using LibVLCSharp.Shared;
@@ -53,6 +54,7 @@ namespace LibVLCSharp.GTK
 		}
 
 		private MediaPlayer? _mediaPlayer;
+		private Gdk.Window? _videoWindow;
 
 		/// <summary>
 		/// GTK VideoView constructor
@@ -94,12 +96,61 @@ namespace LibVLCSharp.GTK
 			}
 		}
 
+		internal Size NaturalVideoSize { get; set; }
+
+		internal Size ActualSize { get; set; }
+
+		//protected override void OnAdjustSizeAllocation(Orientation orientation, out int minimum_size, out int natural_size, out int allocated_pos, out int allocated_size)
+		//{
+		//	base.OnAdjustSizeAllocation(orientation, out minimum_size, out natural_size, out allocated_pos, out allocated_size);
+
+		//	Console.WriteLine($"VideoView OnAdjustSizeAllocation {orientation} {minimum_size} {natural_size} {allocated_pos} {allocated_size}");
+		//}
+
+		//protected override void OnAdjustSizeRequest(Orientation orientation, out int minimum_size, out int natural_size)
+		//{
+		//	base.OnAdjustSizeRequest(orientation, out minimum_size, out natural_size);
+
+		//	//if (orientation == Orientation.Horizontal)
+		//	//{
+		//	//	natural_size = NaturalVideoSize.Width;
+		//	//}
+		//	//else
+		//	//{
+		//	//	natural_size = NaturalVideoSize.Height;
+		//	//}
+
+		//	Console.WriteLine($"VideoView OnAdjustSizeRequest {orientation} {minimum_size} {natural_size}");
+		//}
+
 		private void Attach()
 		{
 			if (!IsRealized || _mediaPlayer == null)
 			{
 				return;
 			}
+
+			// Create a new Gdk.Window with the specified attributes
+			var attr = new WindowAttr
+			{
+				WindowType = Gdk.WindowType.Child,
+				X = 0,
+				Y = 0,
+				Width = 0,
+				Height = 0,
+				Wclass = WindowWindowClass.InputOutput,
+				Visual = Screen.Default.RgbaVisual,
+				EventMask = (int)EventMask.ExposureMask
+			};
+
+			var attrs_mask = WindowAttributesType.X | WindowAttributesType.Y | WindowAttributesType.Visual;
+
+			// Create the child window
+			_videoWindow = new Gdk.Window(Window.Toplevel, attr, attrs_mask);
+			_videoWindow.SkipTaskbarHint = true;
+			_videoWindow.SkipPagerHint = true;
+
+			_videoWindow.Show();
 
 			if (this.Log().IsEnabled(Microsoft.Extensions.Logging.LogLevel.Debug))
 			{
@@ -108,7 +159,7 @@ namespace LibVLCSharp.GTK
 
 			if (PlatformHelper.IsWindows)
 			{
-				_mediaPlayer.Hwnd = Native.gdk_win32_window_get_handle(this.Window.Handle);
+				_mediaPlayer.Hwnd = Native.gdk_win32_window_get_handle(_videoWindow.Handle);
 			}
 			else if (PlatformHelper.IsLinux)
 			{
@@ -162,6 +213,12 @@ namespace LibVLCSharp.GTK
 			{
 				throw new PlatformNotSupportedException();
 			}
+		}
+
+		internal void Arrange(Gdk.Rectangle value)
+		{
+			_videoWindow?.MoveResize(value.X, value.Y, value.Width, value.Height);
+			Console.WriteLine($"VideoView ArrangeWindow: {value.X}x{value.Y} / {value.Width}x{value.Height}");
 		}
 	}
 }
