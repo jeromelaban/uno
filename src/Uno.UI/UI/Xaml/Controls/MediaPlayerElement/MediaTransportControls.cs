@@ -1,14 +1,14 @@
-#nullable enable
+﻿#nullable enable
 
 using System;
 using System.Collections.Generic;
 using Windows.Foundation;
 using Windows.Media.Playback;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Automation;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Automation;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
 using DirectUI;
 using Uno.Disposables;
 using System.Diagnostics.CodeAnalysis;
@@ -31,7 +31,7 @@ using AppKit;
 using Uno.UI;
 #endif
 
-namespace Windows.UI.Xaml.Controls
+namespace Microsoft.UI.Xaml.Controls
 {
 	public partial class MediaTransportControls
 	{
@@ -849,7 +849,7 @@ namespace Windows.UI.Xaml.Controls
 			{
 				if (listView.SelectedItem is not null)
 				{
-					if (listView.SelectedItem is Windows.UI.Xaml.Controls.ListViewItem item)
+					if (listView.SelectedItem is Microsoft.UI.Xaml.Controls.ListViewItem item)
 					{
 						_isShowingControlVolumeOrPlaybackRate = false;
 						ResetControlsVisibilityTimer();
