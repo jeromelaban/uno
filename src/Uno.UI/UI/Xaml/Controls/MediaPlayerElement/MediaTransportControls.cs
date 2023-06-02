@@ -1115,6 +1115,7 @@ namespace Microsoft.UI.Xaml.Controls
 			UpdateFullWindowStates(useTransition);
 			UpdateRepeatStates(useTransition);
 		}
+
 		private void UpdateControlPanelVisibilityStates(bool useTransition = true)
 		{
 			var state = _isShowingControls
@@ -1122,6 +1123,7 @@ namespace Microsoft.UI.Xaml.Controls
 				: VisualState.ControlPanelVisibilityStates.ControlPanelFadeOut;
 			VisualStateManager.GoToState(this, state, useTransition);
 		}
+
 		private void UpdateMediaStates(bool useTransition = true)
 		{
 			if (_mpe?.MediaPlayer?.PlaybackSession is { } session)
@@ -1137,12 +1139,20 @@ namespace Microsoft.UI.Xaml.Controls
 					_ => null,
 				};
 
+				if (m_tpBufferingProgressBar is not null)
+				{
+					// Disable indeterminate state if not buffering to avoid animation costs.
+					m_tpBufferingProgressBar.IsIndeterminate
+						= session.PlaybackState is MediaPlaybackState.Buffering or MediaPlaybackState.Opening;
+				}
+
 				if (state != null)
 				{
 					VisualStateManager.GoToState(this, state, useTransition);
 				}
 			}
 		}
+
 		private void UpdateMediaTransportControlModeStates(bool useTransition = true)
 		{
 			var state = IsCompact
