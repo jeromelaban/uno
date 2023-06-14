@@ -15,7 +15,7 @@ pr:
       - feature/*
 
 variables:
-  windowsScaledPool: 'Windows2022-20220925-1'
+  windowsScaledPool: 'Windows2022-20230613'
   linuxVMImage: 'ubuntu-latest'
 
 jobs:
@@ -31,6 +31,3 @@ jobs:
   parameters:
     vmImage: '$(linuxVMImage)'
 
-- template: build/ci/.azure-devops-docs.yml
-  parameters:
-    poolName: '$(windowsScaledPool)'
