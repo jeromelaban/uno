@@ -75,7 +75,9 @@ namespace Windows.UI.Xaml.Controls
 			}
 
 			var isGroupHeader = parent.GetIsGroupHeader(position);
-			if (isGroupHeader || parent.GetIsHeader(position) || parent.GetIsFooter(position))
+			var isHeader = parent.GetIsHeader(position);
+			var isFooter = parent.GetIsFooter(position);
+			if (isGroupHeader || isHeader || isFooter)
 			{
 				var item = parent.GetElementFromDisplayPosition(position);
 
@@ -90,7 +92,11 @@ namespace Windows.UI.Xaml.Controls
 
 				var dataTemplate = GetDataTemplateFromItem(parent, item, viewType, isGroupHeader);
 
-				container.DataContext = item;
+				if (!isHeader && !isFooter)
+				{
+					container.DataContext = item;
+				}
+
 				container.ContentTemplate = dataTemplate;
 				if (container.GetBindingExpression(ContentControl.ContentProperty) == null)
 				{

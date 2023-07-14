@@ -2933,6 +2933,56 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 		[TestMethod]
 		public async Task When_Items_Are_Equal_But_Different_References_FlipView() => await When_Items_Are_Equal_But_Different_References_Common(new FlipView());
 
+		[TestMethod]
+		[RunsOnUIThread]
+		public async Task When_Header_DataContext()
+		{
+			List<object> contexts = new();
+
+			TextBlock header = new TextBlock { Text = "empty" };
+			header.DataContextChanged += (s, e) =>
+			{
+				contexts.Add(new { Value = e.NewValue, Stack = new StackTrace().ToString() });
+			};
+
+			TextBlock header2 = new TextBlock { Text = "empty" };
+
+			var SUT = new ListView()
+			{
+				ItemContainerStyle = BasicContainerStyle,
+				Header = new StackPanel
+				{
+					Background = new SolidColorBrush(Colors.Red),
+					Children = {
+						// new TextBlock { Text = "Header text:" },
+						header,
+						// header2,
+					}
+				}
+			};
+
+			header.SetBinding(TextBlock.TextProperty, new Binding { Path = new PropertyPath("MyText") });
+			header2.SetBinding(TextBlock.TextProperty, new Binding { Path = new PropertyPath(".") });
+
+			WindowHelper.WindowContent = SUT;
+			await WindowHelper.WaitForIdle();
+
+			var source = new[] {
+				new ListViewItem(){ Content = "item 1" },
+			};
+
+			SUT.ItemsSource = source;
+			await WindowHelper.WaitForIdle();
+
+			// Assert.IsNull(header.DataContext);
+
+			SUT.DataContext = new When_Header_DataContext_Model("test value");
+			await WindowHelper.WaitForIdle();
+
+			Assert.AreEqual(SUT.DataContext, header.DataContext);
+			Assert.AreEqual("test value", header.Text);
+		}
+
 		private async Task When_Items_Are_Equal_But_Different_References_Common(Selector sut)
 		{
 			var obj1 = new AlwaysEqualClass();
@@ -2972,6 +3022,8 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml_Controls
 			Assert.AreSame(obj1, added2.Single());
 		}
 	}
+
+	public record When_Header_DataContext_Model(string MyText);
 
 	public partial class Given_ListViewBase // data class, data-context, view-model, template-selector
 	{
