@@ -456,6 +456,9 @@ namespace SamplesApp
 				// Runtime Tests control logging
 				builder.AddFilter("Uno.UI.Samples.Tests", LogLevel.Information);
 
+				// Hot reload troubleshooting
+				builder.AddFilter("Uno.UI.RuntimeTests.Tests.HotReload.RemoteControlServerHelper", LogLevel.Debug);
+
 				builder.AddFilter("Uno.UI.Media", LogLevel.Information);
 
 				builder.AddFilter("Uno", LogLevel.Warning);

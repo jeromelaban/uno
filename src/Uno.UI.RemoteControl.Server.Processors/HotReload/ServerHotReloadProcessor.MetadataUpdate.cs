@@ -53,7 +53,12 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 			{
 				try
 				{
-					var result = await CompilationWorkspaceProvider.CreateWorkspaceAsync(configureServer.ProjectPath, _reporter, configureServer.MetadataUpdateCapabilities, CancellationToken.None);
+					var result = await CompilationWorkspaceProvider.CreateWorkspaceAsync(
+						configureServer.ProjectPath,
+						_reporter,
+						configureServer.MetadataUpdateCapabilities,
+						configureServer.MSBuildProperties,
+						CancellationToken.None);
 
 					ObserveSolutionPaths(result.Item1);
 
@@ -192,21 +197,22 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 
 
 			var (updates, hotReloadDiagnostics) = await _hotReloadService.EmitSolutionUpdateAsync(updatedSolution, cancellationToken);
+			var hasErrorDiagnostics = hotReloadDiagnostics.Any(d => d.Severity == DiagnosticSeverity.Error);
 
 			_reporter.Output($"Found {updates.Length} metadata updates after {sw.Elapsed}");
 
-			if (hotReloadDiagnostics.IsDefaultOrEmpty && updates.IsDefaultOrEmpty)
+			if (hasErrorDiagnostics && updates.IsDefaultOrEmpty)
 			{
 				// It's possible that there are compilation errors which prevented the solution update
 				// from being updated. Let's look to see if there are compilation errors.
-				var diagnostics = GetDiagnostics(updatedSolution, cancellationToken);
+				var diagnostics = GetErrorDiagnostics(updatedSolution, cancellationToken);
 				if (diagnostics.IsDefaultOrEmpty)
 				{
 					await UpdateMetadata(file, updates);
 				}
 				else
 				{
-					Console.WriteLine($"Got {diagnostics.Length} diagnostics");
+					Console.WriteLine($"Got {diagnostics.Length} errors");
 				}
 
 				// HotReloadEventSource.Log.HotReloadEnd(HotReloadEventSource.StartType.CompilationHandler);
@@ -214,7 +220,7 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 				return true;
 			}
 
-			if (!hotReloadDiagnostics.IsDefaultOrEmpty)
+			if (hasErrorDiagnostics)
 			{
 				// Rude edit.
 				_reporter.Output("Unable to apply hot reload because of a rude edit. Rebuilding the app...");
@@ -297,7 +303,7 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 		}
 
 
-		private ImmutableArray<string> GetDiagnostics(Solution solution, CancellationToken cancellationToken)
+		private ImmutableArray<string> GetErrorDiagnostics(Solution solution, CancellationToken cancellationToken)
 		{
 			var @lock = new object();
 			var builder = ImmutableArray<string>.Empty;

@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
+		<OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+
+		<_UnoBaseReference>..\..\..\..\..\SamplesApp\SamplesApp.Skia.Gtk\bin\$(Configuration)\$(TargetFramework)</_UnoBaseReference>
+
+		<UnoUIRuntimeTestEngine_DisableValidateUno>true</UnoUIRuntimeTestEngine_DisableValidateUno>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<UnoReferenceExclusion Include="$(_UnoBaseReference)\SamplesApp*.dll"/>
+		<UnoReferenceExclusion Include="$(_UnoBaseReference)\Uno.UI.RuntimeTests*.dll"/>
+		<UnoReferenceExclusion Include="$(_UnoBaseReference)\System*.dll"/>
+		<UnoReferenceExclusion Include="$(_UnoBaseReference)\Microsoft*.dll"/>
+
+		<Reference Include="$(_UnoBaseReference)\*.dll" 
+				   Exclude="@(UnoReferenceExclusion)" />
+
+		<!-- C:\s\uno.github\uno\src\Uno.UI.RuntimeTests\Tests\HotReload\Frame\HRApp\..\..\..\..\SamplesApp\SamplesApp.Skia.Gtk\bin -->
+		
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+		
+		<PackageReference Include="Microsoft.Win32.Registry" Version="4.7.0" />
+		<PackageReference Include="Microsoft.Win32.SystemEvents" Version="6.0.1" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+		<PackageReference Include="SkiaSharp" Version="2.88.3" />
+		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.3" />
+		<PackageReference Include="Uno.UI.RuntimeTests.Engine" Version="0.15.0-dev.56" />
+
+		<!--
+		<PackageReference Include="Uno.Resizetizer" Version="1.0.4" />
+		<PackageReference Include="Uno.WinUI.Skia.Gtk" Version="4.8.33" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
+		<PackageReference Include="SkiaSharp.Views.Uno.WinUI" Version="2.88.3" />
+		<PackageReference Include="SkiaSharp.Skottie" Version="2.88.3" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.8.33" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging" Version="4.8.33" />
+		-->
+	</ItemGroup>
+
+	
+	<Import Project="..\..\..\..\..\..\build\nuget\*.Skia.Gtk.props" />
+	<Import Project="..\..\..\..\..\..\build\nuget\*.Skia.Gtk.targets" />
+	<Import Project="..\..\..\..\..\..\build\nuget\uno.winui.runtime-replace.targets" />
+	<Import Project="..\..\..\..\..\SourceGenerators\sourcegenerators.local.props" />
+
+</Project>

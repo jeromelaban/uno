@@ -12,6 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
+using Microsoft.CSharp.RuntimeBinder;
 using Uno;
 
 namespace Uno.UI.RemoteControl.HotReload.MetadataUpdater;
@@ -221,7 +222,7 @@ internal sealed class HotReloadAgent : IDisposable
 
 		try
 		{
-			// Defer discovering metadata updata handlers until after hot reload deltas have been applied.
+			// Defer discovering metadata update handlers until after hot reload deltas have been applied.
 			// This should give enough opportunity for AppDomain.GetAssemblies() to be sufficiently populated.
 			_handlerActions ??= GetMetadataUpdateHandlerActions();
 			var handlerActions = _handlerActions;
@@ -232,6 +233,8 @@ internal sealed class HotReloadAgent : IDisposable
 			handlerActions.UpdateApplication.ForEach(a => a(updatedTypes));
 
 			_log("Deltas applied.");
+
+			MetadataUpdaterHelper.RaiseMetadataUpdated();
 		}
 		catch (Exception ex)
 		{

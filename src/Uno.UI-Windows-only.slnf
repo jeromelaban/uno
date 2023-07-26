@@ -13,6 +13,10 @@
       "SourceGenerators\\Uno.UI.SourceGenerators.Internal\\Uno.UI.SourceGenerators.Internal.csproj",
       "SourceGenerators\\Uno.UI.SourceGenerators\\Uno.UI.SourceGenerators.csproj",
       "SourceGenerators\\Uno.UI.Tasks\\Uno.UI.Tasks.csproj",
+      "Uno.UI.RemoteControl.Host\\Uno.UI.RemoteControl.Host.csproj",
+      "Uno.UI.RemoteControl.Messaging\\Uno.UI.RemoteControl.Messaging.csproj",
+      "Uno.UI.RemoteControl.Server\\Uno.UI.RemoteControl.Server.csproj",
+      "Uno.UI.RemoteControl\\Uno.UI.RemoteControl.Windows.csproj",
       "Uno.UI.RuntimeTests\\Uno.UI.RuntimeTests.Windows.csproj",
       "Uno.UI.Toolkit\\Uno.UI.Toolkit.Windows.csproj"
     ]

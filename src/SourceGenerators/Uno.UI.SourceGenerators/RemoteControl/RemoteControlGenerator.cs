@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text;
 using Uno.Extensions;
 using Uno.Roslyn;
 using Uno.UI.SourceGenerators.Helpers;
@@ -28,7 +29,12 @@ namespace Uno.UI.SourceGenerators.RemoteControl
 			if (!DesignTimeHelper.IsDesignTime(context)
 				&& context.GetMSBuildPropertyValue("Configuration") == "Debug")
 			{
-				if (IsRemoteControlClientInstalled(context)
+				if ((IsRemoteControlClientInstalled(context)
+
+					// Inside the uno solution we generate the attributes anyways, so 
+					// we can test the remote control tooling explicitly.
+					|| IsInsideUnoSolution(context))
+
 					&& PlatformHelper.IsApplication(context))
 				{
 					var sb = new IndentedStringBuilder();
@@ -53,6 +59,9 @@ namespace Uno.UI.SourceGenerators.RemoteControl
 				}
 			}
 		}
+
+		private static bool IsInsideUnoSolution(GeneratorExecutionContext context) 
+			=> context.GetMSBuildPropertyValue("_IsUnoUISolution") == "true";
 
 		private static void BuildGeneratedFileHeader(IndentedStringBuilder sb)
 		{
@@ -90,9 +99,60 @@ namespace Uno.UI.SourceGenerators.RemoteControl
 			var xamlPaths = EnumerateLocalSearchPaths(context)
 				.Concat(EnumerateLibrarySearchPaths(context));
 
-			var distictPaths = string.Join(",\n", xamlPaths.Select(p => $"@\"{p}\""));
+			var distinctPaths = string.Join(",\n", xamlPaths.Select(p => $"@\"{p}\""));
 
-			sb.AppendLineIndented($"new string[]{{{distictPaths}}}");
+			sb.AppendLineIndented($"new string[]{{{distinctPaths}}},");
+
+			// Global
+			// 	SolutionFileName = TestIOSHotReload.sln
+			// 	LangName = en-US
+			// 	CurrentSolutionConfigurationContents =
+			// 		<SolutionConfiguration>
+			// 			<ProjectConfiguration Project="{5cca25f3-5972-4c91-abaa-942e81f13ad3}" AbsolutePath="C:\Users\jerome.uno\source\repos\TestIOSHotReload\TestIOSHotReload\TestIOSHotReload\TestIOSHotReload.csproj">Debug|AnyCPU</ProjectConfiguration>
+			// 			<ProjectConfiguration Project="{57e22676-ef64-48b2-9adc-0cec0fd7b42b}" AbsolutePath="C:\Users\jerome.uno\source\repos\TestIOSHotReload\TestIOSHotReload\TestIOSHotReload.Mobile\TestIOSHotReload.Mobile.csproj">Debug|AnyCPU</ProjectConfiguration>
+			// 		</SolutionConfiguration>
+			// 	Configuration = Debug
+			// 	LangID = 1033
+			// 	SolutionDir = C:\Users\jerome.uno\source\repos\TestIOSHotReload\
+			// 	SolutionExt = .sln
+			// 	BuildingInsideVisualStudio = true
+			// 	UnoRemoteControlPort = 56341
+			// 	UseHostCompilerIfAvailable = false
+			// 	TargetFramework = 
+			// 	DefineExplicitDefaults = true
+			// 	Platform = AnyCPU
+			// 	SolutionPath = C:\Users\jerome.uno\source\repos\TestIOSHotReload\TestIOSHotReload.sln
+			// 	SolutionName = TestIOSHotReload
+			// 	VSIDEResolvedNonMSBuildProjectOutputs = <VSIDEResolvedNonMSBuildProjectOutputs />
+			// 	DevEnvDir = C:\vs\even\Common7\IDE\
+
+
+			var additionalProperties = new[] {
+				"SolutionFileName",
+				"LangName",
+				//"CurrentSolutionConfigurationContents",
+				"Configuration",
+				"LangID",
+				"SolutionDir",
+				"SolutionExt",
+				"BuildingInsideVisualStudio",
+				"UnoRemoteControlPort",
+				"UseHostCompilerIfAvailable",
+				"TargetFramework",
+				"DefineExplicitDefaults",
+				"Platform",
+				"RuntimeIdentifier",
+				"SolutionPath",
+				"SolutionName",
+				"VSIDEResolvedNonMSBuildProjectOutputs",
+				"DevEnvDir",
+			};
+
+			var additionalPropertiesValue = string.Join(
+				", ",
+				additionalProperties.Select(p => $"@\"{p}={Convert.ToBase64String(Encoding.UTF8.GetBytes(context.GetMSBuildPropertyValue(p)))}\""));
+
+			sb.AppendLineIndented($"new [] {{ {additionalPropertiesValue} }}");
 
 			sb.AppendLineIndented(")]");
 		}
@@ -183,26 +243,29 @@ namespace Uno.UI.SourceGenerators.RemoteControl
 
 			if (string.IsNullOrEmpty(unoRemoteControlHost))
 			{
-				var addresses = NetworkInterface.GetAllNetworkInterfaces()
-					.SelectMany(x => x.GetIPProperties().UnicastAddresses)
-					.Where(x => !IPAddress.IsLoopback(x.Address));
-				//This is not supported on linux yet: .Where(x => x.DuplicateAddressDetectionState == DuplicateAddressDetectionState.Preferred);
-
-				foreach (var addressInfo in addresses)
+				if (!IsInsideUnoSolution(context))
 				{
-					var address = addressInfo.Address;
+					var addresses = NetworkInterface.GetAllNetworkInterfaces()
+						.SelectMany(x => x.GetIPProperties().UnicastAddresses)
+						.Where(x => !IPAddress.IsLoopback(x.Address));
+					//This is not supported on linux yet: .Where(x => x.DuplicateAddressDetectionState == DuplicateAddressDetectionState.Preferred);
 
-					string addressStr;
-					if (address.AddressFamily == AddressFamily.InterNetworkV6)
+					foreach (var addressInfo in addresses)
 					{
-						address.ScopeId = 0; // remove annoying "%xx" on IPv6 addresses
-						addressStr = $"[{address}]";
+						var address = addressInfo.Address;
+
+						string addressStr;
+						if (address.AddressFamily == AddressFamily.InterNetworkV6)
+						{
+							address.ScopeId = 0; // remove annoying "%xx" on IPv6 addresses
+							addressStr = $"[{address}]";
+						}
+						else
+						{
+							addressStr = address.ToString();
+						}
+						sb.AppendLineIndented($"[assembly: global::Uno.UI.RemoteControl.ServerEndpointAttribute(\"{addressStr}\", {unoRemoteControlPort})]");
 					}
-					else
-					{
-						addressStr = address.ToString();
-					}
-					sb.AppendLineIndented($"[assembly: global::Uno.UI.RemoteControl.ServerEndpointAttribute(\"{addressStr}\", {unoRemoteControlPort})]");
 				}
 			}
 			else

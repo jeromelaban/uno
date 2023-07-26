@@ -27,7 +27,7 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 			_remoteControlServer = remoteControlServer;
 		}
 
-		public string Scope => "hotreload";
+		public string Scope => HotReloadConstants.ScopeName;
 
 		public Task ProcessFrame(Frame frame)
 		{
@@ -157,6 +157,8 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 					watcher.Dispose();
 				}
 			}
+
+			_hotReloadService?.EndSession();
 		}
 	}
 }

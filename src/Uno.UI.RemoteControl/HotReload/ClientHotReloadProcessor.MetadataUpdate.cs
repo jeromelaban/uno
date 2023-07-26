@@ -160,7 +160,6 @@ namespace Uno.UI.RemoteControl.HotReload
 			return values;
 		}
 #endif
-
 		private static void ReloadWithUpdatedTypes(Type[] updatedTypes)
 		{
 			if (updatedTypes.Length == 0)

@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="MSBuild.Sdk.Extras" ToolsVersion="15.0">
 	<PropertyGroup>
 		<TargetFrameworks>uap10.0.19041</TargetFrameworks>
 		<AssemblyName>Uno.UI.RuntimeTests</AssemblyName>
@@ -17,6 +16,7 @@
 		<ProjectReference Include="..\Uno.UI.Toolkit\Uno.UI.Toolkit.Windows.csproj" />
 		<Reference Include="System.Xml" />
 		<Reference Include="System.Xml.Linq" />
+		 <ProjectReference Include="..\Uno.UI.RemoteControl\Uno.UI.RemoteControl.Windows.csproj" /> 
 	</ItemGroup>
 
 	<ItemGroup>

@@ -41,15 +41,15 @@ namespace Uno.UI.RemoteControl
 		private List<IRemoteControlPreProcessor> _preprocessors = new List<IRemoteControlPreProcessor>();
 		private Timer? _keepAliveTimer;
 
-		private RemoteControlClient(Type appType)
+		private RemoteControlClient(Type appType, ServerEndpointAttribute[]? endpoints = null)
 		{
 			AppType = appType;
 
-			if (appType.Assembly.GetCustomAttributes(typeof(ServerEndpointAttribute), false) is ServerEndpointAttribute[] endpoints)
+			if (appType.Assembly.GetCustomAttributes(typeof(ServerEndpointAttribute), false) is ServerEndpointAttribute[] embeddedEndpoints)
 			{
 				IEnumerable<(string endpoint, int port)> GetAddresses()
 				{
-					foreach (var endpoint in endpoints)
+					foreach (var endpoint in embeddedEndpoints)
 					{
 						if (endpoint.Port == 0 && !Uri.TryCreate(endpoint.Endpoint, UriKind.Absolute, out _))
 						{
@@ -63,6 +63,13 @@ namespace Uno.UI.RemoteControl
 				}
 
 				_serverAddresses = GetAddresses().ToArray();
+			}
+
+			if ((_serverAddresses?.Length ?? 0) == 0)
+			{
+				_serverAddresses = endpoints
+						?.Select(ep => (ep.Endpoint, ep.Port))
+						.ToArray();
 			}
 
 			if ((_serverAddresses?.Length ?? 0) == 0)
@@ -385,6 +392,9 @@ namespace Uno.UI.RemoteControl
 
 		public static RemoteControlClient Initialize(Type appType)
 			=> Instance = new RemoteControlClient(appType);
+
+		internal static RemoteControlClient Initialize(Type appType, ServerEndpointAttribute[]? endpoints)
+			=> Instance = new RemoteControlClient(appType, endpoints);
 
 		public async Task SendMessage(IMessage message)
 		{

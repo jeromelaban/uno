@@ -47,6 +47,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Uno.Foundation\Uno.Foundation.Skia.csproj" />
+		<ProjectReference Include="..\Uno.UI.RemoteControl\Uno.UI.RemoteControl.Skia.csproj" />
 		<ProjectReference Include="..\Uno.UI\Uno.UI.Skia.csproj" />
 		<ProjectReference Include="..\Uno.UWP\Uno.Skia.csproj" />
 		<ProjectReference Include="..\Uno.UI.Toolkit\Uno.UI.Toolkit.Skia.csproj" />
@@ -69,11 +70,11 @@
 	<Import Project="..\SourceGenerators\Uno.UI.Tasks\Content\Uno.UI.Tasks.targets" Condition="'$(SkipUnoResourceGeneration)' == '' " />
 
 	<ItemGroup>
-	  <PRIResource Include="Resources\**\*.resw" />
+		<PRIResource Include="Resources\**\*.resw" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Assets\**" />
+		<Content Include="Assets\**" />
 	</ItemGroup>
 
 	<Target Name="ValidateLocalAssets" AfterTargets="Build" Condition="'$(TargetFramework)'!=''">
@@ -86,5 +87,21 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>
+
+	<Target Name="RemoveSample" BeforeTargets="BeforeBuild">
+
+		<ItemGroup>
+			<Compile Remove="Tests\HotReload\Frame\HRApp\**\*.cs" />
+			<Page Remove="Tests\HotReload\Frame\HRApp\**\*.xaml" />
+			<Compile Remove="Tests\HotReload\Frame\HRApp\*.cs" />
+			<Page Remove="Tests\HotReload\Frame\HRApp\*.xaml" />
+			<Content Remove="Tests\HotReload\Frame\HRApp\**" />
+			<ApplicationDefinition Remove="Tests\HotReload\Frame\HRApp\*.xaml" />
+		
+			<None Include="Tests\HotReload\Frame\HRApp\**\*.cs" Exclude="Tests\HotReload\Frame\HRApp\bin\**;Tests\HotReload\Frame\HRApp\obj\**" />
+			<None Include="Tests\HotReload\Frame\HRApp\**\*.xaml" Exclude="Tests\HotReload\Frame\HRApp\bin\**;Tests\HotReload\Frame\HRApp\obj\**" />
+		</ItemGroup>
+		
+	</Target>
 
 </Project>
