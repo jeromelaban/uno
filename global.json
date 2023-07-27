@@ -1,9 +1,9 @@
 {
-	"sdk": {
-		"version": "7.0.302",
-		"allowPrerelease": false,
-		"rollForward": "latestFeature"
-	},
+	//"sdk": {
+	//	"version": "7.0.302",
+	//	"allowPrerelease": true,
+	//	"rollForward": "latestFeature"
+	//},
 	"tools": {
 		"dotnet": "7.0.302"
 	},

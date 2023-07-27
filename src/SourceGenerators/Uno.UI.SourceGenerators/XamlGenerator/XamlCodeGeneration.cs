@@ -107,6 +107,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		internal Lazy<INamedTypeSymbol> DependencyObjectParseSymbol { get; }
 		internal Lazy<INamedTypeSymbol?> AndroidContentContextSymbol { get; }
 		internal Lazy<INamedTypeSymbol?> AndroidViewSymbol { get; }
+		internal Lazy<INamedTypeSymbol?> AndroidRegisterAttribute { get; }
 		internal Lazy<INamedTypeSymbol?> IOSViewSymbol { get; }
 		internal Lazy<INamedTypeSymbol?> AppKitViewSymbol { get; }
 		internal Lazy<INamedTypeSymbol> ICollectionSymbol { get; }
@@ -285,6 +286,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			SolidColorBrushHelperSymbol = GetMandatorySymbolAsLazy(XamlConstants.Types.SolidColorBrushHelper);
 			AndroidContentContextSymbol = GetOptionalSymbolAsLazy("Android.Content.Context");
 			AndroidViewSymbol = GetOptionalSymbolAsLazy("Android.Views.View");
+			AndroidRegisterAttribute = GetOptionalSymbolAsLazy("Android.Runtime.RegisterAttribute");
 			IOSViewSymbol = GetOptionalSymbolAsLazy("UIKit.UIView");
 			AppKitViewSymbol = GetOptionalSymbolAsLazy("AppKit.NSView");
 			CreateFromStringAttributeSymbol = GetMandatorySymbolAsLazy(XamlConstants.Types.CreateFromStringAttribute);

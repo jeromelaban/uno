@@ -261,6 +261,9 @@ namespace Uno.UI.RemoteControl.VS
 				RemoteControlServerPort = GetTcpPort();
 
 				var version = GetDotnetMajorVersion();
+
+				_debugAction($"Using .NET {version} for remote control server");
+
 				var runtimeVersionPath = version <= 5 ? "netcoreapp3.1" : $"net{version}.0";
 
 				var sb = new StringBuilder();

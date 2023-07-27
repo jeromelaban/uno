@@ -109,12 +109,11 @@ namespace Uno.UI.RemoteControl.HotReload
 			return Array.Empty<string>();
 		}
 
-#if __WASM__ || __SKIA__
 		private void AssemblyReload(AssemblyDeltaReload assemblyDeltaReload)
 		{
 			if (assemblyDeltaReload.IsValid())
 			{
-				if (this.Log().IsEnabled(LogLevel.Trace))
+				if (this.Log().IsEnabled(LogLevel.Debug))
 				{
 					this.Log().Trace($"Applying IL Delta after {assemblyDeltaReload.FilePath}, Guid:{assemblyDeltaReload.ModuleId}");
 				}
@@ -122,6 +121,7 @@ namespace Uno.UI.RemoteControl.HotReload
 				var changedTypesStreams = new MemoryStream(Convert.FromBase64String(assemblyDeltaReload.UpdatedTypes));
 				var changedTypesReader = new BinaryReader(changedTypesStreams);
 
+#if !__IOS__ && !__ANDROID__
 				var delta = new UpdateDelta()
 				{
 					MetadataDelta = Convert.FromBase64String(assemblyDeltaReload.MetadataDelta),
@@ -130,6 +130,13 @@ namespace Uno.UI.RemoteControl.HotReload
 					ModuleId = Guid.Parse(assemblyDeltaReload.ModuleId),
 					UpdatedTypes = ReadIntArray(changedTypesReader)
 				};
+#else
+				var delta = new UpdateDelta()
+				{
+					ModuleId = Guid.Parse(assemblyDeltaReload.ModuleId),
+					UpdatedTypes = ReadIntArray(changedTypesReader)
+				};
+#endif
 
 				_agent.ApplyDeltas(new[] { delta });
 			}
@@ -159,7 +166,6 @@ namespace Uno.UI.RemoteControl.HotReload
 
 			return values;
 		}
-#endif
 
 		private static void ReloadWithUpdatedTypes(Type[] updatedTypes)
 		{

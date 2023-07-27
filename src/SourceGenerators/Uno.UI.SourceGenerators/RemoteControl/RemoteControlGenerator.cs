@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Text;
 using Uno.Extensions;
 using Uno.Roslyn;
 using Uno.UI.SourceGenerators.Helpers;
@@ -92,7 +93,56 @@ namespace Uno.UI.SourceGenerators.RemoteControl
 
 			var distictPaths = string.Join(",\n", xamlPaths.Select(p => $"@\"{p}\""));
 
-			sb.AppendLineIndented($"new string[]{{{distictPaths}}}");
+			sb.AppendLineIndented($"new string[]{{{distictPaths}}},");
+
+			// Global
+			// 	SolutionFileName = TestIOSHotReload.sln
+			// 	LangName = en-US
+			// 	CurrentSolutionConfigurationContents =
+			// 		<SolutionConfiguration>
+			// 			<ProjectConfiguration Project="{5cca25f3-5972-4c91-abaa-942e81f13ad3}" AbsolutePath="C:\Users\jerome.uno\source\repos\TestIOSHotReload\TestIOSHotReload\TestIOSHotReload\TestIOSHotReload.csproj">Debug|AnyCPU</ProjectConfiguration>
+			// 			<ProjectConfiguration Project="{57e22676-ef64-48b2-9adc-0cec0fd7b42b}" AbsolutePath="C:\Users\jerome.uno\source\repos\TestIOSHotReload\TestIOSHotReload\TestIOSHotReload.Mobile\TestIOSHotReload.Mobile.csproj">Debug|AnyCPU</ProjectConfiguration>
+			// 		</SolutionConfiguration>
+			// 	Configuration = Debug
+			// 	LangID = 1033
+			// 	SolutionDir = C:\Users\jerome.uno\source\repos\TestIOSHotReload\
+			// 	SolutionExt = .sln
+			// 	BuildingInsideVisualStudio = true
+			// 	UnoRemoteControlPort = 56341
+			// 	UseHostCompilerIfAvailable = false
+			// 	TargetFramework = 
+			// 	DefineExplicitDefaults = true
+			// 	Platform = AnyCPU
+			// 	SolutionPath = C:\Users\jerome.uno\source\repos\TestIOSHotReload\TestIOSHotReload.sln
+			// 	SolutionName = TestIOSHotReload
+			// 	VSIDEResolvedNonMSBuildProjectOutputs = <VSIDEResolvedNonMSBuildProjectOutputs />
+			// 	DevEnvDir = C:\vs\even\Common7\IDE\
+
+
+			var additionalProperties = new[] {
+				"SolutionFileName",
+				"LangName",
+				//"CurrentSolutionConfigurationContents",
+				"Configuration",
+				"LangID",
+				"SolutionDir",
+				"SolutionExt",
+				"BuildingInsideVisualStudio",
+				"UnoRemoteControlPort",
+				"UseHostCompilerIfAvailable",
+				"TargetFramework",
+				"DefineExplicitDefaults",
+				"Platform",
+				"RuntimeIdentifier",
+				"SolutionPath",
+				"SolutionName",
+				"VSIDEResolvedNonMSBuildProjectOutputs",
+				"DevEnvDir",
+			};
+
+			var additionalPropertiesValue = string.Join(", ", additionalProperties.Select(p => $"@\"{p}={Convert.ToBase64String(Encoding.UTF8.GetBytes(context.GetMSBuildPropertyValue(p)))}\""));
+
+			sb.AppendLineIndented($"new [] {{ {additionalPropertiesValue} }}");
 
 			sb.AppendLineIndented(")]");
 		}

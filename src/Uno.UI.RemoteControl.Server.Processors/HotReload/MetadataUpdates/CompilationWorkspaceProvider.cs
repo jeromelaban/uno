@@ -10,6 +10,7 @@ using Uno.Extensions;
 using Uno.UI.RemoteControl.Server.Processors.Helpers;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using System.Drawing.Text;
 
 namespace Uno.UI.RemoteControl.Host.HotReload.MetadataUpdates
 {
@@ -17,10 +18,15 @@ namespace Uno.UI.RemoteControl.Host.HotReload.MetadataUpdates
 	{
 		private static string MSBuildBasePath = "";
 
-		public static Task<(Solution, WatchHotReloadService)> CreateWorkspaceAsync(string projectPath, IReporter reporter, string[] metadataUpdateCapabilities, CancellationToken cancellationToken)
+		public static Task<(Solution, WatchHotReloadService)> CreateWorkspaceAsync(
+			string projectPath,
+			IReporter reporter,
+			string[] metadataUpdateCapabilities,
+			Dictionary<string, string> properties,
+			CancellationToken cancellationToken)
 		{
 			var taskCompletionSource = new TaskCompletionSource<(Solution, WatchHotReloadService)>(TaskCreationOptions.RunContinuationsAsynchronously);
-			CreateProject(taskCompletionSource, projectPath, reporter, metadataUpdateCapabilities, cancellationToken);
+			CreateProject(taskCompletionSource, projectPath, reporter, metadataUpdateCapabilities, properties, cancellationToken);
 
 			return taskCompletionSource.Task;
 		}
@@ -30,12 +36,36 @@ namespace Uno.UI.RemoteControl.Host.HotReload.MetadataUpdates
 			string projectPath,
 			IReporter reporter,
 			string[] metadataUpdateCapabilities,
+			Dictionary<string, string> properties,
 			CancellationToken cancellationToken)
 		{
 			var globalProperties = new Dictionary<string, string> {
 				// Mark this compilation as hot-reload capable, so generators can act accordingly
 				{ "IsHotReloadHost", "True" },
+
+				// Don't generate the assembly info file, so it does not overwrite
+				// the original build's version
+				//{ "GenerateAssemblyInfo", "false" },
+				//{ "Deterministic", "true" },
+				//{ "TargetFrameworks", "" }
 			};
+
+#pragma warning disable CA1825 // Avoid zero-length array allocations
+			var excludedProperties = new string[] {
+				"TargetFramework",
+				// "RuntimeIdentifier"
+			};
+#pragma warning restore CA1825 // Avoid zero-length array allocations
+
+			foreach (var property in properties)
+			{
+				if (!excludedProperties.Contains(property.Key))
+				{
+					globalProperties.Add(property.Key, property.Value);
+
+					reporter.Verbose($"Using msbuild property: {property.Key}={property.Value}");
+				}
+			}
 
 			var workspace = MSBuildWorkspace.Create(globalProperties);
 
@@ -47,8 +77,9 @@ namespace Uno.UI.RemoteControl.Host.HotReload.MetadataUpdates
 				reporter.Verbose($"MSBuildWorkspace {diag.Diagnostic}");
 			};
 
-			await workspace.OpenProjectAsync(projectPath, cancellationToken: cancellationToken);
+			var initialProject = await workspace.OpenProjectAsync(projectPath, cancellationToken: cancellationToken);
 			var currentSolution = workspace.CurrentSolution;
+
 			var hotReloadService = new WatchHotReloadService(workspace.Services, metadataUpdateCapabilities);
 			await hotReloadService.StartSessionAsync(currentSolution, cancellationToken);
 

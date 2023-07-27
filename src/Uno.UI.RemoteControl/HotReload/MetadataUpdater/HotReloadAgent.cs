@@ -210,7 +210,10 @@ internal sealed class HotReloadAgent : IDisposable
 				{
 					_log($"Applying delta to {assembly} / {moduleId}");
 
-					ApplyUpdate(assembly, item);
+					if (item.MetadataDelta is not null)
+					{
+						ApplyUpdate(assembly, item);
+					}
 				}
 			}
 
@@ -221,7 +224,7 @@ internal sealed class HotReloadAgent : IDisposable
 
 		try
 		{
-			// Defer discovering metadata updata handlers until after hot reload deltas have been applied.
+			// Defer discovering metadata update handlers until after hot reload deltas have been applied.
 			// This should give enough opportunity for AppDomain.GetAssemblies() to be sufficiently populated.
 			_handlerActions ??= GetMetadataUpdateHandlerActions();
 			var handlerActions = _handlerActions;
@@ -245,12 +248,19 @@ internal sealed class HotReloadAgent : IDisposable
 	}
 
 	[UnconditionalSuppressMessage("Trimming", "IL2026", Justification = "Hot reload is only expected to work when trimming is disabled.")]
-	private static Type[] GetMetadataUpdateTypes(IReadOnlyList<UpdateDelta> deltas)
+	private Type[] GetMetadataUpdateTypes(IReadOnlyList<UpdateDelta> deltas)
 	{
+		foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
+		{
+			_log($"Loaded module {a.FullName}: {TryGetModuleId(a)}");
+		}
+
 		List<Type>? types = null;
 
 		foreach (var delta in deltas)
 		{
+			_log($"Searching assembly for ({delta.ModuleId}).");
+
 			var assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(assembly => TryGetModuleId(assembly) is Guid moduleId && moduleId == delta.ModuleId);
 			if (assembly is null)
 			{

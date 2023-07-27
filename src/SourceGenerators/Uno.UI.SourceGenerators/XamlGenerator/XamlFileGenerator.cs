@@ -365,7 +365,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 					var controlBaseType = GetType(topLevelControl.Type);
 
-					WriteMetadataNewTypeAttribute(writer);
+					WriteMetadataNewTypeAttribute(writer, _xClassName);
 
 					using (writer.BlockInvariant("partial class {0} : {1}", _xClassName.ClassName, controlBaseType.GetFullyQualifiedTypeIncludingGlobal()))
 					{
@@ -1246,11 +1246,25 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			}
 		}
 
-		private void WriteMetadataNewTypeAttribute(IIndentedStringBuilder writer)
+		private void WriteMetadataNewTypeAttribute(IIndentedStringBuilder writer, XClassName? className = null)
 		{
 			if (_isDebug)
 			{
 				writer.AppendLineIndented("[global::System.Runtime.CompilerServices.CreateNewOnMetadataUpdate]");
+
+				if (className is not null)
+				{
+					if (Generation.AndroidRegisterAttribute.Value is not null)
+					{
+						if (className.Symbol is null || className.Symbol.FindAttribute(Generation.AndroidRegisterAttribute.Value) is null)
+						{
+							// generate and android type registration only for the generation on Android target
+							writer.AppendLineIndented("#if __ANDROID__");
+							writer.AppendLineIndented($"[global::Android.Runtime.Register(\"{_generatorContext.Compilation.AssemblyName}.{className.Namespace}.{className.ClassName}\")]");
+							writer.AppendLineIndented("#endif");
+						}
+					}
+				}
 			}
 		}
 

@@ -150,6 +150,7 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 			}
 
 			_solutionWatcherEventsDisposable?.Dispose();
+
 			if (_solutionWatchers != null)
 			{
 				foreach (var watcher in _solutionWatchers)
@@ -157,6 +158,8 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 					watcher.Dispose();
 				}
 			}
+
+			_hotReloadService?.EndSession();
 		}
 	}
 }

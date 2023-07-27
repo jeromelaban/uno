@@ -32,7 +32,7 @@ partial class ElevatedView
 		}
 
 		// Draw children
-		base.DispatchDraw(canvas);
+		base.DispatchDraw(canvas!);
 	}
 
 	private void DisposeShadow()
