@@ -47,6 +47,10 @@ namespace Uno.UI.RemoteControl.HotReload
 					break;
 #endif
 
+				case HotReloadWorkspaceLoadResult.Name:
+					WorkspaceLoadResult(JsonConvert.DeserializeObject<HotReload.Messages.HotReloadWorkspaceLoadResult>(frame.Content)!);
+					break;
+
 				default:
 					if (this.Log().IsEnabled(LogLevel.Error))
 					{

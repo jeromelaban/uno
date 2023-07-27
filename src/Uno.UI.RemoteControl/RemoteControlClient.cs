@@ -40,6 +40,7 @@ namespace Uno.UI.RemoteControl
 		private Dictionary<string, IRemoteControlProcessor> _processors = new Dictionary<string, IRemoteControlProcessor>();
 		private List<IRemoteControlPreProcessor> _preprocessors = new List<IRemoteControlPreProcessor>();
 		private Timer? _keepAliveTimer;
+		private TaskCompletionSource _connectedTcs = new TaskCompletionSource();
 
 		private RemoteControlClient(Type appType, ServerEndpointAttribute[]? endpoints = null)
 		{
@@ -82,6 +83,14 @@ namespace Uno.UI.RemoteControl
 			RegisterProcessor(new HotReload.ClientHotReloadProcessor(this));
 			_ = StartConnection();
 		}
+
+		internal IRemoteControlProcessor[] RegisteredProcessors
+		{
+			get => _processors.Values.ToArray();
+		}
+
+		internal Task WaitForConnection()
+			=> _connectedTcs.Task;
 
 		private void RegisterProcessor(IRemoteControlProcessor processor)
 		{
@@ -162,6 +171,8 @@ namespace Uno.UI.RemoteControl
 
 						throw;
 					}
+
+					_connectedTcs.SetResult();
 
 					return (serverUri, s);
 				}

@@ -62,11 +62,16 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 
 					ObserveSolutionPaths(result.Item1);
 
+					await _remoteControlServer.SendFrame(new HotReloadWorkspaceLoadResult() { WorkspaceInitialized = true });
+
 					return result;
 				}
 				catch (Exception e)
 				{
 					Console.WriteLine($"Failed to initialize compilation workspace: {e}");
+
+					await _remoteControlServer.SendFrame(new HotReloadWorkspaceLoadResult() { WorkspaceInitialized = false });
+
 					throw;
 				}
 			},

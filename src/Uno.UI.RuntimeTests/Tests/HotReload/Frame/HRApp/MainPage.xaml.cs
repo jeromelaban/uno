@@ -1,4 +1,7 @@
+using System.Diagnostics;
 using System.IO;
+using Uno.UI.RemoteControl;
+using Uno.UI.RemoteControl.HotReload;
 
 namespace UnoApp50
 {
@@ -16,6 +19,19 @@ namespace UnoApp50
 
 		private async Task RunUITests()
 		{
+			Debugger.Launch();
+
+			RemoteControlClient.Initialize(typeof(App));
+
+			if (RemoteControlClient.Instance is not null)
+			{
+				await RemoteControlClient.Instance.WaitForConnection();
+				await RemoteControlClient.Instance.RegisteredProcessors
+					.OfType<ClientHotReloadProcessor>()
+					.First()
+					.HotReloadWorkspaceLoaded;
+			}
+
 			await testControl.RunTests(CancellationToken.None, new());
 
 			// get the first command line argument after `--uitest`
@@ -25,6 +41,8 @@ namespace UnoApp50
 			{
 				File.WriteAllText(testResultPath, testControl.NUnitTestResultsDocument);
 			}
+
+			// Application.Current.Exit();
 		}
 	}
 }

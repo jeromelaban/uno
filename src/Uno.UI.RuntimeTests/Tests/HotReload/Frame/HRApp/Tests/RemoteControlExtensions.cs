@@ -24,6 +24,8 @@ internal static class HotReloadHelper
 			return;
 		}
 
+		await RemoteControlClient.Instance.WaitForConnection();
+
 		var message = new T().CreateHotReloadMessage(
 			originalText: originalText,
 			replacementText: replacementText);
@@ -47,9 +49,15 @@ internal static class HotReloadHelper
 		CancellationToken ct)
 		where T : FrameworkElement, new()
 	{
+		if (RemoteControlClient.Instance is null)
+		{
+			return;
+		}
 
 		try
 		{
+			await RemoteControlClient.Instance.WaitForConnection();
+
 			await UpdateServerFile<T>(originalText, replacementText, ct);
 
 			await callback();

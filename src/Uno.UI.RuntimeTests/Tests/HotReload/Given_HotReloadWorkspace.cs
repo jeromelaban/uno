@@ -2,6 +2,8 @@
 
 using System;
 using System.Diagnostics;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -11,6 +13,8 @@ using Uno.Foundation.Logging;
 using Windows.UI.Xaml;
 using Uno.UI.RemoteControl;
 using Windows.UI.Xaml.Tests.Common;
+using Windows.UI.Composition;
+using System.Threading;
 
 namespace Uno.UI.RuntimeTests.Tests.HotReload;
 
@@ -37,7 +41,7 @@ internal class Given_HotReloadWorkspace
 	[TestMethod]
 	public async Task When_HotReloadScenario()
 	{
-		await StartTestApp();
+		await RunTestApp(CancellationToken.None);
 	}
 
 #if DEBUG
@@ -56,31 +60,91 @@ internal class Given_HotReloadWorkspace
 		}
 	}
 
-	public static async Task StartTestApp()
+	public static async Task<string> RunTestApp(CancellationToken ct)
+	{
+		var testOutput = Path.GetTempFileName();
+
+		var hrAppPath = GetHotReloadAppPath();
+
+		var p = await RunProcess(
+			ct,
+			"dotnet",
+			new() {
+				"run",
+				"--no-build",
+				"--uitest",
+				testOutput
+			},
+			hrAppPath,
+			"HRApp",
+			true
+		);
+
+		_testAppProcess = p;
+
+		if (p.ExitCode != 0)
+		{
+			throw new InvalidOperationException("Failed to run HR app");
+		}
+
+		return testOutput;
+	}
+
+	private static async Task<Process> RunProcess(
+		CancellationToken ct,
+		string executable,
+		List<string> parameters,
+		string workingDirectory,
+		string logPrefix,
+		bool waitForExit)
+	{
+		var process = StartProcess(executable, parameters, workingDirectory, logPrefix, waitForExit);
+
+		await process.WaitForExitAsync();
+
+		return process;
+	}
+
+	private static Process StartProcess(
+		string executable,
+		List<string> parameters,
+		string workingDirectory,
+		string logPrefix,
+		bool waitForExit)
 	{
 		var hrAppPath = GetHotReloadAppPath();
 
-		var pi = new ProcessStartInfo("dotnet")
+		var pi = new ProcessStartInfo(executable)
 		{
 			UseShellExecute = false,
 			CreateNoWindow = true,
 			WindowStyle = ProcessWindowStyle.Hidden,
-			WorkingDirectory = hrAppPath,
-			ArgumentList =
-			{
-				"run",
-				"--no-build"
-			}
+			WorkingDirectory = workingDirectory,
 		};
 
-		_testAppProcess = Process.Start(pi);
-
-		if (_testAppProcess is null)
+		foreach (var parm in parameters)
 		{
-			throw new InvalidOperationException("Unable to start dotnet build");
+			pi.ArgumentList.Add(parm);
 		}
 
-		await _testAppProcess.WaitForExitAsync();
+		// redirect the output
+		pi.RedirectStandardOutput = true;
+		pi.RedirectStandardError = true;
+
+		var process = new System.Diagnostics.Process();
+
+		// hookup the event handlers to capture the data that is received
+		process.OutputDataReceived += (sender, args) => typeof(RemoteControlServerHelper).Log().Debug(logPrefix + ": " + args.Data ?? "");
+		process.ErrorDataReceived += (sender, args) => typeof(RemoteControlServerHelper).Log().Error(logPrefix + ": " + args.Data ?? "");
+
+		process.StartInfo = pi;
+		process.Start();
+
+		// start our event pumps
+		process.BeginOutputReadLine();
+		process.BeginErrorReadLine();
+
+		return process;
 	}
 
 	public static async Task BuildTestApp()

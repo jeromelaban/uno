@@ -28,6 +28,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <UpToDateCheckInput Remove="HotReload\Messages\HotReloadWorkspaceLoadResult.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<EmbeddedResource Include="LinkerDefinition.Wasm.xml">
 			<LogicalName>$(AssemblyName).xml</LogicalName>
 		</EmbeddedResource>

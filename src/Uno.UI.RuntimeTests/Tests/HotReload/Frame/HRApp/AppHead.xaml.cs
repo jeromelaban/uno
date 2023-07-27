@@ -73,7 +73,7 @@ namespace UnoApp50
 			// builder.AddFilter("Uno.UI.DataBinding.BinderReferenceHolder", LogLevel.Debug );
 
 			// RemoteControl and HotReload related
-			// builder.AddFilter("Uno.UI.RemoteControl", LogLevel.Information);
+			builder.AddFilter("Uno.UI.RemoteControl", LogLevel.Information);
 
 			// Debug JS interop
 			// builder.AddFilter("Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug );
