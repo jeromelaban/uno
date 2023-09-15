@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AVFoundation;
@@ -44,6 +45,12 @@ namespace Windows.Media.Capture
 #pragma warning restore CA1416
 						picker.CameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video;
 
+						// TODO
+						//if (VideoSettings.Format != CameraCaptureUIVideoFormat.Mp4)
+						//{
+						//	throw new NotSupportedException("The capture format mp4 is the only one supported");
+						//}
+
 						await ValidateCameraAccess();
 						await ValidateMicrophoneAccess();
 						break;
@@ -76,33 +83,91 @@ namespace Windows.Media.Capture
 				if (result != null)
 				{
 					var image = result.ValueForKey(new NSString("UIImagePickerControllerOriginalImage")) as UIImage;
-					var metadata = result.ValueForKey(new NSString("UIImagePickerControllerOriginalImage")) as UIImage;
 
-					var correctedImage = FixOrientation(image);
-
-					(Stream data, string extension) GetImageStream()
+					if (image is not null)
 					{
-						switch (PhotoSettings.Format)
+						var correctedImage = FixOrientation(image);
+
+						(Stream data, string extension) GetImageStream()
 						{
-							case CameraCaptureUIPhotoFormat.Jpeg:
-								return (image.AsJPEG().AsStream(), ".jpg");
+							switch (PhotoSettings.Format)
+							{
+								case CameraCaptureUIPhotoFormat.Jpeg:
+									return (image.AsJPEG().AsStream(), ".jpg");
 
-							case CameraCaptureUIPhotoFormat.Png:
-								return (image.AsPNG().AsStream(), ".png");
+								case CameraCaptureUIPhotoFormat.Png:
+									return (image.AsPNG().AsStream(), ".png");
 
-							default:
-								throw new NotSupportedException($"{PhotoSettings.Format} is not supported");
+								default:
+									throw new NotSupportedException($"{PhotoSettings.Format} is not supported");
+							}
+						};
+
+						var (data, extension) = GetImageStream();
+						return await CreateTempImage(data, extension);
+					}
+					else
+					{
+						var assetUrl = result[UIImagePickerController.MediaURL] as NSUrl;
+						PHAsset phAsset = null;
+
+						Console.WriteLine($"Asset url {assetUrl}");
+
+						if (assetUrl is not null)
+						{
+							if (OperatingSystem.IsIOSVersionAtLeast(11, 0))
+							{
+								if (!assetUrl.Scheme.Equals("assets-library", StringComparison.OrdinalIgnoreCase))
+								{
+									var doc = new UIDocument(assetUrl);
+									var fullPath = doc.FileUrl?.Path;
+
+									return await ConvertToMp4(fullPath);
+								}
+
+								phAsset = result.ValueForKey(UIImagePickerController.PHAsset) as PHAsset;
+							}
+
+							if (phAsset == null)
+							{
+								assetUrl = result[UIImagePickerController.ReferenceUrl] as NSUrl;
+
+								if (assetUrl != null)
+								{
+									phAsset = PHAsset.FetchAssets(new NSUrl[] { assetUrl }, null)?.LastObject as PHAsset;
+
+									if (phAsset is not null)
+									{
+										string originalFilename = PHAssetResource.GetAssetResources(phAsset).FirstOrDefault()?.OriginalFilename;
+										return await ConvertToMp4(originalFilename);
+									}
+								}
+							}
 						}
-					};
+					}
+				}
 
-					var (data, extension) = GetImageStream();
-					return await CreateTempImage(data, extension);
-				}
-				else
-				{
-					return null;
-				}
+				return null;
 			}
+		}
+
+		private async Task<StorageFile> ConvertToMp4(string originalFilename)
+		{
+			var basePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+			var outputFilePath = Path.Combine(ApplicationData.Current.TemporaryFolder.Path, Guid.NewGuid() + ".mp4");
+
+			var asset = AVAsset.FromUrl(NSUrl.FromFilename(originalFilename));
+
+			AVAssetExportSession export = new AVAssetExportSession(asset, AVAssetExportSession.PresetPassthrough);
+
+			export.OutputUrl = NSUrl.FromFilename(outputFilePath);
+			export.OutputFileType = AVFileTypesExtensions.GetConstant(AVFileTypes.Mpeg4);
+			export.ShouldOptimizeForNetworkUse = true;
+
+			await export.ExportTaskAsync();
+
+			return await StorageFile.GetFileFromPathAsync(outputFilePath);
 		}
 
 
