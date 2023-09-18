@@ -26,6 +26,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <UpToDateCheckInput Remove="HotReload\ClientHotReloadProcessor.LightweightReload.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<EmbeddedResource Include="LinkerDefinition.Xamarin.xml">
 			<LogicalName>$(AssemblyName).xml</LogicalName>
 		</EmbeddedResource>
