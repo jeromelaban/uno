@@ -5,7 +5,7 @@ using System.Formats.Asn1;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls;
 using Uno.Disposables;
 using Uno.UI.RemoteControl;
 using Uno.UI.RuntimeTests.Tests.HotReload.Frame.Pages;
@@ -38,7 +38,7 @@ public class Given_Frame : BaseTestClass
 	{
 		var ct = new CancellationTokenSource(TimeSpan.FromSeconds(10)).Token;
 
-		var frame = new Windows.UI.Xaml.Controls.Frame();
+		var frame = new Microsoft.UI.Xaml.Controls.Frame();
 		UnitTestsUIContentHelper.Content = frame;
 
 		frame.Navigate(typeof(HR_Frame_Pages_Page1));
@@ -62,7 +62,7 @@ public class Given_Frame : BaseTestClass
 	{
 		var ct = new CancellationTokenSource(TimeSpan.FromSeconds(10)).Token;
 
-		var frame = new Windows.UI.Xaml.Controls.Frame();
+		var frame = new Microsoft.UI.Xaml.Controls.Frame();
 		UnitTestsUIContentHelper.Content = frame;
 
 		frame.Navigate(typeof(HR_Frame_Pages_Page1));
@@ -94,7 +94,7 @@ public class Given_Frame : BaseTestClass
 	{
 		var ct = new CancellationTokenSource(TimeSpan.FromSeconds(10)).Token;
 
-		var frame = new Windows.UI.Xaml.Controls.Frame();
+		var frame = new Microsoft.UI.Xaml.Controls.Frame();
 		UnitTestsUIContentHelper.Content = frame;
 
 		frame.Navigate(typeof(HR_Frame_Pages_Page1));
@@ -137,7 +137,7 @@ public class Given_Frame : BaseTestClass
 	{
 		var ct = new CancellationTokenSource(TimeSpan.FromSeconds(10)).Token;
 
-		var frame = new Windows.UI.Xaml.Controls.Frame();
+		var frame = new Microsoft.UI.Xaml.Controls.Frame();
 		UnitTestsUIContentHelper.Content = frame;
 
 		// Navigate to Page1
@@ -182,7 +182,7 @@ public class Given_Frame : BaseTestClass
 	{
 		var ct = new CancellationTokenSource(TimeSpan.FromSeconds(10)).Token;
 
-		var frame = new Windows.UI.Xaml.Controls.Frame();
+		var frame = new Microsoft.UI.Xaml.Controls.Frame();
 		UnitTestsUIContentHelper.Content = frame;
 
 		// Navigate to Page1
