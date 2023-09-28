@@ -25,6 +25,8 @@ using System.Runtime.CompilerServices;
 using Java.Lang;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics;
+using static System.Diagnostics.DebuggableAttribute;
+
 
 
 
@@ -119,7 +121,7 @@ namespace Uno.UI.RemoteControl.HotReload
 
 			if (this.Log().IsEnabled(LogLevel.Debug))
 			{
-				this.Log().Debug($"ObserveUpdateTypeMapping: Start observing");
+				this.Log().Debug($"ObserveUpdateTypeMapping: Start observing (Original mapped types {originalMappedTypes.Count})");
 			}
 
 			while (sw.Elapsed < TimeSpan.FromSeconds(15))
@@ -128,26 +130,30 @@ namespace Uno.UI.RemoteControl.HotReload
 				// so we can discover which types have changed
 				await Task.Delay(250);
 
+				var mappedSw = Stopwatch.StartNew();
 				// Lookup for types marked with MetadataUpdateOriginalTypeAttribute
 				var mappedTypes = BuildMappedTypes();
 
-				if (originalMappedTypes.Count != mappedTypes.Count)
+				if (this.Log().IsEnabled(LogLevel.Debug))
+				{
+					this.Log().Debug($"ObserveUpdateTypeMapping: fetched mapped types {mappedTypes.Count} in {mappedSw.Elapsed}");
+				}
+
+				if (!mappedTypes.Values.All(b => originalMappedTypes.ContainsValue(b)))
 				{
 					_mappedTypes = mappedTypes;
 
-					var newOriginalTypes = mappedTypes
-						.Keys
-						.Except(originalMappedTypes.Keys)
+					var newTypes = mappedTypes
+						.Values
+						.Except(originalMappedTypes.Values)
 						.ToArray();
 
 					if (this.Log().IsEnabled(LogLevel.Debug))
 					{
-						this.Log().Debug($"Found {newOriginalTypes.Length} updated types");
-					}
+						var types = string.Join(", ", _mappedTypes.Values);
 
-					var newTypes = newOriginalTypes
-						.Select(t => _mappedTypes[t])
-						.ToArray();
+						this.Log().Debug($"Found {newTypes.Length} updated types ({types})");
+					}
 
 					var actions = _agent.GetMetadataUpdateHandlerActions();
 
@@ -173,6 +179,9 @@ namespace Uno.UI.RemoteControl.HotReload
 		{
 			var mappedTypes =
 					from asm in AssemblyLoadContext.Default.Assemblies
+					let debuggableAttribute = asm.GetCustomAttribute<DebuggableAttribute>()
+					where debuggableAttribute is not null
+						&& (debuggableAttribute.DebuggingFlags & DebuggingModes.DisableOptimizations) != 0
 					from type in asm.GetTypes()
 					let originalType = type.GetCustomAttribute<MetadataUpdateOriginalTypeAttribute>()
 					where originalType is not null

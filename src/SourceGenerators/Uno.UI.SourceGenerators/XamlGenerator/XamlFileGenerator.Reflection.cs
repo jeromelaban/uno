@@ -186,20 +186,14 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return IsType(xamlType, Generation.FrameworkElementSymbol.Value);
 		}
 
-		private bool IsAndroidView(XamlType xamlType)
-		{
-			return IsType(xamlType, Generation.AndroidViewSymbol.Value);
-		}
+		private bool IsAndroidView(XamlType xamlType) => IsType(xamlType, Generation.AndroidViewSymbol.Value);
+		private bool IsAndroidView(INamedTypeSymbol type) => IsType(type, Generation.AndroidViewSymbol.Value);
 
-		private bool IsIOSUIView(XamlType xamlType)
-		{
-			return IsType(xamlType, Generation.IOSViewSymbol.Value);
-		}
+		private bool IsIOSUIView(XamlType xamlType) => IsType(xamlType, Generation.IOSViewSymbol.Value);
+		private bool IsIOSUIView(INamedTypeSymbol type) => IsType(type, Generation.IOSViewSymbol.Value);
 
-		private bool IsMacOSNSView(XamlType xamlType)
-		{
-			return IsType(xamlType, Generation.AppKitViewSymbol.Value);
-		}
+		private bool IsMacOSNSView(XamlType xamlType) => IsType(xamlType, Generation.AppKitViewSymbol.Value);
+		private bool IsMacOSNSView(INamedTypeSymbol type) => IsType(type, Generation.AppKitViewSymbol.Value);
 
 		private bool IsDependencyObject(XamlObjectDefinition component)
 			=> GetType(component.Type).GetAllInterfaces().Any(i => SymbolEqualityComparer.Default.Equals(i, Generation.DependencyObjectSymbol.Value));

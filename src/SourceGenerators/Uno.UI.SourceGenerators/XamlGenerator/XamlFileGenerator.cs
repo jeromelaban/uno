@@ -367,6 +367,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 					WriteMetadataNewTypeAttribute(writer);
 
+					if (_xClassName.Symbol is not null)
+					{
+						WriteNativeExportAttribute(writer, _xClassName.Symbol);
+					}
+
 					using (writer.BlockInvariant("partial class {0} : {1}", _xClassName.ClassName, controlBaseType.GetFullyQualifiedTypeIncludingGlobal()))
 					{
 						BuildBaseUri(writer);
@@ -401,6 +406,19 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 			// var formattedCode = ReformatCode(writer.ToString());
 			return new StringBuilderBasedSourceText(writer.Builder);
+		}
+
+		private void WriteNativeExportAttribute(IndentedStringBuilder writer, INamedTypeSymbol type)
+		{
+			//if (IsAndroidView(type) && _isHotReloadEnabled)
+			//{
+			//	writer.AppendLineIndented($"[global::Android.Runtime.Register(\"{type.GetFullMetadataName().Replace(".", "/")}\")]");
+			//}
+
+			//if ((IsIOSUIView(type) || IsMacOSNSView(type)) && _isHotReloadEnabled)
+			//{
+			//	writer.AppendLineIndented($"[global::Foundation.Register(\"{type.GetFullMetadataName().Replace(".", "_")}\")]");
+			//}
 		}
 
 		/// <summary>
