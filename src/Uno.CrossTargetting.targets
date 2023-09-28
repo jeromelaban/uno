@@ -115,9 +115,14 @@
 
 		<PropertyGroup>
 			<_OverrideTargetFramework>$(TargetFramework)</_OverrideTargetFramework>
+			
+			<!-- Current nuget publishing uses netX.0-android30.0 -->
+			<_OverrideTargetFramework Condition="$(_OverrideTargetFramework.EndsWith('.0-android'))">$(_OverrideTargetFramework)30.0</_OverrideTargetFramework>
+
 			<_baseNugetPath Condition="'$(USERPROFILE)'!=''">$(USERPROFILE)</_baseNugetPath>
 			<_baseNugetPath Condition="'$(HOME)'!=''">$(HOME)</_baseNugetPath>
-			<_overridePackageId>$(AssemblyName)</_overridePackageId>
+			<_overridePackageId>$(CommonOverridePackageId)</_overridePackageId>
+			<_overridePackageId Condition="'$(CommonOverridePackageId)'==''">$(AssemblyName)</_overridePackageId>
 			<_overridePackageId Condition="'$(UNO_UWP_BUILD)'=='false'">$(_overridePackageId.Replace('Uno.UI','Uno.WinUI'))</_overridePackageId>
 			<_TargetNugetFolder>$(_baseNugetPath)\.nuget\packages\$(_overridePackageId)\$(UnoNugetOverrideVersion)\lib\$(_OverrideTargetFramework)</_TargetNugetFolder>
 			<_TargetNugetRefFolder>$(_baseNugetPath)\.nuget\packages\$(_overridePackageId)\$(UnoNugetOverrideVersion)\ref\$(_OverrideTargetFramework)</_TargetNugetRefFolder>
@@ -132,7 +137,7 @@
 		<WriteLinestoFile File="$(_TargetNugetFolder)\.packageoverride"
 				 Lines="$([System.DateTime]::Now.ToString('yyyyMMddTHHmmss')) from $(MSBuildThisFileDirectory)"
 				 Overwrite="True" />
-		<Message Importance="high" Text="OVERRIDING NUGET PACKAGE CACHE: $(_TargetNugetFolder) and $(_TargetNugetRefFolder)" />
+		<Message Importance="high" Text="OVERRIDING NUGET PACKAGE CACHE 1 ($(_OverrideTargetFramework)): $(_TargetNugetFolder) and $(_TargetNugetRefFolder)" />
 
 		<Copy SourceFiles="@(_OutputFiles)"
 			  DestinationFiles="@(_OutputFiles->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename)%(Extension)')" />
@@ -162,7 +167,7 @@
 
 		<MakeDir Directories="$(_TargetNugetFolder)" />
 
-		<Message Importance="high" Text="OVERRIDING NUGET PACKAGE CACHE: $(_TargetNugetFolder)" />
+		<Message Importance="high" Text="OVERRIDING NUGET PACKAGE CACHE 2 ($(_OverrideTargetFramework)): $(_TargetNugetFolder)" />
 
 		<Copy SourceFiles="@(_OutputFiles)" DestinationFiles="@(_OutputFiles->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename)%(Extension)')" />
 		<Copy SourceFiles="@(_DebugSymbolsIntermediatePath)" DestinationFiles="@(_DebugSymbolsIntermediatePath->'$(_TargetNugetFolder)\%(RecursiveDir)%(Filename)%(Extension)')" />

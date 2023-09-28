@@ -27,7 +27,6 @@ namespace Uno.UI.RemoteControl.HotReload
 		{
 			_rcClient = rcClient;
 			InitializeMetadataUpdater();
-			BuildOriginalMappedTypes();
 		}
 
 		partial void InitializeMetadataUpdater();
@@ -97,6 +96,8 @@ namespace Uno.UI.RemoteControl.HotReload
 				await _rcClient.SendMessage(message);
 
 				_msbuildProperties = message.MSBuildProperties;
+
+				BuildOriginalMappedTypes();
 			}
 			else
 			{

@@ -14,12 +14,12 @@ using Uno.UI.RemoteControl.HotReload.Messages;
 using Windows.Storage.Pickers.Provider;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Media;
 #if __IOS__
 using _View = UIKit.UIView;
 #else
-using _View = Windows.UI.Xaml.FrameworkElement;
+using _View = Microsoft.UI.Xaml.FrameworkElement;
 using System.Runtime.Loader;
 using System.Runtime.CompilerServices;
 using Java.Lang;
@@ -46,14 +46,13 @@ namespace Uno.UI.RemoteControl.HotReload
 {
 	partial class ClientHotReloadProcessor
 	{
-		private Dictionary<string, Type> _mappedTypes;
+		private Dictionary<string, Type>? _mappedTypes;
 
 		private bool _supportsLightweightHotReload;
 
 		private Task? _updatingTypes;
 		private object _updatingTypesGate = new();
 
-		[MemberNotNull(nameof(_mappedTypes))]
 		private void BuildOriginalMappedTypes()
 		{
 			_supportsLightweightHotReload = (_msbuildProperties?.TryGetValue("TargetFramework", out var targetFramework) ?? false)
@@ -101,6 +100,13 @@ namespace Uno.UI.RemoteControl.HotReload
 				{
 					_updatingTypes = ObserveUpdateTypeMapping();
 				}
+				else
+				{
+					if (this.Log().IsEnabled(LogLevel.Debug))
+					{
+						this.Log().Debug($"LightweightReload: Waiting for existing type observer");
+					}
+				}
 			}
 
 			await _updatingTypes;
@@ -108,8 +114,13 @@ namespace Uno.UI.RemoteControl.HotReload
 
 		private async Task ObserveUpdateTypeMapping()
 		{
-			var originalMappedTypes = _mappedTypes;
+			var originalMappedTypes = _mappedTypes ?? new();
 			var sw = Stopwatch.StartNew();
+
+			if (this.Log().IsEnabled(LogLevel.Debug))
+			{
+				this.Log().Debug($"ObserveUpdateTypeMapping: Start observing");
+			}
 
 			while (sw.Elapsed < TimeSpan.FromSeconds(15))
 			{
@@ -143,8 +154,18 @@ namespace Uno.UI.RemoteControl.HotReload
 					actions.ClearCache.ForEach(a => a(newTypes));
 					actions.UpdateApplication.ForEach(a => a(newTypes));
 
+					if (this.Log().IsEnabled(LogLevel.Debug))
+					{
+						this.Log().Debug($"ObserveUpdateTypeMapping: Invoked metadata updaters");
+					}
+
 					return;
 				}
+			}
+
+			if (this.Log().IsEnabled(LogLevel.Debug))
+			{
+				this.Log().Debug($"ObserveUpdateTypeMapping: Stopped observing after timeout");
 			}
 		}
 
