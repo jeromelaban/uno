@@ -124,8 +124,12 @@ namespace Windows.UI.Xaml
 		}
 #pragma warning restore 114 // Error CS0114: 'FrameworkElement.Tag' hides inherited member 'UIView.Tag'
 
-		[GeneratedDependencyProperty(DefaultValue = null)]
+		[GeneratedDependencyProperty(DefaultValue = null, ChangedCallback = true)]
 		public static DependencyProperty TagProperty { get; } = CreateTagProperty();
+		private void OnTagChanged(object oldValue, object newValue)
+		{
+
+		}
 
 		#endregion
 

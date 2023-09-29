@@ -1330,6 +1330,11 @@ namespace Windows.UI.Xaml
 				return;
 			}
 
+			foreach (var dict in dictionariesInScope)
+			{
+				ResourceResolver.PushSourceToScope(dict);
+			}
+
 			var wasSet = false;
 			foreach (var dict in dictionariesInScope)
 			{
@@ -1347,6 +1352,11 @@ namespace Windows.UI.Xaml
 				{
 					SetResourceBindingValue(property, binding, value);
 				}
+			}
+
+			foreach (var dict in dictionariesInScope)
+			{
+				ResourceResolver.PopSourceFromScope();
 			}
 		}
 
@@ -1483,7 +1493,7 @@ namespace Windows.UI.Xaml
 
 				if (candidateFE != null)
 				{
-					if (candidateFE.Resources != null) // It's legal (if pointless) on UWP to set Resources to null from user code, so check
+					if (candidateFE.Resources is { IsEmpty: false}) // It's legal (if pointless) on UWP to set Resources to null from user code, so check
 					{
 						yield return candidateFE.Resources;
 					}

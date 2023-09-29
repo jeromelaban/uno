@@ -24,6 +24,8 @@ namespace Windows.UI.Xaml.Data
 		/// </summary>
 		HotReload = 4,
 
+		FromXaml = 8,
+
 		/// <summary>
 		/// Updates that should be propagated recursively through the visual tree
 		/// </summary>

@@ -26,6 +26,8 @@
 		<Version>255.255.255.255</Version>
 		<ReportAnalyzer>true</ReportAnalyzer>
 
+		<NoWarn>$(NoWarn);NU1903</NoWarn>
+
 		<DefaultLanguage>en-US</DefaultLanguage>
 
 		<!-- Disable source link when not building on GitHub -->

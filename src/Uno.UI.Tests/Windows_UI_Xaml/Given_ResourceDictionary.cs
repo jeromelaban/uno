@@ -958,5 +958,51 @@ namespace Uno.UI.Tests.Windows_UI_Xaml
 			Assert.AreEqual(Colors.Blue, (SUT.border02.Background as SolidColorBrush)?.Color);
 			Assert.AreEqual(Colors.Green, (SUT.border03.Background as SolidColorBrush)?.Color);
 		}
+
+		[TestMethod]
+		public async Task When_Theme_Changed()
+		{
+			var app = UnitTestsApp.App.EnsureApplication();
+
+			try
+			{
+				await SwapSystemTheme();
+
+				var control = new ThemeResource_Theme_Changing_Override();
+				app.HostView.Children.Add(control);
+
+				control.ForceLoaded();
+
+				control.Measure(new Size(1000, 1000));
+
+				//Assert.AreEqual(Colors.Red, (control.button01.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Red, (control.button02.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Red, (control.button03.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Red, (control.button04.Background as SolidColorBrush)?.Color);
+
+				//Assert.AreEqual(Colors.Green, (control.button01_override.Background as SolidColorBrush)?.Color);
+				Assert.AreEqual(Colors.Green, (control.button02_override.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Green, (control.button03_override.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Green, (control.button04_override.Background as SolidColorBrush)?.Color);
+
+				await SwapSystemTheme();
+
+				//Assert.AreEqual(Colors.Red, (control.button01_override.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Red, (control.button02_override.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Red, (control.button03_override.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Red, (control.button04_override.Background as SolidColorBrush)?.Color);
+
+				//Assert.AreEqual(Colors.Green, (control.button01_override.Background as SolidColorBrush)?.Color);
+				Assert.AreEqual(Colors.Green, (control.button02_override.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Green, (control.button03_override.Background as SolidColorBrush)?.Color);
+				//Assert.AreEqual(Colors.Green, (control.button04_override.Background as SolidColorBrush)?.Color);
+			}
+			finally
+			{
+				await SwapSystemTheme();
+			}
+		}
+
+		internal static Task<bool> SwapSystemTheme() => ThemeHelper.SwapSystemTheme();
 	}
 }

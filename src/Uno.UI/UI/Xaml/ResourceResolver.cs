@@ -244,7 +244,7 @@ namespace Uno.UI
 		/// <param name="isThemeResourceExtension">True for {ThemeResource Foo}, false for {StaticResource Foo}</param>
 		/// <param name="context">Optional parameter that provides parse-time context</param>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public static void ApplyResource(DependencyObject owner, DependencyProperty property, object resourceKey, bool isThemeResourceExtension, bool isHotReloadSupported, object context = null)
+		public static void ApplyResource(DependencyObject owner, DependencyProperty property, object resourceKey, bool isThemeResourceExtension, bool isHotReloadSupported, bool fromXaml = false, object context = null)
 		{
 			var updateReason = ResourceUpdateReason.None;
 			if (isThemeResourceExtension)
@@ -260,23 +260,33 @@ namespace Uno.UI
 				updateReason |= ResourceUpdateReason.HotReload;
 			}
 
+			if (fromXaml && ResourceResolver.CurrentScope.Sources.Empty())
+			{
+				updateReason |= ResourceUpdateReason.FromXaml;
+			}
+
 			ApplyResource(owner, property, new SpecializedResourceDictionary.ResourceKey(resourceKey), updateReason, context, null);
 		}
 
 		internal static void ApplyResource(DependencyObject owner, DependencyProperty property, SpecializedResourceDictionary.ResourceKey specializedKey, ResourceUpdateReason updateReason, object context, DependencyPropertyValuePrecedences? precedence)
 		{
+			var fromXamlTheme = updateReason.HasFlag(ResourceUpdateReason.FromXaml) && updateReason.HasFlag(ResourceUpdateReason.ThemeResource);
+
 			// Set initial value based on statically-available top-level resources.
-			if (TryStaticRetrieval(specializedKey, context, out var value))
+			if (!fromXamlTheme)
 			{
-				owner.SetValue(property, BindingPropertyHelper.Convert(() => property.Type, value), precedence);
-
-				// If it's {StaticResource Foo} and we managed to resolve it at parse-time, then we don't want to update it again (per UWP).
-				updateReason &= ~ResourceUpdateReason.StaticResourceLoading;
-
-				if (updateReason == ResourceUpdateReason.None)
+				if (TryStaticRetrieval(specializedKey, context, out var value))
 				{
-					// If there's no other reason, don't create a resource binding.
-					return;
+					owner.SetValue(property, BindingPropertyHelper.Convert(() => property.Type, value), precedence);
+
+					// If it's {StaticResource Foo} and we managed to resolve it at parse-time, then we don't want to update it again (per UWP).
+					updateReason &= ~ResourceUpdateReason.StaticResourceLoading;
+
+					if (updateReason == ResourceUpdateReason.None)
+					{
+						// If there's no other reason, don't create a resource binding.
+						return;
+					}
 				}
 			}
 
@@ -384,7 +394,7 @@ namespace Uno.UI
 		{
 			value = null;
 			return (Application.Current?.Resources.TryGetValue(resourceKey, out value, shouldCheckSystem: false) ?? false) ||
-				TryAssemblyResourceRetrieval(resourceKey, context, out value) ||
+				// TryAssemblyResourceRetrieval(resourceKey, context, out value) ||
 				TrySystemResourceRetrieval(resourceKey, out value);
 		}
 
