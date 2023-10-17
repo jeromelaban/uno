@@ -53,10 +53,13 @@ internal static class HotReloadHelper
 
 		await RemoteControlClient.Instance.WaitForConnection();
 
+		Console.WriteLine($"***** Updating to {replacementText}");
 		await UpdateServerFile<T>(originalText, replacementText, ct);
 
+		Console.WriteLine($"***** waiting for {replacementText}");
 		await callback();
 
+		Console.WriteLine($"***** Updating back to {originalText}");
 		await UpdateServerFile<T>(replacementText, originalText, ct);
 	}
 }

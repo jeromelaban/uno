@@ -21,26 +21,27 @@ public class Given_DataTemplate : BaseTestClass
 	{
 		var ct = new CancellationTokenSource(TimeSpan.FromSeconds(10)).Token;
 
-		var SUT = new HR_Frame_Pages_DataTemplate();
-
-		UnitTestsUIContentHelper.Content = SUT;
+		// We're not storing the instance explicitly, as the HR engine replaces
+		// the top level content of the window. We keep poking at the UnitTestsUIContentHelper.Content
+		// as it gets updated with reloaded content.
+		UnitTestsUIContentHelper.Content = new HR_Frame_Pages_DataTemplate();
 
 		var originalText = "** Original Text **";
 		var updatedText = "** Updated Text **";
 
 		// Check the initial text of the TextBlock
-		await SUT.ValidateTextOnChildTextBlock(originalText, 0);
+		await UnitTestsUIContentHelper.Content.ValidateTextOnChildTextBlock(originalText, 0);
 
 		// Check the updated text of the TextBlock
 		await HotReloadHelper.UpdateServerFileAndRevert<HR_Frame_Pages_DataTemplate>(
 			originalText,
 			updatedText,
-			() => SUT.ValidateTextOnChildTextBlock(updatedText, 0),
+			() => UnitTestsUIContentHelper.Content.ValidateTextOnChildTextBlock(updatedText, 0),
 			ct);
 
-		// Validate that the page has been returned to the original text
-		await SUT.ValidateTextOnChildTextBlock(originalText, 0);
+		// Validate that content been returned to the original text
+		await UnitTestsUIContentHelper.Content.ValidateTextOnChildTextBlock(originalText, 0);
+
 		await Task.Yield();
 	}
-
 }
