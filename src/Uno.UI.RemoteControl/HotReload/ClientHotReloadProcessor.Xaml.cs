@@ -45,7 +45,7 @@ namespace Uno.UI.RemoteControl.HotReload
 
 			if (instance is FrameworkElement fe)
 			{
-				// TODO: Review as this may be too simplicitic for all scenarios
+				// TODO: Review as this may be too simplistic for all scenarios
 				var instanceTypeName = (instance.GetType().GetOriginalType() ?? instance.GetType()).Name;
 				var instanceKey = parentKey is not null ? $"{parentKey}_{instanceTypeName}" : instanceTypeName;
 				var match = predicate(fe, instanceKey);

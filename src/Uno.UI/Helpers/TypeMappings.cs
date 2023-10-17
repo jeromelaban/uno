@@ -51,6 +51,11 @@ namespace Uno.UI.Helpers
 			return originalType.GetMappedType() ?? instanceType;
 		}
 
+		public static TTargetType CreateInstance<TOriginalType, TTargetType>()
+		{
+			return (TTargetType)Activator.CreateInstance(typeof(TOriginalType).GetReplacementType());
+		}
+
 		internal static Type GetMappedType(this Type originalType) =>
 			OriginalTypeToMappedType.TryGetValue(originalType, out var mappedType) ? mappedType : default;
 

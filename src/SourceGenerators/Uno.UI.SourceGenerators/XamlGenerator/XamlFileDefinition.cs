@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using Uno.UI.SourceGenerators.Helpers;
 using Uno.UI.SourceGenerators.XamlGenerator.XamlRedirection;
@@ -10,7 +11,7 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 {
 	internal class XamlFileDefinition : IEquatable<XamlFileDefinition>
 	{
-		public XamlFileDefinition(string file, string targetFilePath)
+		public XamlFileDefinition(string file, string targetFilePath, ImmutableArray<byte> checksum)
 		{
 			Namespaces = new List<NamespaceDeclaration>();
 			Objects = new List<XamlObjectDefinition>();
@@ -18,6 +19,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			TargetFilePath = targetFilePath;
 
 			UniqueID = SanitizedFileName + "_" + HashBuilder.Build(FilePath);
+
+			Checksum = checksum;
 		}
 
 		private string SanitizedFileName => Path
@@ -29,6 +32,8 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 		public List<XamlObjectDefinition> Objects { get; private set; }
 
 		public string FilePath { get; }
+
+		public ImmutableArray<byte> Checksum { get; }
 
 		public string? SourceLink { get; internal set; }
 

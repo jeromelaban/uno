@@ -379,6 +379,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 					{
 						BuildBaseUri(writer);
 
+						if (_isHotReloadEnabled)
+						{
+							writer.AppendLineIndented($"private int[] _fileHash = new[]{{ {string.Join(", ", _fileDefinition.Checksum.ToArray())} }};");
+						}
+
 						using (Scope(_xClassName.Namespace, _xClassName.ClassName))
 						{
 							BuildInitializeComponent(writer, topLevelControl, controlBaseType);
@@ -857,6 +862,9 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 			return name;
 		}
 
+		private static string BuildSafeInterfaceName(string type)
+			=> type.Replace(".", "_").Replace(":", "_");
+
 		private void BuildChildSubclasses(IIndentedStringBuilder writer, bool isTopLevel = false)
 		{
 			_isInChildSubclass = true;
@@ -877,9 +885,23 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 						{
 							var classAccessibility = isTopLevel ? "" : "private";
 
+							var builderName = BuildSafeInterfaceName(className);
+							var buildInterface = $"I{builderName}";
+							var interfaceImpl = _isHotReloadEnabled
+								? $": {buildInterface}"
+								: "";
+
+							if (_isHotReloadEnabled)
+							{
+								using (writer.BlockInvariant($"{classAccessibility} interface {buildInterface}"))
+								{
+									writer.AppendLineIndented($"{kvp.Value.ReturnType} Build(object resourceOwner);");
+								}
+							}
+
 							WriteMetadataNewTypeAttribute(writer);
 
-							using (writer.BlockInvariant($"{classAccessibility} class {className}"))
+							using (writer.BlockInvariant($"{classAccessibility} class {className} {interfaceImpl}"))
 							{
 								BuildBaseUri(writer);
 
@@ -6473,7 +6495,11 @@ namespace Uno.UI.SourceGenerators.XamlGenerator
 
 			RegisterChildSubclass(subclassName, contentOwner, returnType);
 
-			writer.AppendLineIndented($"new {namespacePrefix}{subclassName}().Build(__owner)");
+			var instanceBuilder = _isHotReloadEnabled
+				? $"global::Uno.UI.Helpers.TypeMappings.CreateInstance<{namespacePrefix}{subclassName}, {namespacePrefix}I{BuildSafeInterfaceName(subclassName)}>()"
+				: $"new {namespacePrefix}{subclassName}()";
+
+			writer.AppendLineIndented($"{instanceBuilder}.Build(__owner)");
 		}
 
 		private string GenerateConstructorParameters(INamedTypeSymbol? type)

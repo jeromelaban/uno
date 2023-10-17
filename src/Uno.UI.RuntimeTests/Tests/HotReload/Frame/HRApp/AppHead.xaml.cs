@@ -43,7 +43,7 @@ namespace UnoApp50
 #endif
 
 			// Exclude logs below this level
-			builder.SetMinimumLevel(LogLevel.Information);
+			builder.SetMinimumLevel(LogLevel.Trace);
 
 			// Default filters for Uno Platform namespaces
 			builder.AddFilter("Uno", LogLevel.Warning);
@@ -72,7 +72,7 @@ namespace UnoApp50
 			// builder.AddFilter("Uno.UI.DataBinding.BinderReferenceHolder", LogLevel.Debug );
 
 			// RemoteControl and HotReload related
-			builder.AddFilter("Uno.UI.RemoteControl", LogLevel.Information);
+			builder.AddFilter("Uno.UI.RemoteControl", LogLevel.Trace);
 
 			// Debug JS interop
 			// builder.AddFilter("Uno.Foundation.WebAssemblyRuntime", LogLevel.Debug );
