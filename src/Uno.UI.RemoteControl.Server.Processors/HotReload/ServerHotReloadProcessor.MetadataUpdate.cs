@@ -33,6 +33,7 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 		private Solution? _currentSolution;
 		private WatchHotReloadService? _hotReloadService;
 		private IReporter _reporter = new Reporter();
+		private string? _headProjectPath;
 
 		private bool _useRoslynHotReload;
 
@@ -40,7 +41,9 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 		{
 			_ = bool.TryParse(_remoteControlServer.GetServerConfiguration("metadata-updates"), out _useRoslynHotReload);
 
-			if (_useRoslynHotReload || configureServer.EnableMetadataUpdates)
+			_useRoslynHotReload = _useRoslynHotReload || configureServer.EnableMetadataUpdates;
+
+			if (_useRoslynHotReload)
 			{
 				CompilationWorkspaceProvider.InitializeRoslyn(Path.GetDirectoryName(configureServer.ProjectPath));
 
@@ -176,6 +179,8 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 				var sourceText = await GetSourceTextAsync(file);
 				updatedSolution = documentToUpdate.WithText(sourceText).Project.Solution;
 				updatedProjectId = documentToUpdate.Project.Id;
+
+				_reporter.Verbose($"Updating project file {file} in the workspace documents");
 			}
 			else if (_currentSolution.Projects.SelectMany(p => p.AdditionalDocuments).FirstOrDefault(d => string.Equals(d.FilePath, file, StringComparison.OrdinalIgnoreCase)) is AdditionalDocument additionalDocument)
 			{
@@ -183,15 +188,27 @@ namespace Uno.UI.RemoteControl.Host.HotReload
 				updatedSolution = _currentSolution.WithAdditionalDocumentText(additionalDocument.Id, sourceText, PreservationMode.PreserveValue);
 				updatedProjectId = additionalDocument.Project.Id;
 
-				// Generate an empty document to force the generators to run
-				// in a separate project of the same solution. This is not needed
-				// for the head project, but it's no causing issues either.
-				var docName = Guid.NewGuid().ToString();
-				updatedSolution = updatedSolution.AddAdditionalDocument(
-					DocumentId.CreateNewId(updatedProjectId),
-					docName,
-					SourceText.From("")
-				);
+				_reporter.Verbose($"Updating project file {file} in the workspace additional documents");
+
+				if (_currentSolution.Projects.FirstOrDefault(p => p.FilePath == _headProjectPath) is { } mainProject)
+				{
+					if (mainProject.Documents.FirstOrDefault(d => d.FilePath!.EndsWith(".cs", StringComparison.OrdinalIgnoreCase)) is { } anyDoc)
+					{
+						var docName = Guid.NewGuid().ToString();
+						var newUpdatedText = SourceText.From(sourceText.ToString() + $" public class _{docName.Replace("-", "_")} {{ }}");
+
+						updatedSolution = anyDoc.WithText(newUpdatedText).Project.Solution;
+						// Generate an empty document to force the generators to run
+						// in a separate project of the same solution. This is not needed
+						// for the head project, but it's no causing issues either.
+
+						_reporter.Verbose($"Forced main project update using {_headProjectPath}");
+					}
+				}
+				else
+				{
+					_reporter.Verbose($"Failed to update using {_headProjectPath}");
+				}
 			}
 			else
 			{
