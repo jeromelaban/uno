@@ -3,15 +3,21 @@ using System.Globalization;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Mono.Options;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Uno.UI.RemoteControl.Host
 {
 	class Program
 	{
-		static void Main(string[] args)
+		static async Task Main(string[] args)
 		{
+			Debugger.Launch();
+
 			var httpPort = 0;
 			var parentPID = 0;
 
@@ -31,7 +37,7 @@ namespace Uno.UI.RemoteControl.Host
 							throw new ArgumentException($"The parent process id parameter is invalid {s}");
 						}
 					}
-				},
+				}
 			};
 
 			p.Parse(args);
@@ -41,7 +47,7 @@ namespace Uno.UI.RemoteControl.Host
 				throw new ArgumentException($"The httpPort parameter is required.");
 			}
 
-			var host = new WebHostBuilder()
+			var builder = new WebHostBuilder()
 				.UseSetting("UseIISIntegration", false.ToString())
 				.UseKestrel()
 				.UseUrls($"http://*:{httpPort}/")
@@ -56,11 +62,18 @@ namespace Uno.UI.RemoteControl.Host
 				{
 					config.AddCommandLine(args);
 				})
-				.Build();
+				.ConfigureServices(services =>
+				{
+					services.AddSingleton<IIDEChannelServerProvider, IDEChannelServerProvider>();
+				});
+
+			var host = builder.Build();
+
+			host.Services.GetService<IIDEChannelServerProvider>();
 
 			using var parentObserver = ParentProcessObserver.Observe(host, parentPID);
 
-			host.Run();
+			await host.RunAsync();
 		}
 	}
 }

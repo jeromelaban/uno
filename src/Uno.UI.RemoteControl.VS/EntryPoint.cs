@@ -5,19 +5,24 @@ using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.Build.Evaluation;
+using Microsoft.Build.Framework;
 using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.ProjectSystem.Build;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using StreamJsonRpc;
+using Uno.UI.RemoteControl.Messaging.IDEChannel;
 using Uno.UI.RemoteControl.VS.Helpers;
 using Task = System.Threading.Tasks.Task;
 
@@ -35,17 +40,22 @@ namespace Uno.UI.RemoteControl.VS
 		private readonly DTE2 _dte2;
 		private readonly string _toolsPath;
 		private readonly AsyncPackage _asyncPackage;
-		private Action<string> _debugAction;
-		private Action<string> _infoAction;
-		private Action<string> _verboseAction;
-		private Action<string> _warningAction;
-		private Action<string> _errorAction;
-		private System.Diagnostics.Process _process;
+		private Action<string>? _debugAction;
+		private Action<string>? _infoAction;
+		private Action<string>? _verboseAction;
+		private Action<string>? _warningAction;
+		private Action<string>? _errorAction;
+		private System.Diagnostics.Process? _process;
 
 		private int RemoteControlServerPort;
 		private bool _closing;
 		private bool _isDisposed;
-
+		private NamedPipeClientStream? _pipeServer;
+		private Guid _pipeGuid;
+		private CancellationTokenSource? _IDEChannelCancellation;
+		private Task? _connectTask;
+		private JsonRpc? _rpc;
+		private IIDEChannelServer? _roslynServer;
 		private readonly _dispSolutionEvents_BeforeClosingEventHandler _closeHandler;
 		private readonly _dispBuildEvents_OnBuildDoneEventHandler _onBuildDoneHandler;
 		private readonly _dispBuildEvents_OnBuildProjConfigBeginEventHandler _onBuildProjConfigBeginHandler;
@@ -80,7 +90,7 @@ namespace Uno.UI.RemoteControl.VS
 		{
 			if (RemoteControlServerPort == 0)
 			{
-				_warningAction(
+				_warningAction?.Invoke(
 					$"The Remote Control server is not yet started, providing [0] as the server port. " +
 					$"Rebuilding the application may fix the issue.");
 			}
@@ -184,8 +194,8 @@ namespace Uno.UI.RemoteControl.VS
 					}
 					catch (Exception ex)
 					{
-						_debugAction($"Exception on retrieving {p.UniqueName} details. Err: {ex}.");
-						_warningAction($"Cannot read {p.UniqueName} project details (It may be unloaded).");
+						_debugAction?.Invoke($"Exception on retrieving {p.UniqueName} details. Err: {ex}.");
+						_warningAction?.Invoke($"Cannot read {p.UniqueName} project details (It may be unloaded).");
 					}
 					if (string.IsNullOrWhiteSpace(filename) == false
 						&& GetMsbuildProject(filename) is Microsoft.Build.Evaluation.Project msbProject
@@ -197,7 +207,7 @@ namespace Uno.UI.RemoteControl.VS
 			}
 			catch (Exception e)
 			{
-				_debugAction($"UpdateProjectsAsync failed: {e}");
+				_debugAction?.Invoke($"UpdateProjectsAsync failed: {e}");
 			}
 		}
 
@@ -211,17 +221,19 @@ namespace Uno.UI.RemoteControl.VS
 			// Detach event handler to avoid this being called multiple times
 			_dte.Events.SolutionEvents.BeforeClosing -= _closeHandler;
 
-			if (_process != null)
+			if (_process is not null)
 			{
 				try
 				{
-					_debugAction($"Terminating Remote Control server (pid: {_process.Id})");
+					_debugAction?.Invoke($"Terminating Remote Control server (pid: {_process.Id})");
 					_process.Kill();
-					_debugAction($"Terminated Remote Control server (pid: {_process.Id})");
+					_debugAction?.Invoke($"Terminated Remote Control server (pid: {_process.Id})");
+
+					_IDEChannelCancellation?.Cancel();
 				}
 				catch (Exception e)
 				{
-					_debugAction($"Failed to terminate Remote Control server (pid: {_process.Id}): {e}");
+					_debugAction?.Invoke($"Failed to terminate Remote Control server (pid: {_process.Id}): {e}");
 				}
 				finally
 				{
@@ -269,8 +281,10 @@ namespace Uno.UI.RemoteControl.VS
 
 				var sb = new StringBuilder();
 
+				_pipeGuid = Guid.NewGuid();
+
 				var hostBinPath = Path.Combine(_toolsPath, "host", runtimeVersionPath, "Uno.UI.RemoteControl.Host.dll");
-				string arguments = $"\"{hostBinPath}\" --httpPort {RemoteControlServerPort} --ppid {System.Diagnostics.Process.GetCurrentProcess().Id}";
+				string arguments = $"\"{hostBinPath}\" --httpPort {RemoteControlServerPort} --ppid {System.Diagnostics.Process.GetCurrentProcess().Id} --ideChannel \"{_pipeGuid}\"";
 				var pi = new ProcessStartInfo("dotnet", arguments)
 				{
 					UseShellExecute = false,
@@ -286,8 +300,8 @@ namespace Uno.UI.RemoteControl.VS
 				_process = new System.Diagnostics.Process();
 
 				// hookup the eventhandlers to capture the data that is received
-				_process.OutputDataReceived += (sender, args) => _debugAction(args.Data);
-				_process.ErrorDataReceived += (sender, args) => _errorAction(args.Data);
+				_process.OutputDataReceived += (sender, args) => _debugAction?.Invoke(args.Data);
+				_process.ErrorDataReceived += (sender, args) => _errorAction?.Invoke(args.Data);
 
 				_process.StartInfo = pi;
 				_process.Start();
@@ -295,8 +309,56 @@ namespace Uno.UI.RemoteControl.VS
 				// start our event pumps
 				_process.BeginOutputReadLine();
 				_process.BeginErrorReadLine();
+
+				ConnectToHost();
 			}
 		}
+
+		private void ConnectToHost()
+		{
+			_IDEChannelCancellation = new CancellationTokenSource();
+
+			_connectTask = Task.Run(async () =>
+			{
+				try
+				{
+					_pipeServer = new NamedPipeClientStream(
+							serverName: ".",
+							pipeName: _pipeGuid.ToString(),
+							direction: PipeDirection.InOut,
+							options: PipeOptions.Asynchronous | PipeOptions.WriteThrough);
+
+					_infoAction?.Invoke($"Creating IDE Channel to Dev Server...");
+
+					_rpc = JsonRpc.Attach(_pipeServer);
+					_rpc.AllowModificationWhileListening = true;
+
+					_roslynServer = _rpc.Attach<IIDEChannelServer>();
+					_rpc.AllowModificationWhileListening = false;
+
+					await _pipeServer.ConnectAsync(_IDEChannelCancellation.Token);
+
+					_infoAction?.Invoke($"Created IDE Channel to Dev Server");
+
+					_infoAction?.Invoke($"Before register MessageFromClient");
+
+					_roslynServer.MessageFromClient += (s, e) =>
+					{
+
+						_infoAction?.Invoke($"IDE Message: {e}");
+
+					};
+					_infoAction?.Invoke($"After register MessageFromClient");
+				}
+				catch(Exception e)
+				{
+					_errorAction?.Invoke($"Error {e}");
+				}
+
+			}, _IDEChannelCancellation.Token);
+		}
+
+		private void _roslynServer_MessageFromIDE(object sender, IDEMessage e) => throw new NotImplementedException();
 
 		private static int GetTcpPort()
 		{
@@ -375,7 +437,7 @@ namespace Uno.UI.RemoteControl.VS
 			var msbuildProject = GetMsbuildProject(projectFullName);
 			if (msbuildProject == null)
 			{
-				_debugAction($"Failed to find project {projectFullName}, cannot provide listen port to the app.");
+				_debugAction?.Invoke($"Failed to find project {projectFullName}, cannot provide listen port to the app.");
 			}
 			else
 			{
@@ -391,7 +453,7 @@ namespace Uno.UI.RemoteControl.VS
 			var msbuildProject = ProjectCollection.GlobalProjectCollection.GetLoadedProjects(projectFullName).FirstOrDefault();
 			if (msbuildProject == null)
 			{
-				_debugAction($"Failed to find project {projectFullName}, cannot provide listen port to the app.");
+				_debugAction?.Invoke($"Failed to find project {projectFullName}, cannot provide listen port to the app.");
 			}
 			else
 			{
@@ -430,7 +492,7 @@ namespace Uno.UI.RemoteControl.VS
 			}
 			catch (Exception e)
 			{
-				_debugAction($"Failed to dispose Remote Control server: {e}");
+				_debugAction?.Invoke($"Failed to dispose Remote Control server: {e}");
 			}
 		}
 
