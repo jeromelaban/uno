@@ -5,17 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Uno.UI.RemoteControl.Messaging.IDEChannel;
+namespace Uno.UI.RemoteControl.Messaging.IdeChannel;
 
-internal interface IIDEChannelServer
+internal interface IIdeChannelServer
 {
-	Task SendToIDEAsync(IDEMessage message);
+	Task SendToDevServerAsync(IdeMessage message);
 
-	event EventHandler<IDEMessage>? MessageFromIDE;
-	event EventHandler<IDEMessage>? MessageFromClient;
+	event EventHandler<IdeMessage>? MessageFromDevServer;
 }
-
-public record IDEMessage;
-
-public record ForceHotReloadMessage : IDEMessage;
-

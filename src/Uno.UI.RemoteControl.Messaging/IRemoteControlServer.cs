@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Uno.UI.RemoteControl;
 using Uno.UI.RemoteControl.HotReload.Messages;
-using Uno.UI.RemoteControl.Messaging.IDEChannel;
+using Uno.UI.RemoteControl.Messaging.IdeChannel;
 
 namespace Uno.UI.RemoteControl.Host
 {
@@ -11,6 +11,6 @@ namespace Uno.UI.RemoteControl.Host
 
 		Task SendFrame(IMessage fileReload);
 
-		Task SendMessageToIDEAsync(IDEMessage message);
+		Task SendMessageToIDEAsync(IdeMessage message);
 	}
 }

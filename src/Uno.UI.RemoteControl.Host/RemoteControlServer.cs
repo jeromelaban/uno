@@ -14,9 +14,10 @@ using Newtonsoft.Json;
 using StreamJsonRpc;
 using Uno.Extensions;
 using Uno.UI.RemoteControl.Helpers;
+using Uno.UI.RemoteControl.Host.IdeChannel;
 using Uno.UI.RemoteControl.HotReload.Messages;
 using Uno.UI.RemoteControl.Messages;
-using Uno.UI.RemoteControl.Messaging.IDEChannel;
+using Uno.UI.RemoteControl.Messaging.IdeChannel;
 using static Uno.UI.RemoteControl.Host.RemoteControlServer;
 
 namespace Uno.UI.RemoteControl.Host;
@@ -29,13 +30,13 @@ internal class RemoteControlServer : IRemoteControlServer, IDisposable
 
 	private string? _resolveAssemblyLocation;
 	private WebSocket? _socket;
-	private IIDEChannelServer? _ideChannelServer;
+	private IdeChannelServer? _ideChannelServer;
 	private readonly List<string> _appInstanceIds = new();
 	private readonly IConfiguration _configuration;
-	private readonly IIDEChannelServerProvider _ideChannelProvider;
+	private readonly IIdeChannelServerProvider _ideChannelProvider;
 	private readonly IServiceProvider _serviceProvider;
 
-	public RemoteControlServer(IConfiguration configuration, IIDEChannelServerProvider ideChannelProvider, IServiceProvider serviceProvider)
+	public RemoteControlServer(IConfiguration configuration, IIdeChannelServerProvider ideChannelProvider, IServiceProvider serviceProvider)
 	{
 		_configuration = configuration;
 		_ideChannelProvider = ideChannelProvider;
@@ -130,7 +131,7 @@ internal class RemoteControlServer : IRemoteControlServer, IDisposable
 	private void RegisterProcessor(IServerProcessor hotReloadProcessor)
 		=> _processors[hotReloadProcessor.Scope] = hotReloadProcessor;
 
-	public Messaging.IDEChannel.IIDEChannelServer? IDEChannelServer => _ideChannelServer;
+	public IdeChannelServer? IDEChannelServer => _ideChannelServer;
 
 	public async Task RunAsync(WebSocket socket, CancellationToken ct)
 	{
@@ -181,7 +182,7 @@ internal class RemoteControlServer : IRemoteControlServer, IDisposable
 
 	private async Task TryStartIDEChannelAsync()
 	{
-		_ideChannelServer = await _ideChannelProvider.GetIDEChannelServerAsync();
+		_ideChannelServer = await _ideChannelProvider.GetIdeChannelServerAsync();
 	}
 
 	private void ProcessDiscoveryFrame(Frame frame)
@@ -332,11 +333,11 @@ internal class RemoteControlServer : IRemoteControlServer, IDisposable
 		}
 	}
 
-	public async Task SendMessageToIDEAsync(IDEMessage message)
+	public async Task SendMessageToIDEAsync(IdeMessage message)
 	{
 		if (IDEChannelServer is not null)
 		{
-			await IDEChannelServer.SendToIDEAsync(message);
+			await IDEChannelServer.SendToIdeAsync(message);
 		}
 	}
 

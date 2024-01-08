@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Uno.Extensions;
+using Uno.UI.RemoteControl.Host.IdeChannel;
 
 namespace Uno.UI.RemoteControl.Host
 {
@@ -36,7 +37,7 @@ namespace Uno.UI.RemoteControl.Host
 						{
 							using (var server = new RemoteControlServer(
 								configuration,
-								context.RequestServices.GetService<IIDEChannelServerProvider>() ?? throw new InvalidOperationException("IIDEChannelServerProvider is required"),
+								context.RequestServices.GetService<IIdeChannelServerProvider>() ?? throw new InvalidOperationException("IIDEChannelServerProvider is required"),
 								context.RequestServices))
 							{
 								await server.RunAsync(await context.WebSockets.AcceptWebSocketAsync(), CancellationToken.None);

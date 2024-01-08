@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Uno.UI.RemoteControl.Host.IdeChannel;
 
 namespace Uno.UI.RemoteControl.Host
 {
@@ -16,8 +17,6 @@ namespace Uno.UI.RemoteControl.Host
 	{
 		static async Task Main(string[] args)
 		{
-			Debugger.Launch();
-
 			var httpPort = 0;
 			var parentPID = 0;
 
@@ -64,12 +63,12 @@ namespace Uno.UI.RemoteControl.Host
 				})
 				.ConfigureServices(services =>
 				{
-					services.AddSingleton<IIDEChannelServerProvider, IDEChannelServerProvider>();
+					services.AddSingleton<IIdeChannelServerProvider, IdeChannelServerProvider>();
 				});
 
 			var host = builder.Build();
 
-			host.Services.GetService<IIDEChannelServerProvider>();
+			host.Services.GetService<IIdeChannelServerProvider>();
 
 			using var parentObserver = ParentProcessObserver.Observe(host, parentPID);
 
