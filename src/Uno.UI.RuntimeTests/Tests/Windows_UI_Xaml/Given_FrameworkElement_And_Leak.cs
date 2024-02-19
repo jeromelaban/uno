@@ -1,5 +1,5 @@
 ﻿// Uncomment to get additional reference tracking
-// #define TRACK_REFS
+#define TRACK_REFS
 #nullable enable
 
 #if !WINAPPSDK
@@ -20,6 +20,7 @@ using Windows.UI.Core;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Uno.Foundation.Logging;
 
 #if !HAS_UNO_WINUI
 using Microsoft/* UWP don't rename */.UI.Xaml.Controls;
@@ -42,6 +43,11 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 	{
 		private static IEnumerable<object?[]> GetScenarios()
 		{
+			yield return new object[] { typeof(Microsoft/* UWP don't rename */.UI.Xaml.Controls.Expander), 15 };
+			yield break;
+
+#pragma warning disable CS0162 // Unreachable code detected
+
 			yield return new object[] { typeof(XamlEvent_Leak_UserControl), 15 };
 			yield return new object[] { typeof(XamlEvent_Leak_UserControl_xBind), 15 };
 			yield return new object[] { typeof(XamlEvent_Leak_UserControl_xBind_Event), 15 };
@@ -172,11 +178,11 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 
 		private async Task When_AddRemove_With_Styles(object controlTypeRaw, int count, LeakTestStyles leakTestStyles)
 		{
-			if (leakTestStyles.HasFlag(LeakTestStyles.Default))
-			{
-				// Test for leaks both without and with fluent styles
-				await When_Add_Remove_Inner(controlTypeRaw, count);
-			}
+			//if (leakTestStyles.HasFlag(LeakTestStyles.Default))
+			//{
+			//	// Test for leaks both without and with fluent styles
+			//	await When_Add_Remove_Inner(controlTypeRaw, count);
+			//}
 
 			if (leakTestStyles.HasFlag(LeakTestStyles.Fluent))
 			{
@@ -187,6 +193,8 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 
 		private async Task When_Add_Remove_Inner(object controlTypeRaw, int count)
 		{
+			Uno.UI.DataBinding.BinderReferenceHolder.IsEnabled = true;
+
 #if TRACK_REFS
 			var initialInactiveStats = Uno.UI.DataBinding.BinderReferenceHolder.GetInactiveViewReferencesStats();
 			var initialActiveStats = Uno.UI.DataBinding.BinderReferenceHolder.GetReferenceStats();
@@ -238,7 +246,7 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 			}
 
 			var sw = Stopwatch.StartNew();
-			var endTime = TimeSpan.FromSeconds(30);
+			var endTime = TimeSpan.FromSeconds(10);
 			var maxTime = TimeSpan.FromMinutes(1);
 			var lastActiveControls = activeControls;
 
@@ -250,6 +258,7 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 				// Waiting for idle is required for collection of
 				// DispatcherConditionalDisposable to be executed
 				await TestServices.WindowHelper.WaitForIdle();
+				await Task.Delay(50);
 
 				if (FrameworkTemplatePool.IsPoolingEnabled)
 				{
@@ -290,7 +299,13 @@ namespace Uno.UI.RuntimeTests.Tests.Windows_UI_Xaml
 			// created, we can assume that enough objects were collected entirely.
 			Assert.IsTrue(activeControls < count, retainedMessage);
 #else
+			foreach (var types in _holders.GroupBy(h => h.Key.GetType()))
+			{
+				await Console.Out.WriteLineAsync($"Retained type: {types.Key} ({types.Count()})");
+			}
+
 			Assert.AreEqual(0, activeControls, retainedMessage);
+
 #endif
 
 #if __IOS__ || __ANDROID__

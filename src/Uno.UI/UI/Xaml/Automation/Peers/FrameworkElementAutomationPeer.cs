@@ -5,6 +5,7 @@ using Uno.UI;
 using System.Linq;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Uno.UI.DataBinding;
 
 #if __ANDROID__
 using View = Android.Views.ViewGroup;
@@ -22,20 +23,21 @@ namespace Microsoft.UI.Xaml.Automation.Peers
 {
 	public partial class FrameworkElementAutomationPeer : AutomationPeer
 	{
-		public UIElement Owner { get; }
+		private ManagedWeakReference _ownerRef;
+
+		public UIElement Owner => _ownerRef?.Target as UIElement;
 
 		public FrameworkElementAutomationPeer() { }
 
 		public FrameworkElementAutomationPeer(object element)
 		{
-			Owner = element as UIElement;
+			_ownerRef = WeakReferencePool.RentWeakReference(this, element);
 		}
 
 		public FrameworkElementAutomationPeer(FrameworkElement owner)
 		{
-			Owner = owner;
+			_ownerRef = WeakReferencePool.RentWeakReference(this, owner);
 		}
-
 
 		public static global::Microsoft.UI.Xaml.Automation.Peers.AutomationPeer FromElement(global::Microsoft.UI.Xaml.UIElement element)
 		{

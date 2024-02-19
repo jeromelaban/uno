@@ -66,6 +66,8 @@ namespace Microsoft.UI.Xaml
 			/// <param name="parent"></param>
 			public static void TryCancelTracking(View instance, object? parent)
 			{
+				// Console.WriteLine($"Cancel tracking for {instance.GetType()}/{instance.GetHashCode():X8}, Parent {parent?.GetType()}/{parent?.GetHashCode():X8}");
+
 				ref var handle = ref CollectionsMarshal.GetValueRefOrNullRef(_activeInstances, instance);
 
 				if (!Unsafe.IsNullRef(ref handle) && handle.IsAllocated)
@@ -126,18 +128,20 @@ namespace Microsoft.UI.Xaml
 						{
 							if (_cookiePool.TryPop(out cookie))
 							{
-								cookie.SetTargetInstance(instance);
+								cookie.SetTargetInstance(instance, parent.GetType(), parent.GetHashCode());
 								cookie.SetTargetTemplate(template);
 							}
 							else
 							{
-								cookie = new TrackerCookie(instance, template);
+								cookie = new TrackerCookie(instance, template, parent.GetType(), parent.GetHashCode());
 							}
 						}
 					}
 
 					handle = new DependentHandle(parent, cookie);
 				}
+
+				//Console.WriteLine($"Registered tracking for {instance.GetType()}/{instance.GetHashCode():X8}, Parent {parent.GetType()}/{parent.GetHashCode():X8}");
 			}
 
 			/// <summary>
@@ -146,6 +150,8 @@ namespace Microsoft.UI.Xaml
 			/// </summary>
 			public static bool TryRemove(View instance, bool returnCookie = true)
 			{
+				//Console.WriteLine($"Remove tracking for {instance.GetType()}/{instance.GetHashCode():X8}");
+
 				ref var handle = ref CollectionsMarshal.GetValueRefOrNullRef(_activeInstances, instance);
 
 				if (!Unsafe.IsNullRef(ref handle))
@@ -159,6 +165,10 @@ namespace Microsoft.UI.Xaml
 
 					return true;
 				}
+				else
+				{
+					//Console.WriteLine($"Unable to find instance {instance.GetType()}/{instance.GetHashCode():X8}");
+				}
 
 				return false;
 			}
@@ -169,7 +179,7 @@ namespace Microsoft.UI.Xaml
 				{
 					if (_cookiePool.Count < MaxCookiePoolSize)
 					{
-						cookie.SetTargetInstance(null);
+						cookie.SetTargetInstance(null, null, null);
 						cookie.SetTargetTemplate(null);
 
 						if (finalizing)
@@ -190,29 +200,42 @@ namespace Microsoft.UI.Xaml
 			{
 				private ManagedWeakReference? _instance;
 				private FrameworkTemplate? _template;
+				private Type? _parentType;
+				private int? _parentHashCode;
 
-				public TrackerCookie(View instance, FrameworkTemplate template)
+				public TrackerCookie(View instance, FrameworkTemplate template, Type parentType, int parentHashCode)
 				{
 					_instance = WeakReferencePool.RentWeakReference(null, instance);
 					_template = template;
+					_parentType = parentType;
+					_parentHashCode = parentHashCode;
 				}
 
 				~TrackerCookie()
 				{
+					//Console.WriteLine($"TrackerCookie for parent {_parentType}/{_parentHashCode:X8} for instance {_instance?.Target?.GetType()}/{_instance?.Target?.GetHashCode():X8}");
+
 					if (_template is not null && _instance?.Target is View view)
 					{
 						Instance.RaiseOnParentCollected(_template, view);
+					}
+					else
+					{
+
 					}
 
 					// If the pool wasn't full, resurrect the cookie so its finalizer will run again
 					TryReturnCookie(this, finalizing: true);
 				}
 
-				public void SetTargetInstance(View? view)
+				public void SetTargetInstance(View? view, Type? parentType, int? parentHashCode)
 				{
 					_instance = view is not null
 							? WeakReferencePool.RentWeakReference(null, view)
 							: null;
+
+					_parentType = parentType;
+					_parentHashCode = parentHashCode;
 				}
 
 				public void SetTargetTemplate(FrameworkTemplate? template)

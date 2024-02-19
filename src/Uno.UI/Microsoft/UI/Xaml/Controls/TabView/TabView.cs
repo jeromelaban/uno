@@ -92,11 +92,30 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 			}
 		}
 
+		/* BEGIN UNO Specific */
+		private protected override void OnLoaded()
+		{
+			base.OnLoaded();
+			RegisterEvents();
+		}
+
+		private protected override void OnUnloaded()
+		{
+			UnhookEventsAndClearFields();
+			base.OnUnloaded();
+		}
+
 		protected override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
 
 			UnhookEventsAndClearFields();
+			RegisterEvents();
+		}
+
+		private void RegisterEvents()
+		{
+			/* END UNO Specific */
 
 			//IControlProtected controlProtected{ *this };
 
@@ -442,6 +461,7 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 			m_scrollViewerViewChangedRevoker.Disposable = null;
 			m_scrollDecreaseClickRevoker.Disposable = null;
 			m_scrollIncreaseClickRevoker.Disposable = null;
+			m_ScrollViewerScrollableWidthPropertyChangedRevoker.Disposable = null;
 
 			m_tabContentPresenter = null;
 			m_rightContentPresenter = null;

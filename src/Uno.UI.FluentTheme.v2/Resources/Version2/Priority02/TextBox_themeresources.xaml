@@ -246,7 +246,7 @@
                                                 contract7Present:BackgroundSizing="{TemplateBinding BackgroundSizing}"
                                                 contract7Present:CornerRadius="{TemplateBinding CornerRadius}"
                                                 contract7NotPresent:CornerRadius="{Binding Source={ThemeResource ControlCornerRadius}, Converter={StaticResource RightCornerRadiusFilterConverter}}">
-                                                <VisualStateManager.VisualStateGroups>
+                                                <!--<VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroup x:Name="CommonStates">
                                                         <VisualState x:Name="Normal" />
 
@@ -287,7 +287,7 @@
                                                             </Storyboard>
                                                         </VisualState>
                                                     </VisualStateGroup>
-                                                </VisualStateManager.VisualStateGroups>
+                                                </VisualStateManager.VisualStateGroups>-->
                                                 <TextBlock x:Name="GlyphElement"
                                                     Foreground="{ThemeResource TextControlButtonForeground}"
                                                     VerticalAlignment="Center"
@@ -304,7 +304,7 @@
                             </Style>
                         </Grid.Resources>
 
-                        <VisualStateManager.VisualStateGroups>
+                        <!--<VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal"/>
 
@@ -321,7 +321,7 @@
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushDisabled}" />
                                         </ObjectAnimationUsingKeyFrames>
 
-                                        <!-- Uno specific - simulates bottom border gradient -->
+                                        --><!-- Uno specific - simulates bottom border gradient --><!--
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BottomBorderElement" Storyboard.TargetProperty="Visibility">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -339,10 +339,10 @@
                                 <VisualState x:Name="PointerOver">
 
                                     <Storyboard>
-                                        <!-- Uno specific: avoid applying LinearGradientBrush -->
-                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
+                                        --><!-- Uno specific: avoid applying LinearGradientBrush --><!--
+                                        --><!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ControlStrokeColorDefaultBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>-->
+                                        </ObjectAnimationUsingKeyFrames>--><!--
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="Background">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundPointerOver}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -366,10 +366,10 @@
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBackgroundFocused}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         
-                                        <!-- Uno specific: Simulates focused bottom border -->
-                                        <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
+                                        --><!-- Uno specific: Simulates focused bottom border --><!--
+                                        --><!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement" Storyboard.TargetProperty="BorderBrush">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextControlBorderBrushFocused}" />
-                                        </ObjectAnimationUsingKeyFrames>-->
+                                        </ObjectAnimationUsingKeyFrames>--><!--
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BottomBorderElement" Storyboard.TargetProperty="BorderThickness">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource UnoTextControlBottomBorderFocusedThickness}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -404,7 +404,7 @@
 
                             </VisualStateGroup>
 
-                        </VisualStateManager.VisualStateGroups>
+                        </VisualStateManager.VisualStateGroups>-->
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />

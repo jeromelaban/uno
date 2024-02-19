@@ -168,11 +168,6 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls.Primitives
 				}
 			}
 
-			if (m_selectionEllipsePanel is Panel selectionEllipsePanel)
-			{
-				selectionEllipsePanel.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, OnSelectionEllipseFlowDirectionChanged);
-			}
-
 			// If we haven't yet created our bitmaps, do so now.
 			if (m_hsvValues.Count == 0)
 			{
@@ -987,6 +982,13 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls.Primitives
 				registrations.Add(() => inputTarget.PointerPressed -= OnInputTargetPointerPressed);
 				registrations.Add(() => inputTarget.PointerMoved -= OnInputTargetPointerMoved);
 				registrations.Add(() => inputTarget.PointerReleased -= OnInputTargetPointerReleased);
+			}
+
+
+			if (m_selectionEllipsePanel is Panel selectionEllipsePanel)
+			{
+				var cookie = selectionEllipsePanel.RegisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, OnSelectionEllipseFlowDirectionChanged);
+				registrations.Add(() => selectionEllipsePanel.UnregisterPropertyChangedCallback(FrameworkElement.FlowDirectionProperty, cookie));
 			}
 
 			return registrations;

@@ -463,7 +463,7 @@ namespace SamplesApp
 				// builder.AddFilter("Microsoft.UI.Xaml.Data", LogLevel.Debug );
 
 				// Binder memory references tracking
-				// builder.AddFilter("Uno.UI.DataBinding.BinderReferenceHolder", LogLevel.Debug );
+				builder.AddFilter("Uno.UI.DataBinding.BinderReferenceHolder", LogLevel.Information);
 
 				// builder.AddFilter(ListView-related messages
 				// builder.AddFilter("Microsoft.UI.Xaml.Controls.ListViewBase", LogLevel.Debug );

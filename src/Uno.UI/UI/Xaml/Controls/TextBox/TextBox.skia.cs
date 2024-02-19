@@ -12,6 +12,8 @@ using Uno.UI;
 using Uno.UI.Helpers.WinUI;
 using Uno.UI.Xaml;
 using Uno.UI.Xaml.Media;
+using Uno.UI.DataBinding;
+
 
 #if HAS_UNO_WINUI
 using Microsoft.UI.Input;
@@ -156,6 +158,8 @@ public partial class TextBox
 		TextBoxView?.SetFlowDirectionAndTextAlignment();
 	}
 
+	private Canvas _canvas;
+
 	private void UpdateTextBoxView()
 	{
 		_textBoxView ??= new TextBoxView(this);
@@ -173,7 +177,7 @@ public partial class TextBox
 			{
 				if (ContentElement.Content is not Grid { Name: "TextBoxViewGrid" })
 				{
-					var canvas = new Canvas
+					_canvas = new Canvas
 					{
 						HorizontalAlignment = HorizontalAlignment.Left
 					};
@@ -182,7 +186,7 @@ public partial class TextBox
 						Name = "TextBoxViewGrid",
 						Children =
 						{
-							canvas,
+							_canvas,
 							displayBlock
 						},
 						RowDefinitions =
@@ -191,47 +195,79 @@ public partial class TextBox
 						}
 					};
 
-					displayBlock.LayoutUpdated += (_, _) => canvas.Width = Math.Ceiling(displayBlock.ActualWidth + Math.Ceiling(DisplayBlockInlines.AverageLineHeight * InlineCollection.CaretThicknessAsRatioOfLineHeight));
+					var thatRef = WeakReferencePool.RentWeakReference(this, this);
+					displayBlock.LayoutUpdated
+						+= (source, _) =>
+						{
+							if (thatRef.Target is TextBox tb && source is TextBlock sourceAsTb)
+							{
+								tb._canvas.Width = Math.Ceiling(
+									sourceAsTb.ActualWidth + Math.Ceiling(tb.DisplayBlockInlines.AverageLineHeight * InlineCollection.CaretThicknessAsRatioOfLineHeight)
+								);
+							}
+						};
 
 					var inlines = displayBlock.Inlines;
-					inlines.DrawingStarted += () =>
-					{
-						canvas.Children.Clear();
-						_usedRects = 0;
-					};
 
-					inlines.DrawingFinished += () =>
+					static void OnDrawingStarted(object that)
 					{
-						_cachedRects.RemoveRange(_usedRects, _cachedRects.Count - _usedRects);
-					};
-
-					inlines.SelectionFound += t =>
-					{
-						var rect = t.rect;
-						if (_cachedRects.Count <= _usedRects)
+						if (that is TextBox tb)
 						{
-							_cachedRects.Add(new Rectangle());
+							tb._canvas.Children.Clear();
+							tb._usedRects = 0;
 						}
-						var rectangle = _cachedRects[_usedRects++];
-
-						rectangle.Fill = SelectionHighlightColor;
-						rectangle.Width = Math.Ceiling(rect.Width);
-						rectangle.Height = Math.Ceiling(rect.Height);
-						rectangle.SetValue(Canvas.LeftProperty, rect.Left);
-						rectangle.SetValue(Canvas.TopProperty, rect.Top);
-
-						canvas.Children.Add(rectangle);
 					};
 
-					inlines.CaretFound += rect =>
+					static void OnDrawingFinished(object that)
 					{
-						_caretRect.Width = Math.Ceiling(rect.Width);
-						_caretRect.Height = Math.Ceiling(rect.Height);
-						_caretRect.SetValue(Canvas.LeftProperty, rect.Left);
-						_caretRect.SetValue(Canvas.TopProperty, rect.Top);
-						_caretRect.Fill = DefaultBrushes.TextForegroundBrush;
-						canvas.Children.Add(_caretRect);
+						if (that is TextBox tb)
+						{
+							tb._cachedRects.RemoveRange(tb._usedRects, tb._cachedRects.Count - tb._usedRects);
+						}
 					};
+
+					static void OnSelectionFound(object that, (Rect rect, SkiaSharp.SKCanvas canvas) t)
+					{
+						if (that is TextBox tb)
+						{
+							var rect = t.rect;
+
+							if (tb._cachedRects.Count <= tb._usedRects)
+							{
+								tb._cachedRects.Add(new Rectangle());
+							}
+
+							var rectangle = tb._cachedRects[tb._usedRects++];
+
+							rectangle.Fill = tb.SelectionHighlightColor;
+							rectangle.Width = Math.Ceiling(rect.Width);
+							rectangle.Height = Math.Ceiling(rect.Height);
+							rectangle.SetValue(Canvas.LeftProperty, rect.Left);
+							rectangle.SetValue(Canvas.TopProperty, rect.Top);
+
+							tb._canvas.Children.Add(rectangle);
+						}
+					}
+
+					static void OnCaretFound(object that, Rect rect)
+					{
+						if (that is TextBox tb)
+						{
+							tb._caretRect.Width = Math.Ceiling(rect.Width);
+							tb._caretRect.Height = Math.Ceiling(rect.Height);
+							tb._caretRect.SetValue(Canvas.LeftProperty, rect.Left);
+							tb._caretRect.SetValue(Canvas.TopProperty, rect.Top);
+							tb._caretRect.Fill = DefaultBrushes.TextForegroundBrush;
+							tb._canvas.Children.Add(tb._caretRect);
+						}
+					};
+
+					inlines.RegisterEventHandlers(
+						this,
+						selectionFound: OnSelectionFound,
+						caretFound: OnCaretFound,
+						drawingFinished: OnDrawingFinished,
+						drawingStarted: OnDrawingStarted);
 
 					ContentElement.Content = grid;
 				}

@@ -2,7 +2,7 @@
 {
 	public partial class ToggleSwitch
 	{
-		partial void OnLoadedPartial()
+		partial void OnLoadedNative()
 		{
 			Clickable = true;
 			Focusable = true;

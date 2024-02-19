@@ -21,6 +21,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using static Microsoft/* UWP don't rename */.UI.Xaml.Controls._Tracing;
+using Uno.UI.Xaml;
 
 namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 {
@@ -67,8 +68,11 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 		// A convention we use in the ItemsRepeater codebase for an invalid Rect value.
 		internal static Rect InvalidRect = new Rect(-1, -1, -1, -1);
 
+		[GeneratedWeakEvent]
 		public event TypedEventHandler<ItemsRepeater, ItemsRepeaterElementPreparedEventArgs> ElementPrepared;
+		[GeneratedWeakEvent]
 		public event TypedEventHandler<ItemsRepeater, ItemsRepeaterElementIndexChangedEventArgs> ElementIndexChanged;
+		[GeneratedWeakEvent]
 		public event TypedEventHandler<ItemsRepeater, ItemsRepeaterElementClearingEventArgs> ElementClearing;
 
 		// Cached Event args to avoid creation cost every time

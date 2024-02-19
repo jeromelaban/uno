@@ -15,6 +15,8 @@ using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
 using System.Collections.ObjectModel;
 using Uno.UI.Core;
+using Uno.Disposables;
+using Uno.UI.DataBinding;
 
 namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 {
@@ -72,11 +74,6 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 				{
 					repeater.ItemTemplate = m_radioButtonsElementFactory;
 
-					repeater.ElementPrepared += OnRepeaterElementPrepared;
-					repeater.ElementClearing += OnRepeaterElementClearing;
-					repeater.ElementIndexChanged += OnRepeaterElementIndexChanged;
-					repeater.Loaded += OnRepeaterLoaded;
-					repeater.Unloaded += OnRepeaterUnloaded;
 					return repeater;
 				}
 				return null;
@@ -85,7 +82,62 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 
 			UpdateItemsSource();
 			UpdateVisualStateForIsEnabledChange();
+			RegisterEvents();
 		}
+
+		/* Begin Uno specific */
+		private SerialDisposable _subscriptions = new();
+		private SerialDisposable _collectionChangedSubscription = new();
+
+		private protected override void OnLoaded()
+		{
+			base.OnLoaded();
+
+			RegisterEvents();
+		}
+
+		private protected override void OnUnloaded()
+		{
+			UnregisterEvents();
+
+			base.OnUnloaded();
+		}
+
+		private void UnregisterEvents()
+		{
+			_subscriptions.Disposable = null;
+			_collectionChangedSubscription.Disposable = null;
+		}
+
+		private void RegisterEvents()
+		{
+			if (m_repeater != null)
+			{
+				UnregisterEvents();
+
+				// capture to keep in unsubscribe the closure
+				var repeater = m_repeater;
+
+				repeater.ElementPrepared += OnRepeaterElementPrepared;
+				repeater.ElementClearing += OnRepeaterElementClearing;
+				repeater.ElementIndexChanged += OnRepeaterElementIndexChanged;
+				repeater.Loaded += OnRepeaterLoaded;
+				repeater.Unloaded += OnRepeaterUnloaded;
+
+				_subscriptions.Disposable = Disposable.Create(() =>
+				{
+					repeater.ElementPrepared -= OnRepeaterElementPrepared;
+					repeater.ElementClearing -= OnRepeaterElementClearing;
+					repeater.ElementIndexChanged -= OnRepeaterElementIndexChanged;
+					repeater.Loaded -= OnRepeaterLoaded;
+					repeater.Unloaded -= OnRepeaterUnloaded;
+				});
+			}
+
+			UpdateItemsSource();
+		}
+
+		/* End Uno Specific */
 
 		// When focus comes from outside the RadioButtons control we will put focus on the selected radio button.
 		private void OnGettingFocus(object sender, GettingFocusEventArgs args)
@@ -312,8 +364,28 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 				var toggleButton = element as ToggleButton;
 				if (toggleButton != null)
 				{
-					toggleButton.Checked += OnChildChecked;
-					toggleButton.Unchecked += OnChildUnchecked;
+					/* BEGIN Uno Specific */
+					var thatRef = WeakReferencePool.RentWeakReference(this, this);
+
+					void WeakOnChildChecked(object sender, RoutedEventArgs e)
+					{
+						if (thatRef.Target is RadioButtons that)
+						{
+							that.OnChildChecked(sender, e);
+						}
+					}
+
+					void WeakOnChildUnchecked(object sender, RoutedEventArgs e)
+					{
+						if (thatRef.Target is RadioButtons that)
+						{
+							that.OnChildUnchecked(sender, e);
+						}
+					}
+
+					toggleButton.Checked += WeakOnChildChecked;
+					toggleButton.Unchecked += WeakOnChildUnchecked;
+					/* END Uno Specific */
 
 					// If the developer adds a checked toggle button to the collection, update selection to this item.
 					if (SharedHelpers.IsTrue(toggleButton.IsChecked))
@@ -589,7 +661,7 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 				// Revoke previous
 				if (repeater.ItemsSourceView != null)
 				{
-					repeater.ItemsSourceView.CollectionChanged -= OnRepeaterCollectionChanged;
+					_collectionChangedSubscription.Disposable = null;
 				}
 
 				repeater.ItemsSource = GetItemsSource();
@@ -598,6 +670,11 @@ namespace Microsoft/* UWP don't rename */.UI.Xaml.Controls
 				if (itemsSourceView != null)
 				{
 					itemsSourceView.CollectionChanged += OnRepeaterCollectionChanged;
+
+					_collectionChangedSubscription.Disposable = Disposable.Create(() => 
+					{
+						repeater.ItemsSourceView.CollectionChanged -= OnRepeaterCollectionChanged;
+					});
 				}
 			}
 		}

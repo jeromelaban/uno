@@ -42,10 +42,21 @@ namespace Microsoft.UI.Xaml.Controls
 		{
 			base.OnLoaded();
 
+			OnLoadedNative(); 
 			OnLoadedPartial();
 		}
 
+		partial void OnLoadedNative();
 		partial void OnLoadedPartial();
+
+		private protected override void OnUnloaded()
+		{
+			base.OnUnloaded();
+
+			OnUnloadedPartial();
+		}
+
+		partial void OnUnloadedPartial();
 
 #if false
 		private bool IsNativeTemplate

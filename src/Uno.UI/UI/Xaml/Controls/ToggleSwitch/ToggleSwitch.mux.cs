@@ -52,6 +52,58 @@ namespace Microsoft.UI.Xaml.Controls
 		private SerialDisposable _knobSizeChanged = new SerialDisposable();
 		private SerialDisposable _knobBoundsSizeChanged = new SerialDisposable();
 
+		/* BEGIN Uno Specific */
+		partial void OnLoadedPartial()
+		{
+			RegisterEvents();
+		}
+
+		partial void OnUnloadedPartial()
+		{
+			UnregisterEvents();
+		}
+
+		private void UnregisterEvents()
+		{
+			_dragStarted.Disposable = null;
+			_dragDelta.Disposable = null;
+			_dragCompleted.Disposable = null;
+			_tap.Disposable = null;
+			_knobSizeChanged.Disposable = null;
+			_knobBoundsSizeChanged.Disposable = null;
+		}
+
+		private void RegisterEvents()
+		{
+			UnregisterEvents();
+
+			if (_tpThumb is { } thumb)
+			{
+				thumb.DragStarted += DragStartedHandler;
+				_dragStarted.Disposable = Disposable.Create(() => thumb.DragStarted -= DragStartedHandler);
+				thumb.DragDelta += DragDeltaHandler;
+				_dragDelta.Disposable = Disposable.Create(() => thumb.DragDelta -= DragDeltaHandler);
+				thumb.DragCompleted += DragCompletedHandler;
+				_dragCompleted.Disposable = Disposable.Create(() => thumb.DragCompleted -= DragCompletedHandler);
+				thumb.Tapped += TapHandler;
+				_tap.Disposable = Disposable.Create(() => thumb.Tapped -= TapHandler);
+			}
+
+			if (_tpKnob is { } knob)
+			{
+				knob.SizeChanged += SizeChangedHandler;
+				_knobSizeChanged.Disposable = Disposable.Create(() => knob.SizeChanged -= SizeChangedHandler);
+			}
+
+			if (_tpKnobBounds is { } knobBounds)
+			{
+				knobBounds.SizeChanged += SizeChangedHandler;
+				_knobBoundsSizeChanged.Disposable = Disposable.Create(() => knobBounds.SizeChanged -= SizeChangedHandler);
+			}
+		}
+
+		/* END Uno Specific */
+
 		private protected override void ChangeVisualState(bool useTransitions)
 		{
 			bool isOn = false;
@@ -154,8 +206,6 @@ namespace Microsoft.UI.Xaml.Controls
 			_tpKnobBounds = spKnobBoundsIDependencyObject as FrameworkElement;
 			_tpThumb = spThumbIDependencyObject as Thumb;
 
-			var spThumbIUIElement = _tpThumb as UIElement;
-
 			var spCurtainIUIElement = spCurtainIDependencyObject as UIElement;
 			if (spCurtainIUIElement != null)
 			{
@@ -170,36 +220,11 @@ namespace Microsoft.UI.Xaml.Controls
 				_spKnobTransform = spKnobRenderTransform as TranslateTransform;
 			}
 
-			if (spThumbIUIElement != null && _tpThumb != null)
-			{
-				_tpThumb.DragStarted += DragStartedHandler;
-				_dragStarted.Disposable = Disposable.Create(() => _tpThumb.DragStarted -= DragStartedHandler);
-				_tpThumb.DragDelta += DragDeltaHandler;
-				_dragDelta.Disposable = Disposable.Create(() => _tpThumb.DragDelta -= DragDeltaHandler);
-				_tpThumb.DragCompleted += DragCompletedHandler;
-				_dragCompleted.Disposable = Disposable.Create(() => _tpThumb.DragCompleted -= DragCompletedHandler);
-				spThumbIUIElement.Tapped += TapHandler;
-				_tap.Disposable = Disposable.Create(() => spThumbIUIElement.Tapped -= TapHandler);
-			}
-
-			if (_tpKnob != null || _tpKnobBounds != null)
-			{
-				if (_tpKnob != null)
-				{
-					_tpKnob.SizeChanged += SizeChangedHandler;
-					_knobSizeChanged.Disposable = Disposable.Create(() => _tpKnob.SizeChanged -= SizeChangedHandler);
-				}
-
-				if (_tpKnobBounds != null)
-				{
-					_tpKnobBounds.SizeChanged += SizeChangedHandler;
-					_knobBoundsSizeChanged.Disposable = Disposable.Create(() => _tpKnobBounds.SizeChanged -= SizeChangedHandler);
-				}
-			}
-
 			UpdateHeaderPresenterVisibility();
 
 			UpdateVisualState(false);
+
+			RegisterEvents();
 		}
 
 		private void PrepareState()

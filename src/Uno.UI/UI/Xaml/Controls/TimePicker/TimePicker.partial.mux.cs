@@ -95,16 +95,45 @@ partial class TimePicker
 			m_tpAsyncSelectionInfo.Cancel();
 		}
 
-		//if (m_loadedEventHandler.Disposable is not null)
-		//{
-		//	m_loadedEventHandler.Disposable = null;
-		//}
+		UnregisterEvents();
+	}
 
-		if (m_windowActivatedHandler.Disposable is not null)
+	private void UnregisterEvents()
+	{
+		m_windowActivatedHandler.Disposable = null;
+		m_epHourSelectionChangedHandler.Disposable = null;
+		m_epMinuteSelectionChangedHandler.Disposable = null;
+		m_epPeriodSelectionChangedHandler.Disposable = null;
+		m_epFlyoutButtonClickHandler.Disposable = null;
+	}
+
+	private void RegisterEvents()
+	{
+		if (m_tpHourPicker is { } hourPicker)
 		{
-			m_windowActivatedHandler.Disposable = null;
+			hourPicker.SelectionChanged += OnSelectorSelectionChanged;
+			m_epHourSelectionChangedHandler.Disposable = Disposable.Create(() => hourPicker.SelectionChanged -= OnSelectorSelectionChanged);
+		}
+
+		if (m_tpMinutePicker is { } minutePicker)
+		{
+			minutePicker.SelectionChanged += OnSelectorSelectionChanged;
+			m_epMinuteSelectionChangedHandler.Disposable = Disposable.Create(() => minutePicker.SelectionChanged -= OnSelectorSelectionChanged);
+		}
+
+		if (m_tpPeriodPicker is { } periodPicker)
+		{
+			periodPicker.SelectionChanged += OnSelectorSelectionChanged;
+			m_epPeriodSelectionChangedHandler.Disposable = Disposable.Create(() => periodPicker.SelectionChanged -= OnSelectorSelectionChanged);
+		}
+
+		if (m_tpFlyoutButton is { } flyoutButton)
+		{
+			m_tpFlyoutButton.Click += OnFlyoutButtonClick;
+			m_epFlyoutButtonClickHandler.Disposable = Disposable.Create(() => flyoutButton.Click -= OnFlyoutButtonClick);
 		}
 	}
+
 #endif
 
 	private void PrepareState()
@@ -124,12 +153,12 @@ partial class TimePicker
 		m_tpPeriodSource = spCollection;
 
 		RefreshSetup();
-
-		Loaded += OnLoaded;
 	}
 
-	private void OnLoaded(object sender, RoutedEventArgs e)
+	private protected override void OnLoaded()
 	{
+		base.OnLoaded();
+
 		if (DXamlCore.Current.GetAssociatedWindow(this) is { } window)
 		{
 			var weakThis = WeakReferencePool.RentSelfWeakReference(this);
@@ -145,6 +174,8 @@ partial class TimePicker
 			window.Activated += OnWindowActivated;
 			m_windowActivatedHandler.Disposable = Disposable.Create(() => window.Activated -= OnWindowActivated);
 		}
+
+		RegisterEvents();
 	}
 
 	/// <summary>
@@ -513,26 +544,10 @@ partial class TimePicker
 		string strAutomationName;
 		string strParentAutomationName;
 		string strComboAutomationName;
-		// Clean up existing template parts
-		if (m_tpHourPicker is not null)
-		{
-			m_epHourSelectionChangedHandler.Disposable = null;
-		}
 
-		if (m_tpMinutePicker is not null)
-		{
-			m_epMinuteSelectionChangedHandler.Disposable = null;
-		}
-
-		if (m_tpPeriodPicker is not null)
-		{
-			m_epPeriodSelectionChangedHandler.Disposable = null;
-		}
-
-		if (m_tpFlyoutButton is not null)
-		{
-			m_epFlyoutButtonClickHandler.Disposable = null;
-		}
+		/* BEGIN Uno Specific */
+		UnregisterEvents();
+		/* END Uno Specific */
 
 		m_tpHourPicker = null;
 		m_tpMinutePicker = null;
@@ -623,9 +638,6 @@ partial class TimePicker
 		// Hook up the selection changed events for selectors, we will be reacting to these events.
 		if (m_tpHourPicker is not null)
 		{
-			m_tpHourPicker.SelectionChanged += OnSelectorSelectionChanged;
-			m_epHourSelectionChangedHandler.Disposable = Disposable.Create(() => m_tpHourPicker.SelectionChanged -= OnSelectorSelectionChanged);
-
 			strAutomationName = AutomationProperties.GetName(m_tpHourPicker);
 			if (strAutomationName == null)
 			{
@@ -636,9 +648,6 @@ partial class TimePicker
 		}
 		if (m_tpMinutePicker is not null)
 		{
-			m_tpMinutePicker.SelectionChanged += OnSelectorSelectionChanged;
-			m_epMinuteSelectionChangedHandler.Disposable = Disposable.Create(() => m_tpMinutePicker.SelectionChanged -= OnSelectorSelectionChanged);
-
 			strAutomationName = AutomationProperties.GetName(m_tpMinutePicker);
 			if (strAutomationName == null)
 			{
@@ -649,9 +658,6 @@ partial class TimePicker
 		}
 		if (m_tpPeriodPicker is not null)
 		{
-			m_tpPeriodPicker.SelectionChanged += OnSelectorSelectionChanged;
-			m_epPeriodSelectionChangedHandler.Disposable = Disposable.Create(() => m_tpPeriodPicker.SelectionChanged -= OnSelectorSelectionChanged);
-
 			strAutomationName = AutomationProperties.GetName(m_tpPeriodPicker);
 			if (strAutomationName == null)
 			{
@@ -665,15 +671,14 @@ partial class TimePicker
 
 		if (m_tpFlyoutButton is not null)
 		{
-			m_tpFlyoutButton.Click += OnFlyoutButtonClick;
-			m_epFlyoutButtonClickHandler.Disposable = Disposable.Create(() => m_tpFlyoutButton.Click -= OnFlyoutButtonClick);
-
 			RefreshFlyoutButtonAutomationName();
 
 			UpdateFlyoutButtonContent();
 		}
 
 		UpdateVisualState(false);
+
+		RegisterEvents();
 	}
 
 	// Updates the visibility of the Header ContentPresenter

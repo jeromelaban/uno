@@ -264,6 +264,8 @@ namespace Microsoft.UI.Xaml
 			{
 				_instancesToRecycle.Push((template, instance));
 
+				//Console.WriteLine($"Queued instance {instance.GetType()}/{instance.GetHashCode():X8}");
+
 				shouldEnqueue = _instancesToRecycle.Count == 1;
 			}
 
@@ -285,6 +287,7 @@ namespace Microsoft.UI.Xaml
 			{
 				while (count < RecycleBatchSize && _instancesToRecycle.TryPop(out var instance))
 				{
+					//Console.WriteLine($"Popped instance {instance.GetType()}/{instance.GetHashCode():X8}");
 					array[count++] = instance;
 				}
 
@@ -295,12 +298,16 @@ namespace Microsoft.UI.Xaml
 			{
 				var (template, instance) = array[x];
 
+				//Console.WriteLine($"Recycling instance {instance.GetType()}/{instance.GetHashCode():X8}");
+
 				if (InstanceTracker.TryRemove(instance, returnCookie: false))
 				{
 					RecycleTemplate(template, instance, cleanup: true);
 				}
 				else
 				{
+					//Console.WriteLine($"Failed to recycle instance {instance.GetType()}/{instance.GetHashCode():X8}");
+
 					if (this.Log().IsEnabled(LogLevel.Debug))
 					{
 						this.Log().Debug($"Failed to remove instance tracked for {instance.GetHashCode():X8}");

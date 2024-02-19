@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml;
 
 namespace Uno.UI.Xaml
 {
+
 	/// <summary>
 	/// Attribute to control the automatic generation of dependency property generation
 	/// </summary>

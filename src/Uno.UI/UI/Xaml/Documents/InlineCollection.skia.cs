@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Media;
 using SkiaSharp;
 using Uno.Extensions;
 using Uno.UI.Composition;
+using Uno.UI.DataBinding;
 using Windows.Foundation;
 using Windows.UI.Text;
 
@@ -97,10 +98,27 @@ namespace Microsoft.UI.Xaml.Documents
 		/// </summary>
 		internal bool FireDrawingEventsOnEveryRedraw { get; set; }
 
-		internal event Action DrawingStarted;
-		internal event Action<(Rect rect, SKCanvas canvas)> SelectionFound;
-		internal event Action DrawingFinished;
-		internal event Action<Rect> CaretFound;
+		private Action<object?>? DrawingStarted;
+		private Action<object?, (Rect rect, SKCanvas canvas)>? SelectionFound;
+		private Action<object?>? DrawingFinished;
+		private Action<object?, Rect>? CaretFound;
+
+		private ManagedWeakReference? _ownerRef;
+
+		internal void RegisterEventHandlers(
+			object owner,
+			Action<object?>? drawingStarted = null,
+			Action<object?, (Rect rect, SKCanvas canvas)>? selectionFound = null,
+			Action<object?>? drawingFinished = null,
+			Action<object?, Rect>? caretFound = null)
+		{
+			_ownerRef = WeakReferencePool.RentWeakReference(this, owner);
+
+			DrawingStarted = drawingStarted;
+			SelectionFound = selectionFound;
+			DrawingFinished = drawingFinished;
+			CaretFound = caretFound;
+		}
 
 		internal (int start, int end) Selection
 		{
@@ -460,20 +478,20 @@ namespace Microsoft.UI.Xaml.Documents
 
 			if (fireEvents)
 			{
-				DrawingStarted?.Invoke();
+				DrawingStarted?.Invoke(_ownerRef?.Target);
 			}
 
 			if (_renderLines.Count == 0)
 			{
 				if (fireEvents)
 				{
-					DrawingFinished?.Invoke();
+					DrawingFinished?.Invoke(_ownerRef?.Target);
 					// empty, so caret is at the beginning
 					if (RenderCaret)
 					{
-						CaretFound?.Invoke(new Rect(new Point(0, 0), new Point(_lastDefaultLineHeight * CaretThicknessAsRatioOfLineHeight, _lastDefaultLineHeight)));
+						CaretFound?.Invoke(_ownerRef?.Target, new Rect(new Point(0, 0), new Point(_lastDefaultLineHeight * CaretThicknessAsRatioOfLineHeight, _lastDefaultLineHeight)));
 					}
-					DrawingFinished?.Invoke();
+					DrawingFinished?.Invoke(_ownerRef?.Target);
 				}
 
 				return;
@@ -639,7 +657,7 @@ namespace Microsoft.UI.Xaml.Documents
 
 			if (fireEvents)
 			{
-				DrawingFinished?.Invoke();
+				DrawingFinished?.Invoke(_ownerRef?.Target);
 			}
 
 			static void DrawDecoration(SKCanvas canvas, float x, float y, float width, float thickness, SKPaint paint)
@@ -702,7 +720,7 @@ namespace Microsoft.UI.Xaml.Documents
 
 				if (Math.Abs(left - right) > 0.01 && fireEvents)
 				{
-					SelectionFound?.Invoke((new Rect(new Point(left, y - line.Height), new Point(right, y)), canvas));
+					SelectionFound?.Invoke(_ownerRef?.Target, (new Rect(new Point(left, y - line.Height), new Point(right, y)), canvas));
 				}
 			}
 		}
@@ -819,7 +837,7 @@ namespace Microsoft.UI.Xaml.Documents
 
 				if (caretLocation != float.MinValue && fireEvents)
 				{
-					CaretFound?.Invoke(new Rect(new Point(caretLocation, y - line.Height), new Point(caretLocation + line.Height * CaretThicknessAsRatioOfLineHeight, y)));
+					CaretFound?.Invoke(_ownerRef?.Target, new Rect(new Point(caretLocation, y - line.Height), new Point(caretLocation + line.Height * CaretThicknessAsRatioOfLineHeight, y)));
 				}
 			}
 		}

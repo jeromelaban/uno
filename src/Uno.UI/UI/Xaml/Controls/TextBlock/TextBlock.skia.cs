@@ -196,16 +196,21 @@ namespace Microsoft.UI.Xaml.Controls
 
 		partial void SetupInlines()
 		{
-			_inlines.SelectionFound += t =>
+			static void OnSelectionFound(object? that, (Rect rect, SKCanvas canvas) t)
 			{
-				var canvas = t.canvas;
-				var rect = t.rect;
-				canvas.DrawRect(new SKRect((float)rect.Left, (float)rect.Top, (float)rect.Right, (float)rect.Bottom), new SKPaint
+				if (that is TextBlock tb)
 				{
-					Color = SelectionHighlightColor.Color.ToSKColor(),
-					Style = SKPaintStyle.Fill
-				});
-			};
+					var canvas = t.canvas;
+					var rect = t.rect;
+					canvas.DrawRect(new SKRect((float)rect.Left, (float)rect.Top, (float)rect.Right, (float)rect.Bottom), new SKPaint
+					{
+						Color = tb.SelectionHighlightColor.Color.ToSKColor(),
+						Style = SKPaintStyle.Fill
+					});
+				}
+			}
+
+			_inlines.RegisterEventHandlers(this, selectionFound: OnSelectionFound);
 
 			_inlines.FireDrawingEventsOnEveryRedraw = IsTextSelectionEnabled;
 			_inlines.RenderSelection = IsTextSelectionEnabled;
