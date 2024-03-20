@@ -11,18 +11,22 @@ using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.ProjectSystem.Build;
+using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using StreamJsonRpc;
 using Uno.UI.RemoteControl.Messaging.IdeChannel;
+using Uno.UI.RemoteControl.VS.DebuggerHelper;
 using Uno.UI.RemoteControl.VS.Helpers;
 using Uno.UI.RemoteControl.VS.IdeChannel;
 using ILogger = Uno.UI.RemoteControl.VS.Helpers.ILogger;
@@ -36,7 +40,6 @@ namespace Uno.UI.RemoteControl.VS;
 public class EntryPoint : IDisposable
 {
 	private const string UnoPlatformOutputPane = "Uno Platform";
-	private const string FolderKind = "{66A26720-8FB5-11D2-AA7E-00C04F688DDE}";
 	private const string RemoteControlServerPortProperty = "UnoRemoteControlPort";
 	private readonly DTE _dte;
 	private readonly DTE2 _dte2;
@@ -54,6 +57,7 @@ public class EntryPoint : IDisposable
 	private bool _closing;
 	private bool _isDisposed;
 	private IdeChannelClient? _ideChannelClient;
+	private ProfilesObserver _debuggerObserver;
 	private readonly _dispSolutionEvents_BeforeClosingEventHandler _closeHandler;
 	private readonly _dispBuildEvents_OnBuildDoneEventHandler _onBuildDoneHandler;
 	private readonly _dispBuildEvents_OnBuildProjConfigBeginEventHandler _onBuildProjConfigBeginHandler;
@@ -82,6 +86,9 @@ public class EntryPoint : IDisposable
 		//
 		// This will can possibly be removed when all projects are migrated to the sdk project system.
 		_ = UpdateProjectsAsync();
+
+		_debuggerObserver = new ProfilesObserver(asyncPackage, _dte, OnDebugFrameworkChangedAsync, OnDebugProfileChangedAsync);
+		_ = _debuggerObserver.ObserveProfilesAsync();
 	}
 
 	private Task<Dictionary<string, string>> OnProvideGlobalPropertiesAsync()
@@ -185,7 +192,7 @@ public class EntryPoint : IDisposable
 		{
 			StartServer();
 			var portString = RemoteControlServerPort.ToString(CultureInfo.InvariantCulture);
-			foreach (var p in await GetProjectsAsync())
+			foreach (var p in await _dte.GetProjectsAsync())
 			{
 				var filename = string.Empty;
 				try
@@ -346,69 +353,6 @@ public class EntryPoint : IDisposable
 		return port;
 	}
 
-	private async System.Threading.Tasks.Task<IEnumerable<EnvDTE.Project>> GetProjectsAsync()
-	{
-		ThreadHelper.ThrowIfNotOnUIThread();
-
-		var projectService = await _asyncPackage.GetServiceAsync(typeof(IProjectService)) as IProjectService;
-
-		var solutionProjectItems = _dte.Solution.Projects;
-
-		if (solutionProjectItems != null)
-		{
-			return EnumerateProjects(solutionProjectItems);
-		}
-		else
-		{
-			return Array.Empty<EnvDTE.Project>();
-		}
-	}
-
-	private IEnumerable<EnvDTE.Project> EnumerateProjects(EnvDTE.Projects vsSolution)
-	{
-		foreach (var project in vsSolution.OfType<EnvDTE.Project>())
-		{
-			if (project.Kind == FolderKind /* Folder */)
-			{
-				foreach (var subProject in EnumSubProjects(project))
-				{
-					yield return subProject;
-				}
-			}
-			else
-			{
-				yield return project;
-			}
-		}
-	}
-
-	private IEnumerable<EnvDTE.Project> EnumSubProjects(EnvDTE.Project folder)
-	{
-		if (folder.ProjectItems != null)
-		{
-			var subProjects = folder.ProjectItems
-				.OfType<EnvDTE.ProjectItem>()
-				.Select(p => p.Object)
-				.Where(p => p != null)
-				.Cast<EnvDTE.Project>();
-
-			foreach (var project in subProjects)
-			{
-				if (project.Kind == FolderKind)
-				{
-					foreach (var subProject in EnumSubProjects(project))
-					{
-						yield return subProject;
-					}
-				}
-				else
-				{
-					yield return project;
-				}
-			}
-		}
-	}
-
 	public void SetGlobalProperty(string projectFullName, string propertyName, string propertyValue)
 	{
 		var msbuildProject = GetMsbuildProject(projectFullName);
@@ -452,6 +396,49 @@ public class EntryPoint : IDisposable
 		var outputType = project.GetPropertyValue("OutputType");
 		return outputType is not null &&
    				(outputType.Equals("Exe", StringComparison.OrdinalIgnoreCase) || outputType.Equals("WinExe", StringComparison.OrdinalIgnoreCase));
+	}
+
+	private async Task OnDebugFrameworkChangedAsync(string? previousFramework, string newFramework)
+	{
+		// In this case, a new TargetFramework was selected. We need to file a matching launch profile, if any.
+		if (GetTargetFrameworkIdentifier(newFramework) is { } targetFrameworkIdentifier)
+		{
+			var profiles = await _debuggerObserver.GetLaunchProfilesAsync();
+
+			if (targetFrameworkIdentifier == "browserwasm")
+			{
+				if (profiles.Find(p => p.LaunchBrowser) is { } browserProfile)
+				{
+					await _debuggerObserver.SetActiveLaunchProfileAsync(browserProfile.Name);
+				}
+			}
+			else if (targetFrameworkIdentifier == "desktop")
+			{
+
+			}
+			else if (targetFrameworkIdentifier == "windows")
+			{
+				if (profiles.Find(p => p.CommandName.Equals("MsixPackage", StringComparison.OrdinalIgnoreCase)) is { } msixProfile)
+				{
+					await _debuggerObserver.SetActiveLaunchProfileAsync(msixProfile.Name);
+				}
+			}
+		}
+	}
+
+	private async Task OnDebugProfileChangedAsync(string? previousProfile, string newProfile)
+	{
+		await _debuggerObserver.GetActiveTargetFrameworksAsync();
+	}
+
+	private string? GetTargetFrameworkIdentifier(string newFramework)
+	{
+		var regex = new Regex(@"net(\d+\.\d+)-(?<tfi>\w+)(\d+\.\d+\.\d+)?");
+		var match = regex.Match(newFramework);
+
+		return match.Success
+			? match.Groups["tfi"].Value
+			: null;
 	}
 
 	public void Dispose()
