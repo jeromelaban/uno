@@ -135,8 +135,6 @@ internal class ProfilesObserver : IDisposable
 
 				await _onDebugFrameworkChanged(previousDebugFramework, _currentActiveDebugFramework);
 			}
-
-			await SetActiveTargetFrameworkAsync("net8.0-desktop");
 		}
 	}
 

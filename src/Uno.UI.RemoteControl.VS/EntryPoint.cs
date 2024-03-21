@@ -21,6 +21,7 @@ using Microsoft.Build.Evaluation;
 using Microsoft.Build.Framework;
 using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.ProjectSystem.Build;
+using Microsoft.VisualStudio.ProjectSystem.Debug;
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -41,6 +42,11 @@ public class EntryPoint : IDisposable
 {
 	private const string UnoPlatformOutputPane = "Uno Platform";
 	private const string RemoteControlServerPortProperty = "UnoRemoteControlPort";
+	private const string DesktopTargetFrameworkIdentifier = "desktop";
+	private const string CompatibleTargetFrameworkProfileKey = "compatibleTargetFramework";
+	private const string WindowsTargetFrameworkIdentifier = "windows";
+	private const string WasmTargetFrameworkIdentifier = "browserwasm";
+
 	private readonly DTE _dte;
 	private readonly DTE2 _dte2;
 	private readonly string _toolsPath;
@@ -403,23 +409,39 @@ public class EntryPoint : IDisposable
 		// In this case, a new TargetFramework was selected. We need to file a matching launch profile, if any.
 		if (GetTargetFrameworkIdentifier(newFramework) is { } targetFrameworkIdentifier)
 		{
+			_warningAction?.Invoke($"OnDebugFrameworkChangedAsync({previousFramework}, {newFramework}, {targetFrameworkIdentifier})");
+
 			var profiles = await _debuggerObserver.GetLaunchProfilesAsync();
 
-			if (targetFrameworkIdentifier == "browserwasm")
+			if (targetFrameworkIdentifier == WasmTargetFrameworkIdentifier)
 			{
 				if (profiles.Find(p => p.LaunchBrowser) is { } browserProfile)
 				{
+					_warningAction?.Invoke($"Setting profile {browserProfile.Name}");
+
 					await _debuggerObserver.SetActiveLaunchProfileAsync(browserProfile.Name);
 				}
 			}
-			else if (targetFrameworkIdentifier == "desktop")
+			else if (targetFrameworkIdentifier == DesktopTargetFrameworkIdentifier)
 			{
+				bool IsCompatible(ILaunchProfile profile)
+					=> profile.OtherSettings.TryGetValue(CompatibleTargetFrameworkProfileKey, out var compatibleTargetFramework)
+						&& compatibleTargetFramework is string ctfs
+						&& ctfs.Equals(DesktopTargetFrameworkIdentifier, StringComparison.OrdinalIgnoreCase);
 
+				if (profiles.Find(IsCompatible) is { } desktopProfile)
+				{
+					_warningAction?.Invoke($"Setting profile {desktopProfile.Name}");
+
+					await _debuggerObserver.SetActiveLaunchProfileAsync(desktopProfile.Name);
+				}
 			}
-			else if (targetFrameworkIdentifier == "windows")
+			else if (targetFrameworkIdentifier == WindowsTargetFrameworkIdentifier)
 			{
 				if (profiles.Find(p => p.CommandName.Equals("MsixPackage", StringComparison.OrdinalIgnoreCase)) is { } msixProfile)
 				{
+					_warningAction?.Invoke($"Setting profile {msixProfile.Name}");
+
 					await _debuggerObserver.SetActiveLaunchProfileAsync(msixProfile.Name);
 				}
 			}
@@ -428,7 +450,11 @@ public class EntryPoint : IDisposable
 
 	private async Task OnDebugProfileChangedAsync(string? previousProfile, string newProfile)
 	{
-		await _debuggerObserver.GetActiveTargetFrameworksAsync();
+		_warningAction?.Invoke($"OnDebugProfileChangedAsync({previousProfile},{newProfile})");
+
+		var targetFrameworks = await _debuggerObserver.GetActiveTargetFrameworksAsync();
+
+
 	}
 
 	private string? GetTargetFrameworkIdentifier(string newFramework)
