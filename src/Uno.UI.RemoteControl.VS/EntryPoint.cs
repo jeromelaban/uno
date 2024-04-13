@@ -47,6 +47,7 @@ public partial class EntryPoint : IDisposable
 	private const string UnoPlatformOutputPane = "Uno Platform";
 	private const string RemoteControlServerPortProperty = "UnoRemoteControlPort";
 	private const string UnoVSExtensionLoadedProperty = "_UnoVSExtensionLoaded";
+	private const string UnoVSExtensionSolutionLoadedProperty = "_UnoVSExtensionSolutionLoaded";
 
 	private readonly DTE _dte;
 	private readonly DTE2 _dte2;
@@ -65,10 +66,12 @@ public partial class EntryPoint : IDisposable
 	private bool _isDisposed;
 	private IdeChannelClient? _ideChannelClient;
 	private ProfilesObserver _debuggerObserver;
+	private bool _solutionLoaded;
 	private readonly Func<Task> _globalPropertiesChanged;
 	private readonly _dispSolutionEvents_BeforeClosingEventHandler _closeHandler;
 	private readonly _dispBuildEvents_OnBuildDoneEventHandler _onBuildDoneHandler;
 	private readonly _dispBuildEvents_OnBuildProjConfigBeginEventHandler _onBuildProjConfigBeginHandler;
+	private readonly SolutionEventsListener _solutionEventsListener;
 
 	public EntryPoint(
 		DTE2 dte2
@@ -85,6 +88,9 @@ public partial class EntryPoint : IDisposable
 		_globalPropertiesChanged = globalPropertiesChanged;
 
 		SetupOutputWindow();
+
+		_solutionEventsListener = new SolutionEventsListener(asyncPackage);
+		_solutionEventsListener.AfterSolutionLoaded += OnSolutionEventsListenerAfterSolutionLoaded;
 
 		_closeHandler = () => SolutionEvents_BeforeClosing();
 		_dte.Events.SolutionEvents.BeforeClosing += _closeHandler;
@@ -107,11 +113,21 @@ public partial class EntryPoint : IDisposable
 		_ = _globalPropertiesChanged();
 	}
 
+	private void OnSolutionEventsListenerAfterSolutionLoaded()
+	{
+		_infoAction?.Invoke($"The solution is loaded, enabling TargetFramework/LaunchProfile synchronization");
+
+		_solutionLoaded = true;
+
+		_ = _globalPropertiesChanged();
+	}
+
 	private async Task<Dictionary<string, string>> OnProvideGlobalPropertiesAsync()
 	{
 		Dictionary<string, string> properties = new()
 		{
-			[UnoVSExtensionLoadedProperty] = "true"
+			[UnoVSExtensionLoadedProperty] = "true",
+			[UnoVSExtensionSolutionLoadedProperty] = _solutionLoaded.ToString().ToLowerInvariant(),
 		};
 
 		if (RemoteControlServerPort != 0)
