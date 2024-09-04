@@ -101,6 +101,8 @@ namespace Windows.Storage
 
 			public void Add(string key, object value)
 			{
+				Console.WriteLine($"AppDataContainer.Add({key}, {value})");
+
 				if (ContainsKey(key))
 				{
 					throw new ArgumentException("An item with the same key has already been added.");
@@ -231,9 +233,13 @@ namespace Windows.Storage
 				Locality = locality.ToStringInvariant()
 			};
 
+			Console.WriteLine($"TryGetValue({locality}, {key})");
+
 			var ret = (ApplicationDataContainer_TryGetValueReturn)TSInteropMarshaller.InvokeJS("UnoStatic_Windows_Storage_ApplicationDataContainer:tryGetValue", parms, typeof(ApplicationDataContainer_TryGetValueReturn));
 
 			value = ret.Value;
+
+			Console.WriteLine($"TryGetValue({locality}, {key}) = {value}");
 
 			return ret.HasValue;
 		}

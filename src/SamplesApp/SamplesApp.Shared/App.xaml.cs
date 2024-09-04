@@ -461,13 +461,14 @@ namespace SamplesApp
 				builder.SetMinimumLevel(LogLevel.Information);
 #else
 				// Exclude logs below this level
-				builder.SetMinimumLevel(LogLevel.Debug);
+				builder.SetMinimumLevel(LogLevel.Trace);
 #endif
 
 				// Runtime Tests control logging
 				builder.AddFilter("Uno.UI.Samples.Tests", LogLevel.Information);
 
 				builder.AddFilter("Uno.UI.Media", LogLevel.Information);
+				builder.AddFilter("Uno.Foundation.Interop", LogLevel.Trace);
 
 				builder.AddFilter("Uno", LogLevel.Warning);
 				builder.AddFilter("Windows", LogLevel.Warning);

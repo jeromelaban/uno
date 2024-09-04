@@ -22,6 +22,23 @@ namespace MonoSupport {
 			jsCallDispatcher.registrations.set(identifier, instance);
 		}
 
+		public static invokeJSUnmarshalled(funcName: string, arg0: any, arg1: any, arg2: any): void | number {
+			const funcInstance = jsCallDispatcher.findJSFunction(funcName);
+
+			let ret = funcInstance.call(null, arg0, arg1, arg2);
+
+			if (typeof ret === "boolean") {
+				return ret ? 1 : 0;
+			}
+			if (typeof ret === "undefined") {
+				return 0;
+			}
+			if (typeof ret === "number") {
+				return ret;
+			}
+			throw `Function ${funcName} returned an unsupported type: ${typeof ret}`;
+		}
+
 		public static findJSFunction(identifier: string): any {
 
 			if (!identifier) {
