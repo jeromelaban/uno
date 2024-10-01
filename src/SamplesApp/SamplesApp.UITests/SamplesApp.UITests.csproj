@@ -59,6 +59,7 @@
 		<Compile Include="$(MSBuildThisFileDirectory)..\..\Uno.UWP\Devices\Input\PointerDeviceType.cs">
 			<Link>TestFramework\PointerDeviceType.cs</Link>
 		</Compile>
+		<ProjectReference Include="..\SamplesApp.Wasm\SamplesApp.Wasm.csproj" />
 		<None Update="Windows_UI_Xaml_Media_Imaging\RenderTargetBitmap_Tests_ExpectedResults\Border.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

@@ -61,7 +61,9 @@ internal partial class FontFamilyLoader
 	/// Typescript-invoked method to notify that a font has been loaded properly
 	/// </summary>
 	[JSExport]
-	internal static void NotifyFontLoaded(string cssFontName)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+	internal static async Task NotifyFontLoadedAsync(string cssFontName)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 	{
 		if (_loadersFromCssName.TryGetValue(cssFontName, out var loader))
 		{
@@ -102,7 +104,9 @@ internal partial class FontFamilyLoader
 	/// Typescript-invoked method to notify that a font failed to load properly
 	/// </summary>
 	[JSExport]
-	internal static void NotifyFontLoadFailed(string cssFontName)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+	internal static async Task NotifyFontLoadFailedAsync(string cssFontName)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 	{
 		if (_loadersFromCssName.TryGetValue(cssFontName, out var loader))
 		{
@@ -186,11 +190,11 @@ internal partial class FontFamilyLoader
 
 			if (_fontFamily.ExternalSource is { Length: > 0 })
 			{
-				NativeMethods.LoadFont(_fontFamily.CssFontName, _fontFamily.ExternalSource);
+				_ = NativeMethods.LoadFontAsync(_fontFamily.CssFontName, _fontFamily.ExternalSource);
 			}
 			else
 			{
-				NativeMethods.ForceFontUsage(_fontFamily.CssFontName);
+				_ = NativeMethods.ForceFontUsageAsync(_fontFamily.CssFontName);
 			}
 
 			_loadOperation = new TaskCompletionSource<bool>();
@@ -203,7 +207,7 @@ internal partial class FontFamilyLoader
 				this.Log().Error($"Failed loading font: {_fontFamily.Source} ({_fontFamily.CssFontName}/{_fontFamily.ExternalSource}, {_loadersFromCssName.Count} loaders active)", e);
 			}
 
-			NotifyFontLoadFailed(_fontFamily.CssFontName);
+			_ = NotifyFontLoadFailedAsync(_fontFamily.CssFontName);
 
 			return false;
 		}

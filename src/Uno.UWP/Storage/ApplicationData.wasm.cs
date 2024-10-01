@@ -16,7 +16,7 @@ partial class ApplicationData
 
 	partial void InitializePartial()
 	{
-		StorageFolder.MakePersistent(
+		_ = StorageFolder.MakePersistentAsync(
 			LocalFolder,
 			RoamingFolder,
 			// TemporaryFolder.Path: No needs to persist it!

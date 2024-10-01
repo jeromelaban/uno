@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Disposables;
 using Uno.UI.Extensions;
+using System.Threading.Tasks;
 
 namespace Microsoft.UI.Xaml.Input
 {
@@ -148,7 +149,9 @@ namespace Microsoft.UI.Xaml.Input
 		}
 
 		[JSExport]
-		internal static void ReceiveFocusNative(int handle)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+		internal static async Task ReceiveFocusNativeAsync(int handle)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{
 			if (_isCallingFocusNative)
 			{
@@ -158,7 +161,7 @@ namespace Microsoft.UI.Xaml.Input
 			var focused = GetFocusElementFromHandle(handle);
 			if (_log.Value.IsEnabled(LogLevel.Debug))
 			{
-				_log.Value.LogDebug($"{nameof(ReceiveFocusNative)}({focused?.ToString() ?? "[null]"})");
+				_log.Value.LogDebug($"{nameof(ReceiveFocusNativeAsync)}({focused?.ToString() ?? "[null]"})");
 			}
 
 			if (focused is Control control)

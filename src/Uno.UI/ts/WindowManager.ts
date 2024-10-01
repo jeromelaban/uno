@@ -24,7 +24,10 @@ namespace Uno.UI {
 
 			await WindowManager.initMethods();
 
-			Uno.UI.Dispatching.NativeDispatcher.init(WindowManager.buildReadyPromise());
+			var features = config.environmentVariables['UNO_BOOTSTRAP_MONO_RUNTIME_FEATURES'] || "";
+			if (!features.includes('threads')) {
+				Uno.UI.Dispatching.NativeDispatcher.init(WindowManager.buildReadyPromise());
+			}
 
 			this.current = new WindowManager(containerElementId, loadingElementId);
 			MonoSupport.jsCallDispatcher.registerScope("Uno", this.current);
@@ -127,10 +130,10 @@ namespace Uno.UI {
 			};
 		} = {};
 
-		private static resizeMethod: any;
-		private static dispatchEventMethod: any;
-		private static focusInMethod: any;
-		private static dispatchSuspendingMethod: any;
+		private static resizeMethodAsync: any;
+		private static dispatchEventMethodAsync: any;
+		private static focusInMethodAsync: any;
+		private static dispatchSuspendingMethodAsync: any;
 		private static getDependencyPropertyValueMethod: any;
 		private static setDependencyPropertyValueMethod: any;
 
@@ -1422,7 +1425,7 @@ namespace Uno.UI {
 
 			window.addEventListener(
 				"beforeunload",
-				() => WindowManager.dispatchSuspendingMethod()
+				() => WindowManager.dispatchSuspendingMethodAsync()
 			);
 		}
 
@@ -1433,10 +1436,10 @@ namespace Uno.UI {
 			if ((<any>globalThis).DotnetExports !== undefined) {
 				const exports = (<any>globalThis).DotnetExports.UnoUI;
 
-				WindowManager.resizeMethod = exports.Microsoft.UI.Xaml.Window.Resize;
-				WindowManager.dispatchEventMethod = exports.Microsoft.UI.Xaml.UIElement.DispatchEvent;
-				WindowManager.focusInMethod = exports.Microsoft.UI.Xaml.Input.FocusManager.ReceiveFocusNative;
-				WindowManager.dispatchSuspendingMethod = exports.Microsoft.UI.Xaml.Application.DispatchSuspending;
+				WindowManager.resizeMethodAsync = exports.Microsoft.UI.Xaml.Window.ResizeAsync;
+				WindowManager.dispatchEventMethodAsync = exports.Microsoft.UI.Xaml.UIElement.DispatchEventAsync;
+				WindowManager.focusInMethodAsync = exports.Microsoft.UI.Xaml.Input.FocusManager.ReceiveFocusNativeAsync;
+				WindowManager.dispatchSuspendingMethodAsync = exports.Microsoft.UI.Xaml.Application.DispatchSuspendingAsync;
 			} else {
 				throw `Unable to find dotnet exports`;
 			}
@@ -1475,19 +1478,19 @@ namespace Uno.UI {
 		}
 
 		private static resize() {
-			WindowManager.resizeMethod(document.documentElement.clientWidth, document.documentElement.clientHeight);
+			WindowManager.resizeMethodAsync(document.documentElement.clientWidth, document.documentElement.clientHeight);
 		}
 
 		private onfocusin(event: Event) {
 			const newFocus = event.target;
 			const handle = (newFocus as HTMLElement).getAttribute("XamlHandle");
 			const htmlId = handle ? Number(handle) : -1; // newFocus may not be an Uno element
-			WindowManager.focusInMethod(htmlId);
+			WindowManager.focusInMethodAsync(htmlId);
 		}
 
 		private onWindowBlur() {
 			// Unset managed focus when Window loses focus
-			WindowManager.focusInMethod(-1);
+			WindowManager.focusInMethodAsync(-1);
 		}
 
 		private dispatchEvent(element: HTMLElement | SVGElement, eventName: string, eventPayload: string = null, onCapturePhase: boolean = false): HtmlEventDispatchResult {
@@ -1499,7 +1502,7 @@ namespace Uno.UI {
 				throw `No attribute XamlHandle on element ${element}. Can't raise event.`;
 			}
 
-			return WindowManager.dispatchEventMethod(htmlId, eventName, eventPayload || "", onCapturePhase);
+			return WindowManager.dispatchEventMethodAsync(htmlId, eventName, eventPayload || "", onCapturePhase);
 		}
 
 		private getIsConnectedToRootElement(element: HTMLElement | SVGElement): boolean {

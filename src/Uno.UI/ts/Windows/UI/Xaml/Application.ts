@@ -1,12 +1,12 @@
 ﻿namespace Microsoft.UI.Xaml {
 
 	export class Application {
-		private static dispatchVisibilityChange: (isVisible: boolean) => number;
+		private static dispatchVisibilityChangeAsync: (isVisible: boolean) => number;
 
 		public static observeVisibility() {
-			if (!Application.dispatchVisibilityChange) {
+			if (!Application.dispatchVisibilityChangeAsync) {
 				if ((<any>globalThis).DotnetExports !== undefined) {
-					Application.dispatchVisibilityChange = (<any>globalThis).DotnetExports.UnoUI.Microsoft.UI.Xaml.Application.DispatchVisibilityChange;
+					Application.dispatchVisibilityChangeAsync = (<any>globalThis).DotnetExports.UnoUI.Microsoft.UI.Xaml.Application.DispatchVisibilityChangeAsync;
 				} else {
 					throw `Unable to find dotnet exports`;
 				}
@@ -14,19 +14,19 @@
 
 			if (document.onvisibilitychange !== undefined) {
 				document.addEventListener("visibilitychange", () => {
-					Application.dispatchVisibilityChange(document.visibilityState == "visible");
+					Application.dispatchVisibilityChangeAsync(document.visibilityState == "visible");
 				});
 			}
 
 			if (window.onpagehide !== undefined) {
 				window.addEventListener("pagehide", () => {
-					Application.dispatchVisibilityChange(false);
+					Application.dispatchVisibilityChangeAsync(false);
 				});
 			}
 
 			if (window.onpageshow !== undefined) {
 				window.addEventListener("pageshow", () => {
-					Application.dispatchVisibilityChange(true);
+					Application.dispatchVisibilityChangeAsync(true);
 				});
 			}
 		}

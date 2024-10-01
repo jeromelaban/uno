@@ -5,7 +5,7 @@ namespace Windows.Storage {
 	export class StorageFolder {
 		private static _isInitialized = false;
 		private static _isSynchronizing = false;
-		private static dispatchStorageInitialized: () => number;
+		private static dispatchStorageInitializedAsync: () => number;
 
 		/**
 		 * Determine if IndexDB is available, some browsers and modes disable it.
@@ -23,7 +23,7 @@ namespace Windows.Storage {
 		/**
 		 * Setup the storage persistence of a given set of paths.
 		 * */
-		private static makePersistent(paths: string[]): void {
+		private static async makePersistentAsync(paths: string[]) {
 			for (var i = 0; i < paths.length; i++) {
 				this.setupStorage(paths[i]);
 			}
@@ -66,14 +66,14 @@ namespace Windows.Storage {
 		}
 
 		private static onStorageInitialized() {
-			if (!StorageFolder.dispatchStorageInitialized) {
+			if (!StorageFolder.dispatchStorageInitializedAsync) {
 				if ((<any>globalThis).DotnetExports !== undefined) {
-					StorageFolder.dispatchStorageInitialized = (<any>globalThis).DotnetExports.Uno.Windows.Storage.StorageFolder.DispatchStorageInitialized;
+					StorageFolder.dispatchStorageInitializedAsync = (<any>globalThis).DotnetExports.Uno.Windows.Storage.StorageFolder.DispatchStorageInitializedAsync;
 				} else {
 					throw `Unable to find dotnet exports`;
 				}
 			}
-			StorageFolder.dispatchStorageInitialized();
+			StorageFolder.dispatchStorageInitializedAsync();
 		}
 
 		/**

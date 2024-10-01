@@ -10,6 +10,7 @@ using Uno.Extensions;
 using System.Threading.Tasks;
 using Uno.Foundation.Logging;
 using NativeMethods = __Windows.Storage.StorageFolder.NativeMethods;
+using System.Runtime.CompilerServices;
 
 namespace Windows.Storage
 {
@@ -17,8 +18,8 @@ namespace Windows.Storage
 	{
 		private static TaskCompletionSource<bool> _storageInitialized = new TaskCompletionSource<bool>();
 
-		internal void MakePersistent()
-			=> MakePersistent(this);
+		internal async Task MakePersistentAsync()
+			=> await MakePersistentAsync(this);
 
 		private static async Task TryInitializeStorage()
 		{
@@ -35,11 +36,12 @@ namespace Windows.Storage
 			}
 		}
 
-		internal static void MakePersistent(params StorageFolder[] folders)
-			=> NativeMethods.MakePersistent(folders.SelectToArray(f => f.Path));
+		internal static async Task MakePersistentAsync(params StorageFolder[] folders)
+			=> await NativeMethods.MakePersistentAsync(folders.SelectToArray(f => f.Path));
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 		[JSExport]
-		internal static void DispatchStorageInitialized()
+		internal static async Task DispatchStorageInitializedAsync()
 		{
 			if (typeof(StorageFolder).Log().IsEnabled(Uno.Foundation.Logging.LogLevel.Debug))
 			{
@@ -48,5 +50,6 @@ namespace Windows.Storage
 
 			_storageInitialized.TrySetResult(true);
 		}
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 	}
 }

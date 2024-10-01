@@ -136,7 +136,7 @@ namespace Windows.Storage.Pickers
 			var temporaryFolder = ApplicationData.Current.LocalCacheFolder;
 			if (!Directory.Exists(temporaryFolder.Path))
 			{
-				temporaryFolder.MakePersistent();
+				_ = temporaryFolder.MakePersistentAsync();
 			}
 			var targetFolder = Directory.CreateDirectory(Path.Combine(temporaryFolder.Path, Guid.NewGuid().ToString()));
 

@@ -91,7 +91,7 @@ namespace Windows.Storage.Pickers
 				var temporaryFolder = ApplicationData.Current.LocalCacheFolder;
 				if (!Directory.Exists(temporaryFolder.Path))
 				{
-					temporaryFolder.MakePersistent();
+					_ = temporaryFolder.MakePersistentAsync();
 				}
 
 				if (string.IsNullOrEmpty(SuggestedFileName))

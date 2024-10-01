@@ -15,6 +15,7 @@ using _PointerIdentifier = Windows.Devices.Input.PointerIdentifier; // internal 
 using _NativeMethods = __Windows.UI.Core.CoreWindow.NativeMethods;
 using System.Runtime.InteropServices;
 using Windows.System;
+using Uno.UI.Dispatching;
 
 namespace Uno.UI.Runtime;
 
@@ -65,6 +66,69 @@ internal partial class BrowserPointerInputSource : IUnoCorePointerInputSource
 	[JSExport]
 	[return: JSMarshalAs<JSType.Number>]
 	private static int OnNativeEvent(
+		[JSMarshalAs<JSType.Any>] object inputSource,
+		byte @event, // ONE of NativePointerEvent
+		double timestamp,
+		int deviceType, // ONE of _PointerDeviceType
+		double pointerId, // Warning: This is a Number in JS, and it might be negative on safari for iOS
+		double x,
+		double y,
+		bool ctrl,
+		bool shift,
+		int buttons,
+		int buttonUpdate,
+		double pressure,
+		double wheelDeltaX,
+		double wheelDeltaY,
+		bool hasRelatedTarget)
+	{
+		if (NativeDispatcher.IsThreadingSupported)
+		{
+			NativeDispatcher.Main.Enqueue(() =>
+			{
+				OnNativeEventInternal(
+					inputSource,
+					@event,
+					timestamp,
+					deviceType,
+					pointerId,
+					x,
+					y,
+					ctrl,
+					shift,
+					buttons,
+					buttonUpdate,
+					pressure,
+					wheelDeltaX,
+					wheelDeltaY,
+					hasRelatedTarget);
+			});
+		}
+		else
+		{
+			OnNativeEventInternal(
+				inputSource,
+				@event,
+				timestamp,
+				deviceType,
+				pointerId,
+				x,
+				y,
+				ctrl,
+				shift,
+				buttons,
+				buttonUpdate,
+				pressure,
+				wheelDeltaX,
+				wheelDeltaY,
+				hasRelatedTarget);
+		}
+
+
+		return (int)Microsoft.UI.Xaml.HtmlEventDispatchResult.Ok;
+	}
+
+	private static int OnNativeEventInternal(
 		[JSMarshalAs<JSType.Any>] object inputSource,
 		byte @event, // ONE of NativePointerEvent
 		double timestamp,

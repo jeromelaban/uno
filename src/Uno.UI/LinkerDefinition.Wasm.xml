@@ -12,8 +12,8 @@
 			<method name="ReceiveFocusNative" />
 		</type>
 		<type fullname="Microsoft.UI.Xaml.Application">
-			<method name="DispatchSuspending" />
-			<method name="DispatchVisibilityChange" />
+			<method name="DispatchSuspendingAsync" />
+			<method name="DispatchVisibilityChangeAsync" />
 		</type>
 
 		<type fullname="Uno.UI.Xaml.Controls.SystemFocusVisual">
@@ -21,8 +21,8 @@
 		</type>
 
 		<type fullname="Microsoft.UI.Xaml.Media.FontFamilyLoader">
-			<method name="NotifyFontLoaded" />
-			<method name="NotifyFontLoadFailed" />
+			<method name="NotifyFontLoadedAsync" />
+			<method name="NotifyFontLoadFailedAsync" />
 		</type>
 	</assembly>
 
@@ -78,7 +78,7 @@
 			<method name="DispatchError" />
 		</type>
 		<type fullname="Windows.Storage.StorageFolder">
-			<method name="DispatchStorageInitialized" />
+			<method name="DispatchStorageInitializedAsync" />
 		</type>
 		<type fullname="Uno.Storage.NativeStorageItem">
 			<method name="GenerateGuids" />

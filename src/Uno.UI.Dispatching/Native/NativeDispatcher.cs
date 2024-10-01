@@ -46,6 +46,8 @@ namespace Uno.UI.Dispatching
 
 		private NativeDispatcher()
 		{
+			Console.WriteLine("NativeDispatcher()");
+
 			Debug.Assert(
 				(int)NativeDispatcherPriority.High == 0 &&
 				(int)NativeDispatcherPriority.Normal == 1 &&

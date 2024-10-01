@@ -12,6 +12,7 @@ using Uno.Extensions;
 using Uno.Foundation.Logging;
 using Uno.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System.Threading.Tasks;
 
 
 namespace Microsoft.UI.Xaml
@@ -274,7 +275,9 @@ namespace Microsoft.UI.Xaml
 		[JSExport]
 		[Preserve]
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		internal static int DispatchEvent(int handle, string eventName, string eventArgs, bool onCapturePhase)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+		internal static async Task<int> DispatchEventAsync(int handle, string eventName, string eventArgs, bool onCapturePhase)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{
 #if DEBUG
 			try

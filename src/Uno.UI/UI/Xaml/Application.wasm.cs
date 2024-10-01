@@ -59,7 +59,9 @@ namespace Microsoft.UI.Xaml
 		}
 
 		[JSExport]
-		internal static int DispatchVisibilityChange(bool isVisible)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+		internal static async Task<int> DispatchVisibilityChangeAsync(bool isVisible)
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{
 			var application = Microsoft.UI.Xaml.Application.Current;
 			if (isVisible)
@@ -107,6 +109,8 @@ namespace Microsoft.UI.Xaml
 
 		private void Initialize()
 		{
+			Console.WriteLine("Application.Initialize");
+
 			using (WritePhaseEventTrace(TraceProvider.LauchedStart, TraceProvider.LauchedStop))
 			{
 				var arguments = WindowManagerInterop.BeforeLaunch();
@@ -135,7 +139,9 @@ namespace Microsoft.UI.Xaml
 		/// Dispatch method from Javascript
 		/// </summary>
 		[JSExport]
-		internal static void DispatchSuspending()
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+		internal static async Task DispatchSuspendingAsync()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 		{
 			Current?.RaiseSuspending();
 		}

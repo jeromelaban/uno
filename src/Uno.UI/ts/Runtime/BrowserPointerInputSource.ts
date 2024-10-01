@@ -122,9 +122,9 @@
 			//if (result & HtmlEventDispatchResult.StopPropagation) {
 			//	evt.stopPropagation();
 			//}
-			if (result & HtmlEventDispatchResult.PreventDefault) {
-				evt.preventDefault();
-			}
+			//if (result & HtmlEventDispatchResult.PreventDefault) {
+			//	evt.preventDefault();
+			//}
 		}
 
 		//#region WheelLineSize

@@ -9,8 +9,8 @@ namespace __Windows.Storage
 		{
 			private const string JsType = "globalThis.Uno.Storage.NativeStorageFolder";
 
-			[JSImport("globalThis.Windows.Storage.StorageFolder.makePersistent")]
-			internal static partial void MakePersistent(string[] folders);
+			[JSImport("globalThis.Windows.Storage.StorageFolder.makePersistentAsync")]
+			internal static partial Task MakePersistentAsync(string[] folders);
 
 			[JSImport($"{JsType}.createFileAsync")]
 			internal static partial Task<string> CreateFileAsync(string id, string name);

@@ -2,7 +2,7 @@
 
 	export class FontFamily {
 
-		private static managedNotifyFontLoaded?: (fontFamilyName: string) => void;
+		private static managedNotifyFontLoadedAsync?: (fontFamilyName: string) => void;
 		private static managedNotifyFontLoadFailed?: (fontFamilyName: string) => void;
 
 		public static async loadFont(fontFamilyName: string, fontSource: string): Promise<void> {
@@ -48,22 +48,22 @@
 
 		private static notifyFontLoaded(fontFamilyName: string): void {
 
-			if (!FontFamily.managedNotifyFontLoaded) {
+			if (!FontFamily.managedNotifyFontLoadedAsync) {
 				if ((<any>globalThis).DotnetExports !== undefined) {
-					FontFamily.managedNotifyFontLoaded = (<any>globalThis).DotnetExports.UnoUI.Microsoft.UI.Xaml.Media.FontFamilyLoader.NotifyFontLoaded;
+					FontFamily.managedNotifyFontLoadedAsync = (<any>globalThis).DotnetExports.UnoUI.Microsoft.UI.Xaml.Media.FontFamilyLoader.NotifyFontLoadedAsync;
 				} else {
 					throw `Unable to find dotnet exports`;
 				}
 			}
 
-			FontFamily.managedNotifyFontLoaded(fontFamilyName);
+			FontFamily.managedNotifyFontLoadedAsync(fontFamilyName);
 		}
 
 		private static notifyFontLoadFailed(fontFamilyName: string): void {
 
 			if (!FontFamily.managedNotifyFontLoadFailed) {
 				if ((<any>globalThis).DotnetExports !== undefined) {
-					FontFamily.managedNotifyFontLoadFailed = (<any>globalThis).DotnetExports.UnoUI.Microsoft.UI.Xaml.Media.FontFamilyLoader.NotifyFontLoadFailed;
+					FontFamily.managedNotifyFontLoadFailed = (<any>globalThis).DotnetExports.UnoUI.Microsoft.UI.Xaml.Media.FontFamilyLoader.NotifyFontLoadFailedAsync;
 				} else {
 					throw `Unable to find dotnet exports`;
 				}
