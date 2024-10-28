@@ -65,6 +65,7 @@ public partial class EntryPoint : IDisposable
 	private readonly _dispBuildEvents_OnBuildBeginEventHandler _onBuildBeginHandler;
 	private readonly _dispBuildEvents_OnBuildDoneEventHandler _onBuildDoneHandler;
 	private readonly _dispBuildEvents_OnBuildProjConfigBeginEventHandler _onBuildProjConfigBeginHandler;
+	private UnoMenuCommand? _unoMenuCommand;
 
 	public EntryPoint(
 		DTE2 dte2
@@ -475,17 +476,17 @@ public partial class EntryPoint : IDisposable
 				return;
 			}
 
-			if (UnoMenuCommand.Instance is { } instance)
+			if (_unoMenuCommand is not null)
 			{
 				//ignore when duplicated
-				if (!instance.CommandList.Contains(cr))
+				if (!_unoMenuCommand.CommandList.Contains(cr))
 				{
-					instance.CommandList.Add(cr);
+					_unoMenuCommand.CommandList.Add(cr);
 				}
 			}
 			else
 			{
-				await UnoMenuCommand.InitializeAsync(_asyncPackage, _ideChannelClient, cr);
+				_unoMenuCommand = await UnoMenuCommand.InitializeAsync(_asyncPackage, _ideChannelClient, cr);
 			}
 		}
 		catch (Exception e)
@@ -648,6 +649,7 @@ public partial class EntryPoint : IDisposable
 			_dte.Events.BuildEvents.OnBuildDone -= _onBuildDoneHandler;
 			_dte.Events.BuildEvents.OnBuildProjConfigBegin -= _onBuildProjConfigBeginHandler;
 			_globalJsonObserver.Dispose();
+			_unoMenuCommand?.Dispose();
 		}
 		catch (Exception e)
 		{
